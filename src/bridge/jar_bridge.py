@@ -50,6 +50,5 @@ def call_java_static(class_name: str, method: str, *args):
         if not ok:
             raise RuntimeError('Failed to start JVM for jar bridge')
     parts = class_name.split('.')
-    mod = __import__('.'.join(parts[:-1])) if len(parts) > 1 else None
-    cls = getattr(mod, parts[-1]) if mod else jpype.JClass(class_name)
+    cls = jpype.JClass(class_name)
     return getattr(cls, method)(*args)
