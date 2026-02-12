@@ -1,0 +1,4 @@
+pymysql
+cryptography
+jpype1
+pyyaml

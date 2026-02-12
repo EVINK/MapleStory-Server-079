@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: maple
+      MYSQL_USER: maple
+      MYSQL_PASSWORD: maple
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  app:
+    build: .
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: maple
+      DB_USER: maple
+      DB_PASSWORD: maple
+    depends_on:
+      - db
+    ports:
+      - "6350:6350"
+    command: python main.py
+volumes:
+  db_data:
