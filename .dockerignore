@@ -1,0 +1,23 @@
+# Exclude VCS and CI
+.git
+.github
+
+# Exclude non-Python sources (prevents invalid UTF-8 filenames in context)
+**/*.java
+**/*.class
+
+# Node and Python caches
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large resources not needed for building the Python image
+wz/
+UnlimitedJCEPolicy.tar
+*.log
+
+# OS junk
+.DS_Store
+Thumbs.db
