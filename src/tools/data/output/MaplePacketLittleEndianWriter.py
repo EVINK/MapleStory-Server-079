@@ -1,35 +1,40 @@
 """
-MaplePacketLittleEndianWriter - 从Java源文件转换而来
-对应Java源文件: tools/data/output/MaplePacketLittleEndianWriter.java
-包路径: tools.data.output
+MaplePacketLittleEndianWriter - Converted from Java source
+Original: tools/data/output/MaplePacketLittleEndianWriter.java
+Package: tools.data.output
 """
 
 from io import BytesIO
+from typing import Optional, Any
 import struct
 
-# 内部模块导入 (Internal module imports)
-# from handling.ByteArrayMaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from server.ServerProperties import *  # TODO: 根据实际需要导入具体类
-# from tools.HexTool import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from handling.ByteArrayMaplePacket import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from server.ServerProperties import *  # TODO: import specific classes
+# from tools.HexTool import *  # TODO: import specific classes
 
 
 class MaplePacketLittleEndianWriter(GenericLittleEndianWriter):
     """
-    类 MaplePacketLittleEndianWriter - 从Java类转换
-    继承自: GenericLittleEndianWriter
+    Class MaplePacketLittleEndianWriter
+    Extends: GenericLittleEndianWriter
     """
 
     def __init__(self):
-        """初始化 MaplePacketLittleEndianWriter"""
         self.baos = None
+        this(32)
+
+    # Static initializer
+    # MaplePacketLittleEndianWriter.debugMode = bool(ServerProperties.getProperty("RoyMS.Debug", "False"))
 
 
     def getPacket(self) -> Any:
-        """方法 getPacket"""
-        return getattr(self, 'packet', None)
+        if MaplePacketLittleEndianWriter.debugMode:
+            packet = ByteArrayMaplePacket(self.baos.toByteArray())
+            print("Packet to be sent:\n" + packet)
+        return ByteArrayMaplePacket(self.baos.toByteArray())
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return HexTool.toString(self.baos.toByteArray())
 

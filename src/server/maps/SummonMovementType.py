@@ -1,14 +1,15 @@
 """
-SummonMovementType - 从Java源文件转换而来
-对应Java源文件: server/maps/SummonMovementType.java
-包路径: server.maps
+SummonMovementType - Converted from Java source
+Original: server/maps/SummonMovementType.java
+Package: server.maps
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class SummonMovementType(Enum):
-    """枚举类 SummonMovementType - 从Java枚举转换"""
+    """Enum SummonMovementType"""
 
     不会移动 = (0)
     飞行跟随 = (1)
@@ -17,10 +18,8 @@ class SummonMovementType(Enum):
     CIRCLE_STATIONARY = (4)
 
     def __init__(self, val):
-        """初始化枚举值"""
         self._val = val
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.val
 

@@ -1,7 +1,7 @@
 """
-CheatingOffenseEntry - 从Java源文件转换而来
-对应Java源文件: client/anticheat/CheatingOffenseEntry.java
-包路径: client.anticheat
+CheatingOffenseEntry - Converted from Java source
+Original: client/anticheat/CheatingOffenseEntry.java
+Package: client.anticheat
 """
 
 from typing import Optional, Any
@@ -10,11 +10,10 @@ import time
 
 class CheatingOffenseEntry:
     """
-    类 CheatingOffenseEntry - 从Java类转换
+    Class CheatingOffenseEntry
     """
 
     def __init__(self, offense: Any, characterid: int):
-        """初始化 CheatingOffenseEntry"""
         self.offense = None
         self.count = 0
         self.characterid = None
@@ -22,51 +21,44 @@ class CheatingOffenseEntry:
         self.firstOffense = None
         self.param = ""
         self.dbid = 0
+        self.count = 0
+        self.dbid = -1
+        self.offense = offense
+        self.characterid = characterid
+        self.firstOffense = int(time.time() * 1000)
 
 
     def getOffense(self) -> Any:
-        """方法 getOffense"""
-        return getattr(self, 'offense', None)
+        return self.offense
 
     def getCount(self) -> int:
-        """方法 getCount"""
-        return getattr(self, 'count', 0)
+        return self.count
 
     def getChrfor(self) -> int:
-        """方法 getChrfor"""
-        return getattr(self, 'chrfor', 0)
+        return self.characterid
 
     def incrementCount(self) -> None:
-        """方法 incrementCount"""
-        pass
+        self.count += 1
+        self.lastOffense = int(time.time() * 1000)
 
     def isExpired(self) -> bool:
-        """方法 isExpired"""
-        return bool(getattr(self, 'expired', False))
+        return self.lastOffense < int(time.time() * 1000) - self.offense.getValidityDuration()
 
     def getPoints(self) -> int:
-        """方法 getPoints"""
-        return getattr(self, 'points', 0)
+        return self.count * self.offense.getPoints()
 
     def getParam(self) -> str:
-        """方法 getParam"""
-        return getattr(self, 'param', "")
+        return self.param
 
     def setParam(self, param: str) -> None:
-        """方法 setParam"""
         self.param = param
-        return None
 
     def getLastOffenseTime(self) -> int:
-        """方法 getLastOffenseTime"""
-        return getattr(self, 'last_offense_time', 0)
+        return self.lastOffense
 
     def getDbId(self) -> int:
-        """方法 getDbId"""
-        return getattr(self, 'db_id', 0)
+        return self.dbid
 
     def setDbId(self, dbid: int) -> None:
-        """方法 setDbId"""
-        self.db_id = dbid
-        return None
+        self.dbid = dbid
 

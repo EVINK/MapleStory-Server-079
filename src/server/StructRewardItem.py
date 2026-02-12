@@ -1,17 +1,18 @@
 """
-StructRewardItem - 从Java源文件转换而来
-对应Java源文件: server/StructRewardItem.java
-包路径: server
+StructRewardItem - Converted from Java source
+Original: server/StructRewardItem.java
+Package: server
 """
+
+from typing import Optional, Any
 
 
 class StructRewardItem:
     """
-    类 StructRewardItem - 从Java类转换
+    Class StructRewardItem
     """
 
     def __init__(self):
-        """初始化 StructRewardItem"""
         self.itemid = 0
         self.period = 0
         self.prob = 0

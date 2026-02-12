@@ -1,30 +1,28 @@
 """
-SpawnPoint - 从Java源文件转换而来
-对应Java源文件: server/life/SpawnPoint.java
-包路径: server.life
+SpawnPoint - Converted from Java source
+Original: server/life/SpawnPoint.java
+Package: server.life
 """
 
-from dataclasses import dataclass
 from threading import Lock
 from typing import Optional, Any
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from server.MapleCarnivalFactory import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleReactor import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.MapleCarnivalFactory import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from server.maps.MapleReactor import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class SpawnPoint(Spawns):
     """
-    类 SpawnPoint - 从Java类转换
-    继承自: Spawns
+    Class SpawnPoint
+    Extends: Spawns
     """
 
     def __init__(self, monster: Any, pos: Any, mobTime: int, carnivalTeam: int, msg: str):
-        """初始化 SpawnPoint"""
         self.monster = None
         self.pos = None
         self.nextPossibleSpawn = 0
@@ -34,42 +32,65 @@ class SpawnPoint(Spawns):
         self.immobile = None
         self.msg = None
         self.carnivalTeam = None
+        self.carnival = -1
+        self.spawnedMonsters = AtomicInteger(0)
+        self.monster = monster
+        self.pos = pos
+        self.mobTime = ((mobTime < 0) ? -1 : (mobTime * 1000))
+        self.carnivalTeam = carnivalTeam
+        self.msg = msg
+        self.immobile = !monster.getStats().getMobile()
+        self.nextPossibleSpawn = int(time.time() * 1000)
 
 
     def setCarnival(self, c: int) -> None:
-        """方法 setCarnival"""
         self.carnival = c
-        return None
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        return self.pos
 
     def getMonster(self) -> Any:
-        """方法 getMonster"""
-        return getattr(self, 'monster', None)
+        return self.monster
 
     def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
+        return self.carnivalTeam
 
     def getCarnivalId(self) -> int:
-        """方法 getCarnivalId"""
-        return getattr(self, 'carnival_id', 0)
+        return self.carnival
 
     def shouldSpawn(self) -> bool:
-        """方法 shouldSpawn"""
-        return False
+        return self.mobTime >= 0 && ((self.mobTime == 0 && !self.immobile) || self.spawnedMonsters.get() <= 0) && self.spawnedMonsters.get() <= 1 && self.nextPossibleSpawn <= int(time.time() * 1000)
 
     def spawnMonster(self, map: Any) -> Any:
-        """方法 spawnMonster"""
-        raise NotImplementedError("方法 spawnMonster 尚未实现")
+        mob = MapleMonster(self.monster)
+        mob.setPosition(self.pos)
+        mob.setCarnivalTeam(self.carnivalTeam)
+        self.spawnedMonsters.incrementAndGet()
+        mob.addListener(MonsterListener()
+            public void monsterKilled()
+                SpawnPoint.self.nextPossibleSpawn = int(time.time() * 1000)
+                if SpawnPoint.self.mobTime > 0:
+                    SpawnPoint.self.nextPossibleSpawn += SpawnPoint.self.mobTime
+                SpawnPoint.self.spawnedMonsters.decrementAndGet()
+        map.spawnMonster(mob, -2)
+        if self.carnivalTeam > -1:
+            for r in map.getAllReactorsThreadsafe():
+                if r.getName().startswith(str(self.carnivalTeam)) && r.getReactorId() == 9980000 + self.carnivalTeam && r.getState() < 5:
+                    num = int(r.getName()[1:2])
+                    final MapleCarnivalFactory.MCSkill skil = MapleCarnivalFactory.getInstance().getGuardian(num)
+                    if skil is None:
+                        continue
+                    skil.getSkill().applyEffect(None, mob, False)
+        if self.msg is not None:
+            map.broadcastMessage(MaplePacketCreator.serverNotice(6, self.msg))
+        return mob
 
     def monsterKilled(self) -> None:
-        """方法 monsterKilled"""
-        pass
+        SpawnPoint.self.nextPossibleSpawn = int(time.time() * 1000)
+        if SpawnPoint.self.mobTime > 0:
+            SpawnPoint.self.nextPossibleSpawn += SpawnPoint.self.mobTime
+        SpawnPoint.self.spawnedMonsters.decrementAndGet()
 
     def getMobTime(self) -> int:
-        """方法 getMobTime"""
-        return getattr(self, 'mob_time', 0)
+        return self.mobTime
 

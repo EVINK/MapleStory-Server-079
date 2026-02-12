@@ -1,43 +1,38 @@
 """
-MapleData - 从Java源文件转换而来
-对应Java源文件: provider/MapleData.java
-包路径: provider
+MapleData - Converted from Java source
+Original: provider/MapleData.java
+Package: provider
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from provider.WzXML.MapleDataType import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.WzXML.MapleDataType import *  # TODO: import specific classes
 
 
 from abc import ABC, abstractmethod
 
 class MapleData(ABC):
-    """接口 MapleData - 从Java接口转换"""
+    """Interface MapleData"""
 
     @abstractmethod
-    def get_name(self) -> Any:
-        """抽象方法 getName"""
+    def getName(self) -> str:
         pass
 
     @abstractmethod
-    def get_type(self) -> Any:
-        """抽象方法 getType"""
+    def getType(self) -> Any:
         pass
 
     @abstractmethod
-    def get_children(self) -> Any:
-        """抽象方法 getChildren"""
+    def getChildren(self) -> list:
         pass
 
     @abstractmethod
-    def get_child_by_path(self, p0: str) -> Any:
-        """抽象方法 getChildByPath"""
+    def getChildByPath(self, p0: str) -> Any:
         pass
 
     @abstractmethod
-    def get_data(self) -> Any:
-        """抽象方法 getData"""
+    def getData(self) -> Any:
         pass
 

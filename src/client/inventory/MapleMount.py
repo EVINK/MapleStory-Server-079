@@ -1,7 +1,7 @@
 """
-MapleMount - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleMount.java
-包路径: client.inventory
+MapleMount - Converted from Java source
+Original: client/inventory/MapleMount.java
+Package: client.inventory
 """
 
 from pymysql import Connection
@@ -11,24 +11,22 @@ import pymysql
 import time
 import weakref
 
-# 内部模块导入 (Internal module imports)
-# from database import *  # TODO: 根据实际需要导入具体类
-# from client import *  # TODO: 根据实际需要导入具体类
-# from server import *  # TODO: 根据实际需要导入具体类
-# from tools import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database import *  # TODO: import specific classes
+# from client import *  # TODO: import specific classes
+# from server import *  # TODO: import specific classes
+# from tools import *  # TODO: import specific classes
 
 
 class MapleMount:
     """
-    类 MapleMount - 从Java类转换
-    实现接口: Serializable
+    Class MapleMount
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413738569
 
     def __init__(self, owner: Any, id: int, skillid: int, fatigue: int, level: int, exp: int):
-        """初始化 MapleMount"""
         self.itemid = 0
         self.skillid = None
         self.exp = 0
@@ -37,73 +35,92 @@ class MapleMount:
         self.changed = None
         self.lastFatigue = 0
         self.owner = None
+        self.changed = False
+        self.lastFatigue = 0
+        self.itemid = id
+        self.skillid = skillid
+        self.fatigue = fatigue
+        self.level = level
+        self.exp = exp
+        self.owner = new WeakReference<MapleCharacter>(owner)
 
 
     def saveMount(self, charid: int) -> None:
-        """方法 saveMount"""
-        pass
+        if !self.changed:
+            return
+        con = DatabaseConnection.getConnection()
+        ps = con.prepareStatement("UPDATE mountdata set `Level` = ?, `Exp` = ?, `Fatigue` = ? WHERE characterid = ?")
+        ps.setByte(1, self.level)
+        ps.setInt(2, self.exp)
+        ps.setByte(3, self.fatigue)
+        ps.setInt(4, charid)
+        ps.executeUpdate()
+        ps.close()
 
     def getItemId(self) -> int:
-        """方法 getItemId"""
-        return getattr(self, 'item_id', 0)
+        return self.itemid
 
     def getSkillId(self) -> int:
-        """方法 getSkillId"""
-        return getattr(self, 'skill_id', 0)
+        return self.skillid
 
     def getFatigue(self) -> int:
-        """方法 getFatigue"""
-        return getattr(self, 'fatigue', 0)
+        return self.fatigue
 
     def getExp(self) -> int:
-        """方法 getExp"""
-        return getattr(self, 'exp', 0)
+        return self.exp
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def setItemId(self, c: int) -> None:
-        """方法 setItemId"""
-        self.item_id = c
-        return None
+        self.changed = True
+        self.itemid = c
 
     def setFatigue(self, amount: int) -> None:
-        """方法 setFatigue"""
-        self.fatigue = amount
-        return None
+        self.changed = True
+        self.fatigue += amount
+        if self.fatigue < 0:
+            self.fatigue = 0
 
     def setExp(self, c: int) -> None:
-        """方法 setExp"""
+        self.changed = True
         self.exp = c
-        return None
 
     def setLevel(self, c: int) -> None:
-        """方法 setLevel"""
+        self.changed = True
         self.level = c
-        return None
 
     def increaseFatigue(self) -> None:
-        """方法 increaseFatigue"""
-        pass
+        self.changed = True
+        self.fatigue += 1
+        self.fatigue = 0
+        if self.fatigue > 100 && self.owner.get() is not None:
+            self.owner.get().cancelEffectFromBuffStat(MapleBuffStat.骑兽技能)
+        self.update()
 
     def canTire(self, now: int) -> bool:
-        """方法 canTire"""
-        return False
+        return self.lastFatigue > 0 && self.lastFatigue + 30000 < now
 
     def startSchedule(self) -> None:
-        """方法 startSchedule"""
-        pass
+        self.lastFatigue = int(time.time() * 1000)
 
     def cancelSchedule(self) -> None:
-        """方法 cancelSchedule"""
-        pass
+        self.lastFatigue = 0
 
     def increaseExp(self) -> None:
-        """方法 increaseExp"""
-        pass
+        e = None
+        if self.level >= 1 && self.level <= 7:
+            e = Randomizer.nextInt(10) + 15
+        elif self.level >= 8 && self.level <= 15:
+            e = Randomizer.nextInt(13) + 7
+        elif self.level >= 16 && self.level <= 24:
+            e = Randomizer.nextInt(23) + 9
+        else:
+            e = Randomizer.nextInt(28) + 12
+        self.setExp(self.exp + e)
 
     def update(self) -> None:
-        """方法 update"""
-        pass
+        chr = self.owner.get()
+        if chr is not None:
+            chr.getMap().broadcastMessage(MaplePacketCreator.updateMount(chr, False))
 

@@ -1,19 +1,19 @@
 """
-ShutdownServerMBean - 从Java源文件转换而来
-对应Java源文件: server/ShutdownServerMBean.java
-包路径: server
+ShutdownServerMBean - Converted from Java source
+Original: server/ShutdownServerMBean.java
+Package: server
 """
 
+from typing import Optional, Any
 import threading
 
 
 from abc import ABC, abstractmethod
 
 class ShutdownServerMBean(ABC):
-    """接口 ShutdownServerMBean - 从Java接口转换"""
+    """Interface ShutdownServerMBean"""
 
     @abstractmethod
-    def shutdown(self) -> Any:
-        """抽象方法 shutdown"""
+    def shutdown(self) -> None:
         pass
 

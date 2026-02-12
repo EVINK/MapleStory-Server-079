@@ -1,7 +1,7 @@
 """
-MapleMonster - 从Java源文件转换而来
-对应Java源文件: server/life/MapleMonster.java
-包路径: server.life
+MapleMonster - Converted from Java source
+Original: server/life/MapleMonster.java
+Package: server.life
 """
 
 from concurrent.futures import Future
@@ -10,7 +10,7 @@ from typing import Collection
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from weakref import ref
 import math
 import sched
@@ -18,47 +18,46 @@ import threading
 import time
 import weakref
 
-# 内部模块导入 (Internal module imports)
-# from client.ISkill import *  # TODO: 根据实际需要导入具体类
-# from client.MapleBuffStat import *  # TODO: 根据实际需要导入具体类
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.MapleDisease import *  # TODO: 根据实际需要导入具体类
-# from client.SkillFactory import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.Equip import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.Item import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
-# from client.status.MonsterStatus import *  # TODO: 根据实际需要导入具体类
-# from client.status.MonsterStatusEffect import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from handling.world.MapleParty import *  # TODO: 根据实际需要导入具体类
-# from handling.world.MaplePartyCharacter import *  # TODO: 根据实际需要导入具体类
-# from scripting.EventInstanceManager import *  # TODO: 根据实际需要导入具体类
-# from server.MapleItemInformationProvider import *  # TODO: 根据实际需要导入具体类
-# from server.Randomizer import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapScriptMethods import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapObject import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapObjectType import *  # TODO: 根据实际需要导入具体类
-# from tools.ConcurrentEnumMap import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.MobPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.ISkill import *  # TODO: import specific classes
+# from client.MapleBuffStat import *  # TODO: import specific classes
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.MapleDisease import *  # TODO: import specific classes
+# from client.SkillFactory import *  # TODO: import specific classes
+# from client.inventory.Equip import *  # TODO: import specific classes
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.Item import *  # TODO: import specific classes
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
+# from client.status.MonsterStatus import *  # TODO: import specific classes
+# from client.status.MonsterStatusEffect import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from handling.world.MapleParty import *  # TODO: import specific classes
+# from handling.world.MaplePartyCharacter import *  # TODO: import specific classes
+# from scripting.EventInstanceManager import *  # TODO: import specific classes
+# from server.MapleItemInformationProvider import *  # TODO: import specific classes
+# from server.Randomizer import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from server.maps.MapScriptMethods import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from server.maps.MapleMapObject import *  # TODO: import specific classes
+# from server.maps.MapleMapObjectType import *  # TODO: import specific classes
+# from tools.ConcurrentEnumMap import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
+# from tools.packet.MobPacket import *  # TODO: import specific classes
 
 
 class MapleMonster(AbstractLoadedMapleLife):
     """
-    类 MapleMonster - 从Java类转换
-    继承自: AbstractLoadedMapleLife
+    Class MapleMonster
+    Extends: AbstractLoadedMapleLife
     """
 
     def __init__(self, id: int, stats: Any):
-        """初始化 MapleMonster"""
         self.poisonsLock = None
         self.poisons = None
         self.overrideStats = None
@@ -89,2451 +88,1276 @@ class MapleMonster(AbstractLoadedMapleLife):
         self.stolen = 0
         self.shouldDropItem = False
         self.attacker = None
+        self.lastAttackTime = 0
+        self.exp = 0
+        self.ptysize = 0
+        self.Class_Bonus_EXP = 0
+        self.网吧特别经验 = 0
+        self.lastKnownParty = None
+        self.damage = 0
+        self.lastAttackTime = 0
+        self.poisonDamage = None
+        self.chr = None
+        super(id)
+        self.poisonsLock = ReentrantReadWriteLock()
+        self.poisons = []
+        self.ostats = None
+        self.sponge = new WeakReference<MapleMonster>(None)
+        self.linkoid = 0
+        self.lastNode = -1
+        self.lastNodeController = -1
+        self.highestDamageChar = 0
+        self.controller = new WeakReference<MapleCharacter>(None)
+        self.attackers = []
+        self.listener = None
+        self.reflectpack = None
+        self.nodepack = None
+        self.stati = new ConcurrentEnumMap<MonsterStatus, MonsterStatusEffect>(MonsterStatus.class)
+        self.stolen = -1
+        self.shouldDropItem = False
+        self.initWithStats(stats)
 
 
     def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
+        self.setStance(5)
+        self.stats = stats
+        self.hp = stats.getHp()
+        self.mp = stats.getMp()
+        self.venom_counter = 0
+        self.carnivalTeam = -1
+        self.fake = False
+        self.dropsDisabled = False
+        if stats.getNoSkills() > 0:
+            self.usedSkills = {}
 
     def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
+        return self.stats
 
     def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
+        self.dropsDisabled = True
 
     def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
+        return self.dropsDisabled
 
     def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
+        self.sponge = new WeakReference<MapleMonster>(mob)
 
     def setMap(self, map: Any) -> None:
-        """方法 setMap"""
         self.map = map
-        return None
+        self.startDropItemSchedule()
 
     def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
+        return self.hp
 
     def setHp(self, hp: int) -> None:
-        """方法 setHp"""
         self.hp = hp
-        return None
 
     def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
+        if self.ostats is not None:
+            return self.ostats.getHp()
+        return self.stats.getHp()
 
     def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
+        return self.mp
 
     def setMp(self, mp: int) -> None:
-        """方法 setMp"""
+        if mp < 0:
+            mp = 0
         self.mp = mp
-        return None
 
     def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
+        if self.ostats is not None:
+            return self.ostats.getMp()
+        return self.stats.getMp()
 
     def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
+        if self.ostats is not None:
+            return self.ostats.getExp()
+        return self.stats.getExp()
 
     def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
+        self.ostats = ostats
+        self.hp = ostats.getHp()
+        self.mp = ostats.getMp()
 
     def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
+        return self.sponge.get()
 
     def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
+        return self.venom_counter
 
     def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
+        self.venom_counter = venom_counter
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
+        self.damage(from, damage, updateAttackTime, 0)
 
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
+    def damage_from_damage_updateAttackTime_lastSkill(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
+        if from is None || damage <= 0 || !self.isAlive():
+            return
+        attacker = None
+        if from.getParty() is not None:
+            attacker = PartyAttackerEntry(from.getParty().getId(), self.map.getChannel())
+        else:
+            attacker = SingleAttackerEntry(from, self.map.getChannel())
+        replaced = False
+        for aentry in self.attackers:
+            if aentry == (attacker):
+                attacker = aentry
+                replaced = True
+                break
+        if !replaced:
+            self.attackers.add(attacker)
+        rDamage = max(0, min(damage, self.hp))
+        attacker.addDamage(from, rDamage, updateAttackTime)
+        if self.stats.getSelfD() != -1:
+            self.hp -= rDamage
+            if self.hp > 0:
+                if self.hp < self.stats.getSelfDHp():
+                    self.map.killMonster(this, from, False, False, self.stats.getSelfD(), lastSkill)
+                else:
+                    for mattacker in self.attackers:
+                        for cattacker in mattacker.getAttackers():
+                            if cattacker.getAttacker().getMap() == from.getMap() && cattacker.getLastAttackTime() >= int(time.time() * 1000) - 4000:
+                                cattacker.getAttacker().getClient().getSession().write(MobPacket.showMonsterHP(self.getObjectId(), math.ceil(self.hp * 100.0 / self.getMobMaxHp())))
+            else:
+                self.map.killMonster(this, from, True, False, 1, lastSkill)
+        else:
+            if self.sponge.get() is not None && self.sponge.get().hp > 0:
+                mapleMonster = self.sponge.get()
+                mapleMonster.hp -= rDamage
+                if self.sponge.get().hp <= 0:
+                    self.map.broadcastMessage(MobPacket.showBossHP(self.sponge.get().getId(), -1, self.sponge.get().getMobMaxHp()))
+                    self.map.killMonster(self.sponge.get(), from, True, False, 1, lastSkill)
+                else:
+                    self.map.broadcastMessage(MobPacket.showBossHP(self.sponge.get()))
+            if self.hp > 0:
+                self.hp -= rDamage
+                if self.eventInstance is not None:
+                    self.eventInstance.monsterDamaged(from, this, rDamage)
+                else:
+                    em = from.getEventInstance()
+                    if em is not None:
+                        em.monsterDamaged(from, this, rDamage)
+                if self.sponge.get() is None && self.hp > 0:
+                    # switch (self.stats.getHPDisplayType()):
+                        # case 0:
+                            self.map.broadcastMessage(MobPacket.showBossHP(this), self.getPosition())
+                            break
+                        # case 1:
+                            self.map.broadcastMessage(from, MobPacket.damageFriendlyMob(this, damage, True), False)
+                            break
+                        # case -1:
+                        # case 2:
+                            oid = self.getObjectId()
+                            percent = self.hp * 100.0 / self.getMobMaxHp()
+                            show = math.ceil(percent)
+                            self.map.broadcastMessage(MobPacket.showMonsterHP(self.getObjectId(), math.ceil(self.hp * 100.0 / self.getMobMaxHp())))
+                            from.mulung_EnergyModify(True)
+                            break
+                        # case 3:
+                            for mattacker2 in self.attackers:
+                                for cattacker2 in mattacker2.getAttackers():
+                                    if cattacker2.getAttacker().getMap() == from.getMap() && cattacker2.getLastAttackTime() >= int(time.time() * 1000) - 4000:
+                                        cattacker2.getAttacker().getClient().getSession().write(MobPacket.showMonsterHP(self.getObjectId(), math.ceil(self.hp * 100.0 / self.getMobMaxHp())))
+                            break
+                        # default:
+                            print(self.stats.isBoss() + " " + self.stats.getHPDisplayType())
+                            break
+                if self.hp <= 0:
+                    if self.stats.getHPDisplayType() == 0 || self.stats.getHPDisplayType() == -1:
+                        self.map.broadcastMessage(MobPacket.showBossHP(self.getId(), -1, self.getMobMaxHp()), self.getPosition())
+                    self.map.killMonster(this, from, True, False, 1, lastSkill)
+        self.startDropItemSchedule()
 
     def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
+        TotalHP = self.getHp() + hp
+        TotalMP = self.getMp() + mp
+        if TotalHP >= self.getMobMaxHp():
+            self.setHp(self.getMobMaxHp())
+        else:
+            self.setHp(TotalHP)
+        if TotalMP >= self.getMp():
+            self.setMp(self.getMp())
+        else:
+            self.setMp(TotalMP)
+        if broadcast:
+            self.map.broadcastMessage(MobPacket.healMonster(self.getObjectId(), hp))
+        elif self.sponge.get() is not None:
+            mapleMonster = self.sponge.get()
+            mapleMonster.hp += hp
 
     def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
+        if highestDamage:
+            if self.eventInstance is not None:
+                self.eventInstance.monsterKilled(attacker, this)
+            else:
+                em = attacker.getEventInstance()
+                if em is not None:
+                    em.monsterKilled(attacker, this)
+            self.highestDamageChar = attacker.getId()
+        if exp > 0:
+            mse = self.stati.get(MonsterStatus.挑衅)
+            if mse is not None:
+                exp += (int)(exp * (mse.getX() / 100.0))
+            holySymbol = attacker.getBuffedValue(MapleBuffStat.神圣祈祷)
+            if holySymbol is not None:
+                if numExpSharers == 1:
+                    exp *= (int)(1.0 + holySymbol / 500.0)
+                else:
+                    exp *= (int)(1.0 + holySymbol / 100.0)
+            if attacker.hasDisease(MapleDisease.诅咒):
+                exp /= 2
+            exp *= attacker.getEXPMod() * (int)(attacker.getStat().expBuff / 100.0)
+            exp = min(Integer.MAX_VALUE, exp * ((attacker.getLevel() < 10) ? GameConstants.getExpRate_Below10(attacker.getJob()) : ChannelServer.getInstance(self.map.getChannel()).getExpRate()))
+            Class_Bonus_EXP = 0
+            if Class_Bonus_EXP_PERCENT > 0:
+                Class_Bonus_EXP = (int)(exp / 100.0 * Class_Bonus_EXP_PERCENT)
+            网吧特别经验 = 0
+            if 网吧特别经验_百分比 > 0:
+                网吧特别经验 = (int)(exp / 100.0 * 网吧特别经验_百分比)
+            attacker.gainExpMonster(exp, True, highestDamage, pty, Class_Bonus_EXP, 网吧特别经验)
+        attacker.mobKilled(self.getId(), lastskillID)
 
     def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
+        totalBaseExp = self.getMobExp()
+        highest = None
+        highdamage = 0
+        for attackEntry in self.attackers:
+            if attackEntry.getDamage() > highdamage:
+                highest = attackEntry
+                highdamage = attackEntry.getDamage()
+        for attackEntry2 in self.attackers:
+            baseExp = math.ceil(totalBaseExp * (attackEntry2.getDamage() / self.getMobMaxHp()))
+            attackEntry2.killedMob(self.getMap(), baseExp, attackEntry2 == highest, lastSkill)
+        controll = self.controller.get()
+        if controll is not None:
+            controll.getClient().getSession().write(MobPacket.stopControllingMonster(self.getObjectId()))
+            controll.stopControllingMonster(this)
+        # switch (self.getId()):
+            # default:
+                self.spawnRevives(self.getMap())
+                if self.eventInstance is not None:
+                    self.eventInstance.unregisterMonster(this)
+                    self.eventInstance = None
+                if killer is not None && killer.getPyramidSubway() is not None:
+                    killer.getPyramidSubway().onKill(killer)
+                oldSponge = self.getSponge()
+                self.sponge = new WeakReference<MapleMonster>(None)
+                if oldSponge is not None && oldSponge.isAlive():
+                    set = True
+                    for mon in self.map.getAllMonstersThreadsafe():
+                        mons = mon
+                        if mons.getObjectId() != oldSponge.getObjectId() && mons.getObjectId() != self.getObjectId() && (mons.getSponge() == oldSponge || mons.getLinkOid() == oldSponge.getObjectId()):
+                            set = False
+                            break
+                    if set:
+                        self.map.killMonster(oldSponge, killer, True, False, 1)
+                self.nodepack = None
+                self.reflectpack = None
+                self.stati.clear()
+                self.cancelDropItem()
+                if self.listener is not None:
+                    self.listener.monsterKilled()
+                v1 = self.highestDamageChar
+                self.highestDamageChar = 0
+                return v1
 
     def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
+        toSpawn = self.stats.getRevives()
+        if toSpawn is None:
+            return
+        spongy = None
+        # switch (self.getId()):
+            # case 8810118:
+            # case 8810119:
+            # case 8810120:
+            # case 8810121:
+                for i in toSpawn:
+                    mob = MapleLifeFactory.getMonster(i)
+                    mob.setPosition(self.getPosition())
+                    if self.eventInstance is not None:
+                        self.eventInstance.registerMonster(mob)
+                    if self.dropsDisabled():
+                        mob.disableDrops()
+                    # switch (mob.getId()):
+                        # case 8810119:
+                        # case 8810120:
+                        # case 8810121:
+                        # case 8810122:
+                            spongy = mob
+                            continue
+                if spongy is not None:
+                    map.spawnRevives(spongy, self.getObjectId())
+                    for mon in map.getAllMonstersThreadsafe():
+                        mons = mon
+                        if mons.getObjectId() != spongy.getObjectId() && (mons.getSponge() == this || mons.getLinkOid() == self.getObjectId()):
+                            mons.setSponge(spongy)
+                            mons.setLinkOid(spongy.getObjectId())
+                    break
+                break
+            # case 8810026:
+            # case 8810130:
+            # case 8820008:
+            # case 8820009:
+            # case 8820010:
+            # case 8820011:
+            # case 8820012:
+            # case 8820013:
+                mobs = []
+                for j in toSpawn:
+                    mob2 = MapleLifeFactory.getMonster(j)
+                    mob2.setPosition(self.getPosition())
+                    if self.eventInstance is not None:
+                        self.eventInstance.registerMonster(mob2)
+                    if self.dropsDisabled():
+                        mob2.disableDrops()
+                    # switch (mob2.getId()):
+                        # case 8810018:
+                        # case 8810118:
+                        # case 8820009:
+                        # case 8820010:
+                        # case 8820011:
+                        # case 8820012:
+                        # case 8820013:
+                        # case 8820014:
+                            spongy = mob2
+                            continue
+                        # default:
+                            mobs.add(mob2)
+                            continue
+                if spongy is not None:
+                    map.spawnRevives(spongy, self.getObjectId())
+                    for k in mobs:
+                        k.setSponge(spongy)
+                        map.spawnRevives(k, self.getObjectId())
+                    break
+                break
+            # default:
+                for i in toSpawn:
+                    mob = MapleLifeFactory.getMonster(i)
+                    if self.eventInstance is not None:
+                        self.eventInstance.registerMonster(mob)
+                    mob.setPosition(self.getPosition())
+                    if self.dropsDisabled():
+                        mob.disableDrops()
+                    map.spawnRevives(mob, self.getObjectId())
+                    if mob.getId() == 9300216:
+                        map.broadcastMessage(MaplePacketCreator.environmentChange("Dojang/clear", 4))
+                        map.broadcastMessage(MaplePacketCreator.environmentChange("dojang/end/clear", 3))
+                break
 
     def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
+        return self.hp > 0
 
     def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
+        self.carnivalTeam = team
 
     def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
+        return self.carnivalTeam
 
     def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
+        return self.controller.get()
 
     def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
+        self.controller = new WeakReference<MapleCharacter>(controller)
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
+        controllers = self.getController()
+        if controllers == newController:
+            return
+        if controllers is not None:
+            controllers.stopControllingMonster(this)
+            controllers.getClient().getSession().write(MobPacket.stopControllingMonster(self.getObjectId()))
+        newController.controlMonster(this, immediateAggro)
+        self.setController(newController)
+        if immediateAggro:
+            self.setControllerHasAggro(True)
+        self.setControllerKnowsAboutAggro(False)
+        if self.getId() == 9300275 && self.map.getId() >= 921120100 && self.map.getId() < 921120500:
+            if self.lastNodeController != -1 && self.lastNodeController != newController.getId():
+                self.resetShammos(newController.getClient())
+            else:
+                self.setLastNodeController(newController.getId())
 
     def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
+        self.map.killAllMonsters(True)
+        self.map.broadcastMessage(MaplePacketCreator.serverNotice(5, "A player has moved too far from Shammos. Shammos is going back to the start."))
+        Timer.EtcTimer.getInstance().schedule(Runnable()
+            public void run()
+                if c.getPlayer() is not None:
+                    c.getPlayer().changeMap(c.getPlayer().getMap(), c.getPlayer().getMap().getPortal(0))
+                    if MapleMonster.self.map.getCharactersThreadsafe() > 1:
+                        MapScriptMethods.startScript_FirstUser(c, "shammos_Fenter")
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        if c.getPlayer() is not None:
+            c.getPlayer().changeMap(c.getPlayer().getMap(), c.getPlayer().getMap().getPortal(0))
+            if MapleMonster.self.map.getCharactersThreadsafe() > 1:
+                MapScriptMethods.startScript_FirstUser(c, "shammos_Fenter")
 
     def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
+        self.listener = listener
 
     def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
+        return self.controllerHasAggro
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
+        self.controllerHasAggro = controllerHasAggro
 
     def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
+        return self.controllerKnowsAboutAggro
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
+        self.controllerKnowsAboutAggro = controllerKnowsAboutAggro
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
+        if !self.isAlive():
+            return
+        if self.isFake():
+            client.getSession().write(MobPacket.spawnFakeMonster(this, 0))
+        else:
+            client.getSession().write(MobPacket.spawnMonster(this, False))
+        if self.reflectpack is not None:
+            client.getSession().write(self.reflectpack)
+        if self.lastNode >= 0 && self.getId() == 9300275 && self.map.getId() >= 921120100 && self.map.getId() < 921120500:
+            if self.lastNodeController != -1:
+                self.resetShammos(client)
+            else:
+                self.setLastNodeController(client.getPlayer().getId())
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        if self.getEventInstance() is not None && self.lastNode >= 0:
+            self.resetShammos(client)
+        else:
+            client.getSession().write(MobPacket.killMonster(self.getObjectId(), 0))
+        if self.getController() is not None && client.getPlayer() is not None && client.getPlayer().getId() == self.getController().getId():
+            client.getPlayer().stopControllingMonster(this)
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        sb = ""
+        sb.append(self.stats.getName())
+        sb.append("(")
+        sb.append(self.getId())
+        sb.append(") (等級 ")
+        sb.append(self.stats.getLevel())
+        sb.append(") 在 (X")
+        sb.append(self.getPosition().x)
+        sb.append("/ Y")
+        sb.append(self.getPosition().y)
+        sb.append(") 坐标 ")
+        sb.append(self.getHp())
+        sb.append("/ ")
+        sb.append(self.getMobMaxHp())
+        sb.append("血量, ")
+        sb.append(self.getMp())
+        sb.append("/ ")
+        sb.append(self.getMobMaxMp())
+        sb.append(" 魔力, 反应堆: ")
+        sb.append(self.getObjectId())
+        sb.append(" || 仇恨目标 : ")
+        chr = self.controller.get()
+        sb.append((chr is not None) ? chr.getName() : "无")
+        return sb
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.MONSTER
 
     def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
+        return self.eventInstance
 
     def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
+        self.eventInstance = eventInstance
 
     def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
+        effect = self.stati.get(status)
+        if effect is not None:
+            return effect.getSkill()
+        return -1
 
     def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
+        if self.stati > 0 && self.stati.get(MonsterStatus.巫毒术) is not None:
+            return ElementalEffectiveness.正常
+        return self.stats.getEffectiveness(e)
 
     def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
+        self.applyStatus(from, status, poison, duration, venom, True)
 
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    def applyStatus_from_status_poison_duration_venom_checkboss(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
+        if !self.isAlive():
+            return
+        skilz = SkillFactory.getSkill(status.getSkill())
+        if skilz is not None:
+            # switch (self.stats.getEffectiveness(skilz.getElement())):
+                # case 免疫:
+                # case 增强:
+                    return
+                # case 正常:
+                # case 虚弱:
+                    break
+                # default:
+                    return
+        statusSkill = status.getSkill()
+        Label_0277:
+            # switch (statusSkill):
+                # case 2111006:
+                    # switch (self.stats.getEffectiveness(Element.POISON)):
+                        # case 免疫:
+                        # case 增强:
+                            return
+                        # default:
+                            Label_0277 = None
+                # case 2211006:
+                    # switch (self.stats.getEffectiveness(Element.ICE)):
+                        # case 免疫:
+                        # case 增强:
+                            return
+                        # default:
+                            Label_0277 = None
+                # case 4120005:
+                # case 4220005:
+                # case 14110004:
+                    # switch (self.stats.getEffectiveness(Element.POISON)):
+                        # case 免疫:
+                        # case 增强:
+                            return
+                        # default:
+                            Label_0277 = None
+        stat = status.getStati()
+        if self.stats.isNoDoom() && stat == MonsterStatus.巫毒术:
+            return
+        if self.getId() == 9600000 && (stat == MonsterStatus.冻结 || stat == MonsterStatus.中毒 || stat == MonsterStatus.眩晕):
+            return
+        if self.stats.isBoss():
+            if self.stats.isBoss() && (stat == MonsterStatus.眩晕 || stat == MonsterStatus.中毒):
+                return
+            if checkboss && stat != MonsterStatus.速度 && stat != MonsterStatus.忍者伏击 && stat != MonsterStatus.中毒 && stat != MonsterStatus.物攻:
+                return
+        if (self.stats.isFriendly() || self.isFake()) && (stat == MonsterStatus.眩晕 || stat == MonsterStatus.速度 || stat == MonsterStatus.中毒):
+            return
+        oldEffect = self.stati.get(stat)
+        if oldEffect is not None:
+            self.stati.remove(stat)
+            if oldEffect.getStati() is None:
+                oldEffect.cancelTask()
+                oldEffect.cancelPoisonSchedule()
+        final Timer.MobTimer timerManager = Timer.MobTimer.getInstance()
+        cancelTask = Runnable()
+            public void run()
+                MapleMonster.self.cancelStatus(stat)
+        if poison && self.getHp() > 1:
+            poisonDamage = min(32767, (long)(self.getMobMaxHp() / (70.0 - from.getSkillLevel(status.getSkill())) + 0.999))
+            status.setValue(MonsterStatus.中毒, poisonDamage)
+            status.setPoisonSchedule(timerManager.register(PoisonTask(poisonDamage, from, status, cancelTask, False), 1000, 1000))
+            if from.isGM():
+                from.dropMessage(6, "正在给予 怪物: " + self.getId() + " BUFF状态: " + status.getStati().name() + " 是否中毒: " + poison + " BUFF持续时间: " + duration)
+            if duration >= 60000:
+                duration = 10000
+        elif venom:
+            poisonLevel = 0
+            matk = 0
+            # switch (from.getJob()):
+                # case 412:
+                    poisonLevel = from.getSkillLevel(SkillFactory.getSkill(4120005))
+                    if poisonLevel <= 0:
+                        return
+                    matk = SkillFactory.getSkill(4120005).getEffect(poisonLevel).getMatk()
+                    break
+                # case 422:
+                    poisonLevel = from.getSkillLevel(SkillFactory.getSkill(4220005))
+                    if poisonLevel <= 0:
+                        return
+                    matk = SkillFactory.getSkill(4220005).getEffect(poisonLevel).getMatk()
+                    break
+                # case 1411:
+                # case 1412:
+                    poisonLevel = from.getSkillLevel(SkillFactory.getSkill(14110004))
+                    if poisonLevel <= 0:
+                        return
+                    matk = SkillFactory.getSkill(14110004).getEffect(poisonLevel).getMatk()
+                    break
+                # case 434:
+                    poisonLevel = from.getSkillLevel(SkillFactory.getSkill(4340001))
+                    if poisonLevel <= 0:
+                        return
+                    matk = SkillFactory.getSkill(4340001).getEffect(poisonLevel).getMatk()
+                    break
+                # default:
+                    return
+            luk = from.getStat().getLuk()
+            maxDmg = math.ceil(min(32767.0, 0.2 * luk * matk))
+            minDmg = math.ceil(min(32767.0, 0.1 * luk * matk))
+            gap = maxDmg - minDmg
+            if gap == 0:
+                gap = 1
+            poisonDamage2 = 0
+            for i in range(self.getVenomMulti()):
+                poisonDamage2 += Randomizer.nextInt(gap) + minDmg
+            poisonDamage2 = min(32767, poisonDamage2)
+            status.setValue(MonsterStatus.中毒, poisonDamage2)
+            status.setPoisonSchedule(timerManager.register(PoisonTask(poisonDamage2, from, status, cancelTask, False), 1000, 1000))
+        elif statusSkill == 4111003 || statusSkill == 14111001:
+            status.setPoisonSchedule(timerManager.schedule(PoisonTask((int)(self.getMobMaxHp() / 50.0 + 0.999), from, status, cancelTask, True), 3500))
+        elif statusSkill == 4121004 || statusSkill == 4221004:
+            damage = (from.getStat().getStr() + from.getStat().getLuk()) * 2 * 0 + 100
+            status.setPoisonSchedule(timerManager.register(PoisonTask(damage, from, status, cancelTask, False), 1000, 1000))
+            if damage > 0:
+                if damage >= self.hp:
+                    damage = (int)(self.hp - 1)
+                self.damage(from, damage, False)
+        self.stati.put(stat, status)
+        self.map.broadcastMessage(MobPacket.applyMonsterStatus(self.getObjectId(), status), self.getPosition())
+        if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+            self.getController().getClient().getSession().write(MobPacket.applyMonsterStatus(self.getObjectId(), status))
+        aniTime = 0
+        if skilz is not None:
+            aniTime = skilz.getAnimationTime()
+        final ScheduledFuture<?> schedule = timerManager.schedule(cancelTask, duration + aniTime)
+        status.setCancelTask(schedule)
 
     def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
+        toCancel = []
+        for (final Map.Entry<MonsterStatus, MonsterStatusEffect> effects : self.stati.items())
+            if effects.getValue().getMobSkill() is not None && effects.getValue().getMobSkill().getSkillId() == skillId.getSkillId():
+                toCancel.add(effects.getKey())
+        for stat in toCancel:
+            self.cancelStatus(stat)
 
     def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
+        final Timer.MobTimer timerManager = Timer.MobTimer.getInstance()
+        cancelTask = Runnable()
+            public void run()
+                if reflection > 0:
+                    MapleMonster.self.reflectpack = None
+                if MapleMonster.self.isAlive():
+                    for z in effect.keys():
+                        MapleMonster.self.cancelStatus(z)
+        for (final Map.Entry<MonsterStatus, Integer> z : effect.items())
+            effectz = MonsterStatusEffect(z.getKey(), z.getValue(), 0, skill, True)
+            self.stati.put(z.getKey(), effectz)
+        if reflection > 0:
+            self.reflectpack = MobPacket.applyMonsterStatus(self.getObjectId(), effect, reflection, skill)
+            self.map.broadcastMessage(self.reflectpack, self.getPosition())
+            if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+                self.getController().getClient().getSession().write(self.reflectpack)
+        else:
+            for (final Map.Entry<MonsterStatus, Integer> z : effect.items())
+                self.map.broadcastMessage(MobPacket.applyMonsterStatus(self.getObjectId(), z.getKey(), z.getValue(), skill), self.getPosition())
+                if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+                    self.getController().getClient().getSession().write(MobPacket.applyMonsterStatus(self.getObjectId(), z.getKey(), z.getValue(), skill))
+        timerManager.schedule(cancelTask, duration)
 
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    def setTempEffectiveness(self, e: Any, milli: int) -> None:
+        self.stats.setEffectiveness(e, ElementalEffectiveness.虚弱)
+        Timer.MobTimer.getInstance().schedule(Runnable()
+            public void run()
+                MapleMonster.self.stats.removeEffectiveness(e)
+
+    def isBuffed(self, status: Any) -> bool:
+        return (status in self.stati)
+
+    def getBuff(self, status: Any) -> Any:
+        return self.stati.get(status)
+
+    def setFake(self, fake: bool) -> None:
+        self.fake = fake
+
+    def isFake(self) -> bool:
+        return self.fake
+
+    def getMap(self) -> Any:
+        return self.map
+
+    def getSkills(self) -> list:
+        return self.stats.getSkills()
+
+    def hasSkill(self, skillId: int, level: int) -> bool:
+        return self.stats.hasSkill(skillId, level)
+
+    def getLastSkillUsed(self, skillId: int) -> int:
+        if (skillId in self.usedSkills):
+            return self.usedSkills.get(skillId)
+        return 0
+
+    def setLastSkillUsed(self, skillId: int, now: int, cooltime: int) -> None:
+        # switch (skillId):
+            # case 140:
+                self.usedSkills.put(skillId, now + cooltime * 2)
+                self.usedSkills.put(141, now)
+                break
+            # case 141:
+                self.usedSkills.put(skillId, now + cooltime * 2)
+                self.usedSkills.put(140, now + cooltime)
+                break
+            # default:
+                self.usedSkills.put(skillId, now + cooltime)
+                break
+
+    def getNoSkills(self) -> int:
+        return self.stats.getNoSkills()
+
+    def isFirstAttack(self) -> bool:
+        return self.stats.isFirstAttack()
+
+    def getBuffToGive(self) -> int:
+        return self.stats.getBuffToGive()
+
+    def getExp(self) -> int:
+        if self.overrideStats is not None:
+            return self.overrideStats.getExp()
+        return self.stats.getExp()
+
+    def getLinkOid(self) -> int:
+        return self.linkoid
+
+    def setLinkOid(self, lo: int) -> None:
+        self.linkoid = lo
+
+    def getStati(self) -> dict:
+        return self.stati
+
+    def addEmpty(self) -> None:
+        self.stati.put(MonsterStatus.空白BUFF, MonsterStatusEffect(MonsterStatus.空白BUFF, 0, 0, None, False))
+        self.stati.put(MonsterStatus.召唤怪物, MonsterStatusEffect(MonsterStatus.召唤怪物, 0, 0, None, False))
+
+    def getStolen(self) -> int:
+        return self.stolen
+
+    def setStolen(self, s: int) -> None:
+        self.stolen = s
+
+    def handleSteal(self, chr: Any) -> None:
+        showdown = 100.0
+        mse = self.getBuff(MonsterStatus.挑衅)
+        if mse is not None:
+            showdown += mse.getX()
+        steal = SkillFactory.getSkill(4201004)
+        level = chr.getSkillLevel(steal)
+        chServerrate = ChannelServer.getInstance(chr.getClient().getChannel()).getDropRate()
+        if level > 0 && !self.getStats().isBoss() && self.stolen == -1 && steal.getEffect(level).makeChanceResult():
+            mi = MapleMonsterInformationProvider.getInstance()
+            de = mi.retrieveDrop(self.getId())
+            if de is None:
+                self.stolen = 0
+                return
+            dropEntry = []
+            Collections.shuffle(dropEntry)
+            for d in dropEntry:
+                if d.itemId > 0 && d.questid == 0 && d.itemId / 10000 != 238 && Randomizer.nextInt(999999) < (int)(10 * d.chance * chServerrate * chr.getDropMod() * (chr.getStat().dropBuff / 100.0) * (showdown / 100.0)):
+                    idrop = None
+                    if GameConstants.getInventoryType(d.itemId) == MapleInventoryType.EQUIP:
+                        eq = MapleItemInformationProvider.getInstance().getEquipById(d.itemId)
+                        idrop = MapleItemInformationProvider.getInstance().randomizeStats(eq)
+                    else:
+                        idrop = Item(d.itemId, 0, (short)((d.Maximum != 1) ? (Randomizer.nextInt(d.Maximum - d.Minimum) + d.Minimum) : 1), 0)
+                    self.stolen = d.itemId
+                    self.map.spawnMobDrop(idrop, self.map.calcDropPos(self.getPosition(), self.getTruePosition()), this, chr, 0, 0)
+                    break
+        else:
+            self.stolen = 0
+
+    def setLastNode(self, lastNode: int) -> None:
+        self.lastNode = lastNode
+
+    def getLastNode(self) -> int:
+        return self.lastNode
+
+    def setLastNodeController(self, lastNode: int) -> None:
+        self.lastNodeController = lastNode
+
+    def getLastNodeController(self) -> int:
+        return self.lastNodeController
+
+    def cancelStatus(self, stat: Any) -> None:
+        if stat == MonsterStatus.空白BUFF || stat == MonsterStatus.召唤怪物:
+            return
+        mse = self.stati.get(stat)
+        if mse is None || !self.isAlive():
+            return
+        if mse.isReflect():
+            self.reflectpack = None
+        mse.cancelPoisonSchedule()
+        con = self.getController()
+        if con is not None:
+            self.map.broadcastMessage(con, MobPacket.cancelMonsterStatus(self.getObjectId(), stat), self.getTruePosition())
+            con.getClient().getSession().write(MobPacket.cancelMonsterStatus(self.getObjectId(), stat))
+        else:
+            self.map.broadcastMessage(MobPacket.cancelMonsterStatus(self.getObjectId(), stat), self.getTruePosition())
+        self.stati.remove(stat)
+
+    def cancelDropItem(self) -> None:
+        if self.dropItemSchedule is not None:
+            self.dropItemSchedule.cancel(False)
+            self.dropItemSchedule = None
+
+    def startDropItemSchedule(self) -> None:
+        itemId = None
+        cancelDropItem()
+        if self.stats.getDropItemPeriod() <= 0 || !isAlive():
+        return
+        # switch (getId()):
+            # case 9300061:
+            itemId = 4001101
+            break
+            # case 9300102:
+            itemId = 4031507
+            break
+            # default:
+            return
+        self.shouldDropItem = False
+        self.dropItemSchedule = Timer.MobTimer.getInstance().register(Runnable()
+            public void run()
+                if MapleMonster.self.isAlive() && MapleMonster.self.map is not None:
+                if MapleMonster.self.shouldDropItem:
+                    MapleMonster.self.map.spawnAutoDrop(itemId, MapleMonster.self.getPosition())
+                else:
+                    MapleMonster.self.shouldDropItem = True
+
+    def getNodePacket(self) -> Any:
+        return self.nodepack
+
+    def setNodePacket(self, np: Any) -> None:
+        self.nodepack = np
+
+    def killed(self) -> None:
+        if self.listener is not None:
+            self.listener.monsterKilled()
+        self.listener = None
+
+    def changeLevel(self, newLevel: int, pqMob: bool) -> None:
+        self.ostats = ChangeableStats(self.stats, newLevel, pqMob)
+        self.hp = self.ostats.getHp()
+        self.mp = self.ostats.getMp()
+
+    def getRange(self) -> float:
+        return GameConstants.maxViewRangeSq()
+
+    def getLastAttackTime(self) -> int:
+        return self.lastAttackTime
+
+    def setLastAttackTime(self, lastAttackTime: int) -> None:
+        self.lastAttackTime = lastAttackTime
+
+    def getAttacker(self) -> Any:
+        return self.attacker
+
+    def addDamage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
+        if self.chrid == from.getId():
+            self.damage += damage
+            if updateAttackTime:
+                self.lastAttackTime = int(time.time() * 1000)
+
+    def getAttackers(self) -> list:
+        chr = MapleMonster.self.map.getCharacterById(self.chrid)
+        if chr is not None:
+            return Collections.singletonList(AttackingMapleCharacter(chr, self.lastAttackTime))
+        return Collections.emptyList()
+
+    def contains(self, chr: Any) -> bool:
+        return self.chrid == chr.getId()
+
+    def getDamage(self) -> int:
+        return self.damage
+
+    def killedMob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
+        chr = map.getCharacterById(self.chrid)
+        if chr is not None && chr.isAlive():
+            MapleMonster.self.giveExpToCharacter(chr, baseExp, mostDamage, 1, 0, 0, 0, lastSkill)
+
+    def hashCode(self) -> int:
+        return self.chrid
+
+    def equals(self, obj: Any) -> bool:
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.chrid == other.chrid
+
+    def resolveAttackers(self) -> dict:
+        ret = {})
+        for (final Map.Entry<Integer, OnePartyAttacker> aentry : self.attackers.items())
+            chr = MapleMonster.self.map.getCharacterById(aentry.getKey())
+            if chr is not None:
+                ret.put(chr, aentry.getValue())
+        return ret
+
+    def contains_chr(self, chr: Any) -> bool:
+        return (chr.getId( in self.attackers))
+
+    def addDamage_from_damage_updateAttackTime(self, from: Any, damage: int, updateAttackTime: bool) -> None:
+        oldPartyAttacker = self.attackers.get(from.getId())
+        if oldPartyAttacker is not None:
+            onePartyAttacker2 = oldPartyAttacker
+            onePartyAttacker2.damage += damage
+            oldPartyAttacker.lastKnownParty = from.getParty()
+            if updateAttackTime:
+                oldPartyAttacker.lastAttackTime = int(time.time() * 1000)
+        else:
+            onePartyAttacker = OnePartyAttacker(from.getParty(), damage)
+            self.attackers.put(from.getId(), onePartyAttacker)
+            if !updateAttackTime:
+                onePartyAttacker.lastAttackTime = 0
+        self.totDamage += damage
+
+    def killedMob_map_baseExp_mostDamage_lastSkill(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
+        highest = None
+        highestDamage = 0
+        iexp = 0
+        expMap = {}
+        added_组队经验值 = 0
+        for (final Map.Entry<MapleCharacter, OnePartyAttacker> attacker : self.resolveAttackers().items())
+            party = attacker.getValue().lastKnownParty
+            averagePartyLevel = 0.0
+            Class_Bonus_EXP = 0
+            网吧特别经验 = 0
+            expApplicable = []
+            for partychar in party.getMembers():
+                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 || MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
+                    pchr = map.getCharacterById(partychar.getId())
+                    if pchr is None || !pchr.isAlive() || pchr.getMap() != map:
+                        continue
+                    expApplicable.add(pchr)
+                    averagePartyLevel += pchr.getLevel()
+                    if Class_Bonus_EXP == 0:
+                        Class_Bonus_EXP = ServerConstants.Class_Bonus_EXP(pchr.getJob())
+                    if pchr.getStat().equippedWelcomeBackRing && 网吧特别经验 == 0:
+                        网吧特别经验 = 80
+                    if !pchr.getStat().hasPartyBonus || added_组队经验值 >= 4:
+                        continue
+                    added_组队经验值 += 1
+            iDamage = attacker.getValue().damage
+            if iDamage > highestDamage:
+                highest = attacker.getKey()
+                highestDamage = iDamage
+            innerBaseExp = baseExp * (iDamage / self.totDamage)
+            expBonus = 1.0
+            if expApplicable > 1:
+                expBonus = 1.1 + 0.05 * expApplicable
+                averagePartyLevel /= expApplicable
+            expFraction = innerBaseExp * expBonus / (expApplicable + 1)
+            for expReceiver in expApplicable:
+                oexp = (expMap.get(expReceiver) is None) ? 0 : expMap.get(expReceiver).exp
+                if oexp is None:
+                    iexp = 0
+                else:
+                    iexp = oexp
+                expWeight = (expReceiver == attacker.getKey()) ? 2.0 : 1.0
+                levelMod = expReceiver.getLevel() / averagePartyLevel
+                if levelMod > 1.0 || (expReceiver.getId( in self.attackers)):
+                    levelMod = 1.0
+                iexp += Math.round(expFraction * expWeight * levelMod)
+                expMap.put(expReceiver, ExpMap(iexp, (byte)(expApplicable + added_组队经验值), Class_Bonus_EXP, 网吧特别经验))
+        for (final Map.Entry<MapleCharacter, ExpMap> expReceiver2 : expMap.items())
+            expmap = expReceiver2.getValue()
+            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage && expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
+
+    def equals_obj(self, obj: Any) -> bool:
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.partyid == other.partyid
 
 
+# Inner class from Java (originally nested)
 class AttackingMapleCharacter:
     """
-    类 AttackingMapleCharacter - 从Java类转换
+    Class AttackingMapleCharacter
     """
 
     def __init__(self, attacker: Any, lastAttackTime: int):
-        """初始化 AttackingMapleCharacter"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
-        self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
-        self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
         self.attacker = None
+        self.lastAttackTime = 0
+        self.attacker = attacker
+        self.lastAttackTime = lastAttackTime
 
 
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
+    def getLastAttackTime(self) -> int:
+        return self.lastAttackTime
 
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
+    def setLastAttackTime(self, lastAttackTime: int) -> None:
+        self.lastAttackTime = lastAttackTime
 
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
-
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
-
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
-
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
-
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
-
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    def getAttacker(self) -> Any:
+        return self.attacker
 
 
+# Inner class from Java (originally nested)
 class ExpMap:
     """
-    类 ExpMap - 从Java类转换
+    Class ExpMap
     """
 
     def __init__(self, exp: int, ptysize: int, Class_Bonus_EXP: int, 网吧特别经验: int):
-        """初始化 ExpMap"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
-        self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
-        self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
-        self.attacker = None
+        self.exp = 0
+        self.ptysize = 0
+        self.Class_Bonus_EXP = 0
+        self.网吧特别经验 = 0
+        self.exp = exp
+        self.ptysize = ptysize
+        self.Class_Bonus_EXP = Class_Bonus_EXP
+        self.网吧特别经验 = 网吧特别经验
 
 
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
 
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
-
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
-
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
-
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
-
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
-
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
-
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-
+# Inner class from Java (originally nested)
 class OnePartyAttacker:
     """
-    类 OnePartyAttacker - 从Java类转换
+    Class OnePartyAttacker
     """
 
     def __init__(self, lastKnownParty: Any, damage: int):
-        """初始化 OnePartyAttacker"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
-        self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
-        self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
-        self.attacker = None
+        self.lastKnownParty = None
+        self.damage = 0
+        self.lastAttackTime = 0
+        self.lastKnownParty = lastKnownParty
+        self.damage = damage
+        self.lastAttackTime = int(time.time() * 1000)
 
 
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
 
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
-
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
-
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
-
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
-
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
-
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
-
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-
+# Inner class from Java (originally nested)
 class PoisonTask(Runnable):
     """
-    类 PoisonTask - 从Java类转换
-    实现接口: Runnable
+    Class PoisonTask
+    Implements: Runnable
     """
 
     def __init__(self, poisonDamage: int, chr: Any, status: Any, cancelTask: Any, shadowWeb: bool):
-        """初始化 PoisonTask"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
+        self.poisonDamage = None
+        self.chr = None
+        self.status = None
+        self.cancelTask = None
+        self.shadowWeb = None
         self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
-        self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
-        self.attacker = None
+        self.poisonDamage = poisonDamage
+        self.chr = chr
+        self.status = status
+        self.cancelTask = cancelTask
+        self.shadowWeb = shadowWeb
+        self.map = chr.getMap()
 
-
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
-
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
-
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
-
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
-
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
-
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
-
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
-
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
 
     def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+        damage = self.poisonDamage
+        if damage >= MapleMonster.self.hp:
+            damage = MapleMonster.self.hp - 1
+            if !self.shadowWeb:
+                self.cancelTask.run()
+                self.status.cancelTask()
+        if MapleMonster.self.hp > 1 && damage > 0:
+            MapleMonster.self.damage(self.chr, damage, False)
+            if self.shadowWeb:
+                self.map.broadcastMessage(MobPacket.damageMonster(MapleMonster.self.getObjectId(), damage), MapleMonster.self.getPosition())
 
 
+# Inner class from Java (originally nested)
 class SingleAttackerEntry(AttackerEntry):
     """
-    类 SingleAttackerEntry - 从Java类转换
-    实现接口: AttackerEntry
+    Class SingleAttackerEntry
+    Implements: AttackerEntry
     """
 
     def __init__(self, from: Any, cserv: int):
-        """初始化 SingleAttackerEntry"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
-        self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
-        self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
-        self.attacker = None
+        self.damage = 0
+        self.chrid = None
+        self.lastAttackTime = 0
+        self.channel = None
+        self.damage = 0
+        self.chrid = from.getId()
+        self.channel = cserv
 
 
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
+    def addDamage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
+        if self.chrid == from.getId():
+            self.damage += damage
+            if updateAttackTime:
+                self.lastAttackTime = int(time.time() * 1000)
 
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
+    def getAttackers(self) -> list:
+        chr = MapleMonster.self.map.getCharacterById(self.chrid)
+        if chr is not None:
+            return Collections.singletonList(AttackingMapleCharacter(chr, self.lastAttackTime))
+        return Collections.emptyList()
 
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
+    def contains(self, chr: Any) -> bool:
+        return self.chrid == chr.getId()
 
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
+    def getDamage(self) -> int:
+        return self.damage
 
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
+    def killedMob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
+        chr = map.getCharacterById(self.chrid)
+        if chr is not None && chr.isAlive():
+            MapleMonster.self.giveExpToCharacter(chr, baseExp, mostDamage, 1, 0, 0, 0, lastSkill)
 
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
+    def hashCode(self) -> int:
+        return self.chrid
 
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
-
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    def equals(self, obj: Any) -> bool:
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.chrid == other.chrid
 
 
+# Inner class from Java (originally nested)
 class PartyAttackerEntry(AttackerEntry):
     """
-    类 PartyAttackerEntry - 从Java类转换
-    实现接口: AttackerEntry
+    Class PartyAttackerEntry
+    Implements: AttackerEntry
     """
 
     def __init__(self, partyid: int, cserv: int):
-        """初始化 PartyAttackerEntry"""
-        self.poisonsLock = None
-        self.poisons = None
-        self.overrideStats = None
-        self.stats = None
-        self.ostats = None
-        self.hp = 0
-        self.mp = 0
-        self.venom_counter = 0
-        self.carnivalTeam = 0
-        self.map = None
-        self.sponge = None
-        self.linkoid = 0
-        self.lastNode = 0
-        self.lastNodeController = 0
-        self.highestDamageChar = 0
-        self.controller = None
-        self.fake = False
-        self.dropsDisabled = False
-        self.controllerHasAggro = False
-        self.controllerKnowsAboutAggro = False
+        self.totDamage = 0
         self.attackers = None
-        self.eventInstance = None
-        self.listener = None
-        self.reflectpack = None
-        self.nodepack = None
-        self.stati = {}
-        self.usedSkills = {}
-        self.stolen = 0
-        self.shouldDropItem = False
-        self.attacker = None
+        self.partyid = None
+        self.channel = None
+        self.attackers = {}
+        self.partyid = partyid
+        self.channel = cserv
 
 
-    def initWithStats(self, stats: Any) -> None:
-        """方法 initWithStats"""
-        pass
+    def getAttackers(self) -> list:
+        ret = [])
+        for (final Map.Entry<Integer, OnePartyAttacker> entry : self.attackers.items())
+            chr = MapleMonster.self.map.getCharacterById(entry.getKey())
+            if chr is not None:
+                ret.add(AttackingMapleCharacter(chr, entry.getValue().lastAttackTime))
+        return ret
 
-    def getStats(self) -> Any:
-        """方法 getStats"""
-        return getattr(self, 'stats', None)
+    def resolveAttackers(self) -> dict:
+        ret = {})
+        for (final Map.Entry<Integer, OnePartyAttacker> aentry : self.attackers.items())
+            chr = MapleMonster.self.map.getCharacterById(aentry.getKey())
+            if chr is not None:
+                ret.put(chr, aentry.getValue())
+        return ret
 
-    def disableDrops(self) -> None:
-        """方法 disableDrops"""
-        pass
+    def contains(self, chr: Any) -> bool:
+        return (chr.getId( in self.attackers))
 
-    def dropsDisabled(self) -> bool:
-        """方法 dropsDisabled"""
-        return False
+    def getDamage(self) -> int:
+        return self.totDamage
 
-    def setSponge(self, mob: Any) -> None:
-        """方法 setSponge"""
-        self.sponge = mob
-        return None
+    def addDamage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
+        oldPartyAttacker = self.attackers.get(from.getId())
+        if oldPartyAttacker is not None:
+            onePartyAttacker2 = oldPartyAttacker
+            onePartyAttacker2.damage += damage
+            oldPartyAttacker.lastKnownParty = from.getParty()
+            if updateAttackTime:
+                oldPartyAttacker.lastAttackTime = int(time.time() * 1000)
+        else:
+            onePartyAttacker = OnePartyAttacker(from.getParty(), damage)
+            self.attackers.put(from.getId(), onePartyAttacker)
+            if !updateAttackTime:
+                onePartyAttacker.lastAttackTime = 0
+        self.totDamage += damage
 
-    def setMap(self, map: Any) -> None:
-        """方法 setMap"""
-        self.map = map
-        return None
+    def killedMob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
+        highest = None
+        highestDamage = 0
+        iexp = 0
+        expMap = {}
+        added_组队经验值 = 0
+        for (final Map.Entry<MapleCharacter, OnePartyAttacker> attacker : self.resolveAttackers().items())
+            party = attacker.getValue().lastKnownParty
+            averagePartyLevel = 0.0
+            Class_Bonus_EXP = 0
+            网吧特别经验 = 0
+            expApplicable = []
+            for partychar in party.getMembers():
+                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 || MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
+                    pchr = map.getCharacterById(partychar.getId())
+                    if pchr is None || !pchr.isAlive() || pchr.getMap() != map:
+                        continue
+                    expApplicable.add(pchr)
+                    averagePartyLevel += pchr.getLevel()
+                    if Class_Bonus_EXP == 0:
+                        Class_Bonus_EXP = ServerConstants.Class_Bonus_EXP(pchr.getJob())
+                    if pchr.getStat().equippedWelcomeBackRing && 网吧特别经验 == 0:
+                        网吧特别经验 = 80
+                    if !pchr.getStat().hasPartyBonus || added_组队经验值 >= 4:
+                        continue
+                    added_组队经验值 += 1
+            iDamage = attacker.getValue().damage
+            if iDamage > highestDamage:
+                highest = attacker.getKey()
+                highestDamage = iDamage
+            innerBaseExp = baseExp * (iDamage / self.totDamage)
+            expBonus = 1.0
+            if expApplicable > 1:
+                expBonus = 1.1 + 0.05 * expApplicable
+                averagePartyLevel /= expApplicable
+            expFraction = innerBaseExp * expBonus / (expApplicable + 1)
+            for expReceiver in expApplicable:
+                oexp = (expMap.get(expReceiver) is None) ? 0 : expMap.get(expReceiver).exp
+                if oexp is None:
+                    iexp = 0
+                else:
+                    iexp = oexp
+                expWeight = (expReceiver == attacker.getKey()) ? 2.0 : 1.0
+                levelMod = expReceiver.getLevel() / averagePartyLevel
+                if levelMod > 1.0 || (expReceiver.getId( in self.attackers)):
+                    levelMod = 1.0
+                iexp += Math.round(expFraction * expWeight * levelMod)
+                expMap.put(expReceiver, ExpMap(iexp, (byte)(expApplicable + added_组队经验值), Class_Bonus_EXP, 网吧特别经验))
+        for (final Map.Entry<MapleCharacter, ExpMap> expReceiver2 : expMap.items())
+            expmap = expReceiver2.getValue()
+            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage && expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
 
-    def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
+    def hashCode(self) -> int:
+        prime = 31
+        result = 1
+        result = prime * result + self.partyid
+        return result
 
-    def setHp(self, hp: int) -> None:
-        """方法 setHp"""
-        self.hp = hp
-        return None
-
-    def getMobMaxHp(self) -> int:
-        """方法 getMobMaxHp"""
-        return getattr(self, 'mob_max_hp', 0)
-
-    def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
-
-    def setMp(self, mp: int) -> None:
-        """方法 setMp"""
-        self.mp = mp
-        return None
-
-    def getMobMaxMp(self) -> int:
-        """方法 getMobMaxMp"""
-        return getattr(self, 'mob_max_mp', 0)
-
-    def getMobExp(self) -> int:
-        """方法 getMobExp"""
-        return getattr(self, 'mob_exp', 0)
-
-    def setOverrideStats(self, ostats: Any) -> None:
-        """方法 setOverrideStats"""
-        self.override_stats = ostats
-        return None
-
-    def getSponge(self) -> Any:
-        """方法 getSponge"""
-        return getattr(self, 'sponge', None)
-
-    def getVenomMulti(self) -> int:
-        """方法 getVenomMulti"""
-        return getattr(self, 'venom_multi', 0)
-
-    def setVenomMulti(self, venom_counter: int) -> None:
-        """方法 setVenomMulti"""
-        self.venom_multi = venom_counter
-        return None
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
-        """方法 damage"""
-        pass
-
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        """方法 damage"""
-        pass
-
-    def heal(self, hp: int, mp: int, broadcast: bool) -> None:
-        """方法 heal"""
-        pass
-
-    def giveExpToCharacter(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> None:
-        """方法 giveExpToCharacter"""
-        pass
-
-    def killBy(self, killer: Any, lastSkill: int) -> int:
-        """方法 killBy"""
-        return 0
-
-    def spawnRevives(self, map: Any) -> None:
-        """方法 spawnRevives"""
-        pass
-
-    def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
-
-    def setCarnivalTeam(self, team: int) -> None:
-        """方法 setCarnivalTeam"""
-        self.carnival_team = team
-        return None
-
-    def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
-
-    def getController(self) -> Any:
-        """方法 getController"""
-        return getattr(self, 'controller', None)
-
-    def setController(self, controller: Any) -> None:
-        """方法 setController"""
-        self.controller = controller
-        return None
-
-    def switchController(self, newController: Any, immediateAggro: bool) -> None:
-        """方法 switchController"""
-        pass
-
-    def resetShammos(self, c: Any) -> None:
-        """方法 resetShammos"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def addListener(self, listener: Any) -> None:
-        """方法 addListener"""
-        pass
-
-    def isControllerHasAggro(self) -> bool:
-        """方法 isControllerHasAggro"""
-        return bool(getattr(self, 'controller_has_aggro', False))
-
-    def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
-        """方法 setControllerHasAggro"""
-        self.controller_has_aggro = controllerHasAggro
-        return None
-
-    def isControllerKnowsAboutAggro(self) -> bool:
-        """方法 isControllerKnowsAboutAggro"""
-        return bool(getattr(self, 'controller_knows_about_aggro', False))
-
-    def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
-        """方法 setControllerKnowsAboutAggro"""
-        self.controller_knows_about_aggro = controllerKnowsAboutAggro
-        return None
-
-    def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
-
-    def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
-
-    def getEventInstance(self) -> Any:
-        """方法 getEventInstance"""
-        return getattr(self, 'event_instance', None)
-
-    def setEventInstance(self, eventInstance: Any) -> None:
-        """方法 setEventInstance"""
-        self.event_instance = eventInstance
-        return None
-
-    def getStatusSourceID(self, status: Any) -> int:
-        """方法 getStatusSourceID"""
-        return 0
-
-    def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def applyStatus(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        """方法 applyStatus"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def dispelSkill(self, skillId: Any) -> None:
-        """方法 dispelSkill"""
-        pass
-
-    def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
-        """方法 applyMonsterBuff"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    def equals(self, obj: Any) -> bool:
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.partyid == other.partyid
 
 
+# Inner class from Java (originally nested)
 from abc import ABC, abstractmethod
 
 class AttackerEntry(ABC):
-    """接口 AttackerEntry - 从Java接口转换"""
+    """Interface AttackerEntry"""
 
     @abstractmethod
-    def maple_monster(self, id: int, stats: Any) -> Any:
-        """抽象方法 MapleMonster"""
+    def getAttackers(self) -> list:
         pass
 
     @abstractmethod
-    def reentrant_read_write_lock(self) -> Any:
-        """抽象方法 ReentrantReadWriteLock"""
+    def addDamage(self, p0: Any, p1: int, p2: bool) -> None:
         pass
 
     @abstractmethod
-    def maple_monster(self, monster: Any) -> Any:
-        """抽象方法 MapleMonster"""
+    def getDamage(self) -> int:
         pass
 
     @abstractmethod
-    def reentrant_read_write_lock(self) -> Any:
-        """抽象方法 ReentrantReadWriteLock"""
+    def contains(self, p0: Any) -> bool:
         pass
 
     @abstractmethod
-    def init_with_stats(self, stats: Any) -> Any:
-        """抽象方法 initWithStats"""
-        pass
-
-    @abstractmethod
-    def get_stats(self) -> Any:
-        """抽象方法 getStats"""
-        pass
-
-    @abstractmethod
-    def disable_drops(self) -> Any:
-        """抽象方法 disableDrops"""
-        pass
-
-    @abstractmethod
-    def drops_disabled(self) -> Any:
-        """抽象方法 dropsDisabled"""
-        pass
-
-    @abstractmethod
-    def set_sponge(self, mob: Any) -> Any:
-        """抽象方法 setSponge"""
-        pass
-
-    @abstractmethod
-    def set_map(self, map: Any) -> Any:
-        """抽象方法 setMap"""
-        pass
-
-    @abstractmethod
-    def get_hp(self) -> Any:
-        """抽象方法 getHp"""
-        pass
-
-    @abstractmethod
-    def set_hp(self, hp: int) -> Any:
-        """抽象方法 setHp"""
-        pass
-
-    @abstractmethod
-    def get_mob_max_hp(self) -> Any:
-        """抽象方法 getMobMaxHp"""
-        pass
-
-    @abstractmethod
-    def get_mp(self) -> Any:
-        """抽象方法 getMp"""
-        pass
-
-    @abstractmethod
-    def set_mp(self, mp: int) -> Any:
-        """抽象方法 setMp"""
-        pass
-
-    @abstractmethod
-    def get_mob_max_mp(self) -> Any:
-        """抽象方法 getMobMaxMp"""
-        pass
-
-    @abstractmethod
-    def get_mob_exp(self) -> Any:
-        """抽象方法 getMobExp"""
-        pass
-
-    @abstractmethod
-    def set_override_stats(self, ostats: Any) -> Any:
-        """抽象方法 setOverrideStats"""
-        pass
-
-    @abstractmethod
-    def get_sponge(self) -> Any:
-        """抽象方法 getSponge"""
-        pass
-
-    @abstractmethod
-    def get_venom_multi(self) -> Any:
-        """抽象方法 getVenomMulti"""
-        pass
-
-    @abstractmethod
-    def set_venom_multi(self, venom_counter: int) -> Any:
-        """抽象方法 setVenomMulti"""
-        pass
-
-    @abstractmethod
-    def damage(self, from: Any, damage: int, updateAttackTime: bool) -> Any:
-        """抽象方法 damage"""
-        pass
-
-    @abstractmethod
-    def damage(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> Any:
-        """抽象方法 damage"""
-        pass
-
-    @abstractmethod
-    def party_attacker_entry(self, from.getParty() -> Any:
-        """抽象方法 PartyAttackerEntry"""
-        pass
-
-    @abstractmethod
-    def single_attacker_entry(self, from, this.map.getChannel() -> Any:
-        """抽象方法 SingleAttackerEntry"""
-        pass
-
-    @abstractmethod
-    def heal(self, hp: int, mp: int, broadcast: bool) -> Any:
-        """抽象方法 heal"""
-        pass
-
-    @abstractmethod
-    def if(self, this.sponge.get() -> Any:
-        """抽象方法 if"""
-        pass
-
-    @abstractmethod
-    def give_exp_to_character(self, attacker: Any, exp: int, highestDamage: bool, numExpSharers: int, pty: int, Class_Bonus_EXP_PERCENT: int, 网吧特别经验_百分比: int, lastskillID: int) -> Any:
-        """抽象方法 giveExpToCharacter"""
-        pass
-
-    @abstractmethod
-    def kill_by(self, killer: Any, lastSkill: int) -> Any:
-        """抽象方法 killBy"""
-        pass
-
-    @abstractmethod
-    def spawn_revives(self, map: Any) -> Any:
-        """抽象方法 spawnRevives"""
-        pass
-
-    @abstractmethod
-    def is_alive(self) -> Any:
-        """抽象方法 isAlive"""
-        pass
-
-    @abstractmethod
-    def set_carnival_team(self, team: int) -> Any:
-        """抽象方法 setCarnivalTeam"""
-        pass
-
-    @abstractmethod
-    def get_carnival_team(self) -> Any:
-        """抽象方法 getCarnivalTeam"""
-        pass
-
-    @abstractmethod
-    def get_controller(self) -> Any:
-        """抽象方法 getController"""
-        pass
-
-    @abstractmethod
-    def set_controller(self, controller: Any) -> Any:
-        """抽象方法 setController"""
-        pass
-
-    @abstractmethod
-    def switch_controller(self, newController: Any, immediateAggro: bool) -> Any:
-        """抽象方法 switchController"""
-        pass
-
-    @abstractmethod
-    def reset_shammos(self, c: Any) -> Any:
-        """抽象方法 resetShammos"""
-        pass
-
-    @abstractmethod
-    def runnable(self) -> Any:
-        """抽象方法 Runnable"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def add_listener(self, listener: Any) -> Any:
-        """抽象方法 addListener"""
-        pass
-
-    @abstractmethod
-    def is_controller_has_aggro(self) -> Any:
-        """抽象方法 isControllerHasAggro"""
-        pass
-
-    @abstractmethod
-    def set_controller_has_aggro(self, controllerHasAggro: bool) -> Any:
-        """抽象方法 setControllerHasAggro"""
-        pass
-
-    @abstractmethod
-    def is_controller_knows_about_aggro(self) -> Any:
-        """抽象方法 isControllerKnowsAboutAggro"""
-        pass
-
-    @abstractmethod
-    def set_controller_knows_about_aggro(self, controllerKnowsAboutAggro: bool) -> Any:
-        """抽象方法 setControllerKnowsAboutAggro"""
-        pass
-
-    @abstractmethod
-    def send_spawn_data(self, client: Any) -> Any:
-        """抽象方法 sendSpawnData"""
-        pass
-
-    @abstractmethod
-    def send_destroy_data(self, client: Any) -> Any:
-        """抽象方法 sendDestroyData"""
-        pass
-
-    @abstractmethod
-    def to_string(self) -> Any:
-        """抽象方法 toString"""
-        pass
-
-    @abstractmethod
-    def string_builder(self) -> Any:
-        """抽象方法 StringBuilder"""
-        pass
-
-    @abstractmethod
-    def get_type(self) -> Any:
-        """抽象方法 getType"""
-        pass
-
-    @abstractmethod
-    def get_event_instance(self) -> Any:
-        """抽象方法 getEventInstance"""
-        pass
-
-    @abstractmethod
-    def set_event_instance(self, eventInstance: Any) -> Any:
-        """抽象方法 setEventInstance"""
-        pass
-
-    @abstractmethod
-    def get_status_source_id(self, status: Any) -> Any:
-        """抽象方法 getStatusSourceID"""
-        pass
-
-    @abstractmethod
-    def get_effectiveness(self, e: Any) -> Any:
-        """抽象方法 getEffectiveness"""
-        pass
-
-    @abstractmethod
-    def apply_status(self, from: Any, status: Any, poison: bool, duration: int, venom: bool) -> Any:
-        """抽象方法 applyStatus"""
-        pass
-
-    @abstractmethod
-    def apply_status(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> Any:
-        """抽象方法 applyStatus"""
-        pass
-
-    @abstractmethod
-    def runnable(self) -> Any:
-        """抽象方法 Runnable"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def poison_task(self, poisonDamage, from, status, cancelTask, false) -> Any:
-        """抽象方法 PoisonTask"""
-        pass
-
-    @abstractmethod
-    def if(self, venom) -> Any:
-        """抽象方法 if"""
-        pass
-
-    @abstractmethod
-    def poison_task(self, poisonDamage2, from, status, cancelTask, false) -> Any:
-        """抽象方法 PoisonTask"""
-        pass
-
-    @abstractmethod
-    def if(self, 14111001: Any) -> Any:
-        """抽象方法 if"""
-        pass
-
-    @abstractmethod
-    def poison_task(self, (int) -> Any:
-        """抽象方法 PoisonTask"""
-        pass
-
-    @abstractmethod
-    def if(self, 4221004: Any) -> Any:
-        """抽象方法 if"""
-        pass
-
-    @abstractmethod
-    def poison_task(self, damage, from, status, cancelTask, false) -> Any:
-        """抽象方法 PoisonTask"""
-        pass
-
-    @abstractmethod
-    def dispel_skill(self, skillId: Any) -> Any:
-        """抽象方法 dispelSkill"""
-        pass
-
-    @abstractmethod
-    def apply_monster_buff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> Any:
-        """抽象方法 applyMonsterBuff"""
-        pass
-
-    @abstractmethod
-    def runnable(self) -> Any:
-        """抽象方法 Runnable"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def monster_status_effect(self, z.getKey() -> Any:
-        """抽象方法 MonsterStatusEffect"""
-        pass
-
-    @abstractmethod
-    def set_temp_effectiveness(self, e: Any, milli: int) -> Any:
-        """抽象方法 setTempEffectiveness"""
-        pass
-
-    @abstractmethod
-    def runnable(self) -> Any:
-        """抽象方法 Runnable"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def is_buffed(self, status: Any) -> Any:
-        """抽象方法 isBuffed"""
-        pass
-
-    @abstractmethod
-    def get_buff(self, status: Any) -> Any:
-        """抽象方法 getBuff"""
-        pass
-
-    @abstractmethod
-    def set_fake(self, fake: bool) -> Any:
-        """抽象方法 setFake"""
-        pass
-
-    @abstractmethod
-    def is_fake(self) -> Any:
-        """抽象方法 isFake"""
-        pass
-
-    @abstractmethod
-    def get_map(self) -> Any:
-        """抽象方法 getMap"""
-        pass
-
-    @abstractmethod
-    def get_skills(self) -> Any:
-        """抽象方法 getSkills"""
-        pass
-
-    @abstractmethod
-    def has_skill(self, skillId: int, level: int) -> Any:
-        """抽象方法 hasSkill"""
-        pass
-
-    @abstractmethod
-    def get_last_skill_used(self, skillId: int) -> Any:
-        """抽象方法 getLastSkillUsed"""
-        pass
-
-    @abstractmethod
-    def set_last_skill_used(self, skillId: int, now: int, cooltime: int) -> Any:
-        """抽象方法 setLastSkillUsed"""
-        pass
-
-    @abstractmethod
-    def get_no_skills(self) -> Any:
-        """抽象方法 getNoSkills"""
-        pass
-
-    @abstractmethod
-    def is_first_attack(self) -> Any:
-        """抽象方法 isFirstAttack"""
-        pass
-
-    @abstractmethod
-    def get_buff_to_give(self) -> Any:
-        """抽象方法 getBuffToGive"""
-        pass
-
-    @abstractmethod
-    def get_exp(self) -> Any:
-        """抽象方法 getExp"""
-        pass
-
-    @abstractmethod
-    def get_link_oid(self) -> Any:
-        """抽象方法 getLinkOid"""
-        pass
-
-    @abstractmethod
-    def set_link_oid(self, lo: int) -> Any:
-        """抽象方法 setLinkOid"""
-        pass
-
-    @abstractmethod
-    def get_stati(self) -> Any:
-        """抽象方法 getStati"""
-        pass
-
-    @abstractmethod
-    def add_empty(self) -> Any:
-        """抽象方法 addEmpty"""
-        pass
-
-    @abstractmethod
-    def monster_status_effect(self, MonsterStatus.空白BUFF, 0, 0, null, false) -> Any:
-        """抽象方法 MonsterStatusEffect"""
-        pass
-
-    @abstractmethod
-    def monster_status_effect(self, MonsterStatus.召唤怪物, 0, 0, null, false) -> Any:
-        """抽象方法 MonsterStatusEffect"""
-        pass
-
-    @abstractmethod
-    def get_stolen(self) -> Any:
-        """抽象方法 getStolen"""
-        pass
-
-    @abstractmethod
-    def set_stolen(self, s: int) -> Any:
-        """抽象方法 setStolen"""
-        pass
-
-    @abstractmethod
-    def handle_steal(self, chr: Any) -> Any:
-        """抽象方法 handleSteal"""
-        pass
-
-    @abstractmethod
-    def item(self, d.itemId, (short) -> Any:
-        """抽象方法 Item"""
-        pass
-
-    @abstractmethod
-    def set_last_node(self, lastNode: int) -> Any:
-        """抽象方法 setLastNode"""
-        pass
-
-    @abstractmethod
-    def get_last_node(self) -> Any:
-        """抽象方法 getLastNode"""
-        pass
-
-    @abstractmethod
-    def set_last_node_controller(self, lastNode: int) -> Any:
-        """抽象方法 setLastNodeController"""
-        pass
-
-    @abstractmethod
-    def get_last_node_controller(self) -> Any:
-        """抽象方法 getLastNodeController"""
-        pass
-
-    @abstractmethod
-    def cancel_status(self, stat: Any) -> Any:
-        """抽象方法 cancelStatus"""
-        pass
-
-    @abstractmethod
-    def cancel_drop_item(self) -> Any:
-        """抽象方法 cancelDropItem"""
-        pass
-
-    @abstractmethod
-    def start_drop_item_schedule(self) -> Any:
-        """抽象方法 startDropItemSchedule"""
-        pass
-
-    @abstractmethod
-    def runnable(self) -> Any:
-        """抽象方法 Runnable"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def get_node_packet(self) -> Any:
-        """抽象方法 getNodePacket"""
-        pass
-
-    @abstractmethod
-    def set_node_packet(self, np: Any) -> Any:
-        """抽象方法 setNodePacket"""
-        pass
-
-    @abstractmethod
-    def killed(self) -> Any:
-        """抽象方法 killed"""
-        pass
-
-    @abstractmethod
-    def change_level(self, newLevel: int, pqMob: bool) -> Any:
-        """抽象方法 changeLevel"""
-        pass
-
-    @abstractmethod
-    def changeable_stats(self, this.stats, newLevel, pqMob) -> Any:
-        """抽象方法 ChangeableStats"""
-        pass
-
-    @abstractmethod
-    def get_range(self) -> Any:
-        """抽象方法 getRange"""
-        pass
-
-    @abstractmethod
-    def attacking_maple_character(self, attacker: Any, lastAttackTime: int) -> Any:
-        """抽象方法 AttackingMapleCharacter"""
-        pass
-
-    @abstractmethod
-    def get_last_attack_time(self) -> Any:
-        """抽象方法 getLastAttackTime"""
-        pass
-
-    @abstractmethod
-    def set_last_attack_time(self, lastAttackTime: int) -> Any:
-        """抽象方法 setLastAttackTime"""
-        pass
-
-    @abstractmethod
-    def get_attacker(self) -> Any:
-        """抽象方法 getAttacker"""
-        pass
-
-    @abstractmethod
-    def exp_map(self, exp: int, ptysize: int, Class_Bonus_EXP: int, 网吧特别经验: int) -> Any:
-        """抽象方法 ExpMap"""
-        pass
-
-    @abstractmethod
-    def one_party_attacker(self, lastKnownParty: Any, damage: int) -> Any:
-        """抽象方法 OnePartyAttacker"""
-        pass
-
-    @abstractmethod
-    def poison_task(self, poisonDamage: int, chr: Any, status: Any, cancelTask: Any, shadowWeb: bool) -> Any:
-        """抽象方法 PoisonTask"""
-        pass
-
-    @abstractmethod
-    def run(self) -> Any:
-        """抽象方法 run"""
-        pass
-
-    @abstractmethod
-    def single_attacker_entry(self, from: Any, cserv: int) -> Any:
-        """抽象方法 SingleAttackerEntry"""
-        pass
-
-    @abstractmethod
-    def add_damage(self, from: Any, damage: int, updateAttackTime: bool) -> Any:
-        """抽象方法 addDamage"""
-        pass
-
-    @abstractmethod
-    def get_attackers(self) -> Any:
-        """抽象方法 getAttackers"""
-        pass
-
-    @abstractmethod
-    def attacking_maple_character(self, chr, this.lastAttackTime) -> Any:
-        """抽象方法 AttackingMapleCharacter"""
-        pass
-
-    @abstractmethod
-    def contains(self, chr: Any) -> Any:
-        """抽象方法 contains"""
-        pass
-
-    @abstractmethod
-    def get_damage(self) -> Any:
-        """抽象方法 getDamage"""
-        pass
-
-    @abstractmethod
-    def killed_mob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> Any:
-        """抽象方法 killedMob"""
-        pass
-
-    @abstractmethod
-    def hash_code(self) -> Any:
-        """抽象方法 hashCode"""
-        pass
-
-    @abstractmethod
-    def equals(self, obj: Any) -> Any:
-        """抽象方法 equals"""
-        pass
-
-    @abstractmethod
-    def party_attacker_entry(self, partyid: int, cserv: int) -> Any:
-        """抽象方法 PartyAttackerEntry"""
-        pass
-
-    @abstractmethod
-    def get_attackers(self) -> Any:
-        """抽象方法 getAttackers"""
-        pass
-
-    @abstractmethod
-    def attacking_maple_character(self, chr, entry.getValue() -> Any:
-        """抽象方法 AttackingMapleCharacter"""
-        pass
-
-    @abstractmethod
-    def resolve_attackers(self) -> Any:
-        """抽象方法 resolveAttackers"""
-        pass
-
-    @abstractmethod
-    def contains(self, chr: Any) -> Any:
-        """抽象方法 contains"""
-        pass
-
-    @abstractmethod
-    def get_damage(self) -> Any:
-        """抽象方法 getDamage"""
-        pass
-
-    @abstractmethod
-    def add_damage(self, from: Any, damage: int, updateAttackTime: bool) -> Any:
-        """抽象方法 addDamage"""
-        pass
-
-    @abstractmethod
-    def one_party_attacker(self, from.getParty() -> Any:
-        """抽象方法 OnePartyAttacker"""
-        pass
-
-    @abstractmethod
-    def killed_mob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> Any:
-        """抽象方法 killedMob"""
-        pass
-
-    @abstractmethod
-    def exp_map(self, iexp, (byte) -> Any:
-        """抽象方法 ExpMap"""
-        pass
-
-    @abstractmethod
-    def hash_code(self) -> Any:
-        """抽象方法 hashCode"""
-        pass
-
-    @abstractmethod
-    def equals(self, obj: Any) -> Any:
-        """抽象方法 equals"""
-        pass
-
-    @abstractmethod
-    def get_attackers(self) -> Any:
-        """抽象方法 getAttackers"""
-        pass
-
-    @abstractmethod
-    def add_damage(self, p0: Any, p1: int, p2: bool) -> Any:
-        """抽象方法 addDamage"""
-        pass
-
-    @abstractmethod
-    def get_damage(self) -> Any:
-        """抽象方法 getDamage"""
-        pass
-
-    @abstractmethod
-    def contains(self, p0: Any) -> Any:
-        """抽象方法 contains"""
-        pass
-
-    @abstractmethod
-    def killed_mob(self, p0: Any, p1: int, p2: bool, p3: int) -> Any:
-        """抽象方法 killedMob"""
+    def killedMob(self, p0: Any, p1: int, p2: bool, p3: int) -> None:
         pass
 

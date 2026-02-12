@@ -1,52 +1,45 @@
 """
-MapleMapObject - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleMapObject.java
-包路径: server.maps
+MapleMapObject - Converted from Java source
+Original: server/maps/MapleMapObject.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
 
 
 from abc import ABC, abstractmethod
 
 class MapleMapObject(ABC):
-    """接口 MapleMapObject - 从Java接口转换"""
+    """Interface MapleMapObject"""
 
     @abstractmethod
-    def get_object_id(self) -> Any:
-        """抽象方法 getObjectId"""
+    def getObjectId(self) -> int:
         pass
 
     @abstractmethod
-    def set_object_id(self, p0: int) -> Any:
-        """抽象方法 setObjectId"""
+    def setObjectId(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def get_type(self) -> Any:
-        """抽象方法 getType"""
+    def getType(self) -> Any:
         pass
 
     @abstractmethod
-    def get_position(self) -> Any:
-        """抽象方法 getPosition"""
+    def getPosition(self) -> Any:
         pass
 
     @abstractmethod
-    def set_position(self, p0: Any) -> Any:
-        """抽象方法 setPosition"""
+    def setPosition(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def send_spawn_data(self, p0: Any) -> Any:
-        """抽象方法 sendSpawnData"""
+    def sendSpawnData(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def send_destroy_data(self, p0: Any) -> Any:
-        """抽象方法 sendDestroyData"""
+    def sendDestroyData(self, p0: Any) -> None:
         pass
 

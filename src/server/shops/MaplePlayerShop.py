@@ -1,51 +1,94 @@
 """
-MaplePlayerShop - 从Java源文件转换而来
-对应Java源文件: server/shops/MaplePlayerShop.java
-包路径: server.shops
+MaplePlayerShop - Converted from Java source
+Original: server/shops/MaplePlayerShop.java
+Package: server.shops
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.ItemFlag import *  # TODO: 根据实际需要导入具体类
-# from server.MapleInventoryManipulator import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapObject import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.PlayerShopPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.ItemFlag import *  # TODO: import specific classes
+# from server.MapleInventoryManipulator import *  # TODO: import specific classes
+# from server.maps.MapleMapObject import *  # TODO: import specific classes
+# from tools.packet.PlayerShopPacket import *  # TODO: import specific classes
 
 
 class MaplePlayerShop(AbstractPlayerStore):
     """
-    类 MaplePlayerShop - 从Java类转换
-    继承自: AbstractPlayerStore
+    Class MaplePlayerShop
+    Extends: AbstractPlayerStore
     """
 
     def __init__(self, owner: Any, itemId: int, desc: str):
-        """初始化 MaplePlayerShop"""
         self.boughtnumber = 0
         self.bannedList = None
+        super(owner, itemId, desc, "", 3)
+        self.boughtnumber = 0
+        self.bannedList = []
 
 
     def buy(self, c: Any, item: int, quantity: int) -> None:
-        """方法 buy"""
-        pass
+        pItem = self.items.get(item)
+        if pItem.bundles > 0:
+            newItem = pItem.item.copy()
+            newItem.setQuantity((short)(quantity * newItem.getQuantity()))
+            flag = newItem.getFlag()
+            if ItemFlag.KARMA_EQ.check(flag):
+                newItem.setFlag((byte)(flag - ItemFlag.KARMA_EQ.getValue()))
+            elif ItemFlag.KARMA_USE.check(flag):
+                newItem.setFlag((byte)(flag - ItemFlag.KARMA_USE.getValue()))
+            gainmeso = pItem.price * quantity
+            if c.getPlayer().getMeso() >= gainmeso:
+                if self.getMCOwner().getMeso() + gainmeso > 0 && MapleInventoryManipulator.checkSpace(c, newItem.getItemId(), newItem.getQuantity(), newItem.getOwner()) && MapleInventoryManipulator.addFromDrop(c, newItem, False):
+                    maplePlayerShopItem = pItem
+                    maplePlayerShopItem.bundles -= quantity
+                    self.bought.add(BoughtItem(newItem.getItemId(), quantity, gainmeso, c.getPlayer().getName()))
+                    c.getPlayer().gainMeso(-gainmeso, False)
+                    self.getMCOwner().gainMeso(gainmeso, False)
+                    if pItem.bundles <= 0:
+                        self.boughtnumber += 1
+                        if self.boughtnumber == self.items:
+                            self.closeShop(True, True)
+                            return
+                else:
+                    c.getPlayer().dropMessage(1, "你的背包已满.")
+            else:
+                c.getPlayer().dropMessage(1, "You do not have enough mesos.")
+            self.getMCOwner().getClient().getSession().write(PlayerShopPacket.shopItemUpdate(this))
 
     def getShopType(self) -> int:
-        """方法 getShopType"""
-        return getattr(self, 'shop_type', 0)
+        return 2
 
     def closeShop(self, saveItems: bool, remove: bool) -> None:
-        """方法 closeShop"""
-        pass
+        owner = self.getMCOwner()
+        self.removeAllVisitors(10, 1)
+        self.getMap().removeMapObject(this)
+        for items in self.getItems():
+            if items.bundles > 0:
+                newItem = items.item.copy()
+                newItem.setQuantity((short)(items.bundles * newItem.getQuantity()))
+                if !MapleInventoryManipulator.addFromDrop(owner.getClient(), newItem, False):
+                    self.saveItems()
+                    break
+                items.bundles = 0
+        owner.setPlayerShop(None)
+        self.update()
+        self.getMCOwner().getClient().getSession().write(PlayerShopPacket.shopErrorMessage(10, 1))
 
     def banPlayer(self, name: str) -> None:
-        """方法 banPlayer"""
-        pass
+        if !(name in self.bannedList):
+            self.bannedList.add(name)
+        for i in range(3):
+            chr = self.getVisitor(i)
+            if chr.getName() == (name):
+                chr.getClient().getSession().write(PlayerShopPacket.shopErrorMessage(5, 1))
+                chr.setPlayerShop(None)
+                self.removeVisitor(chr)
 
     def isBanned(self, name: str) -> bool:
-        """方法 isBanned"""
-        return False
+        return (name in self.bannedList)
 

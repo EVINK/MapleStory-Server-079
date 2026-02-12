@@ -1,14 +1,15 @@
 """
-PartyOperation - 从Java源文件转换而来
-对应Java源文件: handling/world/PartyOperation.java
-包路径: handling.world
+PartyOperation - Converted from Java source
+Original: handling/world/PartyOperation.java
+Package: handling.world
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class PartyOperation(Enum):
-    """枚举类 PartyOperation - 从Java枚举转换"""
+    """Enum PartyOperation"""
 
     JOIN = 0
     LEAVE = 1

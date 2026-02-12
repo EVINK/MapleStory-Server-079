@@ -1,46 +1,69 @@
 """
-CommandProcessorUtil - 从Java源文件转换而来
-对应Java源文件: client/messages/CommandProcessorUtil.java
-包路径: client.messages
+CommandProcessorUtil - Converted from Java source
+Original: client/messages/CommandProcessorUtil.java
+Package: client.messages
 """
 
 from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from tools import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools import *  # TODO: import specific classes
 
 
 class CommandProcessorUtil:
     """
-    类 CommandProcessorUtil - 从Java类转换
+    Class CommandProcessorUtil
     """
 
 
     def joinAfterString(self, splitted: list, str: str) -> str:
-        """方法 joinAfterString"""
-        return ""
+        for i in range(1, len(splitted)):
+            if splitted[i].lower() == str.lower() && i + 1 < len(splitted):
+                return StringUtil.joinStringFrom(splitted, i + 1)
+        return None
 
     def getOptionalIntArg(self, splitted: list, position: int, def: int) -> int:
-        """方法 getOptionalIntArg"""
-        return 0
+        if len(splitted) > position:
+            try:
+                return int(splitted[position])
+            except ValueError as nfe:
+                return def
+        return def
 
     def getNamedArg(self, splitted: list, startpos: int, name: str) -> str:
-        """方法 getNamedArg"""
-        return ""
+        i = startpos
+        while i < len(splitted):
+            if splitted[i].lower() == name.lower() && i + 1 < len(splitted):
+                return splitted[i + 1]
+        return None
 
     def getNamedLongArg(self, splitted: list, startpos: int, name: str) -> int:
-        """方法 getNamedLongArg"""
-        return 0
+        arg = getNamedArg(splitted, startpos, name)
+        if arg is not None:
+            try:
+                return int(arg)
+            catch (NumberFormatException ex) {}
+        return None
 
     def getNamedIntArg(self, splitted: list, startpos: int, name: str) -> int:
-        """方法 getNamedIntArg"""
-        return 0
+        arg = getNamedArg(splitted, startpos, name)
+        if arg is not None:
+            try:
+                return int(arg)
+            catch (NumberFormatException ex) {}
+        return None
 
-    def getNamedIntArg(self, splitted: list, startpos: int, name: str, def: int) -> int:
-        """方法 getNamedIntArg"""
-        return 0
+    def getNamedIntArg_splitted_startpos_name_def(self, splitted: list, startpos: int, name: str, def: int) -> int:
+        ret = getNamedIntArg(splitted, startpos, name)
+        if ret is None:
+            return def
+        return ret
 
     def getNamedDoubleArg(self, splitted: list, startpos: int, name: str) -> float:
-        """方法 getNamedDoubleArg"""
-        return 0
+        arg = getNamedArg(splitted, startpos, name)
+        if arg is not None:
+            try:
+                return float(arg)
+            catch (NumberFormatException ex) {}
+        return None
 

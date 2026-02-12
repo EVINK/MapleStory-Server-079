@@ -1,30 +1,27 @@
 """
-MapleDataDirectoryEntry - 从Java源文件转换而来
-对应Java源文件: provider/MapleDataDirectoryEntry.java
-包路径: provider
+MapleDataDirectoryEntry - Converted from Java source
+Original: provider/MapleDataDirectoryEntry.java
+Package: provider
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class MapleDataDirectoryEntry(ABC):
-    """接口 MapleDataDirectoryEntry - 从Java接口转换"""
+    """Interface MapleDataDirectoryEntry"""
 
     @abstractmethod
-    def get_subdirectories(self) -> Any:
-        """抽象方法 getSubdirectories"""
+    def getSubdirectories(self) -> list:
         pass
 
     @abstractmethod
-    def get_files(self) -> Any:
-        """抽象方法 getFiles"""
+    def getFiles(self) -> list:
         pass
 
     @abstractmethod
-    def get_entry(self, p0: str) -> Any:
-        """抽象方法 getEntry"""
+    def getEntry(self, p0: str) -> Any:
         pass
 

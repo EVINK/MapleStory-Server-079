@@ -1,22 +1,22 @@
 """
-MapleDataProvider - 从Java源文件转换而来
-对应Java源文件: provider/MapleDataProvider.java
-包路径: provider
+MapleDataProvider - Converted from Java source
+Original: provider/MapleDataProvider.java
+Package: provider
 """
+
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class MapleDataProvider(ABC):
-    """接口 MapleDataProvider - 从Java接口转换"""
+    """Interface MapleDataProvider"""
 
     @abstractmethod
-    def get_data(self, p0: str) -> Any:
-        """抽象方法 getData"""
+    def getData(self, p0: str) -> Any:
         pass
 
     @abstractmethod
-    def get_root(self) -> Any:
-        """抽象方法 getRoot"""
+    def getRoot(self) -> Any:
         pass
 

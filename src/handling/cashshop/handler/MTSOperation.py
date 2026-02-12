@@ -1,42 +1,46 @@
 """
-MTSOperation - 从Java源文件转换而来
-对应Java源文件: handling/cashshop/handler/MTSOperation.java
-包路径: handling.cashshop.handler
+MTSOperation - Converted from Java source
+Original: handling/cashshop/handler/MTSOperation.java
+Package: handling.cashshop.handler
 """
 
 from typing import Optional, Any
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.Equip import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from server.MTSCart import *  # TODO: 根据实际需要导入具体类
-# from server.MTSStorage import *  # TODO: 根据实际需要导入具体类
-# from server.MapleInventoryManipulator import *  # TODO: 根据实际需要导入具体类
-# from server.MapleItemInformationProvider import *  # TODO: 根据实际需要导入具体类
-# from tools.data.input.SeekableLittleEndianAccessor import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.MTSCSPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.inventory.Equip import *  # TODO: import specific classes
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from server.MTSCart import *  # TODO: import specific classes
+# from server.MTSStorage import *  # TODO: import specific classes
+# from server.MapleInventoryManipulator import *  # TODO: import specific classes
+# from server.MapleItemInformationProvider import *  # TODO: import specific classes
+# from tools.data.input.SeekableLittleEndianAccessor import *  # TODO: import specific classes
+# from tools.packet.MTSCSPacket import *  # TODO: import specific classes
 
 
 class MTSOperation:
     """
-    类 MTSOperation - 从Java类转换
+    Class MTSOperation
     """
 
 
     def MTSUpdate(self, cart: Any, c: Any) -> None:
-        """方法 MTSUpdate"""
-        pass
+        c.getPlayer().modifyCSPoints(2, MTSStorage.getInstance().getCart(c.getPlayer().getId()).getSetOwedNX(), False)
+        c.getSession().write(MTSCSPacket.getMTSWantedListingOver(0, 0))
+        doMTSPackets(cart, c)
 
     def doMTSPackets(self, cart: Any, c: Any) -> None:
-        """方法 doMTSPackets"""
-        pass
+        sendMTSPackets(cart, c, False)
 
     def sendMTSPackets(self, cart: Any, c: Any, changed: bool) -> None:
-        """方法 sendMTSPackets"""
-        pass
+        c.getSession().write(MTSStorage.getInstance().getCurrentMTS(cart))
+        c.getSession().write(MTSStorage.getInstance().getCurrentNotYetSold(cart))
+        c.getSession().write(MTSStorage.getInstance().getCurrentTransfer(cart, changed))
+        c.getSession().write(MTSCSPacket.showMTSCash(c.getPlayer()))
+        c.getSession().write(MTSCSPacket.enableCSUse())
+        MTSStorage.getInstance().checkExpirations()
 

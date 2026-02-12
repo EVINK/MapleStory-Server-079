@@ -1,39 +1,38 @@
 """
-AbstractLifeMovement - 从Java源文件转换而来
-对应Java源文件: server/movement/AbstractLifeMovement.java
-包路径: server.movement
+AbstractLifeMovement - Converted from Java source
+Original: server/movement/AbstractLifeMovement.java
+Package: server.movement
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
 
 class AbstractLifeMovement(LifeMovement, ABC):
     """
-    类 AbstractLifeMovement - 从Java类转换
-    实现接口: LifeMovement
+    Class AbstractLifeMovement
+    Implements: LifeMovement
     """
 
     def __init__(self, type: int, position: Any, duration: int, newstate: int):
-        """初始化 AbstractLifeMovement"""
         self.position = None
         self.duration = 0
         self.newstate = 0
         self.type = 0
+        self.type = type
+        self.position = position
+        self.duration = duration
+        self.newstate = newstate
 
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getDuration(self) -> int:
-        """方法 getDuration"""
-        return getattr(self, 'duration', 0)
+        return self.duration
 
     def getNewstate(self) -> int:
-        """方法 getNewstate"""
-        return getattr(self, 'newstate', 0)
+        return self.newstate
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        return self.position
 

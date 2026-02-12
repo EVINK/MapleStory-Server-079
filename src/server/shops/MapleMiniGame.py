@@ -1,205 +1,287 @@
 """
-MapleMiniGame - 从Java源文件转换而来
-对应Java源文件: server/shops/MapleMiniGame.java
-包路径: server.shops
+MapleMiniGame - Converted from Java source
+Original: server/shops/MapleMiniGame.java
+Package: server.shops
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.MapleQuestStatus import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapObject import *  # TODO: 根据实际需要导入具体类
-# from server.quest.MapleQuest import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.PlayerShopPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.MapleQuestStatus import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from server.maps.MapleMapObject import *  # TODO: import specific classes
+# from server.quest.MapleQuest import *  # TODO: import specific classes
+# from tools.packet.PlayerShopPacket import *  # TODO: import specific classes
 
 
 class MapleMiniGame(AbstractPlayerStore):
     """
-    类 MapleMiniGame - 从Java类转换
-    继承自: AbstractPlayerStore
+    Class MapleMiniGame
+    Extends: AbstractPlayerStore
     """
 
-    # 静态字段 (Static fields)
     slots = 2
 
     def __init__(self, owner: Any, itemId: int, description: str, pass: str, GameType: int):
-        """初始化 MapleMiniGame"""
         self.GameType = 0
         self.matchcards = None
+        super(owner, itemId, description, pass, 1)
+        self.GameType = 0
+        self.piece = new int[15][15]
+        self.matchcards = []
+        self.loser = 0
+        self.turn = 1
+        self.piecetype = 0
+        self.firstslot = 0
+        self.tie = -1
+        self.REDO = -1
+        self.GameType = GameType
+        self.points = new int[2]
+        self.exitAfter = new boolean[2]
+        self.ready = new boolean[2]
+        self.reset()
 
 
     def reset(self) -> None:
-        """方法 reset"""
-        pass
+        for i in range(2):
+            self.points[i] = 0
+            self.exitAfter[i] = False
+            self.ready[i] = False
 
     def setFirstSlot(self, type: int) -> None:
-        """方法 setFirstSlot"""
-        self.first_slot = type
-        return None
+        self.firstslot = type
 
     def getFirstSlot(self) -> int:
-        """方法 getFirstSlot"""
-        return getattr(self, 'first_slot', 0)
+        return self.firstslot
 
     def setPoints(self, slot: int) -> None:
-        """方法 setPoints"""
-        self.points = slot
-        return None
+        points = self.points
+        ++points[slot]
+        self.checkWin()
 
     def getPoints(self) -> int:
-        """方法 getPoints"""
-        return getattr(self, 'points', 0)
+        ret = 0
+        for i in range(2):
+            ret += self.points[i]
+        return ret
 
     def checkWin(self) -> None:
-        """方法 checkWin"""
-        pass
+        if self.getPoints() >= self.getMatchesToWin() && !self.isOpen():
+            x = 0
+            highest = 0
+            tie = False
+            REDO = False
+            for i in range(2):
+                if self.points[i] > highest:
+                    x = i
+                    highest = self.points[i]
+                    tie = False
+                    REDO = False
+                elif self.points[i] == highest:
+                    tie = True
+                    REDO = True
+                self.points[i] = 0
+            self.broadcastToVisitors(PlayerShopPacket.getMiniGameResult(this, tie ? 1 : 2, x))
+            self.setOpen(True)
+            self.update()
+            self.checkExitAfterGame()
 
     def getOwnerPoints(self, slot: int) -> int:
-        """方法 getOwnerPoints"""
-        return 0
+        return self.points[slot]
 
     def setPieceType(self, type: int) -> None:
-        """方法 setPieceType"""
-        self.piece_type = type
-        return None
+        self.piecetype = type
 
     def getPieceType(self) -> int:
-        """方法 getPieceType"""
-        return getattr(self, 'piece_type', 0)
+        return self.piecetype
 
     def setGameType(self) -> None:
-        """方法 setGameType"""
-        pass
+        if self.GameType == 2:
+            self.matchcards.clear()
+            for i in range(self.getMatchesToWin()):
+                self.matchcards.add(i)
+                self.matchcards.add(i)
 
     def shuffleList(self) -> None:
-        """方法 shuffleList"""
-        pass
+        if self.GameType == 2:
+            Collections.shuffle(self.matchcards)
+        else:
+            self.piece = new int[15][15]
 
     def getCardId(self, slot: int) -> int:
-        """方法 getCardId"""
-        return 0
+        return self.matchcards.get(slot - 1)
 
     def getMatchesToWin(self) -> int:
-        """方法 getMatchesToWin"""
-        return getattr(self, 'matches_to_win', 0)
+        return (self.getPieceType() == 0) ? 6 : ((self.getPieceType() == 1) ? 10 : 15)
 
     def setLoser(self, type: int) -> None:
-        """方法 setLoser"""
         self.loser = type
-        return None
 
     def getLoser(self) -> int:
-        """方法 getLoser"""
-        return getattr(self, 'loser', 0)
+        return self.loser
 
     def send(self, c: Any) -> None:
-        """方法 send"""
-        pass
+        if self.getMCOwner() is None:
+            self.closeShop(False, False)
+            return
+        c.getSession().write(PlayerShopPacket.getMiniGame(c, this))
 
     def setReady(self, slot: int) -> None:
-        """方法 setReady"""
-        self.ready = slot
-        return None
+        self.ready[slot] = !self.ready[slot]
 
     def isReady(self, slot: int) -> bool:
-        """方法 isReady"""
-        return False
+        return self.ready[slot]
 
     def setPiece(self, move1: int, move2: int, type: int, chr: Any) -> None:
-        """方法 setPiece"""
-        self.piece = move1
-        return None
+        if self.piece[move1][move2] == 0 && !self.isOpen():
+            self.piece[move1][move2] = type
+            self.broadcastToVisitors(PlayerShopPacket.getMiniGameMoveOmok(move1, move2, type))
+            found = False
+            for y in range(15):
+                for x in range(15):
+                    if !found && self.searchCombo(x, y, type):
+                        self.broadcastToVisitors(PlayerShopPacket.getMiniGameResult(this, 2, self.getVisitorSlot(chr)))
+                        self.setOpen(True)
+                        self.update()
+                        self.checkExitAfterGame()
+                        found = True
+            self.nextLoser()
 
     def nextLoser(self) -> None:
-        """方法 nextLoser"""
-        pass
+        self.loser += 1
+        if self.loser > 1:
+            self.loser = 0
 
     def exit(self, player: Any) -> None:
-        """方法 exit"""
-        pass
+        if player is None:
+            return
+        player.setPlayerShop(None)
+        if self.isOwner(player):
+            self.update()
+            self.removeAllVisitors(3, 1)
+        else:
+            self.removeVisitor(player)
 
     def isExitAfter(self, player: Any) -> bool:
-        """方法 isExitAfter"""
-        return False
+        return self.getVisitorSlot(player) > -1 && self.exitAfter[self.getVisitorSlot(player)]
 
     def setExitAfter(self, player: Any) -> None:
-        """方法 setExitAfter"""
-        self.exit_after = player
-        return None
+        if self.getVisitorSlot(player) > -1:
+            self.exitAfter[self.getVisitorSlot(player)] = !self.exitAfter[self.getVisitorSlot(player)]
 
     def checkExitAfterGame(self) -> None:
-        """方法 checkExitAfterGame"""
-        pass
+        for i in range(2):
+            if self.exitAfter[i]:
+                self.exitAfter[i] = False
+                self.exit((i == 0) ? self.getMCOwner() : self.chrs[i - 1].get())
 
     def searchCombo(self, x: int, y: int, type: int) -> bool:
-        """方法 searchCombo"""
-        return False
+        ret = False
+        if !ret && x < 11:
+            ret = True
+            for i in range(5):
+                if self.piece[x + i][y] != type:
+                    ret = False
+                    break
+        if !ret && y < 11:
+            ret = True
+            for i in range(5):
+                if self.piece[x][y + i] != type:
+                    ret = False
+                    break
+        if !ret && x < 11 && y < 11:
+            ret = True
+            for i in range(5):
+                if self.piece[x + i][y + i] != type:
+                    ret = False
+                    break
+        if !ret && x > 3 && y < 11:
+            ret = True
+            for i in range(5):
+                if self.piece[x - i][y + i] != type:
+                    ret = False
+                    break
+        return ret
 
     def getScore(self, chr: Any) -> int:
-        """方法 getScore"""
-        return 0
+        score = 2000
+        wins = self.getWins(chr)
+        ties = self.getTies(chr)
+        losses = self.getLosses(chr)
+        if wins + ties + losses > 0:
+            score += wins * 2
+            score += ties
+            score -= losses * 2
+        return score
 
     def getShopType(self) -> int:
-        """方法 getShopType"""
-        return getattr(self, 'shop_type', 0)
+        return (byte)((self.GameType == 1) ? 3 : 4)
 
     def getWins(self, chr: Any) -> int:
-        """方法 getWins"""
-        return 0
+        return int(self.getData(chr).split(",")[2])
 
     def getTies(self, chr: Any) -> int:
-        """方法 getTies"""
-        return 0
+        return int(self.getData(chr).split(",")[1])
 
     def getLosses(self, chr: Any) -> int:
-        """方法 getLosses"""
-        return 0
+        return int(self.getData(chr).split(",")[0])
 
-    def setPoints(self, i: int, type: int) -> None:
-        """方法 setPoints"""
-        self.points = i
-        return None
+    def setPoints_i_type(self, i: int, type: int) -> None:
+        z = None
+        if i == 0:
+            z = self.getMCOwner()
+        else:
+            z = self.getVisitor(i - 1)
+        if z is not None:
+            data = self.getData(z).split(",")
+            data[type] = str(int(data[type]) + 1)
+            newData = ""
+            for s in range(len(data)):
+                newData.append(data[s])
+                newData.append(",")
+            newDat = newData
+            z.getQuestNAdd(MapleQuest.getInstance((self.GameType == 1) ? GameConstants.OMOK_SCORE : GameConstants.MATCH_SCORE)).setCustomData(newDat[0:newDat.__len__(] - 1))
 
     def getData(self, chr: Any) -> str:
-        """方法 getData"""
-        return ""
+        quest = MapleQuest.getInstance((self.GameType == 1) ? GameConstants.OMOK_SCORE : GameConstants.MATCH_SCORE)
+        record = None
+        if chr.getQuestNoAdd(quest) is None:
+            record = chr.getQuestNAdd(quest)
+            record.setCustomData("0,0,0")
+        else:
+            record = chr.getQuestNoAdd(quest)
+            if record.getCustomData() is None || record.getCustomData() < 5 || record.getCustomData().find(",") == -1:
+                record.setCustomData("0,0,0")
+        return record.getCustomData()
 
     def getRequestedTie(self) -> int:
-        """方法 getRequestedTie"""
-        return getattr(self, 'requested_tie', 0)
+        return self.tie
 
     def setRequestedTie(self, t: int) -> None:
-        """方法 setRequestedTie"""
-        self.requested_tie = t
-        return None
+        self.tie = t
 
     def getRequestedREDO(self) -> int:
-        """方法 getRequestedREDO"""
-        return getattr(self, 'requested_redo', 0)
+        return self.REDO
 
     def setRequestedREDO(self, t: int) -> None:
-        """方法 setRequestedREDO"""
-        self.requested_redo = t
-        return None
+        self.REDO = t
 
     def getTurn(self) -> int:
-        """方法 getTurn"""
-        return getattr(self, 'turn', 0)
+        return self.turn
 
     def setTurn(self, t: int) -> None:
-        """方法 setTurn"""
         self.turn = t
-        return None
 
     def closeShop(self, s: bool, z: bool) -> None:
-        """方法 closeShop"""
-        pass
+        self.removeAllVisitors(3, 1)
+        if self.getMCOwner() is not None:
+            self.getMCOwner().setPlayerShop(None)
+        self.update()
+        self.getMap().removeMapObject(this)
 
     def buy(self, c: Any, z: int, i: int) -> None:
-        """方法 buy"""
         pass
 

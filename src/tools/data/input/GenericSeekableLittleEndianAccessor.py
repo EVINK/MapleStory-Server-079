@@ -1,33 +1,39 @@
 """
-GenericSeekableLittleEndianAccessor - 从Java源文件转换而来
-对应Java源文件: tools/data/input/GenericSeekableLittleEndianAccessor.java
-包路径: tools.data.input
+GenericSeekableLittleEndianAccessor - Converted from Java source
+Original: tools/data/input/GenericSeekableLittleEndianAccessor.java
+Package: tools.data.input
 """
 
+from typing import Optional, Any
 import os
 
 
 class GenericSeekableLittleEndianAccessor(GenericLittleEndianAccessor, SeekableLittleEndianAccessor):
     """
-    类 GenericSeekableLittleEndianAccessor - 从Java类转换
-    继承自: GenericLittleEndianAccessor
-    实现接口: SeekableLittleEndianAccessor
+    Class GenericSeekableLittleEndianAccessor
+    Extends: GenericLittleEndianAccessor
+    Implements: SeekableLittleEndianAccessor
     """
 
     def __init__(self, bs: Any):
-        """初始化 GenericSeekableLittleEndianAccessor"""
         self.bs = None
+        super(bs)
+        self.bs = bs
 
 
     def seek(self, offset: int) -> None:
-        """方法 seek"""
-        pass
+        try:
+            self.bs.seek(offset)
+        except IOError as e:
+            print("Seek failed" + e)
 
     def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
+        try:
+            return self.bs.getPosition()
+        except IOError as e:
+            print("getPosition failed" + e)
+            return -1
 
     def skip(self, num: int) -> None:
-        """方法 skip"""
-        pass
+        self.seek(self.getPosition() + num)
 

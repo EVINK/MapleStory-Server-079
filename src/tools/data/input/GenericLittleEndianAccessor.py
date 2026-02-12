@@ -1,89 +1,99 @@
 """
-GenericLittleEndianAccessor - 从Java源文件转换而来
-对应Java源文件: tools/data/input/GenericLittleEndianAccessor.java
-包路径: tools.data.input
+GenericLittleEndianAccessor - Converted from Java source
+Original: tools/data/input/GenericLittleEndianAccessor.java
+Package: tools.data.input
 """
 
-from dataclasses import dataclass
 from typing import Optional, Any
 
 
 class GenericLittleEndianAccessor(LittleEndianAccessor):
     """
-    类 GenericLittleEndianAccessor - 从Java类转换
-    实现接口: LittleEndianAccessor
+    Class GenericLittleEndianAccessor
+    Implements: LittleEndianAccessor
     """
 
     def __init__(self, bs: Any):
-        """初始化 GenericLittleEndianAccessor"""
         self.bs = None
+        self.bs = bs
 
 
     def readByteAsInt(self) -> int:
-        """方法 readByteAsInt"""
-        return 0
+        return self.bs.readByte()
 
     def readByte(self) -> int:
-        """方法 readByte"""
-        return 0
+        return self.bs.readByte()
 
     def readInt(self) -> int:
-        """方法 readInt"""
-        return 0
+        byte1 = self.bs.readByte()
+        byte2 = self.bs.readByte()
+        byte3 = self.bs.readByte()
+        byte4 = self.bs.readByte()
+        return (byte4 << 24) + (byte3 << 16) + (byte2 << 8) + byte1
 
     def readShort(self) -> int:
-        """方法 readShort"""
-        return 0
+        byte1 = self.bs.readByte()
+        byte2 = self.bs.readByte()
+        return (short)((byte2 << 8) + byte1)
 
     def readChar(self) -> str:
-        """方法 readChar"""
-        return ""
+        return self.readShort()
 
     def readLong(self) -> int:
-        """方法 readLong"""
-        return 0
+        byte1 = self.bs.readByte()
+        byte2 = self.bs.readByte()
+        byte3 = self.bs.readByte()
+        byte4 = self.bs.readByte()
+        byte5 = self.bs.readByte()
+        byte6 = self.bs.readByte()
+        byte7 = self.bs.readByte()
+        byte8 = self.bs.readByte()
+        return (byte8 << 56) + (byte7 << 48) + (byte6 << 40) + (byte5 << 32) + (byte4 << 24) + (byte3 << 16) + (byte2 << 8) + byte1
 
     def readFloat(self) -> float:
-        """方法 readFloat"""
-        return 0
+        return Float.intBitsToFloat(self.readInt())
 
     def readDouble(self) -> float:
-        """方法 readDouble"""
-        return 0
+        return Double.longBitsToDouble(self.readLong())
 
     def readAsciiString(self, n: int) -> str:
-        """方法 readAsciiString"""
-        return ""
+        ret = new byte[n]
+        for x in range(n):
+            ret[x] = self.readByte()
+        try:
+            str = String(ret, "gbk")
+            return str
+        except UnsupportedEncodingException as e:
+            print(e)
+            return None
 
     def getBytesRead(self) -> int:
-        """方法 getBytesRead"""
-        return getattr(self, 'bytes_read', 0)
+        return self.bs.getBytesRead()
 
     def readMapleAsciiString(self) -> str:
-        """方法 readMapleAsciiString"""
-        return ""
+        return self.readAsciiString(self.readShort())
 
     def readPos(self) -> Any:
-        """方法 readPos"""
-        raise NotImplementedError("方法 readPos 尚未实现")
+        x = self.readShort()
+        y = self.readShort()
+        return Point(x, y)
 
     def read(self, num: int) -> bytes:
-        """方法 read"""
-        return b""
+        ret = new byte[num]
+        for x in range(num):
+            ret[x] = self.readByte()
+        return ret
 
     def skip(self, num: int) -> None:
-        """方法 skip"""
-        pass
+        for x in range(num):
+            self.readByte()
 
     def available(self) -> int:
-        """方法 available"""
-        return 0
+        return self.bs.available()
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.bs
 
-    def toString(self, b: bool) -> str:
-        """方法 toString"""
-        return ""
+    def toString_b(self, b: bool) -> str:
+        return self.bs.toString(b)
 

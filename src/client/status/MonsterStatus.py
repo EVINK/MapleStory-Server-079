@@ -1,14 +1,15 @@
 """
-MonsterStatus - 从Java源文件转换而来
-对应Java源文件: client/status/MonsterStatus.java
-包路径: client.status
+MonsterStatus - Converted from Java source
+Original: client/status/MonsterStatus.java
+Package: client.status
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MonsterStatus(Enum):
-    """枚举类 MonsterStatus - 从Java枚举转换"""
+    """Enum MonsterStatus"""
 
     NEUTRALISE = (2L)
     物攻 = (4294967296L)
@@ -42,18 +43,14 @@ class MonsterStatus(Enum):
     召唤怪物 = (Long.MIN_VALUE)
 
     def __init__(self, i):
-        """初始化枚举值"""
         self._i = i
 
     def isFirst(self) -> bool:
-        """方法 isFirst"""
-        return bool(getattr(self, 'first', False))
+        return self.first
 
     def isEmpty(self) -> bool:
-        """方法 isEmpty"""
-        return bool(getattr(self, 'empty', False))
+        return this == MonsterStatus.召唤怪物 || this == MonsterStatus.空白BUFF
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 

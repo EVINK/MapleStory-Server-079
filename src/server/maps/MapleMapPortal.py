@@ -1,18 +1,19 @@
 """
-MapleMapPortal - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleMapPortal.java
-包路径: server.maps
+MapleMapPortal - Converted from Java source
+Original: server/maps/MapleMapPortal.java
+Package: server.maps
 """
+
+from typing import Optional, Any
 
 
 class MapleMapPortal(MapleGenericPortal):
     """
-    类 MapleMapPortal - 从Java类转换
-    继承自: MapleGenericPortal
+    Class MapleMapPortal
+    Extends: MapleGenericPortal
     """
 
     def __init__(self):
-        """初始化 MapleMapPortal"""
-        pass
+        super(2)
 
 

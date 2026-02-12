@@ -1,31 +1,30 @@
 """
-ChangeEquipSpecialAwesome - 从Java源文件转换而来
-对应Java源文件: server/movement/ChangeEquipSpecialAwesome.java
-包路径: server.movement
+ChangeEquipSpecialAwesome - Converted from Java source
+Original: server/movement/ChangeEquipSpecialAwesome.java
+Package: server.movement
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from tools.data.output.LittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.data.output.LittleEndianWriter import *  # TODO: import specific classes
 
 
 class ChangeEquipSpecialAwesome(LifeMovementFragment):
     """
-    类 ChangeEquipSpecialAwesome - 从Java类转换
-    实现接口: LifeMovementFragment
+    Class ChangeEquipSpecialAwesome
+    Implements: LifeMovementFragment
     """
 
     def __init__(self, wui: int):
-        """初始化 ChangeEquipSpecialAwesome"""
         self.wui = 0
+        self.wui = wui
 
 
     def serialize(self, lew: Any) -> None:
-        """方法 serialize"""
-        pass
+        lew.write(10)
+        lew.write(self.wui)
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        return Point(0, 0)
 

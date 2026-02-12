@@ -1,19 +1,20 @@
 """
-RecvPacketOpcode - 从Java源文件转换而来
-对应Java源文件: handling/RecvPacketOpcode.java
-包路径: handling
+RecvPacketOpcode - Converted from Java source
+Original: handling/RecvPacketOpcode.java
+Package: handling
 """
 
 from enum import Enum, IntEnum
 from typing import List
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from constants import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from constants import *  # TODO: import specific classes
 
 
 class RecvPacketOpcode(Enum):
-    """枚举类 RecvPacketOpcode - 从Java枚举转换"""
+    """Enum RecvPacketOpcode"""
 
     PONG = (false)
     LOGIN_PASSWORD = (false)
@@ -178,27 +179,47 @@ class RecvPacketOpcode(Enum):
     USE_ITEM_QUEST = "USE_ITEM_QUEST"
 
     def setValue(self, code: int) -> None:
-        """方法 setValue"""
-        self.value = code
-        return None
+        self.code = code
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.code
 
     def NeedsChecking(self) -> bool:
-        """方法 NeedsChecking"""
-        return False
+        return self.CheckState
 
     def getDefaultProperties(self) -> Any:
-        """方法 getDefaultProperties"""
-        return getattr(self, 'default_properties', None)
+        props = Properties()
+        fileInputStream = FileInputStream("recvops.properties")
+        props.load(fileInputStream)
+        fileInputStream.close()
+        return props
 
     def reloadValues(self) -> None:
-        """方法 reloadValues"""
-        pass
+        try:
+            if ServerConstants.loadop:
+                props = Properties()
+                props.load(RecvPacketOpcode.class.getClassLoader().getResourceAsStream("recvops.properties"))
+                ExternalCodeTableGetter.populateValues(props, values())
+            else:
+                ExternalCodeTableGetter.populateValues(getDefaultProperties(), values())
+        except IOError as e:
+            raise RuntimeError("加载 recvops.properties 文件出现错误", e)
 
     def isSpamHeader(self, header: Any) -> bool:
-        """方法 isSpamHeader"""
-        return False
+        name = header.name()
+        # switch (name):
+            # case "PONG":
+            # case "NPC_ACTION":
+            # case "MOVE_LIFE":
+            # case "MOVE_PLAYER":
+            # case "MOVE_ANDROID":
+            # case "MOVE_SUMMON":
+            # case "AUTO_AGGRO":
+            # case "HEAL_OVER_TIME":
+            # case "BUTTON_PRESSED":
+            # case "STRANGE_DATA":
+            # case "TAKE_DAMAGE":
+                return True
+            # default:
+                return False
 

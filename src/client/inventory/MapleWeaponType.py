@@ -1,14 +1,15 @@
 """
-MapleWeaponType - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleWeaponType.java
-包路径: client.inventory
+MapleWeaponType - Converted from Java source
+Original: client/inventory/MapleWeaponType.java
+Package: client.inventory
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleWeaponType(Enum):
-    """枚举类 MapleWeaponType - 从Java枚举转换"""
+    """Enum MapleWeaponType"""
 
     NOT_A_WEAPON = (4.0f)
     BOW = (3.4f)
@@ -30,10 +31,8 @@ class MapleWeaponType(Enum):
     KATARA = (4.0f)
 
     def __init__(self, maxDamageMultiplier):
-        """初始化枚举值"""
         self._maxDamageMultiplier = maxDamageMultiplier
 
     def getMaxDamageMultiplier(self) -> float:
-        """方法 getMaxDamageMultiplier"""
-        return getattr(self, 'max_damage_multiplier', 0)
+        return self.damageMultiplier
 

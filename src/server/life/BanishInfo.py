@@ -1,31 +1,32 @@
 """
-BanishInfo - 从Java源文件转换而来
-对应Java源文件: server/life/BanishInfo.java
-包路径: server.life
+BanishInfo - Converted from Java source
+Original: server/life/BanishInfo.java
+Package: server.life
 """
+
+from typing import Optional, Any
 
 
 class BanishInfo:
     """
-    类 BanishInfo - 从Java类转换
+    Class BanishInfo
     """
 
     def __init__(self, msg: str, map: int, portal: str):
-        """初始化 BanishInfo"""
         self.map = None
         self.portal = None
         self.msg = None
+        self.msg = msg
+        self.map = map
+        self.portal = portal
 
 
     def getMap(self) -> int:
-        """方法 getMap"""
-        return getattr(self, 'map', 0)
+        return self.map
 
     def getPortal(self) -> str:
-        """方法 getPortal"""
-        return getattr(self, 'portal', "")
+        return self.portal
 
     def getMsg(self) -> str:
-        """方法 getMsg"""
-        return getattr(self, 'msg', "")
+        return self.msg
 

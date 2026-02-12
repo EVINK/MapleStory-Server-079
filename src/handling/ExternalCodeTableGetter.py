@@ -1,38 +1,51 @@
 """
-ExternalCodeTableGetter - 从Java源文件转换而来
-对应Java源文件: handling/ExternalCodeTableGetter.java
-包路径: handling
+ExternalCodeTableGetter - Converted from Java source
+Original: handling/ExternalCodeTableGetter.java
+Package: handling
 """
 
 from configparser import ConfigParser
 from typing import Collection
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import json
 
-# 内部模块导入 (Internal module imports)
-# from tools.HexTool import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.HexTool import *  # TODO: import specific classes
 
 
 class ExternalCodeTableGetter:
     """
-    类 ExternalCodeTableGetter - 从Java类转换
+    Class ExternalCodeTableGetter
     """
 
     def __init__(self, properties: Any):
-        """初始化 ExternalCodeTableGetter"""
-        pass
+        self.props = properties
 
 
     def valueOf(self, name: str, values: list) -> str:
-        """方法 valueOf"""
-        return ""
+        for val in values:
+            if val == (name):
+                return val
+        return None
 
-    def valueOf(self, name: str, values: list) -> Any:
-        """方法 valueOf"""
-        raise NotImplementedError("方法 valueOf 尚未实现")
+    def valueOf_name_values(self, name: str, values: list) -> Any:
+        for val in values:
+            if val.name() == (name):
+                return val
+        return None
 
     def compare(self, o1: Any, o2: Any) -> int:
-        """方法 compare"""
-        return 0
+        return Short.valueOf(o1.getValue()).compareTo(Short.valueOf(o2.getValue()))
+
+    def populateValues(self, properties: Any, values: list) -> Any:
+        exc = ExternalCodeTableGetter(properties)
+        for code in values:
+            if isinstance(code, SendPacketOpcode):
+                new_values = (SendPacketOpcode[]) values
+                (code).setValue( exc.getValue(code.name(),new_values,(short)-2))
+            if isinstance(code, RecvPacketOpcode):
+                new_values = (RecvPacketOpcode[]) values
+                (code).setValue(exc.getValue(code.name(), new_values, (short) (-2)))
+            # ((WritableIntValueHolder) code).setValue(exc.getValue(code.name(), values, (short) (-2)));
 

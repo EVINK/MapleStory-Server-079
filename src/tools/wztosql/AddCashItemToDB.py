@@ -1,24 +1,37 @@
 """
-AddCashItemToDB - 从Java源文件转换而来
-对应Java源文件: tools/wztosql/AddCashItemToDB.java
-包路径: tools.wztosql
+AddCashItemToDB - Converted from Java source
+Original: tools/wztosql/AddCashItemToDB.java
+Package: tools.wztosql
 """
 
 from pymysql import Connection
 from pymysql import Error
+from typing import Optional, Any
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
 
 
 class AddCashItemToDB:
     """
-    类 AddCashItemToDB - 从Java类转换
+    Class AddCashItemToDB
     """
 
 
     def addItem(self, id: int, Count: int, Price: int, SN: int, Expire: int, Gender: int, OnSale: int) -> None:
-        """方法 addItem"""
-        pass
+        try:
+            conn = DatabaseConnection.getConnection()
+            ps = conn.prepareStatement("INSERT INTO `cashshop_items` VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)")
+            ps.setInt(1, id)
+            ps.setInt(2, Count)
+            ps.setInt(3, Price)
+            ps.setInt(4, SN)
+            ps.setInt(5, Expire)
+            ps.setInt(6, Gender)
+            ps.setInt(7, OnSale)
+            ps.executeUpdate()
+            ps.close()
+        except Exception as sqle:
+            sqle.printStackTrace()
 

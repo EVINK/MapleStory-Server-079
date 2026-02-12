@@ -1,28 +1,28 @@
 """
-MapleLieDetector - 从Java源文件转换而来
-对应Java源文件: client/MapleLieDetector.java
-包路径: client
+MapleLieDetector - Converted from Java source
+Original: client/MapleLieDetector.java
+Package: client
 """
 
+from typing import Optional, Any
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from scripting.LieDetectorScript import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from server.quest.MapleQuest import *  # TODO: 根据实际需要导入具体类
-# from tools.HexTool import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from scripting.LieDetectorScript import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from server.quest.MapleQuest import *  # TODO: import specific classes
+# from tools.HexTool import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class MapleLieDetector:
     """
-    类 MapleLieDetector - 从Java类转换
+    Class MapleLieDetector
     """
 
     def __init__(self, c: Any):
-        """初始化 MapleLieDetector"""
         self.chr = None
         self.type = 0
         self.attempt = 0
@@ -30,45 +30,82 @@ class MapleLieDetector:
         self.answer = ""
         self.inProgress = False
         self.passed = False
+        self.chr = c
+        self.reset()
 
 
     def startLieDetector(self, tester: str, isItem: bool, anotherAttempt: bool) -> bool:
-        """方法 startLieDetector"""
+        if !anotherAttempt && (self.chr.isClone() || (isPassed() && isItem) || inProgress() || self.attempt == 3):
         return False
+        captcha = LieDetectorScript.getImageBytes()
+        if captcha is None:
+        return False
+        image = HexTool.getByteArrayFromHexString(captcha.getLeft())
+        self.answer = captcha.getRight()
+        self.tester = tester
+        self.inProgress = True
+        self.type = (byte)(isItem ? 0 : 1)
+        self.attempt += 1
+        self.chr.getClient().getSession().write(MaplePacketCreator.sendLieDetector(image, self.attempt))
+        Timer.EtcTimer.getInstance().schedule(Runnable()
+            public void run()
+                if !MapleLieDetector.self.isPassed() && MapleLieDetector.self.chr is not None:
+                if MapleLieDetector.self.attempt >= 3:
+                    search_chr = MapleLieDetector.self.chr.getMap().getCharacterByName(tester)
+                    if search_chr is not None && search_chr.getId() != MapleLieDetector.self.chr.getId():
+                        search_chr.dropMessage(5, MapleLieDetector.self.chr.getName() + " 没用通过测谎仪的检测，恭喜你获得7000的金币.")
+                        search_chr.gainMeso(7000, True)
+                    MapleLieDetector.self.end()
+                    MapleLieDetector.self.chr.getClient().getSession().write(MaplePacketCreator.LieDetectorResponse(8, 4))
+                    map = MapleLieDetector.self.chr.getClient().getChannelServer().getMapFactory().getMap(180000001)
+                    MapleLieDetector.self.chr.getQuestNAdd(MapleQuest.getInstance(123456)).setCustomData(str(1800))
+                    MapleLieDetector.self.chr.changeMap(map, map.getPortal(0))
+                else:
+                    MapleLieDetector.self.startLieDetector(tester, isItem, True)
+        return True
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        if !MapleLieDetector.self.isPassed() && MapleLieDetector.self.chr is not None:
+        if MapleLieDetector.self.attempt >= 3:
+            search_chr = MapleLieDetector.self.chr.getMap().getCharacterByName(tester)
+            if search_chr is not None && search_chr.getId() != MapleLieDetector.self.chr.getId():
+                search_chr.dropMessage(5, MapleLieDetector.self.chr.getName() + " 没用通过测谎仪的检测，恭喜你获得7000的金币.")
+                search_chr.gainMeso(7000, True)
+            MapleLieDetector.self.end()
+            MapleLieDetector.self.chr.getClient().getSession().write(MaplePacketCreator.LieDetectorResponse(8, 4))
+            map = MapleLieDetector.self.chr.getClient().getChannelServer().getMapFactory().getMap(180000001)
+            MapleLieDetector.self.chr.getQuestNAdd(MapleQuest.getInstance(123456)).setCustomData(str(1800))
+            MapleLieDetector.self.chr.changeMap(map, map.getPortal(0))
+        else:
+            MapleLieDetector.self.startLieDetector(tester, isItem, True)
 
     def getAttempt(self) -> int:
-        """方法 getAttempt"""
-        return getattr(self, 'attempt', 0)
+        return self.attempt
 
     def getLastType(self) -> int:
-        """方法 getLastType"""
-        return getattr(self, 'last_type', 0)
+        return self.type
 
     def getTester(self) -> str:
-        """方法 getTester"""
-        return getattr(self, 'tester', "")
+        return self.tester
 
     def getAnswer(self) -> str:
-        """方法 getAnswer"""
-        return getattr(self, 'answer', "")
+        return self.answer
 
     def inProgress(self) -> bool:
-        """方法 inProgress"""
-        return False
+        return self.inProgress
 
     def isPassed(self) -> bool:
-        """方法 isPassed"""
-        return bool(getattr(self, 'passed', False))
+        return self.passed
 
     def end(self) -> None:
-        """方法 end"""
-        pass
+        self.inProgress = False
+        self.passed = True
+        self.attempt = 0
 
     def reset(self) -> None:
-        """方法 reset"""
-        pass
+        self.tester = ""
+        self.answer = ""
+        self.attempt = 0
+        self.inProgress = False
+        self.passed = False
 

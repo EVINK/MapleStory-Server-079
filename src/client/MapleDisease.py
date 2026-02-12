@@ -1,18 +1,18 @@
 """
-MapleDisease - 从Java源文件转换而来
-对应Java源文件: client/MapleDisease.java
-包路径: client
+MapleDisease - Converted from Java source
+Original: client/MapleDisease.java
+Package: client
 """
 
 from enum import Enum, IntEnum
 from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from server.Randomizer import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.Randomizer import *  # TODO: import specific classes
 
 
 class MapleDisease(Enum):
-    """枚举类 MapleDisease - 从Java枚举转换"""
+    """Enum MapleDisease"""
 
     眩晕 = (562949953421312L)
     中毒 = (1125899906842624L)
@@ -32,22 +32,86 @@ class MapleDisease(Enum):
     WEIRD_FLAME = (134217728L)
 
     def isFirst(self) -> bool:
-        """方法 isFirst"""
-        return bool(getattr(self, 'first', False))
+        return self.first
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def getRandom(self) -> Any:
-        """方法 getRandom"""
-        return getattr(self, 'random', None)
+        dis = None
+        Block_1:
+        while True:
+            values = values()
+            length = len(values), i = 0
+            while i < length:
+                dis = values[i]
+                if Randomizer.nextInt(values().length) == 0:
+                    Block_1 = None
+        return dis
 
     def getBySkill(self, skill: int) -> Any:
-        """方法 getBySkill"""
-        raise NotImplementedError("方法 getBySkill 尚未实现")
+        # switch (skill):
+            # case 120:
+                return MapleDisease.封印
+            # case 121:
+                return MapleDisease.黑暗
+            # case 122:
+                return MapleDisease.虚弱
+            # case 123:
+                return MapleDisease.眩晕
+            # case 124:
+                return MapleDisease.诅咒
+            # case 125:
+                return MapleDisease.中毒
+            # case 126:
+                return MapleDisease.缓慢
+            # case 128:
+                return MapleDisease.诱惑
+            # case 132:
+                return MapleDisease.REVERSE_DIRECTION
+            # case 133:
+                return MapleDisease.ZOMBIFY
+            # case 134:
+                return MapleDisease.POTION
+            # case 135:
+                return MapleDisease.SHADOW
+            # case 136:
+                return MapleDisease.BLIND
+            # case 137:
+                return MapleDisease.冻结
+            # default:
+                return None
 
     def getByDisease(self, skill: Any) -> int:
-        """方法 getByDisease"""
-        return 0
+        # switch (skill):
+            # case 封印:
+                return 120
+            # case 黑暗:
+                return 121
+            # case 虚弱:
+                return 122
+            # case 眩晕:
+                return 123
+            # case 诅咒:
+                return 124
+            # case 中毒:
+                return 125
+            # case 缓慢:
+                return 126
+            # case 诱惑:
+                return 128
+            # case REVERSE_DIRECTION:
+                return 132
+            # case ZOMBIFY:
+                return 133
+            # case POTION:
+                return 134
+            # case SHADOW:
+                return 135
+            # case BLIND:
+                return 136
+            # case 冻结:
+                return 137
+            # default:
+                return 0
 

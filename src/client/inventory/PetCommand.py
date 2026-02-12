@@ -1,36 +1,37 @@
 """
-PetCommand - 从Java源文件转换而来
-对应Java源文件: client/inventory/PetCommand.java
-包路径: client.inventory
+PetCommand - Converted from Java source
+Original: client/inventory/PetCommand.java
+Package: client.inventory
 """
+
+from typing import Optional, Any
 
 
 class PetCommand:
     """
-    类 PetCommand - 从Java类转换
+    Class PetCommand
     """
 
     def __init__(self, petId: int, skillId: int, prob: int, inc: int):
-        """初始化 PetCommand"""
         self.petId = None
         self.skillId = None
         self.prob = None
         self.inc = None
+        self.petId = petId
+        self.skillId = skillId
+        self.prob = prob
+        self.inc = inc
 
 
     def getPetId(self) -> int:
-        """方法 getPetId"""
-        return getattr(self, 'pet_id', 0)
+        return self.petId
 
     def getSkillId(self) -> int:
-        """方法 getSkillId"""
-        return getattr(self, 'skill_id', 0)
+        return self.skillId
 
     def getProbability(self) -> int:
-        """方法 getProbability"""
-        return getattr(self, 'probability', 0)
+        return self.prob
 
     def getIncrease(self) -> int:
-        """方法 getIncrease"""
-        return getattr(self, 'increase', 0)
+        return self.inc
 

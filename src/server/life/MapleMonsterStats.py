@@ -1,24 +1,23 @@
 """
-MapleMonsterStats - 从Java源文件转换而来
-对应Java源文件: server/life/MapleMonsterStats.java
-包路径: server.life
+MapleMonsterStats - Converted from Java source
+Original: server/life/MapleMonsterStats.java
+Package: server.life
 """
 
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class MapleMonsterStats:
     """
-    类 MapleMonsterStats - 从Java类转换
+    Class MapleMonsterStats
     """
 
     def __init__(self):
-        """初始化 MapleMonsterStats"""
         self.cp = 0
         self.selfDestruction_action = 0
         self.tagColor = 0
@@ -49,229 +48,246 @@ class MapleMonsterStats:
         self.friendly = False
         self.noDoom = False
         self.name = ""
+        self.resistance = None
+        self.revives = []
+        self.skills = None
+        self.banish = None
+        self.changeable = False
+        self.acc = 0
+        self.resistance = {}
+        self.revives = []
+        self.skills = new ArrayList<Pair<Integer, Integer>>()
 
 
     def getExp(self) -> int:
-        """方法 getExp"""
-        return getattr(self, 'exp', 0)
+        return self.exp
 
     def setExp(self, exp: int) -> None:
-        """方法 setExp"""
         self.exp = exp
-        return None
 
     def getHp(self) -> int:
-        """方法 getHp"""
-        return getattr(self, 'hp', 0)
+        return self.hp
 
     def setHp(self, hp: int) -> None:
-        """方法 setHp"""
         self.hp = hp
-        return None
 
     def getMp(self) -> int:
-        """方法 getMp"""
-        return getattr(self, 'mp', 0)
+        return self.mp
 
     def setMp(self, mp: int) -> None:
-        """方法 setMp"""
         self.mp = mp
-        return None
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def setLevel(self, level: int) -> None:
-        """方法 setLevel"""
         self.level = level
-        return None
 
     def setSelfD(self, selfDestruction_action: int) -> None:
-        """方法 setSelfD"""
-        self.self_d = selfDestruction_action
-        return None
+        self.selfDestruction_action = selfDestruction_action
 
     def getSelfD(self) -> int:
-        """方法 getSelfD"""
-        return getattr(self, 'self_d', 0)
+        return self.selfDestruction_action
 
     def setSelfDHP(self, selfDestruction_hp: int) -> None:
-        """方法 setSelfDHP"""
-        self.self_dhp = selfDestruction_hp
-        return None
+        self.selfDestruction_hp = selfDestruction_hp
 
     def getSelfDHp(self) -> int:
-        """方法 getSelfDHp"""
-        return getattr(self, 'self_d_hp', 0)
+        return self.selfDestruction_hp
 
     def setFixedDamage(self, damage: int) -> None:
-        """方法 setFixedDamage"""
-        self.fixed_damage = damage
-        return None
+        self.fixedDamage = damage
 
     def getFixedDamage(self) -> int:
-        """方法 getFixedDamage"""
-        return getattr(self, 'fixed_damage', 0)
+        return self.fixedDamage
 
     def setPhysicalDefense(self, PhysicalDefense: int) -> None:
-        """方法 setPhysicalDefense"""
-        self.physical_defense = PhysicalDefense
-        return None
+        self.PhysicalDefense = PhysicalDefense
 
     def getPhysicalDefense(self) -> int:
-        """方法 getPhysicalDefense"""
-        return getattr(self, 'physical_defense', 0)
+        return self.PhysicalDefense
 
     def setMagicDefense(self, MagicDefense: int) -> None:
-        """方法 setMagicDefense"""
-        self.magic_defense = MagicDefense
-        return None
+        self.MagicDefense = MagicDefense
 
     def getMagicDefense(self) -> int:
-        """方法 getMagicDefense"""
-        return getattr(self, 'magic_defense', 0)
+        return self.MagicDefense
 
     def setEva(self, eva: int) -> None:
-        """方法 setEva"""
         self.eva = eva
-        return None
 
     def getEva(self) -> int:
-        """方法 getEva"""
-        return getattr(self, 'eva', 0)
+        return self.eva
 
     def setOnlyNormalAttack(self, onlyNormalAttack: bool) -> None:
-        """方法 setOnlyNormalAttack"""
-        self.only_normal_attack = onlyNormalAttack
-        return None
+        self.onlyNormalAttack = onlyNormalAttack
 
     def getOnlyNoramlAttack(self) -> bool:
-        """方法 getOnlyNoramlAttack"""
-        return getattr(self, 'only_noraml_attack', False)
+        return self.onlyNormalAttack
 
     def getBanishInfo(self) -> Any:
-        """方法 getBanishInfo"""
-        return getattr(self, 'banish_info', None)
+        return self.banish
 
     def setBanishInfo(self, banish: Any) -> None:
-        """方法 setBanishInfo"""
-        self.banish_info = banish
-        return None
+        self.banish = banish
 
     def getRemoveAfter(self) -> int:
-        """方法 getRemoveAfter"""
-        return getattr(self, 'remove_after', 0)
+        return self.removeAfter
 
     def setRemoveAfter(self, removeAfter: int) -> None:
-        """方法 setRemoveAfter"""
-        self.remove_after = removeAfter
-        return None
+        self.removeAfter = removeAfter
 
     def getrareItemDropLevel(self) -> int:
-        """方法 getrareItemDropLevel"""
-        return getattr(self, 'rare_item_drop_level', 0)
+        return self.rareItemDropLevel
 
     def setrareItemDropLevel(self, rareItemDropLevel: int) -> None:
-        """方法 setrareItemDropLevel"""
-        self.rare_item_drop_level = rareItemDropLevel
-        return None
+        self.rareItemDropLevel = rareItemDropLevel
 
     def setBoss(self, boss: bool) -> None:
-        """方法 setBoss"""
         self.boss = boss
-        return None
 
     def isBoss(self) -> bool:
-        """方法 isBoss"""
-        return bool(getattr(self, 'boss', False))
+        return self.boss
 
     def setFfaLoot(self, ffaLoot: bool) -> None:
-        """方法 setFfaLoot"""
-        self.ffa_loot = ffaLoot
-        return None
+        self.ffaLoot = ffaLoot
 
     def isFfaLoot(self) -> bool:
-        """方法 isFfaLoot"""
-        return bool(getattr(self, 'ffa_loot', False))
+        return self.ffaLoot
 
     def setExplosiveReward(self, isExplosiveReward: bool) -> None:
-        """方法 setExplosiveReward"""
-        self.explosive_reward = isExplosiveReward
-        return None
+        self.isExplosiveReward = isExplosiveReward
 
     def isExplosiveReward(self) -> bool:
-        """方法 isExplosiveReward"""
-        return bool(getattr(self, 'explosive_reward', False))
+        return self.isExplosiveReward
 
     def setMobile(self, mobile: bool) -> None:
-        """方法 setMobile"""
         self.mobile = mobile
-        return None
 
     def getMobile(self) -> bool:
-        """方法 getMobile"""
-        return getattr(self, 'mobile', False)
+        return self.mobile
 
     def setFly(self, fly: bool) -> None:
-        """方法 setFly"""
         self.fly = fly
-        return None
 
     def getFly(self) -> bool:
-        """方法 getFly"""
-        return getattr(self, 'fly', False)
+        return self.fly
 
     def getRevives(self) -> list:
-        """方法 getRevives"""
-        return getattr(self, 'revives', [])
+        return self.revives
 
     def setRevives(self, revives: list) -> None:
-        """方法 setRevives"""
         self.revives = revives
-        return None
 
     def setUndead(self, undead: bool) -> None:
-        """方法 setUndead"""
         self.undead = undead
-        return None
 
     def getUndead(self) -> bool:
-        """方法 getUndead"""
-        return getattr(self, 'undead', False)
+        return self.undead
 
     def setEffectiveness(self, e: Any, ee: Any) -> None:
-        """方法 setEffectiveness"""
-        self.effectiveness = e
-        return None
+        self.resistance.put(e, ee)
 
     def removeEffectiveness(self, e: Any) -> None:
-        """方法 removeEffectiveness"""
-        pass
+        self.resistance.remove(e)
 
     def getEffectiveness(self, e: Any) -> Any:
-        """方法 getEffectiveness"""
-        raise NotImplementedError("方法 getEffectiveness 尚未实现")
+        elementalEffectiveness = self.resistance.get(e)
+        if elementalEffectiveness is None:
+            return ElementalEffectiveness.正常
+        return elementalEffectiveness
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def setName(self, name: str) -> None:
-        """方法 setName"""
         self.name = name
-        return None
 
     def getTagColor(self) -> int:
-        """方法 getTagColor"""
-        return getattr(self, 'tag_color', 0)
+        return self.tagColor
 
     def setTagColor(self, tagColor: int) -> None:
-        """方法 setTagColor"""
-        self.tag_color = tagColor
-        return None
+        self.tagColor = tagColor
 
     def getTagBgColor(self) -> int:
-        """方法 getTagBgColor"""
-        return getattr(self, 'tag_bg_color', 0)
+        return self.tagBgColor
+
+    def setTagBgColor(self, tagBgColor: int) -> None:
+        self.tagBgColor = tagBgColor
+
+    def setSkills(self, skill_: list) -> None:
+        for skill in skill_:
+            self.skills.add(skill)
+
+    def getSkills(self) -> list:
+        return Collections.unmodifiableList(self.skills)
+
+    def getNoSkills(self) -> int:
+        return self.skills
+
+    def hasSkill(self, skillId: int, level: int) -> bool:
+        for skill in self.skills:
+            if skill.getLeft() == skillId && skill.getRight() == level:
+                return True
+        return False
+
+    def setFirstAttack(self, firstAttack: bool) -> None:
+        self.firstAttack = firstAttack
+
+    def isFirstAttack(self) -> bool:
+        return self.firstAttack
+
+    def setCP(self, cp: int) -> None:
+        self.cp = cp
+
+    def getCP(self) -> int:
+        return self.cp
+
+    def setPoint(self, cp: int) -> None:
+        self.point = cp
+
+    def getPoint(self) -> int:
+        return self.point
+
+    def setFriendly(self, friendly: bool) -> None:
+        self.friendly = friendly
+
+    def isFriendly(self) -> bool:
+        return self.friendly
+
+    def setNoDoom(self, doom: bool) -> None:
+        self.noDoom = doom
+
+    def isNoDoom(self) -> bool:
+        return self.noDoom
+
+    def setBuffToGive(self, buff: int) -> None:
+        self.buffToGive = buff
+
+    def getBuffToGive(self) -> int:
+        return self.buffToGive
+
+    def getHPDisplayType(self) -> int:
+        return self.HPDisplayType
+
+    def setHPDisplayType(self, HPDisplayType: int) -> None:
+        self.HPDisplayType = HPDisplayType
+
+    def getDropItemPeriod(self) -> int:
+        return self.dropItemPeriod
+
+    def setDropItemPeriod(self, d: int) -> None:
+        self.dropItemPeriod = d
+
+    def setChange(self, invin: bool) -> None:
+        self.changeable = invin
+
+    def isChangeable(self) -> bool:
+        return self.changeable
+
+    def getAcc(self) -> int:
+        return self.acc
+
+    def setAcc(self, acc: int) -> None:
+        self.acc = acc
 

@@ -1,29 +1,28 @@
 """
-MapleQuestStatus - 从Java源文件转换而来
-对应Java源文件: client/MapleQuestStatus.java
-包路径: client
+MapleQuestStatus - Converted from Java source
+Original: client/MapleQuestStatus.java
+Package: client
 """
 
 from typing import Dict
 from typing import Iterator
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import math
 import time
 
-# 内部模块导入 (Internal module imports)
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from server.life.MapleLifeFactory import *  # TODO: 根据实际需要导入具体类
-# from server.quest.MapleQuest import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from constants.GameConstants import *  # TODO: import specific classes
+# from server.life.MapleLifeFactory import *  # TODO: import specific classes
+# from server.quest.MapleQuest import *  # TODO: import specific classes
 
 
 class MapleQuestStatus:
     """
-    类 MapleQuestStatus - 从Java类转换
-    实现接口: Serializable
+    Class MapleQuestStatus
+    Implements: Serializable
     """
 
     def __init__(self, quest: Any, status: int):
-        """初始化 MapleQuestStatus"""
         self.quest = None
         self.status = 0
         self.killedMobs = {}
@@ -31,91 +30,105 @@ class MapleQuestStatus:
         self.completionTime = 0
         self.forfeited = 0
         self.customData = ""
+        self.killedMobs = None
+        self.forfeited = 0
+        self.quest = quest
+        self.setStatus(status)
+        self.completionTime = int(time.time() * 1000)
+        if status == 1 && !quest.getRelevantMobs() == 0:
+            self.registerMobs()
+
+    # Static initializer
+    # MapleQuestStatus.serialVersionUID = 91795419934134
 
 
     def getQuest(self) -> Any:
-        """方法 getQuest"""
-        return getattr(self, 'quest', None)
+        return self.quest
 
     def getStatus(self) -> int:
-        """方法 getStatus"""
-        return getattr(self, 'status', 0)
+        return self.status
 
     def setStatus(self, status: int) -> None:
-        """方法 setStatus"""
         self.status = status
-        return None
 
     def getNpc(self) -> int:
-        """方法 getNpc"""
-        return getattr(self, 'npc', 0)
+        return self.npc
 
     def setNpc(self, npc: int) -> None:
-        """方法 setNpc"""
         self.npc = npc
-        return None
 
     def isCustom(self) -> bool:
-        """方法 isCustom"""
-        return bool(getattr(self, 'custom', False))
+        return GameConstants.isCustomQuest(self.quest.getId())
 
     def registerMobs(self) -> None:
-        """方法 registerMobs"""
-        pass
+        self.killedMobs = {}
+        for i in self.quest.getRelevantMobs().keys():
+            self.killedMobs.put(i, 0)
 
     def maxMob(self, mobid: int) -> int:
-        """方法 maxMob"""
+        for (final Map.Entry<Integer, Integer> qs : self.quest.getRelevantMobs().items())
+            if qs.getKey() == mobid:
+                return qs.getValue()
         return 0
 
     def mobKilled(self, id: int, skillID: int) -> bool:
-        """方法 mobKilled"""
-        return False
+        if self.quest is not None && self.quest.getSkillID() > 0 && self.quest.getSkillID() != skillID:
+            return False
+        mob = self.killedMobs.get(id)
+        if mob is None:
+            for (final Map.Entry<Integer, Integer> mo : self.killedMobs.items())
+                if self.questCount(mo.getKey(), id):
+                    mobb = self.maxMob(mo.getKey())
+                    if mo.getValue() >= mobb:
+                        return False
+                    self.killedMobs.put(mo.getKey(), min(mo.getValue() + 1, mobb))
+                    return True
+            return False
+        mo2 = self.maxMob(id)
+        if mob >= mo2:
+            return False
+        self.killedMobs.put(id, min(mob + 1, mo2))
+        return True
 
     def questCount(self, mo: int, id: int) -> bool:
-        """方法 questCount"""
+        if MapleLifeFactory.getQuestCount(mo) is not None:
+            for i in MapleLifeFactory.getQuestCount(mo):
+                if i == id:
+                    return True
         return False
 
     def setMobKills(self, id: int, count: int) -> None:
-        """方法 setMobKills"""
-        self.mob_kills = id
-        return None
+        if self.killedMobs is None:
+            self.registerMobs()
+        self.killedMobs.put(id, count)
 
     def hasMobKills(self) -> bool:
-        """方法 hasMobKills"""
-        return bool(getattr(self, 'mob_kills', False))
+        return self.killedMobs is not None && self.killedMobs > 0
 
     def getMobKills(self, id: int) -> int:
-        """方法 getMobKills"""
-        return 0
-
-    def getMobKills(self) -> dict:
-        """方法 getMobKills"""
-        return getattr(self, 'mob_kills', {})
+        mob = self.killedMobs.get(id)
+        if mob is None:
+            return 0
+        return mob
 
     def getCompletionTime(self) -> int:
-        """方法 getCompletionTime"""
-        return getattr(self, 'completion_time', 0)
+        return self.completionTime
 
     def setCompletionTime(self, completionTime: int) -> None:
-        """方法 setCompletionTime"""
-        self.completion_time = completionTime
-        return None
+        self.completionTime = completionTime
 
     def getForfeited(self) -> int:
-        """方法 getForfeited"""
-        return getattr(self, 'forfeited', 0)
+        return self.forfeited
 
     def setForfeited(self, forfeited: int) -> None:
-        """方法 setForfeited"""
-        self.forfeited = forfeited
-        return None
+        if forfeited >= self.forfeited:
+            self.forfeited = forfeited
+            return
+        raise ValueError("Can't set forfeits to something lower than before.")
 
     def setCustomData(self, customData: str) -> None:
-        """方法 setCustomData"""
-        self.custom_data = customData
-        return None
+        self.customData = customData
 
     def getCustomData(self) -> str:
-        """方法 getCustomData"""
-        return getattr(self, 'custom_data', "")
+        return self.customData
 

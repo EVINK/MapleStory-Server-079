@@ -1,35 +1,71 @@
 """
-MonsterBookPacket - 从Java源文件转换而来
-对应Java源文件: tools/packet/MonsterBookPacket.java
-包路径: tools.packet
+MonsterBookPacket - Converted from Java source
+Original: tools/packet/MonsterBookPacket.java
+Package: tools.packet
 """
 
-# 内部模块导入 (Internal module imports)
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.SendPacketOpcode import *  # TODO: 根据实际需要导入具体类
-# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.SendPacketOpcode import *  # TODO: import specific classes
+# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: import specific classes
 
 
 class MonsterBookPacket:
     """
-    类 MonsterBookPacket - 从Java类转换
+    Class MonsterBookPacket
     """
 
 
     def addCard(self, full: bool, cardid: int, level: int) -> Any:
-        """方法 addCard"""
-        raise NotImplementedError("方法 addCard 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("addCard--------------------")
+        mplew.writeShort(SendPacketOpcode.MONSTERBOOK_ADD.getValue())
+        if !full:
+            mplew.write(1)
+            mplew.writeInt(cardid)
+            mplew.writeInt(level)
+        else:
+            mplew.write(0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def showGainCard(self, itemid: int) -> Any:
-        """方法 showGainCard"""
-        raise NotImplementedError("方法 showGainCard 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("showGainCard--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
+        mplew.write(15)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def showForeginCardEffect(self, id: int) -> Any:
-        """方法 showForeginCardEffect"""
-        raise NotImplementedError("方法 showForeginCardEffect 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("showForeginCardEffect--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_FOREIGN_EFFECT.getValue())
+        mplew.writeInt(id)
+        mplew.write(13)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def changeCover(self, cardid: int) -> Any:
-        """方法 changeCover"""
-        raise NotImplementedError("方法 changeCover 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("changeCover--------------------")
+        mplew.writeShort(SendPacketOpcode.MONSTERBOOK_CHANGE_COVER.getValue())
+        mplew.writeInt(cardid)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 

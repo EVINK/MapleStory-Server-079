@@ -1,74 +1,79 @@
 """
-GenericLittleEndianWriter - 从Java源文件转换而来
-对应Java源文件: tools/data/output/GenericLittleEndianWriter.java
-包路径: tools.data.output
+GenericLittleEndianWriter - Converted from Java source
+Original: tools/data/output/GenericLittleEndianWriter.java
+Package: tools.data.output
 """
 
-from dataclasses import dataclass
 from typing import Optional, Any
 
 
 class GenericLittleEndianWriter(LittleEndianWriter):
     """
-    类 GenericLittleEndianWriter - 从Java类转换
-    实现接口: LittleEndianWriter
+    Class GenericLittleEndianWriter
+    Implements: LittleEndianWriter
     """
 
     def __init__(self):
-        """初始化 GenericLittleEndianWriter"""
         self.bos = None
+
+    # Static initializer
+    # GenericLittleEndianWriter.ASCII = Charset.forName("GBK")
 
 
     def setByteOutputStream(self, bos: Any) -> None:
-        """方法 setByteOutputStream"""
-        self.byte_output_stream = bos
-        return None
+        self.bos = bos
 
     def writeZeroBytes(self, i: int) -> None:
-        """方法 writeZeroBytes"""
-        pass
+        for x in range(i):
+            self.bos.writeByte(0)
 
     def write(self, b: bytes) -> None:
-        """方法 write"""
-        pass
+        for x in range(len(b)):
+            self.bos.writeByte(b[x])
 
-    def write(self, b: int) -> None:
-        """方法 write"""
-        pass
-
-    def write(self, b: int) -> None:
-        """方法 write"""
-        pass
+    def write_b(self, b: int) -> None:
+        self.bos.writeByte(b)
 
     def writeShort(self, i: int) -> None:
-        """方法 writeShort"""
-        pass
+        self.bos.writeByte((byte)(i & 0xFF))
+        self.bos.writeByte((byte)(i >>> 8 & 0xFF))
 
-    def writeShort(self, i: int) -> None:
-        """方法 writeShort"""
-        pass
+    def writeShort_i(self, i: int) -> None:
+        self.bos.writeByte((byte)(i & 0xFF))
+        self.bos.writeByte((byte)(i >>> 8 & 0xFF))
 
     def writeInt(self, i: int) -> None:
-        """方法 writeInt"""
-        pass
+        self.bos.writeByte((byte)(i & 0xFF))
+        self.bos.writeByte((byte)(i >>> 8 & 0xFF))
+        self.bos.writeByte((byte)(i >>> 16 & 0xFF))
+        self.bos.writeByte((byte)(i >>> 24 & 0xFF))
 
     def writeAsciiString(self, s: str) -> None:
-        """方法 writeAsciiString"""
-        pass
+        self.write(s.encode("utf-8"))
 
-    def writeAsciiString(self, s: str, max: int) -> None:
-        """方法 writeAsciiString"""
-        pass
+    def writeAsciiString_s_max(self, s: str, max: int) -> None:
+        if s.encode("utf-8").length > max:
+            s = s[0:max]
+        self.write(s.encode("utf-8"))
+        i = s.encode("utf-8").length
+        while i < max:
+            self.write(0)
 
     def writeMapleAsciiString(self, s: str) -> None:
-        """方法 writeMapleAsciiString"""
-        pass
+        self.writeShort(s.encode("utf-8").length)
+        self.writeAsciiString(s)
 
     def writePos(self, s: Any) -> None:
-        """方法 writePos"""
-        pass
+        self.writeShort(s.x)
+        self.writeShort(s.y)
 
     def writeLong(self, l: int) -> None:
-        """方法 writeLong"""
-        pass
+        self.bos.writeByte((byte)(l & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 8 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 16 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 24 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 32 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 40 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 48 & 0xFFL))
+        self.bos.writeByte((byte)(l >>> 56 & 0xFFL))
 

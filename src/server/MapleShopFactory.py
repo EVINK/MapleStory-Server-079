@@ -1,41 +1,56 @@
 """
-MapleShopFactory - 从Java源文件转换而来
-对应Java源文件: server/MapleShopFactory.java
-包路径: server
+MapleShopFactory - Converted from Java source
+Original: server/MapleShopFactory.java
+Package: server
 """
 
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 class MapleShopFactory:
     """
-    类 MapleShopFactory - 从Java类转换
+    Class MapleShopFactory
     """
 
     def __init__(self):
-        """初始化 MapleShopFactory"""
         self.shops = None
         self.npcShops = None
+        self.shops = {}
+        self.npcShops = {}
+
+    # Static initializer
+    # instance = MapleShopFactory()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def clear(self) -> None:
-        """方法 clear"""
-        pass
+        self.shops.clear()
+        self.npcShops.clear()
 
     def getShop(self, shopId: int) -> Any:
-        """方法 getShop"""
-        raise NotImplementedError("方法 getShop 尚未实现")
+        if (shopId in self.shops):
+            return self.shops.get(shopId)
+        return self.loadShop(shopId, True)
 
     def getShopForNPC(self, npcId: int) -> Any:
-        """方法 getShopForNPC"""
-        raise NotImplementedError("方法 getShopForNPC 尚未实现")
+        if (npcId in self.npcShops):
+            return self.npcShops.get(npcId)
+        return self.loadShop(npcId, False)
 
     def loadShop(self, id: int, isShopId: bool) -> Any:
-        """方法 loadShop"""
-        raise NotImplementedError("方法 loadShop 尚未实现")
+        ret = MapleShop.createFromDB(id, isShopId)
+        if ret is not None:
+            self.shops.put(ret.getId(), ret)
+            self.npcShops.put(ret.getNpcId(), ret)
+        elif isShopId:
+            self.shops.put(id, None)
+        else:
+            self.npcShops.put(id, None)
+        return ret
 

@@ -1,28 +1,27 @@
 """
-MapleReactor - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleReactor.java
-包路径: server.maps
+MapleReactor - Converted from Java source
+Original: server/maps/MapleReactor.java
+Package: server.maps
 """
 
 from typing import Optional, Any
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from scripting.ReactorScriptManager import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from scripting.ReactorScriptManager import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class MapleReactor(AbstractMapleMapObject):
     """
-    类 MapleReactor - 从Java类转换
-    继承自: AbstractMapleMapObject
+    Class MapleReactor
+    Extends: AbstractMapleMapObject
     """
 
     def __init__(self, stats: Any, rid: int):
-        """初始化 MapleReactor"""
         self.rid = None
         self.stats = None
         self.state = 0
@@ -31,143 +30,137 @@ class MapleReactor(AbstractMapleMapObject):
         self.name = ""
         self.timerActive = False
         self.alive = False
+        self.name = ""
+        self.stats = stats
+        self.rid = rid
+        self.alive = True
 
 
     def getFacingDirection(self) -> int:
-        """方法 getFacingDirection"""
-        return getattr(self, 'facing_direction', 0)
+        return self.stats.getFacingDirection()
 
     def setTimerActive(self, active: bool) -> None:
-        """方法 setTimerActive"""
-        self.timer_active = active
-        return None
+        self.timerActive = active
 
     def isTimerActive(self) -> bool:
-        """方法 isTimerActive"""
-        return bool(getattr(self, 'timer_active', False))
+        return self.timerActive
 
     def getReactorId(self) -> int:
-        """方法 getReactorId"""
-        return getattr(self, 'reactor_id', 0)
+        return self.rid
 
     def setState(self, state: int) -> None:
-        """方法 setState"""
         self.state = state
-        return None
 
     def getState(self) -> int:
-        """方法 getState"""
-        return getattr(self, 'state', 0)
+        return self.state
 
     def isAlive(self) -> bool:
-        """方法 isAlive"""
-        return bool(getattr(self, 'alive', False))
+        return self.alive
 
     def setAlive(self, alive: bool) -> None:
-        """方法 setAlive"""
         self.alive = alive
-        return None
 
     def setDelay(self, delay: int) -> None:
-        """方法 setDelay"""
         self.delay = delay
-        return None
 
     def getDelay(self) -> int:
-        """方法 getDelay"""
-        return getattr(self, 'delay', 0)
+        return self.delay
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.REACTOR
 
     def getReactorType(self) -> int:
-        """方法 getReactorType"""
-        return getattr(self, 'reactor_type', 0)
+        return self.stats.getType(self.state)
 
     def getTouch(self) -> int:
-        """方法 getTouch"""
-        return getattr(self, 'touch', 0)
+        return self.stats.canTouch(self.state)
 
     def setMap(self, map: Any) -> None:
-        """方法 setMap"""
         self.map = map
-        return None
 
     def getMap(self) -> Any:
-        """方法 getMap"""
-        return getattr(self, 'map', None)
+        return self.map
 
     def getReactItem(self) -> Any:
-        """方法 getReactItem"""
-        return getattr(self, 'react_item', None)
+        return self.stats.getReactItem(self.state)
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        client.getSession().write(MaplePacketCreator.destroyReactor(this))
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
+        client.getSession().write(MaplePacketCreator.spawnReactor(this))
 
     def forceStartReactor(self, c: Any) -> None:
-        """方法 forceStartReactor"""
-        pass
+        ReactorScriptManager.getInstance().act(c, this)
 
     def forceHitReactor(self, newState: int) -> None:
-        """方法 forceHitReactor"""
-        pass
+        self.setState(newState)
+        self.setTimerActive(False)
+        self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, 0))
 
     def hitReactor(self, c: Any) -> None:
-        """方法 hitReactor"""
-        pass
+        self.hitReactor(0, 0, c)
 
     def forceTrigger(self) -> None:
-        """方法 forceTrigger"""
-        pass
+        self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, 0))
 
     def delayedDestroyReactor(self, delay: int) -> None:
-        """方法 delayedDestroyReactor"""
-        pass
+        Timer.MapTimer.getInstance().schedule(Runnable()
+            public void run()
+                MapleReactor.self.map.destroyReactor(MapleReactor.self.getObjectId())
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        MapleReactor.self.map.destroyReactor(MapleReactor.self.getObjectId())
 
-    def hitReactor(self, charPos: int, stance: int, c: Any) -> None:
-        """方法 hitReactor"""
-        pass
+    def hitReactor_charPos_stance_c(self, charPos: int, stance: int, c: Any) -> None:
+        if self.stats.getType(self.state) < 999 && self.stats.getType(self.state) != -1:
+            oldState = self.state
+            pass = False
+            pass = (self.getReactorId() == 1072000 || self.stats.getType(self.state) != 2)
+            if pass || (charPos != 0 && charPos != 2):
+                self.state = self.stats.getNextState(self.state)
+                if self.stats.getNextState(self.state) == -1 || self.stats.getType(self.state) == 999:
+                    if (self.stats.getType(self.state) < 100 || self.stats.getType(self.state) == 999) && self.delay > 0:
+                        self.map.destroyReactor(self.getObjectId())
+                    else:
+                        self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, stance))
+                    ReactorScriptManager.getInstance().act(c, this)
+                else:
+                    done = False
+                    self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, stance))
+                    if self.state == self.stats.getNextState(self.state) || self.rid == 2618000 || self.rid == 2309000:
+                        if self.rid > 200011:
+                            ReactorScriptManager.getInstance().act(c, this)
+                        done = True
+                    if self.stats.getTimeOut(self.state) > 0:
+                        if !done && self.rid > 200011:
+                            ReactorScriptManager.getInstance().act(c, this)
+                        self.scheduleSetState(self.state, oldState, self.stats.getTimeOut(self.state))
 
     def getArea(self) -> Any:
-        """方法 getArea"""
-        return getattr(self, 'area', None)
+        height = self.stats.getBR().y - self.stats.getTL().y
+        width = self.stats.getBR().x - self.stats.getTL().x
+        origX = self.getPosition().x + self.stats.getTL().x
+        origY = self.getPosition().y + self.stats.getTL().y
+        return Rectangle(origX, origY, width, height)
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def setName(self, name: str) -> None:
-        """方法 setName"""
         self.name = name
-        return None
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return "Reactor " + self.getObjectId() + " of id " + self.rid + " at position " + self.getPosition() + " state" + self.state + " type " + self.stats.getType(self.state)
 
     def delayedHitReactor(self, c: Any, delay: int) -> None:
-        """方法 delayedHitReactor"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+        Timer.MapTimer.getInstance().schedule(Runnable()
+            public void run()
+                MapleReactor.self.hitReactor(c)
 
     def scheduleSetState(self, oldState: int, newState: int, delay: int) -> None:
-        """方法 scheduleSetState"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+        Timer.MapTimer.getInstance().schedule(Runnable()
+            public void run()
+                if MapleReactor.self.state == oldState:
+                    MapleReactor.self.forceHitReactor(newState)
 

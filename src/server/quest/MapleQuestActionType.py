@@ -1,14 +1,15 @@
 """
-MapleQuestActionType - 从Java源文件转换而来
-对应Java源文件: server/quest/MapleQuestActionType.java
-包路径: server.quest
+MapleQuestActionType - Converted from Java source
+Original: server/quest/MapleQuestActionType.java
+Package: server.quest
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleQuestActionType(Enum):
-    """枚举类 MapleQuestActionType - 从Java枚举转换"""
+    """Enum MapleQuestActionType"""
 
     UNDEFINED = (-1)
     exp = (0)
@@ -25,18 +26,20 @@ class MapleQuestActionType(Enum):
     sp = (11)
 
     def __init__(self, type):
-        """初始化枚举值"""
         self._type = type
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getByType(self, type: int) -> Any:
-        """方法 getByType"""
-        raise NotImplementedError("方法 getByType 尚未实现")
+        for l in values():
+            if l.getType() == type:
+                return l
+        return None
 
     def getByWZName(self, name: str) -> Any:
-        """方法 getByWZName"""
-        raise NotImplementedError("方法 getByWZName 尚未实现")
+        try:
+            return valueOf(name)
+        except IllegalArgumentException as ex:
+            return MapleQuestActionType.UNDEFINED
 

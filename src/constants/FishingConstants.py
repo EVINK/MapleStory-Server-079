@@ -1,24 +1,25 @@
 """
-FishingConstants - 从Java源文件转换而来
-对应Java源文件: constants/FishingConstants.java
-包路径: constants
+FishingConstants - Converted from Java source
+Original: constants/FishingConstants.java
+Package: constants
 """
 
 from configparser import ConfigParser
 from io import TextIOWrapper
 from io import open
+from typing import Optional, Any
 import json
 import logging
 import os
+import sys
 
 
 class FishingConstants:
     """
-    类 FishingConstants - 从Java类转换
+    Class FishingConstants
     """
 
     def __init__(self):
-        """初始化 FishingConstants"""
         self.itempb_cfg = None
         self.FishingItemSJ = None
         self.FishingItemSL = None
@@ -29,62 +30,87 @@ class FishingConstants:
         self.FishingMesoS = None
         self.FishingExp = None
         self.FishingExpS = None
+        self.itempb_cfg = Properties()
+        try:
+            path = os.environ.get("server_property_fish_path")
+            is = FileReader(path)
+            # final InputStreamReader is = new FileReader("HuaiMS_钓鱼设置.properties");
+            localThrowable2 = None
+            try:
+                self.itempb_cfg.load(is)
+            except IOError as localThrowable3:
+                localThrowable2 = localThrowable3
+                raise localThrowable3
+            finally:
+                if is is not None:
+                    if localThrowable2 is not None:
+                        try:
+                            is.close()
+                        except IOError as x2:
+                            localThrowable2.addSuppressed(x2)
+                    else:
+                        is.close()
+        except Exception as e:
+            FishingConstants.log.error("Could not configuration", e)
+        self.FishingItem = self.itempb_cfg.getProperty("FishingItem").split(",")
+        self.FishingItemS = self.itempb_cfg.getProperty("FishingItemS").split(",")
+        self.FishingItemSJ = int(self.itempb_cfg.getProperty("FishingItemSJ"))
+        self.FishingItemSLS = int(self.itempb_cfg.getProperty("FishingItemSLS"))
+        self.FishingItemSL = int(self.itempb_cfg.getProperty("FishingItemSL"))
+        self.FishingVIPSJ = int(self.itempb_cfg.getProperty("FishingVIPSJ"))
+        self.FishingSJ = int(self.itempb_cfg.getProperty("FishingSJ"))
+        self.FishingMeso = int(self.itempb_cfg.getProperty("FishingMeso"))
+        self.FishingMesoS = int(self.itempb_cfg.getProperty("FishingMesoS"))
+        self.FishingExp = int(self.itempb_cfg.getProperty("FishingExp"))
+        self.FishingExpS = int(self.itempb_cfg.getProperty("FishingExpS"))
+
+    # Static initializer
+    # FishingConstants.instance = None
+    # log = LoggerFactory.getLogger(FishingConstants.class)
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getFishingItem(self) -> list:
-        """方法 getFishingItem"""
-        return getattr(self, 'fishing_item', [])
+        return self.FishingItem
 
     def getFishingItemS(self) -> list:
-        """方法 getFishingItemS"""
-        return getattr(self, 'fishing_item_s', [])
+        return self.FishingItemS
 
     def getFishingItemSJ(self) -> int:
-        """方法 getFishingItemSJ"""
-        return getattr(self, 'fishing_item_sj', 0)
+        return self.FishingItemSJ
 
     def getFishingItemSLS(self) -> int:
-        """方法 getFishingItemSLS"""
-        return getattr(self, 'fishing_item_sls', 0)
+        return self.FishingItemSLS
 
     def getFishingItemSL(self) -> int:
-        """方法 getFishingItemSL"""
-        return getattr(self, 'fishing_item_sl', 0)
+        return self.FishingItemSL
 
     def getFishingVIPSJ(self) -> int:
-        """方法 getFishingVIPSJ"""
-        return getattr(self, 'fishing_vipsj', 0)
+        return self.FishingVIPSJ
 
     def getFishingSJ(self) -> int:
-        """方法 getFishingSJ"""
-        return getattr(self, 'fishing_sj', 0)
+        return self.FishingSJ
 
     def getFishingMeso(self) -> int:
-        """方法 getFishingMeso"""
-        return getattr(self, 'fishing_meso', 0)
+        return self.FishingMeso
 
     def getFishingMesoS(self) -> int:
-        """方法 getFishingMesoS"""
-        return getattr(self, 'fishing_meso_s', 0)
+        return self.FishingMesoS
 
     def getFishingExp(self) -> int:
-        """方法 getFishingExp"""
-        return getattr(self, 'fishing_exp', 0)
+        return self.FishingExp
 
     def getFishingExpS(self) -> int:
-        """方法 getFishingExpS"""
-        return getattr(self, 'fishing_exp_s', 0)
+        return self.FishingExpS
 
     def isCANLOG(self) -> bool:
-        """方法 isCANLOG"""
-        return bool(getattr(self, 'canlog', False))
+        return FishingConstants.CANLOG
 
     def setCANLOG(self, CANLOG: bool) -> None:
-        """方法 setCANLOG"""
-        self.canlog = CANLOG
-        return None
+        FishingConstants.CANLOG = CANLOG
 

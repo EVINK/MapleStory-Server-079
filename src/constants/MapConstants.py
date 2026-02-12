@@ -1,7 +1,7 @@
 """
-MapConstants - 从Java源文件转换而来
-对应Java源文件: constants/MapConstants.java
-包路径: constants
+MapConstants - Converted from Java source
+Original: constants/MapConstants.java
+Package: constants
 """
 
 from typing import Optional, Any
@@ -9,15 +9,34 @@ from typing import Optional, Any
 
 class MapConstants:
     """
-    类 MapConstants - 从Java类转换
+    Class MapConstants
     """
 
 
     def isStartingEventMap(self, mapid: int) -> bool:
-        """方法 isStartingEventMap"""
-        return False
+        # switch (mapid):
+            # case 109010000:
+            # case 109020001:
+            # case 109030001:
+            # case 109030101:
+            # case 109030201:
+            # case 109030301:
+            # case 109030401:
+            # case 109040000:
+            # case 109060001:
+            # case 109060002:
+            # case 109060003:
+            # case 109060004:
+            # case 109060005:
+            # case 109060006:
+            # case 109080000:
+            # case 109080001:
+            # case 109080002:
+            # case 109080003:
+                return True
+            # default:
+                return False
 
     def isEventMap(self, mapid: int) -> bool:
-        """方法 isEventMap"""
-        return False
+        return (mapid >= 109010000 && mapid < 109050000) || (mapid > 109050001 && mapid < 109090000)
 

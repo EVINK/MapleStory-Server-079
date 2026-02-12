@@ -1,47 +1,51 @@
 """
-MapleGuildSummary - 从Java源文件转换而来
-对应Java源文件: handling/world/guild/MapleGuildSummary.java
-包路径: handling.world.guild
+MapleGuildSummary - Converted from Java source
+Original: handling/world/guild/MapleGuildSummary.java
+Package: handling.world.guild
 """
+
+from typing import Optional, Any
 
 
 class MapleGuildSummary:
     """
-    类 MapleGuildSummary - 从Java类转换
-    实现接口: Serializable
+    Class MapleGuildSummary
+    Implements: Serializable
     """
 
     def __init__(self, g: Any):
-        """初始化 MapleGuildSummary"""
         self.name = None
         self.logoBG = None
         self.logoBGColor = None
         self.logo = None
         self.logoColor = None
         self.allianceid = None
+        self.name = g.getName()
+        self.logoBG = g.getLogoBG()
+        self.logoBGColor = g.getLogoBGColor()
+        self.logo = g.getLogo()
+        self.logoColor = g.getLogoColor()
+        self.allianceid = g.getAllianceId()
+
+    # Static initializer
+    # MapleGuildSummary.serialVersionUID = 3565477792085301248
 
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getLogoBG(self) -> int:
-        """方法 getLogoBG"""
-        return getattr(self, 'logo_bg', 0)
+        return self.logoBG
 
     def getLogoBGColor(self) -> int:
-        """方法 getLogoBGColor"""
-        return getattr(self, 'logo_bg_color', 0)
+        return self.logoBGColor
 
     def getLogo(self) -> int:
-        """方法 getLogo"""
-        return getattr(self, 'logo', 0)
+        return self.logo
 
     def getLogoColor(self) -> int:
-        """方法 getLogoColor"""
-        return getattr(self, 'logo_color', 0)
+        return self.logoColor
 
     def getAllianceId(self) -> int:
-        """方法 getAllianceId"""
-        return getattr(self, 'alliance_id', 0)
+        return self.allianceid
 

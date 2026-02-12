@@ -1,27 +1,27 @@
 """
-AranMovement - 从Java源文件转换而来
-对应Java源文件: server/movement/AranMovement.java
-包路径: server.movement
+AranMovement - Converted from Java source
+Original: server/movement/AranMovement.java
+Package: server.movement
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from tools.data.output.LittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.data.output.LittleEndianWriter import *  # TODO: import specific classes
 
 
 class AranMovement(AbstractLifeMovement):
     """
-    类 AranMovement - 从Java类转换
-    继承自: AbstractLifeMovement
+    Class AranMovement
+    Extends: AbstractLifeMovement
     """
 
     def __init__(self, type: int, position: Any, duration: int, newstate: int):
-        """初始化 AranMovement"""
-        pass
+        super(type, position, duration, newstate)
 
 
     def serialize(self, lew: Any) -> None:
-        """方法 serialize"""
-        pass
+        lew.write(self.getType())
+        lew.write(self.getNewstate())
+        lew.writeShort(self.getDuration())
 

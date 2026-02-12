@@ -1,7 +1,7 @@
 """
-CashItemInfo - 从Java源文件转换而来
-对应Java源文件: server/CashItemInfo.java
-包路径: server
+CashItemInfo - Converted from Java source
+Original: server/CashItemInfo.java
+Package: server
 """
 
 from typing import Optional, Any
@@ -9,11 +9,10 @@ from typing import Optional, Any
 
 class CashItemInfo:
     """
-    类 CashItemInfo - 从Java类转换
+    Class CashItemInfo
     """
 
     def __init__(self, itemId: int, count: int, price: int, sn: int, expire: int, gender: int, sale: bool):
-        """初始化 CashItemInfo"""
         self.itemId = 0
         self.count = 0
         self.price = 0
@@ -39,68 +38,93 @@ class CashItemInfo:
         self.showUp = False
         self.packagez = False
         self.cii = None
+        self.itemId = itemId
+        self.count = count
+        self.price = price
+        self.sn = sn
+        self.expire = expire
+        self.gender = gender
+        self.onSale = sale
 
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.itemId
 
     def getOnSale(self) -> int:
-        """方法 getOnSale"""
-        return getattr(self, 'on_sale', 0)
+        if self.onSale:
+            return 1
+        return 0
 
     def getExpire(self) -> int:
-        """方法 getExpire"""
-        return getattr(self, 'expire', 0)
+        return self.expire
 
     def getCount(self) -> int:
-        """方法 getCount"""
-        return getattr(self, 'count', 0)
+        return self.count
 
     def getPrice(self) -> int:
-        """方法 getPrice"""
-        return getattr(self, 'price', 0)
+        return self.price
 
     def getSN(self) -> int:
-        """方法 getSN"""
-        return getattr(self, 'sn', 0)
+        return self.sn
 
     def getPeriod(self) -> int:
-        """方法 getPeriod"""
-        return getattr(self, 'period', 0)
+        return self.expire
 
     def getGender(self) -> int:
-        """方法 getGender"""
-        return getattr(self, 'gender', 0)
+        return self.gender
 
     def onSale(self) -> bool:
-        """方法 onSale"""
-        return False
+        return self.onSale || (CashItemFactory.getInstance().getModInfo(self.sn) is not None && CashItemFactory.getInstance().getModInfo(self.sn).showUp)
 
     def genderEquals(self, g: int) -> bool:
-        """方法 genderEquals"""
-        return False
+        return g == self.gender || self.gender == 2
 
     def toCItem(self, backup: Any) -> Any:
-        """方法 toCItem"""
-        raise NotImplementedError("方法 toCItem 尚未实现")
+        if self.cii is not None:
+            return self.cii
+        item = None
+        if self.itemid <= 0:
+            item = ((backup is None) ? 0 : backup.getId())
+        else:
+            item = self.itemid
+        c = None
+        if self.count <= 0:
+            c = ((backup is None) ? 0 : backup.getCount())
+        else:
+            c = self.count
+        price = None
+        if self.meso <= 0:
+            if self.discountPrice <= 0:
+                price = ((backup is None) ? 0 : backup.getPrice())
+            else:
+                price = self.discountPrice
+        else:
+            price = self.meso
+        expire = None
+        if self.period <= 0:
+            expire = ((backup is None) ? 0 : backup.getPeriod())
+        else:
+            expire = self.period
+        gen = None
+        if self.gender < 0:
+            gen = ((backup is None) ? 0 : backup.getGender())
+        else:
+            gen = self.gender
+        onSale = None
+        if !self.showUp:
+            onSale = (backup is not None && backup.onSale())
+        else:
+            onSale = self.showUp
+        return self.cii = CashItemInfo(item, c, price, self.sn, expire, gen, onSale)
 
 
+# Inner class from Java (originally nested)
 class CashModInfo:
     """
-    类 CashModInfo - 从Java类转换
+    Class CashModInfo
     """
 
     def __init__(self, sn: int, discount: int, mark: int, show: bool, itemid: int, priority: int, packagez: bool, period: int, gender: int, count: int, meso: int, unk_1: int, unk_2: int, unk_3: int, extra_flags: int):
-        """初始化 CashModInfo"""
-        self.itemId = 0
-        self.count = 0
-        self.price = 0
-        self.sn = 0
-        self.expire = 0
-        self.gender = 0
-        self.onSale = False
-        self.name = ""
         self.discountPrice = 0
         self.mark = 0
         self.priority = 0
@@ -118,49 +142,82 @@ class CashModInfo:
         self.showUp = False
         self.packagez = False
         self.cii = None
+        self.sn = sn
+        self.itemid = itemid
+        self.discountPrice = discount
+        self.mark = mark
+        self.showUp = show
+        self.priority = priority
+        self.packagez = packagez
+        self.period = period
+        self.gender = gender
+        self.count = count
+        self.meso = meso
+        self.unk_1 = unk_1
+        self.unk_2 = unk_2
+        self.unk_3 = unk_3
+        self.extra_flags = extra_flags
+        self.flags = extra_flags
+        if self.itemid > 0:
+            self.flags |= 0x1
+        if self.count > 0:
+            self.flags |= 0x2
+        if self.discountPrice > 0:
+            self.flags |= 0x4
+        if (self.unk_1 > 0) {}
+        if self.priority >= 0:
+            self.flags |= 0x10
+        if self.period > 0:
+            self.flags |= 0x20
+        if self.meso > 0:
+            self.flags |= 0x80
+        if (self.unk_2 > 0) {}
+        if self.gender >= 0:
+            self.flags |= 0x200
+        if self.showUp:
+            self.flags |= 0x400
+        if self.mark >= -1 || self.mark <= 3:
+            self.flags |= 0x800
+        if (self.unk_3 > 0) {}
+        if self.packagez:
+            self.flags |= 0x20000
 
-
-    def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
-
-    def getOnSale(self) -> int:
-        """方法 getOnSale"""
-        return getattr(self, 'on_sale', 0)
-
-    def getExpire(self) -> int:
-        """方法 getExpire"""
-        return getattr(self, 'expire', 0)
-
-    def getCount(self) -> int:
-        """方法 getCount"""
-        return getattr(self, 'count', 0)
-
-    def getPrice(self) -> int:
-        """方法 getPrice"""
-        return getattr(self, 'price', 0)
-
-    def getSN(self) -> int:
-        """方法 getSN"""
-        return getattr(self, 'sn', 0)
-
-    def getPeriod(self) -> int:
-        """方法 getPeriod"""
-        return getattr(self, 'period', 0)
-
-    def getGender(self) -> int:
-        """方法 getGender"""
-        return getattr(self, 'gender', 0)
-
-    def onSale(self) -> bool:
-        """方法 onSale"""
-        return False
-
-    def genderEquals(self, g: int) -> bool:
-        """方法 genderEquals"""
-        return False
 
     def toCItem(self, backup: Any) -> Any:
-        """方法 toCItem"""
-        raise NotImplementedError("方法 toCItem 尚未实现")
+        if self.cii is not None:
+            return self.cii
+        item = None
+        if self.itemid <= 0:
+            item = ((backup is None) ? 0 : backup.getId())
+        else:
+            item = self.itemid
+        c = None
+        if self.count <= 0:
+            c = ((backup is None) ? 0 : backup.getCount())
+        else:
+            c = self.count
+        price = None
+        if self.meso <= 0:
+            if self.discountPrice <= 0:
+                price = ((backup is None) ? 0 : backup.getPrice())
+            else:
+                price = self.discountPrice
+        else:
+            price = self.meso
+        expire = None
+        if self.period <= 0:
+            expire = ((backup is None) ? 0 : backup.getPeriod())
+        else:
+            expire = self.period
+        gen = None
+        if self.gender < 0:
+            gen = ((backup is None) ? 0 : backup.getGender())
+        else:
+            gen = self.gender
+        onSale = None
+        if !self.showUp:
+            onSale = (backup is not None && backup.onSale())
+        else:
+            onSale = self.showUp
+        return self.cii = CashItemInfo(item, c, price, self.sn, expire, gen, onSale)
 

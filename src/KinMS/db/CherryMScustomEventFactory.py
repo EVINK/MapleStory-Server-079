@@ -1,39 +1,41 @@
 """
-CherryMScustomEventFactory - 从Java源文件转换而来
-对应Java源文件: KinMS/db/CherryMScustomEventFactory.java
-包路径: KinMS.db
+CherryMScustomEventFactory - Converted from Java source
+Original: KinMS/db/CherryMScustomEventFactory.java
+Package: KinMS.db
 """
 
-# 内部模块导入 (Internal module imports)
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapFactory import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from server.maps.MapleMapFactory import *  # TODO: import specific classes
 
 
 class CherryMScustomEventFactory:
     """
-    类 CherryMScustomEventFactory - 从Java类转换
+    Class CherryMScustomEventFactory
     """
+
+    # Static initializer
+    # CherryMScustomEventFactory.instance = None
 
 
     @staticmethod
     def isCANLOG() -> bool:
-        """方法 isCANLOG"""
-        return bool(getattr(self, 'canlog', False))
+        return CherryMScustomEventFactory.CANLOG
 
     def setCANLOG(self, CANLOG: bool) -> None:
-        """方法 setCANLOG"""
-        self.canlog = CANLOG
-        return None
+        CANLOG = CANLOG
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getCherryMSLottery(self) -> Any:
-        """方法 getCherryMSLottery"""
-        return getattr(self, 'cherry_ms_lottery', None)
+        return CherryMSLotteryImpl.getInstance()
 
-    def getCherryMSLottery(self, cserv: Any, mapFactory: Any) -> Any:
-        """方法 getCherryMSLottery"""
-        raise NotImplementedError("方法 getCherryMSLottery 尚未实现")
+    def getCherryMSLottery_cserv_mapFactory(self, cserv: Any, mapFactory: Any) -> Any:
+        return CherryMSLotteryImpl.getInstance(cserv, mapFactory)
 

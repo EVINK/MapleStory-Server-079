@@ -1,40 +1,39 @@
 """
-ByteArrayMaplePacket - 从Java源文件转换而来
-对应Java源文件: handling/ByteArrayMaplePacket.java
-包路径: handling
+ByteArrayMaplePacket - Converted from Java source
+Original: handling/ByteArrayMaplePacket.java
+Package: handling
 """
 
+from typing import Optional, Any
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from tools.HexTool import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.HexTool import *  # TODO: import specific classes
 
 
 class ByteArrayMaplePacket(MaplePacket):
     """
-    类 ByteArrayMaplePacket - 从Java类转换
-    实现接口: MaplePacket
+    Class ByteArrayMaplePacket
+    Implements: MaplePacket
     """
 
     def __init__(self, data: bytes):
-        """初始化 ByteArrayMaplePacket"""
         self.onSend = None
+        self.data = data
+
+    # Static initializer
+    # ByteArrayMaplePacket.serialVersionUID = -7997681658570958848
 
 
     def getBytes(self) -> bytes:
-        """方法 getBytes"""
-        return getattr(self, 'bytes', b"")
+        return self.data
 
     def getOnSend(self) -> Any:
-        """方法 getOnSend"""
-        return getattr(self, 'on_send', None)
+        return self.onSend
 
     def setOnSend(self, onSend: Any) -> None:
-        """方法 setOnSend"""
-        self.on_send = onSend
-        return None
+        self.onSend = onSend
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return HexTool.toString(self.data)
 

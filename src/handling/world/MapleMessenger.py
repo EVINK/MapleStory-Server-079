@@ -1,7 +1,7 @@
 """
-MapleMessenger - 从Java源文件转换而来
-对应Java源文件: handling/world/MapleMessenger.java
-包路径: handling.world
+MapleMessenger - Converted from Java source
+Original: handling/world/MapleMessenger.java
+Package: handling.world
 """
 
 from typing import Collection
@@ -10,72 +10,91 @@ from typing import Optional, Any
 
 class MapleMessenger:
     """
-    类 MapleMessenger - 从Java类转换
-    实现接口: Serializable
+    Class MapleMessenger
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413738569
 
     def __init__(self, id: int, chrfor: Any):
-        """初始化 MapleMessenger"""
         self.id = 0
+        self.members = new MapleMessengerCharacter[3]
+        self.silentLink = new String[3]
+        self.id = id
+        self.addMem(0, chrfor)
 
 
     def addMem(self, pos: int, chrfor: Any) -> None:
-        """方法 addMem"""
-        pass
+        if self.members[pos] is not None:
+            return
+        self.members[pos] = chrfor
 
     def containsMembers(self, member: Any) -> bool:
-        """方法 containsMembers"""
-        return False
+        return self.getPositionByName(member.getName()) < 4
 
     def addMember(self, member: Any) -> None:
-        """方法 addMember"""
-        pass
+        position = self.getLowestPosition()
+        if position > -1 && position < 4:
+            self.addMem(position, member)
 
     def removeMember(self, member: Any) -> None:
-        """方法 removeMember"""
-        pass
+        position = self.getPositionByName(member.getName())
+        if position > -1 && position < 4:
+            self.members[position] = None
 
     def silentRemoveMember(self, member: Any) -> None:
-        """方法 silentRemoveMember"""
-        pass
+        position = self.getPositionByName(member.getName())
+        if position > -1 && position < 4:
+            self.members[position] = None
+            self.silentLink[position] = member.getName()
 
     def silentAddMember(self, member: Any) -> None:
-        """方法 silentAddMember"""
-        pass
+        for i in range(self.len(silentLink)):
+            if self.silentLink[i] is not None && self.silentLink[i].lower() == member.getName(.lower()):
+                self.addMem(i, member)
+                self.silentLink[i] = None
+                return
 
     def updateMember(self, member: Any) -> None:
-        """方法 updateMember"""
-        pass
+        for i in range(self.len(members)):
+            chr = self.members[i]
+            if chr == (member):
+                self.members[i] = None
+                self.addMem(i, member)
+                return
 
     def getLowestPosition(self) -> int:
-        """方法 getLowestPosition"""
-        return getattr(self, 'lowest_position', 0)
+        for i in range(self.len(members)):
+            if self.members[i] is None:
+                return i
+        return 4
 
     def getPositionByName(self, name: str) -> int:
-        """方法 getPositionByName"""
-        return 0
+        for i in range(self.len(members)):
+            messengerchar = self.members[i]
+            if messengerchar is not None && messengerchar.getName().lower() == name.lower():
+                return i
+        return 4
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def setId(self, id: int) -> None:
-        """方法 setId"""
         self.id = id
-        return None
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        return 31 + self.id
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.id == other.id
 
     def getMembers(self) -> list:
-        """方法 getMembers"""
-        return getattr(self, 'members', [])
+        return Arrays.asList(self.members)
 

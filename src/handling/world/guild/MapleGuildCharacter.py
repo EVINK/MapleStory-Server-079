@@ -1,21 +1,22 @@
 """
-MapleGuildCharacter - 从Java源文件转换而来
-对应Java源文件: handling/world/guild/MapleGuildCharacter.java
-包路径: handling.world.guild
+MapleGuildCharacter - Converted from Java source
+Original: handling/world/guild/MapleGuildCharacter.java
+Package: handling.world.guild
 """
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
 
 
 class MapleGuildCharacter:
     """
-    类 MapleGuildCharacter - 从Java类转换
-    实现接口: Serializable
+    Class MapleGuildCharacter
+    Implements: Serializable
     """
 
     def __init__(self, c: Any):
-        """初始化 MapleGuildCharacter"""
         self.channel = 0
         self.guildrank = 0
         self.allianceRank = 0
@@ -25,76 +26,66 @@ class MapleGuildCharacter:
         self.guildid = 0
         self.online = False
         self.name = ""
+        self.channel = -1
+        self.name = c.getName()
+        self.level = c.getLevel()
+        self.id = c.getId()
+        self.channel = c.getClient().getChannel()
+        self.jobid = c.getJob()
+        self.guildrank = c.getGuildRank()
+        self.guildid = c.getGuildId()
+        self.allianceRank = c.getAllianceRank()
+        self.online = True
+
+    # Static initializer
+    # MapleGuildCharacter.serialVersionUID = 2058609046116597760
 
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def setLevel(self, l: int) -> None:
-        """方法 setLevel"""
         self.level = l
-        return None
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def setChannel(self, ch: int) -> None:
-        """方法 setChannel"""
         self.channel = ch
-        return None
 
     def getChannel(self) -> int:
-        """方法 getChannel"""
-        return getattr(self, 'channel', 0)
+        return self.channel
 
     def getJobId(self) -> int:
-        """方法 getJobId"""
-        return getattr(self, 'job_id', 0)
+        return self.jobid
 
     def setJobId(self, job: int) -> None:
-        """方法 setJobId"""
-        self.job_id = job
-        return None
+        self.jobid = job
 
     def getGuildId(self) -> int:
-        """方法 getGuildId"""
-        return getattr(self, 'guild_id', 0)
+        return self.guildid
 
     def setGuildId(self, gid: int) -> None:
-        """方法 setGuildId"""
-        self.guild_id = gid
-        return None
+        self.guildid = gid
 
     def setGuildRank(self, rank: int) -> None:
-        """方法 setGuildRank"""
-        self.guild_rank = rank
-        return None
+        self.guildrank = rank
 
     def getGuildRank(self) -> int:
-        """方法 getGuildRank"""
-        return getattr(self, 'guild_rank', 0)
+        return self.guildrank
 
     def isOnline(self) -> bool:
-        """方法 isOnline"""
-        return bool(getattr(self, 'online', False))
+        return self.online
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def setOnline(self, f: bool) -> None:
-        """方法 setOnline"""
         self.online = f
-        return None
 
     def setAllianceRank(self, rank: int) -> None:
-        """方法 setAllianceRank"""
-        self.alliance_rank = rank
-        return None
+        self.allianceRank = rank
 
     def getAllianceRank(self) -> int:
-        """方法 getAllianceRank"""
-        return getattr(self, 'alliance_rank', 0)
+        return self.allianceRank
 

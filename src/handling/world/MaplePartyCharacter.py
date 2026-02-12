@@ -1,26 +1,24 @@
 """
-MaplePartyCharacter - 从Java源文件转换而来
-对应Java源文件: handling/world/MaplePartyCharacter.java
-包路径: handling.world
+MaplePartyCharacter - Converted from Java source
+Original: handling/world/MaplePartyCharacter.java
+Package: handling.world
 """
 
-from dataclasses import dataclass
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleDoor import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from server.maps.MapleDoor import *  # TODO: import specific classes
 
 
 class MaplePartyCharacter:
     """
-    类 MaplePartyCharacter - 从Java类转换
-    实现接口: Serializable
+    Class MaplePartyCharacter
+    Implements: Serializable
     """
 
     def __init__(self, maplechar: Any):
-        """初始化 MaplePartyCharacter"""
         self.name = ""
         self.id = 0
         self.level = 0
@@ -32,62 +30,85 @@ class MaplePartyCharacter:
         self.doorSkill = 0
         self.doorPosition = None
         self.online = False
+        self.doorTown = 999999999
+        self.doorTarget = 999999999
+        self.doorSkill = 0
+        self.doorPosition = Point(0, 0)
+        self.name = maplechar.getName()
+        self.level = maplechar.getLevel()
+        self.channel = maplechar.getClient().getChannel()
+        self.id = maplechar.getId()
+        self.jobid = maplechar.getJob()
+        self.mapid = maplechar.getMapId()
+        self.online = True
+        doors = maplechar.getDoors()
+        if doors > 0:
+            door = doors.get(0)
+            self.doorTown = door.getTown().getId()
+            self.doorTarget = door.getTarget().getId()
+            self.doorSkill = door.getSkill()
+            self.doorPosition = door.getTargetPosition()
+        else:
+            self.doorPosition = Point(maplechar.getPosition())
+
+    # Static initializer
+    # MaplePartyCharacter.serialVersionUID = 6215463252132450750
 
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def getChannel(self) -> int:
-        """方法 getChannel"""
-        return getattr(self, 'channel', 0)
+        return self.channel
 
     def isOnline(self) -> bool:
-        """方法 isOnline"""
-        return bool(getattr(self, 'online', False))
+        return self.online
 
     def setOnline(self, online: bool) -> None:
-        """方法 setOnline"""
         self.online = online
-        return None
 
     def getMapid(self) -> int:
-        """方法 getMapid"""
-        return getattr(self, 'mapid', 0)
+        return self.mapid
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def getJobId(self) -> int:
-        """方法 getJobId"""
-        return getattr(self, 'job_id', 0)
+        return self.jobid
 
     def getDoorTown(self) -> int:
-        """方法 getDoorTown"""
-        return getattr(self, 'door_town', 0)
+        return self.doorTown
 
     def getDoorTarget(self) -> int:
-        """方法 getDoorTarget"""
-        return getattr(self, 'door_target', 0)
+        return self.doorTarget
 
     def getDoorSkill(self) -> int:
-        """方法 getDoorSkill"""
-        return getattr(self, 'door_skill', 0)
+        return self.doorSkill
 
     def getDoorPosition(self) -> Any:
-        """方法 getDoorPosition"""
-        return getattr(self, 'door_position', None)
+        return self.doorPosition
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        prime = 31
+        result = 1
+        result = prime * result + ((self.name is None) ? 0 : self.name.hashCode())
+        return result
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        if self.name is None:
+            if other.name is not None:
+                return False
+        elif !self.name == (other.name):
+            return False
+        return True
 

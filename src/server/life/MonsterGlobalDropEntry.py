@@ -1,17 +1,18 @@
 """
-MonsterGlobalDropEntry - 从Java源文件转换而来
-对应Java源文件: server/life/MonsterGlobalDropEntry.java
-包路径: server.life
+MonsterGlobalDropEntry - Converted from Java source
+Original: server/life/MonsterGlobalDropEntry.java
+Package: server.life
 """
+
+from typing import Optional, Any
 
 
 class MonsterGlobalDropEntry:
     """
-    类 MonsterGlobalDropEntry - 从Java类转换
+    Class MonsterGlobalDropEntry
     """
 
     def __init__(self, itemId: int, chance: int, continent: int, dropType: int, Minimum: int, Maximum: int, questid: int):
-        """初始化 MonsterGlobalDropEntry"""
         self.dropType = 0
         self.questid = 0
         self.itemId = 0
@@ -20,5 +21,13 @@ class MonsterGlobalDropEntry:
         self.Maximum = 0
         self.continent = 0
         self.onlySelf = False
+        self.onlySelf = False
+        self.itemId = itemId
+        self.chance = chance
+        self.dropType = dropType
+        self.continent = continent
+        self.questid = questid
+        self.Minimum = Minimum
+        self.Maximum = Maximum
 
 

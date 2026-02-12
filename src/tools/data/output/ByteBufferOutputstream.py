@@ -1,26 +1,26 @@
 """
-ByteBufferOutputstream - 从Java源文件转换而来
-对应Java源文件: tools/data/output/ByteBufferOutputstream.java
-包路径: tools.data.output
+ByteBufferOutputstream - Converted from Java source
+Original: tools/data/output/ByteBufferOutputstream.java
+Package: tools.data.output
 """
 
 from io import BytesIO
+from typing import Optional, Any
 import asyncio
 import struct
 
 
 class ByteBufferOutputstream(ByteOutputStream):
     """
-    类 ByteBufferOutputstream - 从Java类转换
-    实现接口: ByteOutputStream
+    Class ByteBufferOutputstream
+    Implements: ByteOutputStream
     """
 
     def __init__(self, bb: Any):
-        """初始化 ByteBufferOutputstream"""
         self.bb = None
+        self.bb = bb
 
 
     def writeByte(self, b: int) -> None:
-        """方法 writeByte"""
-        pass
+        self.bb.put(b)
 

@@ -1,25 +1,24 @@
 """
-MapleFamilyCharacter - 从Java源文件转换而来
-对应Java源文件: handling/world/family/MapleFamilyCharacter.java
-包路径: handling.world.family
+MapleFamilyCharacter - Converted from Java source
+Original: handling/world/family/MapleFamilyCharacter.java
+Package: handling.world.family
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import math
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
 
 
 class MapleFamilyCharacter:
     """
-    类 MapleFamilyCharacter - 从Java类转换
-    实现接口: Serializable
+    Class MapleFamilyCharacter
+    Implements: Serializable
     """
 
     def __init__(self, c: Any, fid: int, sid: int, j1: int, j2: int):
-        """初始化 MapleFamilyCharacter"""
         self.level = 0
         self.id = 0
         self.channel = 0
@@ -34,139 +33,207 @@ class MapleFamilyCharacter:
         self.name = ""
         self.pedigree = []
         self.descendants = 0
+        self.channel = -1
+        self.pedigree = []
+        self.descendants = 0
+        self.name = c.getName()
+        self.level = c.getLevel()
+        self.id = c.getId()
+        self.channel = c.getClient().getChannel()
+        self.jobid = c.getJob()
+        self.familyid = fid
+        self.junior1 = j1
+        self.junior2 = j2
+        self.seniorid = sid
+        self.currentrep = c.getCurrentRep()
+        self.totalrep = c.getTotalRep()
+        self.online = True
+
+    # Static initializer
+    # MapleFamilyCharacter.serialVersionUID = 2058609046116597760
 
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def setLevel(self, l: int) -> None:
-        """方法 setLevel"""
         self.level = l
-        return None
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def setChannel(self, ch: int) -> None:
-        """方法 setChannel"""
         self.channel = ch
-        return None
 
     def getChannel(self) -> int:
-        """方法 getChannel"""
-        return getattr(self, 'channel', 0)
+        return self.channel
 
     def getJobId(self) -> int:
-        """方法 getJobId"""
-        return getattr(self, 'job_id', 0)
+        return self.jobid
 
     def setJobId(self, job: int) -> None:
-        """方法 setJobId"""
-        self.job_id = job
-        return None
+        self.jobid = job
 
     def getCurrentRep(self) -> int:
-        """方法 getCurrentRep"""
-        return getattr(self, 'current_rep', 0)
+        return self.currentrep
 
     def setCurrentRep(self, cr: int) -> None:
-        """方法 setCurrentRep"""
-        self.current_rep = cr
-        return None
+        self.currentrep = cr
 
     def getTotalRep(self) -> int:
-        """方法 getTotalRep"""
-        return getattr(self, 'total_rep', 0)
+        return self.totalrep
 
     def setTotalRep(self, tr: int) -> None:
-        """方法 setTotalRep"""
-        self.total_rep = tr
-        return None
+        self.totalrep = tr
 
     def getJunior1(self) -> int:
-        """方法 getJunior1"""
-        return getattr(self, 'junior1', 0)
+        return self.junior1
 
     def getJunior2(self) -> int:
-        """方法 getJunior2"""
-        return getattr(self, 'junior2', 0)
+        return self.junior2
 
     def setJunior1(self, trs: int) -> None:
-        """方法 setJunior1"""
         self.junior1 = trs
-        return None
 
     def setJunior2(self, trs: int) -> None:
-        """方法 setJunior2"""
         self.junior2 = trs
-        return None
 
     def getSeniorId(self) -> int:
-        """方法 getSeniorId"""
-        return getattr(self, 'senior_id', 0)
+        return self.seniorid
 
     def setSeniorId(self, si: int) -> None:
-        """方法 setSeniorId"""
-        self.senior_id = si
-        return None
+        self.seniorid = si
 
     def getFamilyId(self) -> int:
-        """方法 getFamilyId"""
-        return getattr(self, 'family_id', 0)
+        return self.familyid
 
     def setFamilyId(self, fi: int) -> None:
-        """方法 setFamilyId"""
-        self.family_id = fi
-        return None
+        self.familyid = fi
 
     def isOnline(self) -> bool:
-        """方法 isOnline"""
-        return bool(getattr(self, 'online', False))
+        return self.online
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def equals(self, other: Any) -> bool:
-        """方法 equals"""
-        return self is other or getattr(self, '__eq__', lambda o: False)(other)
+        if !(isinstance(other, MapleFamilyCharacter)):
+            return False
+        o = other
+        return o.getId() == self.id && o.getName() == (self.name)
 
     def setOnline(self, f: bool) -> None:
-        """方法 setOnline"""
         self.online = f
-        return None
 
     def getAllJuniors(self, fam: Any) -> list:
-        """方法 getAllJuniors"""
-        return []
+        ret = []
+        ret.add(this)
+        if self.junior1 > 0:
+            chr = fam.getMFC(self.junior1)
+            if chr is not None:
+                ret.addAll(chr.getAllJuniors(fam))
+        if self.junior2 > 0:
+            chr = fam.getMFC(self.junior2)
+            if chr is not None:
+                ret.addAll(chr.getAllJuniors(fam))
+        return ret
 
     def getOnlineJuniors(self, fam: Any) -> list:
-        """方法 getOnlineJuniors"""
-        return []
+        ret = []
+        ret.add(this)
+        if self.junior1 > 0:
+            chr = fam.getMFC(self.junior1)
+            if chr is not None:
+                if chr.isOnline():
+                    ret.add(chr)
+                if chr.getJunior1() > 0:
+                    chr2 = fam.getMFC(chr.getJunior1())
+                    if chr2 is not None && chr2.isOnline():
+                        ret.add(chr2)
+                if chr.getJunior2() > 0:
+                    chr2 = fam.getMFC(chr.getJunior2())
+                    if chr2 is not None && chr2.isOnline():
+                        ret.add(chr2)
+        if self.junior2 > 0:
+            chr = fam.getMFC(self.junior2)
+            if chr is not None:
+                if chr.isOnline():
+                    ret.add(chr)
+                if chr.getJunior1() > 0:
+                    chr2 = fam.getMFC(chr.getJunior1())
+                    if chr2 is not None && chr2.isOnline():
+                        ret.add(chr2)
+                if chr.getJunior2() > 0:
+                    chr2 = fam.getMFC(chr.getJunior2())
+                    if chr2 is not None && chr2.isOnline():
+                        ret.add(chr2)
+        return ret
 
     def getPedigree(self) -> list:
-        """方法 getPedigree"""
-        return getattr(self, 'pedigree', [])
+        return self.pedigree
 
     def resetPedigree(self, fam: Any) -> None:
-        """方法 resetPedigree"""
-        pass
+        (self.pedigree = []).add(self.id)
+        if self.seniorid > 0:
+            chr = fam.getMFC(self.seniorid)
+            if chr is not None:
+                self.pedigree.add(self.seniorid)
+                if chr.getSeniorId() > 0:
+                    self.pedigree.add(chr.getSeniorId())
+                if chr.getJunior1() > 0 && chr.getJunior1() != self.id:
+                    self.pedigree.add(chr.getJunior1())
+                elif chr.getJunior2() > 0 && chr.getJunior2() != self.id:
+                    self.pedigree.add(chr.getJunior2())
+        if self.junior1 > 0:
+            chr = fam.getMFC(self.junior1)
+            if chr is not None:
+                self.pedigree.add(self.junior1)
+                if chr.getJunior1() > 0:
+                    self.pedigree.add(chr.getJunior1())
+                if chr.getJunior2() > 0:
+                    self.pedigree.add(chr.getJunior2())
+        if self.junior2 > 0:
+            chr = fam.getMFC(self.junior2)
+            if chr is not None:
+                self.pedigree.add(self.junior2)
+                if chr.getJunior1() > 0:
+                    self.pedigree.add(chr.getJunior1())
+                if chr.getJunior2() > 0:
+                    self.pedigree.add(chr.getJunior2())
 
     def getDescendants(self) -> int:
-        """方法 getDescendants"""
-        return getattr(self, 'descendants', 0)
+        return self.descendants
 
     def resetDescendants(self, fam: Any) -> int:
-        """方法 resetDescendants"""
-        return 0
+        self.descendants = 0
+        if self.junior1 > 0:
+            chr = fam.getMFC(self.junior1)
+            if chr is not None:
+                self.descendants += 1 + chr.resetDescendants(fam)
+        if self.junior2 > 0:
+            chr = fam.getMFC(self.junior2)
+            if chr is not None:
+                self.descendants += 1 + chr.resetDescendants(fam)
+        return self.descendants
 
     def resetGenerations(self, fam: Any) -> int:
-        """方法 resetGenerations"""
-        return 0
+        descendants1 = 0, descendants2 = 0
+        if self.junior1 > 0:
+            chr = fam.getMFC(self.junior1)
+            if chr is not None:
+            descendants1 = chr.resetGenerations(fam)
+        if self.junior2 > 0:
+            chr = fam.getMFC(self.junior2)
+            if chr is not None:
+            descendants2 = chr.resetGenerations(fam)
+        ret = max(descendants1, descendants2)
+        return ret + ((ret > 0) ? 1 : 0)
 
     def getNoJuniors(self) -> int:
-        """方法 getNoJuniors"""
-        return getattr(self, 'no_juniors', 0)
+        ret = 0
+        if self.junior1 > 0:
+            ret += 1
+        if self.junior2 > 0:
+            ret += 1
+        return ret
 

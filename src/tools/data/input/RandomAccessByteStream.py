@@ -1,46 +1,53 @@
 """
-RandomAccessByteStream - 从Java源文件转换而来
-对应Java源文件: tools/data/input/RandomAccessByteStream.java
-包路径: tools.data.input
+RandomAccessByteStream - Converted from Java source
+Original: tools/data/input/RandomAccessByteStream.java
+Package: tools.data.input
 """
 
 from io import open
+from typing import Optional, Any
 import os
 
 
 class RandomAccessByteStream(SeekableInputStreamBytestream):
     """
-    类 RandomAccessByteStream - 从Java类转换
-    实现接口: SeekableInputStreamBytestream
+    Class RandomAccessByteStream
+    Implements: SeekableInputStreamBytestream
     """
 
     def __init__(self, raf: Any):
-        """初始化 RandomAccessByteStream"""
         self.raf = None
         self.read = 0
+        self.read = 0
+        self.raf = raf
 
 
     def readByte(self) -> int:
-        """方法 readByte"""
-        return 0
+        try:
+            temp = self.raf.read()
+            if temp == -1:
+                raise RuntimeError("EOF")
+            self.read += 1
+            return temp
+        except IOError as e:
+            raise RuntimeError(e)
 
     def seek(self, offset: int) -> None:
-        """方法 seek"""
-        pass
+        self.raf.seek(offset)
 
     def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
+        return self.raf.getFilePointer()
 
     def getBytesRead(self) -> int:
-        """方法 getBytesRead"""
-        return getattr(self, 'bytes_read', 0)
+        return self.read
 
     def available(self) -> int:
-        """方法 available"""
-        return 0
+        try:
+            return self.raf - self.raf.getFilePointer()
+        except IOError as e:
+            print("ERROR" + e)
+            return 0
 
     def toString(self, b: bool) -> str:
-        """方法 toString"""
-        return ""
+        return self
 

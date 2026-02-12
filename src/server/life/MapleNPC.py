@@ -1,65 +1,61 @@
 """
-MapleNPC - 从Java源文件转换而来
-对应Java源文件: server/life/MapleNPC.java
-包路径: server.life
+MapleNPC - Converted from Java source
+Original: server/life/MapleNPC.java
+Package: server.life
 """
 
 from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from server.MapleShopFactory import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapObjectType import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from server.MapleShopFactory import *  # TODO: import specific classes
+# from server.maps.MapleMapObjectType import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleNPC(AbstractLoadedMapleLife):
     """
-    类 MapleNPC - 从Java类转换
-    继承自: AbstractLoadedMapleLife
+    Class MapleNPC
+    Extends: AbstractLoadedMapleLife
     """
 
     def __init__(self, id: int, name: str):
-        """初始化 MapleNPC"""
         self.name = ""
         self.custom = False
+        super(id)
+        self.name = "MISSINGNO"
+        self.custom = False
+        self.name = name
 
 
     def hasShop(self) -> bool:
-        """方法 hasShop"""
-        return bool(getattr(self, 'shop', False))
+        return MapleShopFactory.getInstance().getShopForNPC(self.getId()) is not None
 
     def sendShop(self, c: Any) -> None:
-        """方法 sendShop"""
-        pass
+        if c.getPlayer().isGM():
+            c.getPlayer().dropMessage("您已经建立与商店npc[" + self.getId() + "]的连接")
+        MapleShopFactory.getInstance().getShopForNPC(self.getId()).sendShop(c)
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
+        if self.getId() < 9901000:
+            client.getSession().write(MaplePacketCreator.spawnNPC(this, True))
+            client.getSession().write(MaplePacketCreator.spawnNPCRequestController(this, True))
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        client.getSession().write(MaplePacketCreator.removeNPC(self.getObjectId()))
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.NPC
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def setName(self, n: str) -> None:
-        """方法 setName"""
         self.name = n
-        return None
 
     def isCustom(self) -> bool:
-        """方法 isCustom"""
-        return bool(getattr(self, 'custom', False))
+        return self.custom
 
     def setCustom(self, custom: bool) -> None:
-        """方法 setCustom"""
         self.custom = custom
-        return None
 

@@ -1,87 +1,109 @@
 """
-MapleParty - 从Java源文件转换而来
-对应Java源文件: handling/world/MapleParty.java
-包路径: handling.world
+MapleParty - Converted from Java source
+Original: handling/world/MapleParty.java
+Package: handling.world
 """
 
 from typing import Collection
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 class MapleParty:
     """
-    类 MapleParty - 从Java类转换
-    实现接口: Serializable
+    Class MapleParty
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413738569
 
     def __init__(self, id: int, chrfor: Any):
-        """初始化 MapleParty"""
         self.leader = None
         self.members = None
         self.id = 0
         self.partyBuffs = None
+        self.members = []
+        self.partyBuffs = new HashMap<Integer, Map<Integer, List<Integer>>>()
+        self.leader = chrfor
+        self.members.add(self.leader)
+        self.id = id
 
 
     def containsMembers(self, member: Any) -> bool:
-        """方法 containsMembers"""
-        return False
+        return (member in self.members)
 
     def addMember(self, member: Any) -> None:
-        """方法 addMember"""
-        pass
+        self.members.add(member)
 
     def removeMember(self, member: Any) -> None:
-        """方法 removeMember"""
-        pass
+        self.members.remove(member)
 
     def updateMember(self, member: Any) -> None:
-        """方法 updateMember"""
-        pass
+        for i in range(self.members):
+            chr = self.members.get(i)
+            if chr == (member):
+                self.members.set(i, member)
 
     def getMemberById(self, id: int) -> Any:
-        """方法 getMemberById"""
-        raise NotImplementedError("方法 getMemberById 尚未实现")
+        for chr in self.members:
+            if chr.getId() == id:
+                return chr
+        return None
 
     def getMemberByIndex(self, index: int) -> Any:
-        """方法 getMemberByIndex"""
-        raise NotImplementedError("方法 getMemberByIndex 尚未实现")
+        return self.members.get(index)
 
     def getMembers(self) -> list:
-        """方法 getMembers"""
-        return getattr(self, 'members', [])
+        return []
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def setId(self, id: int) -> None:
-        """方法 setId"""
         self.id = id
-        return None
 
     def getLeader(self) -> Any:
-        """方法 getLeader"""
-        return getattr(self, 'leader', None)
+        return self.leader
 
     def setLeader(self, nLeader: Any) -> None:
-        """方法 setLeader"""
         self.leader = nLeader
-        return None
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        prime = 31
+        result = 1
+        result = prime * result + self.id
+        return result
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        return self.id == other.id
 
     def givePartyBuff(self, buffId: int, applyfrom: int, applyto: int) -> None:
-        """方法 givePartyBuff"""
-        pass
+        if (buffId in self.partyBuffs):
+            if self.partyBuffs.get(buffId).__contains__(applyfrom):
+                if !self.partyBuffs.get(buffId).keys() == 0:
+                    for from in self.partyBuffs.get(buffId).keys():
+                        if self.partyBuffs.get(buffId).get(from).__contains__(applyto):
+                            self.partyBuffs.get(buffId).get(from).remove(self.partyBuffs.get(buffId).get(from).find(applyto))
+                        if self.partyBuffs.get(buffId).get(from) == 0:
+                            self.partyBuffs.get(buffId).remove(from)
+                if self.partyBuffs is not None && !self.partyBuffs.get(buffId).get(applyfrom).__contains__(applyto):
+                    self.partyBuffs.get(buffId).get(applyfrom).add(applyto)
+            else:
+                applytos = []
+                applytos.add(applyto)
+                self.partyBuffs.get(buffId).put(applyfrom, applytos)
+        else:
+            hMap = new HashMap<Integer, List<Integer>>()
+            applytos2 = []
+            applytos2.add(applyto)
+            hMap.put(applyfrom, applytos2)
+            self.partyBuffs.put(buffId, hMap)
 

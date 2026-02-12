@@ -1,7 +1,7 @@
 """
-PlayerStorage - 从Java源文件转换而来
-对应Java源文件: handling/channel/PlayerStorage.java
-包路径: handling.channel
+PlayerStorage - Converted from Java source
+Original: handling/channel/PlayerStorage.java
+Package: handling.channel
 """
 
 from threading import Lock
@@ -10,27 +10,26 @@ from typing import Collection
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleCharacterUtil import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.world.CharacterTransfer import *  # TODO: 根据实际需要导入具体类
-# from handling.world.CheaterData import *  # TODO: 根据实际需要导入具体类
-# from handling.world.World import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleCharacterUtil import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.world.CharacterTransfer import *  # TODO: import specific classes
+# from handling.world.CheaterData import *  # TODO: import specific classes
+# from handling.world.World import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
 
 
 class PlayerStorage:
     """
-    类 PlayerStorage - 从Java类转换
+    Class PlayerStorage
     """
 
     def __init__(self, channel: int):
-        """初始化 PlayerStorage"""
         self.mutex = None
         self.rL = None
         self.wL = None
@@ -41,178 +40,207 @@ class PlayerStorage:
         self.idToChar = None
         self.PendingCharacter = None
         self.channel = None
+        self.mutex = ReentrantReadWriteLock()
+        self.rL = self.mutex.readLock()
+        self.wL = self.mutex.writeLock()
+        self.mutex2 = ReentrantReadWriteLock()
+        self.rL2 = self.mutex2.readLock()
+        self.wL2 = self.mutex2.writeLock()
+        self.nameToChar = {}
+        self.idToChar = {}
+        self.PendingCharacter = {}
+        self.channel = channel
+        Timer.PingTimer.getInstance().schedule(PersistingTask(), 900000)
 
 
     def getAllCharacters(self) -> list:
-        """方法 getAllCharacters"""
-        return getattr(self, 'all_characters', [])
+        self.rL.lock()
+        try:
+            return Collections.unmodifiableCollection((Collection<? extends MapleCharacter>)self.idToChar.values())
+        finally:
+            self.rL.unlock()
 
     def registerPlayer(self, chr: Any) -> None:
-        """方法 registerPlayer"""
-        pass
+        self.wL.lock()
+        try:
+            self.nameToChar.put(chr.getName().lower(), chr)
+            self.idToChar.put(chr.getId(), chr)
+        finally:
+            self.wL.unlock()
+        World.Find.register(chr.getId(), chr.getName(), self.channel)
 
     def registerPendingPlayer(self, chr: Any, playerid: int) -> None:
-        """方法 registerPendingPlayer"""
-        pass
+        self.wL2.lock()
+        try:
+            self.PendingCharacter.put(playerid, chr)
+        finally:
+            self.wL2.unlock()
 
     def deregisterPlayer(self, chr: Any) -> None:
-        """方法 deregisterPlayer"""
-        pass
+        self.wL.lock()
+        try:
+            self.nameToChar.remove(chr.getName().lower())
+            self.idToChar.remove(chr.getId())
+        finally:
+            self.wL.unlock()
+        World.Find.forceDeregister(chr.getId(), chr.getName())
 
-    def deregisterPlayer(self, idz: int, namez: str) -> None:
-        """方法 deregisterPlayer"""
-        pass
+    def deregisterPlayer_idz_namez(self, idz: int, namez: str) -> None:
+        self.wL.lock()
+        try:
+            self.nameToChar.remove(namez.lower())
+            self.idToChar.remove(idz)
+        finally:
+            self.wL.unlock()
+        World.Find.forceDeregister(idz, namez)
 
     def deregisterPendingPlayer(self, charid: int) -> None:
-        """方法 deregisterPendingPlayer"""
-        pass
+        self.wL2.lock()
+        try:
+            self.PendingCharacter.remove(charid)
+        finally:
+            self.wL2.unlock()
 
     def getPendingCharacter(self, charid: int) -> Any:
-        """方法 getPendingCharacter"""
-        raise NotImplementedError("方法 getPendingCharacter 尚未实现")
+        self.rL2.lock()
+        toreturn = None
+        try:
+            toreturn = self.PendingCharacter.get(charid)
+        finally:
+            self.rL2.unlock()
+        if toreturn is not None:
+            self.deregisterPendingPlayer(charid)
+        return toreturn
 
     def getCharacterByName(self, name: str) -> Any:
-        """方法 getCharacterByName"""
-        raise NotImplementedError("方法 getCharacterByName 尚未实现")
+        self.rL.lock()
+        try:
+            return self.nameToChar.get(name.lower())
+        finally:
+            self.rL.unlock()
 
     def getCharacterById(self, id: int) -> Any:
-        """方法 getCharacterById"""
-        raise NotImplementedError("方法 getCharacterById 尚未实现")
+        self.rL.lock()
+        try:
+            return self.idToChar.get(id)
+        finally:
+            self.rL.unlock()
 
     def getConnectedClients(self) -> int:
-        """方法 getConnectedClients"""
-        return getattr(self, 'connected_clients', 0)
+        return self.idToChar
 
     def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
+        cheaters = []
+        self.rL.lock()
+        try:
+            for chr in self.nameToChar.values():
+                if chr.getCheatTracker().getPoints() > 0:
+                    cheaters.add(CheaterData(chr.getCheatTracker().getPoints(), MapleCharacterUtil.makeMapleReadable(chr.getName()) + " (" + chr.getCheatTracker().getPoints() + ") " + chr.getCheatTracker().getSummary()))
+        finally:
+            self.rL.unlock()
+        return cheaters
 
     def disconnectAll(self) -> None:
-        """方法 disconnectAll"""
-        pass
+        self.disconnectAll(False)
 
-    def disconnectAll(self, checkGM: bool) -> None:
-        """方法 disconnectAll"""
-        pass
+    def disconnectAll_checkGM(self, checkGM: bool) -> None:
+        self.wL.lock()
+        try:
+            itr = self.nameToChar.values().iterator()
+            while itr.hasNext():
+                chr = itr.next()
+                if !chr.isGM() || !checkGM:
+                    chr.getClient().disconnect(False, False, True)
+                    chr.getClient().getSession().close(True)
+                    World.Find.forceDeregister(chr.getId(), chr.getName())
+                    itr.remove()
+        finally:
+            self.wL.unlock()
 
     def getOnlinePlayers(self, byGM: bool) -> str:
-        """方法 getOnlinePlayers"""
-        return ""
+        sb = ""
+        if byGM:
+            self.rL.lock()
+            try:
+                itr = self.nameToChar.values().iterator()
+                while itr.hasNext():
+                    sb.append(MapleCharacterUtil.makeMapleReadable(itr.next().getName()))
+                    sb.append(", ")
+            finally:
+                self.rL.unlock()
+        else:
+            self.rL.lock()
+            try:
+                for chr in self.nameToChar.values():
+                    if !chr.isGM():
+                        sb.append(MapleCharacterUtil.makeMapleReadable(chr.getName()))
+                        sb.append(", ")
+            finally:
+                self.rL.unlock()
+        return sb
 
     def broadcastPacket(self, data: Any) -> None:
-        """方法 broadcastPacket"""
-        pass
+        self.rL.lock()
+        try:
+            itr = self.nameToChar.values().iterator()
+            while itr.hasNext():
+                itr.next().getClient().getSession().write(data)
+        finally:
+            self.rL.unlock()
 
     def broadcastSmegaPacket(self, data: Any) -> None:
-        """方法 broadcastSmegaPacket"""
-        pass
+        self.rL.lock()
+        try:
+            for chr in self.nameToChar.values():
+                if chr.getClient().isLoggedIn() && chr.getSmega():
+                    chr.getClient().getSession().write(data)
+        finally:
+            self.rL.unlock()
 
     def broadcastGMPacket(self, data: Any) -> None:
-        """方法 broadcastGMPacket"""
-        pass
+        self.rL.lock()
+        try:
+            for chr in self.nameToChar.values():
+                if chr.getClient().isLoggedIn() && chr.isGM():
+                    chr.getClient().getSession().write(data)
+        finally:
+            self.rL.unlock()
 
     def getAllCharactersThreadSafe(self) -> list:
-        """方法 getAllCharactersThreadSafe"""
-        return getattr(self, 'all_characters_thread_safe', [])
+        ret = []
+        ret.addAll(self.getAllCharacters())
+        return ret
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        PlayerStorage.self.wL2.lock()
+        try:
+            currenttime = int(time.time() * 1000)
+            final Iterator<Map.Entry<Integer, CharacterTransfer>> itr = PlayerStorage.self.PendingCharacter.items().iterator()
+            while itr.hasNext():
+                if currenttime - itr.next().getValue().TranferTime > 40000:
+                    itr.remove()
+            Timer.PingTimer.getInstance().schedule(PersistingTask(), 900000)
+        finally:
+            PlayerStorage.self.wL2.unlock()
 
 
+# Inner class from Java (originally nested)
 class PersistingTask(Runnable):
     """
-    类 PersistingTask - 从Java类转换
-    实现接口: Runnable
+    Class PersistingTask
+    Implements: Runnable
     """
 
-    def __init__(self):
-        """初始化 PersistingTask"""
-        self.mutex = None
-        self.rL = None
-        self.wL = None
-        self.mutex2 = None
-        self.rL2 = None
-        self.wL2 = None
-        self.nameToChar = None
-        self.idToChar = None
-        self.PendingCharacter = None
-        self.channel = None
-
-
-    def getAllCharacters(self) -> list:
-        """方法 getAllCharacters"""
-        return getattr(self, 'all_characters', [])
-
-    def registerPlayer(self, chr: Any) -> None:
-        """方法 registerPlayer"""
-        pass
-
-    def registerPendingPlayer(self, chr: Any, playerid: int) -> None:
-        """方法 registerPendingPlayer"""
-        pass
-
-    def deregisterPlayer(self, chr: Any) -> None:
-        """方法 deregisterPlayer"""
-        pass
-
-    def deregisterPlayer(self, idz: int, namez: str) -> None:
-        """方法 deregisterPlayer"""
-        pass
-
-    def deregisterPendingPlayer(self, charid: int) -> None:
-        """方法 deregisterPendingPlayer"""
-        pass
-
-    def getPendingCharacter(self, charid: int) -> Any:
-        """方法 getPendingCharacter"""
-        raise NotImplementedError("方法 getPendingCharacter 尚未实现")
-
-    def getCharacterByName(self, name: str) -> Any:
-        """方法 getCharacterByName"""
-        raise NotImplementedError("方法 getCharacterByName 尚未实现")
-
-    def getCharacterById(self, id: int) -> Any:
-        """方法 getCharacterById"""
-        raise NotImplementedError("方法 getCharacterById 尚未实现")
-
-    def getConnectedClients(self) -> int:
-        """方法 getConnectedClients"""
-        return getattr(self, 'connected_clients', 0)
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def disconnectAll(self) -> None:
-        """方法 disconnectAll"""
-        pass
-
-    def disconnectAll(self, checkGM: bool) -> None:
-        """方法 disconnectAll"""
-        pass
-
-    def getOnlinePlayers(self, byGM: bool) -> str:
-        """方法 getOnlinePlayers"""
-        return ""
-
-    def broadcastPacket(self, data: Any) -> None:
-        """方法 broadcastPacket"""
-        pass
-
-    def broadcastSmegaPacket(self, data: Any) -> None:
-        """方法 broadcastSmegaPacket"""
-        pass
-
-    def broadcastGMPacket(self, data: Any) -> None:
-        """方法 broadcastGMPacket"""
-        pass
-
-    def getAllCharactersThreadSafe(self) -> list:
-        """方法 getAllCharactersThreadSafe"""
-        return getattr(self, 'all_characters_thread_safe', [])
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        PlayerStorage.self.wL2.lock()
+        try:
+            currenttime = int(time.time() * 1000)
+            final Iterator<Map.Entry<Integer, CharacterTransfer>> itr = PlayerStorage.self.PendingCharacter.items().iterator()
+            while itr.hasNext():
+                if currenttime - itr.next().getValue().TranferTime > 40000:
+                    itr.remove()
+            Timer.PingTimer.getInstance().schedule(PersistingTask(), 900000)
+        finally:
+            PlayerStorage.self.wL2.unlock()
 

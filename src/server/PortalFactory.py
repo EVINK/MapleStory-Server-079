@@ -1,33 +1,49 @@
 """
-PortalFactory - 从Java源文件转换而来
-对应Java源文件: server/PortalFactory.java
-包路径: server
+PortalFactory - Converted from Java source
+Original: server/PortalFactory.java
+Package: server
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleData import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataTool import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleGenericPortal import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapPortal import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.MapleData import *  # TODO: import specific classes
+# from provider.MapleDataTool import *  # TODO: import specific classes
+# from server.maps.MapleGenericPortal import *  # TODO: import specific classes
+# from server.maps.MapleMapPortal import *  # TODO: import specific classes
 
 
 class PortalFactory:
     """
-    类 PortalFactory - 从Java类转换
+    Class PortalFactory
     """
 
     def __init__(self):
-        """初始化 PortalFactory"""
         self.nextDoorPortal = 0
+        self.nextDoorPortal = 128
 
 
     def makePortal(self, type: int, portal: Any) -> Any:
-        """方法 makePortal"""
-        raise NotImplementedError("方法 makePortal 尚未实现")
+        ret = None
+        if type == 2:
+            ret = MapleMapPortal()
+        else:
+            ret = MapleGenericPortal(type)
+        self.loadPortal(ret, portal)
+        return ret
 
     def loadPortal(self, myPortal: Any, portal: Any) -> None:
-        """方法 loadPortal"""
-        pass
+        myPortal.setName(MapleDataTool.getString(portal.getChildByPath("pn")))
+        myPortal.setTarget(MapleDataTool.getString(portal.getChildByPath("tn")))
+        myPortal.setTargetMapId(MapleDataTool.getInt(portal.getChildByPath("tm")))
+        myPortal.setPosition(Point(MapleDataTool.getInt(portal.getChildByPath("x")), MapleDataTool.getInt(portal.getChildByPath("y"))))
+        script = MapleDataTool.getString("script", portal, None)
+        if script is not None && script == (""):
+            script = None
+        myPortal.setScriptName(script)
+        if myPortal.getType() == 6:
+            myPortal.setId(self.nextDoorPortal)
+            self.nextDoorPortal += 1
+        else:
+            myPortal.setId(int(portal.getName()))
 

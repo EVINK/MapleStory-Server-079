@@ -1,7 +1,7 @@
 """
-Timer - 从Java源文件转换而来
-对应Java源文件: server/Timer.java
-包路径: server
+Timer - Converted from Java source
+Original: server/Timer.java
+Package: server
 """
 
 from concurrent.futures import Future
@@ -12,1058 +12,335 @@ import sched
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from tools.FileoutputUtil import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.FileoutputUtil import *  # TODO: import specific classes
 
 
-class Timer(ABC):
+class Timer:
     """
-    类 Timer - 从Java类转换
+    Class Timer
     """
 
     def __init__(self):
-        """初始化 Timer"""
         self.ses = None
         self.file = ""
         self.name = ""
         self.threadNumber = 0
 
+    # Static initializer
+    # instance = WorldTimer()
+
 
     def start(self) -> None:
-        """方法 start"""
-        pass
+        if self.ses is not None && !self.ses.isShutdown() && !self.ses.isTerminated():
+            return
+        self.file = "logs/Log_" + self.name + "_Except.rtf"
+        tname = self.name + Randomizer.nextInt()
+        thread = ThreadFactory()
+            threadNumber = AtomicInteger(1)
+            public Thread newThread(final Runnable r)
+                t = Thread(r)
+                t.setName(tname + "-Worker-" + self.threadNumber.getAndIncrement())
+                return t
+        stpe = ScheduledThreadPoolExecutor(3, thread)
+        stpe.setKeepAliveTime(10, TimeUnit.MINUTES)
+        stpe.allowCoreThreadTimeOut(True)
+        stpe.setCorePoolSize(4)
+        stpe.setMaximumPoolSize(8)
+        stpe.setContinueExistingPeriodicTasksAfterShutdownPolicy(False)
+        self.ses = stpe
 
     def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
+        t = Thread(r)
+        t.setName(tname + "-Worker-" + self.threadNumber.getAndIncrement())
+        return t
 
     def stop(self) -> None:
-        """方法 stop"""
-        pass
+        self.ses.shutdown()
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    def register(self, r: Any, repeatTime: int, delay: int) -> Any:
+        if self.ses is None:
+            return None
+        return self.ses.scheduleAtFixedRate(LoggingSaveRunnable(r, self.file), delay, repeatTime, TimeUnit.MILLISECONDS)
 
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    def register_r_repeatTime(self, r: Any, repeatTime: int) -> Any:
+        if self.ses is None:
+            return None
+        return self.ses.scheduleAtFixedRate(LoggingSaveRunnable(r, self.file), 0, repeatTime, TimeUnit.MILLISECONDS)
 
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    def schedule(self, r: Any, delay: int) -> Any:
+        if self.ses is None:
+            return None
+        return self.ses.schedule(LoggingSaveRunnable(r, self.file), delay, TimeUnit.MILLISECONDS)
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    def scheduleAtTimestamp(self, r: Any, timestamp: int) -> Any:
+        return self.schedule(r, timestamp - int(time.time() * 1000))
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        try:
+            self.r.run()
+        except Exception as t:
+            FileoutputUtil.outputFileError(self.file, t)
 
 
-class WorldTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class WorldTimer(Timer):
     """
-    类 WorldTimer - 从Java类转换
-    继承自: Timer
+    Class WorldTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 WorldTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Worldtimer"
+
+    # Static initializer
+    # instance = WorldTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class MapTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class MapTimer(Timer):
     """
-    类 MapTimer - 从Java类转换
-    继承自: Timer
+    Class MapTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 MapTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Maptimer"
+
+    # Static initializer
+    # instance = MapTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class BuffTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class BuffTimer(Timer):
     """
-    类 BuffTimer - 从Java类转换
-    继承自: Timer
+    Class BuffTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 BuffTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Bufftimer"
+
+    # Static initializer
+    # instance = BuffTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class TimerManager(Timer, ABC):
+# Inner class from Java (originally nested)
+class TimerManager(Timer):
     """
-    类 TimerManager - 从Java类转换
-    继承自: Timer
+    Class TimerManager
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 TimerManager"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "TimerManager"
+
+    # Static initializer
+    # instance = TimerManager()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class EventTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class EventTimer(Timer):
     """
-    类 EventTimer - 从Java类转换
-    继承自: Timer
+    Class EventTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 EventTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Eventtimer"
+
+    # Static initializer
+    # instance = EventTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class CloneTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class CloneTimer(Timer):
     """
-    类 CloneTimer - 从Java类转换
-    继承自: Timer
+    Class CloneTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 CloneTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Clonetimer"
+
+    # Static initializer
+    # instance = CloneTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class EtcTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class EtcTimer(Timer):
     """
-    类 EtcTimer - 从Java类转换
-    继承自: Timer
+    Class EtcTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 EtcTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Etctimer"
+
+    # Static initializer
+    # instance = EtcTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class MobTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class MobTimer(Timer):
     """
-    类 MobTimer - 从Java类转换
-    继承自: Timer
+    Class MobTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 MobTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Mobtimer"
+
+    # Static initializer
+    # instance = MobTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class CheatTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class CheatTimer(Timer):
     """
-    类 CheatTimer - 从Java类转换
-    继承自: Timer
+    Class CheatTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 CheatTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Cheattimer"
+
+    # Static initializer
+    # instance = CheatTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class PingTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class PingTimer(Timer):
     """
-    类 PingTimer - 从Java类转换
-    继承自: Timer
+    Class PingTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 PingTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "Pingtimer"
+
+    # Static initializer
+    # instance = PingTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class PGTimer(Timer, ABC):
+# Inner class from Java (originally nested)
+class PGTimer(Timer):
     """
-    类 PGTimer - 从Java类转换
-    继承自: Timer
+    Class PGTimer
+    Extends: Timer
     """
 
     def __init__(self):
-        """初始化 PGTimer"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.name = "PGTimer"
+
+    # Static initializer
+    # instance = PGTimer()
 
 
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
 
-class LoggingSaveRunnable(Runnable, ABC):
+# Inner class from Java (originally nested)
+class LoggingSaveRunnable(Runnable):
     """
-    类 LoggingSaveRunnable - 从Java类转换
-    实现接口: Runnable
+    Class LoggingSaveRunnable
+    Implements: Runnable
     """
 
     def __init__(self, r: Any, file: str):
-        """初始化 LoggingSaveRunnable"""
-        self.ses = None
-        self.file = ""
-        self.name = ""
-        self.threadNumber = 0
+        self.r = r
+        self.file = file
 
-
-    def start(self) -> None:
-        """方法 start"""
-        pass
-
-    def newThread(self, r: Any) -> Any:
-        """方法 newThread"""
-        raise NotImplementedError("方法 newThread 尚未实现")
-
-    def stop(self) -> None:
-        """方法 stop"""
-        pass
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        try:
+            self.r.run()
+        except Exception as t:
+            FileoutputUtil.outputFileError(self.file, t)
 

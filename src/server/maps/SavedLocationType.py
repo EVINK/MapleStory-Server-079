@@ -1,14 +1,15 @@
 """
-SavedLocationType - 从Java源文件转换而来
-对应Java源文件: server/maps/SavedLocationType.java
-包路径: server.maps
+SavedLocationType - Converted from Java source
+Original: server/maps/SavedLocationType.java
+Package: server.maps
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class SavedLocationType(Enum):
-    """枚举类 SavedLocationType - 从Java枚举转换"""
+    """Enum SavedLocationType"""
 
     FREE_MARKET = (0)
     MULUNG_TC = (1)
@@ -34,14 +35,11 @@ class SavedLocationType(Enum):
     WEDDING = (21)
 
     def __init__(self, index):
-        """初始化枚举值"""
         self._index = index
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.index
 
     def fromString(self, Str: str) -> Any:
-        """方法 fromString"""
-        raise NotImplementedError("方法 fromString 尚未实现")
+        return valueOf(Str)
 

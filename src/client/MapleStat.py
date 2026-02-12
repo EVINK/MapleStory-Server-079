@@ -1,14 +1,15 @@
 """
-MapleStat - 从Java源文件转换而来
-对应Java源文件: client/MapleStat.java
-包路径: client
+MapleStat - Converted from Java source
+Original: client/MapleStat.java
+Package: client
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleStat(Enum):
-    """枚举类 MapleStat - 从Java枚举转换"""
+    """Enum MapleStat"""
 
     SKIN = (1)
     FACE = (2)
@@ -31,20 +32,21 @@ class MapleStat(Enum):
     PET = (2097160)
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def getByValue(self, value: int) -> Any:
-        """方法 getByValue"""
-        raise NotImplementedError("方法 getByValue 尚未实现")
+        for stat in values():
+            if stat.i == value:
+                return stat
+        return None
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
 
+# Inner class from Java (originally nested)
 class Temp(Enum):
-    """枚举类 Temp - 从Java枚举转换"""
+    """Enum Temp"""
 
     STR = (1)
     DEX = (2)
@@ -60,10 +62,8 @@ class Temp(Enum):
     JUMP = (2048)
 
     def __init__(self, i):
-        """初始化枚举值"""
         self._i = i
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 

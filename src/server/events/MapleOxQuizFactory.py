@@ -1,29 +1,28 @@
 """
-MapleOxQuizFactory - 从Java源文件转换而来
-对应Java源文件: server/events/MapleOxQuizFactory.java
-包路径: server.events
+MapleOxQuizFactory - Converted from Java source
+Original: server/events/MapleOxQuizFactory.java
+Package: server.events
 """
 
 from pymysql import Connection
 from pymysql import Error
 from pymysql.cursors import Cursor
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from server.Randomizer import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from server.Randomizer import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class MapleOxQuizFactory:
     """
-    类 MapleOxQuizFactory - 从Java类转换
+    Class MapleOxQuizFactory
     """
 
     def __init__(self):
-        """初始化 MapleOxQuizFactory"""
         self.initialized = False
         self.questionCache = None
         self.question = None
@@ -31,134 +30,131 @@ class MapleOxQuizFactory:
         self.answer = None
         self.questionset = None
         self.questionid = None
+        self.initialized = False
+        self.questionCache = new HashMap<Pair<Integer, Integer>, MapleOxQuizEntry>()
+
+    # Static initializer
+    # instance = MapleOxQuizFactory()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getOxEntry(self, questionSet: int, questionId: int) -> Any:
-        """方法 getOxEntry"""
-        raise NotImplementedError("方法 getOxEntry 尚未实现")
+        return getInstance().getOxQuizEntry(new Pair<Integer, Integer>(questionSet, questionId))
 
-    def getOxEntry(self, pair: Any) -> Any:
-        """方法 getOxEntry"""
-        raise NotImplementedError("方法 getOxEntry 尚未实现")
+    def getOxEntry_pair(self, pair: Any) -> Any:
+        return getInstance().getOxQuizEntry(pair)
 
     def hasInitialized(self) -> bool:
-        """方法 hasInitialized"""
-        return bool(getattr(self, 'initialized', False))
+        return self.initialized
+
+    def grabRandomQuestion(self) -> Any:
+        size = self.questionCache
+        while True:
+            for (Map.Entry<Pair<Integer, Integer>, MapleOxQuizEntry> oxquiz : self.questionCache.items())
+                if Randomizer.nextInt(size) == 0:
+                return oxquiz
 
     def initialize(self) -> None:
-        """方法 initialize"""
-        pass
+        if self.initialized:
+            return
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT * FROM wz_oxdata")
+            rs = ps.executeQuery()
+            while rs.next():
+                self.questionCache.put(new Pair<Integer, Integer>(rs.getInt("questionset"), rs.getInt("questionid")), self.get(rs))
+            rs.close()
+            ps.close()
+        except Exception as e:
+            e.printStackTrace()
+        print("Done\r")
+        self.initialized = True
 
     def getFromSQL(self, sql: str) -> Any:
-        """方法 getFromSQL"""
-        raise NotImplementedError("方法 getFromSQL 尚未实现")
+        ret = None
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement(sql)
+            rs = ps.executeQuery()
+            if rs.next():
+                ret = self.get(rs)
+            rs.close()
+            ps.close()
+        except Exception as e:
+            e.printStackTrace()
+        return ret
 
     def getOxQuizEntry(self, pair: Any) -> Any:
-        """方法 getOxQuizEntry"""
-        raise NotImplementedError("方法 getOxQuizEntry 尚未实现")
+        mooe = self.questionCache.get(pair)
+        if mooe is None:
+            if self.initialized:
+                return None
+            mooe = self.getFromSQL("SELECT * FROM wz_oxdata WHERE questionset = " + pair.getLeft() + " AND questionid = " + pair.getRight())
+            self.questionCache.put(pair, mooe)
+        return mooe
 
     def get(self, rs: Any) -> Any:
-        """方法 get"""
-        raise NotImplementedError("方法 get 尚未实现")
+        return MapleOxQuizEntry(rs.getString("question"), rs.getString("display"), self.getAnswerByText(rs.getString("answer")), rs.getInt("questionset"), rs.getInt("questionid"))
 
     def getAnswerByText(self, text: str) -> int:
-        """方法 getAnswerByText"""
-        return 0
+        if text.lower() == "x".lower():
+            return 0
+        if text.lower() == "o".lower():
+            return 1
+        return -1
 
     def getQuestion(self) -> str:
-        """方法 getQuestion"""
-        return getattr(self, 'question', "")
+        return self.question
 
     def getAnswerText(self) -> str:
-        """方法 getAnswerText"""
-        return getattr(self, 'answer_text', "")
+        return self.answerText
 
     def getAnswer(self) -> int:
-        """方法 getAnswer"""
-        return getattr(self, 'answer', 0)
+        return self.answer
 
     def getQuestionSet(self) -> int:
-        """方法 getQuestionSet"""
-        return getattr(self, 'question_set', 0)
+        return self.questionset
 
     def getQuestionId(self) -> int:
-        """方法 getQuestionId"""
-        return getattr(self, 'question_id', 0)
+        return self.questionid
 
 
+# Inner class from Java (originally nested)
 class MapleOxQuizEntry:
     """
-    类 MapleOxQuizEntry - 从Java类转换
+    Class MapleOxQuizEntry
     """
 
     def __init__(self, question: str, answerText: str, answer: int, questionset: int, questionid: int):
-        """初始化 MapleOxQuizEntry"""
-        self.initialized = False
-        self.questionCache = None
         self.question = None
         self.answerText = None
         self.answer = None
         self.questionset = None
         self.questionid = None
+        self.question = question
+        self.answerText = answerText
+        self.answer = answer
+        self.questionset = questionset
+        self.questionid = questionid
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getOxEntry(self, questionSet: int, questionId: int) -> Any:
-        """方法 getOxEntry"""
-        raise NotImplementedError("方法 getOxEntry 尚未实现")
-
-    def getOxEntry(self, pair: Any) -> Any:
-        """方法 getOxEntry"""
-        raise NotImplementedError("方法 getOxEntry 尚未实现")
-
-    def hasInitialized(self) -> bool:
-        """方法 hasInitialized"""
-        return bool(getattr(self, 'initialized', False))
-
-    def initialize(self) -> None:
-        """方法 initialize"""
-        pass
-
-    def getFromSQL(self, sql: str) -> Any:
-        """方法 getFromSQL"""
-        raise NotImplementedError("方法 getFromSQL 尚未实现")
-
-    def getOxQuizEntry(self, pair: Any) -> Any:
-        """方法 getOxQuizEntry"""
-        raise NotImplementedError("方法 getOxQuizEntry 尚未实现")
-
-    def get(self, rs: Any) -> Any:
-        """方法 get"""
-        raise NotImplementedError("方法 get 尚未实现")
-
-    def getAnswerByText(self, text: str) -> int:
-        """方法 getAnswerByText"""
-        return 0
 
     def getQuestion(self) -> str:
-        """方法 getQuestion"""
-        return getattr(self, 'question', "")
+        return self.question
 
     def getAnswerText(self) -> str:
-        """方法 getAnswerText"""
-        return getattr(self, 'answer_text', "")
+        return self.answerText
 
     def getAnswer(self) -> int:
-        """方法 getAnswer"""
-        return getattr(self, 'answer', 0)
+        return self.answer
 
     def getQuestionSet(self) -> int:
-        """方法 getQuestionSet"""
-        return getattr(self, 'question_set', 0)
+        return self.questionset
 
     def getQuestionId(self) -> int:
-        """方法 getQuestionId"""
-        return getattr(self, 'question_id', 0)
+        return self.questionid
 

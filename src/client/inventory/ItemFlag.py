@@ -1,14 +1,15 @@
 """
-ItemFlag - 从Java源文件转换而来
-对应Java源文件: client/inventory/ItemFlag.java
-包路径: client.inventory
+ItemFlag - Converted from Java source
+Original: client/inventory/ItemFlag.java
+Package: client.inventory
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class ItemFlag(Enum):
-    """枚举类 ItemFlag - 从Java枚举转换"""
+    """Enum ItemFlag"""
 
     LOCK = (1)
     SPIKES = (2)
@@ -18,14 +19,11 @@ class ItemFlag(Enum):
     KARMA_USE = (2)
 
     def __init__(self, i):
-        """初始化枚举值"""
         self._i = i
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def check(self, flag: int) -> bool:
-        """方法 check"""
-        return False
+        return (flag & self.i) == self.i
 

@@ -1,103 +1,64 @@
 """
-ModifyInventory - 从Java源文件转换而来
-对应Java源文件: client/inventory/ModifyInventory.java
-包路径: client.inventory
+ModifyInventory - Converted from Java source
+Original: client/inventory/ModifyInventory.java
+Package: client.inventory
 """
 
-# 内部模块导入 (Internal module imports)
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from constants.GameConstants import *  # TODO: import specific classes
 
 
 class ModifyInventory:
     """
-    类 ModifyInventory - 从Java类转换
+    Class ModifyInventory
     """
 
-    # 静态字段 (Static fields)
     ADD = 0
     UPDATE = 1
     MOVE = 2
     REMOVE = 3
 
     def __init__(self, mode: int, item: Any):
-        """初始化 ModifyInventory"""
         self.mode = 0
         self.item = None
         self.oldPos = 0
+        self.mode = mode
+        self.item = item.copy()
 
 
     def getMode(self) -> int:
-        """方法 getMode"""
-        return getattr(self, 'mode', 0)
+        return self.mode
 
     def getInventoryType(self) -> int:
-        """方法 getInventoryType"""
-        return getattr(self, 'inventory_type', 0)
+        return GameConstants.getInventoryType(self.item.getItemId()).getType()
 
     def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
+        return self.item.getPosition()
 
     def getOldPosition(self) -> int:
-        """方法 getOldPosition"""
-        return getattr(self, 'old_position', 0)
+        return self.oldPos
 
     def getQuantity(self) -> int:
-        """方法 getQuantity"""
-        return getattr(self, 'quantity', 0)
+        return self.item.getQuantity()
 
     def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
+        return self.item
 
     def clear(self) -> None:
-        """方法 clear"""
-        pass
+        self.item = None
 
 
+# Inner class from Java (originally nested)
 class Types:
     """
-    类 Types - 从Java类转换
+    Class Types
     """
 
-    # 静态字段 (Static fields)
     ADD = 0
     UPDATE = 1
     MOVE = 2
     REMOVE = 3
 
-    def __init__(self):
-        """初始化 Types"""
-        self.mode = 0
-        self.item = None
-        self.oldPos = 0
-
-
-    def getMode(self) -> int:
-        """方法 getMode"""
-        return getattr(self, 'mode', 0)
-
-    def getInventoryType(self) -> int:
-        """方法 getInventoryType"""
-        return getattr(self, 'inventory_type', 0)
-
-    def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
-
-    def getOldPosition(self) -> int:
-        """方法 getOldPosition"""
-        return getattr(self, 'old_position', 0)
-
-    def getQuantity(self) -> int:
-        """方法 getQuantity"""
-        return getattr(self, 'quantity', 0)
-
-    def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
-
-    def clear(self) -> None:
-        """方法 clear"""
-        pass
 

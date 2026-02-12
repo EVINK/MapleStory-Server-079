@@ -1,82 +1,231 @@
 """
-PetPacket - 从Java源文件转换而来
-对应Java源文件: tools/packet/PetPacket.java
-包路径: tools.packet
+PetPacket - Converted from Java source
+Original: tools/packet/PetPacket.java
+Package: tools.packet
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleStat import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MaplePet import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.SendPacketOpcode import *  # TODO: 根据实际需要导入具体类
-# from server.movement.LifeMovementFragment import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.data.output.LittleEndianWriter import *  # TODO: 根据实际需要导入具体类
-# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleStat import *  # TODO: import specific classes
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.MaplePet import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.SendPacketOpcode import *  # TODO: import specific classes
+# from server.movement.LifeMovementFragment import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.data.output.LittleEndianWriter import *  # TODO: import specific classes
+# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: import specific classes
 
 
 class PetPacket:
     """
-    类 PetPacket - 从Java类转换
+    Class PetPacket
     """
+
+    # Static initializer
+    # ITEM_MAGIC = new byte[] { -128, 5 }
 
 
     @staticmethod
     def updatePet(pet: Any, item: Any, active: bool) -> Any:
-        """方法 updatePet"""
-        raise NotImplementedError("方法 updatePet 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("updatePet--------------------")
+        mplew.writeShort(SendPacketOpcode.MODIFY_INVENTORY_ITEM.getValue())
+        mplew.write(pet.getInventoryPosition())
+        mplew.write(2)
+        mplew.write(3)
+        mplew.write(5)
+        mplew.writeShort(pet.getInventoryPosition())
+        mplew.write(0)
+        mplew.write(5)
+        mplew.writeShort(pet.getInventoryPosition())
+        mplew.write(3)
+        mplew.writeInt(pet.getPetItemId())
+        mplew.write(1)
+        mplew.writeLong(pet.getUniqueId())
+        PacketHelper.addPetItemInfo(mplew, item, pet, active)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def removePet(self, chr: Any, slot: int) -> Any:
-        """方法 removePet"""
-        raise NotImplementedError("方法 removePet 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("removePet--------------------")
+        mplew.writeShort(SendPacketOpcode.SPAWN_PET.getValue())
+        mplew.writeInt(chr.getId())
+        mplew.writeShort(slot)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def showPet(self, chr: Any, pet: Any, remove: bool, hunger: bool) -> Any:
-        """方法 showPet"""
-        raise NotImplementedError("方法 showPet 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("showPet--------------------")
+        mplew.writeShort(SendPacketOpcode.SPAWN_PET.getValue())
+        mplew.writeInt(chr.getId())
+        mplew.write(chr.getPetIndex(pet))
+        if remove:
+            mplew.write(0)
+            mplew.write(hunger ? 1 : 0)
+        else:
+            mplew.write(1)
+            mplew.write(0)
+            mplew.writeInt(pet.getPetItemId())
+            mplew.writeMapleAsciiString(pet.getName())
+            mplew.writeLong(pet.getUniqueId())
+            mplew.writeShort(pet.getPos().x)
+            mplew.writeShort(pet.getPos().y)
+            mplew.write(pet.getStance())
+            mplew.writeLong(pet.getFh())
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def addPetInfo(self, mplew: Any, chr: Any, pet: Any, showpet: bool) -> None:
-        """方法 addPetInfo"""
-        pass
+        if showpet:
+            mplew.write(1)
+            mplew.write(chr.getPetIndex(pet))
+        mplew.writeInt(pet.getPetItemId())
+        mplew.writeMapleAsciiString(pet.getName())
+        mplew.writeLong(pet.getUniqueId())
+        mplew.writeShort(pet.getPos().x)
+        mplew.writeShort(pet.getPos().y)
+        mplew.write(pet.getStance())
+        mplew.writeLong(pet.getFh())
 
-    def removePet(self, cid: int, index: int) -> Any:
-        """方法 removePet"""
-        raise NotImplementedError("方法 removePet 尚未实现")
+    def removePet_cid_index(self, cid: int, index: int) -> Any:
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("removePet--------------------")
+        mplew.writeShort(SendPacketOpcode.SPAWN_PET.getValue())
+        mplew.writeInt(cid)
+        mplew.write(index)
+        mplew.writeShort(0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def movePet(self, cid: int, pid: int, slot: int, moves: list) -> Any:
-        """方法 movePet"""
-        raise NotImplementedError("方法 movePet 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("movePet--------------------")
+        mplew.writeShort(SendPacketOpcode.MOVE_PET.getValue())
+        mplew.writeInt(cid)
+        mplew.write(slot)
+        mplew.writeInt(pid)
+        PacketHelper.serializeMovementList(mplew, moves)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def petChat(self, cid: int, un: int, text: str, slot: int) -> Any:
-        """方法 petChat"""
-        raise NotImplementedError("方法 petChat 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("petChat--------------------")
+        mplew.writeShort(SendPacketOpcode.PET_CHAT.getValue())
+        mplew.writeInt(cid)
+        mplew.write(slot)
+        mplew.writeShort(un)
+        mplew.writeMapleAsciiString(text)
+        mplew.write(0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def commandResponse(self, cid: int, command: int, slot: int, success: bool, food: bool) -> Any:
-        """方法 commandResponse"""
-        raise NotImplementedError("方法 commandResponse 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("commandResponse--------------------")
+        mplew.writeShort(SendPacketOpcode.PET_COMMAND.getValue())
+        mplew.writeInt(cid)
+        mplew.write(slot)
+        mplew.write((command == 1) ? 1 : 0)
+        mplew.write(command)
+        if command == 1:
+            mplew.write(0)
+        else:
+            mplew.writeShort(success ? 1 : 0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def showOwnPetLevelUp(self, index: int) -> Any:
-        """方法 showOwnPetLevelUp"""
-        raise NotImplementedError("方法 showOwnPetLevelUp 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("showOwnPetLevelUp--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
+        mplew.write(4)
+        mplew.write(0)
+        mplew.write(index)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def showPetLevelUp(self, chr: Any, index: int) -> Any:
-        """方法 showPetLevelUp"""
-        raise NotImplementedError("方法 showPetLevelUp 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("showPetLevelUp--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_FOREIGN_EFFECT.getValue())
+        mplew.writeInt(chr.getId())
+        mplew.write(4)
+        mplew.write(0)
+        mplew.write(index)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def emptyStatUpdate(self) -> Any:
-        """方法 emptyStatUpdate"""
-        raise NotImplementedError("方法 emptyStatUpdate 尚未实现")
+        if ServerConstants.调试输出封包:
+            print("emptyStatUpdate--------------------")
+        return MaplePacketCreator.enableActions()
 
     def petStatUpdate_Empty(self) -> Any:
-        """方法 petStatUpdate_Empty"""
-        raise NotImplementedError("方法 petStatUpdate_Empty 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("petStatUpdate_Empty--------------------")
+        mplew.writeShort(SendPacketOpcode.UPDATE_STATS.getValue())
+        mplew.write(0)
+        mplew.writeInt(MapleStat.PET.getValue())
+        mplew.writeZeroBytes(25)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def petStatUpdate(self, chr: Any) -> Any:
-        """方法 petStatUpdate"""
-        raise NotImplementedError("方法 petStatUpdate 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("petStatUpdate--------------------")
+        mplew.writeShort(SendPacketOpcode.UPDATE_STATS.getValue())
+        mplew.write(0)
+        mplew.writeInt(MapleStat.PET.getValue())
+        count = 0
+        for pet in chr.getPets():
+            if pet.getSummoned():
+                mplew.writeLong(pet.getUniqueId())
+                count += 1
+        while count < 3:
+            mplew.writeZeroBytes(8)
+            count += 1
+        mplew.write(0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 

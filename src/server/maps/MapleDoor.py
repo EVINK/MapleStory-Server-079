@@ -1,31 +1,29 @@
 """
-MapleDoor - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleDoor.java
-包路径: server.maps
+MapleDoor - Converted from Java source
+Original: server/maps/MapleDoor.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from weakref import ref
 import threading
 import weakref
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from server.MaplePortal import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from server.MaplePortal import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleDoor(AbstractMapleMapObject):
     """
-    类 MapleDoor - 从Java类转换
-    继承自: AbstractMapleMapObject
+    Class MapleDoor
+    Extends: AbstractMapleMapObject
     """
 
     def __init__(self, owner: Any, targetPosition: Any, skillId: int):
-        """初始化 MapleDoor"""
         self.owner = None
         self.town = None
         self.townPortal = None
@@ -33,57 +31,90 @@ class MapleDoor(AbstractMapleMapObject):
         self.skillId = 0
         self.ownerId = 0
         self.targetPosition = None
+        self.owner = new WeakReference<>(owner)
+        self.ownerId = owner.getId()
+        self.target = owner.getMap()
+        self.setPosition(self.targetPosition = targetPosition)
+        self.town = self.target.getReturnMap()
+        self.townPortal = self.getFreePortal()
+        self.skillId = skillId
 
 
     def getSkill(self) -> int:
-        """方法 getSkill"""
-        return getattr(self, 'skill', 0)
+        return self.skillId
 
     def getOwnerId(self) -> int:
-        """方法 getOwnerId"""
-        return getattr(self, 'owner_id', 0)
+        return self.ownerId
 
     def getFreePortal(self) -> Any:
-        """方法 getFreePortal"""
-        return getattr(self, 'free_portal', None)
+        freePortals = []
+        for port in self.town.getPortals():
+            if port.getType() == 6:
+                freePortals.add(port)
+        Collections.sort(freePortals, new Comparator<MaplePortal>()
+            public int compare(final MaplePortal o1, final MaplePortal o2)
+                if o1.getId() < o2.getId():
+                    return -1
+                if o1.getId() == o2.getId():
+                    return 0
+                return 1
+        for obj in self.town.getAllDoorsThreadsafe():
+            door = obj
+            if door.getOwner() is not None && door.getOwner().getParty() is not None && self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(door.getOwnerId()) is not None:
+                freePortals.remove(door.getTownPortal())
+        if freePortals <= 0:
+            return None
+        return freePortals.iterator().next()
 
     def compare(self, o1: Any, o2: Any) -> int:
-        """方法 compare"""
-        return 0
+        if o1.getId() < o2.getId():
+            return -1
+        if o1.getId() == o2.getId():
+            return 0
+        return 1
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
+        if self.getOwner() is None:
+            return
+        if self.target.getId() == client.getPlayer().getMapId() || self.getOwnerId() == client.getPlayer().getId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+            client.getSession().write(MaplePacketCreator.spawnDoor(self.getOwnerId(), (self.town.getId() == client.getPlayer().getMapId()) ? self.townPortal.getPosition() : self.targetPosition, True))
+            if self.getOwner() is not None && self.getOwner().getParty() is not None && (self.getOwnerId() == client.getPlayer().getId() || self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+                client.getSession().write(MaplePacketCreator.partyPortal(self.town.getId(), self.target.getId(), self.skillId, self.targetPosition))
+            client.getSession().write(MaplePacketCreator.spawnPortal(self.town.getId(), self.target.getId(), self.skillId, self.targetPosition))
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        if self.getOwner() is None:
+            return
+        if self.target.getId() == client.getPlayer().getMapId() || self.getOwnerId() == client.getPlayer().getId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+            if self.getOwner().getParty() is not None && (self.getOwnerId() == client.getPlayer().getId() || self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+                client.getSession().write(MaplePacketCreator.partyPortal(999999999, 999999999, 0, Point(-1, -1)))
+            client.getSession().write(MaplePacketCreator.removeDoor(self.getOwnerId(), False))
+            client.getSession().write(MaplePacketCreator.removeDoor(self.getOwnerId(), True))
 
     def warp(self, chr: Any, toTown: bool) -> None:
-        """方法 warp"""
-        pass
+        if chr.getId() == self.getOwnerId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(chr.getId()) is not None):
+            if !toTown:
+                chr.changeMap(self.target, self.targetPosition)
+            else:
+                chr.changeMap(self.town, self.townPortal)
+        else:
+            chr.getClient().getSession().write(MaplePacketCreator.enableActions())
 
     def getOwner(self) -> Any:
-        """方法 getOwner"""
-        return getattr(self, 'owner', None)
+        return self.owner.get()
 
     def getTown(self) -> Any:
-        """方法 getTown"""
-        return getattr(self, 'town', None)
+        return self.town
 
     def getTownPortal(self) -> Any:
-        """方法 getTownPortal"""
-        return getattr(self, 'town_portal', None)
+        return self.townPortal
 
     def getTarget(self) -> Any:
-        """方法 getTarget"""
-        return getattr(self, 'target', None)
+        return self.target
 
     def getTargetPosition(self) -> Any:
-        """方法 getTargetPosition"""
-        return getattr(self, 'target_position', None)
+        return self.targetPosition
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.DOOR
 

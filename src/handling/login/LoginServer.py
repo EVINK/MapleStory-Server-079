@@ -1,147 +1,159 @@
 """
-LoginServer - 从Java源文件转换而来
-对应Java源文件: handling/login/LoginServer.java
-包路径: handling.login
+LoginServer - Converted from Java source
+Original: handling/login/LoginServer.java
+Package: handling.login
 """
 
 from socket import socket
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from typing import Set
 import asyncio
 import os
 
-# 内部模块导入 (Internal module imports)
-# from handling.MapleServerHandler import *  # TODO: 根据实际需要导入具体类
-# from handling.mina.MapleCodecFactory import *  # TODO: 根据实际需要导入具体类
-# from server.ServerProperties import *  # TODO: 根据实际需要导入具体类
-# from tools.Triple import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from handling.MapleServerHandler import *  # TODO: import specific classes
+# from handling.mina.MapleCodecFactory import *  # TODO: import specific classes
+# from server.ServerProperties import *  # TODO: import specific classes
+# from tools.Triple import *  # TODO: import specific classes
 
 
 class LoginServer:
     """
-    类 LoginServer - 从Java类转换
+    Class LoginServer
     """
 
+    # Static initializer
+    # LoginServer.PORT = 1314
+    # LoginServer.load = {}
+    # LoginServer.usersOn = 0
+    # LoginServer.finishedShutdown = True
+    # LoginServer.adminOnly = False
+    # loginAuth = new HashMap<Integer, Triple<String, String, Integer>>()
+    # loginIPAuth = set()
+    # instance = LoginServer()
 
-    @staticmethod
-    def getInstance() -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def putLoginAuth(self, chrid: int, ip: str, tempIp: str, channel: int) -> None:
-        """方法 putLoginAuth"""
-        pass
+        LoginServer.loginAuth.put(chrid, new Triple<String, String, Integer>(ip, tempIp, channel))
+        LoginServer.loginIPAuth.add(ip)
 
     def getLoginAuth(self, chrid: int) -> Any:
-        """方法 getLoginAuth"""
-        raise NotImplementedError("方法 getLoginAuth 尚未实现")
+        return LoginServer.loginAuth.remove(chrid)
 
     def containsIPAuth(self, ip: str) -> bool:
-        """方法 containsIPAuth"""
-        return False
+        return (ip in LoginServer.loginIPAuth)
 
     def removeIPAuth(self, ip: str) -> None:
-        """方法 removeIPAuth"""
-        pass
+        LoginServer.loginIPAuth.remove(ip)
 
     def addIPAuth(self, ip: str) -> None:
-        """方法 addIPAuth"""
-        pass
+        LoginServer.loginIPAuth.add(ip)
 
     def addChannel(self, channel: int) -> None:
-        """方法 addChannel"""
-        pass
+        LoginServer.load.put(channel, 0)
 
     def removeChannel(self, channel: int) -> None:
-        """方法 removeChannel"""
-        pass
+        LoginServer.load.remove(channel)
 
     def run_startup_configurations(self) -> None:
-        """方法 run_startup_configurations"""
-        pass
+        LoginServer.userLimit = Integer.valueOf(ServerProperties.getProperty("RoyMS.userLimit"))
+        LoginServer.serverName = ServerProperties.getProperty("RoyMS.ServerName")
+        LoginServer.eventMessage = ServerProperties.getProperty("RoyMS.EventMessage")
+        LoginServer.flag = Byte.parseByte(ServerProperties.getProperty("RoyMS.Flag"))
+        LoginServer.PORT = int(ServerProperties.getProperty("RoyMS.LPort"))
+        LoginServer.adminOnly = bool(ServerProperties.getProperty("RoyMS.Admin", "False"))
+        LoginServer.maxCharacters = int(ServerProperties.getProperty("RoyMS.MaxCharacters"))
+        LoginServer.个人PK地图 = int(ServerProperties.getProperty("RoyMS.personPVP"))
+        LoginServer.组队PK地图 = int(ServerProperties.getProperty("RoyMS.teamPVP"))
+        LoginServer.家族PK地图 = int(ServerProperties.getProperty("RoyMS.familyPVP"))
+        IoBuffer.setUseDirectBuffer(False)
+        IoBuffer.setAllocator(SimpleBufferAllocator())
+        LoginServer.acceptor = NioSocketAcceptor()
+        LoginServer.acceptor.getFilterChain().addLast("codec", ProtocolCodecFilter(MapleCodecFactory()))
+        LoginServer.acceptor.setHandler(MapleServerHandler(-1, False))
+        (LoginServer.acceptor.getSessionConfig()).setTcpNoDelay(True)
+        try:
+            LoginServer.acceptor.bind(InetSocketAddress(LoginServer.PORT))
+            print("登录服务器 : 启动端口 " + LoginServer.PORT)
+        except IOError as e:
+            print("Binding to port " + LoginServer.PORT + " failed" + e)
 
     def shutdown(self) -> None:
-        """方法 shutdown"""
-        pass
+        if LoginServer.finishedShutdown:
+            return
+        print("正在关闭登录伺服器...")
+        LoginServer.finishedShutdown = True
 
     def getServerName(self) -> str:
-        """方法 getServerName"""
-        return getattr(self, 'server_name', "")
+        return LoginServer.serverName
 
     def getEventMessage(self) -> str:
-        """方法 getEventMessage"""
-        return getattr(self, 'event_message', "")
+        return LoginServer.eventMessage
 
     def getFlag(self) -> int:
-        """方法 getFlag"""
-        return getattr(self, 'flag', 0)
+        return LoginServer.flag
 
-    def getMaxCharacters(self) -> int:
-        """方法 getMaxCharacters"""
-        return getattr(self, 'max_characters', 0)
+    @staticmethod
+    def getMaxCharacters() -> int:
+        return LoginServer.maxCharacters
 
     def getLoad(self) -> dict:
-        """方法 getLoad"""
-        return getattr(self, 'load', {})
+        return LoginServer.load
 
     def setLoad(self, load_: dict, usersOn_: int) -> None:
-        """方法 setLoad"""
-        self.load = load_
-        return None
+        LoginServer.load = load_
+        LoginServer.usersOn = usersOn_
 
     def setEventMessage(self, newMessage: str) -> None:
-        """方法 setEventMessage"""
-        self.event_message = newMessage
-        return None
+        LoginServer.eventMessage = newMessage
 
     def setFlag(self, newflag: int) -> None:
-        """方法 setFlag"""
-        self.flag = newflag
-        return None
+        LoginServer.flag = newflag
 
     def getUserLimit(self) -> int:
-        """方法 getUserLimit"""
-        return getattr(self, 'user_limit', 0)
+        return LoginServer.userLimit
 
     def getUsersOn(self) -> int:
-        """方法 getUsersOn"""
-        return getattr(self, 'users_on', 0)
+        return LoginServer.usersOn
 
-    def setUserLimit(self, newLimit: int) -> None:
-        """方法 setUserLimit"""
-        self.user_limit = newLimit
-        return None
+    @staticmethod
+    def setUserLimit(newLimit: int) -> None:
+        LoginServer.userLimit = newLimit
 
     def getNumberOfSessions(self) -> int:
-        """方法 getNumberOfSessions"""
-        return getattr(self, 'number_of_sessions', 0)
+        return LoginServer.acceptor.getManagedSessions()
 
     def isAdminOnly(self) -> bool:
-        """方法 isAdminOnly"""
-        return bool(getattr(self, 'admin_only', False))
+        return LoginServer.adminOnly
 
     def isShutdown(self) -> bool:
-        """方法 isShutdown"""
-        return bool(getattr(self, 'shutdown', False))
+        return LoginServer.finishedShutdown
 
     def setOn(self) -> None:
-        """方法 setOn"""
-        pass
+        LoginServer.finishedShutdown = False
 
-    def 个人PK地图(self) -> int:
-        """方法 个人PK地图"""
-        return 0
+    def translated_个人PK地图(self) -> int:
+        return LoginServer.个人PK地图
 
-    def 组队PK地图(self) -> int:
-        """方法 组队PK地图"""
-        return 0
+    @staticmethod
+    def translated_组队PK地图() -> int:
+        return LoginServer.组队PK地图
 
-    def 家族PK地图(self) -> int:
-        """方法 家族PK地图"""
-        return 0
+    @staticmethod
+    def translated_家族PK地图() -> int:
+        return LoginServer.家族PK地图
 
-    def closeConn(self, ip: str) -> None:
-        """方法 closeConn"""
-        pass
+    @staticmethod
+    def closeConn(ip: str) -> None:
+        count = 0
+        for ss in LoginServer.acceptor.getManagedSessions().values():
+            if ss.getRemoteAddress().split(":")[0] == (ip):
+                ss.close(False)
 

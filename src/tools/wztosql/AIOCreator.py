@@ -1,107 +1,82 @@
 """
-AIOCreator - 从Java源文件转换而来
-对应Java源文件: tools/wztosql/AIOCreator.java
-包路径: tools.wztosql
+AIOCreator - Converted from Java source
+Original: tools/wztosql/AIOCreator.java
+Package: tools.wztosql
 """
 
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from server.MapleItemInformationProvider import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.MapleItemInformationProvider import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class AIOCreator:
     """
-    类 AIOCreator - 从Java类转换
+    Class AIOCreator
     """
+
+    # Static initializer
+    # Lists.ALL = []
 
 
     def main(self, args: list) -> None:
-        """方法 main"""
-        pass
+        provider = MapleItemInformationProvider.getInstance()
+        for iteminfo in provider.getAllItems2():
+            id = iteminfo.getLeft()
+            if (id / 10000 >= 100 && id / 10000 <= 153) || id / 10000 == 190 || id / 10000 == 191:
+                Lists.ALL.add(id)
+        createSQLQuery()
 
     def createSQLQuery(self) -> None:
-        """方法 createSQLQuery"""
-        pass
+        out = FileOutputStream("AIO.txt", False)
+        sb = ""
+        for id in range(100, = 153):
+            addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('" + id * 1000 + "', '9900002');")
+        addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('190000', '9900002');")
+        addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('191000', '9900002');")
+        if !Lists.ALL == 0:
+            for id2 in Lists.ALL:
+                addLine(sb, "INSERT INTO `shopitems` (`shopid`, `itemid`, `price`, `position`, `reqitem`, `reqitemq`, `rank`, `buyable`, `category`, `minLevel`, `expiration`) VALUES ('" + id2 / 10000 * 1000 + "', '" + id2 + "', '" + getPrice(id2) + "', '0', '0', '0', '0', '0', '0', '0', '0');")
+        print("Success")
+        out.write(sb.encode("utf-8"))
 
     def addLine(self, sb: Any, string: str) -> None:
-        """方法 addLine"""
-        pass
+        sb.append(string).append("\r\n")
 
     def getPrice(self, id: int) -> int:
-        """方法 getPrice"""
-        return 0
+        return 1
 
 
+# Inner class from Java (originally nested)
 class ItemType:
     """
-    类 ItemType - 从Java类转换
+    Class ItemType
     """
 
-
-    def main(self, args: list) -> None:
-        """方法 main"""
-        pass
-
-    def createSQLQuery(self) -> None:
-        """方法 createSQLQuery"""
-        pass
-
-    def addLine(self, sb: Any, string: str) -> None:
-        """方法 addLine"""
-        pass
-
-    def getPrice(self, id: int) -> int:
-        """方法 getPrice"""
-        return 0
+    pass
 
 
+# Inner class from Java (originally nested)
 class WeaponType:
     """
-    类 WeaponType - 从Java类转换
+    Class WeaponType
     """
 
-
-    def main(self, args: list) -> None:
-        """方法 main"""
-        pass
-
-    def createSQLQuery(self) -> None:
-        """方法 createSQLQuery"""
-        pass
-
-    def addLine(self, sb: Any, string: str) -> None:
-        """方法 addLine"""
-        pass
-
-    def getPrice(self, id: int) -> int:
-        """方法 getPrice"""
-        return 0
+    pass
 
 
+# Inner class from Java (originally nested)
 class Lists:
     """
-    类 Lists - 从Java类转换
+    Class Lists
     """
 
+    # Static initializer
+    # Lists.ALL = []
 
-    def main(self, args: list) -> None:
-        """方法 main"""
-        pass
-
-    def createSQLQuery(self) -> None:
-        """方法 createSQLQuery"""
-        pass
-
-    def addLine(self, sb: Any, string: str) -> None:
-        """方法 addLine"""
-        pass
-
-    def getPrice(self, id: int) -> int:
-        """方法 getPrice"""
-        return 0
+    pass
 

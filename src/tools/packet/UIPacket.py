@@ -1,90 +1,212 @@
 """
-UIPacket - 从Java源文件转换而来
-对应Java源文件: tools/packet/UIPacket.java
-包路径: tools.packet
+UIPacket - Converted from Java source
+Original: tools/packet/UIPacket.java
+Package: tools.packet
 """
 
+from typing import Optional, Any
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.SendPacketOpcode import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.SendPacketOpcode import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.data.output.MaplePacketLittleEndianWriter import *  # TODO: import specific classes
 
 
 class UIPacket:
     """
-    类 UIPacket - 从Java类转换
+    Class UIPacket
     """
 
 
     def getSPMsg(self, sp: int, job: int) -> Any:
-        """方法 getSPMsg"""
-        raise NotImplementedError("方法 getSPMsg 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("getSPMsg--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue())
+        mplew.write(3)
+        mplew.writeShort(job)
+        mplew.write(sp)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def getGPMsg(self, itemid: int) -> Any:
-        """方法 getGPMsg"""
-        raise NotImplementedError("方法 getGPMsg 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("getGPMsg--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue())
+        mplew.write(6)
+        mplew.writeInt(itemid)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def getTopMsg(self, msg: str) -> Any:
-        """方法 getTopMsg"""
-        raise NotImplementedError("方法 getTopMsg 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("getTopMsg--------------------")
+        mplew.writeShort(SendPacketOpcode.TOP_MSG.getValue())
+        mplew.writeMapleAsciiString(msg)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def getStatusMsg(self, itemid: int) -> Any:
-        """方法 getStatusMsg"""
-        raise NotImplementedError("方法 getStatusMsg 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("getStatusMsg--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue())
+        mplew.write(7)
+        mplew.writeInt(itemid)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def MapEff(self, path: str) -> Any:
-        """方法 MapEff"""
-        raise NotImplementedError("方法 MapEff 尚未实现")
+        if ServerConstants.调试输出封包:
+            print("MapEff--------------------")
+        return MaplePacketCreator.environmentChange(path, 3)
 
     def MapNameDisplay(self, mapid: int) -> Any:
-        """方法 MapNameDisplay"""
-        raise NotImplementedError("方法 MapNameDisplay 尚未实现")
+        if ServerConstants.调试输出封包:
+            print("MapNameDisplay--------------------")
+        return MaplePacketCreator.environmentChange("maplemap/enter/" + mapid, 3)
 
     def Aran_Start(self) -> Any:
-        """方法 Aran_Start"""
-        raise NotImplementedError("方法 Aran_Start 尚未实现")
+        if ServerConstants.调试输出封包:
+            print("Aran_Start--------------------")
+        return MaplePacketCreator.environmentChange("Aran/balloon", 4)
 
     def AranTutInstructionalBalloon(self, data: str) -> Any:
-        """方法 AranTutInstructionalBalloon"""
-        raise NotImplementedError("方法 AranTutInstructionalBalloon 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("AranTutInstructionalBalloon--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
+        mplew.write(35)
+        mplew.writeMapleAsciiString(data)
+        mplew.writeInt(1)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def ShowWZEffect(self, data: str, info: int) -> Any:
-        """方法 ShowWZEffect"""
-        raise NotImplementedError("方法 ShowWZEffect 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("ShowWZEffect--------------------")
+        mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
+        if info == -1:
+            mplew.write(18)
+        else:
+            mplew.write(23)
+        mplew.writeMapleAsciiString(data)
+        if info > -1:
+            mplew.writeInt(info)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def ShowWZEffectS(self, data: str, info: int) -> Any:
-        """方法 ShowWZEffectS"""
-        raise NotImplementedError("方法 ShowWZEffectS 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
+        mplew.write(20)
+        mplew.writeMapleAsciiString(data)
+        if info > -1:
+            mplew.writeInt(info)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def summonHelper(self, summon: bool) -> Any:
-        """方法 summonHelper"""
-        raise NotImplementedError("方法 summonHelper 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("summonHelper--------------------")
+        mplew.writeShort(SendPacketOpcode.SUMMON_HINT.getValue())
+        mplew.write(summon ? 1 : 0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def summonMessage(self, type: int) -> Any:
-        """方法 summonMessage"""
-        raise NotImplementedError("方法 summonMessage 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("summonMessageA--------------------")
+        mplew.writeShort(SendPacketOpcode.SUMMON_HINT_MSG.getValue())
+        mplew.write(1)
+        mplew.writeInt(type)
+        mplew.writeInt(7000)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
-    def summonMessage(self, message: str) -> Any:
-        """方法 summonMessage"""
-        raise NotImplementedError("方法 summonMessage 尚未实现")
+    def summonMessage_message(self, message: str) -> Any:
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("summonMessageB--------------------")
+        mplew.writeShort(SendPacketOpcode.SUMMON_HINT_MSG.getValue())
+        mplew.write(0)
+        mplew.writeMapleAsciiString(message)
+        mplew.writeInt(200)
+        mplew.writeShort(0)
+        mplew.writeInt(10000)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def IntroLock(self, enable: bool) -> Any:
-        """方法 IntroLock"""
-        raise NotImplementedError("方法 IntroLock 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("IntroLock--------------------")
+        mplew.writeShort(SendPacketOpcode.CYGNUS_INTRO_LOCK.getValue())
+        mplew.write(enable ? 1 : 0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def IntroDisableUI(self, enable: bool) -> Any:
-        """方法 IntroDisableUI"""
-        raise NotImplementedError("方法 IntroDisableUI 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("IntroDisableUI--------------------")
+        mplew.writeShort(SendPacketOpcode.CYGNUS_INTRO_DISABLE_UI.getValue())
+        mplew.write(enable ? 1 : 0)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def fishingUpdate(self, type: int, id: int) -> Any:
-        """方法 fishingUpdate"""
-        raise NotImplementedError("方法 fishingUpdate 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("fishingUpdate--------------------")
+        mplew.writeShort(SendPacketOpcode.FISHING_BOARD_UPDATE.getValue())
+        mplew.write(type)
+        mplew.writeInt(id)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 
     def fishingCaught(self, chrid: int) -> Any:
-        """方法 fishingCaught"""
-        raise NotImplementedError("方法 fishingCaught 尚未实现")
+        mplew = MaplePacketLittleEndianWriter()
+        if ServerConstants.调试输出封包:
+            print("fishingCaught--------------------")
+        mplew.writeShort(SendPacketOpcode.FISHING_CAUGHT.getValue())
+        mplew.writeInt(chrid)
+        if ServerConstants.PACKET_ERROR_OFF:
+            ERROR = ServerConstants()
+            ERROR.setPACKET_ERROR(" 暂未定义 ：\r\n" + mplew.getPacket() + "\r\n\r\n")
+        return mplew.getPacket()
 

@@ -1,14 +1,15 @@
 """
-MapleQuestRequirementType - 从Java源文件转换而来
-对应Java源文件: server/quest/MapleQuestRequirementType.java
-包路径: server.quest
+MapleQuestRequirementType - Converted from Java source
+Original: server/quest/MapleQuestRequirementType.java
+Package: server.quest
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleQuestRequirementType(Enum):
-    """枚举类 MapleQuestRequirementType - 从Java枚举转换"""
+    """Enum MapleQuestRequirementType"""
 
     UNDEFINED = (-1)
     job = (0)
@@ -32,18 +33,20 @@ class MapleQuestRequirementType(Enum):
     mbcard = (17)
 
     def getITEM(self) -> Any:
-        """方法 getITEM"""
-        return getattr(self, 'item', None)
+        return MapleQuestRequirementType.item
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getByType(self, type: int) -> Any:
-        """方法 getByType"""
-        raise NotImplementedError("方法 getByType 尚未实现")
+        for l in values():
+            if l.getType() == type:
+                return l
+        return None
 
     def getByWZName(self, name: str) -> Any:
-        """方法 getByWZName"""
-        raise NotImplementedError("方法 getByWZName 尚未实现")
+        try:
+            return valueOf(name)
+        except IllegalArgumentException as ex:
+            return MapleQuestRequirementType.UNDEFINED
 

@@ -1,36 +1,32 @@
 """
-AbstractAnimatedMapleMapObject - 从Java源文件转换而来
-对应Java源文件: server/maps/AbstractAnimatedMapleMapObject.java
-包路径: server.maps
+AbstractAnimatedMapleMapObject - Converted from Java source
+Original: server/maps/AbstractAnimatedMapleMapObject.java
+Package: server.maps
 """
+
+from typing import Optional, Any
 
 
 class AbstractAnimatedMapleMapObject(AbstractMapleMapObject, AnimatedMapleMapObject, ABC):
     """
-    类 AbstractAnimatedMapleMapObject - 从Java类转换
-    继承自: AbstractMapleMapObject
-    实现接口: AnimatedMapleMapObject
+    Class AbstractAnimatedMapleMapObject
+    Extends: AbstractMapleMapObject
+    Implements: AnimatedMapleMapObject
     """
 
     def __init__(self):
-        """初始化 AbstractAnimatedMapleMapObject"""
         self.stance = 0
 
 
     def getStance(self) -> int:
-        """方法 getStance"""
-        return getattr(self, 'stance', 0)
+        return self.stance
 
     def setStance(self, stance: int) -> None:
-        """方法 setStance"""
         self.stance = stance
-        return None
 
     def isFacingLeft(self) -> bool:
-        """方法 isFacingLeft"""
-        return bool(getattr(self, 'facing_left', False))
+        return self.getStance() % 2 != 0
 
     def getFacingDirection(self) -> int:
-        """方法 getFacingDirection"""
-        return getattr(self, 'facing_direction', 0)
+        return self.getStance() % 2
 

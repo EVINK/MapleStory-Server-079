@@ -1,32 +1,30 @@
 """
-ByteInputStream - 从Java源文件转换而来
-对应Java源文件: tools/data/input/ByteInputStream.java
-包路径: tools.data.input
+ByteInputStream - Converted from Java source
+Original: tools/data/input/ByteInputStream.java
+Package: tools.data.input
 """
+
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class ByteInputStream(ABC):
-    """接口 ByteInputStream - 从Java接口转换"""
+    """Interface ByteInputStream"""
 
     @abstractmethod
-    def read_byte(self) -> Any:
-        """抽象方法 readByte"""
+    def readByte(self) -> int:
         pass
 
     @abstractmethod
-    def get_bytes_read(self) -> Any:
-        """抽象方法 getBytesRead"""
+    def getBytesRead(self) -> int:
         pass
 
     @abstractmethod
-    def available(self) -> Any:
-        """抽象方法 available"""
+    def available(self) -> int:
         pass
 
     @abstractmethod
-    def to_string(self, p0: bool) -> Any:
-        """抽象方法 toString"""
+    def toString(self, p0: bool) -> str:
         pass
 

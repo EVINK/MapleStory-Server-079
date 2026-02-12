@@ -1,7 +1,7 @@
 """
-MapleOla - 从Java源文件转换而来
-对应Java源文件: server/events/MapleOla.java
-包路径: server.events
+MapleOla - Converted from Java source
+Original: server/events/MapleOla.java
+Package: server.events
 """
 
 from concurrent.futures import Future
@@ -10,69 +10,86 @@ import sched
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from server.Randomizer import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from server.Randomizer import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleOla(MapleEvent):
     """
-    类 MapleOla - 从Java类转换
-    继承自: MapleEvent
+    Class MapleOla
+    Extends: MapleEvent
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 845748150824
 
     def __init__(self, channel: int, mapid: list):
-        """初始化 MapleOla"""
         self.time = 600000
         self.timeStarted = 0
+        super(channel, mapid)
+        self.timeStarted = 0
+        self.stages = new int[3]
 
 
     def finished(self, chr: Any) -> None:
-        """方法 finished"""
-        pass
+        self.givePrize(chr)
 
     def onMapLoad(self, chr: Any) -> None:
-        """方法 onMapLoad"""
-        pass
+        if self.isTimerStarted():
+            chr.getClient().getSession().write(MaplePacketCreator.getClock((int)(self.getTimeLeft() / 1000)))
 
     def startEvent(self) -> None:
-        """方法 startEvent"""
-        pass
+        self.unreset()
+        super.reset()
+        self.broadcast(MaplePacketCreator.getClock(600))
+        self.timeStarted = int(time.time() * 1000)
+        final Timer.EventTimer instance = Timer.EventTimer.getInstance()
+        r = Runnable()
+            public void run()
+                for i in range(MapleOla.self.len(mapid)):
+                    for chr in MapleOla.self.getMap(i).getCharactersThreadsafe():
+                        MapleOla.self.warpBack(chr)
+                    MapleOla.self.unreset()
+        self.getClass()
+        self.olaSchedule = instance.schedule(r, 600000)
+        self.broadcast(MaplePacketCreator.serverNotice(0, "门已打开。按箭头↑键进入入口."))
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        for i in range(MapleOla.self.len(mapid)):
+            for chr in MapleOla.self.getMap(i).getCharactersThreadsafe():
+                MapleOla.self.warpBack(chr)
+            MapleOla.self.unreset()
 
     def isTimerStarted(self) -> bool:
-        """方法 isTimerStarted"""
-        return bool(getattr(self, 'timer_started', False))
+        return self.timeStarted > 0
 
     def getTime(self) -> int:
-        """方法 getTime"""
-        return getattr(self, 'time', 0)
+        return 600000
 
     def resetSchedule(self) -> None:
-        """方法 resetSchedule"""
-        pass
+        self.timeStarted = 0
+        if self.olaSchedule is not None:
+            self.olaSchedule.cancel(False)
+        self.olaSchedule = None
 
     def reset(self) -> None:
-        """方法 reset"""
-        pass
+        super.reset()
+        self.resetSchedule()
+        self.getMap(0).getPortal("join00").setPortalState(False)
+        self.stages = new int[] { 0, 0, 0 }
 
     def unreset(self) -> None:
-        """方法 unreset"""
-        pass
+        super.unreset()
+        self.resetSchedule()
+        self.getMap(0).getPortal("join00").setPortalState(True)
+        self.stages = new int[] { Randomizer.nextInt(5), Randomizer.nextInt(8), Randomizer.nextInt(15) }
 
     def getTimeLeft(self) -> int:
-        """方法 getTimeLeft"""
-        return getattr(self, 'time_left', 0)
+        return 600000 - (int(time.time() * 1000) - self.timeStarted)
 
     def isCharCorrect(self, portalName: str, mapid: int) -> bool:
-        """方法 isCharCorrect"""
-        return False
+        st = self.stages[mapid % 10 - 1]
+        return portalName == ("ch" + ((st < 10) ? "0" : "") + st)
 

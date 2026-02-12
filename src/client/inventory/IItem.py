@@ -1,7 +1,7 @@
 """
-IItem - 从Java源文件转换而来
-对应Java源文件: client/inventory/IItem.java
-包路径: client.inventory
+IItem - Converted from Java source
+Original: client/inventory/IItem.java
+Package: client.inventory
 """
 
 from typing import Optional, Any
@@ -11,145 +11,117 @@ import threading
 from abc import ABC, abstractmethod
 
 class IItem(ABC):
-    """接口 IItem - 从Java接口转换"""
+    """Interface IItem"""
 
     @abstractmethod
-    def get_type(self) -> Any:
-        """抽象方法 getType"""
+    def getType(self) -> int:
         pass
 
     @abstractmethod
-    def get_position(self) -> Any:
-        """抽象方法 getPosition"""
+    def getPosition(self) -> int:
         pass
 
     @abstractmethod
-    def get_flag(self) -> Any:
-        """抽象方法 getFlag"""
+    def getFlag(self) -> int:
         pass
 
     @abstractmethod
-    def get_locked(self) -> Any:
-        """抽象方法 getLocked"""
+    def getLocked(self) -> bool:
         pass
 
     @abstractmethod
-    def get_quantity(self) -> Any:
-        """抽象方法 getQuantity"""
+    def getQuantity(self) -> int:
         pass
 
     @abstractmethod
-    def get_owner(self) -> Any:
-        """抽象方法 getOwner"""
+    def getOwner(self) -> str:
         pass
 
     @abstractmethod
-    def get_gm_log(self) -> Any:
-        """抽象方法 getGMLog"""
+    def getGMLog(self) -> str:
         pass
 
     @abstractmethod
-    def get_item_id(self) -> Any:
-        """抽象方法 getItemId"""
+    def getItemId(self) -> int:
         pass
 
     @abstractmethod
-    def get_pet(self) -> Any:
-        """抽象方法 getPet"""
+    def getPet(self) -> Any:
         pass
 
     @abstractmethod
-    def get_unique_id(self) -> Any:
-        """抽象方法 getUniqueId"""
+    def getUniqueId(self) -> int:
         pass
 
     @abstractmethod
     def copy(self) -> Any:
-        """抽象方法 copy"""
         pass
 
     @abstractmethod
-    def get_expiration(self) -> Any:
-        """抽象方法 getExpiration"""
+    def getExpiration(self) -> int:
         pass
 
     @abstractmethod
-    def set_flag(self, p0: int) -> Any:
-        """抽象方法 setFlag"""
+    def setFlag(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_locked(self, p0: int) -> Any:
-        """抽象方法 setLocked"""
+    def setLocked(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_unique_id(self, p0: int) -> Any:
-        """抽象方法 setUniqueId"""
+    def setUniqueId(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_position(self, p0: int) -> Any:
-        """抽象方法 setPosition"""
+    def setPosition(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_expiration(self, p0: int) -> Any:
-        """抽象方法 setExpiration"""
+    def setExpiration(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_owner(self, p0: str) -> Any:
-        """抽象方法 setOwner"""
+    def setOwner(self, p0: str) -> None:
         pass
 
     @abstractmethod
-    def set_gm_log(self, p0: str) -> Any:
-        """抽象方法 setGMLog"""
+    def setGMLog(self, p0: str) -> None:
         pass
 
     @abstractmethod
-    def set_quantity(self, p0: int) -> Any:
-        """抽象方法 setQuantity"""
+    def setQuantity(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def set_gift_from(self, p0: str) -> Any:
-        """抽象方法 setGiftFrom"""
+    def setGiftFrom(self, p0: str) -> None:
         pass
 
     @abstractmethod
-    def set_equip_level(self, p0: int) -> Any:
-        """抽象方法 setEquipLevel"""
+    def setEquipLevel(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def get_equip_level(self) -> Any:
-        """抽象方法 getEquipLevel"""
+    def getEquipLevel(self) -> int:
         pass
 
     @abstractmethod
-    def get_gift_from(self) -> Any:
-        """抽象方法 getGiftFrom"""
+    def getGiftFrom(self) -> str:
         pass
 
     @abstractmethod
-    def get_ring(self) -> Any:
-        """抽象方法 getRing"""
+    def getRing(self) -> Any:
         pass
 
     @abstractmethod
-    def get_equip_only_id(self) -> Any:
-        """抽象方法 getEquipOnlyId"""
+    def getEquipOnlyId(self) -> int:
         pass
 
     @abstractmethod
-    def has_set_only_id(self) -> Any:
-        """抽象方法 hasSetOnlyId"""
+    def hasSetOnlyId(self) -> bool:
         pass
 
     @abstractmethod
-    def set_equip_only_id(self, p0: int) -> Any:
-        """抽象方法 setEquipOnlyId"""
+    def setEquipOnlyId(self, p0: int) -> None:
         pass
 

@@ -1,25 +1,25 @@
 """
-BuddyEntry - 从Java源文件转换而来
-对应Java源文件: client/BuddyEntry.java
-包路径: client
+BuddyEntry - Converted from Java source
+Original: client/BuddyEntry.java
+Package: client
 """
 
 from pymysql import Connection
 from pymysql import Error
 from pymysql.cursors import Cursor
+from typing import Optional, Any
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
 
 
 class BuddyEntry:
     """
-    类 BuddyEntry - 从Java类转换
+    Class BuddyEntry
     """
 
     def __init__(self, name: str, characterId: int, group: str, channel: int, visible: bool, level: int, job: int):
-        """初始化 BuddyEntry"""
         self.name = None
         self.group = ""
         self.characterId = None
@@ -27,72 +27,88 @@ class BuddyEntry:
         self.job = None
         self.visible = False
         self.channel = 0
+        self.name = name
+        self.characterId = characterId
+        self.group = group
+        self.channel = channel
+        self.visible = visible
+        self.level = level
+        self.job = job
 
 
     def getByNameFromDB(self, buddyName: str) -> Any:
-        """方法 getByNameFromDB"""
-        raise NotImplementedError("方法 getByNameFromDB 尚未实现")
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT id, name, level, job FROM characters WHERE name = ?")
+            ps.setString(1, buddyName)
+            rs = ps.executeQuery()
+            if rs.next():
+                return BuddyEntry(rs.getString("name"), rs.getInt("id"), BuddyList.DEFAULT_GROUP, -1, False, rs.getInt("level"), rs.getInt("job"))
+            return None
+        except Exception as ex:
+            ex.printStackTrace()
+            return None
 
     def getByIdfFromDB(self, buddyCharId: int) -> Any:
-        """方法 getByIdfFromDB"""
-        raise NotImplementedError("方法 getByIdfFromDB 尚未实现")
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT id, name, level, job FROM characters WHERE id = ?")
+            ps.setInt(1, buddyCharId)
+            rs = ps.executeQuery()
+            if rs.next():
+                return BuddyEntry(rs.getString("name"), rs.getInt("id"), BuddyList.DEFAULT_GROUP, -1, True, rs.getInt("level"), rs.getInt("job"))
+            return None
+        except Exception as ex:
+            ex.printStackTrace()
+            return None
 
     def getChannel(self) -> int:
-        """方法 getChannel"""
-        return getattr(self, 'channel', 0)
+        return self.channel
 
     def setChannel(self, channel: int) -> None:
-        """方法 setChannel"""
         self.channel = channel
-        return None
 
     def isOnline(self) -> bool:
-        """方法 isOnline"""
-        return bool(getattr(self, 'online', False))
+        return self.channel >= 0
 
     def setOffline(self) -> None:
-        """方法 setOffline"""
-        pass
+        self.channel = -1
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getCharacterId(self) -> int:
-        """方法 getCharacterId"""
-        return getattr(self, 'character_id', 0)
+        return self.characterId
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def getJob(self) -> int:
-        """方法 getJob"""
-        return getattr(self, 'job', 0)
+        return self.job
 
     def setVisible(self, visible: bool) -> None:
-        """方法 setVisible"""
         self.visible = visible
-        return None
 
     def isVisible(self) -> bool:
-        """方法 isVisible"""
-        return bool(getattr(self, 'visible', False))
+        return self.visible
 
     def getGroup(self) -> str:
-        """方法 getGroup"""
-        return getattr(self, 'group', "")
+        return self.group
 
     def setGroup(self, newGroup: str) -> None:
-        """方法 setGroup"""
         self.group = newGroup
-        return None
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        prime = 31
+        result = 1
+        result = prime * result + self.characterId
+        return result
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        other = obj
+        return self.characterId == other.characterId
 

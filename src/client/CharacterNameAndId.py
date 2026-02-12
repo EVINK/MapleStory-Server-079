@@ -1,41 +1,42 @@
 """
-CharacterNameAndId - 从Java源文件转换而来
-对应Java源文件: client/CharacterNameAndId.java
-包路径: client
+CharacterNameAndId - Converted from Java source
+Original: client/CharacterNameAndId.java
+Package: client
 """
+
+from typing import Optional, Any
 
 
 class CharacterNameAndId:
     """
-    类 CharacterNameAndId - 从Java类转换
+    Class CharacterNameAndId
     """
 
     def __init__(self, id: int, name: str, level: int, job: int, group: str):
-        """初始化 CharacterNameAndId"""
         self.id = None
         self.level = None
         self.job = None
         self.name = None
         self.group = None
+        self.id = id
+        self.name = name
+        self.level = level
+        self.job = job
+        self.group = group
 
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getGroup(self) -> str:
-        """方法 getGroup"""
-        return getattr(self, 'group', "")
+        return self.group
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def getJob(self) -> int:
-        """方法 getJob"""
-        return getattr(self, 'job', 0)
+        return self.job
 

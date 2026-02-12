@@ -1,36 +1,40 @@
 """
-MapleDataProviderFactory - 从Java源文件转换而来
-对应Java源文件: provider/MapleDataProviderFactory.java
-包路径: provider
+MapleDataProviderFactory - Converted from Java source
+Original: provider/MapleDataProviderFactory.java
+Package: provider
 """
 
 from pathlib import Path
+from typing import Optional, Any
 import os
+import sys
 
-# 内部模块导入 (Internal module imports)
-# from provider.WzXML.XMLWZFile import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.WzXML.XMLWZFile import *  # TODO: import specific classes
 
 
 class MapleDataProviderFactory:
     """
-    类 MapleDataProviderFactory - 从Java类转换
+    Class MapleDataProviderFactory
     """
+
+    # Static initializer
+    # wzPath = os.environ.get("wzPath", "wz")
 
 
     @staticmethod
     def getWZ(in: Any, provideImages: bool) -> Any:
-        """方法 getWZ"""
-        raise NotImplementedError("方法 getWZ 尚未实现")
+        if isinstance(in, File):
+            fileIn = in
+            return XMLWZFile(fileIn)
+        raise ValueError("Can't create data provider for input " + in)
 
     def getDataProvider(self, in: Any) -> Any:
-        """方法 getDataProvider"""
-        raise NotImplementedError("方法 getDataProvider 尚未实现")
+        return getWZ(in, False)
 
     def getImageProvidingDataProvider(self, in: Any) -> Any:
-        """方法 getImageProvidingDataProvider"""
-        raise NotImplementedError("方法 getImageProvidingDataProvider 尚未实现")
+        return getWZ(in, True)
 
     def fileInwzPath(self, filename: str) -> Any:
-        """方法 fileInwzPath"""
-        raise NotImplementedError("方法 fileInwzPath 尚未实现")
+        return File(MapleDataProviderFactory.wzPath, filename)
 

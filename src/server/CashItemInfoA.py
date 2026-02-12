@@ -1,22 +1,21 @@
 """
-CashItemInfoA - 从Java源文件转换而来
-对应Java源文件: server/CashItemInfoA.java
-包路径: server
+CashItemInfoA - Converted from Java source
+Original: server/CashItemInfoA.java
+Package: server
 """
 
 from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
 
 
 class CashItemInfoA:
     """
-    类 CashItemInfoA - 从Java类转换
+    Class CashItemInfoA
     """
 
     def __init__(self, SN: int, itemId: int, count: int, price: int, period: int, gender: int, onSale: bool):
-        """初始化 CashItemInfoA"""
         self.SN = None
         self.itemId = None
         self.count = None
@@ -24,49 +23,48 @@ class CashItemInfoA:
         self.period = None
         self.gender = None
         self.onSale = None
+        self.SN = SN
+        self.itemId = itemId
+        self.count = count
+        self.price = price
+        self.period = period
+        self.gender = gender
+        self.onSale = onSale
 
 
     def getInventoryType(self, itemId: int) -> Any:
-        """方法 getInventoryType"""
-        raise NotImplementedError("方法 getInventoryType 尚未实现")
+        type = (byte)(itemId / 1000000)
+        if type < 1 || type > 5:
+            return MapleInventoryType.UNDEFINED
+        return MapleInventoryType.getByType(type)
 
     def getSN(self) -> int:
-        """方法 getSN"""
-        return getattr(self, 'sn', 0)
+        return self.SN
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.itemId
 
     def genderEquals(self, g: int) -> bool:
-        """方法 genderEquals"""
-        return False
+        return g == self.gender || self.gender == 2
 
     def getItemId(self) -> int:
-        """方法 getItemId"""
-        return getattr(self, 'item_id', 0)
+        return self.itemId
 
     def getCount(self) -> int:
-        """方法 getCount"""
-        return getattr(self, 'count', 0)
+        return self.count
 
     def getPrice(self) -> int:
-        """方法 getPrice"""
-        return getattr(self, 'price', 0)
+        return self.price
 
     def getPeriod(self) -> int:
-        """方法 getPeriod"""
-        return getattr(self, 'period', 0)
+        return self.period
 
     def getGender(self) -> int:
-        """方法 getGender"""
-        return getattr(self, 'gender', 0)
+        return self.gender
 
     def onSale(self) -> bool:
-        """方法 onSale"""
-        return False
+        return self.onSale
 
-    def getItemId(self, i: int) -> int:
-        """方法 getItemId"""
-        return 0
+    def getItemId_i(self, i: int) -> int:
+        return self.itemId
 

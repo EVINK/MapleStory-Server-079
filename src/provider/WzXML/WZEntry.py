@@ -1,46 +1,46 @@
 """
-WZEntry - 从Java源文件转换而来
-对应Java源文件: provider/WzXML/WZEntry.java
-包路径: provider.WzXML
+WZEntry - Converted from Java source
+Original: provider/WzXML/WZEntry.java
+Package: provider.WzXML
 """
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleDataEntity import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataEntry import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from provider.MapleDataEntity import *  # TODO: import specific classes
+# from provider.MapleDataEntry import *  # TODO: import specific classes
 
 
 class WZEntry(MapleDataEntry):
     """
-    类 WZEntry - 从Java类转换
-    实现接口: MapleDataEntry
+    Class WZEntry
+    Implements: MapleDataEntry
     """
 
     def __init__(self, name: str, size: int, checksum: int, parent: Any):
-        """初始化 WZEntry"""
         self.name = None
         self.size = None
         self.checksum = None
         self.offset = 0
         self.parent = None
+        self.name = name
+        self.size = size
+        self.checksum = checksum
+        self.parent = parent
 
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getSize(self) -> int:
-        """方法 getSize"""
-        return getattr(self, 'size', 0)
+        return self.size
 
     def getChecksum(self) -> int:
-        """方法 getChecksum"""
-        return getattr(self, 'checksum', 0)
+        return self.checksum
 
     def getOffset(self) -> int:
-        """方法 getOffset"""
-        return getattr(self, 'offset', 0)
+        return self.offset
 
     def getParent(self) -> Any:
-        """方法 getParent"""
-        return getattr(self, 'parent', None)
+        return self.parent
 

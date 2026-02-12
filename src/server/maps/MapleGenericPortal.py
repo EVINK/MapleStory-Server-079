@@ -1,28 +1,27 @@
 """
-MapleGenericPortal - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleGenericPortal.java
-包路径: server.maps
+MapleGenericPortal - Converted from Java source
+Original: server/maps/MapleGenericPortal.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.anticheat.CheatingOffense import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from scripting.PortalScriptManager import *  # TODO: 根据实际需要导入具体类
-# from server.MaplePortal import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.anticheat.CheatingOffense import *  # TODO: import specific classes
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from scripting.PortalScriptManager import *  # TODO: import specific classes
+# from server.MaplePortal import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleGenericPortal(MaplePortal):
     """
-    类 MapleGenericPortal - 从Java类转换
-    实现接口: MaplePortal
+    Class MapleGenericPortal
+    Implements: MaplePortal
     """
 
     def __init__(self, type: int):
-        """初始化 MapleGenericPortal"""
         self.name = ""
         self.target = ""
         self.scriptName = ""
@@ -31,76 +30,82 @@ class MapleGenericPortal(MaplePortal):
         self.type = None
         self.id = 0
         self.portalState = False
+        self.portalState = True
+        self.type = type
 
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def setId(self, id: int) -> None:
-        """方法 setId"""
         self.id = id
-        return None
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        return self.position
 
     def getTarget(self) -> str:
-        """方法 getTarget"""
-        return getattr(self, 'target', "")
+        return self.target
 
     def getTargetMapId(self) -> int:
-        """方法 getTargetMapId"""
-        return getattr(self, 'target_map_id', 0)
+        return self.targetmap
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getScriptName(self) -> str:
-        """方法 getScriptName"""
-        return getattr(self, 'script_name', "")
+        return self.scriptName
 
     def setName(self, name: str) -> None:
-        """方法 setName"""
         self.name = name
-        return None
 
     def setPosition(self, position: Any) -> None:
-        """方法 setPosition"""
         self.position = position
-        return None
 
     def setTarget(self, target: str) -> None:
-        """方法 setTarget"""
         self.target = target
-        return None
 
     def setTargetMapId(self, targetmapid: int) -> None:
-        """方法 setTargetMapId"""
-        self.target_map_id = targetmapid
-        return None
+        self.targetmap = targetmapid
 
     def setScriptName(self, scriptName: str) -> None:
-        """方法 setScriptName"""
-        self.script_name = scriptName
-        return None
+        self.scriptName = scriptName
 
     def enterPortal(self, c: Any) -> None:
-        """方法 enterPortal"""
-        pass
+        if self.getPosition().distanceSq(c.getPlayer().getPosition()) > 22500.0:
+            c.getPlayer().getCheatTracker().registerOffense(CheatingOffense.使用过远传送点)
+        currentmap = c.getPlayer().getMap()
+        if self.portalState || c.getPlayer().isGM():
+            if self.getScriptName() is not None:
+                c.getPlayer().checkFollow()
+                try:
+                    PortalScriptManager.getInstance().executePortalScript(this, c)
+                except Exception as e:
+                    e.printStackTrace()
+            elif self.getTargetMapId() != 999999999:
+                to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(self.getTargetMapId())
+                if !c.getPlayer().isGM():
+                    if to is None:
+                        c.getPlayer().dropMessage(5, "本地图目前尚未开放.")
+                        c.getSession().write(MaplePacketCreator.enableActions())
+                        return
+                    if to.getLevelLimit() > 0 && to.getLevelLimit() > c.getPlayer().getLevel():
+                        c.getPlayer().dropMessage(5, "You are too low of a level to enter this place.")
+                        c.getSession().write(MaplePacketCreator.enableActions())
+                        return
+                elif to is None:
+                    c.getPlayer().dropMessage(5, "本地图目前尚未开放.")
+                    c.getSession().write(MaplePacketCreator.enableActions())
+                    return
+                c.getPlayer().changeMapPortal(to, (to.getPortal(self.getTarget()) is None) ? to.getPortal(0) : to.getPortal(self.getTarget()))
+        if c is not None && c.getPlayer() is not None && c.getPlayer().getMap() == currentmap:
+            c.getSession().write(MaplePacketCreator.enableActions())
 
     def getPortalState(self) -> bool:
-        """方法 getPortalState"""
-        return getattr(self, 'portal_state', False)
+        return self.portalState
 
     def setPortalState(self, ps: bool) -> None:
-        """方法 setPortalState"""
-        self.portal_state = ps
-        return None
+        self.portalState = ps
 

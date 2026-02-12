@@ -1,29 +1,27 @@
 """
-AttackInfo - 从Java源文件转换而来
-对应Java源文件: handling/channel/handler/AttackInfo.java
-包路径: handling.channel.handler
+AttackInfo - Converted from Java source
+Original: handling/channel/handler/AttackInfo.java
+Package: handling.channel.handler
 """
 
-from dataclasses import dataclass
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.ISkill import *  # TODO: 根据实际需要导入具体类
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.SkillFactory import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from server.MapleStatEffect import *  # TODO: 根据实际需要导入具体类
-# from tools.AttackPair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.ISkill import *  # TODO: import specific classes
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.SkillFactory import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from server.MapleStatEffect import *  # TODO: import specific classes
+# from tools.AttackPair import *  # TODO: import specific classes
 
 
 class AttackInfo:
     """
-    类 AttackInfo - 从Java类转换
+    Class AttackInfo
     """
 
     def __init__(self):
-        """初始化 AttackInfo"""
         self.skill = 0
         self.charge = 0
         self.lastAttackTickCount = 0
@@ -41,9 +39,22 @@ class AttackInfo:
         self.unk = 0
         self.real = False
         self.isCloseRangeAttack = False
+        self.real = True
+        self.isCloseRangeAttack = False
 
 
     def getAttackEffect(self, chr: Any, skillLevel: int, skill_: Any) -> Any:
-        """方法 getAttackEffect"""
-        raise NotImplementedError("方法 getAttackEffect 尚未实现")
+        if GameConstants.isMulungSkill(self.skill) || GameConstants.isPyramidSkill(self.skill):
+            skillLevel = 1
+        elif skillLevel <= 0:
+            return None
+        if GameConstants.isLinkedAranSkill(self.skill):
+            skillLink = SkillFactory.getSkill(self.skill)
+            if self.display > 80 && !skillLink.getAction():
+                return None
+            return skillLink.getEffect(skillLevel)
+        else:
+            if self.display > 80 && !skill_.getAction():
+                return None
+            return skill_.getEffect(skillLevel)
 

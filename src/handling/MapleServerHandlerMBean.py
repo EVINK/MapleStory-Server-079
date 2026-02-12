@@ -1,17 +1,18 @@
 """
-MapleServerHandlerMBean - 从Java源文件转换而来
-对应Java源文件: handling/MapleServerHandlerMBean.java
-包路径: handling
+MapleServerHandlerMBean - Converted from Java source
+Original: handling/MapleServerHandlerMBean.java
+Package: handling
 """
+
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class MapleServerHandlerMBean(ABC):
-    """接口 MapleServerHandlerMBean - 从Java接口转换"""
+    """Interface MapleServerHandlerMBean"""
 
     @abstractmethod
-    def write_log(self) -> Any:
-        """抽象方法 writeLog"""
+    def writeLog(self) -> None:
         pass
 

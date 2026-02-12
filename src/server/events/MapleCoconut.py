@@ -1,28 +1,27 @@
 """
-MapleCoconut - 从Java源文件转换而来
-对应Java源文件: server/events/MapleCoconut.java
-包路径: server.events
+MapleCoconut - Converted from Java source
+Original: server/events/MapleCoconut.java
+Package: server.events
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleCoconut(MapleEvent):
     """
-    类 MapleCoconut - 从Java类转换
-    继承自: MapleEvent
+    Class MapleCoconut
+    Extends: MapleEvent
     """
 
     def __init__(self, channel: int, mapid: list):
-        """初始化 MapleCoconut"""
         self.coconuts = None
         self.countBombing = 0
         self.countFalling = 0
@@ -31,285 +30,237 @@ class MapleCoconut(MapleEvent):
         self.hittable = False
         self.stopped = False
         self.hittime = 0
+        super(channel, mapid)
+        self.coconuts = []
+        self.coconutscore = new int[2]
+        self.countBombing = 0
+        self.countFalling = 0
+        self.countStopped = 0
 
 
     def reset(self) -> None:
-        """方法 reset"""
-        pass
+        super.reset()
+        self.resetCoconutScore()
 
     def unreset(self) -> None:
-        """方法 unreset"""
-        pass
+        super.unreset()
+        self.resetCoconutScore()
+        self.setHittable(False)
 
     def onMapLoad(self, chr: Any) -> None:
-        """方法 onMapLoad"""
-        pass
+        chr.getClient().getSession().write(MaplePacketCreator.coconutScore(self.getCoconutScore()))
 
     def getCoconut(self, id: int) -> Any:
-        """方法 getCoconut"""
-        raise NotImplementedError("方法 getCoconut 尚未实现")
+        return self.coconuts.get(id)
 
     def getAllCoconuts(self) -> list:
-        """方法 getAllCoconuts"""
-        return getattr(self, 'all_coconuts', [])
+        return self.coconuts
 
     def setHittable(self, hittable: bool) -> None:
-        """方法 setHittable"""
-        self.hittable = hittable
-        return None
+        for nut in self.coconuts:
+            nut.setHittable(hittable)
 
     def getBombings(self) -> int:
-        """方法 getBombings"""
-        return getattr(self, 'bombings', 0)
+        return self.countBombing
 
     def bombCoconut(self) -> None:
-        """方法 bombCoconut"""
-        pass
+        self.countBombing -= 1
 
     def getFalling(self) -> int:
-        """方法 getFalling"""
-        return getattr(self, 'falling', 0)
+        return self.countFalling
 
     def fallCoconut(self) -> None:
-        """方法 fallCoconut"""
-        pass
+        self.countFalling -= 1
 
     def getStopped(self) -> int:
-        """方法 getStopped"""
-        return getattr(self, 'stopped', 0)
+        return self.countStopped
 
     def stopCoconut(self) -> None:
-        """方法 stopCoconut"""
-        pass
+        self.countStopped -= 1
 
     def getCoconutScore(self) -> list:
-        """方法 getCoconutScore"""
-        return getattr(self, 'coconut_score', [])
+        return self.coconutscore
 
     def getMapleScore(self) -> int:
-        """方法 getMapleScore"""
-        return getattr(self, 'maple_score', 0)
+        return self.coconutscore[0]
 
     def getStoryScore(self) -> int:
-        """方法 getStoryScore"""
-        return getattr(self, 'story_score', 0)
+        return self.coconutscore[1]
 
     def addMapleScore(self) -> None:
-        """方法 addMapleScore"""
-        pass
+        coconutscore = self.coconutscore
+        n = 0
+        ++coconutscore[n]
 
     def addStoryScore(self) -> None:
-        """方法 addStoryScore"""
-        pass
+        coconutscore = self.coconutscore
+        n = 1
+        ++coconutscore[n]
 
     def resetCoconutScore(self) -> None:
-        """方法 resetCoconutScore"""
-        pass
+        self.coconutscore[0] = 0
+        self.coconutscore[1] = 0
+        self.countBombing = 80
+        self.countFalling = 1001
+        self.countStopped = 20
+        self.coconuts.clear()
+        for i in range(506):
+            self.coconuts.add(MapleCoconuts())
 
     def startEvent(self) -> None:
-        """方法 startEvent"""
-        pass
+        self.reset()
+        self.setHittable(True)
+        self.getMap(0).broadcastMessage(MaplePacketCreator.serverNotice(5, "活动开始!!"))
+        self.getMap(0).broadcastMessage(MaplePacketCreator.hitCoconut(True, 0, 0))
+        self.getMap(0).broadcastMessage(MaplePacketCreator.getClock(360))
+        Timer.EventTimer.getInstance().schedule(Runnable()
+            public void run()
+                if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
+                    MapleCoconut.self.bonusTime()
+                elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
+                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                        if chr.getCoconutTeam() == 0:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                        else:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                    MapleCoconut.self.warpOut()
+                else:
+                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                        if chr.getCoconutTeam() == 1:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                        else:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                    MapleCoconut.self.warpOut()
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
+            MapleCoconut.self.bonusTime()
+        elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
+            for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                if chr.getCoconutTeam() == 0:
+                    chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                    chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                else:
+                    chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                    chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+            MapleCoconut.self.warpOut()
+        else:
+            for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                if chr.getCoconutTeam() == 1:
+                    chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                    chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                else:
+                    chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                    chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+            MapleCoconut.self.warpOut()
 
     def bonusTime(self) -> None:
-        """方法 bonusTime"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+        self.getMap(0).broadcastMessage(MaplePacketCreator.getClock(120))
+        Timer.EventTimer.getInstance().schedule(Runnable()
+            public void run()
+                if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
+                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                    MapleCoconut.self.warpOut()
+                elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
+                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                        if chr.getCoconutTeam() == 0:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                        else:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                    MapleCoconut.self.warpOut()
+                else:
+                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                        if chr.getCoconutTeam() == 1:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                        else:
+                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                    MapleCoconut.self.warpOut()
 
     def warpOut(self) -> None:
-        """方法 warpOut"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
+        self.setHittable(False)
+        Timer.EventTimer.getInstance().schedule(Runnable()
+            public void run()
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    if (MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore() && chr.getCoconutTeam() == 0) || (MapleCoconut.self.getStoryScore() > MapleCoconut.self.getMapleScore() && chr.getCoconutTeam() == 1):
+                        MapleCoconut.self.givePrize(chr)
+                    MapleCoconut.self.warpBack(chr)
+                MapleCoconut.self.unreset()
 
     def hit(self) -> None:
-        """方法 hit"""
-        pass
+        self.hittime = int(time.time() * 1000) + 1000
+        self.hits += 1
 
     def getHits(self) -> int:
-        """方法 getHits"""
-        return getattr(self, 'hits', 0)
+        return self.hits
 
     def resetHits(self) -> None:
-        """方法 resetHits"""
-        pass
+        self.hits = 0
 
     def isHittable(self) -> bool:
-        """方法 isHittable"""
-        return bool(getattr(self, 'hittable', False))
+        return self.hittable
 
-    def setHittable(self, hittable: bool) -> None:
-        """方法 setHittable"""
+    def setHittable_hittable(self, hittable: bool) -> None:
         self.hittable = hittable
-        return None
 
     def isStopped(self) -> bool:
-        """方法 isStopped"""
-        return bool(getattr(self, 'stopped', False))
+        return self.stopped
 
     def setStopped(self, stopped: bool) -> None:
-        """方法 setStopped"""
         self.stopped = stopped
-        return None
 
     def getHitTime(self) -> int:
-        """方法 getHitTime"""
-        return getattr(self, 'hit_time', 0)
+        return self.hittime
 
 
+# Inner class from Java (originally nested)
 class MapleCoconuts:
     """
-    类 MapleCoconuts - 从Java类转换
+    Class MapleCoconuts
     """
 
     def __init__(self):
-        """初始化 MapleCoconuts"""
-        self.coconuts = None
-        self.countBombing = 0
-        self.countFalling = 0
-        self.countStopped = 0
         self.hits = 0
         self.hittable = False
         self.stopped = False
         self.hittime = 0
+        self.hits = 0
+        self.hittable = False
+        self.stopped = False
+        self.hittime = int(time.time() * 1000)
 
-
-    def reset(self) -> None:
-        """方法 reset"""
-        pass
-
-    def unreset(self) -> None:
-        """方法 unreset"""
-        pass
-
-    def onMapLoad(self, chr: Any) -> None:
-        """方法 onMapLoad"""
-        pass
-
-    def getCoconut(self, id: int) -> Any:
-        """方法 getCoconut"""
-        raise NotImplementedError("方法 getCoconut 尚未实现")
-
-    def getAllCoconuts(self) -> list:
-        """方法 getAllCoconuts"""
-        return getattr(self, 'all_coconuts', [])
-
-    def setHittable(self, hittable: bool) -> None:
-        """方法 setHittable"""
-        self.hittable = hittable
-        return None
-
-    def getBombings(self) -> int:
-        """方法 getBombings"""
-        return getattr(self, 'bombings', 0)
-
-    def bombCoconut(self) -> None:
-        """方法 bombCoconut"""
-        pass
-
-    def getFalling(self) -> int:
-        """方法 getFalling"""
-        return getattr(self, 'falling', 0)
-
-    def fallCoconut(self) -> None:
-        """方法 fallCoconut"""
-        pass
-
-    def getStopped(self) -> int:
-        """方法 getStopped"""
-        return getattr(self, 'stopped', 0)
-
-    def stopCoconut(self) -> None:
-        """方法 stopCoconut"""
-        pass
-
-    def getCoconutScore(self) -> list:
-        """方法 getCoconutScore"""
-        return getattr(self, 'coconut_score', [])
-
-    def getMapleScore(self) -> int:
-        """方法 getMapleScore"""
-        return getattr(self, 'maple_score', 0)
-
-    def getStoryScore(self) -> int:
-        """方法 getStoryScore"""
-        return getattr(self, 'story_score', 0)
-
-    def addMapleScore(self) -> None:
-        """方法 addMapleScore"""
-        pass
-
-    def addStoryScore(self) -> None:
-        """方法 addStoryScore"""
-        pass
-
-    def resetCoconutScore(self) -> None:
-        """方法 resetCoconutScore"""
-        pass
-
-    def startEvent(self) -> None:
-        """方法 startEvent"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def bonusTime(self) -> None:
-        """方法 bonusTime"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def warpOut(self) -> None:
-        """方法 warpOut"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
 
     def hit(self) -> None:
-        """方法 hit"""
-        pass
+        self.hittime = int(time.time() * 1000) + 1000
+        self.hits += 1
 
     def getHits(self) -> int:
-        """方法 getHits"""
-        return getattr(self, 'hits', 0)
+        return self.hits
 
     def resetHits(self) -> None:
-        """方法 resetHits"""
-        pass
+        self.hits = 0
 
     def isHittable(self) -> bool:
-        """方法 isHittable"""
-        return bool(getattr(self, 'hittable', False))
+        return self.hittable
 
     def setHittable(self, hittable: bool) -> None:
-        """方法 setHittable"""
         self.hittable = hittable
-        return None
 
     def isStopped(self) -> bool:
-        """方法 isStopped"""
-        return bool(getattr(self, 'stopped', False))
+        return self.stopped
 
     def setStopped(self, stopped: bool) -> None:
-        """方法 setStopped"""
         self.stopped = stopped
-        return None
 
     def getHitTime(self) -> int:
-        """方法 getHitTime"""
-        return getattr(self, 'hit_time', 0)
+        return self.hittime
 

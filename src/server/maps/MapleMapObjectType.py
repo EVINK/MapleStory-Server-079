@@ -1,14 +1,15 @@
 """
-MapleMapObjectType - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleMapObjectType.java
-包路径: server.maps
+MapleMapObjectType - Converted from Java source
+Original: server/maps/MapleMapObjectType.java
+Package: server.maps
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleMapObjectType(Enum):
-    """枚举类 MapleMapObjectType - 从Java枚举转换"""
+    """Enum MapleMapObjectType"""
 
     NPC = 0
     MONSTER = 1

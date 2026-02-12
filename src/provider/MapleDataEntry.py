@@ -1,32 +1,30 @@
 """
-MapleDataEntry - 从Java源文件转换而来
-对应Java源文件: provider/MapleDataEntry.java
-包路径: provider
+MapleDataEntry - Converted from Java source
+Original: provider/MapleDataEntry.java
+Package: provider
 """
+
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class MapleDataEntry(ABC):
-    """接口 MapleDataEntry - 从Java接口转换"""
+    """Interface MapleDataEntry"""
 
     @abstractmethod
-    def get_name(self) -> Any:
-        """抽象方法 getName"""
+    def getName(self) -> str:
         pass
 
     @abstractmethod
-    def get_size(self) -> Any:
-        """抽象方法 getSize"""
+    def getSize(self) -> int:
         pass
 
     @abstractmethod
-    def get_checksum(self) -> Any:
-        """抽象方法 getChecksum"""
+    def getChecksum(self) -> int:
         pass
 
     @abstractmethod
-    def get_offset(self) -> Any:
-        """抽象方法 getOffset"""
+    def getOffset(self) -> int:
         pass
 

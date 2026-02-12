@@ -1,29 +1,28 @@
 """
-Forum_Thread - 从Java源文件转换而来
-对应Java源文件: server/custom/forum/Forum_Thread.java
-包路径: server.custom.forum
+Forum_Thread - Converted from Java source
+Original: server/custom/forum/Forum_Thread.java
+Package: server.custom.forum
 """
 
 from pymysql import Connection
 from pymysql import Error
 from pymysql.cursors import Cursor
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from tools.FileoutputUtil import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from tools.FileoutputUtil import *  # TODO: import specific classes
 
 
 class Forum_Thread:
     """
-    类 Forum_Thread - 从Java类转换
+    Class Forum_Thread
     """
 
     def __init__(self):
-        """初始化 Forum_Thread"""
         self.ThreadId = 0
         self.sectionId = 0
         self.threadName = ""
@@ -33,113 +32,162 @@ class Forum_Thread:
         self.up = 0
         self.down = 0
 
+    # Static initializer
+    # Forum_Thread.allThread = []
+
 
     def getThreadId(self) -> int:
-        """方法 getThreadId"""
-        return getattr(self, 'thread_id', 0)
+        return self.ThreadId
 
     def setThreadId(self, threadId: int) -> None:
-        """方法 setThreadId"""
-        self.thread_id = threadId
-        return None
+        self.ThreadId = threadId
 
     def getSectionId(self) -> int:
-        """方法 getSectionId"""
-        return getattr(self, 'section_id', 0)
+        return self.sectionId
 
     def setSectionId(self, sectionId: int) -> None:
-        """方法 setSectionId"""
-        self.section_id = sectionId
-        return None
+        self.sectionId = sectionId
 
     def getThreadName(self) -> str:
-        """方法 getThreadName"""
-        return getattr(self, 'thread_name', "")
+        return self.threadName
 
     def setThreadName(self, threadName: str) -> None:
-        """方法 setThreadName"""
-        self.thread_name = threadName
-        return None
+        self.threadName = threadName
 
     def getCharacterId(self) -> int:
-        """方法 getCharacterId"""
-        return getattr(self, 'character_id', 0)
+        return self.characterId
 
     def setCharacterId(self, characterId: int) -> None:
-        """方法 setCharacterId"""
-        self.character_id = characterId
-        return None
+        self.characterId = characterId
 
     def getCharacterName(self) -> str:
-        """方法 getCharacterName"""
-        return getattr(self, 'character_name', "")
+        return self.characterName
 
     def setCharacterName(self, characterName: str) -> None:
-        """方法 setCharacterName"""
-        self.character_name = characterName
-        return None
+        self.characterName = characterName
 
     def getReleaseTime(self) -> str:
-        """方法 getReleaseTime"""
-        return getattr(self, 'release_time', "")
+        return self.releaseTime
 
     def setReleaseTime(self, releaseTime: str) -> None:
-        """方法 setReleaseTime"""
-        self.release_time = releaseTime
-        return None
+        self.releaseTime = releaseTime
 
     def getUp(self) -> int:
-        """方法 getUp"""
-        return getattr(self, 'up', 0)
+        return self.up
 
     def setUp(self, up: int) -> None:
-        """方法 setUp"""
         self.up = up
-        return None
 
     def getDown(self) -> int:
-        """方法 getDown"""
-        return getattr(self, 'down', 0)
+        return self.down
 
     def setDown(self, down: int) -> None:
-        """方法 setDown"""
         self.down = down
-        return None
 
     def getAllThread(self) -> list:
-        """方法 getAllThread"""
-        return getattr(self, 'all_thread', [])
+        return Forum_Thread.allThread
 
     def setAllThread(self, allThread: list) -> None:
-        """方法 setAllThread"""
-        self.all_thread = allThread
-        return None
+        Forum_Thread.allThread = allThread
 
     def getCurrentAllThread(self, sid: int) -> list:
-        """方法 getCurrentAllThread"""
-        return []
+        CurrentThread = []
+        for ft in Forum_Thread.allThread:
+            if ft.getSectionId() == sid:
+                CurrentThread.add(ft)
+        return CurrentThread
 
     def loadAllThread(self) -> list:
-        """方法 loadAllThread"""
-        return []
+        con = DatabaseConnection.getConnection()
+        try:
+            ps = con.prepareStatement("SELECT * FROM forum_thread")
+            rs = ps.executeQuery()
+            while rs.next():
+                Forum_Thread.allThread.add(Forum_Thread(rs.getInt("tid"), rs.getInt("sid"), rs.getString("tname"), rs.getInt("cid"), rs.getString("cname"), rs.getString("time"), rs.getInt("up"), rs.getInt("down")))
+            rs.close()
+            ps.close()
+            Forum_Reply.loadAllReply()
+            return Forum_Thread.allThread
+        except Exception as ex:
+            FileoutputUtil.outputFileError("logs/数据库异常.txt", ex)
+            return None
 
     def getThreadById(self, sid: int, tid: int) -> Any:
-        """方法 getThreadById"""
-        raise NotImplementedError("方法 getThreadById 尚未实现")
+        for ft in Forum_Thread.allThread:
+            if ft.getThreadId() == tid:
+                return ft
+        return None
 
     def getThreadByName(self, sid: int, name: str) -> Any:
-        """方法 getThreadByName"""
-        raise NotImplementedError("方法 getThreadByName 尚未实现")
+        allThread = getCurrentAllThread(sid)
+        for ft in allThread:
+            if ft.getThreadName() == (name):
+                return ft
+        return None
 
     def getThreadByNameToSql(self, sid: int, name: str) -> Any:
-        """方法 getThreadByNameToSql"""
-        raise NotImplementedError("方法 getThreadByNameToSql 尚未实现")
+        con = DatabaseConnection.getConnection()
+        try:
+            ps = con.prepareStatement("SELECT * FROM forum_thread WHERE sid = ? AND tname = ?")
+            ps.setInt(1, sid)
+            ps.setString(2, name)
+            rs = ps.executeQuery()
+            if rs.next():
+                return Forum_Thread(rs.getInt("tid"), rs.getInt("sid"), rs.getString("tname"), rs.getInt("cid"), rs.getString("cname"), rs.getString("time"), rs.getInt("up"), rs.getInt("down"))
+        except Exception as ex:
+            FileoutputUtil.outputFileError("logs/数据库异常.txt", ex)
+        return None
 
     def addThread(self, sid: int, tname: str, cid: int, cname: str) -> bool:
-        """方法 addThread"""
-        return False
+        con = DatabaseConnection.getConnection()
+        try:
+            if getThreadByName(sid, tname) is not None:
+                return False
+            query = ""
+            query.append("INSERT INTO forum_thread(sid, tname, cid, cname) VALUES (?,?,?,?)")
+            ps = con.prepareStatement(query)
+            ps.setInt(1, sid)
+            ps.setString(2, tname)
+            ps.setInt(3, cid)
+            ps.setString(4, cname)
+            ps.executeUpdate()
+            ps.close()
+            Forum_Thread.allThread.add(getThreadByNameToSql(sid, tname))
+            return True
+        except Exception as ex:
+            FileoutputUtil.outputFileError("logs/数据库异常.txt", ex)
+            return False
 
     def deleteThread(self, sid: int, tid: int, isAll: bool) -> bool:
-        """方法 deleteThread"""
-        return False
+        con = DatabaseConnection.getConnection()
+        try:
+            isExist = False
+            if isAll:
+                if getCurrentAllThread(sid) is not None:
+                    for ft in Forum_Thread.allThread:
+                        if ft.getSectionId() == sid:
+                            Forum_Reply.deleteReply(ft.getThreadId(), 0, True)
+                    Forum_Thread.allThread.removeAll(getCurrentAllThread(sid))
+                    isExist = True
+            elif getThreadById(sid, tid) is not None:
+                Forum_Thread.allThread.remove(getThreadById(sid, tid))
+                Forum_Reply.deleteReply(tid, 0, True)
+                isExist = True
+            if !isExist:
+                return isExist
+            query = ""
+            if isAll:
+                query.append("DELETE FROM forum_thread WHERE sid = ?")
+            else:
+                query.append("DELETE FROM forum_thread WHERE sid = ? AND tid = ?")
+            ps = con.prepareStatement(query)
+            ps.setInt(1, sid)
+            if !isAll:
+                ps.setInt(2, tid)
+            ps.executeUpdate()
+            ps.close()
+            return True
+        except Exception as ex:
+            FileoutputUtil.outputFileError("logs/数据库异常.txt", ex)
+            return False
 

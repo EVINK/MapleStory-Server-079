@@ -1,43 +1,37 @@
 """
-AbstractMapleMapObject - 从Java源文件转换而来
-对应Java源文件: server/maps/AbstractMapleMapObject.java
-包路径: server.maps
+AbstractMapleMapObject - Converted from Java source
+Original: server/maps/AbstractMapleMapObject.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
 
 class AbstractMapleMapObject(MapleMapObject, ABC):
     """
-    类 AbstractMapleMapObject - 从Java类转换
-    实现接口: MapleMapObject
+    Class AbstractMapleMapObject
+    Implements: MapleMapObject
     """
 
     def __init__(self):
-        """初始化 AbstractMapleMapObject"""
         self.position = None
         self.objectId = 0
+        self.position = Point()
 
 
     def getTruePosition(self) -> Any:
-        """方法 getTruePosition"""
-        return getattr(self, 'true_position', None)
+        return self.position
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        return Point(self.position)
 
     def setPosition(self, position: Any) -> None:
-        """方法 setPosition"""
-        self.position = position
-        return None
+        self.position.x = position.x
+        self.position.y = position.y
 
     def getObjectId(self) -> int:
-        """方法 getObjectId"""
-        return getattr(self, 'object_id', 0)
+        return self.objectId
 
     def setObjectId(self, id: int) -> None:
-        """方法 setObjectId"""
-        self.object_id = id
-        return None
+        self.objectId = id
 

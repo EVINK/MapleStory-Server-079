@@ -1,28 +1,26 @@
 """
-SpawnPointAreaBoss - 从Java源文件转换而来
-对应Java源文件: server/life/SpawnPointAreaBoss.java
-包路径: server.life
+SpawnPointAreaBoss - Converted from Java source
+Original: server/life/SpawnPointAreaBoss.java
+Package: server.life
 """
 
-from dataclasses import dataclass
 from typing import List
 from typing import Optional, Any
 import time
 
-# 内部模块导入 (Internal module imports)
-# from server.Randomizer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.Randomizer import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class SpawnPointAreaBoss(Spawns):
     """
-    类 SpawnPointAreaBoss - 从Java类转换
-    继承自: Spawns
+    Class SpawnPointAreaBoss
+    Extends: Spawns
     """
 
     def __init__(self, monster: Any, pos1: Any, pos2: Any, pos3: Any, mobTime: int, msg: str):
-        """初始化 SpawnPointAreaBoss"""
         self.monster = None
         self.pos1 = None
         self.pos2 = None
@@ -31,37 +29,53 @@ class SpawnPointAreaBoss(Spawns):
         self.mobTime = None
         self.spawned = None
         self.msg = None
+        self.spawned = AtomicBoolean(False)
+        self.monster = monster
+        self.pos1 = pos1
+        self.pos2 = pos2
+        self.pos3 = pos3
+        self.mobTime = ((mobTime < 0) ? -1 : (mobTime * 1000))
+        self.msg = msg
+        self.nextPossibleSpawn = int(time.time() * 1000)
 
 
     def getMonster(self) -> Any:
-        """方法 getMonster"""
-        return getattr(self, 'monster', None)
+        return self.monster
 
     def getCarnivalTeam(self) -> int:
-        """方法 getCarnivalTeam"""
-        return getattr(self, 'carnival_team', 0)
+        return -1
 
     def getCarnivalId(self) -> int:
-        """方法 getCarnivalId"""
-        return getattr(self, 'carnival_id', 0)
+        return -1
 
     def shouldSpawn(self) -> bool:
-        """方法 shouldSpawn"""
-        return False
+        return self.mobTime >= 0 && !self.spawned.get() && self.nextPossibleSpawn <= int(time.time() * 1000)
 
     def getPosition(self) -> Any:
-        """方法 getPosition"""
-        return getattr(self, 'position', None)
+        rand = Randomizer.nextInt(3)
+        return (rand == 0) ? self.pos1 : ((rand == 1) ? self.pos2 : self.pos3)
 
     def spawnMonster(self, map: Any) -> Any:
-        """方法 spawnMonster"""
-        raise NotImplementedError("方法 spawnMonster 尚未实现")
+        mob = MapleMonster(self.monster)
+        mob.setPosition(self.getPosition())
+        self.spawned.set(True)
+        mob.addListener(MonsterListener()
+            public void monsterKilled()
+                SpawnPointAreaBoss.self.nextPossibleSpawn = int(time.time() * 1000)
+                if SpawnPointAreaBoss.self.mobTime > 0:
+                    SpawnPointAreaBoss.self.nextPossibleSpawn += SpawnPointAreaBoss.self.mobTime
+                SpawnPointAreaBoss.self.spawned.set(False)
+        map.spawnMonster(mob, -2)
+        if self.msg is not None:
+            map.broadcastMessage(MaplePacketCreator.serverNotice(6, self.msg))
+        return mob
 
     def monsterKilled(self) -> None:
-        """方法 monsterKilled"""
-        pass
+        SpawnPointAreaBoss.self.nextPossibleSpawn = int(time.time() * 1000)
+        if SpawnPointAreaBoss.self.mobTime > 0:
+            SpawnPointAreaBoss.self.nextPossibleSpawn += SpawnPointAreaBoss.self.mobTime
+        SpawnPointAreaBoss.self.spawned.set(False)
 
     def getMobTime(self) -> int:
-        """方法 getMobTime"""
-        return getattr(self, 'mob_time', 0)
+        return self.mobTime
 

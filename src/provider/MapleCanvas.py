@@ -1,27 +1,26 @@
 """
-MapleCanvas - 从Java源文件转换而来
-对应Java源文件: provider/MapleCanvas.java
-包路径: provider
+MapleCanvas - Converted from Java source
+Original: provider/MapleCanvas.java
+Package: provider
 """
+
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class MapleCanvas(ABC):
-    """接口 MapleCanvas - 从Java接口转换"""
+    """Interface MapleCanvas"""
 
     @abstractmethod
-    def get_height(self) -> Any:
-        """抽象方法 getHeight"""
+    def getHeight(self) -> int:
         pass
 
     @abstractmethod
-    def get_width(self) -> Any:
-        """抽象方法 getWidth"""
+    def getWidth(self) -> int:
         pass
 
     @abstractmethod
-    def get_image(self) -> Any:
-        """抽象方法 getImage"""
+    def getImage(self) -> Any:
         pass
 

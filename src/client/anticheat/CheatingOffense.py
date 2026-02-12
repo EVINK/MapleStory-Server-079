@@ -1,14 +1,15 @@
 """
-CheatingOffense - 从Java源文件转换而来
-对应Java源文件: client/anticheat/CheatingOffense.java
-包路径: client.anticheat
+CheatingOffense - Converted from Java source
+Original: client/anticheat/CheatingOffense.java
+Package: client.anticheat
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class CheatingOffense(Enum):
-    """枚举类 CheatingOffense - 从Java枚举转换"""
+    """Enum CheatingOffense"""
 
     召唤兽快速攻击 = ((byte)5, 6000L, 10, (byte)1)
     快速攻击 = ((byte)5, 6000L, 50, (byte)2)
@@ -42,32 +43,24 @@ class CheatingOffense(Enum):
     吸怪 = ((byte)1, 7000L, 5)
 
     def __init__(self, points, validityDuration):
-        """初始化枚举值"""
         self._points = points
         self._validityDuration = validityDuration
 
     def getPoints(self) -> int:
-        """方法 getPoints"""
-        return getattr(self, 'points', 0)
+        return self.points
 
     def getValidityDuration(self) -> int:
-        """方法 getValidityDuration"""
-        return getattr(self, 'validity_duration', 0)
+        return self.validityDuration
 
     def shouldAutoban(self, count: int) -> bool:
-        """方法 shouldAutoban"""
-        return False
+        return self.autobancount != -1 && count >= self.autobancount
 
     def getBanType(self) -> int:
-        """方法 getBanType"""
-        return getattr(self, 'ban_type', 0)
+        return self.bantype
 
     def setEnabled(self, enabled: bool) -> None:
-        """方法 setEnabled"""
-        self.enabled = enabled
-        return None
+        self.bantype = (byte)(enabled ? 1 : 0)
 
     def isEnabled(self) -> bool:
-        """方法 isEnabled"""
-        return bool(getattr(self, 'enabled', False))
+        return self.bantype >= 1
 

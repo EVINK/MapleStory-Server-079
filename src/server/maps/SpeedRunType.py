@@ -1,14 +1,15 @@
 """
-SpeedRunType - 从Java源文件转换而来
-对应Java源文件: server/maps/SpeedRunType.java
-包路径: server.maps
+SpeedRunType - Converted from Java source
+Original: server/maps/SpeedRunType.java
+Package: server.maps
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class SpeedRunType(Enum):
-    """枚举类 SpeedRunType - 从Java枚举转换"""
+    """Enum SpeedRunType"""
 
     NULL = 0
     Horntail = 1

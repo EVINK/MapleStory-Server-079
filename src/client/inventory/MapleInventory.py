@@ -1,133 +1,194 @@
 """
-MapleInventory - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleInventory.java
-包路径: client.inventory
+MapleInventory - Converted from Java source
+Original: client/inventory/MapleInventory.java
+Package: client.inventory
 """
 
 from typing import Collection
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from server.MapleItemInformationProvider import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from server.MapleItemInformationProvider import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleInventory:
     """
-    类 MapleInventory - 从Java类转换
-    实现接口: Iterable<IItem>, Serializable
+    Class MapleInventory
+    Implements: Iterable<IItem>, Serializable
     """
 
     def __init__(self, type: Any, slotLimit: int):
-        """初始化 MapleInventory"""
         self.inventory = None
         self.slotLimit = 0
         self.type = None
+        self.inventory = {}
+        self.slotLimit = slotLimit
+        self.type = type
 
 
     def addSlot(self, slot: int) -> None:
-        """方法 addSlot"""
-        pass
+        self.slotLimit = (byte)(self.slotLimit + slot)
+        if self.slotLimit > 96:
+        self.slotLimit = 96
 
     def getSlotLimit(self) -> int:
-        """方法 getSlotLimit"""
-        return getattr(self, 'slot_limit', 0)
+        return self.slotLimit
 
     def setSlotLimit(self, slot: int) -> None:
-        """方法 setSlotLimit"""
-        self.slot_limit = slot
-        return None
+        if slot > 96:
+        slot = 96
+        self.slotLimit = slot
 
     def findById(self, itemId: int) -> Any:
-        """方法 findById"""
-        raise NotImplementedError("方法 findById 尚未实现")
+        for item in self.inventory.values():
+            if item.getItemId() == itemId:
+            return item
+        return None
 
     def findByUniqueId(self, itemId: int) -> Any:
-        """方法 findByUniqueId"""
-        raise NotImplementedError("方法 findByUniqueId 尚未实现")
+        for item in self.inventory.values():
+            if item.getUniqueId() == itemId:
+            return item
+        return None
 
     def countById(self, itemId: int) -> int:
-        """方法 countById"""
-        return 0
+        possesed = 0
+        for item in self.inventory.values():
+            if item.getItemId() == itemId:
+            possesed += item.getQuantity()
+        return possesed
 
     def listById(self, itemId: int) -> list:
-        """方法 listById"""
-        return []
+        ret = []
+        for item in self.inventory.values():
+            if item.getItemId() == itemId:
+            ret.add(item)
+        if ret > 1:
+        Collections.sort(ret)
+        return ret
 
     def list(self) -> list:
-        """方法 list"""
-        return []
+        return self.inventory.values()
 
     def addItem(self, item: Any) -> int:
-        """方法 addItem"""
-        return 0
+        slotId = getNextFreeSlot()
+        if slotId < 0:
+        return -1
+        self.inventory.put(Short.valueOf(slotId), item)
+        item.setPosition(slotId)
+        return slotId
 
     def addFromDB(self, item: Any) -> None:
-        """方法 addFromDB"""
-        pass
+        if item.getPosition() < 0 && !self.type == (MapleInventoryType.EQUIPPED):
+        return
+        self.inventory.put(Short.valueOf(item.getPosition()), item)
 
     def move(self, sSlot: int, dSlot: int, slotMax: int) -> None:
-        """方法 move"""
-        pass
+        if dSlot > self.slotLimit:
+        return
+        source = self.inventory.get(Short.valueOf(sSlot))
+        target = self.inventory.get(Short.valueOf(dSlot))
+        if source is None:
+        raise InventoryException("Trying to move empty slot")
+        if target is None:
+            source.setPosition(dSlot)
+            self.inventory.put(Short.valueOf(dSlot), source)
+            self.inventory.remove(Short.valueOf(sSlot))
+        elif target.getItemId() == source.getItemId() && !GameConstants.isThrowingStar(source.getItemId()) && !GameConstants.isBullet(source.getItemId()) && target.getOwner() == (source.getOwner()) && target.getExpiration() == source.getExpiration():
+            if self.type.getType() == MapleInventoryType.EQUIP.getType() || self.type.getType() == MapleInventoryType.CASH.getType():
+                swap(target, source)
+            elif source.getQuantity() + target.getQuantity() > slotMax:
+                source.setQuantity((short)(source.getQuantity() + target.getQuantity() - slotMax))
+                target.setQuantity(slotMax)
+            else:
+                target.setQuantity((short)(source.getQuantity() + target.getQuantity()))
+                self.inventory.remove(Short.valueOf(sSlot))
+        else:
+            swap(target, source)
 
     def swap(self, source: Any, target: Any) -> None:
-        """方法 swap"""
-        pass
+        self.inventory.remove(Short.valueOf(source.getPosition()))
+        self.inventory.remove(Short.valueOf(target.getPosition()))
+        swapPos = source.getPosition()
+        source.setPosition(target.getPosition())
+        target.setPosition(swapPos)
+        self.inventory.put(Short.valueOf(source.getPosition()), source)
+        self.inventory.put(Short.valueOf(target.getPosition()), target)
 
     def getItem(self, slot: int) -> Any:
-        """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return self.inventory.get(Short.valueOf(slot))
 
     def removeItem(self, slot: int) -> None:
-        """方法 removeItem"""
-        pass
+        removeItem(slot, 1, False)
 
-    def removeItem(self, slot: int, quantity: int, allowZero: bool) -> None:
-        """方法 removeItem"""
-        pass
+    def removeItem_slot_quantity_allowZero(self, slot: int, quantity: int, allowZero: bool) -> None:
+        removeItem(slot, quantity, allowZero, None)
 
-    def removeItem(self, slot: int, quantity: int, allowZero: bool, chr: Any) -> None:
-        """方法 removeItem"""
-        pass
+    def removeItem_slot_quantity_allowZero_chr(self, slot: int, quantity: int, allowZero: bool, chr: Any) -> None:
+        item = self.inventory.get(Short.valueOf(slot))
+        if item is None:
+        return
+        item.setQuantity((short)(item.getQuantity() - quantity))
+        if item.getQuantity() < 0:
+        item.setQuantity(0)
+        if item.getQuantity() == 0 && !allowZero:
+        removeSlot(slot)
+        if chr is not None:
+            chr.getClient().sendPacket(MaplePacketCreator.modifyInventory(False, ModifyInventory(ModifyInventory.Types.REMOVE, item)))
+            chr.dropMessage(5, "期限道具[" + MapleItemInformationProvider.getInstance().getName(item.getItemId()) + "]已经过期")
 
     def removeSlot(self, slot: int) -> None:
-        """方法 removeSlot"""
-        pass
+        self.inventory.remove(Short.valueOf(slot))
 
     def isFull(self) -> bool:
-        """方法 isFull"""
-        return bool(getattr(self, 'full', False))
+        return (self.inventory >= self.slotLimit)
 
-    def isFull(self, margin: int) -> bool:
-        """方法 isFull"""
-        return False
+    def isFull_margin(self, margin: int) -> bool:
+        return (self.inventory + margin >= self.slotLimit)
 
     def getNextFreeSlot(self) -> int:
-        """方法 getNextFreeSlot"""
-        return getattr(self, 'next_free_slot', 0)
+        if isFull():
+        return -1
+        i = 1
+        while i <= self.slotLimit:
+            if !self.inventory.keys().__contains__(Short.valueOf(i)):
+            return i
+        return -1
 
     def getNumFreeSlot(self) -> int:
-        """方法 getNumFreeSlot"""
-        return getattr(self, 'num_free_slot', 0)
+        if isFull():
+        return 0
+        free = 0
+        i = 1
+        while i <= self.slotLimit:
+            if !self.inventory.keys().__contains__(Short.valueOf(i)):
+            free = (byte)(free + 1)
+        return free
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return self.type
 
     def iterator(self) -> iter:
-        """方法 iterator"""
-        raise NotImplementedError("方法 iterator 尚未实现")
+        return Collections.<IItem>unmodifiableCollection(self.inventory.values()).iterator()
 
     def listByEquipOnlyId(self, equipOnlyId: int) -> list:
-        """方法 listByEquipOnlyId"""
-        return []
+        ret = []
+        for item in self.inventory.values():
+            if item.getEquipOnlyId() > 0 && item.getEquipOnlyId() == equipOnlyId:
+            ret.add(item)
+        if ret > 1:
+        Collections.sort(ret)
+        return ret
 
     def findByEquipOnlyId(self, onlyId: int, itemId: int) -> Any:
-        """方法 findByEquipOnlyId"""
-        raise NotImplementedError("方法 findByEquipOnlyId 尚未实现")
+        for item in self.inventory.values():
+            if item.getEquipOnlyId() == onlyId && item.getItemId() == itemId:
+            return item
+        return None
 

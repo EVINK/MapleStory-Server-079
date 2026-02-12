@@ -1,24 +1,29 @@
 """
-CollectionUtil - 从Java源文件转换而来
-对应Java源文件: tools/CollectionUtil.java
-包路径: tools
+CollectionUtil - Converted from Java source
+Original: tools/CollectionUtil.java
+Package: tools
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 class CollectionUtil:
     """
-    类 CollectionUtil - 从Java类转换
+    Class CollectionUtil
     """
 
     def __init__(self):
-        """初始化 CollectionUtil"""
+        pass
         pass
 
 
     def copyFirst(self, list: list, count: int) -> Any:
-        """方法 copyFirst"""
-        raise NotImplementedError("方法 copyFirst 尚未实现")
+        ret = [] < count) ? list : count)
+        i = 0
+        for elem in list:
+            ret.add(elem)
+            if i++ > count:
+                break
+        return ret
 

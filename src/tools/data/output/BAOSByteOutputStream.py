@@ -1,25 +1,25 @@
 """
-BAOSByteOutputStream - 从Java源文件转换而来
-对应Java源文件: tools/data/output/BAOSByteOutputStream.java
-包路径: tools.data.output
+BAOSByteOutputStream - Converted from Java source
+Original: tools/data/output/BAOSByteOutputStream.java
+Package: tools.data.output
 """
 
 from io import BytesIO
+from typing import Optional, Any
 import struct
 
 
 class BAOSByteOutputStream(ByteOutputStream):
     """
-    类 BAOSByteOutputStream - 从Java类转换
-    实现接口: ByteOutputStream
+    Class BAOSByteOutputStream
+    Implements: ByteOutputStream
     """
 
     def __init__(self, baos: Any):
-        """初始化 BAOSByteOutputStream"""
         self.baos = None
+        self.baos = baos
 
 
     def writeByte(self, b: int) -> None:
-        """方法 writeByte"""
-        pass
+        self.baos.write(b)
 

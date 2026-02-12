@@ -1,7 +1,7 @@
 """
-Pair - 从Java源文件转换而来
-对应Java源文件: tools/Pair.java
-包路径: tools
+Pair - Converted from Java source
+Original: tools/Pair.java
+Package: tools
 """
 
 from typing import Optional, Any
@@ -9,36 +9,52 @@ from typing import Optional, Any
 
 class Pair:
     """
-    类 Pair - 从Java类转换
-    实现接口: Serializable
+    Class Pair
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413738569
 
     def __init__(self, left: Any, right: Any):
-        """初始化 Pair"""
         self.left = None
         self.right = None
+        self.left = left
+        self.right = right
 
 
     def getLeft(self) -> Any:
-        """方法 getLeft"""
-        return getattr(self, 'left', None)
+        return self.left
 
     def getRight(self) -> Any:
-        """方法 getRight"""
-        return getattr(self, 'right', None)
+        return self.right
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.left + ":" + self.right
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        prime = 31
+        result = 1
+        result = prime * result + ((self.left is None) ? 0 : self.left.hashCode())
+        result = prime * result + ((self.right is None) ? 0 : self.right.hashCode())
+        return result
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        if self.left is None:
+            if other.left is not None:
+                return False
+        elif !self.left == (other.left):
+            return False
+        if self.right is None:
+            if other.right is not None:
+                return False
+        elif !self.right == (other.right):
+            return False
+        return True
 

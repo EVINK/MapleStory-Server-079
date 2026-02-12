@@ -1,7 +1,7 @@
 """
-MapleEquipOnlyId - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleEquipOnlyId.java
-包路径: client.inventory
+MapleEquipOnlyId - Converted from Java source
+Original: client/inventory/MapleEquipOnlyId.java
+Package: client.inventory
 """
 
 from pymysql import Error
@@ -9,60 +9,56 @@ from pymysql.cursors import Cursor
 from threading import Lock
 from typing import Optional, Any
 import pymysql
-import threading
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
 
 
 class MapleEquipOnlyId:
     """
-    类 MapleEquipOnlyId - 从Java类转换
+    Class MapleEquipOnlyId
     """
 
-    # 静态字段 (Static fields)
     instance = MapleEquipOnlyId()
 
     def __init__(self):
-        """初始化 MapleEquipOnlyId"""
         self.runningId = None
+        self.runningId = AtomicInteger(0)
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getNextEquipOnlyId(self) -> int:
-        """方法 getNextEquipOnlyId"""
-        return getattr(self, 'next_equip_only_id', 0)
+        if self.runningId.get() <= 0:
+            self.runningId.set(initOnlyId())
+        else:
+            self.runningId.set(self.runningId.get() + 1)
+        return self.runningId.get()
 
     def initOnlyId(self) -> int:
-        """方法 initOnlyId"""
-        return 0
+        ret = 0
+        try:
+            ps = DatabaseConnection.getConnection().prepareStatement("SELECT MAXFROM inventoryitems WHERE equipOnlyId > 0")
+            rs = ps.executeQuery()
+            if rs.next():
+            ret = rs.getInt(1) + 1
+            rs.close()
+            ps.close()
+        except SQLException as e:
+            e.printStackTrace()
+        return ret
 
 
+# Inner class from Java (originally nested)
 class SingletonHolder:
     """
-    类 SingletonHolder - 从Java类转换
+    Class SingletonHolder
     """
 
-    # 静态字段 (Static fields)
     instance = MapleEquipOnlyId()
 
-    def __init__(self):
-        """初始化 SingletonHolder"""
-        self.runningId = None
-
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def getNextEquipOnlyId(self) -> int:
-        """方法 getNextEquipOnlyId"""
-        return getattr(self, 'next_equip_only_id', 0)
-
-    def initOnlyId(self) -> int:
-        """方法 initOnlyId"""
-        return 0
 

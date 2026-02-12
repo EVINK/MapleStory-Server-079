@@ -1,49 +1,46 @@
 """
-Randomizer - 从Java源文件转换而来
-对应Java源文件: server/Randomizer.java
-包路径: server
+Randomizer - Converted from Java source
+Original: server/Randomizer.java
+Package: server
 """
 
 from random import Random
+from typing import Optional, Any
 import random
 
 
 class Randomizer:
     """
-    类 Randomizer - 从Java类转换
+    Class Randomizer
     """
+
+    # Static initializer
+    # rand = Random()
 
 
     @staticmethod
     def nextInt() -> int:
-        """方法 nextInt"""
-        return 0
+        return Randomizer.rand.nextInt()
 
-    def nextInt(self, arg0: int) -> int:
-        """方法 nextInt"""
-        return 0
+    @staticmethod
+    def nextInt_arg0(arg0: int) -> int:
+        return Randomizer.rand.nextInt(arg0)
 
     def nextBytes(self, bytes: bytes) -> None:
-        """方法 nextBytes"""
-        pass
+        Randomizer.rand.nextBytes(bytes)
 
     def nextBoolean(self) -> bool:
-        """方法 nextBoolean"""
-        return False
+        return Randomizer.rand.nextBoolean()
 
     def nextDouble(self) -> float:
-        """方法 nextDouble"""
-        return 0
+        return Randomizer.rand.nextDouble()
 
     def nextFloat(self) -> float:
-        """方法 nextFloat"""
-        return 0
+        return Randomizer.rand.nextFloat()
 
     def nextLong(self) -> int:
-        """方法 nextLong"""
-        return 0
+        return Randomizer.rand.nextLong()
 
     def rand(self, lbound: int, ubound: int) -> int:
-        """方法 rand"""
-        return 0
+        return (int)(Randomizer.rand.nextDouble() * (ubound - lbound + 1) + lbound)
 

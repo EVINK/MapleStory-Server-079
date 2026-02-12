@@ -1,7 +1,7 @@
 """
-MTSCart - 从Java源文件转换而来
-对应Java源文件: server/MTSCart.java
-包路径: server
+MTSCart - Converted from Java source
+Original: server/MTSCart.java
+Package: server
 """
 
 from pymysql import Connection
@@ -9,29 +9,27 @@ from pymysql import Error
 from pymysql.cursors import Cursor
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.ItemLoader import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.ItemLoader import *  # TODO: import specific classes
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 class MTSCart:
     """
-    类 MTSCart - 从Java类转换
-    实现接口: Serializable
+    Class MTSCart
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 231541893513373578
 
     def __init__(self, characterId: int):
-        """初始化 MTSCart"""
         self.characterId = None
         self.tab = 0
         self.type = 0
@@ -40,77 +38,119 @@ class MTSCart:
         self.cart = None
         self.notYetSold = None
         self.owedNX = 0
+        self.tab = 1
+        self.type = 0
+        self.page = 0
+        self.transfer = []
+        self.cart = []
+        self.notYetSold = []
+        self.owedNX = 0
+        self.characterId = characterId
+        for item in ItemLoader.MTS_TRANSFER.loadItems(False, characterId).values():
+            self.transfer.add(item.getLeft())
+        self.loadCart()
+        self.loadNotYetSold()
 
 
     def getInventory(self) -> list:
-        """方法 getInventory"""
-        return getattr(self, 'inventory', [])
+        return self.transfer
 
     def addToInventory(self, item: Any) -> None:
-        """方法 addToInventory"""
-        pass
+        self.transfer.add(item)
 
     def removeFromInventory(self, item: Any) -> None:
-        """方法 removeFromInventory"""
-        pass
+        self.transfer.remove(item)
 
     def getCart(self) -> list:
-        """方法 getCart"""
-        return getattr(self, 'cart', [])
+        return self.cart
 
     def addToCart(self, car: int) -> bool:
-        """方法 addToCart"""
+        if !(car in self.cart):
+            self.cart.add(car)
+            return True
         return False
 
     def removeFromCart(self, car: int) -> None:
-        """方法 removeFromCart"""
-        pass
+        for i in range(self.cart):
+            if self.cart.get(i) == car:
+                self.cart.remove(i)
 
     def getNotYetSold(self) -> list:
-        """方法 getNotYetSold"""
-        return getattr(self, 'not_yet_sold', [])
+        return self.notYetSold
 
     def addToNotYetSold(self, car: int) -> None:
-        """方法 addToNotYetSold"""
-        pass
+        self.notYetSold.add(car)
 
     def removeFromNotYetSold(self, car: int) -> None:
-        """方法 removeFromNotYetSold"""
-        pass
+        for i in range(self.notYetSold):
+            if self.notYetSold.get(i) == car:
+                self.notYetSold.remove(i)
 
     def getSetOwedNX(self) -> int:
-        """方法 getSetOwedNX"""
-        return getattr(self, 'set_owed_nx', 0)
+        on = self.owedNX
+        self.owedNX = 0
+        return on
 
     def increaseOwedNX(self, newNX: int) -> None:
-        """方法 increaseOwedNX"""
-        pass
+        self.owedNX += newNX
 
     def save(self) -> None:
-        """方法 save"""
-        pass
+        itemsWithType = new ArrayList<Pair<IItem, MapleInventoryType>>()
+        for item in self.getInventory():
+            itemsWithType.add(new Pair<IItem, MapleInventoryType>(item, GameConstants.getInventoryType(item.getItemId())))
+        ItemLoader.MTS_TRANSFER.saveItems(itemsWithType, self.characterId)
+        con = DatabaseConnection.getConnection()
+        ps = con.prepareStatement("DELETE FROM mts_cart WHERE characterid = ?")
+        ps.setInt(1, self.characterId)
+        ps.execute()
+        ps.close()
+        ps = con.prepareStatement("INSERT INTO mts_cart VALUES(DEFAULT, ?, ?)")
+        ps.setInt(1, self.characterId)
+        for i in self.cart:
+            ps.setInt(2, i)
+            ps.executeUpdate()
+        if self.owedNX > 0:
+            ps.setInt(2, -self.owedNX)
+            ps.executeUpdate()
+        ps.close()
 
     def loadCart(self) -> None:
-        """方法 loadCart"""
-        pass
+        ps = DatabaseConnection.getConnection().prepareStatement("SELECT * FROM mts_cart WHERE characterid = ?")
+        ps.setInt(1, self.characterId)
+        rs = ps.executeQuery()
+        while rs.next():
+            iId = rs.getInt("itemid")
+            if iId < 0:
+                self.owedNX -= iId
+            else:
+                if !MTSStorage.getInstance().check(iId):
+                    continue
+                self.cart.add(iId)
+        rs.close()
+        ps.close()
 
     def loadNotYetSold(self) -> None:
-        """方法 loadNotYetSold"""
-        pass
+        ps = DatabaseConnection.getConnection().prepareStatement("SELECT * FROM mts_items WHERE characterid = ?")
+        ps.setInt(1, self.characterId)
+        rs = ps.executeQuery()
+        while rs.next():
+            pId = rs.getInt("id")
+            if MTSStorage.getInstance().check(pId):
+                self.notYetSold.add(pId)
+        rs.close()
+        ps.close()
 
     def changeInfo(self, tab: int, type: int, page: int) -> None:
-        """方法 changeInfo"""
-        pass
+        self.tab = tab
+        self.type = type
+        self.page = page
 
     def getTab(self) -> int:
-        """方法 getTab"""
-        return getattr(self, 'tab', 0)
+        return self.tab
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getPage(self) -> int:
-        """方法 getPage"""
-        return getattr(self, 'page', 0)
+        return self.page
 

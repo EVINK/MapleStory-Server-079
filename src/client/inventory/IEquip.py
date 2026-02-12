@@ -1,183 +1,154 @@
 """
-IEquip - 从Java源文件转换而来
-对应Java源文件: client/inventory/IEquip.java
-包路径: client.inventory
+IEquip - Converted from Java source
+Original: client/inventory/IEquip.java
+Package: client.inventory
 """
+
+from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class IEquip(ABC):
-    """接口 IEquip - 从Java接口转换"""
+    """Interface IEquip"""
 
     @abstractmethod
-    def get_upgrade_slots(self) -> Any:
-        """抽象方法 getUpgradeSlots"""
+    def getUpgradeSlots(self) -> int:
         pass
 
     @abstractmethod
-    def get_level(self) -> Any:
-        """抽象方法 getLevel"""
+    def getLevel(self) -> int:
         pass
 
     @abstractmethod
-    def get_vicious_hammer(self) -> Any:
-        """抽象方法 getViciousHammer"""
+    def getViciousHammer(self) -> int:
         pass
 
     @abstractmethod
-    def get_item_exp(self) -> Any:
-        """抽象方法 getItemEXP"""
+    def getItemEXP(self) -> int:
         pass
 
     @abstractmethod
-    def get_exp_percentage(self) -> Any:
-        """抽象方法 getExpPercentage"""
+    def getExpPercentage(self) -> int:
         pass
 
     @abstractmethod
-    def get_equip_level(self) -> Any:
-        """抽象方法 getEquipLevel"""
+    def getEquipLevel(self) -> int:
         pass
 
     @abstractmethod
-    def get_equip_levels(self) -> Any:
-        """抽象方法 getEquipLevels"""
+    def getEquipLevels(self) -> int:
         pass
 
     @abstractmethod
-    def get_equip_exp(self) -> Any:
-        """抽象方法 getEquipExp"""
+    def getEquipExp(self) -> int:
         pass
 
     @abstractmethod
-    def get_equip_exp_for_level(self) -> Any:
-        """抽象方法 getEquipExpForLevel"""
+    def getEquipExpForLevel(self) -> int:
         pass
 
     @abstractmethod
-    def get_base_level(self) -> Any:
-        """抽象方法 getBaseLevel"""
+    def getBaseLevel(self) -> int:
         pass
 
     @abstractmethod
-    def get_str(self) -> Any:
-        """抽象方法 getStr"""
+    def getStr(self) -> int:
         pass
 
     @abstractmethod
-    def get_dex(self) -> Any:
-        """抽象方法 getDex"""
+    def getDex(self) -> int:
         pass
 
     @abstractmethod
-    def get_int(self) -> Any:
-        """抽象方法 getInt"""
+    def getInt(self) -> int:
         pass
 
     @abstractmethod
-    def get_luk(self) -> Any:
-        """抽象方法 getLuk"""
+    def getLuk(self) -> int:
         pass
 
     @abstractmethod
-    def get_hp(self) -> Any:
-        """抽象方法 getHp"""
+    def getHp(self) -> int:
         pass
 
     @abstractmethod
-    def get_mp(self) -> Any:
-        """抽象方法 getMp"""
+    def getMp(self) -> int:
         pass
 
     @abstractmethod
-    def get_watk(self) -> Any:
-        """抽象方法 getWatk"""
+    def getWatk(self) -> int:
         pass
 
     @abstractmethod
-    def get_matk(self) -> Any:
-        """抽象方法 getMatk"""
+    def getMatk(self) -> int:
         pass
 
     @abstractmethod
-    def get_wdef(self) -> Any:
-        """抽象方法 getWdef"""
+    def getWdef(self) -> int:
         pass
 
     @abstractmethod
-    def get_mdef(self) -> Any:
-        """抽象方法 getMdef"""
+    def getMdef(self) -> int:
         pass
 
     @abstractmethod
-    def get_acc(self) -> Any:
-        """抽象方法 getAcc"""
+    def getAcc(self) -> int:
         pass
 
     @abstractmethod
-    def get_avoid(self) -> Any:
-        """抽象方法 getAvoid"""
+    def getAvoid(self) -> int:
         pass
 
     @abstractmethod
-    def get_hands(self) -> Any:
-        """抽象方法 getHands"""
+    def getHands(self) -> int:
         pass
 
     @abstractmethod
-    def get_speed(self) -> Any:
-        """抽象方法 getSpeed"""
+    def getSpeed(self) -> int:
         pass
 
     @abstractmethod
-    def get_jump(self) -> Any:
-        """抽象方法 getJump"""
+    def getJump(self) -> int:
         pass
 
     @abstractmethod
-    def get_durability(self) -> Any:
-        """抽象方法 getDurability"""
+    def getDurability(self) -> int:
         pass
 
     @abstractmethod
-    def get_enhance(self) -> Any:
-        """抽象方法 getEnhance"""
+    def getEnhance(self) -> int:
         pass
 
     @abstractmethod
-    def get_state(self) -> Any:
-        """抽象方法 getState"""
+    def getState(self) -> int:
         pass
 
     @abstractmethod
-    def get_potential1(self) -> Any:
-        """抽象方法 getPotential1"""
+    def getPotential1(self) -> int:
         pass
 
     @abstractmethod
-    def get_potential2(self) -> Any:
-        """抽象方法 getPotential2"""
+    def getPotential2(self) -> int:
         pass
 
     @abstractmethod
-    def get_potential3(self) -> Any:
-        """抽象方法 getPotential3"""
+    def getPotential3(self) -> int:
         pass
 
     @abstractmethod
-    def get_hp_r(self) -> Any:
-        """抽象方法 getHpR"""
+    def getHpR(self) -> int:
         pass
 
     @abstractmethod
-    def get_mp_r(self) -> Any:
-        """抽象方法 getMpR"""
+    def getMpR(self) -> int:
         pass
 
 
+# Inner class from Java (originally nested)
 class ScrollResult(Enum):
-    """枚举类 ScrollResult - 从Java枚举转换"""
+    """Enum ScrollResult"""
 
     SUCCESS = 0
     FAIL = 1

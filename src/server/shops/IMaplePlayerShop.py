@@ -1,191 +1,157 @@
 """
-IMaplePlayerShop - 从Java源文件转换而来
-对应Java源文件: server/shops/IMaplePlayerShop.java
-包路径: server.shops
+IMaplePlayerShop - Converted from Java source
+Original: server/shops/IMaplePlayerShop.java
+Package: server.shops
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
 
 
 from abc import ABC, abstractmethod
 
 class IMaplePlayerShop(ABC):
-    """接口 IMaplePlayerShop - 从Java接口转换"""
+    """Interface IMaplePlayerShop"""
 
     @abstractmethod
-    def get_owner_name(self) -> Any:
-        """抽象方法 getOwnerName"""
+    def getOwnerName(self) -> str:
         pass
 
     @abstractmethod
-    def get_description(self) -> Any:
-        """抽象方法 getDescription"""
+    def getDescription(self) -> str:
         pass
 
     @abstractmethod
-    def get_visitors(self) -> Any:
-        """抽象方法 getVisitors"""
+    def getVisitors(self) -> list:
         pass
 
     @abstractmethod
-    def get_items(self) -> Any:
-        """抽象方法 getItems"""
+    def getItems(self) -> list:
         pass
 
     @abstractmethod
-    def is_open(self) -> Any:
-        """抽象方法 isOpen"""
+    def isOpen(self) -> bool:
         pass
 
     @abstractmethod
-    def remove_item(self, p0: int) -> Any:
-        """抽象方法 removeItem"""
+    def removeItem(self, p0: int) -> bool:
         pass
 
     @abstractmethod
-    def is_owner(self, p0: Any) -> Any:
-        """抽象方法 isOwner"""
+    def isOwner(self, p0: Any) -> bool:
         pass
 
     @abstractmethod
-    def get_shop_type(self) -> Any:
-        """抽象方法 getShopType"""
+    def getShopType(self) -> int:
         pass
 
     @abstractmethod
-    def get_visitor_slot(self, p0: Any) -> Any:
-        """抽象方法 getVisitorSlot"""
+    def getVisitorSlot(self, p0: Any) -> int:
         pass
 
     @abstractmethod
-    def get_free_slot(self) -> Any:
-        """抽象方法 getFreeSlot"""
+    def getFreeSlot(self) -> int:
         pass
 
     @abstractmethod
-    def get_item_id(self) -> Any:
-        """抽象方法 getItemId"""
+    def getItemId(self) -> int:
         pass
 
     @abstractmethod
-    def get_meso(self) -> Any:
-        """抽象方法 getMeso"""
+    def getMeso(self) -> int:
         pass
 
     @abstractmethod
-    def get_owner_id(self) -> Any:
-        """抽象方法 getOwnerId"""
+    def getOwnerId(self) -> int:
         pass
 
     @abstractmethod
-    def get_owner_acc_id(self) -> Any:
-        """抽象方法 getOwnerAccId"""
+    def getOwnerAccId(self) -> int:
         pass
 
     @abstractmethod
-    def set_open(self, p0: bool) -> Any:
-        """抽象方法 setOpen"""
+    def setOpen(self, p0: bool) -> None:
         pass
 
     @abstractmethod
-    def set_meso(self, p0: int) -> Any:
-        """抽象方法 setMeso"""
+    def setMeso(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def add_item(self, p0: Any) -> Any:
-        """抽象方法 addItem"""
+    def addItem(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def remove_from_slot(self, p0: int) -> Any:
-        """抽象方法 removeFromSlot"""
+    def removeFromSlot(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def broadcast_to_visitors(self, p0: Any) -> Any:
-        """抽象方法 broadcastToVisitors"""
+    def broadcastToVisitors(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def add_visitor(self, p0: Any) -> Any:
-        """抽象方法 addVisitor"""
+    def addVisitor(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def remove_visitor(self, p0: Any) -> Any:
-        """抽象方法 removeVisitor"""
+    def removeVisitor(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def remove_all_visitors(self, p0: int, p1: int) -> Any:
-        """抽象方法 removeAllVisitors"""
+    def removeAllVisitors(self, p0: int, p1: int) -> None:
         pass
 
     @abstractmethod
-    def buy(self, p0: Any, p1: int, p2: int) -> Any:
-        """抽象方法 buy"""
+    def buy(self, p0: Any, p1: int, p2: int) -> None:
         pass
 
     @abstractmethod
-    def close_shop(self, p0: bool, p1: bool) -> Any:
-        """抽象方法 closeShop"""
+    def closeShop(self, p0: bool, p1: bool) -> None:
         pass
 
     @abstractmethod
-    def get_password(self) -> Any:
-        """抽象方法 getPassword"""
+    def getPassword(self) -> str:
         pass
 
     @abstractmethod
-    def get_map_id(self) -> Any:
-        """抽象方法 getMapId"""
+    def getMapId(self) -> int:
         pass
 
     @abstractmethod
-    def get_channel(self) -> Any:
-        """抽象方法 getChannel"""
+    def getChannel(self) -> int:
         pass
 
     @abstractmethod
-    def get_max_size(self) -> Any:
-        """抽象方法 getMaxSize"""
+    def getMaxSize(self) -> int:
         pass
 
     @abstractmethod
-    def get_size(self) -> Any:
-        """抽象方法 getSize"""
+    def getSize(self) -> int:
         pass
 
     @abstractmethod
-    def get_game_type(self) -> Any:
-        """抽象方法 getGameType"""
+    def getGameType(self) -> int:
         pass
 
     @abstractmethod
-    def update(self) -> Any:
-        """抽象方法 update"""
+    def update(self) -> None:
         pass
 
     @abstractmethod
-    def set_available(self, p0: bool) -> Any:
-        """抽象方法 setAvailable"""
+    def setAvailable(self, p0: bool) -> None:
         pass
 
     @abstractmethod
-    def is_available(self) -> Any:
-        """抽象方法 isAvailable"""
+    def isAvailable(self) -> bool:
         pass
 
     @abstractmethod
-    def get_bought_items(self) -> Any:
-        """抽象方法 getBoughtItems"""
+    def getBoughtItems(self) -> Any:
         pass
 

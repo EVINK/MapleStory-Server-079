@@ -1,7 +1,7 @@
 """
-MonsterStatusEffect - 从Java源文件转换而来
-对应Java源文件: client/status/MonsterStatusEffect.java
-包路径: client.status
+MonsterStatusEffect - Converted from Java source
+Original: client/status/MonsterStatusEffect.java
+Package: client.status
 """
 
 from concurrent.futures import Future
@@ -9,69 +9,65 @@ from typing import List
 from typing import Optional, Any
 import sched
 
-# 内部模块导入 (Internal module imports)
-# from server.life import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.life import *  # TODO: import specific classes
 
 
 class MonsterStatusEffect:
     """
-    类 MonsterStatusEffect - 从Java类转换
+    Class MonsterStatusEffect
     """
 
     def __init__(self, stat: Any, x: int, skillId: int, mobskill: Any, monsterSkill: bool):
-        """初始化 MonsterStatusEffect"""
         self.stati = None
         self.skill = 0
         self.mobskill = None
         self.monsterSkill = False
         self.x = None
         self.reflect = False
+        self.reflect = False
+        self.stati = stat
+        self.skill = skillId
+        self.monsterSkill = monsterSkill
+        self.mobskill = mobskill
+        self.x = x
 
 
     def getStati(self) -> Any:
-        """方法 getStati"""
-        return getattr(self, 'stati', None)
+        return self.stati
 
     def getX(self) -> int:
-        """方法 getX"""
-        return getattr(self, 'x', 0)
+        return self.x
 
     def setValue(self, status: Any, newVal: int) -> None:
-        """方法 setValue"""
-        self.value = status
-        return None
+        self.stati = status
+        self.x = newVal
 
     def getSkill(self) -> int:
-        """方法 getSkill"""
-        return getattr(self, 'skill', 0)
+        return self.skill
 
     def getMobSkill(self) -> Any:
-        """方法 getMobSkill"""
-        return getattr(self, 'mob_skill', None)
+        return self.mobskill
 
     def isMonsterSkill(self) -> bool:
-        """方法 isMonsterSkill"""
-        return bool(getattr(self, 'monster_skill', False))
+        return self.monsterSkill
 
     def setCancelTask(self, cancelTask: Any) -> None:
-        """方法 setCancelTask"""
-        self.cancel_task = cancelTask
-        return None
+        self.cancelTask = cancelTask
 
     def setPoisonSchedule(self, poisonSchedule: Any) -> None:
-        """方法 setPoisonSchedule"""
-        self.poison_schedule = poisonSchedule
-        return None
+        self.poisonSchedule = poisonSchedule
 
     def cancelTask(self) -> None:
-        """方法 cancelTask"""
-        pass
+        if self.cancelTask is not None:
+            self.cancelTask.cancel(False)
+        self.cancelTask = None
 
     def cancelPoisonSchedule(self) -> None:
-        """方法 cancelPoisonSchedule"""
-        pass
+        if self.poisonSchedule is not None:
+            self.poisonSchedule.cancel(False)
+            self.poisonSchedule = None
 
     def isReflect(self) -> bool:
-        """方法 isReflect"""
-        return bool(getattr(self, 'reflect', False))
+        return self.reflect
 

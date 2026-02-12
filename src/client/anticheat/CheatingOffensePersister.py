@@ -1,7 +1,7 @@
 """
-CheatingOffensePersister - 从Java源文件转换而来
-对应Java源文件: client/anticheat/CheatingOffensePersister.java
-包路径: client.anticheat
+CheatingOffensePersister - Converted from Java source
+Original: client/anticheat/CheatingOffensePersister.java
+Package: client.anticheat
 """
 
 from threading import Lock
@@ -11,55 +11,60 @@ from typing import Optional, Any
 from typing import Set
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from server.Timer import *  # TODO: import specific classes
 
 
 class CheatingOffensePersister:
     """
-    类 CheatingOffensePersister - 从Java类转换
+    Class CheatingOffensePersister
     """
 
     def __init__(self):
-        """初始化 CheatingOffensePersister"""
         self.toPersist = None
         self.mutex = None
+        self.toPersist = new LinkedHashSet<CheatingOffenseEntry>()
+        self.mutex = ReentrantLock()
+        Timer.CheatTimer.getInstance().register(PersistingTask(), 61000)
+
+    # Static initializer
+    # instance = CheatingOffensePersister()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def persistEntry(self, coe: Any) -> None:
-        """方法 persistEntry"""
-        pass
+        self.mutex.lock()
+        try:
+            self.toPersist.remove(coe)
+            self.toPersist.add(coe)
+        finally:
+            self.mutex.unlock()
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        CheatingOffensePersister.self.mutex.lock()
+        try:
+            CheatingOffensePersister.self.toPersist.clear()
+        finally:
+            CheatingOffensePersister.self.mutex.unlock()
 
 
+# Inner class from Java (originally nested)
 class PersistingTask(Runnable):
     """
-    类 PersistingTask - 从Java类转换
-    实现接口: Runnable
+    Class PersistingTask
+    Implements: Runnable
     """
 
-    def __init__(self):
-        """初始化 PersistingTask"""
-        self.toPersist = None
-        self.mutex = None
-
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def persistEntry(self, coe: Any) -> None:
-        """方法 persistEntry"""
-        pass
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        CheatingOffensePersister.self.mutex.lock()
+        try:
+            CheatingOffensePersister.self.toPersist.clear()
+        finally:
+            CheatingOffensePersister.self.mutex.unlock()
 

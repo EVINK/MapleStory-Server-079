@@ -1,64 +1,61 @@
 """
-MapleDueyActions - 从Java源文件转换而来
-对应Java源文件: server/MapleDueyActions.java
-包路径: server
+MapleDueyActions - Converted from Java source
+Original: server/MapleDueyActions.java
+Package: server
 """
 
-# 内部模块导入 (Internal module imports)
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from client.inventory.IItem import *  # TODO: import specific classes
 
 
 class MapleDueyActions:
     """
-    类 MapleDueyActions - 从Java类转换
+    Class MapleDueyActions
     """
 
     def __init__(self, pId: int, item: Any):
-        """初始化 MapleDueyActions"""
         self.sender = ""
         self.item = None
         self.mesos = 0
         self.quantity = 0
         self.sentTime = 0
         self.packageId = 0
+        self.sender = None
+        self.item = None
+        self.mesos = 0
+        self.quantity = 1
+        self.packageId = 0
+        self.item = item
+        self.quantity = item.getQuantity()
+        self.packageId = pId
 
 
     def getSender(self) -> str:
-        """方法 getSender"""
-        return getattr(self, 'sender', "")
+        return self.sender
 
     def setSender(self, name: str) -> None:
-        """方法 setSender"""
         self.sender = name
-        return None
 
     def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
+        return self.item
 
     def getMesos(self) -> int:
-        """方法 getMesos"""
-        return getattr(self, 'mesos', 0)
+        return self.mesos
 
     def setMesos(self, set: int) -> None:
-        """方法 setMesos"""
         self.mesos = set
-        return None
 
     def getQuantity(self) -> int:
-        """方法 getQuantity"""
-        return getattr(self, 'quantity', 0)
+        return self.quantity
 
     def getPackageId(self) -> int:
-        """方法 getPackageId"""
-        return getattr(self, 'package_id', 0)
+        return self.packageId
 
     def setSentTime(self, sentTime: int) -> None:
-        """方法 setSentTime"""
-        self.sent_time = sentTime
-        return None
+        self.sentTime = sentTime
 
     def getSentTime(self) -> int:
-        """方法 getSentTime"""
-        return getattr(self, 'sent_time', 0)
+        return self.sentTime
 

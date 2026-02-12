@@ -1,31 +1,30 @@
 """
-MapleGuildRanking - 从Java源文件转换而来
-对应Java源文件: handling/channel/MapleGuildRanking.java
-包路径: handling.channel
+MapleGuildRanking - Converted from Java source
+Original: handling/channel/MapleGuildRanking.java
+Package: handling.channel
 """
 
 from pymysql import Connection
 from pymysql import Error
 from pymysql.cursors import Cursor
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleGuildRanking:
     """
-    类 MapleGuildRanking - 从Java类转换
+    Class MapleGuildRanking
     """
 
     def __init__(self):
-        """初始化 MapleGuildRanking"""
         self.ranks = None
         self.ranks1 = None
         self.ranks2 = None
@@ -47,562 +46,270 @@ class MapleGuildRanking:
         self.logocolor = None
         self.logobg = None
         self.logobgcolor = None
+        self.ranks = []
+        self.ranks1 = []
+        self.ranks2 = []
+
+    # Static initializer
+    # instance = MapleGuildRanking()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def RankingUpdate(self) -> None:
-        """方法 RankingUpdate"""
-        pass
+        Timer.WorldTimer.getInstance().register(Runnable()
+            public void run()
+                try:
+                    MapleGuildRanking.self.reload()
+                    MapleGuildRanking.self.showLevelRank()
+                    MapleGuildRanking.self.showMesoRank()
+                except Exception as ex:
+                    ex.printStackTrace()
+                    print("Could not update rankings")
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        try:
+            MapleGuildRanking.self.reload()
+            MapleGuildRanking.self.showLevelRank()
+            MapleGuildRanking.self.showMesoRank()
+        except Exception as ex:
+            ex.printStackTrace()
+            print("Could not update rankings")
 
     def getGuildRank(self) -> list:
-        """方法 getGuildRank"""
-        return getattr(self, 'guild_rank', [])
+        if self.ranks == 0:
+            self.reload()
+        return self.ranks
 
     def getLevelRank(self) -> list:
-        """方法 getLevelRank"""
-        return getattr(self, 'level_rank', [])
+        if self.ranks1 == 0:
+            self.showLevelRank()
+        return self.ranks1
 
     def getMesoRank(self) -> list:
-        """方法 getMesoRank"""
-        return getattr(self, 'meso_rank', [])
+        if self.ranks2 == 0:
+            self.showMesoRank()
+        return self.ranks2
 
     def reload(self) -> None:
-        """方法 reload"""
-        pass
+        self.ranks.clear()
+        con = DatabaseConnection.getConnection()
+        # try-with-resources: final PreparedStatement ps = con.prepareStatement("SELECT * FROM guilds ORDER BY `GP` DESC LIMIT 50")
+        try:
+            rs = ps.executeQuery()
+            while rs.next():
+                rank = GuildRankingInfo(rs.getString("name"), rs.getInt("GP"), rs.getInt("logo"), rs.getInt("logoColor"), rs.getInt("logoBG"), rs.getInt("logoBGColor"))
+                self.ranks.add(rank)
+            rs.close()
+        except Exception as e:
+            print("家族排行错误" + e)
 
     def MapleMSpvpdeaths(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpdeaths"""
-        pass
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT `name`, `pvpdeaths`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpdeaths` DESC LIMIT 20")
+            rs = ps.executeQuery()
+            c.getSession().write(MaplePacketCreator.MapleMSpvpdeaths(npcid, rs))
+            ps.close()
+            rs.close()
+        except Exception as e:
+            print("failed to display guild ranks." + e)
 
     def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpkills"""
-        pass
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT `name`, `pvpkills`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpkills` WHERE gm < 1  DESC LIMIT 100")
+            rs = ps.executeQuery()
+            c.getSession().write(MaplePacketCreator.MapleMSpvpkills(npcid, rs))
+            ps.close()
+            rs.close()
+        except Exception as e:
+            print("failed to display guild ranks." + e)
 
     def showLevelRank(self) -> None:
-        """方法 showLevelRank"""
-        pass
+        self.ranks1.clear()
+        try:
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT * FROM characters WHERE gm < 1 ORDER BY `level` DESC LIMIT 100")
+            rs = ps.executeQuery()
+            while rs.next():
+                rank1 = levelRankingInfo(rs.getString("name"), rs.getInt("level"), rs.getInt("str"), rs.getInt("dex"), rs.getInt("int"), rs.getInt("luk"))
+                self.ranks1.add(rank1)
+            ps.close()
+            rs.close()
+        except Exception as e:
+            print("人物排行错误")
 
     def showMesoRank(self) -> None:
-        """方法 showMesoRank"""
-        pass
+        self.ranks2.clear()
+        con = DatabaseConnection.getConnection()
+        # try-with-resources: final PreparedStatement ps = con.prepareStatement("SELECT *, ( chr.meso + s.meso ) as money FROM `characters` as chr , `storages` as s WHERE chr.gm < 1  AND s.accountid = chr.accountid ORDER BY money DESC LIMIT 20")
+        try:
+            rs = ps.executeQuery()
+            while rs.next():
+                rank2 = mesoRankingInfo(rs.getString("name"), rs.getLong("money"), rs.getInt("str"), rs.getInt("dex"), rs.getInt("int"), rs.getInt("luk"))
+                self.ranks2.add(rank2)
+            rs.close()
+        except Exception as e:
+            print("金币排行错误")
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getMeso(self) -> int:
-        """方法 getMeso"""
-        return getattr(self, 'meso', 0)
+        return self.meso
 
     def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
+        return self.str
 
     def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
+        return self.dex
 
     def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
+        return self._int
 
     def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.luk
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
-
-    def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
-
-    def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
-
-    def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
-
-    def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.level
 
     def getGP(self) -> int:
-        """方法 getGP"""
-        return getattr(self, 'gp', 0)
+        return self.gp
 
     def getLogo(self) -> int:
-        """方法 getLogo"""
-        return getattr(self, 'logo', 0)
+        return self.logo
 
     def getLogoColor(self) -> int:
-        """方法 getLogoColor"""
-        return getattr(self, 'logo_color', 0)
+        return self.logocolor
 
     def getLogoBg(self) -> int:
-        """方法 getLogoBg"""
-        return getattr(self, 'logo_bg', 0)
+        return self.logobg
 
     def getLogoBgColor(self) -> int:
-        """方法 getLogoBgColor"""
-        return getattr(self, 'logo_bg_color', 0)
+        return self.logobgcolor
 
 
+# Inner class from Java (originally nested)
 class mesoRankingInfo:
     """
-    类 mesoRankingInfo - 从Java类转换
+    Class mesoRankingInfo
     """
 
     def __init__(self, name: str, meso: int, str: int, dex: int, intt: int, luk: int):
-        """初始化 mesoRankingInfo"""
-        self.ranks = None
-        self.ranks1 = None
-        self.ranks2 = None
         self.name = None
         self.meso = None
         self.str = None
         self.dex = None
         self._int = None
         self.luk = None
-        self.name = None
-        self.level = None
-        self.str = None
-        self.dex = None
-        self._int = None
-        self.luk = None
-        self.name = None
-        self.gp = None
-        self.logo = None
-        self.logocolor = None
-        self.logobg = None
-        self.logobgcolor = None
+        self.name = name
+        self.meso = meso
+        self.str = str
+        self.dex = dex
+        self._int = intt
+        self.luk = luk
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def RankingUpdate(self) -> None:
-        """方法 RankingUpdate"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def getGuildRank(self) -> list:
-        """方法 getGuildRank"""
-        return getattr(self, 'guild_rank', [])
-
-    def getLevelRank(self) -> list:
-        """方法 getLevelRank"""
-        return getattr(self, 'level_rank', [])
-
-    def getMesoRank(self) -> list:
-        """方法 getMesoRank"""
-        return getattr(self, 'meso_rank', [])
-
-    def reload(self) -> None:
-        """方法 reload"""
-        pass
-
-    def MapleMSpvpdeaths(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpdeaths"""
-        pass
-
-    def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpkills"""
-        pass
-
-    def showLevelRank(self) -> None:
-        """方法 showLevelRank"""
-        pass
-
-    def showMesoRank(self) -> None:
-        """方法 showMesoRank"""
-        pass
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getMeso(self) -> int:
-        """方法 getMeso"""
-        return getattr(self, 'meso', 0)
+        return self.meso
 
     def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
+        return self.str
 
     def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
+        return self.dex
 
     def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
+        return self._int
 
     def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
-
-    def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
-
-    def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
-
-    def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
-
-    def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getGP(self) -> int:
-        """方法 getGP"""
-        return getattr(self, 'gp', 0)
-
-    def getLogo(self) -> int:
-        """方法 getLogo"""
-        return getattr(self, 'logo', 0)
-
-    def getLogoColor(self) -> int:
-        """方法 getLogoColor"""
-        return getattr(self, 'logo_color', 0)
-
-    def getLogoBg(self) -> int:
-        """方法 getLogoBg"""
-        return getattr(self, 'logo_bg', 0)
-
-    def getLogoBgColor(self) -> int:
-        """方法 getLogoBgColor"""
-        return getattr(self, 'logo_bg_color', 0)
+        return self.luk
 
 
+# Inner class from Java (originally nested)
 class levelRankingInfo:
     """
-    类 levelRankingInfo - 从Java类转换
+    Class levelRankingInfo
     """
 
     def __init__(self, name: str, level: int, str: int, dex: int, intt: int, luk: int):
-        """初始化 levelRankingInfo"""
-        self.ranks = None
-        self.ranks1 = None
-        self.ranks2 = None
-        self.name = None
-        self.meso = None
-        self.str = None
-        self.dex = None
-        self._int = None
-        self.luk = None
         self.name = None
         self.level = None
         self.str = None
         self.dex = None
         self._int = None
         self.luk = None
-        self.name = None
-        self.gp = None
-        self.logo = None
-        self.logocolor = None
-        self.logobg = None
-        self.logobgcolor = None
+        self.name = name
+        self.level = level
+        self.str = str
+        self.dex = dex
+        self._int = intt
+        self.luk = luk
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def RankingUpdate(self) -> None:
-        """方法 RankingUpdate"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def getGuildRank(self) -> list:
-        """方法 getGuildRank"""
-        return getattr(self, 'guild_rank', [])
-
-    def getLevelRank(self) -> list:
-        """方法 getLevelRank"""
-        return getattr(self, 'level_rank', [])
-
-    def getMesoRank(self) -> list:
-        """方法 getMesoRank"""
-        return getattr(self, 'meso_rank', [])
-
-    def reload(self) -> None:
-        """方法 reload"""
-        pass
-
-    def MapleMSpvpdeaths(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpdeaths"""
-        pass
-
-    def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpkills"""
-        pass
-
-    def showLevelRank(self) -> None:
-        """方法 showLevelRank"""
-        pass
-
-    def showMesoRank(self) -> None:
-        """方法 showMesoRank"""
-        pass
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getMeso(self) -> int:
-        """方法 getMeso"""
-        return getattr(self, 'meso', 0)
-
-    def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
-
-    def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
-
-    def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
-
-    def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
+        return self.str
 
     def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
+        return self.dex
 
     def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
+        return self._int
 
     def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getGP(self) -> int:
-        """方法 getGP"""
-        return getattr(self, 'gp', 0)
-
-    def getLogo(self) -> int:
-        """方法 getLogo"""
-        return getattr(self, 'logo', 0)
-
-    def getLogoColor(self) -> int:
-        """方法 getLogoColor"""
-        return getattr(self, 'logo_color', 0)
-
-    def getLogoBg(self) -> int:
-        """方法 getLogoBg"""
-        return getattr(self, 'logo_bg', 0)
-
-    def getLogoBgColor(self) -> int:
-        """方法 getLogoBgColor"""
-        return getattr(self, 'logo_bg_color', 0)
+        return self.luk
 
 
+# Inner class from Java (originally nested)
 class GuildRankingInfo:
     """
-    类 GuildRankingInfo - 从Java类转换
+    Class GuildRankingInfo
     """
 
     def __init__(self, name: str, gp: int, logo: int, logocolor: int, logobg: int, logobgcolor: int):
-        """初始化 GuildRankingInfo"""
-        self.ranks = None
-        self.ranks1 = None
-        self.ranks2 = None
-        self.name = None
-        self.meso = None
-        self.str = None
-        self.dex = None
-        self._int = None
-        self.luk = None
-        self.name = None
-        self.level = None
-        self.str = None
-        self.dex = None
-        self._int = None
-        self.luk = None
         self.name = None
         self.gp = None
         self.logo = None
         self.logocolor = None
         self.logobg = None
         self.logobgcolor = None
+        self.name = name
+        self.gp = gp
+        self.logo = logo
+        self.logocolor = logocolor
+        self.logobg = logobg
+        self.logobgcolor = logobgcolor
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def RankingUpdate(self) -> None:
-        """方法 RankingUpdate"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def getGuildRank(self) -> list:
-        """方法 getGuildRank"""
-        return getattr(self, 'guild_rank', [])
-
-    def getLevelRank(self) -> list:
-        """方法 getLevelRank"""
-        return getattr(self, 'level_rank', [])
-
-    def getMesoRank(self) -> list:
-        """方法 getMesoRank"""
-        return getattr(self, 'meso_rank', [])
-
-    def reload(self) -> None:
-        """方法 reload"""
-        pass
-
-    def MapleMSpvpdeaths(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpdeaths"""
-        pass
-
-    def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
-        """方法 MapleMSpvpkills"""
-        pass
-
-    def showLevelRank(self) -> None:
-        """方法 showLevelRank"""
-        pass
-
-    def showMesoRank(self) -> None:
-        """方法 showMesoRank"""
-        pass
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getMeso(self) -> int:
-        """方法 getMeso"""
-        return getattr(self, 'meso', 0)
-
-    def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
-
-    def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
-
-    def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
-
-    def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
-
-    def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
-
-    def getStr(self) -> int:
-        """方法 getStr"""
-        return getattr(self, 'str', 0)
-
-    def getDex(self) -> int:
-        """方法 getDex"""
-        return getattr(self, 'dex', 0)
-
-    def getInt(self) -> int:
-        """方法 getInt"""
-        return getattr(self, 'int', 0)
-
-    def getLuk(self) -> int:
-        """方法 getLuk"""
-        return getattr(self, 'luk', 0)
-
-    def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def getGP(self) -> int:
-        """方法 getGP"""
-        return getattr(self, 'gp', 0)
+        return self.gp
 
     def getLogo(self) -> int:
-        """方法 getLogo"""
-        return getattr(self, 'logo', 0)
+        return self.logo
 
     def getLogoColor(self) -> int:
-        """方法 getLogoColor"""
-        return getattr(self, 'logo_color', 0)
+        return self.logocolor
 
     def getLogoBg(self) -> int:
-        """方法 getLogoBg"""
-        return getattr(self, 'logo_bg', 0)
+        return self.logobg
 
     def getLogoBgColor(self) -> int:
-        """方法 getLogoBgColor"""
-        return getattr(self, 'logo_bg_color', 0)
+        return self.logobgcolor
 

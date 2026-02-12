@@ -1,31 +1,29 @@
 """
-MapleMapItem - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleMapItem.java
-包路径: server.maps
+MapleMapItem - Converted from Java source
+Original: server/maps/MapleMapItem.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
 from threading import Lock
 from threading import RLock
 from typing import Optional, Any
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleMapItem(AbstractMapleMapObject):
     """
-    类 MapleMapItem - 从Java类转换
-    继承自: AbstractMapleMapObject
+    Class MapleMapItem
+    Extends: AbstractMapleMapObject
     """
 
     def __init__(self, item: Any, position: Any, dropper: Any, owner: Any, type: int, playerDrop: bool):
-        """初始化 MapleMapItem"""
         self.item = None
         self.dropper = None
         self.character_ownerid = 0
@@ -38,100 +36,92 @@ class MapleMapItem(AbstractMapleMapObject):
         self.nextExpiry = 0
         self.nextFFA = 0
         self.lock = None
+        self.meso = 0
+        self.questid = -1
+        self.pickedUp = False
+        self.randDrop = False
+        self.nextExpiry = 0
+        self.nextFFA = 0
+        self.lock = ReentrantLock()
+        self.setPosition(position)
+        self.item = item
+        self.dropper = dropper
+        self.character_ownerid = owner.getId()
+        self.type = type
+        self.playerDrop = playerDrop
 
 
     def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
+        return self.item
 
     def setItem(self, z: Any) -> None:
-        """方法 setItem"""
         self.item = z
-        return None
 
     def getQuest(self) -> int:
-        """方法 getQuest"""
-        return getattr(self, 'quest', 0)
+        return self.questid
 
     def getItemId(self) -> int:
-        """方法 getItemId"""
-        return getattr(self, 'item_id', 0)
+        if self.getMeso() > 0:
+            return self.meso
+        return self.item.getItemId()
 
     def getDropper(self) -> Any:
-        """方法 getDropper"""
-        return getattr(self, 'dropper', None)
+        return self.dropper
 
     def getOwner(self) -> int:
-        """方法 getOwner"""
-        return getattr(self, 'owner', 0)
+        return self.character_ownerid
 
     def getMeso(self) -> int:
-        """方法 getMeso"""
-        return getattr(self, 'meso', 0)
+        return self.meso
 
     def isPlayerDrop(self) -> bool:
-        """方法 isPlayerDrop"""
-        return bool(getattr(self, 'player_drop', False))
+        return self.playerDrop
 
     def isPickedUp(self) -> bool:
-        """方法 isPickedUp"""
-        return bool(getattr(self, 'picked_up', False))
+        return self.pickedUp
 
     def setPickedUp(self, pickedUp: bool) -> None:
-        """方法 setPickedUp"""
-        self.picked_up = pickedUp
-        return None
+        self.pickedUp = pickedUp
 
     def getDropType(self) -> int:
-        """方法 getDropType"""
-        return getattr(self, 'drop_type', 0)
+        return self.type
 
     def setDropType(self, z: int) -> None:
-        """方法 setDropType"""
-        self.drop_type = z
-        return None
+        self.type = z
 
     def isRandDrop(self) -> bool:
-        """方法 isRandDrop"""
-        return bool(getattr(self, 'rand_drop', False))
+        return self.randDrop
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.ITEM
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
-        pass
+        if self.questid <= 0 || client.getPlayer().getQuestStatus(self.questid) == 1:
+            client.getSession().write(MaplePacketCreator.dropItemFromMapObject(this, None, self.getPosition(), 2))
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        client.getSession().write(MaplePacketCreator.removeItemFromMap(self.getObjectId(), 1, 0))
 
     def getLock(self) -> Any:
-        """方法 getLock"""
-        return getattr(self, 'lock', None)
+        return self.lock
 
     def registerExpire(self, time: int) -> None:
-        """方法 registerExpire"""
-        pass
+        self.nextExpiry = int(time.time() * 1000) + time
 
     def registerFFA(self, time: int) -> None:
-        """方法 registerFFA"""
-        pass
+        self.nextFFA = int(time.time() * 1000) + time
 
     def shouldExpire(self) -> bool:
-        """方法 shouldExpire"""
-        return False
+        return !self.pickedUp && self.nextExpiry > 0 && self.nextExpiry < int(time.time() * 1000)
 
     def shouldFFA(self) -> bool:
-        """方法 shouldFFA"""
-        return False
+        return !self.pickedUp && self.type < 2 && self.nextFFA > 0 && self.nextFFA < int(time.time() * 1000)
 
     def expire(self, map: Any) -> None:
-        """方法 expire"""
-        pass
+        self.pickedUp = True
+        map.broadcastMessage(MaplePacketCreator.removeItemFromMap(self.getObjectId(), 0, 0))
+        map.removeMapObject(this)
 
     def hasFFA(self) -> bool:
-        """方法 hasFFA"""
-        return bool(getattr(self, 'ffa', False))
+        return self.nextFFA > 0
 

@@ -1,23 +1,23 @@
 """
-ChangeableStats - 从Java源文件转换而来
-对应Java源文件: server/life/ChangeableStats.java
-包路径: server.life
+ChangeableStats - Converted from Java source
+Original: server/life/ChangeableStats.java
+Package: server.life
 """
 
+from typing import Optional, Any
 import math
 
-# 内部模块导入 (Internal module imports)
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from constants.GameConstants import *  # TODO: import specific classes
 
 
 class ChangeableStats(OverrideMonsterStats):
     """
-    类 ChangeableStats - 从Java类转换
-    继承自: OverrideMonsterStats
+    Class ChangeableStats
+    Extends: OverrideMonsterStats
     """
 
     def __init__(self, stats: Any, ostats: Any):
-        """初始化 ChangeableStats"""
         self.watk = 0
         self.matk = 0
         self.acc = 0
@@ -26,5 +26,11 @@ class ChangeableStats(OverrideMonsterStats):
         self.MDRate = 0
         self.pushed = 0
         self.level = 0
+        self.hp = ostats.getHp()
+        self.exp = ostats.getExp()
+        self.mp = ostats.getMp()
+        self.acc = stats.getAcc()
+        self.eva = stats.getEva()
+        self.level = stats.getLevel()
 
 

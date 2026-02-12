@@ -1,38 +1,42 @@
 """
-PortalPlayerInteraction - 从Java源文件转换而来
-对应Java源文件: scripting/PortalPlayerInteraction.java
-包路径: scripting
+PortalPlayerInteraction - Converted from Java source
+Original: scripting/PortalPlayerInteraction.java
+Package: scripting
 """
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from server.MaplePortal import *  # TODO: 根据实际需要导入具体类
+from typing import Optional, Any
+
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from server.MaplePortal import *  # TODO: import specific classes
 
 
 class PortalPlayerInteraction(AbstractPlayerInteraction):
     """
-    类 PortalPlayerInteraction - 从Java类转换
-    继承自: AbstractPlayerInteraction
+    Class PortalPlayerInteraction
+    Extends: AbstractPlayerInteraction
     """
 
     def __init__(self, c: Any, portal: Any):
-        """初始化 PortalPlayerInteraction"""
         self.portal = None
+        super(c)
+        self.portal = portal
 
 
     def getPortal(self) -> Any:
-        """方法 getPortal"""
-        return getattr(self, 'portal', None)
+        return self.portal
 
     def inFreeMarket(self) -> None:
-        """方法 inFreeMarket"""
-        pass
+        if self.getPlayer().getLevel() >= 10:
+            self.saveLocation("FREE_MARKET")
+            self.playPortalSE()
+            self.warp(910000000, "st00")
+        else:
+            self.playerMessage(5, "你需要10级才可以进入自由市场")
 
     def spawnMonster(self, id: int) -> None:
-        """方法 spawnMonster"""
-        pass
+        self.spawnMonster(id, 1, self.portal.getPosition())
 
-    def spawnMonster(self, id: int, qty: int) -> None:
-        """方法 spawnMonster"""
-        pass
+    def spawnMonster_id_qty(self, id: int, qty: int) -> None:
+        self.spawnMonster(id, qty, self.portal.getPosition())
 

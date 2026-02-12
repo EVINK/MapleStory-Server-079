@@ -1,14 +1,15 @@
 """
-MapleEventType - 从Java源文件转换而来
-对应Java源文件: server/events/MapleEventType.java
-包路径: server.events
+MapleEventType - Converted from Java source
+Original: server/events/MapleEventType.java
+Package: server.events
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleEventType(Enum):
-    """枚举类 MapleEventType - 从Java枚举转换"""
+    """Enum MapleEventType"""
 
     打椰子比赛 = ("椰子比赛", new int[])
     打瓶盖比赛 = ("打瓶盖", new int[])
@@ -18,6 +19,8 @@ class MapleEventType(Enum):
     雪球赛 = ("雪球赛", new int[])
 
     def getByString(self, splitted: str) -> Any:
-        """方法 getByString"""
-        raise NotImplementedError("方法 getByString 尚未实现")
+        for t in values():
+            if t.command.lower() == splitted.lower():
+                return t
+        return None
 

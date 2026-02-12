@@ -1,44 +1,50 @@
 """
-FileStoredPngMapleCanvas - 从Java源文件转换而来
-对应Java源文件: provider/WzXML/FileStoredPngMapleCanvas.java
-包路径: provider.WzXML
+FileStoredPngMapleCanvas - Converted from Java source
+Original: provider/WzXML/FileStoredPngMapleCanvas.java
+Package: provider.WzXML
 """
 
 from pathlib import Path
+from typing import Optional, Any
 import os
 import tkinter
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleCanvas import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.MapleCanvas import *  # TODO: import specific classes
 
 
 class FileStoredPngMapleCanvas(MapleCanvas):
     """
-    类 FileStoredPngMapleCanvas - 从Java类转换
-    实现接口: MapleCanvas
+    Class FileStoredPngMapleCanvas
+    Implements: MapleCanvas
     """
 
     def __init__(self, width: int, height: int, fileIn: Any):
-        """初始化 FileStoredPngMapleCanvas"""
         self.file = None
         self.width = 0
         self.height = 0
         self.image = None
+        self.width = width
+        self.height = height
+        self.file = fileIn
 
 
     def getHeight(self) -> int:
-        """方法 getHeight"""
-        return getattr(self, 'height', 0)
+        return self.height
 
     def getWidth(self) -> int:
-        """方法 getWidth"""
-        return getattr(self, 'width', 0)
+        return self.width
 
     def getImage(self) -> Any:
-        """方法 getImage"""
-        return getattr(self, 'image', None)
+        self.loadImageIfNecessary()
+        return self.image
 
     def loadImageIfNecessary(self) -> None:
-        """方法 loadImageIfNecessary"""
-        pass
+        if self.image is None:
+            try:
+                self.image = ImageIO.read(self.file)
+                self.width = self.image.getWidth()
+                self.height = self.image.getHeight()
+            except IOError as e:
+                raise RuntimeError(e)
 

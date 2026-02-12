@@ -1,7 +1,7 @@
 """
-AutoRegister - 从Java源文件转换而来
-对应Java源文件: handling/login/handler/AutoRegister.java
-包路径: handling.login.handler
+AutoRegister - Converted from Java source
+Original: handling/login/handler/AutoRegister.java
+Package: handling.login.handler
 """
 
 from pymysql import Connection
@@ -10,31 +10,82 @@ from pymysql.cursors import Cursor
 from typing import Optional, Any
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from client.LoginCrypto import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.LoginCrypto import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from database.DatabaseConnection import *  # TODO: import specific classes
 
 
 class AutoRegister:
     """
-    类 AutoRegister - 从Java类转换
+    Class AutoRegister
     """
 
-    # 静态字段 (Static fields)
     ACCOUNTS_PER_MAC = 100
+
+    # Static initializer
+    # AutoRegister.autoRegister = ServerConstants.getAutoReg()
+    # AutoRegister.success = False
+    # AutoRegister.mac = True
 
 
     @staticmethod
     def getAccountExists(login: str) -> bool:
-        """方法 getAccountExists"""
-        return False
+        accountExists = False
+        con = DatabaseConnection.getConnection()
+        try:
+            ps = con.prepareStatement("SELECT name FROM accounts WHERE name = ?")
+            ps.setString(1, login)
+            rs = ps.executeQuery()
+            if rs.first():
+                accountExists = True
+            rs.close()
+            ps.close()
+        except Exception as ex:
+            print("getAccountExists   " + ex)
+        return accountExists
 
     def getAccountExistsByID(self, id: int) -> bool:
-        """方法 getAccountExistsByID"""
-        return False
+        accountExists = False
+        con = DatabaseConnection.getConnection()
+        try:
+            ps = con.prepareStatement("SELECT name FROM accounts WHERE id = ?")
+            ps.setInt(1, id)
+            rs = ps.executeQuery()
+            if rs.first():
+                accountExists = True
+            rs.close()
+            ps.close()
+        except Exception as ex:
+            print("getAccountExists   " + ex)
+        return accountExists
 
     def createAccount(self, login: str, pwd: str, eip: str, macs: str) -> None:
-        """方法 createAccount"""
-        pass
+        sockAddr = eip
+        con = None
+        try:
+            con = DatabaseConnection.getConnection()
+        except Exception as ex:
+            print(ex)
+            return
+        try:
+            ipc = con.prepareStatement("SELECT macs FROM accounts WHERE macs = ?")
+            ipc.setString(1, macs)
+            rs = ipc.executeQuery()
+            if !rs.first() || (rs.last() && rs.getRow() < 100):
+                ps = con.prepareStatement("INSERT INTO accounts (name, password, email, birthday, macs, SessionIP) VALUES (?, ?, ?, ?, ?, ?)")
+                ps.setString(1, login)
+                ps.setString(2, LoginCrypto.hexSha1(pwd))
+                ps.setString(3, "autoregister@mail.com")
+                ps.setString(4, "2008-04-07")
+                ps.setString(5, macs)
+                ps.setString(6, "/" + sockAddr[1:sockAddr.rfind(58]))
+                ps.executeUpdate()
+                AutoRegister.success = True
+            AutoRegister.success = True
+            if rs.getRow() >= 100:
+                AutoRegister.mac = False
+        except Exception as ex2:
+            ex2.printStackTrace()
+            print(ex2)
 

@@ -1,14 +1,15 @@
 """
-MapleBuffStat - 从Java源文件转换而来
-对应Java源文件: client/MapleBuffStat.java
-包路径: client
+MapleBuffStat - Converted from Java source
+Original: client/MapleBuffStat.java
+Package: client
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleBuffStat(Enum):
-    """枚举类 MapleBuffStat - 从Java枚举转换"""
+    """Enum MapleBuffStat"""
 
     物理攻击 = (4294967296L)
     物理防御 = (8589934592L)
@@ -114,18 +115,14 @@ class MapleBuffStat(Enum):
     子弹数量 = (1048575L, 1L)
 
     def __init__(self, buffstat):
-        """初始化枚举值"""
         self._buffstat = buffstat
 
     def getMaskPos(self) -> int:
-        """方法 getMaskPos"""
-        return getattr(self, 'mask_pos', 0)
+        return self.maskPos
 
     def isFirst(self) -> bool:
-        """方法 isFirst"""
-        return bool(getattr(self, 'first', False))
+        return self.first
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.buffstat
 

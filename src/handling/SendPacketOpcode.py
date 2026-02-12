@@ -1,19 +1,20 @@
 """
-SendPacketOpcode - 从Java源文件转换而来
-对应Java源文件: handling/SendPacketOpcode.java
-包路径: handling
+SendPacketOpcode - Converted from Java source
+Original: handling/SendPacketOpcode.java
+Package: handling
 """
 
 from enum import Enum, IntEnum
 from typing import List
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from constants import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from constants import *  # TODO: import specific classes
 
 
 class SendPacketOpcode(Enum):
-    """枚举类 SendPacketOpcode - 从Java枚举转换"""
+    """Enum SendPacketOpcode"""
 
     PING = 0
     LOGIN_STATUS = 1
@@ -252,4 +253,48 @@ class SendPacketOpcode(Enum):
     CHAOS_ZAKUM_SHRINE = 234
     CHAOS_HORNTAIL_SHRINE = 235
     REMOVE_TALK_MONSTER = 236
+
+    def setValue(self, code: int) -> None:
+        self.code = code
+
+    def getValue(self) -> int:
+        return self.code
+
+    def getDefaultProperties(self) -> Any:
+        props = Properties()
+        fileInputStream = FileInputStream("sendops.properties")
+        props.load(fileInputStream)
+        fileInputStream.close()
+        return props
+
+    def reloadValues(self) -> None:
+        try:
+            if ServerConstants.loadop:
+                props = Properties()
+                props.load(SendPacketOpcode.class.getClassLoader().getResourceAsStream("sendops.properties"))
+                ExternalCodeTableGetter.populateValues(props, values())
+            else:
+                ExternalCodeTableGetter.populateValues(getDefaultProperties(), values())
+        except IOError as e:
+            raise RuntimeError("加载 sendops.properties 文件出现错误", e)
+
+    def isSpamHeader(self, opcode: Any) -> bool:
+        name = opcode.name()
+        # switch (name):
+            # case "WARP_TO_MAP":
+            # case "PING":
+            # case "NPC_ACTION":
+            # case "UPDATE_STATS":
+            # case "MOVE_PLAYER":
+            # case "SPAWN_NPC":
+            # case "SPAWN_NPC_REQUEST_CONTROLLER":
+            # case "REMOVE_NPC":
+            # case "MOVE_MONSTER":
+            # case "MOVE_MONSTER_RESPONSE":
+            # case "SPAWN_MONSTER":
+            # case "SPAWN_MONSTER_CONTROL":
+            # case "ANDROID_MOVE":
+                return True
+            # default:
+                return False
 

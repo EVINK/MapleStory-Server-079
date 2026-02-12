@@ -1,21 +1,22 @@
 """
-AttackPair - 从Java源文件转换而来
-对应Java源文件: tools/AttackPair.java
-包路径: tools
+AttackPair - Converted from Java source
+Original: tools/AttackPair.java
+Package: tools
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 class AttackPair:
     """
-    类 AttackPair - 从Java类转换
+    Class AttackPair
     """
 
     def __init__(self, objectid: int, attack: list):
-        """初始化 AttackPair"""
         self.objectid = 0
         self.attack = []
+        self.objectid = objectid
+        self.attack = attack
 
 

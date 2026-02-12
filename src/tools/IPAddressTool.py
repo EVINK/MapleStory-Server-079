@@ -1,7 +1,7 @@
 """
-IPAddressTool - 从Java源文件转换而来
-对应Java源文件: tools/IPAddressTool.java
-包路径: tools
+IPAddressTool - Converted from Java source
+Original: tools/IPAddressTool.java
+Package: tools
 """
 
 from typing import Optional, Any
@@ -10,15 +10,28 @@ import math
 
 class IPAddressTool:
     """
-    类 IPAddressTool - 从Java类转换
+    Class IPAddressTool
     """
 
 
     def dottedQuadToLong(self, dottedQuad: str) -> int:
-        """方法 dottedQuadToLong"""
-        return 0
+        quads = dottedQuad.split("/.")
+        if len(quads) != 4:
+            raise RuntimeError("Invalid IP Address format.")
+        ipAddress = 0
+        for i in range(4):
+            ipAddress += int(quads[i]) % 256 * math.pow(256.0, 4 - i)
+        return ipAddress
 
     def longToDottedQuad(self, longIP: int) -> str:
-        """方法 longToDottedQuad"""
-        return ""
+        ipAddress = ""
+        for i in range(4):
+            quad = (int)(longIP / math.pow(256.0, 4 - i))
+            longIP -= quad * math.pow(256.0, 4 - i)
+            if i > 0:
+                ipAddress.append(".")
+            if quad > 255:
+                raise RuntimeError("Invalid long IP address.")
+            ipAddress.append(quad)
+        return ipAddress
 

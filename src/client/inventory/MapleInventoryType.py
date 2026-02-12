@@ -1,7 +1,7 @@
 """
-MapleInventoryType - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleInventoryType.java
-包路径: client.inventory
+MapleInventoryType - Converted from Java source
+Original: client/inventory/MapleInventoryType.java
+Package: client.inventory
 """
 
 from enum import Enum, IntEnum
@@ -9,7 +9,7 @@ from typing import Optional, Any
 
 
 class MapleInventoryType(Enum):
-    """枚举类 MapleInventoryType - 从Java枚举转换"""
+    """Enum MapleInventoryType"""
 
     UNDEFINED = (0)
     EQUIP = (1)
@@ -20,18 +20,28 @@ class MapleInventoryType(Enum):
     EQUIPPED = (-1)
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getBitfieldEncoding(self) -> int:
-        """方法 getBitfieldEncoding"""
-        return getattr(self, 'bitfield_encoding', 0)
+        return (short)(2 << self.type)
 
     def getByType(self, type: int) -> Any:
-        """方法 getByType"""
-        raise NotImplementedError("方法 getByType 尚未实现")
+        for l in values():
+            if l.getType() == type:
+            return l
+        return None
 
     def getByWZName(self, name: str) -> Any:
-        """方法 getByWZName"""
-        raise NotImplementedError("方法 getByWZName 尚未实现")
+        # switch (name):
+            # case "Install":
+            return SETUP
+            # case "Consume":
+            return USE
+            # case "Etc":
+            return ETC
+            # case "Cash":
+            return CASH
+            # case "Pet":
+            return CASH
+        return UNDEFINED
 

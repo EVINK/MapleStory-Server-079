@@ -1,72 +1,61 @@
 """
-MaplePortal - 从Java源文件转换而来
-对应Java源文件: server/MaplePortal.java
-包路径: server
+MaplePortal - Converted from Java source
+Original: server/MaplePortal.java
+Package: server
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
 
 
 from abc import ABC, abstractmethod
 
 class MaplePortal(ABC):
-    """接口 MaplePortal - 从Java接口转换"""
+    """Interface MaplePortal"""
 
     @abstractmethod
-    def get_type(self) -> Any:
-        """抽象方法 getType"""
+    def getType(self) -> int:
         pass
 
     @abstractmethod
-    def get_id(self) -> Any:
-        """抽象方法 getId"""
+    def getId(self) -> int:
         pass
 
     @abstractmethod
-    def get_position(self) -> Any:
-        """抽象方法 getPosition"""
+    def getPosition(self) -> Any:
         pass
 
     @abstractmethod
-    def get_name(self) -> Any:
-        """抽象方法 getName"""
+    def getName(self) -> str:
         pass
 
     @abstractmethod
-    def get_target(self) -> Any:
-        """抽象方法 getTarget"""
+    def getTarget(self) -> str:
         pass
 
     @abstractmethod
-    def get_script_name(self) -> Any:
-        """抽象方法 getScriptName"""
+    def getScriptName(self) -> str:
         pass
 
     @abstractmethod
-    def set_script_name(self, p0: str) -> Any:
-        """抽象方法 setScriptName"""
+    def setScriptName(self, p0: str) -> None:
         pass
 
     @abstractmethod
-    def get_target_map_id(self) -> Any:
-        """抽象方法 getTargetMapId"""
+    def getTargetMapId(self) -> int:
         pass
 
     @abstractmethod
-    def enter_portal(self, p0: Any) -> Any:
-        """抽象方法 enterPortal"""
+    def enterPortal(self, p0: Any) -> None:
         pass
 
     @abstractmethod
-    def set_portal_state(self, p0: bool) -> Any:
-        """抽象方法 setPortalState"""
+    def setPortalState(self, p0: bool) -> None:
         pass
 
     @abstractmethod
-    def get_portal_state(self) -> Any:
-        """抽象方法 getPortalState"""
+    def getPortalState(self) -> bool:
         pass
 

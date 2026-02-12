@@ -1,7 +1,7 @@
 """
-MTSStorage - 从Java源文件转换而来
-对应Java源文件: server/MTSStorage.java
-包路径: server
+MTSStorage - Converted from Java source
+Original: server/MTSStorage.java
+Package: server
 """
 
 from datetime import datetime, timezone, timedelta
@@ -13,33 +13,31 @@ from threading import RLock
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.inventory.IItem import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.ItemLoader import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from tools.Pair import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.MTSCSPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.inventory.IItem import *  # TODO: import specific classes
+# from client.inventory.ItemLoader import *  # TODO: import specific classes
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from tools.Pair import *  # TODO: import specific classes
+# from tools.packet.MTSCSPacket import *  # TODO: import specific classes
 
 
 class MTSStorage:
     """
-    类 MTSStorage - 从Java类转换
+    Class MTSStorage
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 231541893513228
 
     def __init__(self):
-        """初始化 MTSStorage"""
         self.lastUpdate = 0
         self.idToCart = None
         self.packageId = None
@@ -53,223 +51,307 @@ class MTSStorage:
         self.id = None
         self.cid = None
         self.date = None
+        self.lastUpdate = int(time.time() * 1000)
+        self.end = False
+        print("Loading MTSStorage :::")
+        self.idToCart = {}
+        self.buyNow = {}
+        self.packageId = AtomicInteger(1)
+        self.mutex = ReentrantReadWriteLock()
+        self.cart_mutex = ReentrantReadWriteLock()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def load(self) -> None:
-        """方法 load"""
-        pass
+        if MTSStorage.instance is None:
+            (MTSStorage.instance = MTSStorage()).loadBuyNow()
 
     def check(self, packageid: int) -> bool:
-        """方法 check"""
-        return False
+        return self.getSingleItem(packageid) is not None
 
     def checkCart(self, packageid: int, charID: int) -> bool:
-        """方法 checkCart"""
-        return False
+        item = self.getSingleItem(packageid)
+        return item is not None && item.getCharacterId() != charID
 
     def getSingleItem(self, packageid: int) -> Any:
-        """方法 getSingleItem"""
-        raise NotImplementedError("方法 getSingleItem 尚未实现")
+        self.mutex.readLock().lock()
+        try:
+            return self.buyNow.get(packageid)
+        finally:
+            self.mutex.readLock().unlock()
 
     def addToBuyNow(self, cart: Any, item: Any, price: int, cid: int, seller: str, expiration: int) -> None:
-        """方法 addToBuyNow"""
-        pass
+        self.mutex.writeLock().lock()
+        id = None
+        try:
+            id = self.packageId.incrementAndGet()
+            self.buyNow.put(id, MTSItemInfo(price, item, seller, id, cid, expiration))
+        finally:
+            self.mutex.writeLock().unlock()
+        cart.addToNotYetSold(id)
 
     def removeFromBuyNow(self, id: int, cidBought: int, check: bool) -> bool:
-        """方法 removeFromBuyNow"""
-        return False
+        item = None
+        self.mutex.writeLock().lock()
+        try:
+            if (id in self.buyNow):
+                r = self.buyNow.get(id)
+                if !check || r.getCharacterId() == cidBought:
+                    item = r.getItem()
+                    self.buyNow.remove(id)
+        finally:
+            self.mutex.writeLock().unlock()
+        if item is not None:
+            self.cart_mutex.readLock().lock()
+            try:
+                for (final Map.Entry<Integer, MTSCart> c : self.idToCart.items())
+                    c.getValue().removeFromCart(id)
+                    c.getValue().removeFromNotYetSold(id)
+                    if c.getKey() == cidBought:
+                        c.getValue().addToInventory(item)
+            finally:
+                self.cart_mutex.readLock().unlock()
+        return item is not None
 
     def loadBuyNow(self) -> None:
-        """方法 loadBuyNow"""
-        pass
+        lastPackage = 0
+        con = DatabaseConnection.getConnection()
+        try:
+            ps = con.prepareStatement("SELECT * FROM mts_items WHERE tab = 1")
+            rs = ps.executeQuery()
+            while rs.next():
+                lastPackage = rs.getInt("id")
+                cId = rs.getInt("characterid")
+                if !(cId in self.idToCart):
+                    self.idToCart.put(cId, MTSCart(cId))
+                items = ItemLoader.MTS.loadItems(False, lastPackage)
+                if items is not None && items > 0:
+                    for i in items.values():
+                        self.buyNow.put(lastPackage, MTSItemInfo(rs.getInt("price"), i.getLeft(), rs.getString("seller"), lastPackage, cId, rs.getLong("expiration")))
+            rs.close()
+            ps.close()
+        except Exception as e:
+            e.printStackTrace()
+        self.packageId.set(lastPackage)
 
     def saveBuyNow(self, isShutDown: bool) -> None:
-        """方法 saveBuyNow"""
-        pass
+        if self.end:
+            return
+        self.end = isShutDown
+        if isShutDown:
+            print("Saving MTS...")
+        expire = new HashMap<Integer, ArrayList<IItem>>()
+        toRemove = []
+        now = int(time.time() * 1000)
+        items = new HashMap<Integer, ArrayList<Pair<IItem, MapleInventoryType>>>()
+        con = DatabaseConnection.getConnection()
+        self.mutex.writeLock().lock()
+        try:
+            ps = con.prepareStatement("DELETE FROM mts_items WHERE tab = 1")
+            ps.execute()
+            ps.close()
+            ps = con.prepareStatement("INSERT INTO mts_items VALUES (?, ?, ?, ?, ?, ?)")
+            for m in self.buyNow.values():
+                if now > m.getEndingDate():
+                    if !(m.getCharacterId( in expire)):
+                        expire.put(m.getCharacterId(), [])
+                    expire.get(m.getCharacterId()).add(m.getItem())
+                    toRemove.add(m.getId())
+                    items.put(m.getId(), None)
+                else:
+                    ps.setInt(1, m.getId())
+                    ps.setByte(2, 1)
+                    ps.setInt(3, m.getPrice())
+                    ps.setInt(4, m.getCharacterId())
+                    ps.setString(5, m.getSeller())
+                    ps.setLong(6, m.getEndingDate())
+                    ps.executeUpdate()
+                    if !(m.getId( in items)):
+                        items.put(m.getId(), new ArrayList<Pair<IItem, MapleInventoryType>>())
+                    items.get(m.getId()).add(new Pair<IItem, MapleInventoryType>(m.getItem(), GameConstants.getInventoryType(m.getItem().getItemId())))
+            for i in toRemove:
+                self.buyNow.remove(i)
+            ps.close()
+        except Exception as e:
+            e.printStackTrace()
+        finally:
+            self.mutex.writeLock().unlock()
+        if isShutDown:
+            print("Saving MTS items...")
+        try:
+            for (final Map.Entry<Integer, ArrayList<Pair<IItem, MapleInventoryType>>> ite : items.items())
+                ItemLoader.MTS.saveItems(ite.getValue(), ite.getKey())
+        except Exception as e:
+            e.printStackTrace()
+        if isShutDown:
+            print("Saving MTS carts...")
+        self.cart_mutex.writeLock().lock()
+        try:
+            for (final Map.Entry<Integer, MTSCart> c : self.idToCart.items())
+                for j in toRemove:
+                    c.getValue().removeFromCart(j)
+                    c.getValue().removeFromNotYetSold(j)
+                if (c.getKey( in expire)):
+                    for item in expire.get(c.getKey()):
+                        c.getValue().addToInventory(item)
+                c.getValue().save()
+        except Exception as e:
+            e.printStackTrace()
+        finally:
+            self.cart_mutex.writeLock().unlock()
+        self.lastUpdate = int(time.time() * 1000)
 
     def checkExpirations(self) -> None:
-        """方法 checkExpirations"""
-        pass
+        if int(time.time() * 1000) - self.lastUpdate > 3600000:
+            self.saveBuyNow(False)
 
     def getCart(self, characterId: int) -> Any:
-        """方法 getCart"""
-        raise NotImplementedError("方法 getCart 尚未实现")
+        self.cart_mutex.readLock().lock()
+        ret = None
+        try:
+            ret = self.idToCart.get(characterId)
+        finally:
+            self.cart_mutex.readLock().unlock()
+        if ret is None:
+            self.cart_mutex.writeLock().lock()
+            try:
+                ret = MTSCart(characterId)
+                self.idToCart.put(characterId, ret)
+            except Exception as e:
+                e.printStackTrace()
+            finally:
+                self.cart_mutex.writeLock().unlock()
+        return ret
 
     def getCurrentMTS(self, cart: Any) -> Any:
-        """方法 getCurrentMTS"""
-        raise NotImplementedError("方法 getCurrentMTS 尚未实现")
+        self.mutex.readLock().lock()
+        try:
+            # switch (cart.getTab()):
+                # case 1:
+                    return MTSCSPacket.sendMTS(self.getBuyNow(cart.getType(), cart.getPage()), cart.getTab(), cart.getType(), cart.getPage(), self.buyNow / 16 + ((self.buyNow % 16 > 0) ? 1 : 0))
+                # case 4:
+                    return MTSCSPacket.sendMTS(self.getCartItems(cart), cart.getTab(), cart.getType(), cart.getPage(), 0)
+                # default:
+                    return MTSCSPacket.sendMTS([], cart.getTab(), cart.getType(), cart.getPage(), 0)
+        finally:
+            self.mutex.readLock().unlock()
 
     def getCurrentNotYetSold(self, cart: Any) -> Any:
-        """方法 getCurrentNotYetSold"""
-        raise NotImplementedError("方法 getCurrentNotYetSold 尚未实现")
+        self.mutex.readLock().lock()
+        try:
+            nys = []
+            nyss = [])
+            for i in nyss:
+                r = self.buyNow.get(i)
+                if r is None:
+                    cart.removeFromNotYetSold(i)
+                else:
+                    nys.add(r)
+            return MTSCSPacket.getNotYetSoldInv(nys)
+        finally:
+            self.mutex.readLock().unlock()
 
     def getCurrentTransfer(self, cart: Any, changed: bool) -> Any:
-        """方法 getCurrentTransfer"""
-        raise NotImplementedError("方法 getCurrentTransfer 尚未实现")
+        return MTSCSPacket.getTransferInventory(cart.getInventory(), changed)
 
     def getBuyNow(self, type: int, page: int) -> list:
-        """方法 getBuyNow"""
-        return []
+        size = self.buyNow / 16 + ((self.buyNow % 16 > 0) ? 1 : 0)
+        ret = []
+        rett = [])
+        if page > size:
+            page = 0
+        i = page * 16
+        while i < page * 16 + 16 && self.buyNow >= i + 1:
+            r = rett.get(i)
+            if r is not None && (type == 0 || GameConstants.getInventoryType(r.getItem().getItemId()).getType() == type):
+                ret.add(r)
+        return ret
 
     def getCartItems(self, cart: Any) -> list:
-        """方法 getCartItems"""
-        return []
+        ret = []
+        cartt = [])
+        for i in cartt:
+            r = self.buyNow.get(i)
+            if r is None:
+                cart.removeFromCart(i)
+            else:
+                if cart.getType() != 0 && GameConstants.getInventoryType(r.getItem().getItemId()).getType() != cart.getType():
+                    continue
+                ret.add(r)
+        return ret
 
     def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
+        return self.item
 
     def getPrice(self) -> int:
-        """方法 getPrice"""
-        return getattr(self, 'price', 0)
+        return self.price
 
     def getRealPrice(self) -> int:
-        """方法 getRealPrice"""
-        return getattr(self, 'real_price', 0)
+        return self.price + self.getTaxes()
 
     def getTaxes(self) -> int:
-        """方法 getTaxes"""
-        return getattr(self, 'taxes', 0)
+        return ServerConstants.MTS_BASE + self.price * ServerConstants.MTS_TAX / 100
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def getCharacterId(self) -> int:
-        """方法 getCharacterId"""
-        return getattr(self, 'character_id', 0)
+        return self.cid
 
     def getEndingDate(self) -> int:
-        """方法 getEndingDate"""
-        return getattr(self, 'ending_date', 0)
+        return self.date
 
     def getSeller(self) -> str:
-        """方法 getSeller"""
-        return getattr(self, 'seller', "")
+        return self.seller
 
 
+# Inner class from Java (originally nested)
 class MTSItemInfo:
     """
-    类 MTSItemInfo - 从Java类转换
+    Class MTSItemInfo
     """
 
-    # 静态字段 (Static fields)
-    serialVersionUID = 231541893513228
-
     def __init__(self, price: int, item: Any, seller: str, id: int, cid: int, date: int):
-        """初始化 MTSItemInfo"""
-        self.lastUpdate = 0
-        self.idToCart = None
-        self.packageId = None
-        self.buyNow = None
-        self.end = False
-        self.mutex = None
-        self.cart_mutex = None
         self.price = None
         self.item = None
         self.seller = None
         self.id = None
         self.cid = None
         self.date = None
+        self.item = item
+        self.price = price
+        self.seller = seller
+        self.id = id
+        self.cid = cid
+        self.date = date
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def load(self) -> None:
-        """方法 load"""
-        pass
-
-    def check(self, packageid: int) -> bool:
-        """方法 check"""
-        return False
-
-    def checkCart(self, packageid: int, charID: int) -> bool:
-        """方法 checkCart"""
-        return False
-
-    def getSingleItem(self, packageid: int) -> Any:
-        """方法 getSingleItem"""
-        raise NotImplementedError("方法 getSingleItem 尚未实现")
-
-    def addToBuyNow(self, cart: Any, item: Any, price: int, cid: int, seller: str, expiration: int) -> None:
-        """方法 addToBuyNow"""
-        pass
-
-    def removeFromBuyNow(self, id: int, cidBought: int, check: bool) -> bool:
-        """方法 removeFromBuyNow"""
-        return False
-
-    def loadBuyNow(self) -> None:
-        """方法 loadBuyNow"""
-        pass
-
-    def saveBuyNow(self, isShutDown: bool) -> None:
-        """方法 saveBuyNow"""
-        pass
-
-    def checkExpirations(self) -> None:
-        """方法 checkExpirations"""
-        pass
-
-    def getCart(self, characterId: int) -> Any:
-        """方法 getCart"""
-        raise NotImplementedError("方法 getCart 尚未实现")
-
-    def getCurrentMTS(self, cart: Any) -> Any:
-        """方法 getCurrentMTS"""
-        raise NotImplementedError("方法 getCurrentMTS 尚未实现")
-
-    def getCurrentNotYetSold(self, cart: Any) -> Any:
-        """方法 getCurrentNotYetSold"""
-        raise NotImplementedError("方法 getCurrentNotYetSold 尚未实现")
-
-    def getCurrentTransfer(self, cart: Any, changed: bool) -> Any:
-        """方法 getCurrentTransfer"""
-        raise NotImplementedError("方法 getCurrentTransfer 尚未实现")
-
-    def getBuyNow(self, type: int, page: int) -> list:
-        """方法 getBuyNow"""
-        return []
-
-    def getCartItems(self, cart: Any) -> list:
-        """方法 getCartItems"""
-        return []
 
     def getItem(self) -> Any:
-        """方法 getItem"""
-        return getattr(self, 'item', None)
+        return self.item
 
     def getPrice(self) -> int:
-        """方法 getPrice"""
-        return getattr(self, 'price', 0)
+        return self.price
 
     def getRealPrice(self) -> int:
-        """方法 getRealPrice"""
-        return getattr(self, 'real_price', 0)
+        return self.price + self.getTaxes()
 
     def getTaxes(self) -> int:
-        """方法 getTaxes"""
-        return getattr(self, 'taxes', 0)
+        return ServerConstants.MTS_BASE + self.price * ServerConstants.MTS_TAX / 100
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def getCharacterId(self) -> int:
-        """方法 getCharacterId"""
-        return getattr(self, 'character_id', 0)
+        return self.cid
 
     def getEndingDate(self) -> int:
-        """方法 getEndingDate"""
-        return getattr(self, 'ending_date', 0)
+        return self.date
 
     def getSeller(self) -> str:
-        """方法 getSeller"""
-        return getattr(self, 'seller', "")
+        return self.seller
 

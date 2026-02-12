@@ -1,52 +1,52 @@
 """
-WZDirectoryEntry - 从Java源文件转换而来
-对应Java源文件: provider/WzXML/WZDirectoryEntry.java
-包路径: provider.WzXML
+WZDirectoryEntry - Converted from Java source
+Original: provider/WzXML/WZDirectoryEntry.java
+Package: provider.WzXML
 """
 
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleDataDirectoryEntry import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataEntity import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataEntry import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataFileEntry import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.MapleDataDirectoryEntry import *  # TODO: import specific classes
+# from provider.MapleDataEntity import *  # TODO: import specific classes
+# from provider.MapleDataEntry import *  # TODO: import specific classes
+# from provider.MapleDataFileEntry import *  # TODO: import specific classes
 
 
 class WZDirectoryEntry(WZEntry, MapleDataDirectoryEntry):
     """
-    类 WZDirectoryEntry - 从Java类转换
-    继承自: WZEntry
-    实现接口: MapleDataDirectoryEntry
+    Class WZDirectoryEntry
+    Extends: WZEntry
+    Implements: MapleDataDirectoryEntry
     """
 
     def __init__(self, name: str, size: int, checksum: int, parent: Any):
-        """初始化 WZDirectoryEntry"""
+        self.subdirs = []
+        self.files = []
+        self.entries = {}
+        super(name, size, checksum, parent)
         self.subdirs = []
         self.files = []
         self.entries = {}
 
 
     def addDirectory(self, dir: Any) -> None:
-        """方法 addDirectory"""
-        pass
+        self.subdirs.add(dir)
+        self.entries.put(dir.getName(), dir)
 
     def addFile(self, fileEntry: Any) -> None:
-        """方法 addFile"""
-        pass
+        self.files.add(fileEntry)
+        self.entries.put(fileEntry.getName(), fileEntry)
 
     def getSubdirectories(self) -> list:
-        """方法 getSubdirectories"""
-        return getattr(self, 'subdirectories', [])
+        return Collections.unmodifiableList((List<? extends MapleDataDirectoryEntry>)self.subdirs)
 
     def getFiles(self) -> list:
-        """方法 getFiles"""
-        return getattr(self, 'files', [])
+        return Collections.unmodifiableList((List<? extends MapleDataFileEntry>)self.files)
 
     def getEntry(self, name: str) -> Any:
-        """方法 getEntry"""
-        raise NotImplementedError("方法 getEntry 尚未实现")
+        return self.entries.get(name)
 

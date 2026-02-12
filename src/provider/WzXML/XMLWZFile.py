@@ -1,40 +1,62 @@
 """
-XMLWZFile - 从Java源文件转换而来
-对应Java源文件: provider/WzXML/XMLWZFile.java
-包路径: provider.WzXML
+XMLWZFile - Converted from Java source
+Original: provider/WzXML/XMLWZFile.java
+Package: provider.WzXML
 """
 
 from pathlib import Path
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleData import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataDirectoryEntry import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataEntity import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataProvider import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.MapleData import *  # TODO: import specific classes
+# from provider.MapleDataDirectoryEntry import *  # TODO: import specific classes
+# from provider.MapleDataEntity import *  # TODO: import specific classes
+# from provider.MapleDataProvider import *  # TODO: import specific classes
 
 
 class XMLWZFile(MapleDataProvider):
     """
-    类 XMLWZFile - 从Java类转换
-    实现接口: MapleDataProvider
+    Class XMLWZFile
+    Implements: MapleDataProvider
     """
 
     def __init__(self, fileIn: Any):
-        """初始化 XMLWZFile"""
         self.root = None
         self.rootForNavigation = None
+        self.root = fileIn
+        self.rootForNavigation = WZDirectoryEntry(fileIn.getName(), 0, 0, None)
+        self.fillMapleDataEntitys(self.root, self.rootForNavigation)
 
 
     def fillMapleDataEntitys(self, lroot: Any, wzdir: Any) -> None:
-        """方法 fillMapleDataEntitys"""
-        pass
+        for file in lroot.listFiles():
+            fileName = file.getName()
+            if file.isDirectory() && !fileName.endswith(".img"):
+                newDir = WZDirectoryEntry(fileName, 0, 0, wzdir)
+                wzdir.addDirectory(newDir)
+                self.fillMapleDataEntitys(file, newDir)
+            elif fileName.endswith(".xml"):
+                wzdir.addFile(WZFileEntry(fileName[0:fileName.__len__(] - 4), 0, 0, wzdir))
 
     def getData(self, path: str) -> Any:
-        """方法 getData"""
-        raise NotImplementedError("方法 getData 尚未实现")
+        dataFile = File(self.root, path + ".xml")
+        imageDataDir = File(self.root, path)
+        fis = None
+        try:
+            fis = FileInputStream(dataFile)
+        except FileNotFoundException as e2:
+            raise RuntimeError("Datafile " + path + " does not exist in " + self.root.getAbsolutePath())
+        domMapleData = None
+        try:
+            domMapleData = XMLDomMapleData(fis, imageDataDir.getParentFile())
+        finally:
+            try:
+                fis.close()
+            except IOError as e:
+                raise RuntimeError(e)
+        return domMapleData
 
     def getRoot(self) -> Any:
-        """方法 getRoot"""
-        return getattr(self, 'root', None)
+        return self.rootForNavigation
 

@@ -1,28 +1,27 @@
 """
-PredictCardFactory - 从Java源文件转换而来
-对应Java源文件: server/PredictCardFactory.java
-包路径: server
+PredictCardFactory - Converted from Java source
+Original: server/PredictCardFactory.java
+Package: server
 """
 
 from pathlib import Path
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import os
 
-# 内部模块导入 (Internal module imports)
-# from provider.MapleData import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataProvider import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataProviderFactory import *  # TODO: 根据实际需要导入具体类
-# from provider.MapleDataTool import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from provider.MapleData import *  # TODO: import specific classes
+# from provider.MapleDataProvider import *  # TODO: import specific classes
+# from provider.MapleDataProviderFactory import *  # TODO: import specific classes
+# from provider.MapleDataTool import *  # TODO: import specific classes
 
 
 class PredictCardFactory:
     """
-    类 PredictCardFactory - 从Java类转换
+    Class PredictCardFactory
     """
 
     def __init__(self):
-        """初始化 PredictCardFactory"""
         self.etcData = None
         self.predictCard = {}
         self.predictCardComment = {}
@@ -32,115 +31,79 @@ class PredictCardFactory:
         self.effectType = 0
         self.worldmsg0 = ""
         self.worldmsg1 = ""
+        self.etcData = MapleDataProviderFactory.getDataProvider(File("wz/Etc.wz"))
+        self.predictCard = {}
+        self.predictCardComment = {}
+
+    # Static initializer
+    # instance = PredictCardFactory()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def initialize(self) -> None:
-        """方法 initialize"""
-        pass
+        if !self.predictCard == 0 || !self.predictCardComment == 0:
+            return
+        infoData = self.etcData.getData("PredictCard.img")
+        for cardDat in infoData:
+            if cardDat.getName() == ("comment"):
+                continue
+            card = PredictCard()
+            card.name = MapleDataTool.getString("name", cardDat, "")
+            card.comment = MapleDataTool.getString("comment", cardDat, "")
+            self.predictCard.put(int(cardDat.getName()), card)
+        commentData = infoData.getChildByPath("comment")
+        for commentDat in commentData:
+            comment = PredictCardComment()
+            comment.worldmsg0 = MapleDataTool.getString("0", commentDat, "")
+            comment.worldmsg1 = MapleDataTool.getString("1", commentDat, "")
+            comment.score = MapleDataTool.getIntConvert("score", commentDat, 0)
+            comment.effectType = MapleDataTool.getIntConvert("effectType", commentDat, 0)
+            self.predictCardComment.put(int(commentDat.getName()), comment)
 
     def getPredictCard(self, id: int) -> Any:
-        """方法 getPredictCard"""
-        raise NotImplementedError("方法 getPredictCard 尚未实现")
+        if !(id in self.predictCard):
+            return None
+        return self.predictCard.get(id)
 
     def getPredictCardComment(self, id: int) -> Any:
-        """方法 getPredictCardComment"""
-        raise NotImplementedError("方法 getPredictCardComment 尚未实现")
+        if !(id in self.predictCardComment):
+            return None
+        return self.predictCardComment.get(id)
 
     def RandomCardComment(self) -> Any:
-        """方法 RandomCardComment"""
-        raise NotImplementedError("方法 RandomCardComment 尚未实现")
+        return self.getPredictCardComment(Randomizer.nextInt(self.predictCardComment))
 
     def getCardCommentSize(self) -> int:
-        """方法 getCardCommentSize"""
-        return getattr(self, 'card_comment_size', 0)
+        return self.predictCardComment
 
 
+# Inner class from Java (originally nested)
 class PredictCard:
     """
-    类 PredictCard - 从Java类转换
+    Class PredictCard
     """
 
     def __init__(self):
-        """初始化 PredictCard"""
-        self.etcData = None
-        self.predictCard = {}
-        self.predictCardComment = {}
         self.name = ""
         self.comment = ""
-        self.score = 0
-        self.effectType = 0
-        self.worldmsg0 = ""
-        self.worldmsg1 = ""
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
 
-    def initialize(self) -> None:
-        """方法 initialize"""
-        pass
-
-    def getPredictCard(self, id: int) -> Any:
-        """方法 getPredictCard"""
-        raise NotImplementedError("方法 getPredictCard 尚未实现")
-
-    def getPredictCardComment(self, id: int) -> Any:
-        """方法 getPredictCardComment"""
-        raise NotImplementedError("方法 getPredictCardComment 尚未实现")
-
-    def RandomCardComment(self) -> Any:
-        """方法 RandomCardComment"""
-        raise NotImplementedError("方法 RandomCardComment 尚未实现")
-
-    def getCardCommentSize(self) -> int:
-        """方法 getCardCommentSize"""
-        return getattr(self, 'card_comment_size', 0)
-
-
+# Inner class from Java (originally nested)
 class PredictCardComment:
     """
-    类 PredictCardComment - 从Java类转换
+    Class PredictCardComment
     """
 
     def __init__(self):
-        """初始化 PredictCardComment"""
-        self.etcData = None
-        self.predictCard = {}
-        self.predictCardComment = {}
-        self.name = ""
-        self.comment = ""
         self.score = 0
         self.effectType = 0
         self.worldmsg0 = ""
         self.worldmsg1 = ""
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def initialize(self) -> None:
-        """方法 initialize"""
-        pass
-
-    def getPredictCard(self, id: int) -> Any:
-        """方法 getPredictCard"""
-        raise NotImplementedError("方法 getPredictCard 尚未实现")
-
-    def getPredictCardComment(self, id: int) -> Any:
-        """方法 getPredictCardComment"""
-        raise NotImplementedError("方法 getPredictCardComment 尚未实现")
-
-    def RandomCardComment(self) -> Any:
-        """方法 RandomCardComment"""
-        raise NotImplementedError("方法 RandomCardComment 尚未实现")
-
-    def getCardCommentSize(self) -> int:
-        """方法 getCardCommentSize"""
-        return getattr(self, 'card_comment_size', 0)
 

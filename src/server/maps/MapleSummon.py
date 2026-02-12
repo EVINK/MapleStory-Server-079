@@ -1,30 +1,28 @@
 """
-MapleSummon - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleSummon.java
-包路径: server.maps
+MapleSummon - Converted from Java source
+Original: server/maps/MapleSummon.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
 from typing import Optional, Any
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.anticheat.CheatingOffense import *  # TODO: 根据实际需要导入具体类
-# from constants.GameConstants import *  # TODO: 根据实际需要导入具体类
-# from server.MapleStatEffect import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.anticheat.CheatingOffense import *  # TODO: import specific classes
+# from constants.GameConstants import *  # TODO: import specific classes
+# from server.MapleStatEffect import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleSummon(AbstractAnimatedMapleMapObject):
     """
-    类 MapleSummon - 从Java类转换
-    继承自: AbstractAnimatedMapleMapObject
+    Class MapleSummon
+    Extends: AbstractAnimatedMapleMapObject
     """
 
     def __init__(self, owner: Any, skill: Any, pos: Any, movementType: Any):
-        """初始化 MapleSummon"""
         self.ownerid = 0
         self.skillLevel = 0
         self.ownerLevel = 0
@@ -37,99 +35,139 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
         self.lastSummonTickCount = 0
         self.Summon_tickResetCount = 0
         self.Server_ClientSummonTickDiff = 0
+        self.changedMap = False
+        self.ownerid = owner.getId()
+        self.ownerLevel = owner.getLevel()
+        self.skill = skill.getSourceId()
+        self.map = owner.getMap()
+        self.skillLevel = skill.getLevel()
+        self.movementType = movementType
+        self.setPosition(pos)
+        try:
+            self.fh = owner.getMap().getFootholds().findBelow(pos).getId()
+        except TypeError as e:
+            self.fh = 0
+        if !self.is替身术():
+            self.lastSummonTickCount = 0
+            self.Summon_tickResetCount = 0
+            self.Server_ClientSummonTickDiff = 0
 
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
         pass
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
-        pass
+        client.getSession().write(MaplePacketCreator.removeSummon(this, False))
 
     def updateMap(self, map: Any) -> None:
-        """方法 updateMap"""
-        pass
+        self.map = map
 
     def getOwner(self) -> Any:
-        """方法 getOwner"""
-        return getattr(self, 'owner', None)
+        return self.map.getCharacterById(self.ownerid)
 
     def getFh(self) -> int:
-        """方法 getFh"""
-        return getattr(self, 'fh', 0)
+        return self.fh
 
     def setFh(self, fh: int) -> None:
-        """方法 setFh"""
         self.fh = fh
-        return None
 
     def getOwnerId(self) -> int:
-        """方法 getOwnerId"""
-        return getattr(self, 'owner_id', 0)
+        return self.ownerid
 
     def getOwnerLevel(self) -> int:
-        """方法 getOwnerLevel"""
-        return getattr(self, 'owner_level', 0)
+        return self.ownerLevel
 
     def getSkill(self) -> int:
-        """方法 getSkill"""
-        return getattr(self, 'skill', 0)
+        return self.skill
 
     def getHP(self) -> int:
-        """方法 getHP"""
-        return getattr(self, 'hp', 0)
+        return self.hp
 
     def addHP(self, delta: int) -> None:
-        """方法 addHP"""
-        pass
+        self.hp += delta
 
     def getMovementType(self) -> Any:
-        """方法 getMovementType"""
-        return getattr(self, 'movement_type', None)
+        return self.movementType
 
-    def is替身术(self) -> bool:
-        """方法 is替身术"""
-        return bool(getattr(self, '替身术', False))
+    def translated_is替身术(self) -> bool:
+        # switch (self.skill):
+            # case 3111002:
+            # case 3211002:
+            # case 4341006:
+            # case 13111004:
+            # case 33111003:
+                return True
+            # default:
+                return False
 
     def isGaviota(self) -> bool:
-        """方法 isGaviota"""
-        return bool(getattr(self, 'gaviota', False))
+        return self.skill == 5211002
 
     def isBeholder(self) -> bool:
-        """方法 isBeholder"""
-        return bool(getattr(self, 'beholder', False))
+        return self.skill == 1321007
 
     def isMultiSummon(self) -> bool:
-        """方法 isMultiSummon"""
-        return bool(getattr(self, 'multi_summon', False))
+        return self.skill == 5211002 || self.skill == 5211001 || self.skill == 5220002 || self.skill == 32111006
 
     def isSummon(self) -> bool:
-        """方法 isSummon"""
-        return bool(getattr(self, 'summon', False))
+        # switch (self.skill):
+            # case 1321007:
+            # case 2121005:
+            # case 2221005:
+            # case 2311006:
+            # case 2321003:
+            # case 5211001:
+            # case 5211002:
+            # case 5220002:
+            # case 11001004:
+            # case 12001004:
+            # case 12111004:
+            # case 13001004:
+            # case 13111004:
+            # case 14001005:
+            # case 15001004:
+                return True
+            # default:
+                return False
 
     def getSkillLevel(self) -> int:
-        """方法 getSkillLevel"""
-        return getattr(self, 'skill_level', 0)
+        return self.skillLevel
 
     def getSummonType(self) -> int:
-        """方法 getSummonType"""
-        return getattr(self, 'summon_type', 0)
+        if self.is替身术():
+            return 0
+        # switch (self.skill):
+            # case 1321007:
+                return 2
+            # case 35111001:
+            # case 35111009:
+            # case 35111010:
+                return 3
+            # case 35121009:
+                return 4
+            # default:
+                return 1
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.SUMMON
 
     def CheckSummonAttackFrequency(self, chr: Any, tickcount: int) -> None:
-        """方法 CheckSummonAttackFrequency"""
-        pass
+        tickdifference = tickcount - self.lastSummonTickCount
+        if tickdifference < GameConstants.getSummonAttackDelay(self.skill):
+            chr.getCheatTracker().registerOffense(CheatingOffense.召唤兽快速攻击)
+        STime_TC = int(time.time() * 1000) - tickcount
+        S_C_Difference = self.Server_ClientSummonTickDiff - STime_TC
+        if S_C_Difference > 200:
+            chr.getCheatTracker().registerOffense(CheatingOffense.召唤兽快速攻击)
+        self.Summon_tickResetCount += 1
+        if self.Summon_tickResetCount > 4:
+            self.Summon_tickResetCount = 0
+            self.Server_ClientSummonTickDiff = STime_TC
+        self.lastSummonTickCount = tickcount
 
     def isChangedMap(self) -> bool:
-        """方法 isChangedMap"""
-        return bool(getattr(self, 'changed_map', False))
+        return self.changedMap
 
     def setChangedMap(self, cm: bool) -> None:
-        """方法 setChangedMap"""
-        self.changed_map = cm
-        return None
+        self.changedMap = cm
 

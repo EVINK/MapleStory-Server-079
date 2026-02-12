@@ -1,7 +1,7 @@
 """
-HexTool - 从Java源文件转换而来
-对应Java源文件: tools/HexTool.java
-包路径: tools
+HexTool - Converted from Java source
+Original: tools/HexTool.java
+Package: tools
 """
 
 from io import BytesIO
@@ -12,40 +12,91 @@ import struct
 
 class HexTool:
     """
-    类 HexTool - 从Java类转换
+    Class HexTool
     """
+
+    # Static initializer
+    # HEX = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' }
 
 
     @staticmethod
     def toString(byteValue: int) -> str:
-        """方法 toString"""
-        return ""
+        tmp = byteValue << 8
+        retstr = { HexTool.HEX[tmp >> 12 & 0xF], HexTool.HEX[tmp >> 8 & 0xF] }
+        return str(retstr)
 
     def toString(self, buf: Any) -> str:
-        """方法 toString"""
-        return ""
+        buf.flip()
+        arr = new byte[buf.remaining()]
+        buf.get(arr)
+        ret = toString(arr)
+        buf.flip()
+        buf.put(arr)
+        return ret
 
-    def toString(self, intValue: int) -> str:
-        """方法 toString"""
-        return ""
+    def toString_intValue(self, intValue: int) -> str:
+        return Integer.toHexString(intValue)
 
-    def toString(self, bytes: bytes) -> str:
-        """方法 toString"""
-        return ""
+    def toString_bytes(self, bytes: bytes) -> str:
+        hexed = ""
+        for i in range(len(bytes)):
+            hexed.append(toString(bytes[i]))
+            hexed.append(' ')
+        return hexed[0:hexed.__len__(] - 1)
 
     def toStringFromAscii(self, bytes: bytes) -> str:
-        """方法 toStringFromAscii"""
-        return ""
+        ret = new byte[len(bytes)]
+        for x in range(len(bytes)):
+            if bytes[x] < 32 && bytes[x] >= 0:
+                ret[x] = 46
+            else:
+                chr = bytes[x] & 0xFF
+                ret[x] = chr
+        encode = "gbk"
+        try:
+            str = String(ret, encode)
+            return str
+        except UnsupportedEncodingException as ex:
+            return ""
 
     def toPaddedStringFromAscii(self, bytes: bytes) -> str:
-        """方法 toPaddedStringFromAscii"""
-        return ""
+        str = toStringFromAscii(bytes)
+        ret = "" * 3)
+        for i in range(str):
+            ret.append(str[i])
+            ret.append("  ")
+        return ret
 
     def getByteArrayFromHexString(self, hex: str) -> bytes:
-        """方法 getByteArrayFromHexString"""
-        return b""
+        baos = ByteArrayOutputStream()
+        nexti = 0
+        nextb = 0
+        highoc = True
+        Block_2:
+        while True:
+            number = -1
+            while number == -1:
+                if nexti == hex:
+                    Block_2 = None
+                chr = hex[nexti]
+                if chr >= '0' && chr <= '9':
+                    number = chr - '0'
+                elif chr >= 'a' && chr <= 'f':
+                    number = chr - 'a' + 10
+                elif chr >= 'A' && chr <= 'F':
+                    number = chr - 'A' + 10
+                else:
+                    number = -1
+                nexti += 1
+            if highoc:
+                nextb = number << 4
+                highoc = False
+            else:
+                nextb |= number
+                highoc = True
+                baos.write(nextb)
+        return baos.toByteArray()
 
     def getOpcodeToString(self, op: int) -> str:
-        """方法 getOpcodeToString"""
-        return ""
+        return "0x" + StringUtil.getLeftPaddedStr(Integer.toHexString(op).upper(), '0', 4)
 

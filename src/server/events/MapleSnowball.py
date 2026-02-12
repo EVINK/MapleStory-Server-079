@@ -1,7 +1,7 @@
 """
-MapleSnowball - 从Java源文件转换而来
-对应Java源文件: server/events/MapleSnowball.java
-包路径: server.events
+MapleSnowball - Converted from Java source
+Original: server/events/MapleSnowball.java
+Package: server.events
 """
 
 from concurrent.futures import Future
@@ -10,230 +10,293 @@ import math
 import sched
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleDisease import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from server.life.MobSkillFactory import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleDisease import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from server.life.MobSkillFactory import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleSnowball(MapleEvent):
     """
-    类 MapleSnowball - 从Java类转换
-    继承自: MapleEvent
+    Class MapleSnowball
+    Extends: MapleEvent
     """
 
     def __init__(self, channel: int, mapid: list):
-        """初始化 MapleSnowball"""
         self.position = 0
         self.team = None
         self.startPoint = 0
         self.invis = False
         self.hittable = False
         self.snowmanhp = 0
+        super(channel, mapid)
+        self.balls = new MapleSnowballs[2]
 
 
     def unreset(self) -> None:
-        """方法 unreset"""
-        pass
+        super.unreset()
+        for i in range(2):
+            self.getSnowBall(i).resetSchedule()
+            self.resetSnowBall(i)
 
     def reset(self) -> None:
-        """方法 reset"""
-        pass
+        super.reset()
+        self.makeSnowBall(0)
+        self.makeSnowBall(1)
 
     def startEvent(self) -> None:
-        """方法 startEvent"""
-        pass
+        for i in range(2):
+            ball = self.getSnowBall(i)
+            ball.broadcast(self.getMap(0), 0)
+            ball.setInvis(False)
+            ball.broadcast(self.getMap(0), 5)
+            self.getMap(0).broadcastMessage(MaplePacketCreator.enterSnowBall())
 
     def resetSnowBall(self, teamz: int) -> None:
-        """方法 resetSnowBall"""
-        pass
+        self.balls[teamz] = None
 
     def makeSnowBall(self, teamz: int) -> None:
-        """方法 makeSnowBall"""
-        pass
+        self.resetSnowBall(teamz)
+        self.balls[teamz] = MapleSnowballs(teamz)
 
     def getSnowBall(self, teamz: int) -> Any:
-        """方法 getSnowBall"""
-        raise NotImplementedError("方法 getSnowBall 尚未实现")
+        return self.balls[teamz]
 
     def hitSnowball(self, chr: Any) -> None:
-        """方法 hitSnowball"""
-        pass
+        team = (chr.getPosition().y <= -80) ? 1 : 0
+        sb = chr.getClient().getChannelServer().getEvent(MapleEventType.雪球赛)
+        ball = sb.getSnowBall(team)
+        if ball is not None && !ball.isInvis():
+            snowman = chr.getPosition().x < -360 && chr.getPosition().x > -560
+            if !snowman:
+                damage = ((random.random() < 0.01 || (chr.getPosition().x > ball.getLeftX() && chr.getPosition().x < ball.getRightX())) && ball.isHittable()) ? 10 : 0
+                chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team, damage, 0, 1))
+                if damage == 0:
+                    if random.random() < 0.2:
+                        chr.getClient().getSession().write(MaplePacketCreator.leftKnockBack())
+                        chr.getClient().getSession().write(MaplePacketCreator.enableActions())
+                else:
+                    ball.setPositionX(ball.getPosition() + 1)
+                    if ball.getPosition() == 255 || ball.getPosition() == 511 || ball.getPosition() == 767:
+                        ball.setStartPoint(chr.getMap())
+                        chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
+                    elif ball.getPosition() == 899:
+                        map = chr.getMap()
+                        for i in range(2):
+                            sb.getSnowBall(i).setInvis(True)
+                            map.broadcastMessage(MaplePacketCreator.rollSnowball(i + 2, sb.getSnowBall(0), sb.getSnowBall(1)))
+                        chr.getMap().broadcastMessage(MaplePacketCreator.serverNotice(6, "[恭喜] " + ((team == 0) ? "蓝队" : "红队") + " 赢得胜利!"))
+                        for chrz in chr.getMap().getCharactersThreadsafe():
+                            if (team == 0 && chrz.getPosition().y > -80) || (team == 1 && chrz.getPosition().y <= -80):
+                                sb.givePrize(chrz)
+                            sb.warpBack(chrz)
+                        sb.unreset()
+                    elif ball.getPosition() < 899:
+                        chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
+                        ball.setInvis(False)
+            elif ball.getPosition() < 899:
+                damage = 15
+                if random.random() < 0.3:
+                    damage = 0
+                if random.random() < 0.05:
+                    damage = 45
+                chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team + 2, damage, 0, 0))
+                ball.setSnowmanHP(ball.getSnowmanHP() - damage)
+                if damage > 0:
+                    chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(0, sb.getSnowBall(0), sb.getSnowBall(1)))
+                    if ball.getSnowmanHP() <= 0:
+                        ball.setSnowmanHP(7500)
+                        oBall = sb.getSnowBall((team == 0) ? 1 : 0)
+                        oBall.setHittable(False)
+                        map2 = chr.getMap()
+                        oBall.broadcast(map2, 4)
+                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
+                            public void run()
+                                oBall.setHittable(True)
+                                oBall.broadcast(map2, 5)
+                        for chrz2 in chr.getMap().getCharactersThreadsafe():
+                            if (ball.getTeam() == 0 && chr.getPosition().y < -80) || (ball.getTeam() == 1 && chr.getPosition().y > -80):
+                                chrz2.giveDebuff(MapleDisease.诱惑, MobSkillFactory.getMobSkill(128, 1))
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        oBall.setHittable(True)
+        oBall.broadcast(map2, 5)
 
     def resetSchedule(self) -> None:
-        """方法 resetSchedule"""
-        pass
+        if self.snowmanSchedule is not None:
+            self.snowmanSchedule.cancel(False)
+            self.snowmanSchedule = None
 
     def getTeam(self) -> int:
-        """方法 getTeam"""
-        return getattr(self, 'team', 0)
+        return self.team
 
     def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
+        return self.position
 
     def setPositionX(self, pos: int) -> None:
-        """方法 setPositionX"""
-        self.position_x = pos
-        return None
+        self.position = pos
 
     def setStartPoint(self, map: Any) -> None:
-        """方法 setStartPoint"""
-        self.start_point = map
-        return None
+        self.broadcast(map, ++self.startPoint)
 
     def isInvis(self) -> bool:
-        """方法 isInvis"""
-        return bool(getattr(self, 'invis', False))
+        return self.invis
 
     def setInvis(self, i: bool) -> None:
-        """方法 setInvis"""
         self.invis = i
-        return None
 
     def isHittable(self) -> bool:
-        """方法 isHittable"""
-        return bool(getattr(self, 'hittable', False))
+        return self.hittable && !self.invis
 
     def setHittable(self, b: bool) -> None:
-        """方法 setHittable"""
         self.hittable = b
-        return None
 
     def getSnowmanHP(self) -> int:
-        """方法 getSnowmanHP"""
-        return getattr(self, 'snowman_hp', 0)
+        return self.snowmanhp
 
     def setSnowmanHP(self, shp: int) -> None:
-        """方法 setSnowmanHP"""
-        self.snowman_hp = shp
-        return None
+        self.snowmanhp = shp
 
     def broadcast(self, map: Any, message: int) -> None:
-        """方法 broadcast"""
-        pass
+        for chr in map.getCharactersThreadsafe():
+            if (self.team == 0 && chr.getPosition().y > -80) || (self.team == 1 && chr.getPosition().y <= -80):
+                chr.getClient().getSession().write(MaplePacketCreator.snowballMessage(self.team, message))
 
     def getLeftX(self) -> int:
-        """方法 getLeftX"""
-        return getattr(self, 'left_x', 0)
+        return self.position * 3 + 175
 
     def getRightX(self) -> int:
-        """方法 getRightX"""
-        return getattr(self, 'right_x', 0)
+        return self.getLeftX() + 275
 
 
+# Inner class from Java (originally nested)
 class MapleSnowballs:
     """
-    类 MapleSnowballs - 从Java类转换
+    Class MapleSnowballs
     """
 
     def __init__(self, team_: int):
-        """初始化 MapleSnowballs"""
         self.position = 0
         self.team = None
         self.startPoint = 0
         self.invis = False
         self.hittable = False
         self.snowmanhp = 0
+        self.position = 0
+        self.startPoint = 0
+        self.invis = True
+        self.hittable = True
+        self.snowmanhp = 7500
+        self.snowmanSchedule = None
+        self.team = team_
 
-
-    def unreset(self) -> None:
-        """方法 unreset"""
-        pass
-
-    def reset(self) -> None:
-        """方法 reset"""
-        pass
-
-    def startEvent(self) -> None:
-        """方法 startEvent"""
-        pass
-
-    def resetSnowBall(self, teamz: int) -> None:
-        """方法 resetSnowBall"""
-        pass
-
-    def makeSnowBall(self, teamz: int) -> None:
-        """方法 makeSnowBall"""
-        pass
-
-    def getSnowBall(self, teamz: int) -> Any:
-        """方法 getSnowBall"""
-        raise NotImplementedError("方法 getSnowBall 尚未实现")
 
     def hitSnowball(self, chr: Any) -> None:
-        """方法 hitSnowball"""
-        pass
+        team = (chr.getPosition().y <= -80) ? 1 : 0
+        sb = chr.getClient().getChannelServer().getEvent(MapleEventType.雪球赛)
+        ball = sb.getSnowBall(team)
+        if ball is not None && !ball.isInvis():
+            snowman = chr.getPosition().x < -360 && chr.getPosition().x > -560
+            if !snowman:
+                damage = ((random.random() < 0.01 || (chr.getPosition().x > ball.getLeftX() && chr.getPosition().x < ball.getRightX())) && ball.isHittable()) ? 10 : 0
+                chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team, damage, 0, 1))
+                if damage == 0:
+                    if random.random() < 0.2:
+                        chr.getClient().getSession().write(MaplePacketCreator.leftKnockBack())
+                        chr.getClient().getSession().write(MaplePacketCreator.enableActions())
+                else:
+                    ball.setPositionX(ball.getPosition() + 1)
+                    if ball.getPosition() == 255 || ball.getPosition() == 511 || ball.getPosition() == 767:
+                        ball.setStartPoint(chr.getMap())
+                        chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
+                    elif ball.getPosition() == 899:
+                        map = chr.getMap()
+                        for i in range(2):
+                            sb.getSnowBall(i).setInvis(True)
+                            map.broadcastMessage(MaplePacketCreator.rollSnowball(i + 2, sb.getSnowBall(0), sb.getSnowBall(1)))
+                        chr.getMap().broadcastMessage(MaplePacketCreator.serverNotice(6, "[恭喜] " + ((team == 0) ? "蓝队" : "红队") + " 赢得胜利!"))
+                        for chrz in chr.getMap().getCharactersThreadsafe():
+                            if (team == 0 && chrz.getPosition().y > -80) || (team == 1 && chrz.getPosition().y <= -80):
+                                sb.givePrize(chrz)
+                            sb.warpBack(chrz)
+                        sb.unreset()
+                    elif ball.getPosition() < 899:
+                        chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
+                        ball.setInvis(False)
+            elif ball.getPosition() < 899:
+                damage = 15
+                if random.random() < 0.3:
+                    damage = 0
+                if random.random() < 0.05:
+                    damage = 45
+                chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team + 2, damage, 0, 0))
+                ball.setSnowmanHP(ball.getSnowmanHP() - damage)
+                if damage > 0:
+                    chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(0, sb.getSnowBall(0), sb.getSnowBall(1)))
+                    if ball.getSnowmanHP() <= 0:
+                        ball.setSnowmanHP(7500)
+                        oBall = sb.getSnowBall((team == 0) ? 1 : 0)
+                        oBall.setHittable(False)
+                        map2 = chr.getMap()
+                        oBall.broadcast(map2, 4)
+                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
+                            public void run()
+                                oBall.setHittable(True)
+                                oBall.broadcast(map2, 5)
+                        for chrz2 in chr.getMap().getCharactersThreadsafe():
+                            if (ball.getTeam() == 0 && chr.getPosition().y < -80) || (ball.getTeam() == 1 && chr.getPosition().y > -80):
+                                chrz2.giveDebuff(MapleDisease.诱惑, MobSkillFactory.getMobSkill(128, 1))
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        oBall.setHittable(True)
+        oBall.broadcast(map2, 5)
 
     def resetSchedule(self) -> None:
-        """方法 resetSchedule"""
-        pass
+        if self.snowmanSchedule is not None:
+            self.snowmanSchedule.cancel(False)
+            self.snowmanSchedule = None
 
     def getTeam(self) -> int:
-        """方法 getTeam"""
-        return getattr(self, 'team', 0)
+        return self.team
 
     def getPosition(self) -> int:
-        """方法 getPosition"""
-        return getattr(self, 'position', 0)
+        return self.position
 
     def setPositionX(self, pos: int) -> None:
-        """方法 setPositionX"""
-        self.position_x = pos
-        return None
+        self.position = pos
 
     def setStartPoint(self, map: Any) -> None:
-        """方法 setStartPoint"""
-        self.start_point = map
-        return None
+        self.broadcast(map, ++self.startPoint)
 
     def isInvis(self) -> bool:
-        """方法 isInvis"""
-        return bool(getattr(self, 'invis', False))
+        return self.invis
 
     def setInvis(self, i: bool) -> None:
-        """方法 setInvis"""
         self.invis = i
-        return None
 
     def isHittable(self) -> bool:
-        """方法 isHittable"""
-        return bool(getattr(self, 'hittable', False))
+        return self.hittable && !self.invis
 
     def setHittable(self, b: bool) -> None:
-        """方法 setHittable"""
         self.hittable = b
-        return None
 
     def getSnowmanHP(self) -> int:
-        """方法 getSnowmanHP"""
-        return getattr(self, 'snowman_hp', 0)
+        return self.snowmanhp
 
     def setSnowmanHP(self, shp: int) -> None:
-        """方法 setSnowmanHP"""
-        self.snowman_hp = shp
-        return None
+        self.snowmanhp = shp
 
     def broadcast(self, map: Any, message: int) -> None:
-        """方法 broadcast"""
-        pass
+        for chr in map.getCharactersThreadsafe():
+            if (self.team == 0 && chr.getPosition().y > -80) || (self.team == 1 && chr.getPosition().y <= -80):
+                chr.getClient().getSession().write(MaplePacketCreator.snowballMessage(self.team, message))
 
     def getLeftX(self) -> int:
-        """方法 getLeftX"""
-        return getattr(self, 'left_x', 0)
+        return self.position * 3 + 175
 
     def getRightX(self) -> int:
-        """方法 getRightX"""
-        return getattr(self, 'right_x', 0)
+        return self.getLeftX() + 275
 

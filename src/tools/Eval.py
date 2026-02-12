@@ -1,158 +1,169 @@
 """
-Eval - 从Java源文件转换而来
-对应Java源文件: tools/Eval.java
-包路径: tools
+Eval - Converted from Java source
+Original: tools/Eval.java
+Package: tools
 """
 
+from enum import Enum, IntEnum
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import math
 
 
 class Eval:
     """
-    类 Eval - 从Java类转换
+    Class Eval
     """
 
     def __init__(self, expression: str):
-        """初始化 Eval"""
         self.rootOperation = None
         self.string = None
         self.position = 0
         self.pushedBackOperator = None
         self.tokeniser = None
+        self.rootOperation = Compiler(expression).compile()
+
+    # Static initializer
+    # Tokeniser.START_NEW_EXPRESSION = '('
 
 
     def eval(self, expression: str, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
+        return Eval(expression).eval(variables)
 
-    def eval(self, expression: str) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
+    def eval_expression(self, expression: str) -> Any:
+        return Eval(expression).eval()
 
-    def eval(self, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
+    def eval_variables(self, variables: dict) -> Any:
+        return self.rootOperation.eval(variables)
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.rootOperation
 
     def getBigDecimal(self) -> Any:
-        """方法 getBigDecimal"""
-        return getattr(self, 'big_decimal', None)
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        len = self.string
+        start = self.position
+        ch = None
+        while self.position < len && (Character.isDigit(ch = self.string[self.position]) || ch == '.'):
+            self.position += 1
+        if self.position < len && ((ch = self.string[self.position]) == 'E' || ch == 'e'):
+            self.position += 1
+            if self.position < len && ((ch = self.string[self.position]) == '+' || ch == '-'):
+                self.position += 1
+            while self.position < len && Character.isDigit(ch = self.string[self.position]):
+                self.position += 1
+        return BigDecimal(self.string[start:self.position])
 
     def validateOperandType(self, operand: Any, type: Any) -> None:
-        """方法 validateOperandType"""
-        pass
+        operandType = None
+        if isinstance(operand, Operation) && (operandType = (operand).type) != type:
+            raise RuntimeError("cannot use " + operandType.name + " operands with " + type.name + " operators")
 
     def evaluateOperand(self, operand: Any, variables: dict) -> Any:
-        """方法 evaluateOperand"""
-        raise NotImplementedError("方法 evaluateOperand 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        if isinstance(operand, Operation):
+            return (operand).eval(variables)
+        if !(isinstance(operand, String)):
+            return operand
+        value = None
+        if variables is None || (value = variables.get(operand)) is None:
+            raise RuntimeError("no value for variable \"" + operand + "\"")
+        return value
 
     def compile(self, preReadOperand: Any, preReadOperator: Any, nestingLevel: int, endOfExpressionChar: str, terminatePrecedence: int) -> Any:
-        """方法 compile"""
-        raise NotImplementedError("方法 compile 尚未实现")
+        operand = (preReadOperand is not None) ? preReadOperand : self.getOperand(nestingLevel)
+        operator = (preReadOperator is not None) ? preReadOperator : self.tokeniser.getOperator(endOfExpressionChar)
+        while operator != Operator.END:
+            if operator == Operator.TERNARY:
+                operand2 = self.compile(None, None, nestingLevel, ':', -1)
+                operand3 = self.compile(None, None, nestingLevel, endOfExpressionChar, -1)
+                operand = Operation.tenaryOperationFactory(operator, operand, operand2, operand3)
+                operator = Operator.END
+            else:
+                nextOperand = self.getOperand(nestingLevel)
+                nextOperator = self.tokeniser.getOperator(endOfExpressionChar)
+                if nextOperator == Operator.END:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    operator = Operator.END
+                    if preReadOperator is None || endOfExpressionChar == '\0':
+                        continue
+                    self.tokeniser.pushBack(Operator.END)
+                elif nextOperator.precedence <= terminatePrecedence:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    self.tokeniser.pushBack(nextOperator)
+                    operator = Operator.END
+                elif operator.precedence >= nextOperator.precedence:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    operator = nextOperator
+                else:
+                    operand = Operation.binaryOperationfactory(operator, operand, self.compile(nextOperand, nextOperator, nestingLevel, endOfExpressionChar, operator.precedence))
+                    operator = self.tokeniser.getOperator(endOfExpressionChar)
+                    if operator != Operator.END || preReadOperator is None || endOfExpressionChar == '\0':
+                        continue
+                    self.tokeniser.pushBack(Operator.END)
+        return operand
 
     def getOperand(self, nestingLevel: int) -> Any:
-        """方法 getOperand"""
-        raise NotImplementedError("方法 getOperand 尚未实现")
+        operand = self.tokeniser.getOperand()
+        if operand == Tokeniser.START_NEW_EXPRESSION:
+            operand = self.compile(None, None, nestingLevel + 1, ')', -1)
+        elif isinstance(operand, Operator):
+            return Operation.unaryOperationfactory(operand, self.getOperand(nestingLevel))
+        return operand
 
 
+# Inner class from Java (originally nested)
 class Type(Enum):
-    """枚举类 Type - 从Java枚举转换"""
+    """Enum Type"""
 
     ARITHMETIC = ("arithmetic")
     BOOLEAN = ("boolean")
 
     def __init__(self, name):
-        """初始化枚举值"""
         self._name = name
 
 
+# Inner class from Java (originally nested)
 class Tokeniser:
     """
-    类 Tokeniser - 从Java类转换
+    Class Tokeniser
     """
 
     def __init__(self):
-        """初始化 Tokeniser"""
-        self.rootOperation = None
         self.string = None
         self.position = 0
         self.pushedBackOperator = None
-        self.tokeniser = None
 
+    # Static initializer
+    # Tokeniser.START_NEW_EXPRESSION = '('
 
-    def eval(self, expression: str, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, expression: str) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
 
     def getBigDecimal(self) -> Any:
-        """方法 getBigDecimal"""
-        return getattr(self, 'big_decimal', None)
+        len = self.string
+        start = self.position
+        ch = None
+        while self.position < len && (Character.isDigit(ch = self.string[self.position]) || ch == '.'):
+            self.position += 1
+        if self.position < len && ((ch = self.string[self.position]) == 'E' || ch == 'e'):
+            self.position += 1
+            if self.position < len && ((ch = self.string[self.position]) == '+' || ch == '-'):
+                self.position += 1
+            while self.position < len && Character.isDigit(ch = self.string[self.position]):
+                self.position += 1
+        return BigDecimal(self.string[start:self.position])
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def validateOperandType(self, operand: Any, type: Any) -> None:
-        """方法 validateOperandType"""
-        pass
-
-    def evaluateOperand(self, operand: Any, variables: dict) -> Any:
-        """方法 evaluateOperand"""
-        raise NotImplementedError("方法 evaluateOperand 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def compile(self, preReadOperand: Any, preReadOperator: Any, nestingLevel: int, endOfExpressionChar: str, terminatePrecedence: int) -> Any:
-        """方法 compile"""
-        raise NotImplementedError("方法 compile 尚未实现")
-
-    def getOperand(self, nestingLevel: int) -> Any:
-        """方法 getOperand"""
-        raise NotImplementedError("方法 getOperand 尚未实现")
+        return self.string[0:self.position] + ">>>" + self.string[self.position:]
 
 
+# Inner class from Java (originally nested)
 class Operator(Enum):
-    """枚举类 Operator - 从Java枚举转换"""
+    """Enum Operator"""
 
-    END = (-1, 0, (String)null, (Type)null, (Type)null)
+    END = (-1, 0, (String)null, (Type)null, (Type)null) {
+            @Override
+            BigDecimal perform(final BigDecimal value1, final BigDecimal value2, final BigDecimal value3) {
+                throw new RuntimeException("END is a dummy operation")
 
     def __init__(self, precedence, numberOfOperands, string, resultType, operandType):
-        """初始化枚举值"""
         self._precedence = precedence
         self._numberOfOperands = numberOfOperands
         self._string = string
@@ -160,128 +171,93 @@ class Operator(Enum):
         self._operandType = operandType
 
 
+# Inner class from Java (originally nested)
 class Operation:
     """
-    类 Operation - 从Java类转换
+    Class Operation
     """
 
     def __init__(self, type: Any, operator: Any, operand1: Any, operand2: Any, operand3: Any):
-        """初始化 Operation"""
-        self.rootOperation = None
-        self.string = None
-        self.position = 0
-        self.pushedBackOperator = None
-        self.tokeniser = None
+        self.type = type
+        self.operator = operator
+        self.operand1 = operand1
+        self.operand2 = operand2
+        self.operand3 = operand3
 
-
-    def eval(self, expression: str, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, expression: str) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getBigDecimal(self) -> Any:
-        """方法 getBigDecimal"""
-        return getattr(self, 'big_decimal', None)
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
 
     def validateOperandType(self, operand: Any, type: Any) -> None:
-        """方法 validateOperandType"""
-        pass
+        operandType = None
+        if isinstance(operand, Operation) && (operandType = (operand).type) != type:
+            raise RuntimeError("cannot use " + operandType.name + " operands with " + type.name + " operators")
 
     def evaluateOperand(self, operand: Any, variables: dict) -> Any:
-        """方法 evaluateOperand"""
-        raise NotImplementedError("方法 evaluateOperand 尚未实现")
+        if isinstance(operand, Operation):
+            return (operand).eval(variables)
+        if !(isinstance(operand, String)):
+            return operand
+        value = None
+        if variables is None || (value = variables.get(operand)) is None:
+            raise RuntimeError("no value for variable \"" + operand + "\"")
+        return value
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def compile(self, preReadOperand: Any, preReadOperator: Any, nestingLevel: int, endOfExpressionChar: str, terminatePrecedence: int) -> Any:
-        """方法 compile"""
-        raise NotImplementedError("方法 compile 尚未实现")
-
-    def getOperand(self, nestingLevel: int) -> Any:
-        """方法 getOperand"""
-        raise NotImplementedError("方法 getOperand 尚未实现")
+        # switch (self.operator.numberOfOperands):
+            # case 3:
+                return "(" + self.operand1 + self.operator.string + self.operand2 + ":" + self.operand3 + ")"
+            # case 2:
+                return "(" + self.operand1 + self.operator.string + self.operand2 + ")"
+            # default:
+                return "(" + self.operator.string + self.operand1 + ")"
 
 
+# Inner class from Java (originally nested)
 class Compiler:
     """
-    类 Compiler - 从Java类转换
+    Class Compiler
     """
 
     def __init__(self):
-        """初始化 Compiler"""
-        self.rootOperation = None
-        self.string = None
-        self.position = 0
-        self.pushedBackOperator = None
         self.tokeniser = None
 
 
-    def eval(self, expression: str, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, expression: str) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self, variables: dict) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def eval(self) -> Any:
-        """方法 eval"""
-        raise NotImplementedError("方法 eval 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def getBigDecimal(self) -> Any:
-        """方法 getBigDecimal"""
-        return getattr(self, 'big_decimal', None)
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
-    def validateOperandType(self, operand: Any, type: Any) -> None:
-        """方法 validateOperandType"""
-        pass
-
-    def evaluateOperand(self, operand: Any, variables: dict) -> Any:
-        """方法 evaluateOperand"""
-        raise NotImplementedError("方法 evaluateOperand 尚未实现")
-
-    def toString(self) -> str:
-        """方法 toString"""
-        return ""
-
     def compile(self, preReadOperand: Any, preReadOperator: Any, nestingLevel: int, endOfExpressionChar: str, terminatePrecedence: int) -> Any:
-        """方法 compile"""
-        raise NotImplementedError("方法 compile 尚未实现")
+        operand = (preReadOperand is not None) ? preReadOperand : self.getOperand(nestingLevel)
+        operator = (preReadOperator is not None) ? preReadOperator : self.tokeniser.getOperator(endOfExpressionChar)
+        while operator != Operator.END:
+            if operator == Operator.TERNARY:
+                operand2 = self.compile(None, None, nestingLevel, ':', -1)
+                operand3 = self.compile(None, None, nestingLevel, endOfExpressionChar, -1)
+                operand = Operation.tenaryOperationFactory(operator, operand, operand2, operand3)
+                operator = Operator.END
+            else:
+                nextOperand = self.getOperand(nestingLevel)
+                nextOperator = self.tokeniser.getOperator(endOfExpressionChar)
+                if nextOperator == Operator.END:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    operator = Operator.END
+                    if preReadOperator is None || endOfExpressionChar == '\0':
+                        continue
+                    self.tokeniser.pushBack(Operator.END)
+                elif nextOperator.precedence <= terminatePrecedence:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    self.tokeniser.pushBack(nextOperator)
+                    operator = Operator.END
+                elif operator.precedence >= nextOperator.precedence:
+                    operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
+                    operator = nextOperator
+                else:
+                    operand = Operation.binaryOperationfactory(operator, operand, self.compile(nextOperand, nextOperator, nestingLevel, endOfExpressionChar, operator.precedence))
+                    operator = self.tokeniser.getOperator(endOfExpressionChar)
+                    if operator != Operator.END || preReadOperator is None || endOfExpressionChar == '\0':
+                        continue
+                    self.tokeniser.pushBack(Operator.END)
+        return operand
 
     def getOperand(self, nestingLevel: int) -> Any:
-        """方法 getOperand"""
-        raise NotImplementedError("方法 getOperand 尚未实现")
+        operand = self.tokeniser.getOperand()
+        if operand == Tokeniser.START_NEW_EXPRESSION:
+            operand = self.compile(None, None, nestingLevel + 1, ')', -1)
+        elif isinstance(operand, Operator):
+            return Operation.unaryOperationfactory(operand, self.getOperand(nestingLevel))
+        return operand
 

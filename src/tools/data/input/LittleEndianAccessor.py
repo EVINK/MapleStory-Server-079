@@ -1,89 +1,74 @@
 """
-LittleEndianAccessor - 从Java源文件转换而来
-对应Java源文件: tools/data/input/LittleEndianAccessor.java
-包路径: tools.data.input
+LittleEndianAccessor - Converted from Java source
+Original: tools/data/input/LittleEndianAccessor.java
+Package: tools.data.input
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
 
 from abc import ABC, abstractmethod
 
 class LittleEndianAccessor(ABC):
-    """接口 LittleEndianAccessor - 从Java接口转换"""
+    """Interface LittleEndianAccessor"""
 
     @abstractmethod
-    def read_byte(self) -> Any:
-        """抽象方法 readByte"""
+    def readByte(self) -> int:
         pass
 
     @abstractmethod
-    def read_byte_as_int(self) -> Any:
-        """抽象方法 readByteAsInt"""
+    def readByteAsInt(self) -> int:
         pass
 
     @abstractmethod
-    def read_char(self) -> Any:
-        """抽象方法 readChar"""
+    def readChar(self) -> str:
         pass
 
     @abstractmethod
-    def read_short(self) -> Any:
-        """抽象方法 readShort"""
+    def readShort(self) -> int:
         pass
 
     @abstractmethod
-    def read_int(self) -> Any:
-        """抽象方法 readInt"""
+    def readInt(self) -> int:
         pass
 
     @abstractmethod
-    def read_long(self) -> Any:
-        """抽象方法 readLong"""
+    def readLong(self) -> int:
         pass
 
     @abstractmethod
-    def skip(self, p0: int) -> Any:
-        """抽象方法 skip"""
+    def skip(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def read_float(self) -> Any:
-        """抽象方法 readFloat"""
+    def readFloat(self) -> float:
         pass
 
     @abstractmethod
-    def read_double(self) -> Any:
-        """抽象方法 readDouble"""
+    def readDouble(self) -> float:
         pass
 
     @abstractmethod
-    def read_ascii_string(self, p0: int) -> Any:
-        """抽象方法 readAsciiString"""
+    def readAsciiString(self, p0: int) -> str:
         pass
 
     @abstractmethod
-    def read_maple_ascii_string(self) -> Any:
-        """抽象方法 readMapleAsciiString"""
+    def readMapleAsciiString(self) -> str:
         pass
 
     @abstractmethod
-    def read_pos(self) -> Any:
-        """抽象方法 readPos"""
+    def readPos(self) -> Any:
         pass
 
     @abstractmethod
-    def get_bytes_read(self) -> Any:
-        """抽象方法 getBytesRead"""
+    def getBytesRead(self) -> int:
         pass
 
     @abstractmethod
-    def available(self) -> Any:
-        """抽象方法 available"""
+    def available(self) -> int:
         pass
 
     @abstractmethod
-    def to_string(self, p0: bool) -> Any:
-        """抽象方法 toString"""
+    def toString(self, p0: bool) -> str:
         pass
 

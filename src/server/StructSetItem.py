@@ -1,21 +1,20 @@
 """
-StructSetItem - 从Java源文件转换而来
-对应Java源文件: server/StructSetItem.java
-包路径: server
+StructSetItem - Converted from Java source
+Original: server/StructSetItem.java
+Package: server
 """
 
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
 
 class StructSetItem:
     """
-    类 StructSetItem - 从Java类转换
+    Class StructSetItem
     """
 
     def __init__(self):
-        """初始化 StructSetItem"""
         self.completeCount = 0
         self.setItemID = 0
         self.items = {}
@@ -32,24 +31,21 @@ class StructSetItem:
         self.incSpeed = 0
         self.incMHP = 0
         self.incMMP = 0
+        self.items = {}
+        self.itemIDs = []
 
 
     def getItems(self) -> dict:
-        """方法 getItems"""
-        return getattr(self, 'items', {})
+        return {}
 
 
+# Inner class from Java (originally nested)
 class SetItem:
     """
-    类 SetItem - 从Java类转换
+    Class SetItem
     """
 
     def __init__(self):
-        """初始化 SetItem"""
-        self.completeCount = 0
-        self.setItemID = 0
-        self.items = {}
-        self.itemIDs = []
         self.incPDD = 0
         self.incMDD = 0
         self.incSTR = 0
@@ -63,8 +59,4 @@ class SetItem:
         self.incMHP = 0
         self.incMMP = 0
 
-
-    def getItems(self) -> dict:
-        """方法 getItems"""
-        return getattr(self, 'items', {})
 

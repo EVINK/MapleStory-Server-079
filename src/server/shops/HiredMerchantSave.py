@@ -1,7 +1,7 @@
 """
-HiredMerchantSave - 从Java源文件转换而来
-对应Java源文件: server/shops/HiredMerchantSave.java
-包路径: server.shops
+HiredMerchantSave - Converted from Java source
+Original: server/shops/HiredMerchantSave.java
+Package: server.shops
 """
 
 from threading import Lock
@@ -14,11 +14,10 @@ import time
 
 class HiredMerchantSave:
     """
-    类 HiredMerchantSave - 从Java类转换
+    Class HiredMerchantSave
     """
 
     def __init__(self):
-        """初始化 HiredMerchantSave"""
         self.ext = None
         self.ThreadID = None
         self.TimeTaken = 0
@@ -26,113 +25,106 @@ class HiredMerchantSave:
         self.ToNotify = None
         self.Queue = None
 
+    # Static initializer
+    # HiredMerchantSave.NumSavingThreads = 5
+    # Threads = new TimingThread[5]
+    # for i in range(HiredMerchantSave.len(Threads)):
+    # HiredMerchantSave.Threads[i] = TimingThread(HiredMerchantSaveRunnable())
+    # Distribute = AtomicInteger(0)
+
 
     @staticmethod
     def QueueShopForSave(hm: Any) -> None:
-        """方法 QueueShopForSave"""
-        pass
+        Current = HiredMerchantSave.Distribute.getAndIncrement() % 5
+        HiredMerchantSave.Threads[Current].getRunnable().Queue(hm)
 
     def Execute(self, ToNotify: Any) -> None:
-        """方法 Execute"""
-        pass
+        for i in range(HiredMerchantSave.len(Threads)):
+            HiredMerchantSave.Threads[i].getRunnable().SetToNotify(ToNotify)
+        for i in range(HiredMerchantSave.len(Threads)):
+            HiredMerchantSave.Threads[i].start()
 
     def getRunnable(self) -> Any:
-        """方法 getRunnable"""
-        return getattr(self, 'runnable', None)
+        return self.ext
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        try:
+            while !self.Queue == 0:
+                next = self.Queue.take()
+                Start = int(time.time() * 1000)
+                next.closeShop(True, False)
+                self.TimeTaken += int(time.time() * 1000) - Start
+                self.ShopsSaved += 1
+            print("[保存雇佣商店数据 线程 " + self.ThreadID + "] 共保存: " + self.ShopsSaved + " | 耗时: " + self.TimeTaken + " 毫秒.")
+            with self.ToNotify:  # synchronized
+                self.ToNotify.notify()
+        except InterruptedException as ex:
+            Logger.getLogger(HiredMerchantSave.class.getName()).log(Level.SEVERE, None, ex)
 
     def Queue(self, hm: Any) -> None:
-        """方法 Queue"""
-        pass
+        self.Queue.add(hm)
 
     def SetToNotify(self, o: Any) -> None:
-        """方法 SetToNotify"""
-        pass
+        if self.ToNotify is None:
+            self.ToNotify = o
 
 
+# Inner class from Java (originally nested)
 class TimingThread(Thread):
     """
-    类 TimingThread - 从Java类转换
-    继承自: Thread
+    Class TimingThread
+    Extends: Thread
     """
 
     def __init__(self, r: Any):
-        """初始化 TimingThread"""
         self.ext = None
-        self.ThreadID = None
-        self.TimeTaken = 0
-        self.ShopsSaved = 0
-        self.ToNotify = None
-        self.Queue = None
+        self.ext = r
 
-
-    @staticmethod
-    def QueueShopForSave(hm: Any) -> None:
-        """方法 QueueShopForSave"""
-        pass
-
-    def Execute(self, ToNotify: Any) -> None:
-        """方法 Execute"""
-        pass
 
     def getRunnable(self) -> Any:
-        """方法 getRunnable"""
-        return getattr(self, 'runnable', None)
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def Queue(self, hm: Any) -> None:
-        """方法 Queue"""
-        pass
-
-    def SetToNotify(self, o: Any) -> None:
-        """方法 SetToNotify"""
-        pass
+        return self.ext
 
 
+# Inner class from Java (originally nested)
 class HiredMerchantSaveRunnable(Runnable):
     """
-    类 HiredMerchantSaveRunnable - 从Java类转换
-    实现接口: Runnable
+    Class HiredMerchantSaveRunnable
+    Implements: Runnable
     """
 
     def __init__(self):
-        """初始化 HiredMerchantSaveRunnable"""
-        self.ext = None
         self.ThreadID = None
         self.TimeTaken = 0
         self.ShopsSaved = 0
         self.ToNotify = None
         self.Queue = None
+        self.ThreadID = HiredMerchantSaveRunnable.RunningThreadID.incrementAndGet()
+        self.TimeTaken = 0
+        self.ShopsSaved = 0
+        self.Queue = new ArrayBlockingQueue<HiredMerchant>(500)
 
+    # Static initializer
+    # RunningThreadID = AtomicInteger(0)
 
-    @staticmethod
-    def QueueShopForSave(hm: Any) -> None:
-        """方法 QueueShopForSave"""
-        pass
-
-    def Execute(self, ToNotify: Any) -> None:
-        """方法 Execute"""
-        pass
-
-    def getRunnable(self) -> Any:
-        """方法 getRunnable"""
-        return getattr(self, 'runnable', None)
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        try:
+            while !self.Queue == 0:
+                next = self.Queue.take()
+                Start = int(time.time() * 1000)
+                next.closeShop(True, False)
+                self.TimeTaken += int(time.time() * 1000) - Start
+                self.ShopsSaved += 1
+            print("[保存雇佣商店数据 线程 " + self.ThreadID + "] 共保存: " + self.ShopsSaved + " | 耗时: " + self.TimeTaken + " 毫秒.")
+            with self.ToNotify:  # synchronized
+                self.ToNotify.notify()
+        except InterruptedException as ex:
+            Logger.getLogger(HiredMerchantSave.class.getName()).log(Level.SEVERE, None, ex)
 
     def Queue(self, hm: Any) -> None:
-        """方法 Queue"""
-        pass
+        self.Queue.add(hm)
 
     def SetToNotify(self, o: Any) -> None:
-        """方法 SetToNotify"""
-        pass
+        if self.ToNotify is None:
+            self.ToNotify = o
 

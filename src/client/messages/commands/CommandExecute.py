@@ -1,33 +1,46 @@
 """
-CommandExecute - 从Java源文件转换而来
-对应Java源文件: client/messages/commands/CommandExecute.java
-包路径: client.messages.commands
+CommandExecute - Converted from Java source
+Original: client/messages/commands/CommandExecute.java
+Package: client.messages.commands
 """
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from constants.ServerConstants import *  # TODO: 根据实际需要导入具体类
+from enum import Enum, IntEnum
+from typing import Optional, Any
+
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from constants.ServerConstants import *  # TODO: import specific classes
 
 
 class CommandExecute(ABC):
     """
-    类 CommandExecute - 从Java类转换
+    Class CommandExecute
     """
 
-    pass
+
+    def getType(self) -> Any:
+        return ServerConstants.CommandType.NORMAL
+
+    @staticmethod
+    def getType() -> Any:
+        return ServerConstants.CommandType.TRADE
 
 
+# Inner class from Java (originally nested)
 class TradeExecute(CommandExecute, ABC):
     """
-    类 TradeExecute - 从Java类转换
-    继承自: CommandExecute
+    Class TradeExecute
+    Extends: CommandExecute
     """
 
-    pass
+
+    def getType(self) -> Any:
+        return ServerConstants.CommandType.TRADE
 
 
+# Inner class from Java (originally nested)
 class ReturnValue(Enum):
-    """枚举类 ReturnValue - 从Java枚举转换"""
+    """Enum ReturnValue"""
 
     DONT_LOG = 0
     LOG = 1

@@ -1,14 +1,15 @@
 """
-FieldLimitType - 从Java源文件转换而来
-对应Java源文件: server/maps/FieldLimitType.java
-包路径: server.maps
+FieldLimitType - Converted from Java source
+Original: server/maps/FieldLimitType.java
+Package: server.maps
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class FieldLimitType(Enum):
-    """枚举类 FieldLimitType - 从Java枚举转换"""
+    """Enum FieldLimitType"""
 
     Jump = (1)
     MovementSkills = (2)
@@ -27,14 +28,11 @@ class FieldLimitType(Enum):
     DropDown = (131072)
 
     def __init__(self, i):
-        """初始化枚举值"""
         self._i = i
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def check(self, fieldlimit: int) -> bool:
-        """方法 check"""
-        return False
+        return (fieldlimit & self.i) == self.i
 

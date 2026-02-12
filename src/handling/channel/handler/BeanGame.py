@@ -1,98 +1,130 @@
 """
-BeanGame - 从Java源文件转换而来
-对应Java源文件: handling/channel/handler/BeanGame.java
-包路径: handling.channel.handler
+BeanGame - Converted from Java source
+Original: handling/channel/handler/BeanGame.java
+Package: handling.channel.handler
 """
 
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import math
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.data.input.SeekableLittleEndianAccessor import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.data.input.SeekableLittleEndianAccessor import *  # TODO: import specific classes
 
 
 class BeanGame:
     """
-    类 BeanGame - 从Java类转换
+    Class BeanGame
     """
 
     def __init__(self):
-        """初始化 BeanGame"""
         self.number = None
         self.type = None
         self.pos = None
 
 
     def BeanGame1(self, slea: Any, c: Any) -> None:
-        """方法 BeanGame1"""
-        pass
+        chr = c.getPlayer()
+        beansInfo = []
+        type = slea.readByte()
+        力度 = 0
+        豆豆序號 = 0
+        if type == 1:
+            力度 = slea.readShort()
+            chr.setBeansRange(力度)
+            c.getSession().write(MaplePacketCreator.enableActions())
+        elif type == 0:
+            力度 = slea.readShort()
+            豆豆序號 = slea.readInt() + 1
+            chr.setBeansRange(力度)
+            chr.setBeansNum(豆豆序號)
+            if 豆豆序號 == 1:
+                chr.setCanSetBeansNum(False)
+        elif type == 2:
+            if type == 11 || type == 0:
+                力度 = slea.readShort()
+                豆豆序號 = slea.readInt() + 1
+                chr.setBeansRange(力度)
+                chr.setBeansNum(豆豆序號)
+                if 豆豆序號 == 1:
+                    chr.setCanSetBeansNum(False)
+        elif type == 6:
+            slea.skip(1)
+            循環次數 = slea.readByte()
+            if 循環次數 == 0:
+                return
+            if 循環次數 != 1:
+                slea.skip((循環次數 - 1) * 8)
+            if chr.isCanSetBeansNum():
+                chr.setBeansNum(chr.getBeansNum() + 循環次數)
+            chr.gainBeans(-循環次數)
+            chr.setCanSetBeansNum(True)
+        elif type == 11 || type == 6:
+            力度 = slea.readShort()
+            chr.setBeansRange(力度)
+            size = (byte)(slea.readByte() + 1)
+            Pos = slea.readShort()
+            Type = (byte)(slea.readByte() + 1)
+            c.getSession().write(MaplePacketCreator.showBeans(力度, size, Pos, Type))
+        else:
+            print("未處理的類型【" + type + "】\n包" + slea)
 
     def getBeanType(self) -> int:
-        """方法 getBeanType"""
-        return getattr(self, 'bean_type', 0)
+        random = rand(1, 100)
+        beanType = 0
+        # switch (random):
+            # case 2:
+                beanType = 1
+                break
+            # case 49:
+                beanType = 2
+                break
+            # case 99:
+                beanType = 3
+                break
+        return beanType
 
     def rand(self, lbound: int, ubound: int) -> int:
-        """方法 rand"""
-        return 0
+        return (int)(random.random() * (ubound - lbound + 1) + lbound)
 
     def BeanGame2(self, slea: Any, c: Any) -> None:
-        """方法 BeanGame2"""
-        pass
+        c.getSession().write(MaplePacketCreator.updateBeans(c.getPlayer().getId(), c.getPlayer().getBeans()))
+        c.getSession().write(MaplePacketCreator.enableActions())
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getNumber(self) -> int:
-        """方法 getNumber"""
-        return getattr(self, 'number', 0)
+        return self.number
 
     def getPos(self) -> int:
-        """方法 getPos"""
-        return getattr(self, 'pos', 0)
+        return self.pos
 
 
+# Inner class from Java (originally nested)
 class Beans:
     """
-    类 Beans - 从Java类转换
+    Class Beans
     """
 
     def __init__(self, pos: int, type: int, number: int):
-        """初始化 Beans"""
         self.number = None
         self.type = None
         self.pos = None
+        self.pos = pos
+        self.number = number
+        self.type = type
 
-
-    def BeanGame1(self, slea: Any, c: Any) -> None:
-        """方法 BeanGame1"""
-        pass
-
-    def getBeanType(self) -> int:
-        """方法 getBeanType"""
-        return getattr(self, 'bean_type', 0)
-
-    def rand(self, lbound: int, ubound: int) -> int:
-        """方法 rand"""
-        return 0
-
-    def BeanGame2(self, slea: Any, c: Any) -> None:
-        """方法 BeanGame2"""
-        pass
 
     def getType(self) -> int:
-        """方法 getType"""
-        return getattr(self, 'type', 0)
+        return self.type
 
     def getNumber(self) -> int:
-        """方法 getNumber"""
-        return getattr(self, 'number', 0)
+        return self.number
 
     def getPos(self) -> int:
-        """方法 getPos"""
-        return getattr(self, 'pos', 0)
+        return self.pos
 

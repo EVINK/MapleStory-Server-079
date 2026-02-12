@@ -1,7 +1,7 @@
 """
-World - 从Java源文件转换而来
-对应Java源文件: handling/world/World.java
-包路径: handling.world
+World - Converted from Java source
+Original: handling/world/World.java
+Package: handling.world
 """
 
 from pymysql import Connection
@@ -13,2425 +13,2051 @@ from typing import Collection
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import pymysql
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.BuddyEntry import *  # TODO: 根据实际需要导入具体类
-# from client.BuddyList import *  # TODO: 根据实际需要导入具体类
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from client.MapleCoolDownValueHolder import *  # TODO: 根据实际需要导入具体类
-# from client.MapleDiseaseValueHolder import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MapleInventoryType import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.MaplePet import *  # TODO: 根据实际需要导入具体类
-# from client.inventory.PetDataFactory import *  # TODO: 根据实际需要导入具体类
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from handling.MaplePacket import *  # TODO: 根据实际需要导入具体类
-# from handling.cashshop.CashShopServer import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.PlayerStorage import *  # TODO: 根据实际需要导入具体类
-# from handling.world.family.MapleFamily import *  # TODO: 根据实际需要导入具体类
-# from handling.world.family.MapleFamilyCharacter import *  # TODO: 根据实际需要导入具体类
-# from handling.world.guild.MapleBBSThread import *  # TODO: 根据实际需要导入具体类
-# from handling.world.guild.MapleGuild import *  # TODO: 根据实际需要导入具体类
-# from handling.world.guild.MapleGuildAlliance import *  # TODO: 根据实际需要导入具体类
-# from handling.world.guild.MapleGuildCharacter import *  # TODO: 根据实际需要导入具体类
-# from handling.world.guild.MapleGuildSummary import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMapItem import *  # TODO: 根据实际需要导入具体类
-# from tools.CollectionUtil import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.PetPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.BuddyEntry import *  # TODO: import specific classes
+# from client.BuddyList import *  # TODO: import specific classes
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
+# from client.MapleCoolDownValueHolder import *  # TODO: import specific classes
+# from client.MapleDiseaseValueHolder import *  # TODO: import specific classes
+# from client.inventory.MapleInventoryType import *  # TODO: import specific classes
+# from client.inventory.MaplePet import *  # TODO: import specific classes
+# from client.inventory.PetDataFactory import *  # TODO: import specific classes
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from handling.MaplePacket import *  # TODO: import specific classes
+# from handling.cashshop.CashShopServer import *  # TODO: import specific classes
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from handling.channel.PlayerStorage import *  # TODO: import specific classes
+# from handling.world.family.MapleFamily import *  # TODO: import specific classes
+# from handling.world.family.MapleFamilyCharacter import *  # TODO: import specific classes
+# from handling.world.guild.MapleBBSThread import *  # TODO: import specific classes
+# from handling.world.guild.MapleGuild import *  # TODO: import specific classes
+# from handling.world.guild.MapleGuildAlliance import *  # TODO: import specific classes
+# from handling.world.guild.MapleGuildCharacter import *  # TODO: import specific classes
+# from handling.world.guild.MapleGuildSummary import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from server.maps.MapleMapItem import *  # TODO: import specific classes
+# from tools.CollectionUtil import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.packet.PetPacket import *  # TODO: import specific classes
 
 
 class World:
     """
-    类 World - 从Java类转换
+    Class World
     """
 
-    # 静态字段 (Static fields)
     CHANNELS_PER_THREAD = 3
 
     def __init__(self):
-        """初始化 World"""
         self.numTimes = 0
 
+    # Static initializer
+    # World.isShutDown = False
 
-    def init(self) -> None:
-        """方法 init"""
-        pass
+
+    @staticmethod
+    def init() -> None:
+        Find.findChannel(0)
+        Guild.lock
+        Alliance.lock
+        Family.lock
+        Messenger.getMessenger(0)
+        Party.getParty(0)
 
     def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
+        ret = ""
+        totalUsers = 0
+        for cs in ChannelServer.getAllInstances():
+            ret.append("Channel ")
+            ret.append(cs.getChannel())
+            ret.append(": ")
+            channelUsers = cs.getConnectedClients()
+            totalUsers += channelUsers
+            ret.append(channelUsers)
+            ret.append(" users\n")
+        ret.append("Total users online: ")
+        ret.append(totalUsers)
+        ret.append("\n")
+        return ret
 
     def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
+        ret = {}
+        total = 0
+        for cs in ChannelServer.getAllInstances():
+            curConnected = cs.getConnectedClients()
+            ret.put(cs.getChannel(), curConnected)
+            total += curConnected
+        ret.put(0, total)
+        return ret
 
     def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
+        allCheaters = []
+        for cs in ChannelServer.getAllInstances():
+            allCheaters.addAll(cs.getCheaters())
+        Collections.sort(allCheaters)
+        return CollectionUtil.copyFirst(allCheaters, 10)
 
     def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
+        return Find.findChannel(charName) > 0
 
     def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
+        for cs in ChannelServer.getAllInstances():
+            cs.toggleMegaphoneMuteState()
 
     def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
+        getStorage(toChannel).registerPendingPlayer(Data, characterid)
 
     def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
+        for cs in ChannelServer.getAllInstances():
+            for c in charName:
+                if cs.getPlayerStorage().getCharacterByName(c) is not None:
+                    return True
         return False
 
     def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
+        for cs in ChannelServer.getAllInstances():
+            if cs.containsMerchant(accountID):
+                return True
         return False
 
     def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
+        if channel == -20:
+            return CashShopServer.getPlayerStorageMTS()
+        if channel == -10:
+            return CashShopServer.getPlayerStorage()
+        return ChannelServer.getInstance(channel).getPlayerStorage()
 
     def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
+        Timer.WorldTimer.getInstance().schedule(Runnable()
+            public void run()
+                rate = type
+                if rate == ("经验"):
+                    for cservs in ChannelServer.getAllInstances():
+                        cservs.setExpRate(1)
+                elif rate == ("爆率"):
+                    for cservs in ChannelServer.getAllInstances():
+                        cservs.setDropRate(1)
+                elif rate == ("金币"):
+                    for cservs in ChannelServer.getAllInstances():
+                        cservs.setMesoRate(1)
+                elif rate.lower() == "boss爆率".lower():
+                    for cservs in ChannelServer.getAllInstances():
+                        cservs.setBossDropRate(1)
+                else if (rate == ("宠物经验")) {}
+                for cservs in ChannelServer.getAllInstances():
+                    cservs.broadcastPacket(MaplePacketCreator.serverNotice(6, " 系统双倍活动已经结束。系统已成功自动切换为正常游戏模式！"))
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        rate = type
+        if rate == ("经验"):
+            for cservs in ChannelServer.getAllInstances():
+                cservs.setExpRate(1)
+        elif rate == ("爆率"):
+            for cservs in ChannelServer.getAllInstances():
+                cservs.setDropRate(1)
+        elif rate == ("金币"):
+            for cservs in ChannelServer.getAllInstances():
+                cservs.setMesoRate(1)
+        elif rate.lower() == "boss爆率".lower():
+            for cservs in ChannelServer.getAllInstances():
+                cservs.setBossDropRate(1)
+        else if (rate == ("宠物经验")) {}
+        for cservs in ChannelServer.getAllInstances():
+            cservs.broadcastPacket(MaplePacketCreator.serverNotice(6, " 系统双倍活动已经结束。系统已成功自动切换为正常游戏模式！"))
 
     def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
+        if chr is None:
+            return
+        now = int(time.time() * 1000)
+        for m in chr.getCooldowns():
+            if m.startTime + len(m) < now:
+                skil = m.skillId
+                chr.removeCooldown(skil)
+                chr.getClient().getSession().write(MaplePacketCreator.skillCooldown(skil, 0))
+        for i in chr.getAllDiseases():
+            if i.startTime + len(i) < now:
+                chr.dispelDebuff(i.disease)
+        if numTimes % 100 == 0:
+            for pet in chr.getPets():
+                if pet.getSummoned():
+                    if pet.getPetItemId() == 5000054 && pet.getSecondsLeft() > 0:
+                        pet.setSecondsLeft(pet.getSecondsLeft() - 1)
+                        if pet.getSecondsLeft() <= 0:
+                            chr.unequipPet(pet, True)
+                            return
+                    newFullness = pet.getFullness() - PetDataFactory.getHunger(pet.getPetItemId())
+                    if newFullness <= 5:
+                        pet.setFullness(15)
+                        chr.unequipPet(pet, True)
+                    else:
+                        pet.setFullness(newFullness)
+                        chr.getClient().getSession().write(PetPacket.updatePet(pet, chr.getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
+        if chr.isAlive():
+            if chr.canRecovery():
+                chr.doRecovery()
+            if chr.canExpiration(now):
+                chr.expirationTask(True)
+            if chr.getDiseaseSize() > 0:
+                for i in chr.getAllDiseases():
+                    if i is not None && i.startTime + len(i) < now:
+                        chr.dispelDebuff(i.disease)
+            if numTimes % 7 == 0 && chr.getMount() is not None && chr.getMount().canTire(now):
+                chr.getMount().increaseFatigue()
+                if chr.getMount().getFatigue() >= 90:
+                    chr.dropMessage(5, "坐骑疲劳值快满了，请使用坐骑疲劳恢复药。")
+            if numTimes % 26 == 0:
+                for pet in chr.getSummonedPets():
+                    if pet.getPetItemId() == 5000054 && pet.getSecondsLeft() > 0:
+                        pet.setSecondsLeft(pet.getSecondsLeft() - 1)
+                        if pet.getSecondsLeft() <= 0:
+                            chr.unequipPet(pet, True)
+                            return
+                    newFullness = pet.getFullness() - PetDataFactory.getHunger(pet.getPetItemId())
+                    if newFullness <= 5:
+                        pet.setFullness(15)
+                        chr.unequipPet(pet, True)
+                        chr.dropMessage(5, "宠物肚子饿，回家了~！")
+                    else:
+                        pet.setFullness(newFullness)
+                        chr.getClient().getSession().write(PetPacket.updatePet(pet, chr.getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
+            if hurt && chr.getInventory(MapleInventoryType.EQUIPPED).findById(chr.getMap().getHPDecProtect()) is None:
+                if (chr.getMapId() == 749040100 && chr.getInventory(MapleInventoryType.CASH).findById(5451000) is None) || (chr.getMapId() >= 211000000 && chr.getMapId() <= 211999999):
+                    chr.addHP(-chr.getMap().getHPDec())
+                elif chr.getMapId() != 749040100:
+                    chr.addHP(-chr.getMap().getHPDec())
 
     def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
+        ret = ""
+        for cserv in ChannelServer.getAllInstances():
+            for name in charNames:
+                if cserv.isConnected(name):
+                    ret.append(name)
+                    ret.append(" ")
+        return ret
 
     def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
+        Timer.WorldTimer.getInstance().register(Respawn(), 5000)
+        print("[刷怪线程] 已经启动...")
 
     def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
+        if map.getItemsSize() > 0:
+            for item in map.getAllItemsThreadsafe():
+                if item.shouldExpire():
+                    item.expire(map)
+                else:
+                    if !item.shouldFFA():
+                        continue
+                    item.setDropType(2)
+        if map.characterSize() > 0:
+            if map.canSpawn():
+                map.respawn(False)
+            hurt = map.canHurt()
+            for chr in map.getCharactersThreadsafe():
+                handleCooldowns(chr, numTimes, hurt)
+        if numTimes % 10 == 0 && map.getId() == 220080001 && map.playerCount() == 0:
+            ChannelServer.getInstance(map.getChannel()).getMapFactory().getMap(220080000).resetReactors()
 
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
+    @staticmethod
+    def partyChat(partyid: int, chattext: str, namefrom: str) -> None:
+        party = getParty(partyid)
+        if party is None:
+            raise ValueError("no party with the specified partyid exists")
+        for partychar in party.getMembers():
+            ch = Find.findChannel(partychar.getName())
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
+                if chr is None || chr.getName().lower() == namefrom.lower():
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.multiChat(namefrom, chattext, 1))
 
     def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
+        party = getParty(partyid)
+        if party is None:
+            return
+        # switch (operation):
+            # case JOIN:
+                party.addMember(target)
+                break
+            # case EXPEL:
+            # case LEAVE:
+                party.removeMember(target)
+                break
+            # case DISBAND:
+                disbandParty(partyid)
+                break
+            # case SILENT_UPDATE:
+            # case LOG_ONOFF:
+                party.updateMember(target)
+                break
+            # case CHANGE_LEADER:
+                party.setLeader(target)
+                break
+            # default:
+                raise RuntimeError("Unhandeled updateParty operation " + operation.name())
+        for partychar in party.getMembers():
+            ch = Find.findChannel(partychar.getName())
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
+                if chr is None:
+                    continue
+                if operation == PartyOperation.DISBAND:
+                    chr.setParty(None)
+                else:
+                    chr.setParty(party)
+                chr.getClient().getSession().write(MaplePacketCreator.updateParty(chr.getClient().getChannel(), party, operation, target))
+        # switch (operation):
+            # case EXPEL:
+            # case LEAVE:
+                ch2 = Find.findChannel(target.getName())
+                if ch2 <= 0:
+                    break
+                chr2 = ChannelServer.getInstance(ch2).getPlayerStorage().getCharacterByName(target.getName())
+                if chr2 is not None:
+                    chr2.getClient().getSession().write(MaplePacketCreator.updateParty(chr2.getClient().getChannel(), party, operation, target))
+                    chr2.setParty(None)
+                    break
+                break
 
     def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
+        partyid = Party.runningPartyId.getAndIncrement()
+        party = MapleParty(partyid, chrfor)
+        Party.parties.put(party.getId(), party)
+        return party
 
     def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
+        return Party.parties.get(partyid)
 
     def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
+        return Party.parties.remove(partyid)
 
     @staticmethod
     def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+        for characterId in recipientCharacterIds:
+            ch = Find.findChannel(characterId)
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(characterId)
+                if chr is not None && chr.getBuddylist().containsVisible(cidFrom):
+                    chr.getClient().getSession().write(MaplePacketCreator.multiChat(nameFrom, chattext, 0))
 
     def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+        for buddy in buddies:
+            ch = Find.findChannel(buddy)
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(buddy)
+                if chr is None:
+                    continue
+                ble = chr.getBuddylist().get(characterId)
+                if ble is None || !ble.isVisible():
+                    continue
+                mcChannel = None
+                if offline || (isHidden && chr.getGMLevel() < gmLevel):
+                    ble.setChannel(-1)
+                    mcChannel = -1
+                else:
+                    ble.setChannel(channel)
+                    mcChannel = channel - 1
+                chr.getBuddylist().put(ble)
+                chr.getClient().sendPacket(MaplePacketCreator.updateBuddyChannel(ble.getCharacterId(), mcChannel))
 
     def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
+        ch = Find.findChannel(cid)
+        if ch > 0:
+            addChar = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(cid)
+            if addChar is not None:
+                buddylist = addChar.getBuddylist()
+                # switch (operation):
+                    # case ADDED:
+                        if (cidFrom in buddylist):
+                            buddylist.put(BuddyEntry(name, cidFrom, group, channel, True, level, job))
+                            addChar.getClient().getSession().write(MaplePacketCreator.updateBuddyChannel(cidFrom, channel - 1))
+                            break
+                        break
+                    # case DELETED:
+                        if (cidFrom in buddylist):
+                            buddylist.put(BuddyEntry(name, cidFrom, group, -1, buddylist.get(cidFrom).isVisible(), level, job))
+                            addChar.getClient().getSession().write(MaplePacketCreator.updateBuddyChannel(cidFrom, -1))
+                            break
+                        break
+
+    def requestBuddyAdd(self, addName: str, channelFrom: int, cidFrom: int, nameFrom: str, levelFrom: int, jobFrom: int) -> Any:
+        ch = Find.findChannel(cidFrom)
+        if ch > 0:
+            addChar = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(addName)
+            if addChar is not None:
+                buddylist = addChar.getBuddylist()
+                if buddylist.isFull():
+                    return BuddyList.BuddyAddResult.BUDDYLIST_FULL
+                if !(cidFrom in buddylist):
+                    buddylist.addBuddyRequest(addChar.getClient(), cidFrom, nameFrom, channelFrom, levelFrom, jobFrom)
+                elif buddylist.containsVisible(cidFrom):
+                    return BuddyList.BuddyAddResult.ALREADY_ON_LIST
+        return BuddyList.BuddyAddResult.OK
 
     def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
+        updateBuddies(characterId, channel, buddies, False, gmLevel, isHidden)
 
     def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
+        updateBuddies(characterId, channel, buddies, True, gmLevel, isHidden)
 
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
+    @staticmethod
+    def createMessenger(chrfor: Any) -> Any:
+        messengerid = Messenger.runningMessengerId.getAndIncrement()
+        messenger = MapleMessenger(messengerid, chrfor)
+        Messenger.messengers.put(messenger.getId(), messenger)
+        return messenger
 
     def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
+        ch = Find.findChannel(target)
+        if ch > 0:
+            cs = ChannelServer.getInstance(ch)
+            chr = cs.getPlayerStorage().getCharacterByName(target)
+            if chr is not None:
+                messenger = chr.getMessenger()
+                if messenger is not None:
+                    chr.getClient().getSession().write(MaplePacketCreator.messengerNote(namefrom, 5, 0))
 
     def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
+        return Messenger.messengers.get(messengerid)
 
     def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        position = messenger.getPositionByName(target.getName())
+        messenger.removeMember(target)
+        for mmc in messenger.getMembers():
+            if mmc is not None:
+                ch = Find.findChannel(mmc.getId())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(mmc.getName())
+                if chr is None:
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.removeMessengerPlayer(position))
 
     def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.silentRemoveMember(target)
 
     def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.silentAddMember(target)
 
     def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        position = messenger.getPositionByName(namefrom)
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(namefrom)
+                chr.getClient().getSession().write(MaplePacketCreator.updateMessengerPlayer(namefrom, from, position, fromchannel - 1))
 
     def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.addMember(target)
+        position = messenger.getPositionByName(target.getName())
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None:
+                mposition = messenger.getPositionByName(messengerchar.getName())
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                if !messengerchar.getName() == (from):
+                    fromCh = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(from)
+                    chr.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(from, fromCh, position, fromchannel - 1))
+                    fromCh.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(chr.getName(), chr, mposition, messengerchar.getChannel() - 1))
+                else:
+                    chr.getClient().getSession().write(MaplePacketCreator.joinMessenger(mposition))
 
     def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.messengerChat(chattext))
+            else:
+                if messengerchar is None:
+                    continue
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
 
     def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
+        if World.isConnected(target):
+            ch = Find.findChannel(target)
+            if ch > 0:
+                from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(sender)
+                targeter = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(target)
+                if targeter is not None && targeter.getMessenger() is None:
+                    if !targeter.isGM() || gm:
+                        targeter.getClient().getSession().write(MaplePacketCreator.messengerInvite(sender, messengerid))
+                        from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 1))
+                    else:
+                        from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 0))
+                else:
+                    from.getClient().getSession().write(MaplePacketCreator.messengerChat(sender + " : " + target + " is already using Maple Messenger"))
 
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
+    @staticmethod
+    def createGuild(leaderId: int, name: str) -> int:
+        return MapleGuild.createGuild(leaderId, name)
 
     def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+        ret = None
+        Guild.lock.readLock().lock()
+        try:
+            ret = Guild.guilds.get(id)
+        finally:
+            Guild.lock.readLock().unlock()
+        if ret is None:
+            Guild.lock.writeLock().lock()
+            try:
+                ret = MapleGuild(id)
+                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                    return None
+                Guild.guilds.put(id, ret)
+            finally:
+                Guild.lock.writeLock().unlock()
+        return ret
 
     def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
+        Guild.lock.readLock().lock()
+        try:
+            for g in Guild.guilds.values():
+                if g.getName().lower() == guildName.lower():
+                    return g
+            return None
+        finally:
+            Guild.lock.readLock().unlock()
 
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def getGuild_mc(self, mc: Any) -> Any:
+        return getGuild(mc.getGuildId())
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.setOnline(mc.getId(), bOnline, channel)
 
     def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.broadcast(message)
 
     def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            return g.addGuildMember(mc)
         return 0
 
     def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.leaveGuild(mc)
 
     def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.guildChat(name, cid, msg)
 
     def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.changeRank(cid, newRank)
 
     def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
+        g = getGuild(initiator.getGuildId())
+        if g is not None:
+            g.expelMember(initiator, name, cid)
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
+        g = getGuild(gid)
+        if g is not None:
+            g.setGuildNotice(notice)
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.memberLevelJobUpdate(mc)
 
     def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.changeRankTitle(ranks)
+
+    def setGuildEmblem(self, gid: int, bg: int, bgcolor: int, logo: int, logocolor: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.setGuildEmblem(bg, bgcolor, logo, logocolor)
+
+    def disbandGuild(self, gid: int) -> None:
+        g = getGuild(gid)
+        Guild.lock.writeLock().lock()
+        try:
+            if g is not None:
+                g.disbandGuild()
+                Guild.guilds.remove(gid)
+        finally:
+            Guild.lock.writeLock().unlock()
+
+    def deleteGuildCharacter(self, guildid: int, charid: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            mc = g.getMGC(charid)
+            if mc is not None:
+                if mc.getGuildRank() > 1:
+                    g.leaveGuild(mc)
+                else:
+                    g.disbandGuild()
+
+    def increaseGuildCapacity(self, gid: int) -> bool:
+        g = getGuild(gid)
+        return g is not None && g.increaseCapacity()
+
+    def gainGP(self, gid: int, amount: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.gainGP(amount)
+
+    def getGP(self, gid: int) -> int:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getGP()
+        return 0
+
+    def getInvitedId(self, gid: int) -> int:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getInvitedId()
+        return 0
+
+    def setInvitedId(self, gid: int, inviteid: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.setInvitedId(inviteid)
+
+    def getGuildLeader(self, guildName: str) -> int:
+        mga = getGuildByName(guildName)
+        if mga is not None:
+            return mga.getLeaderId()
+        return 0
+
+    def save(self) -> None:
+        print("Saving guilds...")
+        Guild.lock.writeLock().lock()
+        try:
+            for a in Guild.guilds.values():
+                a.writeToDB(False)
+        finally:
+            Guild.lock.writeLock().unlock()
+
+    def getBBS(self, gid: int) -> list:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getBBS()
+        return None
+
+    def addBBSThread(self, guildid: int, title: str, text: str, icon: int, bNotice: bool, posterID: int) -> int:
+        g = getGuild(guildid)
+        if g is not None:
+            return g.addBBSThread(title, text, icon, bNotice, posterID)
+        return -1
+
+    def editBBSThread(self, guildid: int, localthreadid: int, title: str, text: str, icon: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.editBBSThread(localthreadid, title, text, icon, posterID, guildRank)
+
+    def deleteBBSThread(self, guildid: int, localthreadid: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.deleteBBSThread(localthreadid, posterID, guildRank)
+
+    def addBBSReply(self, guildid: int, localthreadid: int, text: str, posterID: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.addBBSReply(localthreadid, text, posterID)
+
+    def deleteBBSReply(self, guildid: int, localthreadid: int, replyid: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.deleteBBSReply(localthreadid, replyid, posterID, guildRank)
+
+    def changeEmblem(self, gid: int, affectedPlayers: int, mgs: Any) -> None:
+        Broadcast.sendGuildPacket(affectedPlayers, MaplePacketCreator.guildEmblemChange(gid, mgs.getLogoBG(), mgs.getLogoBGColor(), mgs.getLogo(), mgs.getLogoColor()), -1, gid)
+        setGuildAndRank(affectedPlayers, -1, -1, -1)
+
+    def setGuildAndRank(self, cid: int, guildid: int, rank: int, alliancerank: int) -> None:
+        ch = Find.findChannel(cid)
+        if ch == -1:
+            return
+        mc = World.getStorage(ch).getCharacterById(cid)
+        if mc is None:
+            return
+        bDifferentGuild = None
+        if guildid == -1 && rank == -1:
+            bDifferentGuild = True
+        else:
+            bDifferentGuild = (guildid != mc.getGuildId())
+            mc.setGuildId(guildid)
+            mc.setGuildRank(rank)
+            mc.setAllianceRank(alliancerank)
+            mc.saveGuildStatus()
+        if bDifferentGuild && ch > 0:
+            mc.getMap().broadcastMessage(mc, MaplePacketCreator.removePlayerFromMap(cid, mc), False)
+            mc.getMap().broadcastMessage(mc, MaplePacketCreator.spawnPlayerMapobject(mc), False)
+
+    @staticmethod
+    def broadcastSmega(message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastSmega(message)
+
+    def broadcastGMMessage(self, message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastGMMessage(message)
+
+    def broadcastMessage(self, message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastMessage(message)
+
+    def sendPacket(self, targetIds: list, packet: Any, exception: int) -> None:
+        for i in targetIds:
+            if i == exception:
+                continue
+            ch = Find.findChannel(i)
+            if ch < 0:
+                continue
+            c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(i)
+            if c is None:
+                continue
+            c.getClient().getSession().write(packet)
+
+    def sendGuildPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
+        if targetIds == exception:
+            return
+        ch = Find.findChannel(targetIds)
+        if ch < 0:
+            return
+        c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
+        if c is not None && c.getGuildId() == guildid:
+            c.getClient().getSession().write(packet)
+
+    def sendFamilyPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
+        if targetIds == exception:
+            return
+        ch = Find.findChannel(targetIds)
+        if ch < 0:
+            return
+        c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
+        if c is not None && c.getFamilyId() == guildid:
+            c.getClient().getSession().write(packet)
+
+    def broadcastMessage_serverNotice(self, serverNotice: Any) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastMessage(serverNotice)
+
+    @staticmethod
+    def addClient(c: Any) -> None:
+        if !(c in Client.clients):
+            Client.clients.add(c)
+
+    def removeClient(self, c: Any) -> bool:
+        return Client.clients.remove(c)
+
+    def getClients(self) -> list:
+        return Client.clients
+
+    @staticmethod
+    def register(id: int, name: str, channel: int) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.put(id, channel)
+            Find.nameToChannel.put(name.lower(), channel)
+        finally:
+            Find.lock.writeLock().unlock()
+
+    def forceDeregister(self, id: int) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.remove(id)
+        finally:
+            Find.lock.writeLock().unlock()
+
+    def forceDeregister_id(self, id: str) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.nameToChannel.remove(id.lower())
+        finally:
+            Find.lock.writeLock().unlock()
+
+    def forceDeregister_id_name(self, id: int, name: str) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.remove(id)
+            Find.nameToChannel.remove(name.lower())
+        finally:
+            Find.lock.writeLock().unlock()
+
+    def findChannel(self, id: int) -> int:
+        Find.lock.readLock().lock()
+        ret = None
+        try:
+            ret = Find.idToChannel.get(id)
+        finally:
+            Find.lock.readLock().unlock()
+        if ret is None:
+            return -1
+        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+            forceDeregister(id)
+            return -1
+        return ret
+
+    def findChannel_st(self, st: str) -> int:
+        Find.lock.readLock().lock()
+        ret = None
+        try:
+            ret = Find.nameToChannel.get(st.lower())
+        finally:
+            Find.lock.readLock().unlock()
+        if ret is None:
+            return -1
+        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+            forceDeregister(st)
+            return -1
+        return ret
+
+    def multiBuddyFind(self, charIdFrom: int, characterIds: list) -> list:
+        foundsChars = [])
+        for i in characterIds:
+            channel = findChannel(i)
+            if channel > 0:
+                foundsChars.add(CharacterIdChannelPair(i, channel))
+        Collections.sort(foundsChars)
+        return foundsChars])
+
+    @staticmethod
+    def getAlliance(allianceid: int) -> Any:
+        ret = None
+        Alliance.lock.readLock().lock()
+        try:
+            ret = Alliance.alliances.get(allianceid)
+        finally:
+            Alliance.lock.readLock().unlock()
+        if ret is None:
+            Alliance.lock.writeLock().lock()
+            try:
+                ret = MapleGuildAlliance(allianceid)
+                if ret is None || ret.getId() <= 0:
+                    return None
+                Alliance.alliances.put(allianceid, ret)
+            finally:
+                Alliance.lock.writeLock().unlock()
+        return ret
+
+    def getAllianceLeader(self, allianceid: int) -> int:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            return mga.getLeaderId()
+        return 0
+
+    def updateAllianceRanks(self, allianceid: int, ranks: list) -> None:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            mga.setRank(ranks)
+
+    def updateAllianceNotice(self, allianceid: int, notice: str) -> None:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            mga.setNotice(notice)
+
+    def canInvite(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.getCapacity() > mga.getNoGuilds()
+
+    def changeAllianceLeader(self, allianceid: int, cid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.setLeaderId(cid)
+
+    def changeAllianceRank(self, allianceid: int, cid: int, change: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.changeAllianceRank(cid, change)
+
+    def changeAllianceCapacity(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.setCapacity()
+
+    def disbandAlliance(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.disband()
+
+    def addGuildToAlliance(self, allianceid: int, gid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.addGuild(gid)
+
+    def removeGuildFromAlliance(self, allianceid: int, gid: int, expelled: bool) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.removeGuild(gid, expelled)
+
+    def sendGuild(self, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            sendGuild(MaplePacketCreator.getAllianceUpdate(alliance), -1, allianceid)
+            sendGuild(MaplePacketCreator.getGuildAlliance(alliance), -1, allianceid)
+
+    def sendGuild_packet_exceptionId_allianceid(self, packet: Any, exceptionId: int, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            for i in range(alliance.getNoGuilds()):
+                gid = alliance.getGuildId(i)
+                if gid > 0 && gid != exceptionId:
+                    Guild.guildPacket(gid, packet)
+
+    def createAlliance(self, alliancename: str, cid: int, cid2: int, gid: int, gid2: int) -> bool:
+        allianceid = MapleGuildAlliance.createToDb(cid, alliancename, gid, gid2)
+        if allianceid <= 0:
+            return False
+        g = Guild.getGuild(gid)
+        g_ = Guild.getGuild(gid2)
+        g.setAllianceId(allianceid)
+        g_.setAllianceId(allianceid)
+        g.changeARank(True)
+        g_.changeARank(False)
+        alliance = getAlliance(allianceid)
+        sendGuild(MaplePacketCreator.createGuildAlliance(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.getAllianceInfo(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.getGuildAlliance(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.changeAlliance(alliance, True), -1, allianceid)
+        return True
+
+    def allianceChat(self, gid: int, name: str, cid: int, msg: str) -> None:
+        g = Guild.getGuild(gid)
+        if g is not None:
+            ga = getAlliance(g.getAllianceId())
+            if ga is not None:
+                for i in range(ga.getNoGuilds()):
+                    g_ = Guild.getGuild(ga.getGuildId(i))
+                    if g_ is not None:
+                        g_.allianceChat(name, cid, msg)
+
+    def setNewAlliance(self, gid: int, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        guild = Guild.getGuild(gid)
+        if alliance is not None && guild is not None:
+            for i in range(alliance.getNoGuilds()):
+                if gid == alliance.getGuildId(i):
+                    guild.setAllianceId(allianceid)
+                    guild.broadcast(MaplePacketCreator.getAllianceInfo(alliance))
+                    guild.broadcast(MaplePacketCreator.getGuildAlliance(alliance))
+                    guild.broadcast(MaplePacketCreator.changeAlliance(alliance, True))
+                    guild.changeARank()
+                    guild.writeToDB(False)
+                else:
+                    g_ = Guild.getGuild(alliance.getGuildId(i))
+                    if g_ is not None:
+                        g_.broadcast(MaplePacketCreator.addGuildToAlliance(alliance, guild))
+                        g_.broadcast(MaplePacketCreator.changeGuildInAlliance(alliance, guild, True))
+
+    def setOldAlliance(self, gid: int, expelled: bool, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        g_ = Guild.getGuild(gid)
+        if alliance is not None:
+            for i in range(alliance.getNoGuilds()):
+                guild = Guild.getGuild(alliance.getGuildId(i))
+                if guild is None:
+                    if gid != alliance.getGuildId(i):
+                        alliance.removeGuild(gid, False)
+                elif g_ is None || gid == alliance.getGuildId(i):
+                    guild.changeARank(5)
+                    guild.setAllianceId(0)
+                    guild.broadcast(MaplePacketCreator.disbandAlliance(allianceid))
+                elif g_ is not None:
+                    guild.broadcast(MaplePacketCreator.serverNotice(5, "[" + g_.getName() + "] Guild has left the alliance."))
+                    guild.broadcast(MaplePacketCreator.changeGuildInAlliance(alliance, g_, False))
+                    guild.broadcast(MaplePacketCreator.removeGuildFromAlliance(alliance, g_, expelled))
+        if gid == -1:
+            Alliance.lock.writeLock().lock()
+            try:
+                Alliance.alliances.remove(allianceid)
+            finally:
+                Alliance.lock.writeLock().unlock()
+
+    def getAllianceInfo(self, allianceid: int, start: bool) -> list:
+        ret = []
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            if start:
+                ret.add(MaplePacketCreator.getAllianceInfo(alliance))
+                ret.add(MaplePacketCreator.getGuildAlliance(alliance))
+            ret.add(MaplePacketCreator.getAllianceUpdate(alliance))
+        return ret
+
+    @staticmethod
+    def getFamily(id: int) -> Any:
+        ret = None
+        Family.lock.readLock().lock()
+        try:
+            ret = Family.families.get(id)
+        finally:
+            Family.lock.readLock().unlock()
+        if ret is None:
+            Family.lock.writeLock().lock()
+            try:
+                ret = MapleFamily(id)
+                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                    return None
+                Family.families.put(id, ret)
+            finally:
+                Family.lock.writeLock().unlock()
+        return ret
+
+    def memberFamilyUpdate(self, mfc: Any, mc: Any) -> None:
+        f = getFamily(mfc.getFamilyId())
+        if f is not None:
+            f.memberLevelJobUpdate(mc)
+
+    def setFamilyMemberOnline(self, mfc: Any, bOnline: bool, channel: int) -> None:
+        f = getFamily(mfc.getFamilyId())
+        if f is not None:
+            f.setOnline(mfc.getId(), bOnline, channel)
+
+    def setRep(self, fid: int, cid: int, addrep: int, oldLevel: int) -> int:
+        f = getFamily(fid)
+        if f is not None:
+            return f.setRep(cid, addrep, oldLevel)
+        return 0
+
+    def setFamily(self, familyid: int, seniorid: int, junior1: int, junior2: int, currentrep: int, totalrep: int, cid: int) -> None:
+        ch = Find.findChannel(cid)
+        if ch == -1:
+            return
+        mc = World.getStorage(ch).getCharacterById(cid)
+        if mc is None:
+            return
+        bDifferent = mc.getFamilyId() != familyid || mc.getSeniorId() != seniorid || mc.getJunior1() != junior1 || mc.getJunior2() != junior2
+        mc.setFamily(familyid, seniorid, junior1, junior2)
+        mc.setCurrentRep(currentrep)
+        mc.setTotalRep(totalrep)
+        if bDifferent:
+            mc.saveFamilyStatus()
+
+    def familyPacket(self, gid: int, message: Any, cid: int) -> None:
+        f = getFamily(gid)
+        if f is not None:
+            f.broadcast(message, -1, f.getMFC(cid).getPedigree())
+
+    def disbandFamily(self, gid: int) -> None:
+        g = getFamily(gid)
+        Family.lock.writeLock().lock()
+        try:
+            if g is not None:
+                g.disbandFamily()
+                Family.families.remove(gid)
+        finally:
+            Family.lock.writeLock().unlock()
 
 
+# Inner class from Java (originally nested)
 class Party:
     """
-    类 Party - 从Java类转换
+    Class Party
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # Party.parties = {}
+    # Party.runningPartyId = AtomicInteger()
+    # con = DatabaseConnection.getConnection()
+    # try:
+    # ps = con.prepareStatement("SELECT MAX(party)+2 FROM characters")
+    # rs = ps.executeQuery()
+    # rs.next()
+    # Party.runningPartyId.set(rs.getInt(1))
+    # rs.close()
+    # ps.close()
+    # except Exception as e:
+    # e.printStackTrace()
 
-    def __init__(self):
-        """初始化 Party"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def partyChat(partyid: int, chattext: str, namefrom: str) -> None:
+        party = getParty(partyid)
+        if party is None:
+            raise ValueError("no party with the specified partyid exists")
+        for partychar in party.getMembers():
+            ch = Find.findChannel(partychar.getName())
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
+                if chr is None || chr.getName().lower() == namefrom.lower():
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.multiChat(namefrom, chattext, 1))
 
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
+        party = getParty(partyid)
+        if party is None:
+            return
+        # switch (operation):
+            # case JOIN:
+                party.addMember(target)
+                break
+            # case EXPEL:
+            # case LEAVE:
+                party.removeMember(target)
+                break
+            # case DISBAND:
+                disbandParty(partyid)
+                break
+            # case SILENT_UPDATE:
+            # case LOG_ONOFF:
+                party.updateMember(target)
+                break
+            # case CHANGE_LEADER:
+                party.setLeader(target)
+                break
+            # default:
+                raise RuntimeError("Unhandeled updateParty operation " + operation.name())
+        for partychar in party.getMembers():
+            ch = Find.findChannel(partychar.getName())
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
+                if chr is None:
+                    continue
+                if operation == PartyOperation.DISBAND:
+                    chr.setParty(None)
+                else:
+                    chr.setParty(party)
+                chr.getClient().getSession().write(MaplePacketCreator.updateParty(chr.getClient().getChannel(), party, operation, target))
+        # switch (operation):
+            # case EXPEL:
+            # case LEAVE:
+                ch2 = Find.findChannel(target.getName())
+                if ch2 <= 0:
+                    break
+                chr2 = ChannelServer.getInstance(ch2).getPlayerStorage().getCharacterByName(target.getName())
+                if chr2 is not None:
+                    chr2.getClient().getSession().write(MaplePacketCreator.updateParty(chr2.getClient().getChannel(), party, operation, target))
+                    chr2.setParty(None)
+                    break
+                break
 
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
+    def createParty(self, chrfor: Any) -> Any:
+        partyid = Party.runningPartyId.getAndIncrement()
+        party = MapleParty(partyid, chrfor)
+        Party.parties.put(party.getId(), party)
+        return party
 
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
+    def getParty(self, partyid: int) -> Any:
+        return Party.parties.get(partyid)
 
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def disbandParty(self, partyid: int) -> Any:
+        return Party.parties.remove(partyid)
 
 
+# Inner class from Java (originally nested)
 class Buddy:
     """
-    类 Buddy - 从Java类转换
+    Class Buddy
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
 
-    def __init__(self):
-        """初始化 Buddy"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
-
-    @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def buddyChat(self, recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
+        for characterId in recipientCharacterIds:
+            ch = Find.findChannel(characterId)
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(characterId)
+                if chr is not None && chr.getBuddylist().containsVisible(cidFrom):
+                    chr.getClient().getSession().write(MaplePacketCreator.multiChat(nameFrom, chattext, 0))
 
     def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+        for buddy in buddies:
+            ch = Find.findChannel(buddy)
+            if ch > 0:
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(buddy)
+                if chr is None:
+                    continue
+                ble = chr.getBuddylist().get(characterId)
+                if ble is None || !ble.isVisible():
+                    continue
+                mcChannel = None
+                if offline || (isHidden && chr.getGMLevel() < gmLevel):
+                    ble.setChannel(-1)
+                    mcChannel = -1
+                else:
+                    ble.setChannel(channel)
+                    mcChannel = channel - 1
+                chr.getBuddylist().put(ble)
+                chr.getClient().sendPacket(MaplePacketCreator.updateBuddyChannel(ble.getCharacterId(), mcChannel))
 
     def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
+        ch = Find.findChannel(cid)
+        if ch > 0:
+            addChar = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(cid)
+            if addChar is not None:
+                buddylist = addChar.getBuddylist()
+                # switch (operation):
+                    # case ADDED:
+                        if (cidFrom in buddylist):
+                            buddylist.put(BuddyEntry(name, cidFrom, group, channel, True, level, job))
+                            addChar.getClient().getSession().write(MaplePacketCreator.updateBuddyChannel(cidFrom, channel - 1))
+                            break
+                        break
+                    # case DELETED:
+                        if (cidFrom in buddylist):
+                            buddylist.put(BuddyEntry(name, cidFrom, group, -1, buddylist.get(cidFrom).isVisible(), level, job))
+                            addChar.getClient().getSession().write(MaplePacketCreator.updateBuddyChannel(cidFrom, -1))
+                            break
+                        break
+
+    def requestBuddyAdd(self, addName: str, channelFrom: int, cidFrom: int, nameFrom: str, levelFrom: int, jobFrom: int) -> Any:
+        ch = Find.findChannel(cidFrom)
+        if ch > 0:
+            addChar = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(addName)
+            if addChar is not None:
+                buddylist = addChar.getBuddylist()
+                if buddylist.isFull():
+                    return BuddyList.BuddyAddResult.BUDDYLIST_FULL
+                if !(cidFrom in buddylist):
+                    buddylist.addBuddyRequest(addChar.getClient(), cidFrom, nameFrom, channelFrom, levelFrom, jobFrom)
+                elif buddylist.containsVisible(cidFrom):
+                    return BuddyList.BuddyAddResult.ALREADY_ON_LIST
+        return BuddyList.BuddyAddResult.OK
 
     def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
+        updateBuddies(characterId, channel, buddies, False, gmLevel, isHidden)
 
     def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+        updateBuddies(characterId, channel, buddies, True, gmLevel, isHidden)
 
 
+# Inner class from Java (originally nested)
 class Messenger:
     """
-    类 Messenger - 从Java类转换
+    Class Messenger
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # messengers = {}
+    # (runningMessengerId = AtomicInteger()).set(1)
 
-    def __init__(self):
-        """初始化 Messenger"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
-
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
-
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
+    def createMessenger(chrfor: Any) -> Any:
+        messengerid = Messenger.runningMessengerId.getAndIncrement()
+        messenger = MapleMessenger(messengerid, chrfor)
+        Messenger.messengers.put(messenger.getId(), messenger)
+        return messenger
 
     def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
+        ch = Find.findChannel(target)
+        if ch > 0:
+            cs = ChannelServer.getInstance(ch)
+            chr = cs.getPlayerStorage().getCharacterByName(target)
+            if chr is not None:
+                messenger = chr.getMessenger()
+                if messenger is not None:
+                    chr.getClient().getSession().write(MaplePacketCreator.messengerNote(namefrom, 5, 0))
 
     def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
+        return Messenger.messengers.get(messengerid)
 
     def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        position = messenger.getPositionByName(target.getName())
+        messenger.removeMember(target)
+        for mmc in messenger.getMembers():
+            if mmc is not None:
+                ch = Find.findChannel(mmc.getId())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(mmc.getName())
+                if chr is None:
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.removeMessengerPlayer(position))
 
     def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.silentRemoveMember(target)
 
     def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.silentAddMember(target)
 
     def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        position = messenger.getPositionByName(namefrom)
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(namefrom)
+                chr.getClient().getSession().write(MaplePacketCreator.updateMessengerPlayer(namefrom, from, position, fromchannel - 1))
 
     def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        messenger.addMember(target)
+        position = messenger.getPositionByName(target.getName())
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None:
+                mposition = messenger.getPositionByName(messengerchar.getName())
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                if !messengerchar.getName() == (from):
+                    fromCh = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(from)
+                    chr.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(from, fromCh, position, fromchannel - 1))
+                    fromCh.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(chr.getName(), chr, mposition, messengerchar.getChannel() - 1))
+                else:
+                    chr.getClient().getSession().write(MaplePacketCreator.joinMessenger(mposition))
 
     def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
+        messenger = getMessenger(messengerid)
+        if messenger is None:
+            raise ValueError("No messenger with the specified messengerid exists")
+        for messengerchar in messenger.getMembers():
+            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
+                if chr is None:
+                    continue
+                chr.getClient().getSession().write(MaplePacketCreator.messengerChat(chattext))
+            else:
+                if messengerchar is None:
+                    continue
+                ch = Find.findChannel(messengerchar.getName())
+                if ch <= 0:
+                    continue
+                ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
 
     def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+        if World.isConnected(target):
+            ch = Find.findChannel(target)
+            if ch > 0:
+                from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(sender)
+                targeter = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(target)
+                if targeter is not None && targeter.getMessenger() is None:
+                    if !targeter.isGM() || gm:
+                        targeter.getClient().getSession().write(MaplePacketCreator.messengerInvite(sender, messengerid))
+                        from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 1))
+                    else:
+                        from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 0))
+                else:
+                    from.getClient().getSession().write(MaplePacketCreator.messengerChat(sender + " : " + target + " is already using Maple Messenger"))
 
 
+# Inner class from Java (originally nested)
 class Guild:
     """
-    类 Guild - 从Java类转换
+    Class Guild
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # guilds = {}
+    # Guild.lock = ReentrantReadWriteLock()
+    # print("加载 家族 :::")
+    # allGuilds = MapleGuild.loadAll()
+    # for g in allGuilds:
+    # if g.isProper():
+    # Guild.guilds.put(g.getId(), g)
 
-    def __init__(self):
-        """初始化 Guild"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
-
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
-
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
+    def createGuild(leaderId: int, name: str) -> int:
+        return MapleGuild.createGuild(leaderId, name)
 
     def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+        ret = None
+        Guild.lock.readLock().lock()
+        try:
+            ret = Guild.guilds.get(id)
+        finally:
+            Guild.lock.readLock().unlock()
+        if ret is None:
+            Guild.lock.writeLock().lock()
+            try:
+                ret = MapleGuild(id)
+                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                    return None
+                Guild.guilds.put(id, ret)
+            finally:
+                Guild.lock.writeLock().unlock()
+        return ret
 
     def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
+        Guild.lock.readLock().lock()
+        try:
+            for g in Guild.guilds.values():
+                if g.getName().lower() == guildName.lower():
+                    return g
+            return None
+        finally:
+            Guild.lock.readLock().unlock()
 
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def getGuild_mc(self, mc: Any) -> Any:
+        return getGuild(mc.getGuildId())
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.setOnline(mc.getId(), bOnline, channel)
 
     def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.broadcast(message)
 
     def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            return g.addGuildMember(mc)
         return 0
 
     def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.leaveGuild(mc)
 
     def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.guildChat(name, cid, msg)
 
     def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.changeRank(cid, newRank)
 
     def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
+        g = getGuild(initiator.getGuildId())
+        if g is not None:
+            g.expelMember(initiator, name, cid)
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
+        g = getGuild(gid)
+        if g is not None:
+            g.setGuildNotice(notice)
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
+        g = getGuild(mc.getGuildId())
+        if g is not None:
+            g.memberLevelJobUpdate(mc)
 
     def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+        g = getGuild(gid)
+        if g is not None:
+            g.changeRankTitle(ranks)
+
+    def setGuildEmblem(self, gid: int, bg: int, bgcolor: int, logo: int, logocolor: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.setGuildEmblem(bg, bgcolor, logo, logocolor)
+
+    def disbandGuild(self, gid: int) -> None:
+        g = getGuild(gid)
+        Guild.lock.writeLock().lock()
+        try:
+            if g is not None:
+                g.disbandGuild()
+                Guild.guilds.remove(gid)
+        finally:
+            Guild.lock.writeLock().unlock()
+
+    def deleteGuildCharacter(self, guildid: int, charid: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            mc = g.getMGC(charid)
+            if mc is not None:
+                if mc.getGuildRank() > 1:
+                    g.leaveGuild(mc)
+                else:
+                    g.disbandGuild()
+
+    def increaseGuildCapacity(self, gid: int) -> bool:
+        g = getGuild(gid)
+        return g is not None && g.increaseCapacity()
+
+    def gainGP(self, gid: int, amount: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.gainGP(amount)
+
+    def getGP(self, gid: int) -> int:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getGP()
+        return 0
+
+    def getInvitedId(self, gid: int) -> int:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getInvitedId()
+        return 0
+
+    def setInvitedId(self, gid: int, inviteid: int) -> None:
+        g = getGuild(gid)
+        if g is not None:
+            g.setInvitedId(inviteid)
+
+    def getGuildLeader(self, guildName: str) -> int:
+        mga = getGuildByName(guildName)
+        if mga is not None:
+            return mga.getLeaderId()
+        return 0
+
+    def save(self) -> None:
+        print("Saving guilds...")
+        Guild.lock.writeLock().lock()
+        try:
+            for a in Guild.guilds.values():
+                a.writeToDB(False)
+        finally:
+            Guild.lock.writeLock().unlock()
+
+    def getBBS(self, gid: int) -> list:
+        g = getGuild(gid)
+        if g is not None:
+            return g.getBBS()
+        return None
+
+    def addBBSThread(self, guildid: int, title: str, text: str, icon: int, bNotice: bool, posterID: int) -> int:
+        g = getGuild(guildid)
+        if g is not None:
+            return g.addBBSThread(title, text, icon, bNotice, posterID)
+        return -1
+
+    def editBBSThread(self, guildid: int, localthreadid: int, title: str, text: str, icon: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.editBBSThread(localthreadid, title, text, icon, posterID, guildRank)
+
+    def deleteBBSThread(self, guildid: int, localthreadid: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.deleteBBSThread(localthreadid, posterID, guildRank)
+
+    def addBBSReply(self, guildid: int, localthreadid: int, text: str, posterID: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.addBBSReply(localthreadid, text, posterID)
+
+    def deleteBBSReply(self, guildid: int, localthreadid: int, replyid: int, posterID: int, guildRank: int) -> None:
+        g = getGuild(guildid)
+        if g is not None:
+            g.deleteBBSReply(localthreadid, replyid, posterID, guildRank)
+
+    def changeEmblem(self, gid: int, affectedPlayers: int, mgs: Any) -> None:
+        Broadcast.sendGuildPacket(affectedPlayers, MaplePacketCreator.guildEmblemChange(gid, mgs.getLogoBG(), mgs.getLogoBGColor(), mgs.getLogo(), mgs.getLogoColor()), -1, gid)
+        setGuildAndRank(affectedPlayers, -1, -1, -1)
+
+    def setGuildAndRank(self, cid: int, guildid: int, rank: int, alliancerank: int) -> None:
+        ch = Find.findChannel(cid)
+        if ch == -1:
+            return
+        mc = World.getStorage(ch).getCharacterById(cid)
+        if mc is None:
+            return
+        bDifferentGuild = None
+        if guildid == -1 && rank == -1:
+            bDifferentGuild = True
+        else:
+            bDifferentGuild = (guildid != mc.getGuildId())
+            mc.setGuildId(guildid)
+            mc.setGuildRank(rank)
+            mc.setAllianceRank(alliancerank)
+            mc.saveGuildStatus()
+        if bDifferentGuild && ch > 0:
+            mc.getMap().broadcastMessage(mc, MaplePacketCreator.removePlayerFromMap(cid, mc), False)
+            mc.getMap().broadcastMessage(mc, MaplePacketCreator.spawnPlayerMapobject(mc), False)
 
 
+# Inner class from Java (originally nested)
 class Broadcast:
     """
-    类 Broadcast - 从Java类转换
+    Class Broadcast
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
 
-    def __init__(self):
-        """初始化 Broadcast"""
-        self.numTimes = 0
+    def broadcastSmega(self, message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastSmega(message)
 
+    def broadcastGMMessage(self, message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastGMMessage(message)
 
-    def init(self) -> None:
-        """方法 init"""
-        pass
+    def broadcastMessage(self, message: bytes) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastMessage(message)
 
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
+    def sendPacket(self, targetIds: list, packet: Any, exception: int) -> None:
+        for i in targetIds:
+            if i == exception:
+                continue
+            ch = Find.findChannel(i)
+            if ch < 0:
+                continue
+            c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(i)
+            if c is None:
+                continue
+            c.getClient().getSession().write(packet)
 
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
+    def sendGuildPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
+        if targetIds == exception:
+            return
+        ch = Find.findChannel(targetIds)
+        if ch < 0:
+            return
+        c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
+        if c is not None && c.getGuildId() == guildid:
+            c.getClient().getSession().write(packet)
 
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
+    def sendFamilyPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
+        if targetIds == exception:
+            return
+        ch = Find.findChannel(targetIds)
+        if ch < 0:
+            return
+        c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
+        if c is not None && c.getFamilyId() == guildid:
+            c.getClient().getSession().write(packet)
 
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
-
-    @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
-
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
-
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def broadcastMessage_serverNotice(self, serverNotice: Any) -> None:
+        for cs in ChannelServer.getAllInstances():
+            cs.broadcastMessage(serverNotice)
 
 
+# Inner class from Java (originally nested)
 class Client:
     """
-    类 Client - 从Java类转换
+    Class Client
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # clients = []
 
-    def __init__(self):
-        """初始化 Client"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def addClient(c: Any) -> None:
+        if !(c in Client.clients):
+            Client.clients.add(c)
 
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+    def removeClient(self, c: Any) -> bool:
+        return Client.clients.remove(c)
 
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def getClients(self) -> list:
+        return Client.clients
 
 
+# Inner class from Java (originally nested)
 class Find:
     """
-    类 Find - 从Java类转换
+    Class Find
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # lock = ReentrantReadWriteLock()
+    # idToChannel = {}
+    # nameToChannel = {}
 
-    def __init__(self):
-        """初始化 Find"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def register(id: int, name: str, channel: int) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.put(id, channel)
+            Find.nameToChannel.put(name.lower(), channel)
+        finally:
+            Find.lock.writeLock().unlock()
 
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+    def forceDeregister(self, id: int) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.remove(id)
+        finally:
+            Find.lock.writeLock().unlock()
 
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
+    def forceDeregister_id(self, id: str) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.nameToChannel.remove(id.lower())
+        finally:
+            Find.lock.writeLock().unlock()
 
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
+    def forceDeregister_id_name(self, id: int, name: str) -> None:
+        Find.lock.writeLock().lock()
+        try:
+            Find.idToChannel.remove(id)
+            Find.nameToChannel.remove(name.lower())
+        finally:
+            Find.lock.writeLock().unlock()
 
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
+    def findChannel(self, id: int) -> int:
+        Find.lock.readLock().lock()
+        ret = None
+        try:
+            ret = Find.idToChannel.get(id)
+        finally:
+            Find.lock.readLock().unlock()
+        if ret is None:
+            return -1
+        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+            forceDeregister(id)
+            return -1
+        return ret
 
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
+    def findChannel_st(self, st: str) -> int:
+        Find.lock.readLock().lock()
+        ret = None
+        try:
+            ret = Find.nameToChannel.get(st.lower())
+        finally:
+            Find.lock.readLock().unlock()
+        if ret is None:
+            return -1
+        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+            forceDeregister(st)
+            return -1
+        return ret
 
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def multiBuddyFind(self, charIdFrom: int, characterIds: list) -> list:
+        foundsChars = [])
+        for i in characterIds:
+            channel = findChannel(i)
+            if channel > 0:
+                foundsChars.add(CharacterIdChannelPair(i, channel))
+        Collections.sort(foundsChars)
+        return foundsChars])
 
 
+# Inner class from Java (originally nested)
 class Alliance:
     """
-    类 Alliance - 从Java类转换
+    Class Alliance
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # alliances = {}
+    # Alliance.lock = ReentrantReadWriteLock()
+    # print("加载 家族联盟 :::")
+    # allGuilds = MapleGuildAlliance.loadAll()
+    # for g in allGuilds:
+    # Alliance.alliances.put(g.getId(), g)
 
-    def __init__(self):
-        """初始化 Alliance"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def getAlliance(allianceid: int) -> Any:
+        ret = None
+        Alliance.lock.readLock().lock()
+        try:
+            ret = Alliance.alliances.get(allianceid)
+        finally:
+            Alliance.lock.readLock().unlock()
+        if ret is None:
+            Alliance.lock.writeLock().lock()
+            try:
+                ret = MapleGuildAlliance(allianceid)
+                if ret is None || ret.getId() <= 0:
+                    return None
+                Alliance.alliances.put(allianceid, ret)
+            finally:
+                Alliance.lock.writeLock().unlock()
+        return ret
 
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
-
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
+    def getAllianceLeader(self, allianceid: int) -> int:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            return mga.getLeaderId()
         return 0
 
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def updateAllianceRanks(self, allianceid: int, ranks: list) -> None:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            mga.setRank(ranks)
 
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
+    def updateAllianceNotice(self, allianceid: int, notice: str) -> None:
+        mga = getAlliance(allianceid)
+        if mga is not None:
+            mga.setNotice(notice)
 
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def canInvite(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.getCapacity() > mga.getNoGuilds()
 
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
+    def changeAllianceLeader(self, allianceid: int, cid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.setLeaderId(cid)
 
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
+    def changeAllianceRank(self, allianceid: int, cid: int, change: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.changeAllianceRank(cid, change)
 
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
+    def changeAllianceCapacity(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.setCapacity()
 
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
+    def disbandAlliance(self, allianceid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.disband()
 
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
+    def addGuildToAlliance(self, allianceid: int, gid: int) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.addGuild(gid)
 
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
+    def removeGuildFromAlliance(self, allianceid: int, gid: int, expelled: bool) -> bool:
+        mga = getAlliance(allianceid)
+        return mga is not None && mga.removeGuild(gid, expelled)
 
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
+    def sendGuild(self, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            sendGuild(MaplePacketCreator.getAllianceUpdate(alliance), -1, allianceid)
+            sendGuild(MaplePacketCreator.getGuildAlliance(alliance), -1, allianceid)
 
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
+    def sendGuild_packet_exceptionId_allianceid(self, packet: Any, exceptionId: int, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            for i in range(alliance.getNoGuilds()):
+                gid = alliance.getGuildId(i)
+                if gid > 0 && gid != exceptionId:
+                    Guild.guildPacket(gid, packet)
 
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
+    def createAlliance(self, alliancename: str, cid: int, cid2: int, gid: int, gid2: int) -> bool:
+        allianceid = MapleGuildAlliance.createToDb(cid, alliancename, gid, gid2)
+        if allianceid <= 0:
+            return False
+        g = Guild.getGuild(gid)
+        g_ = Guild.getGuild(gid2)
+        g.setAllianceId(allianceid)
+        g_.setAllianceId(allianceid)
+        g.changeARank(True)
+        g_.changeARank(False)
+        alliance = getAlliance(allianceid)
+        sendGuild(MaplePacketCreator.createGuildAlliance(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.getAllianceInfo(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.getGuildAlliance(alliance), -1, allianceid)
+        sendGuild(MaplePacketCreator.changeAlliance(alliance, True), -1, allianceid)
+        return True
 
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def allianceChat(self, gid: int, name: str, cid: int, msg: str) -> None:
+        g = Guild.getGuild(gid)
+        if g is not None:
+            ga = getAlliance(g.getAllianceId())
+            if ga is not None:
+                for i in range(ga.getNoGuilds()):
+                    g_ = Guild.getGuild(ga.getGuildId(i))
+                    if g_ is not None:
+                        g_.allianceChat(name, cid, msg)
+
+    def setNewAlliance(self, gid: int, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        guild = Guild.getGuild(gid)
+        if alliance is not None && guild is not None:
+            for i in range(alliance.getNoGuilds()):
+                if gid == alliance.getGuildId(i):
+                    guild.setAllianceId(allianceid)
+                    guild.broadcast(MaplePacketCreator.getAllianceInfo(alliance))
+                    guild.broadcast(MaplePacketCreator.getGuildAlliance(alliance))
+                    guild.broadcast(MaplePacketCreator.changeAlliance(alliance, True))
+                    guild.changeARank()
+                    guild.writeToDB(False)
+                else:
+                    g_ = Guild.getGuild(alliance.getGuildId(i))
+                    if g_ is not None:
+                        g_.broadcast(MaplePacketCreator.addGuildToAlliance(alliance, guild))
+                        g_.broadcast(MaplePacketCreator.changeGuildInAlliance(alliance, guild, True))
+
+    def setOldAlliance(self, gid: int, expelled: bool, allianceid: int) -> None:
+        alliance = getAlliance(allianceid)
+        g_ = Guild.getGuild(gid)
+        if alliance is not None:
+            for i in range(alliance.getNoGuilds()):
+                guild = Guild.getGuild(alliance.getGuildId(i))
+                if guild is None:
+                    if gid != alliance.getGuildId(i):
+                        alliance.removeGuild(gid, False)
+                elif g_ is None || gid == alliance.getGuildId(i):
+                    guild.changeARank(5)
+                    guild.setAllianceId(0)
+                    guild.broadcast(MaplePacketCreator.disbandAlliance(allianceid))
+                elif g_ is not None:
+                    guild.broadcast(MaplePacketCreator.serverNotice(5, "[" + g_.getName() + "] Guild has left the alliance."))
+                    guild.broadcast(MaplePacketCreator.changeGuildInAlliance(alliance, g_, False))
+                    guild.broadcast(MaplePacketCreator.removeGuildFromAlliance(alliance, g_, expelled))
+        if gid == -1:
+            Alliance.lock.writeLock().lock()
+            try:
+                Alliance.alliances.remove(allianceid)
+            finally:
+                Alliance.lock.writeLock().unlock()
+
+    def getAllianceInfo(self, allianceid: int, start: bool) -> list:
+        ret = []
+        alliance = getAlliance(allianceid)
+        if alliance is not None:
+            if start:
+                ret.add(MaplePacketCreator.getAllianceInfo(alliance))
+                ret.add(MaplePacketCreator.getGuildAlliance(alliance))
+            ret.add(MaplePacketCreator.getAllianceUpdate(alliance))
+        return ret
+
+    def save(self) -> None:
+        print("Saving alliances...")
+        Alliance.lock.writeLock().lock()
+        try:
+            for a in Alliance.alliances.values():
+                a.saveToDb()
+        finally:
+            Alliance.lock.writeLock().unlock()
 
 
+# Inner class from Java (originally nested)
 class Family:
     """
-    类 Family - 从Java类转换
+    Class Family
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
+    # Static initializer
+    # families = {}
+    # Family.lock = ReentrantReadWriteLock()
+    # print("加载 冒险学院 :::")
+    # allGuilds = MapleFamily.loadAll()
+    # for g in allGuilds:
+    # if g.isProper():
+    # Family.families.put(g.getId(), g)
 
-    def __init__(self):
-        """初始化 Family"""
-        self.numTimes = 0
-
-
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
 
     @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
+    def getFamily(id: int) -> Any:
+        ret = None
+        Family.lock.readLock().lock()
+        try:
+            ret = Family.families.get(id)
+        finally:
+            Family.lock.readLock().unlock()
+        if ret is None:
+            Family.lock.writeLock().lock()
+            try:
+                ret = MapleFamily(id)
+                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                    return None
+                Family.families.put(id, ret)
+            finally:
+                Family.lock.writeLock().unlock()
+        return ret
 
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
+    def memberFamilyUpdate(self, mfc: Any, mc: Any) -> None:
+        f = getFamily(mfc.getFamilyId())
+        if f is not None:
+            f.memberLevelJobUpdate(mc)
 
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
+    def setFamilyMemberOnline(self, mfc: Any, bOnline: bool, channel: int) -> None:
+        f = getFamily(mfc.getFamilyId())
+        if f is not None:
+            f.setOnline(mfc.getId(), bOnline, channel)
 
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
+    def setRep(self, fid: int, cid: int, addrep: int, oldLevel: int) -> int:
+        f = getFamily(fid)
+        if f is not None:
+            return f.setRep(cid, addrep, oldLevel)
         return 0
 
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def save(self) -> None:
+        print("Saving families...")
+        Family.lock.writeLock().lock()
+        try:
+            for a in Family.families.values():
+                a.writeToDB(False)
+        finally:
+            Family.lock.writeLock().unlock()
 
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
+    def setFamily(self, familyid: int, seniorid: int, junior1: int, junior2: int, currentrep: int, totalrep: int, cid: int) -> None:
+        ch = Find.findChannel(cid)
+        if ch == -1:
+            return
+        mc = World.getStorage(ch).getCharacterById(cid)
+        if mc is None:
+            return
+        bDifferent = mc.getFamilyId() != familyid || mc.getSeniorId() != seniorid || mc.getJunior1() != junior1 || mc.getJunior2() != junior2
+        mc.setFamily(familyid, seniorid, junior1, junior2)
+        mc.setCurrentRep(currentrep)
+        mc.setTotalRep(totalrep)
+        if bDifferent:
+            mc.saveFamilyStatus()
 
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
+    def familyPacket(self, gid: int, message: Any, cid: int) -> None:
+        f = getFamily(gid)
+        if f is not None:
+            f.broadcast(message, -1, f.getMFC(cid).getPedigree())
 
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+    def disbandFamily(self, gid: int) -> None:
+        g = getFamily(gid)
+        Family.lock.writeLock().lock()
+        try:
+            if g is not None:
+                g.disbandFamily()
+                Family.families.remove(gid)
+        finally:
+            Family.lock.writeLock().unlock()
 
 
+# Inner class from Java (originally nested)
 class Respawn(Runnable):
     """
-    类 Respawn - 从Java类转换
-    实现接口: Runnable
+    Class Respawn
+    Implements: Runnable
     """
 
-    # 静态字段 (Static fields)
-    CHANNELS_PER_THREAD = 3
-
     def __init__(self):
-        """初始化 Respawn"""
+        self.numTimes = 0
         self.numTimes = 0
 
 
-    def init(self) -> None:
-        """方法 init"""
-        pass
-
-    def getStatus(self) -> str:
-        """方法 getStatus"""
-        return getattr(self, 'status', "")
-
-    def getConnected(self) -> dict:
-        """方法 getConnected"""
-        return getattr(self, 'connected', {})
-
-    def getCheaters(self) -> list:
-        """方法 getCheaters"""
-        return getattr(self, 'cheaters', [])
-
-    def isConnected(self, charName: str) -> bool:
-        """方法 isConnected"""
-        return False
-
-    def toggleMegaphoneMuteState(self) -> None:
-        """方法 toggleMegaphoneMuteState"""
-        pass
-
-    def ChannelChange_Data(self, Data: Any, characterid: int, toChannel: int) -> None:
-        """方法 ChannelChange_Data"""
-        pass
-
-    def isCharacterListConnected(self, charName: list) -> bool:
-        """方法 isCharacterListConnected"""
-        return False
-
-    def hasMerchant(self, accountID: int) -> bool:
-        """方法 hasMerchant"""
-        return False
-
-    def getStorage(self, channel: int) -> Any:
-        """方法 getStorage"""
-        raise NotImplementedError("方法 getStorage 尚未实现")
-
-    def scheduleRateDelay(self, type: str, delay: int) -> None:
-        """方法 scheduleRateDelay"""
-        pass
-
     def run(self) -> None:
-        """方法 run"""
-        pass
-
-    def handleCooldowns(self, chr: Any, numTimes: int, hurt: bool) -> None:
-        """方法 handleCooldowns"""
-        pass
-
-    def getAllowLoginTip(self, charNames: list) -> str:
-        """方法 getAllowLoginTip"""
-        return ""
-
-    def registerRespawn(self) -> None:
-        """方法 registerRespawn"""
-        pass
-
-    def handleMap(self, map: Any, numTimes: int, size: int) -> None:
-        """方法 handleMap"""
-        pass
-
-    def partyChat(self, partyid: int, chattext: str, namefrom: str) -> None:
-        """方法 partyChat"""
-        pass
-
-    def updateParty(self, partyid: int, operation: Any, target: Any) -> None:
-        """方法 updateParty"""
-        pass
-
-    def createParty(self, chrfor: Any) -> Any:
-        """方法 createParty"""
-        raise NotImplementedError("方法 createParty 尚未实现")
-
-    def getParty(self, partyid: int) -> Any:
-        """方法 getParty"""
-        raise NotImplementedError("方法 getParty 尚未实现")
-
-    def disbandParty(self, partyid: int) -> Any:
-        """方法 disbandParty"""
-        raise NotImplementedError("方法 disbandParty 尚未实现")
-
-    @staticmethod
-    def buddyChat(recipientCharacterIds: list, cidFrom: int, nameFrom: str, chattext: str) -> None:
-        """方法 buddyChat"""
-        pass
-
-    def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
-        """方法 updateBuddies"""
-        pass
-
-    def buddyChanged(self, cid: int, cidFrom: int, name: str, channel: int, operation: Any, level: int, job: int, group: str) -> None:
-        """方法 buddyChanged"""
-        pass
-
-    def loggedOn(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOn"""
-        pass
-
-    def loggedOff(self, name: str, characterId: int, channel: int, buddies: list, gmLevel: int, isHidden: bool) -> None:
-        """方法 loggedOff"""
-        pass
-
-    def createMessenger(self, chrfor: Any) -> Any:
-        """方法 createMessenger"""
-        raise NotImplementedError("方法 createMessenger 尚未实现")
-
-    def declineChat(self, target: str, namefrom: str) -> None:
-        """方法 declineChat"""
-        pass
-
-    def getMessenger(self, messengerid: int) -> Any:
-        """方法 getMessenger"""
-        raise NotImplementedError("方法 getMessenger 尚未实现")
-
-    def leaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 leaveMessenger"""
-        pass
-
-    def silentLeaveMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentLeaveMessenger"""
-        pass
-
-    def silentJoinMessenger(self, messengerid: int, target: Any) -> None:
-        """方法 silentJoinMessenger"""
-        pass
-
-    def updateMessenger(self, messengerid: int, namefrom: str, fromchannel: int) -> None:
-        """方法 updateMessenger"""
-        pass
-
-    def joinMessenger(self, messengerid: int, target: Any, from: str, fromchannel: int) -> None:
-        """方法 joinMessenger"""
-        pass
-
-    def messengerChat(self, messengerid: int, chattext: str, namefrom: str) -> None:
-        """方法 messengerChat"""
-        pass
-
-    def messengerInvite(self, sender: str, messengerid: int, target: str, fromchannel: int, gm: bool) -> None:
-        """方法 messengerInvite"""
-        pass
-
-    def createGuild(self, leaderId: int, name: str) -> int:
-        """方法 createGuild"""
-        return 0
-
-    def getGuild(self, id: int) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def getGuildByName(self, guildName: str) -> Any:
-        """方法 getGuildByName"""
-        raise NotImplementedError("方法 getGuildByName 尚未实现")
-
-    def getGuild(self, mc: Any) -> Any:
-        """方法 getGuild"""
-        raise NotImplementedError("方法 getGuild 尚未实现")
-
-    def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
-        """方法 setGuildMemberOnline"""
-        self.guild_member_online = mc
-        return None
-
-    def guildPacket(self, gid: int, message: Any) -> None:
-        """方法 guildPacket"""
-        pass
-
-    def addGuildMember(self, mc: Any) -> int:
-        """方法 addGuildMember"""
-        return 0
-
-    def leaveGuild(self, mc: Any) -> None:
-        """方法 leaveGuild"""
-        pass
-
-    def guildChat(self, gid: int, name: str, cid: int, msg: str) -> None:
-        """方法 guildChat"""
-        pass
-
-    def changeRank(self, gid: int, cid: int, newRank: int) -> None:
-        """方法 changeRank"""
-        pass
-
-    def expelMember(self, initiator: Any, name: str, cid: int) -> None:
-        """方法 expelMember"""
-        pass
-
-    def setGuildNotice(self, gid: int, notice: str) -> None:
-        """方法 setGuildNotice"""
-        self.guild_notice = gid
-        return None
-
-    def memberLevelJobUpdate(self, mc: Any) -> None:
-        """方法 memberLevelJobUpdate"""
-        pass
-
-    def changeRankTitle(self, gid: int, ranks: list) -> None:
-        """方法 changeRankTitle"""
-        pass
+        self.numTimes += 1
+        for cserv in ChannelServer.getAllInstances():
+            for map in cserv.getMapFactory().getAllMaps():
+                World.handleMap(map, self.numTimes, map.getCharactersSize())
+            for map in cserv.getMapFactory().getAllInstanceMaps():
+                World.handleMap(map, self.numTimes, map.getCharactersSize())
 

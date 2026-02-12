@@ -1,14 +1,15 @@
 """
-MapleDataType - 从Java源文件转换而来
-对应Java源文件: provider/WzXML/MapleDataType.java
-包路径: provider.WzXML
+MapleDataType - Converted from Java source
+Original: provider/WzXML/MapleDataType.java
+Package: provider.WzXML
 """
 
 from enum import Enum, IntEnum
+from typing import Optional, Any
 
 
 class MapleDataType(Enum):
-    """枚举类 MapleDataType - 从Java枚举转换"""
+    """Enum MapleDataType"""
 
     NONE = 0
     IMG_0x00 = 1

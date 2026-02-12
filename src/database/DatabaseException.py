@@ -1,18 +1,22 @@
 """
-DatabaseException - 从Java源文件转换而来
-对应Java源文件: database/DatabaseException.java
-包路径: database
+DatabaseException - Converted from Java source
+Original: database/DatabaseException.java
+Package: database
 """
+
+from typing import Optional, Any
 
 
 class DatabaseException(RuntimeException):
     """
-    类 DatabaseException - 从Java类转换
-    继承自: RuntimeException
+    Class DatabaseException
+    Extends: RuntimeException
     """
 
     def __init__(self, msg: str):
-        """初始化 DatabaseException"""
-        pass
+        super(msg)
+
+    # Static initializer
+    # DatabaseException.serialVersionUID = -420103154764822555
 
 

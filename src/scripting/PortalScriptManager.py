@@ -1,46 +1,87 @@
 """
-PortalScriptManager - 从Java源文件转换而来
-对应Java源文件: scripting/PortalScriptManager.java
-包路径: scripting
+PortalScriptManager - Converted from Java source
+Original: scripting/PortalScriptManager.java
+Package: scripting
 """
 
 from io import IOBase
 from io import TextIOWrapper
 from pathlib import Path
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import os
+import sys
 import tkinter
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from server.MaplePortal import *  # TODO: 根据实际需要导入具体类
-# from tools.FileoutputUtil import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from server.MaplePortal import *  # TODO: import specific classes
+# from tools.FileoutputUtil import *  # TODO: import specific classes
 
 
 class PortalScriptManager:
     """
-    类 PortalScriptManager - 从Java类转换
+    Class PortalScriptManager
     """
 
     def __init__(self):
-        """初始化 PortalScriptManager"""
         self.scripts = None
+        self.scripts = {}
+
+    # Static initializer
+    # instance = PortalScriptManager()
+    # sef = ScriptEngineManager().getEngineByName("javascript").getFactory()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getPortalScript(self, c: Any, scriptName: str) -> Any:
-        """方法 getPortalScript"""
-        raise NotImplementedError("方法 getPortalScript 尚未实现")
+        if (scriptName in self.scripts):
+            self.scripts.clear()
+            return self.scripts.get(scriptName)
+        scriptsPath = os.environ.get("scripts_path")
+        scriptFile = File(scriptsPath+"scripts"+File.separator+"portal"+File.separator + scriptName + ".js")
+        if !scriptFile.exists():
+            return None
+        fr = None
+        portal = PortalScriptManager.sef.getScriptEngine()
+        try:
+            fr = FileInputStream(scriptFile)
+            bf = BufferedReader(InputStreamReader(fr, EncodingDetect.getJavaEncode(scriptFile)))
+            compiled = (portal).compile(bf)
+            compiled.eval()
+        except Exception as e:
+            print("Error executing Portalscript: " + scriptName + ":" + e)
+            FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Error executing Portal script. (" + scriptName + ") " + e)
+            if fr is not None:
+                try:
+                    fr.close()
+                except IOError as e2:
+                    print("ERROR CLOSING" + e2)
+        finally:
+            if fr is not None:
+                try:
+                    fr.close()
+                except IOError as e3:
+                    print("ERROR CLOSING" + e3)
+        script = (portal).getInterface(PortalScript.class)
+        self.scripts.put(scriptName, script)
+        return script
 
     def executePortalScript(self, portal: Any, c: Any) -> None:
-        """方法 executePortalScript"""
-        pass
+        script = self.getPortalScript(c, portal.getScriptName())
+        if c.getPlayer().isGM():
+            c.getPlayer().dropMessage("[系统提示]您已经建立与PortalScript:[" + portal.getScriptName() + ".js]的对话。")
+        if script is not None:
+            try:
+                script.enter(PortalPlayerInteraction(c, portal))
+            except Exception as e:
+                print("Error entering Portalscript: " + portal.getScriptName() + ":" + e)
 
     def clearScripts(self) -> None:
-        """方法 clearScripts"""
-        pass
+        self.scripts.clear()
 

@@ -1,7 +1,7 @@
 """
-Triple - 从Java源文件转换而来
-对应Java源文件: tools/Triple.java
-包路径: tools
+Triple - Converted from Java source
+Original: tools/Triple.java
+Package: tools
 """
 
 from typing import Optional, Any
@@ -9,41 +9,63 @@ from typing import Optional, Any
 
 class Triple:
     """
-    类 Triple - 从Java类转换
-    实现接口: Serializable
+    Class Triple
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413739999
 
     def __init__(self, left: Any, mid: Any, right: Any):
-        """初始化 Triple"""
         self.left = None
         self.mid = None
         self.right = None
+        self.left = left
+        self.mid = mid
+        self.right = right
 
 
     def getLeft(self) -> Any:
-        """方法 getLeft"""
-        return getattr(self, 'left', None)
+        return self.left
 
     def getMid(self) -> Any:
-        """方法 getMid"""
-        return getattr(self, 'mid', None)
+        return self.mid
 
     def getRight(self) -> Any:
-        """方法 getRight"""
-        return getattr(self, 'right', None)
+        return self.right
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.left + ":" + self.mid + ":" + self.right
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        prime = 31
+        result = 1
+        result = 31 * result + ((self.left is None) ? 0 : self.left.hashCode())
+        result = 31 * result + ((self.mid is None) ? 0 : self.mid.hashCode())
+        result = 31 * result + ((self.right is None) ? 0 : self.right.hashCode())
+        return result
 
     def equals(self, obj: Any) -> bool:
-        """方法 equals"""
-        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
+        if this == obj:
+            return True
+        if obj is None:
+            return False
+        if self.getClass() != obj.getClass():
+            return False
+        other = obj
+        if self.left is None:
+            if other.left is not None:
+                return False
+        elif !self.left == (other.left):
+            return False
+        if self.mid is None:
+            if other.mid is not None:
+                return False
+        elif !self.mid == (other.mid):
+            return False
+        if self.right is None:
+            if other.right is not None:
+                return False
+        elif !self.right == (other.right):
+            return False
+        return True
 

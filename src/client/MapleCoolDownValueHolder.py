@@ -1,19 +1,23 @@
 """
-MapleCoolDownValueHolder - 从Java源文件转换而来
-对应Java源文件: client/MapleCoolDownValueHolder.java
-包路径: client
+MapleCoolDownValueHolder - Converted from Java source
+Original: client/MapleCoolDownValueHolder.java
+Package: client
 """
+
+from typing import Optional, Any
 
 
 class MapleCoolDownValueHolder:
     """
-    类 MapleCoolDownValueHolder - 从Java类转换
+    Class MapleCoolDownValueHolder
     """
 
     def __init__(self, skillId: int, startTime: int, length: int):
-        """初始化 MapleCoolDownValueHolder"""
         self.skillId = 0
         self.startTime = 0
         self.length = 0
+        self.skillId = skillId
+        self.startTime = startTime
+        len(self) = length
 
 

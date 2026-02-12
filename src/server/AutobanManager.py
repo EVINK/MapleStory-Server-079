@@ -1,35 +1,33 @@
 """
-AutobanManager - 从Java源文件转换而来
-对应Java源文件: server/AutobanManager.java
-包路径: server
+AutobanManager - Converted from Java source
+Original: server/AutobanManager.java
+Package: server
 """
 
 from threading import RLock
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from typing import Set
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from handling.world.World import *  # TODO: 根据实际需要导入具体类
-# from tools.FileoutputUtil import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from handling.world.World import *  # TODO: import specific classes
+# from tools.FileoutputUtil import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class AutobanManager(Runnable):
     """
-    类 AutobanManager - 从Java类转换
-    实现接口: Runnable
+    Class AutobanManager
+    Implements: Runnable
     """
 
-    # 静态字段 (Static fields)
     AUTOBAN_POINTS = 5000
 
     def __init__(self):
-        """初始化 AutobanManager"""
         self.points = None
         self.reasons = None
         self.expirations = None
@@ -37,74 +35,106 @@ class AutobanManager(Runnable):
         self.time = 0
         self.acc = 0
         self.points = 0
+        self.points = {}
+        self.reasons = new HashMap<Integer, List<String>>()
+        self.expirations = new TreeSet<ExpirationEntry>()
+        self.lock = ReentrantLock(True)
+
+    # Static initializer
+    # instance = AutobanManager()
 
 
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def autoban(self, c: Any, reason: str) -> None:
-        """方法 autoban"""
-        pass
+        if c.getPlayer().isGM() || c.getPlayer().isClone():
+            c.getPlayer().dropMessage(5, "[WARNING] A/b triggled : " + reason)
+            return
+        self.addPoints(c, AUTOBAN_POINTS, 0, reason)
 
     def addPoints(self, c: Any, points: int, expiration: int, reason: str) -> None:
-        """方法 addPoints"""
-        pass
+        self.lock.lock()
+        try:
+            acc = c.getPlayer().getAccountID()
+            if (acc in self.points):
+                SavedPoints = self.points.get(acc)
+                if SavedPoints >= AUTOBAN_POINTS:
+                    return
+                self.points.put(acc, SavedPoints + points)
+                reasonList = self.reasons.get(acc)
+                reasonList.add(reason)
+            else:
+                self.points.put(acc, points)
+                reasonList = []
+                reasonList.add(reason)
+                self.reasons.put(acc, reasonList)
+            if self.points.get(acc) >= AUTOBAN_POINTS:
+                if c.getPlayer().isGM() || c.getPlayer().isClone():
+                    c.getPlayer().dropMessage(5, "[WARNING] A/b triggled : " + reason)
+                    return
+                sb = ""
+                sb.append(c.getPlayer().getName())
+                sb.append(" (IP ")
+                sb.append(c.getSession().getRemoteAddress())
+                sb.append("): ")
+                sb.append(" (MAC ")
+                sb.append(c.getMac())
+                sb.append("): ")
+                for s in self.reasons.get(acc):
+                    sb.append(s)
+                    sb.append(", ")
+                FileoutputUtil.logToFile_chr(c.getPlayer(), FileoutputUtil.ban_log, sb)
+                c.getPlayer().ban(sb, False, True, False)
+                World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(0, "封号系统：玩家" + c.getPlayer().getName() + "使用非法程序，账号已被封处理'").encode("utf-8"))
+                c.disconnect(True, False)
+            elif expiration > 0:
+                self.expirations.add(ExpirationEntry(int(time.time() * 1000) + expiration, acc, points))
+        finally:
+            self.lock.unlock()
 
     def run(self) -> None:
-        """方法 run"""
-        pass
+        now = int(time.time() * 1000)
+        for e in self.expirations:
+            if e.time > now:
+                return
+            self.points.put(e.acc, self.points.get(e.acc) - e.points)
 
     def compareTo(self, o: Any) -> int:
-        """方法 compareTo"""
-        return 0
+        return (int)(self.time - o.time)
 
     def equals(self, oth: Any) -> bool:
-        """方法 equals"""
-        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
+        if !(isinstance(oth, ExpirationEntry)):
+            return False
+        ee = oth
+        return self.time == ee.time && self.points == ee.points && self.acc == ee.acc
 
 
+# Inner class from Java (originally nested)
 class ExpirationEntry:
     """
-    类 ExpirationEntry - 从Java类转换
-    实现接口: Comparable<ExpirationEntry>
+    Class ExpirationEntry
+    Implements: Comparable<ExpirationEntry>
     """
 
-    # 静态字段 (Static fields)
-    AUTOBAN_POINTS = 5000
-
     def __init__(self, time: int, acc: int, points: int):
-        """初始化 ExpirationEntry"""
-        self.points = None
-        self.reasons = None
-        self.expirations = None
-        self.lock = None
         self.time = 0
         self.acc = 0
         self.points = 0
+        self.time = time
+        self.acc = acc
+        self.points = points
 
-
-    def getInstance(self) -> Any:
-        """方法 getInstance"""
-        return getattr(self, 'instance', None)
-
-    def autoban(self, c: Any, reason: str) -> None:
-        """方法 autoban"""
-        pass
-
-    def addPoints(self, c: Any, points: int, expiration: int, reason: str) -> None:
-        """方法 addPoints"""
-        pass
-
-    def run(self) -> None:
-        """方法 run"""
-        pass
 
     def compareTo(self, o: Any) -> int:
-        """方法 compareTo"""
-        return 0
+        return (int)(self.time - o.time)
 
     def equals(self, oth: Any) -> bool:
-        """方法 equals"""
-        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
+        if !(isinstance(oth, ExpirationEntry)):
+            return False
+        ee = oth
+        return self.time == ee.time && self.points == ee.points && self.acc == ee.acc
 

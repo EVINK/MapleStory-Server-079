@@ -1,7 +1,7 @@
 """
-MapleInventoryIdentifier - 从Java源文件转换而来
-对应Java源文件: client/inventory/MapleInventoryIdentifier.java
-包路径: client.inventory
+MapleInventoryIdentifier - Converted from Java source
+Original: client/inventory/MapleInventoryIdentifier.java
+Package: client.inventory
 """
 
 from pymysql import Connection
@@ -10,49 +10,99 @@ from typing import Optional, Any
 import pymysql
 import threading
 
-# 内部模块导入 (Internal module imports)
-# from database import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database import *  # TODO: import specific classes
 
 
 class MapleInventoryIdentifier:
     """
-    类 MapleInventoryIdentifier - 从Java类转换
-    实现接口: Serializable
+    Class MapleInventoryIdentifier
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 21830921831301
 
     def __init__(self):
-        """初始化 MapleInventoryIdentifier"""
         self.runningUID = None
         self.rwl = None
         self.readLock = None
         self.writeLock = None
+        self.rwl = ReentrantReadWriteLock()
+        self.readLock = self.rwl.readLock()
+        self.writeLock = self.rwl.writeLock()
+        self.runningUID = AtomicInteger(0)
+        self.getNextUniqueId()
+
+    # Static initializer
+    # instance = MapleInventoryIdentifier()
 
 
-    def getInstance(self) -> int:
-        """方法 getInstance"""
-        return getattr(self, 'instance', 0)
+    @classmethod
+    def get_instance(cls) -> "Any":
+        if not hasattr(cls, "_instance") or cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
 
     def getNextUniqueId(self) -> int:
-        """方法 getNextUniqueId"""
-        return getattr(self, 'next_unique_id', 0)
+        if self.grabRunningUID() <= 0:
+            self.setRunningUID(self.initUID())
+        self.incrementRunningUID()
+        return self.grabRunningUID()
 
     def grabRunningUID(self) -> int:
-        """方法 grabRunningUID"""
-        return 0
+        self.readLock.lock()
+        try:
+            return self.runningUID.get()
+        finally:
+            self.readLock.unlock()
 
     def incrementRunningUID(self) -> None:
-        """方法 incrementRunningUID"""
-        pass
+        self.setRunningUID(self.grabRunningUID() + 1)
 
     def setRunningUID(self, rUID: int) -> None:
-        """方法 setRunningUID"""
-        self.running_uid = rUID
-        return None
+        if rUID < self.grabRunningUID():
+            return
+        self.writeLock.lock()
+        try:
+            self.runningUID.set(rUID)
+        finally:
+            self.writeLock.unlock()
 
     def initUID(self) -> int:
-        """方法 initUID"""
-        return 0
+        ret = 0
+        if self.grabRunningUID() > 0:
+            return self.grabRunningUID()
+        try:
+            ids = new int[4]
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT MAXFROM inventoryitems")
+            rs = ps.executeQuery()
+            if rs.next():
+                ids[0] = rs.getInt(1) + 1
+            rs.close()
+            ps.close()
+            ps = con.prepareStatement("SELECT MAXFROM pets")
+            rs = ps.executeQuery()
+            if rs.next():
+                ids[1] = rs.getInt(1) + 1
+            rs.close()
+            ps.close()
+            ps = con.prepareStatement("SELECT MAXFROM rings")
+            rs = ps.executeQuery()
+            if rs.next():
+                ids[2] = rs.getInt(1) + 1
+            rs.close()
+            ps.close()
+            ps = con.prepareStatement("SELECT MAXFROM rings")
+            rs = ps.executeQuery()
+            if rs.next():
+                ids[3] = rs.getInt(1) + 1
+            rs.close()
+            ps.close()
+            for i in range(4):
+                if ids[i] > ret:
+                    ret = ids[i]
+        except Exception as e:
+            e.printStackTrace()
+        return ret
 

@@ -1,24 +1,25 @@
 """
-EncodingDetect - 从Java源文件转换而来
-对应Java源文件: scripting/EncodingDetect.java
-包路径: scripting
+EncodingDetect - Converted from Java source
+Original: scripting/EncodingDetect.java
+Package: scripting
 """
 
 from pathlib import Path
+from typing import Optional, Any
 import os
 
 
 class EncodingDetect:
     """
-    类 EncodingDetect - 从Java类转换
+    Class EncodingDetect
     """
 
 
     def getJavaEncode(self, filePath: str) -> str:
-        """方法 getJavaEncode"""
-        return ""
+        return getJavaEncode(File(filePath))
 
-    def getJavaEncode(self, file: Any) -> str:
-        """方法 getJavaEncode"""
-        return ""
+    def getJavaEncode_file(self, file: Any) -> str:
+        s = BytesEncodingDetect()
+        fileCode = BytesEncodingDetect.javaname[s.detectEncoding(file)]
+        return fileCode
 

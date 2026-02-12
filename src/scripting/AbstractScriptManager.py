@@ -1,33 +1,65 @@
 """
-AbstractScriptManager - 从Java源文件转换而来
-对应Java源文件: scripting/AbstractScriptManager.java
-包路径: scripting
+AbstractScriptManager - Converted from Java source
+Original: scripting/AbstractScriptManager.java
+Package: scripting
 """
 
 from io import IOBase
 from io import TextIOWrapper
 from pathlib import Path
+from typing import Optional, Any
 import os
+import sys
 import tkinter
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from tools.FileoutputUtil import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from tools.FileoutputUtil import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
-class AbstractScriptManager(ABC):
+class AbstractScriptManager:
     """
-    类 AbstractScriptManager - 从Java类转换
+    Class AbstractScriptManager
     """
+
+    # Static initializer
+    # sem = ScriptEngineManager()
 
 
     @staticmethod
     def getInvocable(path: str, c: Any) -> Any:
-        """方法 getInvocable"""
-        raise NotImplementedError("方法 getInvocable 尚未实现")
+        return self.getInvocable(path, c, False)
 
     def getInvocable(self, path: str, c: Any, npc: bool) -> Any:
-        """方法 getInvocable"""
-        raise NotImplementedError("方法 getInvocable 尚未实现")
+        fr = None
+        try:
+            serverPath = os.environ.get("scripts_path")
+            path = serverPath +"scripts"+File.separator + path
+            engine = None
+            if c is not None:
+                engine = c.getScriptEngine(path)
+            if engine is None:
+                scriptFile = File(path)
+                if !scriptFile.exists():
+                    return None
+                engine = AbstractScriptManager.sem.getEngineByName("javascript")
+                if c is not None:
+                    c.setScriptEngine(path, engine)
+                fr = FileInputStream(scriptFile)
+                bf = BufferedReader(InputStreamReader(fr, EncodingDetect.getJavaEncode(scriptFile)))
+                engine.eval(bf)
+            elif c is not None && npc:
+                NPCScriptManager.getInstance().dispose(c)
+                c.getSession().write(MaplePacketCreator.enableActions())
+            return engine
+        except Exception as e:
+            print("Error executing script. Path: " + path + "\nException " + e)
+            FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Error executing script. Path: " + path + "\nException " + e)
+            return None
+        finally:
+            try:
+                if fr is not None:
+                    fr.close()
+            except IOException as ex3:
 

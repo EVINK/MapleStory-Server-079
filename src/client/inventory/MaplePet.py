@@ -1,37 +1,35 @@
 """
-MaplePet - 从Java源文件转换而来
-对应Java源文件: client/inventory/MaplePet.java
-包路径: client.inventory
+MaplePet - Converted from Java source
+Original: client/inventory/MaplePet.java
+Package: client.inventory
 """
 
-from dataclasses import dataclass
+from enum import Enum, IntEnum
 from pymysql import Connection
 from pymysql import Error
 from pymysql.cursors import Cursor
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import logging
 import pymysql
 
-# 内部模块导入 (Internal module imports)
-# from database.DatabaseConnection import *  # TODO: 根据实际需要导入具体类
-# from server.MapleItemInformationProvider import *  # TODO: 根据实际需要导入具体类
-# from server.movement.LifeMovement import *  # TODO: 根据实际需要导入具体类
-# from server.movement.LifeMovementFragment import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from database.DatabaseConnection import *  # TODO: import specific classes
+# from server.MapleItemInformationProvider import *  # TODO: import specific classes
+# from server.movement.LifeMovement import *  # TODO: import specific classes
+# from server.movement.LifeMovementFragment import *  # TODO: import specific classes
 
 
 class MaplePet:
     """
-    类 MaplePet - 从Java类转换
-    实现接口: Serializable
+    Class MaplePet
+    Implements: Serializable
     """
 
-    # 静态字段 (Static fields)
     serialVersionUID = 9179541993413738569
 
     def __init__(self, petitemid: int, uniqueid: int):
-        """初始化 MaplePet"""
         self.name = ""
         self.Fh = 0
         self.stance = 0
@@ -49,162 +47,204 @@ class MaplePet:
         self.i = None
         self.item = None
         self.remove = None
+        self.petitemid = petitemid
+        self.uniqueid = uniqueid
 
 
     def loadFromDb(self, itemid: int, petid: int, inventorypos: int) -> Any:
-        """方法 loadFromDb"""
-        raise NotImplementedError("方法 loadFromDb 尚未实现")
+        try:
+            ret = MaplePet(itemid, petid, inventorypos)
+            con = DatabaseConnection.getConnection()
+            ps = con.prepareStatement("SELECT * FROM pets WHERE petid = ?")
+            ps.setInt(1, petid)
+            rs = ps.executeQuery()
+            if !rs.next():
+                rs.close()
+                ps.close()
+                return None
+            ret.setName(rs.getString("name"))
+            ret.setCloseness(rs.getShort("closeness"))
+            ret.setLevel(rs.getByte("level"))
+            ret.setFullness(rs.getByte("fullness"))
+            ret.setSecondsLeft(rs.getInt("seconds"))
+            ret.setFlags(rs.getShort("flags"))
+            ret.changed = False
+            rs.close()
+            ps.close()
+            return ret
+        except SQLException as ex:
+            Logger.getLogger(MaplePet.class.getName()).log(Level.SEVERE, None, ex)
+            return None
 
     def createPet(self, itemid: int, uniqueid: int) -> Any:
-        """方法 createPet"""
-        raise NotImplementedError("方法 createPet 尚未实现")
+        return createPet(itemid, MapleItemInformationProvider.getInstance().getName(itemid), 1, 0, 100, uniqueid, (itemid == 5000054) ? 18000 : 0)
 
-    def createPet(self, itemid: int, name: str, level: int, closeness: int, fullness: int, uniqueid: int, secondsLeft: int) -> Any:
-        """方法 createPet"""
-        raise NotImplementedError("方法 createPet 尚未实现")
+    def createPet_itemid_name_level_closeness_fullness_uniqueid_secondsLeft(self, itemid: int, name: str, level: int, closeness: int, fullness: int, uniqueid: int, secondsLeft: int) -> Any:
+        if uniqueid <= -1:
+        uniqueid = MapleInventoryIdentifier.getInstance()
+        ret1 = MapleItemInformationProvider.getInstance().getPetFlagInfo(itemid)
+        try:
+            pse = DatabaseConnection.getConnection().prepareStatement("INSERT INTO pets (petid, name, level, closeness, fullness, seconds, flags) VALUES (?, ?, ?, ?, ?, ?, ?)")
+            pse.setInt(1, uniqueid)
+            pse.setString(2, name)
+            pse.setByte(3, level)
+            pse.setShort(4, closeness)
+            pse.setByte(5, fullness)
+            pse.setInt(6, secondsLeft)
+            pse.setShort(7, ret1)
+            pse.executeUpdate()
+            pse.close()
+        except SQLException as ex:
+            ex.printStackTrace()
+            return None
+        pet = MaplePet(itemid, uniqueid)
+        pet.setName(name)
+        pet.setLevel(level)
+        pet.setFullness(fullness)
+        pet.setCloseness(closeness)
+        pet.setFlags(ret1)
+        pet.setSecondsLeft(secondsLeft)
+        return pet
 
     def saveToDb(self) -> None:
-        """方法 saveToDb"""
-        pass
+        if !self.changed:
+        return
+        try:
+            ps = DatabaseConnection.getConnection().prepareStatement("UPDATE pets SET name = ?, level = ?, closeness = ?, fullness = ?, seconds = ?, flags = ? WHERE petid = ?")
+            ps.setString(1, self.name)
+            ps.setByte(2, self.level)
+            ps.setShort(3, self.closeness)
+            ps.setByte(4, self.fullness)
+            ps.setInt(5, self.secondsLeft)
+            ps.setShort(6, self.flags)
+            ps.setInt(7, self.uniqueid)
+            ps.executeUpdate()
+            ps.close()
+            self.changed = False
+        except SQLException as ex:
+            ex.printStackTrace()
 
     def getName(self) -> str:
-        """方法 getName"""
-        return getattr(self, 'name', "")
+        return self.name
 
     def setName(self, name: str) -> None:
-        """方法 setName"""
         self.name = name
-        return None
+        self.changed = True
 
     def getSummoned(self) -> bool:
-        """方法 getSummoned"""
-        return getattr(self, 'summoned', False)
+        return (self.summoned > 0)
 
     def getSummonedValue(self) -> int:
-        """方法 getSummonedValue"""
-        return getattr(self, 'summoned_value', 0)
+        return self.summoned
 
     def setSummoned(self, summoned: int) -> None:
-        """方法 setSummoned"""
         self.summoned = summoned
-        return None
 
     def getInventoryPosition(self) -> int:
-        """方法 getInventoryPosition"""
-        return getattr(self, 'inventory_position', 0)
+        return self.inventorypos
 
     def setInventoryPosition(self, inventorypos: int) -> None:
-        """方法 setInventoryPosition"""
-        self.inventory_position = inventorypos
-        return None
+        self.inventorypos = inventorypos
 
     def getUniqueId(self) -> int:
-        """方法 getUniqueId"""
-        return getattr(self, 'unique_id', 0)
+        return self.uniqueid
 
     def getCloseness(self) -> int:
-        """方法 getCloseness"""
-        return getattr(self, 'closeness', 0)
+        return self.closeness
 
     def setCloseness(self, closeness: int) -> None:
-        """方法 setCloseness"""
+        if closeness >= Integer.MAX_VALUE || closeness <= 0:
+        closeness = 1
         self.closeness = closeness
-        return None
+        self.changed = True
 
     def getLevel(self) -> int:
-        """方法 getLevel"""
-        return getattr(self, 'level', 0)
+        return self.level
 
     def setLevel(self, level: int) -> None:
-        """方法 setLevel"""
         self.level = level
-        return None
+        self.changed = True
 
     def getFullness(self) -> int:
-        """方法 getFullness"""
-        return getattr(self, 'fullness', 0)
+        return self.fullness
 
     def setFullness(self, fullness: int) -> None:
-        """方法 setFullness"""
         self.fullness = fullness
-        return None
+        self.changed = True
 
     def getFlags(self) -> int:
-        """方法 getFlags"""
-        return getattr(self, 'flags', 0)
+        return self.flags
 
     def setFlags(self, fffh: int) -> None:
-        """方法 setFlags"""
         self.flags = fffh
-        return None
+        self.changed = True
 
     def getFh(self) -> int:
-        """方法 getFh"""
-        return getattr(self, 'fh', 0)
+        return self.Fh
 
     def setFh(self, Fh: int) -> None:
-        """方法 setFh"""
-        self.fh = Fh
-        return None
+        self.Fh = Fh
 
     def getPos(self) -> Any:
-        """方法 getPos"""
-        return getattr(self, 'pos', None)
+        return self.pos
 
     def setPos(self, pos: Any) -> None:
-        """方法 setPos"""
         self.pos = pos
-        return None
 
     def getStance(self) -> int:
-        """方法 getStance"""
-        return getattr(self, 'stance', 0)
+        return self.stance
 
     def setStance(self, stance: int) -> None:
-        """方法 setStance"""
         self.stance = stance
-        return None
 
     def getPetItemId(self) -> int:
-        """方法 getPetItemId"""
-        return getattr(self, 'pet_item_id', 0)
+        return self.petitemid
 
     def canConsume(self, itemId: int) -> bool:
-        """方法 canConsume"""
+        mii = MapleItemInformationProvider.getInstance()
+        Iterator<Integer> iterator = mii.petsCanConsume(itemId).iterator()
+        while iterator.hasNext():
+            petId = (iterator.next())
+            if petId == self.petitemid:
+            return True
         return False
 
     def updatePosition(self, movement: list) -> None:
-        """方法 updatePosition"""
-        pass
+        for move in movement:
+            if isinstance(move, LifeMovement):
+                if isinstance(move, server).movement.AbsoluteLifeMovement:
+                setPos((move).getPosition())
+                setStance((move).getNewstate())
 
     def getSecondsLeft(self) -> int:
-        """方法 getSecondsLeft"""
-        return getattr(self, 'seconds_left', 0)
+        return self.secondsLeft
 
     def setSecondsLeft(self, sl: int) -> None:
-        """方法 setSecondsLeft"""
-        self.seconds_left = sl
-        return None
+        self.secondsLeft = sl
+        self.changed = True
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def check(self, flag: int) -> bool:
-        """方法 check"""
-        return False
+        return ((flag & self.i) == self.i)
 
     def getByAddId(self, itemId: int) -> Any:
-        """方法 getByAddId"""
-        raise NotImplementedError("方法 getByAddId 尚未实现")
+        for flag in values():
+            if flag.item == itemId:
+            return flag
+        return None
 
     def getByDelId(self, itemId: int) -> Any:
-        """方法 getByDelId"""
-        raise NotImplementedError("方法 getByDelId 尚未实现")
+        for flag in values():
+            if flag.remove == itemId:
+            return flag
+        return None
 
 
+# Inner class from Java (originally nested)
 class PetFlag(Enum):
-    """枚举类 PetFlag - 从Java枚举转换"""
+    """Enum PetFlag"""
 
     ITEM_PICKUP = (1, 5190000, 5191000)
     EXPAND_PICKUP = (2, 5190002, 5191002)
@@ -218,18 +258,20 @@ class PetFlag(Enum):
     PET_DIALOGUE = (512, 5190008, -1)
 
     def getValue(self) -> int:
-        """方法 getValue"""
-        return getattr(self, 'value', 0)
+        return self.i
 
     def check(self, flag: int) -> bool:
-        """方法 check"""
-        return False
+        return ((flag & self.i) == self.i)
 
     def getByAddId(self, itemId: int) -> Any:
-        """方法 getByAddId"""
-        raise NotImplementedError("方法 getByAddId 尚未实现")
+        for flag in values():
+            if flag.item == itemId:
+            return flag
+        return None
 
     def getByDelId(self, itemId: int) -> Any:
-        """方法 getByDelId"""
-        raise NotImplementedError("方法 getByDelId 尚未实现")
+        for flag in values():
+            if flag.remove == itemId:
+            return flag
+        return None
 

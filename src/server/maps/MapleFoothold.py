@@ -1,75 +1,70 @@
 """
-MapleFoothold - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleFoothold.java
-包路径: server.maps
+MapleFoothold - Converted from Java source
+Original: server/maps/MapleFoothold.java
+Package: server.maps
 """
 
-from dataclasses import dataclass
 from typing import Optional, Any
 
 
 class MapleFoothold:
     """
-    类 MapleFoothold - 从Java类转换
-    实现接口: Comparable<MapleFoothold>
+    Class MapleFoothold
+    Implements: Comparable<MapleFoothold>
     """
 
     def __init__(self, p1: Any, p2: Any, id: int):
-        """初始化 MapleFoothold"""
         self.p1 = None
         self.p2 = None
         self.id = None
         self.next = 0
         self.prev = 0
+        self.p1 = p1
+        self.p2 = p2
+        self.id = id
 
 
     def isWall(self) -> bool:
-        """方法 isWall"""
-        return bool(getattr(self, 'wall', False))
+        return self.p1.x == self.p2.x
 
     def getX1(self) -> int:
-        """方法 getX1"""
-        return getattr(self, 'x1', 0)
+        return self.p1.x
 
     def getX2(self) -> int:
-        """方法 getX2"""
-        return getattr(self, 'x2', 0)
+        return self.p2.x
 
     def getY1(self) -> int:
-        """方法 getY1"""
-        return getattr(self, 'y1', 0)
+        return self.p1.y
 
     def getY2(self) -> int:
-        """方法 getY2"""
-        return getattr(self, 'y2', 0)
+        return self.p2.y
 
     def compareTo(self, o: Any) -> int:
-        """方法 compareTo"""
+        other = o
+        if self.p2.y < other.getY1():
+            return -1
+        if self.p1.y > other.getY2():
+            return 1
         return 0
 
     def equals(self, o: Any) -> bool:
-        """方法 equals"""
-        return self is o or getattr(self, '__eq__', lambda o: False)(o)
+        if !(isinstance(o, MapleFoothold)):
+            return False
+        oth = o
+        return oth.getY1() == self.p1.y && oth.getY2() == self.p2.y && oth.getX1() == self.p1.x && oth.getX2() == self.p2.x && self.id == oth.getId()
 
     def getId(self) -> int:
-        """方法 getId"""
-        return getattr(self, 'id', 0)
+        return self.id
 
     def getNext(self) -> int:
-        """方法 getNext"""
-        return getattr(self, 'next', 0)
+        return self.next
 
     def setNext(self, next: int) -> None:
-        """方法 setNext"""
         self.next = next
-        return None
 
     def getPrev(self) -> int:
-        """方法 getPrev"""
-        return getattr(self, 'prev', 0)
+        return self.prev
 
     def setPrev(self, prev: int) -> None:
-        """方法 setPrev"""
         self.prev = prev
-        return None
 

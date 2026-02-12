@@ -1,17 +1,18 @@
 """
-PvpAttackInfo - 从Java源文件转换而来
-对应Java源文件: KinMS/PvP/PvpAttackInfo.java
-包路径: KinMS.PvP
+PvpAttackInfo - Converted from Java source
+Original: KinMS/PvP/PvpAttackInfo.java
+Package: KinMS.PvP
 """
+
+from typing import Optional, Any
 
 
 class PvpAttackInfo:
     """
-    类 PvpAttackInfo - 从Java类转换
+    Class PvpAttackInfo
     """
 
     def __init__(self):
-        """初始化 PvpAttackInfo"""
         self.skillId = 0
         self.critRate = 0
         self.ignoreDef = 0

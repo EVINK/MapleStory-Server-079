@@ -1,47 +1,47 @@
 """
-PlayerBuffStorage - 从Java源文件转换而来
-对应Java源文件: handling/world/PlayerBuffStorage.java
-包路径: handling.world
+PlayerBuffStorage - Converted from Java source
+Original: handling/world/PlayerBuffStorage.java
+Package: handling.world
 """
 
 from threading import Lock
 from typing import Dict
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCoolDownValueHolder import *  # TODO: 根据实际需要导入具体类
-# from client.MapleDiseaseValueHolder import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCoolDownValueHolder import *  # TODO: import specific classes
+# from client.MapleDiseaseValueHolder import *  # TODO: import specific classes
 
 
 class PlayerBuffStorage:
     """
-    类 PlayerBuffStorage - 从Java类转换
-    实现接口: Serializable
+    Class PlayerBuffStorage
+    Implements: Serializable
     """
 
+    # Static initializer
+    # buffs = new ConcurrentHashMap<Integer, List<PlayerBuffValueHolder>>()
+    # coolDowns = new ConcurrentHashMap<Integer, List<MapleCoolDownValueHolder>>()
+    # diseases = new ConcurrentHashMap<Integer, List<MapleDiseaseValueHolder>>()
 
-    def addBuffsToStorage(self, chrid: int, toStore: list) -> None:
-        """方法 addBuffsToStorage"""
-        pass
+
+    @staticmethod
+    def addBuffsToStorage(chrid: int, toStore: list) -> None:
+        PlayerBuffStorage.buffs.put(chrid, toStore)
 
     def addCooldownsToStorage(self, chrid: int, toStore: list) -> None:
-        """方法 addCooldownsToStorage"""
-        pass
+        PlayerBuffStorage.coolDowns.put(chrid, toStore)
 
     def addDiseaseToStorage(self, chrid: int, toStore: list) -> None:
-        """方法 addDiseaseToStorage"""
-        pass
+        PlayerBuffStorage.diseases.put(chrid, toStore)
 
     def getBuffsFromStorage(self, chrid: int) -> list:
-        """方法 getBuffsFromStorage"""
-        return []
+        return PlayerBuffStorage.buffs.remove(chrid)
 
     def getCooldownsFromStorage(self, chrid: int) -> list:
-        """方法 getCooldownsFromStorage"""
-        return []
+        return PlayerBuffStorage.coolDowns.remove(chrid)
 
     def getDiseaseFromStorage(self, chrid: int) -> list:
-        """方法 getDiseaseFromStorage"""
-        return []
+        return PlayerBuffStorage.diseases.remove(chrid)
 

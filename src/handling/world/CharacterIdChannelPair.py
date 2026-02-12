@@ -1,7 +1,7 @@
 """
-CharacterIdChannelPair - 从Java源文件转换而来
-对应Java源文件: handling/world/CharacterIdChannelPair.java
-包路径: handling.world
+CharacterIdChannelPair - Converted from Java source
+Original: handling/world/CharacterIdChannelPair.java
+Package: handling.world
 """
 
 from typing import Optional, Any
@@ -10,33 +10,31 @@ import os
 
 class CharacterIdChannelPair(Externalizable):
     """
-    类 CharacterIdChannelPair - 从Java类转换
-    实现接口: Externalizable, Comparable<CharacterIdChannelPair>
+    Class CharacterIdChannelPair
+    Implements: Externalizable, Comparable<CharacterIdChannelPair>
     """
 
     def __init__(self):
-        """初始化 CharacterIdChannelPair"""
         self.charid = 0
         self.channel = 0
+        self.charid = 0
+        self.channel = 1
 
 
     def getCharacterId(self) -> int:
-        """方法 getCharacterId"""
-        return getattr(self, 'character_id', 0)
+        return self.charid
 
     def getChannel(self) -> int:
-        """方法 getChannel"""
-        return getattr(self, 'channel', 0)
+        return self.channel
 
     def readExternal(self, in: Any) -> None:
-        """方法 readExternal"""
-        pass
+        self.charid = in.readInt()
+        self.channel = in.readByte()
 
     def writeExternal(self, out: Any) -> None:
-        """方法 writeExternal"""
-        pass
+        out.writeInt(self.charid)
+        out.writeByte(self.channel)
 
     def compareTo(self, o: Any) -> int:
-        """方法 compareTo"""
-        return 0
+        return self.channel - o.channel
 

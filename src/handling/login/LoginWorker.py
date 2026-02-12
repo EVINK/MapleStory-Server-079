@@ -1,35 +1,68 @@
 """
-LoginWorker - 从Java源文件转换而来
-对应Java源文件: handling/login/LoginWorker.java
-包路径: handling.login
+LoginWorker - Converted from Java source
+Original: handling/login/LoginWorker.java
+Package: handling.login
 """
 
 from typing import Dict
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 import math
 import threading
 import time
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from server.Timer import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
-# from tools.packet.LoginPacket import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleClient import *  # TODO: import specific classes
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from server.Timer import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
+# from tools.packet.LoginPacket import *  # TODO: import specific classes
 
 
 class LoginWorker:
     """
-    类 LoginWorker - 从Java类转换
+    Class LoginWorker
     """
+
+    # Static initializer
+    # LoginWorker.lastUpdate = 0
 
 
     @staticmethod
     def registerClient(c: Any) -> None:
-        """方法 registerClient"""
-        pass
+        if LoginServer.isAdminOnly() && !c.isGm():
+            c.getSession().write(MaplePacketCreator.serverNotice(1, "管管已设置仅管理员登录。\r\n我们目前正在修复几个问题，\r\n请耐心等待"))
+            c.getSession().write(LoginPacket.getLoginFailed(7))
+            return
+        if int(time.time() * 1000) - LoginWorker.lastUpdate > 600000:
+            LoginWorker.lastUpdate = int(time.time() * 1000)
+            load = ChannelServer.getChannelLoad()
+            usersOn = 0
+            if load is None || load <= 0:
+                LoginWorker.lastUpdate = 0
+                c.getSession().write(LoginPacket.getLoginFailed(7))
+                return
+            loadFactor = 1200.0 / (LoginServer.getUserLimit() / load)
+            for (final Map.Entry<Integer, Integer> entry : load.items())
+                usersOn += entry.getValue()
+                load.put(entry.getKey(), min(1200, (int)(entry.getValue() * loadFactor)))
+            LoginServer.setLoad(load, usersOn)
+            LoginWorker.lastUpdate = int(time.time() * 1000)
+        if c.finishLogin() == 0:
+            if c.getGender() == 10:
+                c.getSession().write(LoginPacket.getGenderNeeded(c))
+            else:
+                c.getSession().write(LoginPacket.getAuthSuccessRequest(c))
+                c.getSession().write(LoginPacket.getServerList(0, LoginServer.getServerName(), LoginServer.getLoad()))
+                c.getSession().write(LoginPacket.getEndOfServerList())
+            c.setIdleTask(Timer.PingTimer.getInstance().schedule(Runnable()
+                public void run()
+        elif c.getGender() == 10:
+            c.getSession().write(LoginPacket.getGenderNeeded(c))
+        else:
+            c.getSession().write(LoginPacket.getAuthSuccessRequest(c))
+            c.getSession().write(LoginPacket.getServerList(0, LoginServer.getServerName(), LoginServer.getLoad()))
+            c.getSession().write(LoginPacket.getEndOfServerList())
 
     def run(self) -> None:
-        """方法 run"""
         pass
 

@@ -1,46 +1,44 @@
 """
-BounceMovement - 从Java源文件转换而来
-对应Java源文件: server/movement/BounceMovement.java
-包路径: server.movement
+BounceMovement - Converted from Java source
+Original: server/movement/BounceMovement.java
+Package: server.movement
 """
 
-from dataclasses import dataclass
+from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from tools.data.output.LittleEndianWriter import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from tools.data.output.LittleEndianWriter import *  # TODO: import specific classes
 
 
 class BounceMovement(AbstractLifeMovement):
     """
-    类 BounceMovement - 从Java类转换
-    继承自: AbstractLifeMovement
+    Class BounceMovement
+    Extends: AbstractLifeMovement
     """
 
     def __init__(self, type: int, position: Any, duration: int, newstate: int):
-        """初始化 BounceMovement"""
         self.unk = 0
         self.fh = 0
+        super(type, position, duration, newstate)
 
 
     def getUnk(self) -> int:
-        """方法 getUnk"""
-        return getattr(self, 'unk', 0)
+        return self.unk
 
     def setUnk(self, unk: int) -> None:
-        """方法 setUnk"""
         self.unk = unk
-        return None
 
     def getFH(self) -> int:
-        """方法 getFH"""
-        return getattr(self, 'fh', 0)
+        return self.fh
 
     def setFH(self, fh: int) -> None:
-        """方法 setFH"""
         self.fh = fh
-        return None
 
     def serialize(self, lew: Any) -> None:
-        """方法 serialize"""
-        pass
+        lew.write(self.getType())
+        lew.writePos(self.getPosition())
+        lew.writeShort(self.getUnk())
+        lew.writeShort(self.getFH())
+        lew.write(self.getNewstate())
+        lew.writeShort(self.getDuration())
 

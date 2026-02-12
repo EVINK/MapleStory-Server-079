@@ -1,121 +1,157 @@
 """
-ArrayMap - 从Java源文件转换而来
-对应Java源文件: tools/ArrayMap.java
-包路径: tools
+ArrayMap - Converted from Java source
+Original: tools/ArrayMap.java
+Package: tools
 """
 
 from typing import Dict
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from typing import Set
 
 
 class ArrayMap(AbstractMap):
     """
-    类 ArrayMap - 从Java类转换
-    继承自: AbstractMap<K, V>
-    实现接口: Serializable
+    Class ArrayMap
+    Extends: AbstractMap<K, V>
+    Implements: Serializable
     """
 
     def __init__(self):
-        """初始化 ArrayMap"""
         self.list = []
         self.key = None
         self.value = None
+        self.entries = None
+        self.list = new ArrayList<Entry<K, V>>()
 
+    # Static initializer
+    # ArrayMap.serialVersionUID = 9179541993413738569
+
+
+    def entrySet(self) -> set:
+        if self.entries is None:
+            self.entries = new AbstractSet<Entry<K, V>>()
+                public void clear()
+                    raise NotImplementedError()
+                public Iterator<Entry<K, V>> iterator()
+                    return ArrayMap.self.list.iterator()
+                public int size()
+                    return ArrayMap.self.list
+        return (Set<Map.Entry<K, V>>)self.entries
 
     def clear(self) -> None:
-        """方法 clear"""
-        pass
+        raise NotImplementedError()
 
     def iterator(self) -> iter:
-        """方法 iterator"""
-        raise NotImplementedError("方法 iterator 尚未实现")
+        return ArrayMap.self.list.iterator()
 
     def size(self) -> int:
-        """方法 size"""
-        return 0
+        return ArrayMap.self.list
 
     def put(self, key: Any, value: Any) -> Any:
-        """方法 put"""
-        raise NotImplementedError("方法 put 尚未实现")
+        size = self.list
+        entry = None
+        i = None
+        if key is None:
+            = 0
+            while i < size:
+                entry = self.list.get(i)
+                if entry.getKey() is None:
+                    break
+        else:
+            = 0
+            while i < size:
+                entry = self.list.get(i)
+                if key == (entry.getKey()):
+                    break
+        oldValue = None
+        if i < size:
+            oldValue = entry.getValue()
+            entry.setValue(value)
+        else:
+            self.list.add(new Entry<K, V>(key, value))
+        return oldValue
 
     def getKey(self) -> Any:
-        """方法 getKey"""
-        return getattr(self, 'key', None)
+        return self.key
 
     def getValue(self) -> Any:
-        """方法 getValue"""
-        return getattr(self, 'value', None)
+        return self.value
 
     def setValue(self, newValue: Any) -> Any:
-        """方法 setValue"""
-        raise NotImplementedError("方法 setValue 尚未实现")
+        oldValue = self.value
+        self.value = newValue
+        return oldValue
 
     def equals(self, o: Any) -> bool:
-        """方法 equals"""
-        return self is o or getattr(self, '__eq__', lambda o: False)(o)
+        if !(isinstance(o, Map).Entry):
+            return False
+        final Map.Entry e = (Map.Entry)o
+        if self.key is None:
+            if e.getKey() is not None:
+                return False
+        elif !self.key == (e.getKey()):
+            return False
+        if (self.value is not None) ? self.value == (e.getValue()) : (e.getValue() is None):
+            return True
+        return False
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        keyHash = (self.key is None) ? 0 : self.key.hashCode()
+        valueHash = (self.value is None) ? 0 : self.value.hashCode()
+        return keyHash ^ valueHash
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.key + "=" + self.value
 
 
+# Inner class from Java (originally nested)
 class Entry(Map.Entry, V>):
     """
-    类 Entry - 从Java类转换
-    实现接口: Map.Entry<K, V>, Serializable
+    Class Entry
+    Implements: Map.Entry<K, V>, Serializable
     """
 
     def __init__(self, key: Any, value: Any):
-        """初始化 Entry"""
-        self.list = []
         self.key = None
         self.value = None
+        self.key = key
+        self.value = value
 
+    # Static initializer
+    # Entry.serialVersionUID = 9179541993413738569
 
-    def clear(self) -> None:
-        """方法 clear"""
-        pass
-
-    def iterator(self) -> iter:
-        """方法 iterator"""
-        raise NotImplementedError("方法 iterator 尚未实现")
-
-    def size(self) -> int:
-        """方法 size"""
-        return 0
-
-    def put(self, key: Any, value: Any) -> Any:
-        """方法 put"""
-        raise NotImplementedError("方法 put 尚未实现")
 
     def getKey(self) -> Any:
-        """方法 getKey"""
-        return getattr(self, 'key', None)
+        return self.key
 
     def getValue(self) -> Any:
-        """方法 getValue"""
-        return getattr(self, 'value', None)
+        return self.value
 
     def setValue(self, newValue: Any) -> Any:
-        """方法 setValue"""
-        raise NotImplementedError("方法 setValue 尚未实现")
+        oldValue = self.value
+        self.value = newValue
+        return oldValue
 
     def equals(self, o: Any) -> bool:
-        """方法 equals"""
-        return self is o or getattr(self, '__eq__', lambda o: False)(o)
+        if !(isinstance(o, Map).Entry):
+            return False
+        final Map.Entry e = (Map.Entry)o
+        if self.key is None:
+            if e.getKey() is not None:
+                return False
+        elif !self.key == (e.getKey()):
+            return False
+        if (self.value is not None) ? self.value == (e.getValue()) : (e.getValue() is None):
+            return True
+        return False
 
     def hashCode(self) -> int:
-        """方法 hashCode"""
-        return hash(self)
+        keyHash = (self.key is None) ? 0 : self.key.hashCode()
+        valueHash = (self.value is None) ? 0 : self.value.hashCode()
+        return keyHash ^ valueHash
 
     def toString(self) -> str:
-        """方法 toString"""
-        return ""
+        return self.key + "=" + self.value
 

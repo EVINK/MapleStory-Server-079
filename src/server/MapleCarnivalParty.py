@@ -1,29 +1,28 @@
 """
-MapleCarnivalParty - 从Java源文件转换而来
-对应Java源文件: server/MapleCarnivalParty.java
-包路径: server
+MapleCarnivalParty - Converted from Java source
+Original: server/MapleCarnivalParty.java
+Package: server
 """
 
 from typing import Iterator
 from typing import List
-from typing import Optional, List, Dict, Any, Set
+from typing import Optional, Any
 from weakref import ref
 import weakref
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from handling.channel.ChannelServer import *  # TODO: 根据实际需要导入具体类
-# from server.maps.MapleMap import *  # TODO: 根据实际需要导入具体类
-# from tools.MaplePacketCreator import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from handling.channel.ChannelServer import *  # TODO: import specific classes
+# from server.maps.MapleMap import *  # TODO: import specific classes
+# from tools.MaplePacketCreator import *  # TODO: import specific classes
 
 
 class MapleCarnivalParty:
     """
-    类 MapleCarnivalParty - 从Java类转换
+    Class MapleCarnivalParty
     """
 
     def __init__(self, owner: Any, members1: list, team1: int):
-        """初始化 MapleCarnivalParty"""
         self.members = None
         self.leader = None
         self.team = None
@@ -31,62 +30,84 @@ class MapleCarnivalParty:
         self.availableCP = 0
         self.totalCP = 0
         self.winner = False
+        self.members = []
+        self.availableCP = 0
+        self.totalCP = 0
+        self.winner = False
+        self.leader = new WeakReference<MapleCharacter>(owner)
+        for mem in members1:
+            self.members.add(mem.getId())
+            mem.setCarnivalParty(this)
+        self.team = team1
+        self.channel = owner.getClient().getChannel()
 
 
     def getLeader(self) -> Any:
-        """方法 getLeader"""
-        return getattr(self, 'leader', None)
+        return self.leader.get()
 
     def addCP(self, player: Any, ammount: int) -> None:
-        """方法 addCP"""
-        pass
+        self.totalCP += ammount
+        self.availableCP += ammount
+        player.addCP(ammount)
 
     def getTotalCP(self) -> int:
-        """方法 getTotalCP"""
-        return getattr(self, 'total_cp', 0)
+        return self.totalCP
 
     def getAvailableCP(self) -> int:
-        """方法 getAvailableCP"""
-        return getattr(self, 'available_cp', 0)
+        return self.availableCP
 
     def useCP(self, player: Any, ammount: int) -> None:
-        """方法 useCP"""
-        pass
+        self.availableCP -= ammount
+        player.useCP(ammount)
 
     def getMembers(self) -> list:
-        """方法 getMembers"""
-        return getattr(self, 'members', [])
+        return self.members
 
     def getTeam(self) -> int:
-        """方法 getTeam"""
-        return getattr(self, 'team', 0)
+        return self.team
 
     def warp(self, map: Any, portalname: str) -> None:
-        """方法 warp"""
-        pass
+        for chr in self.members:
+            c = ChannelServer.getInstance(self.channel).getPlayerStorage().getCharacterById(chr)
+            if c is not None:
+                c.changeMap(map, map.getPortal(portalname))
 
-    def warp(self, map: Any, portalid: int) -> None:
-        """方法 warp"""
-        pass
+    def warp_map_portalid(self, map: Any, portalid: int) -> None:
+        for chr in self.members:
+            c = ChannelServer.getInstance(self.channel).getPlayerStorage().getCharacterById(chr)
+            if c is not None:
+                c.changeMap(map, map.getPortal(portalid))
 
     def allInMap(self, map: Any) -> bool:
-        """方法 allInMap"""
-        return False
+        for chr in self.members:
+            if map.getCharacterById(chr) is None:
+                return False
+        return True
 
     def removeMember(self, chr: Any) -> None:
-        """方法 removeMember"""
-        pass
+        for i in range(self.members):
+            if self.members.get(i) == chr.getId():
+                self.members.remove(i)
+                chr.setCarnivalParty(None)
 
     def isWinner(self) -> bool:
-        """方法 isWinner"""
-        return bool(getattr(self, 'winner', False))
+        return self.winner
 
     def setWinner(self, status: bool) -> None:
-        """方法 setWinner"""
         self.winner = status
-        return None
 
     def displayMatchResult(self) -> None:
-        """方法 displayMatchResult"""
-        pass
+        effect = self.winner ? "quest/carnival/win" : "quest/carnival/lose"
+        sound = self.winner ? "MobCarnival/Win" : "MobCarnival/Lose"
+        done = False
+        for chr in self.members:
+            c = ChannelServer.getInstance(self.channel).getPlayerStorage().getCharacterById(chr)
+            if c is not None:
+                c.getClient().getSession().write(MaplePacketCreator.showEffect(effect))
+                c.getClient().getSession().write(MaplePacketCreator.playSound(sound))
+                if done:
+                    continue
+                done = True
+                c.getMap().killAllMonsters(True)
+                c.getMap().setSpawns(False)
 

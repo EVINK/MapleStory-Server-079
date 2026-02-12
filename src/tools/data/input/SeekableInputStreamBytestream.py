@@ -1,29 +1,27 @@
 """
-SeekableInputStreamBytestream - 从Java源文件转换而来
-对应Java源文件: tools/data/input/SeekableInputStreamBytestream.java
-包路径: tools.data.input
+SeekableInputStreamBytestream - Converted from Java source
+Original: tools/data/input/SeekableInputStreamBytestream.java
+Package: tools.data.input
 """
 
+from typing import Optional, Any
 import os
 
 
 from abc import ABC, abstractmethod
 
 class SeekableInputStreamBytestream(ABC):
-    """接口 SeekableInputStreamBytestream - 从Java接口转换"""
+    """Interface SeekableInputStreamBytestream"""
 
     @abstractmethod
-    def seek(self, p0: int) -> Any:
-        """抽象方法 seek"""
+    def seek(self, p0: int) -> None:
         pass
 
     @abstractmethod
-    def get_position(self) -> Any:
-        """抽象方法 getPosition"""
+    def getPosition(self) -> int:
         pass
 
     @abstractmethod
-    def to_string(self, p0: bool) -> Any:
-        """抽象方法 toString"""
+    def toString(self, p0: bool) -> str:
         pass
 

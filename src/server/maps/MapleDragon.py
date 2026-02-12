@@ -1,45 +1,45 @@
 """
-MapleDragon - 从Java源文件转换而来
-对应Java源文件: server/maps/MapleDragon.java
-包路径: server.maps
+MapleDragon - Converted from Java source
+Original: server/maps/MapleDragon.java
+Package: server.maps
 """
 
 from typing import Optional, Any
 
-# 内部模块导入 (Internal module imports)
-# from client.MapleCharacter import *  # TODO: 根据实际需要导入具体类
-# from client.MapleClient import *  # TODO: 根据实际需要导入具体类
+# Internal module imports
+# from client.MapleCharacter import *  # TODO: import specific classes
+# from client.MapleClient import *  # TODO: import specific classes
 
 
 class MapleDragon(AbstractAnimatedMapleMapObject):
     """
-    类 MapleDragon - 从Java类转换
-    继承自: AbstractAnimatedMapleMapObject
+    Class MapleDragon
+    Extends: AbstractAnimatedMapleMapObject
     """
 
     def __init__(self, owner: Any):
-        """初始化 MapleDragon"""
         self.owner = None
         self.jobid = None
+        self.owner = owner.getId()
+        self.jobid = owner.getJob()
+        if self.jobid < 2200 || self.jobid > 2218:
+            raise RuntimeError("Trying to create a dragon for a non-Evan")
+        self.setPosition(owner.getPosition())
+        self.setStance(4)
 
 
     def sendSpawnData(self, client: Any) -> None:
-        """方法 sendSpawnData"""
         pass
 
     def sendDestroyData(self, client: Any) -> None:
-        """方法 sendDestroyData"""
         pass
 
     def getOwner(self) -> int:
-        """方法 getOwner"""
-        return getattr(self, 'owner', 0)
+        return self.owner
 
     def getJobId(self) -> int:
-        """方法 getJobId"""
-        return getattr(self, 'job_id', 0)
+        return self.jobid
 
     def getType(self) -> Any:
-        """方法 getType"""
-        return getattr(self, 'type', None)
+        return MapleMapObjectType.SUMMON
 
