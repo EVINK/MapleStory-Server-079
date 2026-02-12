@@ -48,7 +48,7 @@ def build_db_config() -> Dict[str, str]:
     }
     props = load_properties(CUR_DIR / 'config' / 'db.properties')
     cfg['host'] = os.getenv('DB_HOST', props.get('host', cfg['host']))
-    if 'port' in props:
+    if 'port' in props and not os.getenv('DB_PORT'):
         try:
             cfg['port'] = int(props['port'])
         except ValueError:
