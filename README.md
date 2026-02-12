@@ -36,8 +36,11 @@ python main.py
 
 - 使用 Docker Compose：
 ```sh
+# Build
+docker compose build --no-cache
+
 # 首次或变更后建议先 build
-docker compose up --build
+docker compose up [--build]
 
 # 常规启动
 docker compose up
