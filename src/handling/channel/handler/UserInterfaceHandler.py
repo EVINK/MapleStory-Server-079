@@ -31,35 +31,35 @@ class UserInterfaceHandler:
             # case 101000300:
             # case 200000111:
                 em = c.getChannelServer().getEventSM().getEventManager("Boats")
-                if em is not None && em.getProperty("docked") == ("True"):
+                if em is not None and em.getProperty("docked") == ("True"):
                     effect = 1
                     break
                 break
             # case 200000121:
             # case 220000110:
                 em = c.getChannelServer().getEventSM().getEventManager("Trains")
-                if em is not None && em.getProperty("docked") == ("True"):
+                if em is not None and em.getProperty("docked") == ("True"):
                     effect = 1
                     break
                 break
             # case 200000151:
             # case 260000100:
                 em = c.getChannelServer().getEventSM().getEventManager("Geenie")
-                if em is not None && em.getProperty("docked") == ("True"):
+                if em is not None and em.getProperty("docked") == ("True"):
                     effect = 1
                     break
                 break
             # case 200000131:
             # case 240000110:
                 em = c.getChannelServer().getEventSM().getEventManager("Flight")
-                if em is not None && em.getProperty("docked") == ("True"):
+                if em is not None and em.getProperty("docked") == ("True"):
                     effect = 1
                     break
                 break
             # case 200090000:
             # case 200090010:
                 em = c.getChannelServer().getEventSM().getEventManager("Boats")
-                if em is not None && em.getProperty("haveBalrog") == ("True"):
+                if em is not None and em.getProperty("haveBalrog") == ("True"):
                     effect = 1
                     break
                 return

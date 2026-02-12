@@ -47,7 +47,7 @@ class MapleTrade:
     def completeTrade(self, c: Any) -> None:
         local = c.getTrade()
         partner = local.getPartner()
-        if partner is None || local.locked:
+        if partner is None or local.locked:
             return
         local.locked = True
         partner.getChr().getClient().getSession().write(MaplePacketCreator.getTradeConfirmation())
@@ -56,7 +56,7 @@ class MapleTrade:
         if partner.isLocked():
             lz = local.check()
             lz2 = partner.check()
-            if lz == 0 && lz2 == 0:
+            if lz == 0 and lz2 == 0:
                 local.CompleteTrade()
                 partner.CompleteTrade()
             else:
@@ -89,10 +89,10 @@ class MapleTrade:
             c.getClient().getSession().write(MaplePacketCreator.serverNotice(5, "不能同时做多件事情。"))
 
     def inviteTrade(self, c1: Any, c2: Any) -> None:
-        if c1 is None || c1.getTrade() is None:
+        if c1 is None or c1.getTrade() is None:
             return
         if c1.getMap().getId() == c2.getMap().getId():
-            if c2 is not None && c2.getTrade() is None:
+            if c2 is not None and c2.getTrade() is None:
                 c2.setTrade(MapleTrade(1, c2))
                 c2.getTrade().setPartner(c1.getTrade())
                 c1.getTrade().setPartner(c2.getTrade())
@@ -104,10 +104,10 @@ class MapleTrade:
             c1.getClient().getSession().write(MaplePacketCreator.serverNotice(5, "对方与你不在同一个地图。"))
 
     def translated_invite现金交易(self, c1: Any, c2: Any) -> None:
-        if c1 is None || c1.getTrade() is None:
+        if c1 is None or c1.getTrade() is None:
             return
         if c1.getMap().getId() == c2.getMap().getId():
-            if c2 is not None && c2.getTrade() is None:
+            if c2 is not None and c2.getTrade() is None:
                 c2.setTrade(MapleTrade(1, c2))
                 c2.getTrade().setPartner(c1.getTrade())
                 c1.getTrade().setPartner(c2.getTrade())
@@ -120,7 +120,7 @@ class MapleTrade:
 
     def translated_visit现金交易(self, c1: Any, c2: Any) -> None:
         if c1.getMap().getId() == c2.getMap().getId():
-            if c1.getTrade() is not None && c1.getTrade().getPartner() == c2.getTrade() && c2.getTrade() is not None && c2.getTrade().getPartner() == c1.getTrade():
+            if c1.getTrade() is not None and c1.getTrade().getPartner() == c2.getTrade() and c2.getTrade() is not None and c2.getTrade().getPartner() == c1.getTrade():
                 c2.getClient().getSession().write(MaplePacketCreator.getTradePartnerAdd(c1))
                 c1.getClient().getSession().write(MaplePacketCreator.getTradeStart(c1.getClient(), c1.getTrade(), 1, True))
             else:
@@ -130,7 +130,7 @@ class MapleTrade:
 
     def visitTrade(self, c1: Any, c2: Any) -> None:
         if c1.getMap().getId() == c2.getMap().getId():
-            if c1.getTrade() is not None && c1.getTrade().getPartner() == c2.getTrade() && c2.getTrade() is not None && c2.getTrade().getPartner() == c1.getTrade():
+            if c1.getTrade() is not None and c1.getTrade().getPartner() == c2.getTrade() and c2.getTrade() is not None and c2.getTrade().getPartner() == c1.getTrade():
                 c2.getClient().getSession().write(MaplePacketCreator.getTradePartnerAdd(c1))
                 c1.getClient().getSession().write(MaplePacketCreator.getTradeStart(c1.getClient(), c1.getTrade(), 1, False))
             else:
@@ -182,7 +182,7 @@ class MapleTrade:
         return self.locked
 
     def setMeso(self, meso: int) -> None:
-        if self.locked || self.partner is None || meso <= 0 || self.meso + meso <= 0:
+        if self.locked or self.partner is None or meso <= 0 or self.meso + meso <= 0:
             return
         if self.chr.get().getMeso() >= meso:
             self.chr.get().gainMeso(-meso, False, True, False)
@@ -192,7 +192,7 @@ class MapleTrade:
                 self.partner.getChr().getClient().getSession().write(MaplePacketCreator.getTradeMesoSet(1, self.meso))
 
     def addItem(self, item: Any) -> None:
-        if self.locked || self.partner is None:
+        if self.locked or self.partner is None:
             return
         self.items.add(item)
         self.chr.get().getClient().getSession().write(MaplePacketCreator.getTradeItemAdd(0, item))
@@ -227,17 +227,17 @@ class MapleTrade:
     def setItems(self, c: Any, item: Any, targetSlot: int, quantity: int) -> bool:
         target = self.getNextTargetSlot()
         ii = MapleItemInformationProvider.getInstance()
-        if target == -1 || GameConstants.isPet(item.getItemId()) || self.isLocked() || (GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.CASH && quantity != 1) || (GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.EQUIP && quantity != 1):
+        if target == -1 or GameConstants.isPet(item.getItemId()) or self.isLocked() or (GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.CASH and quantity != 1) or (GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.EQUIP and quantity != 1):
             return False
         flag = item.getFlag()
-        if ItemFlag.UNTRADEABLE.check(flag) || ItemFlag.LOCK.check(flag):
+        if ItemFlag.UNTRADEABLE.check(flag) or ItemFlag.LOCK.check(flag):
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
-        if (ii.isDropRestricted(item.getItemId()) || ii.isAccountShared(item.getItemId())) && !ItemFlag.KARMA_EQ.check(flag) && !ItemFlag.KARMA_USE.check(flag):
+        if (ii.isDropRestricted(item.getItemId()) or ii.isAccountShared(item.getItemId())) and not ItemFlag.KARMA_EQ.check(flag) and not ItemFlag.KARMA_USE.check(flag):
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
         tradeItem = item.copy()
-        if GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId()):
+        if GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId()):
             tradeItem.setQuantity(item.getQuantity())
             MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(item.getItemId()), item.getPosition(), item.getQuantity(), True)
         else:
@@ -280,9 +280,9 @@ class MapleTrade:
                 # case CASH:
                     cash += 1
                     break
-            if ii.isPickupRestricted(item.getItemId()) && self.chr.get().getInventory(GameConstants.getInventoryType(item.getItemId())).findById(item.getItemId()) is not None:
+            if ii.isPickupRestricted(item.getItemId()) and self.chr.get().getInventory(GameConstants.getInventoryType(item.getItemId())).findById(item.getItemId()) is not None:
                 return 2
-        if self.chr.get().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() < eq || self.chr.get().getInventory(MapleInventoryType.USE).getNumFreeSlot() < use || self.chr.get().getInventory(MapleInventoryType.SETUP).getNumFreeSlot() < setup || self.chr.get().getInventory(MapleInventoryType.ETC).getNumFreeSlot() < etc || self.chr.get().getInventory(MapleInventoryType.CASH).getNumFreeSlot() < cash:
+        if self.chr.get().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() < eq or self.chr.get().getInventory(MapleInventoryType.USE).getNumFreeSlot() < use or self.chr.get().getInventory(MapleInventoryType.SETUP).getNumFreeSlot() < setup or self.chr.get().getInventory(MapleInventoryType.ETC).getNumFreeSlot() < etc or self.chr.get().getInventory(MapleInventoryType.CASH).getNumFreeSlot() < cash:
             return 1
         return 0
 

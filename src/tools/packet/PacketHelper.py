@@ -167,11 +167,11 @@ class PacketHelper:
             equipped.add(item)
         Collections.sort(equipped)
         for item2 in equipped:
-            if item2.getPosition() < 0 && item2.getPosition() > -100:
+            if item2.getPosition() < 0 and item2.getPosition() > -100:
                 addItemInfo(mplew, item2, False, False)
         mplew.write(0)
         for item2 in equipped:
-            if item2.getPosition() <= -100 && item2.getPosition() > -1000:
+            if item2.getPosition() <= -100 and item2.getPosition() > -1000:
                 addItemInfo(mplew, item2, False, False)
         mplew.write(0)
         iv = chr.getInventory(MapleInventoryType.EQUIP)
@@ -231,9 +231,9 @@ class PacketHelper:
             if item.getPosition() < -128:
                 continue
             pos = (byte)(item.getPosition() * -1)
-            if pos < 100 && myEquip.get(pos) is None:
+            if pos < 100 and myEquip.get(pos) is None:
                 myEquip.put(pos, item.getItemId())
-            elif (pos > 100 || pos == -128) && pos != 111:
+            elif (pos > 100 or pos == -128) and pos != 111:
                 pos = (byte)((pos == -128) ? 28 : (pos - 100))
                 if myEquip.get(pos) is not None:
                     maskedEquip.put(pos, myEquip.get(pos))
@@ -271,7 +271,7 @@ class PacketHelper:
     def addDDItemInfo(self, mplew: Any, item: Any, zeroPosition: bool, leaveOut: bool, cs: bool) -> None:
         pos = item.getPosition()
         if zeroPosition:
-            if !leaveOut:
+            if not leaveOut:
                 mplew.write(0)
         elif pos <= -1:
             pos = (byte)(pos * -1)
@@ -325,7 +325,7 @@ class PacketHelper:
             mplew.writeShort(item.getQuantity())
             mplew.writeMapleAsciiString(item.getOwner())
             mplew.writeShort(0)
-            if GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId()):
+            if GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId()):
                 mplew.writeInt(2)
                 mplew.writeShort(84)
                 mplew.write(0)
@@ -337,7 +337,7 @@ class PacketHelper:
     def addItemInfo_mplew_item_zeroPosition_leaveOut_trade(self, mplew: Any, item: Any, zeroPosition: bool, leaveOut: bool, trade: bool) -> None:
         pos = item.getPosition()
         if zeroPosition:
-            if !leaveOut:
+            if not leaveOut:
                 mplew.write(0)
         elif pos <= -1:
             pos = (byte)(pos * -1)
@@ -380,7 +380,7 @@ class PacketHelper:
                 mplew.writeShort(equip.getJump())
                 mplew.writeMapleAsciiString(equip.getOwner())
                 mplew.writeShort(equip.getFlag())
-                if !hasUniqueId:
+                if not hasUniqueId:
                     mplew.write(0)
                     mplew.write(max(equip.getBaseLevel(), equip.getEquipLevel()))
                     mplew.writeInt(equip.getExpPercentage())
@@ -402,7 +402,7 @@ class PacketHelper:
                 mplew.writeShort(item.getQuantity())
                 mplew.writeMapleAsciiString(item.getOwner())
                 mplew.writeShort(item.getFlag())
-                if GameConstants.isThrowingStar(item.getItemId()) || GameConstants.isBullet(item.getItemId()):
+                if GameConstants.isThrowingStar(item.getItemId()) or GameConstants.isBullet(item.getItemId()):
                     mplew.writeInt(2)
                     mplew.writeShort(84)
                     mplew.write(0)
@@ -414,7 +414,7 @@ class PacketHelper:
             move.serialize(lew)
 
     def addAnnounceBox(self, mplew: Any, chr: Any) -> None:
-        if chr.getPlayerShop() is not None && chr.getPlayerShop().isOwner(chr) && chr.getPlayerShop().getShopType() != 1 && chr.getPlayerShop().isAvailable():
+        if chr.getPlayerShop() is not None and chr.getPlayerShop().isOwner(chr) and chr.getPlayerShop().getShopType() != 1 and chr.getPlayerShop().isAvailable():
             addInteraction(mplew, chr.getPlayerShop())
         else:
             mplew.write(0)
@@ -463,7 +463,7 @@ class PacketHelper:
             addExpirationTime(mplew, (item.getExpiration() <= int(time.time() * 1000)) ? -1 : item.getExpiration())
         mplew.writeShort(0)
         mplew.writeShort(pet.getFlags())
-        mplew.writeInt((pet.getPetItemId() == 5000054 && pet.getSecondsLeft() > 0) ? pet.getSecondsLeft() : 0)
+        mplew.writeInt((pet.getPetItemId() == 5000054 and pet.getSecondsLeft() > 0) ? pet.getSecondsLeft() : 0)
         mplew.write(0)
         mplew.write((byte)(active ? (pet.getSummoned() ? pet.getSummonedValue() : 0) : 0))
 
@@ -479,11 +479,11 @@ class PacketHelper:
         masking = False
         equipped = False
         if zeroPosition:
-            if !leaveOut:
+            if not leaveOut:
                 mplew.write(0)
         elif pos <= -1:
             pos *= -1
-            if pos > 100 || pos == -128 || ring:
+            if pos > 100 or pos == -128 or ring:
                 masking = True
                 mplew.write(pos - 100)
             else:

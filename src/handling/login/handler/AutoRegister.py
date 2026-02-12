@@ -42,7 +42,7 @@ class AutoRegister:
             rs.close()
             ps.close()
         except Exception as ex:
-            print("getAccountExists   " + ex)
+            print("getAccountExists " + ex)
         return accountExists
 
     def getAccountExistsByID(self, id: int) -> bool:
@@ -57,7 +57,7 @@ class AutoRegister:
             rs.close()
             ps.close()
         except Exception as ex:
-            print("getAccountExists   " + ex)
+            print("getAccountExists " + ex)
         return accountExists
 
     def createAccount(self, login: str, pwd: str, eip: str, macs: str) -> None:
@@ -72,7 +72,7 @@ class AutoRegister:
             ipc = con.prepareStatement("SELECT macs FROM accounts WHERE macs = ?")
             ipc.setString(1, macs)
             rs = ipc.executeQuery()
-            if !rs.first() || (rs.last() && rs.getRow() < 100):
+            if not rs.first() or (rs.last() and rs.getRow() < 100):
                 ps = con.prepareStatement("INSERT INTO accounts (name, password, email, birthday, macs, SessionIP) VALUES (?, ?, ?, ?, ?, ?)")
                 ps.setString(1, login)
                 ps.setString(2, LoginCrypto.hexSha1(pwd))

@@ -61,7 +61,7 @@ class NPCHandler:
             # case 1052103:
             case 1061100: {}
             # default:
-                if !c.getPlayer().isMapObjectVisible(npc):
+                if not c.getPlayer().isMapObjectVisible(npc):
                     return
                 mplew = MaplePacketLittleEndianWriter()
                 mplew.writeShort(SendPacketOpcode.NPC_ACTION.getValue())
@@ -111,7 +111,7 @@ class NPCHandler:
                 break
 
     def NPCTalk(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             return
         npc = chr.getMap().getNPCByOid(slea.readInt())
         slea.readInt()
@@ -141,7 +141,7 @@ class NPCHandler:
             quest += 65536
         if chr is None:
             return
-        if !chr.canQuestAction():
+        if not chr.canQuestAction():
             chr.dropMessage(1, "提交操作过快请稍后！")
             c.sendPacket(MaplePacketCreator.enableActions())
             return
@@ -209,7 +209,7 @@ class NPCHandler:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 if item is not None:
-                    if !MapleInventoryManipulator.checkSpace(c, item.getItemId(), item.getQuantity(), item.getOwner()):
+                    if not MapleInventoryManipulator.checkSpace(c, item.getItemId(), item.getQuantity(), item.getOwner()):
                         storage.store(item)
                         chr.dropMessage(1, "你的物品栏已经满了..")
                     else:
@@ -222,7 +222,7 @@ class NPCHandler:
             # case 5:
                 slot2 = slea.readShort()
                 itemId = slea.readInt()
-                if itemId >= 1112446 && itemId <= 1112495:
+                if itemId >= 1112446 and itemId <= 1112495:
                     c.getPlayer().dropMessage(1, "禁止存入仓库")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
@@ -248,21 +248,21 @@ class NPCHandler:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 flag = item2.getFlag()
-                if ii.isPickupRestricted(item2.getItemId()) && storage.findById(item2.getItemId()) is not None:
+                if ii.isPickupRestricted(item2.getItemId()) and storage.findById(item2.getItemId()) is not None:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
-                if item2.getItemId() == itemId && (item2.getQuantity() >= quantity || GameConstants.is飞镖道具(itemId) || GameConstants.is子弹道具(itemId)):
+                if item2.getItemId() == itemId and (item2.getQuantity() >= quantity or GameConstants.is飞镖道具(itemId) or GameConstants.is子弹道具(itemId)):
                     if ii.isDropRestricted(item2.getItemId()):
                         if ItemFlag.KARMA_EQ.check(flag):
                             item2.setFlag((byte)(flag - ItemFlag.KARMA_EQ.getValue()))
                         elif ItemFlag.KARMA_USE.check(flag):
                             item2.setFlag((byte)(flag - ItemFlag.KARMA_USE.getValue()))
                         else:
-                            if !ItemFlag.LOCK.check(flag):
+                            if not ItemFlag.LOCK.check(flag):
                                 c.getSession().write(MaplePacketCreator.enableActions())
                                 return
                             item2.setFlag((byte)(flag - ItemFlag.LOCK.getValue()))
-                    if GameConstants.is飞镖道具(itemId) || GameConstants.is子弹道具(itemId):
+                    if GameConstants.is飞镖道具(itemId) or GameConstants.is子弹道具(itemId):
                         quantity = item2.getQuantity()
                     chr.gainMeso(-100, False, True, False)
                     MapleInventoryManipulator.removeFromSlot(c, type2, slot2, quantity, False)
@@ -278,12 +278,12 @@ class NPCHandler:
                 meso = slea.readInt()
                 storageMesos = storage.getMeso()
                 playerMesos = chr.getMeso()
-                if (meso > 0 && storageMesos >= meso) || (meso < 0 && playerMesos >= -meso):
-                    if meso < 0 && storageMesos - meso < 0:
+                if (meso > 0 and storageMesos >= meso) or (meso < 0 and playerMesos >= -meso):
+                    if meso < 0 and storageMesos - meso < 0:
                         meso = -(Integer.MAX_VALUE - storageMesos)
                         if -meso > playerMesos:
                             return
-                    elif meso > 0 && playerMesos + meso < 0:
+                    elif meso > 0 and playerMesos + meso < 0:
                         meso = Integer.MAX_VALUE - playerMesos
                         if meso > storageMesos:
                             return
@@ -307,7 +307,7 @@ class NPCHandler:
         lastMsg = slea.readByte()
         action = slea.readByte()
         cm = NPCScriptManager.getInstance().getCM(c)
-        if cm is None || c.getPlayer().getConversation() == 0 || cm.getLastMsg() != lastMsg:
+        if cm is None or c.getPlayer().getConversation() == 0 or cm.getLastMsg() != lastMsg:
             return
         cm.setLastMsg((byte)(-1))
         if lastMsg == 2:
@@ -331,10 +331,10 @@ class NPCHandler:
                 selection = slea.readInt()
             elif slea.available() > 0:
                 selection = slea.readByte()
-            if lastMsg == 4 && selection == -1:
+            if lastMsg == 4 and selection == -1:
                 cm.dispose()
                 return
-            if selection >= -1 && action != -1:
+            if selection >= -1 and action != -1:
                 # switch (cm.getType()):
                     # case 0:
                         NPCScriptManager.getInstance().startQuest(c, action, lastMsg, selection)
@@ -354,7 +354,7 @@ class NPCHandler:
             c.getPlayer().updateQuest(c.getPlayer().getQuest(quest), True)
 
     def RPSGame(self, slea: Any, c: Any) -> None:
-        if slea.available() == 0 || !c.getPlayer().getMap().containsNPC(9000019):
+        if slea.available() == 0 or not c.getPlayer().getMap().containsNPC(9000019):
             if c.getPlayer().getRPS() is not None:
                 c.getPlayer().getRPS().dispose(c)
             return
@@ -370,17 +370,17 @@ class NPCHandler:
                 c.getSession().write(MaplePacketCreator.getRPSMode(8, -1, -1, -1))
                 break
             # case 1:
-                if c.getPlayer().getRPS() is None || !c.getPlayer().getRPS().answer(c, slea.readByte()):
+                if c.getPlayer().getRPS() is None or not c.getPlayer().getRPS().answer(c, slea.readByte()):
                     c.getSession().write(MaplePacketCreator.getRPSMode(13, -1, -1, -1))
                     break
                 break
             # case 2:
-                if c.getPlayer().getRPS() is None || !c.getPlayer().getRPS().timeOut(c):
+                if c.getPlayer().getRPS() is None or not c.getPlayer().getRPS().timeOut(c):
                     c.getSession().write(MaplePacketCreator.getRPSMode(13, -1, -1, -1))
                     break
                 break
             # case 3:
-                if c.getPlayer().getRPS() is None || !c.getPlayer().getRPS().nextRound(c):
+                if c.getPlayer().getRPS() is None or not c.getPlayer().getRPS().nextRound(c):
                     c.getSession().write(MaplePacketCreator.getRPSMode(13, -1, -1, -1))
                     break
                 break

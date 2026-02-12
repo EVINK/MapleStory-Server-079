@@ -38,5 +38,5 @@ class MapConstants:
                 return False
 
     def isEventMap(self, mapid: int) -> bool:
-        return (mapid >= 109010000 && mapid < 109050000) || (mapid > 109050001 && mapid < 109090000)
+        return (mapid >= 109010000 and mapid < 109050000) or (mapid > 109050001 and mapid < 109090000)
 

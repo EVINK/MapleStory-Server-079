@@ -77,7 +77,7 @@ class EventInstanceManager:
 
 
     def registerPlayer(self, chr: Any) -> None:
-        if self.disposed || chr is None:
+        if self.disposed or chr is None:
             return
         try:
             self.wL.lock()
@@ -99,26 +99,28 @@ class EventInstanceManager:
             return
         try:
             self.em.getIv().invokeFunction("changedMap", this, chr, mapid)
-        catch (NullPointerException ex2) {}
+        except NullPointerException as ex2:
+            pass
         except Exception as ex:
             FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "副本名称" + self.em.getName() + ", 实例名称 : " + self.name + ", 方法名称 : changedMap:\n" + ex)
             print("Event name" + self.em.getName() + ", Instance name : " + self.name + ", method Name : changedMap:\n" + ex)
 
     def timeOut(self, delay: int, eim: Any) -> None:
-        if self.disposed || eim is None:
+        def _task_1():
+            if EventInstanceManager.self.disposed or eim is None or EventInstanceManager.self.em is None:
+                return
+            try:
+                EventInstanceManager.self.em.getIv().invokeFunction("scheduledTimeout", eim)
+            except Exception as ex:
+                FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : scheduledTimeout:\n" + ex)
+                print("Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : scheduledTimeout:\n" + ex)
+
+        if self.disposed or eim is None:
             return
-        self.eventTimer = Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if EventInstanceManager.self.disposed || eim is None || EventInstanceManager.self.em is None:
-                    return
-                try:
-                    EventInstanceManager.self.em.getIv().invokeFunction("scheduledTimeout", eim)
-                except Exception as ex:
-                    FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : scheduledTimeout:\n" + ex)
-                    print("Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : scheduledTimeout:\n" + ex)
+        self.eventTimer = Timer.EventTimer.getInstance().schedule(_task_1, delay)
 
     def run(self) -> None:
-        if EventInstanceManager.self.disposed || eim is None || EventInstanceManager.self.em is None:
+        if EventInstanceManager.self.disposed or eim is None or EventInstanceManager.self.em is None:
             return
         try:
             EventInstanceManager.self.em.getIv().invokeFunction("scheduledTimeout", eim)
@@ -166,7 +168,7 @@ class EventInstanceManager:
         ChannelServer.getInstance(1).addInstanceId()
 
     def isTimerStarted(self) -> bool:
-        return self.eventTime > 0 && self.timeStarted > 0
+        return self.eventTime > 0 and self.timeStarted > 0
 
     def getTimeLeft(self) -> int:
         return self.eventTime - (int(time.time() * 1000) - self.timeStarted)
@@ -307,7 +309,7 @@ class EventInstanceManager:
             if ret == 0:
                 if self.getPlayerCount() <= 0:
                     self.dispose_NoLock()
-            elif (ret > 0 && self.getPlayerCount() < ret) || (ret < 0 && (self.isLeader(chr) || self.getPlayerCount() < ret * -1)):
+            elif (ret > 0 and self.getPlayerCount() < ret) or (ret < 0 and (self.isLeader(chr) or self.getPlayerCount() < ret * -1)):
                 chrs = []
                 for player in chrs:
                     if player.getId() != idz:
@@ -332,7 +334,7 @@ class EventInstanceManager:
             else:
                 kc += inc
             self.killCount.put(chr.getId(), kc)
-            if chr.getCarnivalParty() is not None && (mob.getStats().getPoint() > 0 || mob.getStats().getCP() > 0):
+            if chr.getCarnivalParty() is not None and (mob.getStats().getPoint() > 0 or mob.getStats().getCP() > 0):
                 self.em.getIv().invokeFunction("monsterKilled", this, chr, (mob.getStats().getCP() > 0) ? mob.getStats().getCP() : mob.getStats().getPoint())
         except ScriptException as ex:
             print("Event name" + ((self.em is None) ? "None" : self.em.getName()) + ", Instance name : " + self.name + ", method Name : monsterValue:\n" + ex)
@@ -345,7 +347,7 @@ class EventInstanceManager:
             FileoutputUtil.outputFileError(FileoutputUtil.ScriptEx_Log, ex3)
 
     def monsterDamaged(self, chr: Any, mob: Any, damage: int) -> None:
-        if self.disposed || mob.getId() != 9700037:
+        if self.disposed or mob.getId() != 9700037:
             return
         try:
             self.em.getIv().invokeFunction("monsterDamaged", this, chr, mob.getId(), damage)
@@ -368,7 +370,7 @@ class EventInstanceManager:
         return kc
 
     def dispose_NoLock(self) -> None:
-        if self.disposed || self.em is None:
+        if self.disposed or self.em is None:
             return
         emN = self.em.getName()
         try:
@@ -458,17 +460,17 @@ class EventInstanceManager:
                 trueMapID = self.mapIds.get(args)
                 instanced = self.isInstanced.get(args)
             map = None
-            if !instanced:
+            if not instanced:
                 map = self.getMapFactory().getMap(trueMapID)
                 if map is None:
                     return None
-                if map.getCharactersSize() == 0 && self.em.getProperty("shuffleReactors") is not None && self.em.getProperty("shuffleReactors") == ("True"):
+                if map.getCharactersSize() == 0 and self.em.getProperty("shuffleReactors") is not None and self.em.getProperty("shuffleReactors") == ("True"):
                     map.shuffleReactors()
             else:
                 map = self.getMapFactory().getInstanceMap(trueMapID)
                 if map is None:
                     return None
-                if map.getCharactersSize() == 0 && self.em.getProperty("shuffleReactors") is not None && self.em.getProperty("shuffleReactors") == ("True"):
+                if map.getCharactersSize() == 0 and self.em.getProperty("shuffleReactors") is not None and self.em.getProperty("shuffleReactors") == ("True"):
                     map.shuffleReactors()
             return map
         except TypeError as ex:
@@ -477,18 +479,20 @@ class EventInstanceManager:
             return None
 
     def schedule(self, methodName: str, delay: int) -> None:
+        def _task_1():
+            if EventInstanceManager.self.disposed or EventInstanceManager.this is None or EventInstanceManager.self.em is None:
+                return
+            try:
+                EventInstanceManager.self.em.getIv().invokeFunction(methodName, EventInstanceManager.this)
+            except NullPointerException as ex2:
+                pass
+            except Exception as ex:
+                print("Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+                FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name(schedule) : " + methodName + " :\n" + ex)
+
         if self.disposed:
             return
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if EventInstanceManager.self.disposed || EventInstanceManager.this is None || EventInstanceManager.self.em is None:
-                    return
-                try:
-                    EventInstanceManager.self.em.getIv().invokeFunction(methodName, EventInstanceManager.this)
-                catch (NullPointerException ex2) {}
-                except Exception as ex:
-                    print("Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name : " + methodName + ":\n" + ex)
-                    FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + EventInstanceManager.self.em.getName() + ", Instance name : " + EventInstanceManager.self.name + ", method Name(schedule) : " + methodName + " :\n" + ex)
+        Timer.EventTimer.getInstance().schedule(_task_1, delay)
 
     def getName(self) -> str:
         return self.name
@@ -567,7 +571,8 @@ class EventInstanceManager:
         except ScriptException as ex:
             print("Event name" + self.em.getName() + ", Instance name : " + self.name + ", method Name : registerCarnivalParty:\n" + ex)
             FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + self.em.getName() + ", Instance name : " + self.name + ", method Name : registerCarnivalParty:\n" + ex)
-        catch (NoSuchMethodException ex2) {}
+        except NoSuchMethodException as ex2:
+            pass
 
     def onMapLoad(self, chr: Any) -> None:
         if self.disposed:
@@ -577,10 +582,11 @@ class EventInstanceManager:
         except ScriptException as ex:
             print("Event name" + self.em.getName() + ", Instance name : " + self.name + ", method Name : onMapLoad:\n" + ex)
             FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name" + self.em.getName() + ", Instance name : " + self.name + ", method Name : onMapLoad:\n" + ex)
-        catch (NoSuchMethodException ex2) {}
+        except NoSuchMethodException as ex2:
+            pass
 
     def isLeader(self, chr: Any) -> bool:
-        return chr is not None && chr.getParty() is not None && chr.getParty().getLeader().getId() == chr.getId()
+        return chr is not None and chr.getParty() is not None and chr.getParty().getLeader().getId() == chr.getId()
 
     def registerSquad(self, squad: Any, map: Any, questID: int) -> None:
         if self.disposed:
@@ -588,14 +594,14 @@ class EventInstanceManager:
         mapid = map.getId()
         for chr in squad.getMembers():
             player = squad.getChar(chr)
-            if player is not None && player.getMapId() == mapid:
+            if player is not None and player.getMapId() == mapid:
                 if questID > 0:
                     player.getQuestNAdd(MapleQuest.getInstance(questID)).setCustomData(str(int(time.time() * 1000)))
                 self.registerPlayer(player)
         squad.setStatus(2)
 
     def isDisconnected(self, chr: Any) -> bool:
-        return !self.disposed && (chr.getId( in self.dced))
+        return not self.disposed and (chr.getId( in self.dced))
 
     def removeDisconnected(self, id: int) -> None:
         if self.disposed:
@@ -611,13 +617,13 @@ class EventInstanceManager:
 
     def check(self) -> bool:
         for chr in self.getPlayers():
-            if chr.getLevel() < 30 || chr.getLevel() > 50:
+            if chr.getLevel() < 30 or chr.getLevel() > 50:
                 return False
         return True
 
     def check1(self) -> bool:
         for chr in self.getPlayers():
-            if chr.getLevel() < 51 || chr.getLevel() > 120:
+            if chr.getLevel() < 51 or chr.getLevel() > 120:
                 return False
         return True
 

@@ -34,6 +34,28 @@ class GUIPrintStream(PrintStream):
 
 
     def write(self, buf: bytes, off: int, len: int) -> None:
+        def _task_1():
+            attrSet = SimpleAttributeSet()
+            StyleConstants.setForeground(attrSet, col)
+            doc = GUIPrintStream.self.component.getDocument()
+            docMain = GUIPrintStream.self.mainComponent.getDocument()
+            try:
+                docMainInfo = docMain.getText(0, docMain.getLength()).split("\r\n")
+                docInfo = doc.getText(0, doc.getLength()).split("\r\n")
+                i = None
+                if len(docMainInfo) >= GUIPrintStream.self.lineLimit + 1:
+                    = 0
+                    while i <= len(docMainInfo) - GUIPrintStream.self.lineLimit - 1:
+                        docMain.remove(0, docMainInfo[i] + 2)
+                if len(docInfo) >= GUIPrintStream.self.lineLimit + 1:
+                    = 0
+                    while i <= len(docInfo) - GUIPrintStream.self.lineLimit - 1:
+                        doc.remove(0, docInfo[i] + 2)
+                docMain.insertString(docMain.getLength(), message, attrSet)
+                doc.insertString(doc.getLength(), message, attrSet)
+            except BadLocationException as var7:
+                GUIPrintStream.self.component.setText("輸出出錯:" + var7 + "\r\n內容:" + message + "\r\n類型:" + GUIPrintStream.self.type)
+
         super.write(buf, off, len)
         message = String(buf, off, len)
         col = None
@@ -52,28 +74,7 @@ class GUIPrintStream(PrintStream):
             break
             # default:
             col = Color.BLACK
-        SwingUtilities.invokeLater(Runnable()
-            public void run()
-                attrSet = SimpleAttributeSet()
-                StyleConstants.setForeground(attrSet, col)
-                doc = GUIPrintStream.self.component.getDocument()
-                docMain = GUIPrintStream.self.mainComponent.getDocument()
-                try:
-                    docMainInfo = docMain.getText(0, docMain.getLength()).split("\r\n")
-                    docInfo = doc.getText(0, doc.getLength()).split("\r\n")
-                    i = None
-                    if len(docMainInfo) >= GUIPrintStream.self.lineLimit + 1:
-                        = 0
-                        while i <= len(docMainInfo) - GUIPrintStream.self.lineLimit - 1:
-                            docMain.remove(0, docMainInfo[i] + 2)
-                    if len(docInfo) >= GUIPrintStream.self.lineLimit + 1:
-                        = 0
-                        while i <= len(docInfo) - GUIPrintStream.self.lineLimit - 1:
-                            doc.remove(0, docInfo[i] + 2)
-                    docMain.insertString(docMain.getLength(), message, attrSet)
-                    doc.insertString(doc.getLength(), message, attrSet)
-                except BadLocationException as var7:
-                    GUIPrintStream.self.component.setText("輸出出錯:" + var7 + "\r\n內容:" + message + "\r\n類型:" + GUIPrintStream.self.type)
+        SwingUtilities.invokeLater(_task_1)
 
     def run(self) -> None:
         attrSet = SimpleAttributeSet()

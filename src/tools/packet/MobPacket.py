@@ -208,11 +208,11 @@ class MobPacket:
         mplew.writeLong(getLongMask_NoRef(life.getStati().keys()))
         ignore_imm = False
         for buff in life.getStati().values():
-            if buff.getStati() == MonsterStatus.反射魔法伤害 || buff.getStati() == MonsterStatus.反射物理伤害:
+            if buff.getStati() == MonsterStatus.反射魔法伤害 or buff.getStati() == MonsterStatus.反射物理伤害:
                 ignore_imm = True
                 break
         for buff in life.getStati().values():
-            if buff.getStati() != MonsterStatus.反射魔法伤害 && buff.getStati() != MonsterStatus.反射物理伤害:
+            if buff.getStati() != MonsterStatus.反射魔法伤害 and buff.getStati() != MonsterStatus.反射物理伤害:
                 if ignore_imm:
                     if buff.getStati() == MonsterStatus.免疫魔法攻击:
                         continue
@@ -353,7 +353,7 @@ class MobPacket:
             print("getLongMask--------------------")
         mask = 0
         for statup in statups:
-            if !statup.isFirst():
+            if not statup.isFirst():
                 mask |= statup.getValue()
         return mask
 
@@ -363,11 +363,11 @@ class MobPacket:
         mask = 0
         ignore_imm = False
         for statup in statups:
-            if statup == MonsterStatus.反射魔法伤害 || statup == MonsterStatus.反射物理伤害:
+            if statup == MonsterStatus.反射魔法伤害 or statup == MonsterStatus.反射物理伤害:
                 ignore_imm = True
                 break
         for statup in statups:
-            if statup != MonsterStatus.反射魔法伤害 && statup != MonsterStatus.反射物理伤害:
+            if statup != MonsterStatus.反射魔法伤害 and statup != MonsterStatus.反射物理伤害:
                 if ignore_imm:
                     if statup == MonsterStatus.免疫魔法攻击:
                         continue
@@ -468,8 +468,8 @@ class MobPacket:
         mplew.writeInt(500)
         mplew.writeInt(itemId)
         mplew.write((itemId > 0) ? 1 : 0)
-        mplew.write((msg is not None && msg > 0) ? 1 : 0)
-        if msg is not None && msg > 0:
+        mplew.write((msg is not None and msg > 0) ? 1 : 0)
+        if msg is not None and msg > 0:
             mplew.writeMapleAsciiString(msg)
         mplew.writeInt(1)
         if ServerConstants.PACKET_ERROR_OFF:

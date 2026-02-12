@@ -70,7 +70,7 @@ class ServerConstants:
         return ServerConstants.自动注册
 
     def ChangeAutoReg(self) -> str:
-        ServerConstants.自动注册 = !getAutoReg()
+        ServerConstants.自动注册 = not getAutoReg()
         return ServerConstants.自动注册 ? "开启" : "关闭"
 
     def Class_Bonus_EXP(self, job: int) -> int:

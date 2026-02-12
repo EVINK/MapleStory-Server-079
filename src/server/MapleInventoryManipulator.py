@@ -43,7 +43,7 @@ class MapleInventoryManipulator:
         if csi is None:
             return
         ring = chr.getCashInventory().toItem(csi, ringId)
-        if ring is None || ring.getUniqueId() != ringId || ring.getUniqueId() <= 0 || ring.getItemId() != itemId:
+        if ring is None or ring.getUniqueId() != ringId or ring.getUniqueId() <= 0 or ring.getItemId() != itemId:
             return
         chr.getCashInventory().addToInventory(ring)
         chr.getClient().getSession().write(MTSCSPacket.showBoughtCSItem(ring, sn, chr.getClient().getAccID()))
@@ -55,14 +55,14 @@ class MapleInventoryManipulator:
         type = GameConstants.getInventoryType(item.getItemId())
         newSlot = c.getPlayer().getInventory(type).addItem(item)
         if newSlot == -1:
-            if !fromcs:
+            if not fromcs:
                 c.getSession().write(MaplePacketCreator.getInventoryFull())
                 c.getSession().write(MaplePacketCreator.getShowInventoryFull())
             return newSlot
-        if !fromcs:
+        if not fromcs:
             c.getSession().write(MaplePacketCreator.addInventorySlot(type, item))
         c.getPlayer().havePartyQuest(item.getItemId())
-        if !fromcs && type == (MapleInventoryType.EQUIP):
+        if not fromcs and type == (MapleInventoryType.EQUIP):
             c.getPlayer().checkCopyItems()
         return newSlot
 
@@ -97,9 +97,9 @@ class MapleInventoryManipulator:
         if quantity >= 0:
             ii = MapleItemInformationProvider.getInstance()
             type = GameConstants.getInventoryType(id)
-            if !checkSpace(cg, id, quantity, ""):
+            if not checkSpace(cg, id, quantity, ""):
                 return
-            if type == (MapleInventoryType.EQUIP) && !GameConstants.is飞镖道具(id) && !GameConstants.is子弹道具(id):
+            if type == (MapleInventoryType.EQUIP) and not GameConstants.is飞镖道具(id) and not GameConstants.is子弹道具(id):
                 item = (Equip)(randomStats ? ii.randomizeStats(ii.getEquipById(id)) : ii.getEquipById(id))
                 if period > 0:
                     item.setExpiration(int(time.time() * 1000) + period * 60 * 60 * 1000)
@@ -108,7 +108,7 @@ class MapleInventoryManipulator:
                 if owner is not None:
                     item.setOwner(owner)
                 name = ii.getName(id)
-                if id / 10000 == 114 && name is not None && name > 0:
+                if id / 10000 == 114 and name is not None and name > 0:
                     msg = "你已获得称号 <" + name + ">"
                     cg.getPlayer().dropMessage(5, msg)
                     cg.getPlayer().dropMessage(5, msg)
@@ -125,7 +125,7 @@ class MapleInventoryManipulator:
                 uniqueid = pet.getUniqueId()
             else:
                 uniqueid = MapleInventoryIdentifier.getInstance()
-        elif GameConstants.getInventoryType(itemId) == MapleInventoryType.CASH || MapleItemInformationProvider.getInstance().isCash(itemId):
+        elif GameConstants.getInventoryType(itemId) == MapleInventoryType.CASH or MapleItemInformationProvider.getInstance().isCash(itemId):
             uniqueid = MapleInventoryIdentifier.getInstance()
         return uniqueid
 
@@ -149,24 +149,24 @@ class MapleInventoryManipulator:
 
     def addId_c_itemId_quantity_owner_pet_period_Flag(self, c: Any, itemId: int, quantity: int, owner: str, pet: Any, period: int, Flag: int) -> int:
         ii = MapleItemInformationProvider.getInstance()
-        if ii.isPickupRestricted(itemId) && c.getPlayer().haveItem(itemId, 1, True, False):
+        if ii.isPickupRestricted(itemId) and c.getPlayer().haveItem(itemId, 1, True, False):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             c.getSession().write(MaplePacketCreator.showItemUnavailable())
             return -1
         type = GameConstants.getInventoryType(itemId)
         uniqueid = getUniqueId(itemId, pet)
         newSlot = -1
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, itemId)
             existing = c.getPlayer().getInventory(type).listById(itemId)
-            if !GameConstants.isRechargable(itemId):
+            if not GameConstants.isRechargable(itemId):
                 if existing > 0:
                     i = existing.iterator()
-                    while (quantity > 0 &&
+                    while (quantity > 0 and
                     i.hasNext())
                         eItem = i.next()
                         oldQ = eItem.getQuantity()
-                        if oldQ < slotMax && (eItem.getOwner() == (owner) || owner is None) && eItem.getExpiration() == -1:
+                        if oldQ < slotMax and (eItem.getOwner() == (owner) or owner is None) and eItem.getExpiration() == -1:
                             newQ = min(oldQ + quantity, slotMax)
                             quantity = (short)(quantity - newQ - oldQ)
                             eItem.setQuantity(newQ)
@@ -183,7 +183,7 @@ class MapleInventoryManipulator:
                             return -1
                         if owner is not None:
                         nItem.setOwner(owner)
-                        if Flag > 0 && ii.isCash(nItem.getItemId()):
+                        if Flag > 0 and ii.isCash(nItem.getItemId()):
                             flag = nItem.getFlag()
                             flag = (byte)(flag | ItemFlag.KARMA_EQ.getValue())
                             nItem.setFlag(flag)
@@ -194,7 +194,7 @@ class MapleInventoryManipulator:
                             pet.setInventoryPosition(newSlot)
                             c.getPlayer().addPet(pet)
                         c.getSession().write(MaplePacketCreator.addInventorySlot(type, nItem))
-                        if GameConstants.isRechargable(itemId) && quantity == 0:
+                        if GameConstants.isRechargable(itemId) and quantity == 0:
                         break
                         continue
                     c.getPlayer().havePartyQuest(itemId)
@@ -216,7 +216,7 @@ class MapleInventoryManipulator:
             if owner is not None:
             nEquip.setOwner(owner)
             nEquip.setUniqueId(uniqueid)
-            if Flag > 0 && ii.isCash(nEquip.getItemId()):
+            if Flag > 0 and ii.isCash(nEquip.getItemId()):
                 flag = nEquip.getFlag()
                 flag = (byte)(flag | ItemFlag.KARMA_USE.getValue())
                 nEquip.setFlag(flag)
@@ -241,23 +241,23 @@ class MapleInventoryManipulator:
         return addbyId_Gachapon(c, itemId, quantity, None, 0)
 
     def addbyId_Gachapon_c_itemId_quantity_gmLog_period(self, c: Any, itemId: int, quantity: int, gmLog: str, period: int) -> Any:
-        if c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() == -1:
+        if c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() == -1 or c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() == -1 or c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() == -1 or c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() == -1:
             return None
         ii = MapleItemInformationProvider.getInstance()
-        if ii.isPickupRestricted(itemId) && c.getPlayer().haveItem(itemId, 1, True, False):
+        if ii.isPickupRestricted(itemId) and c.getPlayer().haveItem(itemId, 1, True, False):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             c.getSession().write(MaplePacketCreator.showItemUnavailable())
             return None
         type = GameConstants.getInventoryType(itemId)
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, itemId)
             existing = c.getPlayer().getInventory(type).listById(itemId)
-            if !GameConstants.isRechargable(itemId):
+            if not GameConstants.isRechargable(itemId):
                 nItem = None
                 recieved = False
                 if existing > 0:
                     i = existing.iterator()
-                    while quantity > 0 && i.hasNext():
+                    while quantity > 0 and i.hasNext():
                         nItem = i.next()
                         oldQ = nItem.getQuantity()
                         if oldQ < slotMax:
@@ -273,7 +273,7 @@ class MapleInventoryManipulator:
                     quantity -= newQ2
                     nItem = Item(itemId, 0, newQ2, 0)
                     newSlot = c.getPlayer().getInventory(type).addItem(nItem)
-                    if newSlot == -1 && recieved:
+                    if newSlot == -1 and recieved:
                         return nItem
                     if newSlot == -1:
                         return None
@@ -286,7 +286,7 @@ class MapleInventoryManipulator:
                         else:
                             nItem.setExpiration(int(time.time() * 1000) + period)
                     c.getSession().write(MaplePacketCreator.addInventorySlot(type, nItem))
-                    if GameConstants.isRechargable(itemId) && quantity == 0:
+                    if GameConstants.isRechargable(itemId) and quantity == 0:
                         break
                 if recieved:
                     c.getPlayer().havePartyQuest(nItem.getItemId())
@@ -323,28 +323,28 @@ class MapleInventoryManipulator:
 
     def addFromDrop_c_item_show_enhance(self, c: Any, item: Any, show: bool, enhance: bool) -> bool:
         ii = MapleItemInformationProvider.getInstance()
-        if ii.isPickupRestricted(item.getItemId()) && c.getPlayer().haveItem(item.getItemId(), 1, True, False):
+        if ii.isPickupRestricted(item.getItemId()) and c.getPlayer().haveItem(item.getItemId(), 1, True, False):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             c.getSession().write(MaplePacketCreator.showItemUnavailable())
             return False
         before = c.getPlayer().itemQuantity(item.getItemId())
         quantity = item.getQuantity()
         type = GameConstants.getInventoryType(item.getItemId())
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, item.getItemId())
             existing = c.getPlayer().getInventory(type).listById(item.getItemId())
-            if !GameConstants.isRechargable(item.getItemId()):
+            if not GameConstants.isRechargable(item.getItemId()):
                 if quantity <= 0:
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
                     c.getSession().write(MaplePacketCreator.showItemUnavailable())
                     return False
                 if existing > 0:
                     i = existing.iterator()
-                    while (quantity > 0 &&
+                    while (quantity > 0 and
                     i.hasNext())
                         eItem = i.next()
                         oldQ = eItem.getQuantity()
-                        if oldQ < slotMax && item.getOwner() == (eItem.getOwner()) && item.getExpiration() == eItem.getExpiration():
+                        if oldQ < slotMax and item.getOwner() == (eItem.getOwner()) and item.getExpiration() == eItem.getExpiration():
                             newQ = min(oldQ + quantity, slotMax)
                             quantity = (short)(quantity - newQ - oldQ)
                             eItem.setQuantity(newQ)
@@ -387,7 +387,7 @@ class MapleInventoryManipulator:
             c.getPlayer().checkCopyItems()
         else:
             raise RuntimeError("Trying to create equip with non-one quantity")
-        if item.getQuantity() >= 50 && GameConstants.isUpgradeScroll(item.getItemId()):
+        if item.getQuantity() >= 50 and GameConstants.isUpgradeScroll(item.getItemId()):
         c.setMonitored(True)
         if before == 0:
         # switch (item.getItemId()):
@@ -410,28 +410,28 @@ class MapleInventoryManipulator:
 
     def translated_商店防止复制_c_item_show_enhance(self, c: Any, item: Any, show: bool, enhance: bool) -> bool:
         ii = MapleItemInformationProvider.getInstance()
-        if ii.isPickupRestricted(item.getItemId()) && c.getPlayer().haveItem(item.getItemId(), 1, True, False):
+        if ii.isPickupRestricted(item.getItemId()) and c.getPlayer().haveItem(item.getItemId(), 1, True, False):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             c.getSession().write(MaplePacketCreator.showItemUnavailable())
             return False
         before = c.getPlayer().itemQuantity(item.getItemId())
         quantity = item.getQuantity()
         type = GameConstants.getInventoryType(item.getItemId())
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, item.getItemId())
             existing = c.getPlayer().getInventory(type).listById(item.getItemId())
-            if !GameConstants.isRechargable(item.getItemId()):
+            if not GameConstants.isRechargable(item.getItemId()):
                 if quantity <= 0:
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
                     c.getSession().write(MaplePacketCreator.showItemUnavailable())
                     return False
                 if existing > 0:
                     i = existing.iterator()
-                    while (quantity > 0 &&
+                    while (quantity > 0 and
                     i.hasNext())
                         eItem = i.next()
                         oldQ = eItem.getQuantity()
-                        if oldQ < slotMax && item.getOwner() == (eItem.getOwner()) && item.getExpiration() == eItem.getExpiration() && slotMax <= slotMax - oldQ:
+                        if oldQ < slotMax and item.getOwner() == (eItem.getOwner()) and item.getExpiration() == eItem.getExpiration() and slotMax <= slotMax - oldQ:
                             newQ = min(oldQ + quantity, slotMax)
                             quantity = (short)(quantity - newQ - oldQ)
                             eItem.setQuantity(newQ)
@@ -473,7 +473,7 @@ class MapleInventoryManipulator:
             c.getSession().write(MaplePacketCreator.addInventorySlot(type, item, True))
         else:
             raise RuntimeError("Trying to create equip with non-one quantity")
-        if item.getQuantity() >= 50 && GameConstants.isUpgradeScroll(item.getItemId()):
+        if item.getQuantity() >= 50 and GameConstants.isUpgradeScroll(item.getItemId()):
         c.setMonitored(True)
         if before == 0:
         # switch (item.getItemId()):
@@ -493,28 +493,28 @@ class MapleInventoryManipulator:
 
     def pet_addFromDrop(self, c: Any, item: Any, show: bool, enhance: bool) -> bool:
         ii = MapleItemInformationProvider.getInstance()
-        if ii.isPickupRestricted(item.getItemId()) && c.getPlayer().haveItem(item.getItemId(), 1, True, False):
+        if ii.isPickupRestricted(item.getItemId()) and c.getPlayer().haveItem(item.getItemId(), 1, True, False):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             c.getSession().write(MaplePacketCreator.showItemUnavailable())
             return False
         before = c.getPlayer().itemQuantity(item.getItemId())
         quantity = item.getQuantity()
         type = GameConstants.getInventoryType(item.getItemId())
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, item.getItemId())
             existing = c.getPlayer().getInventory(type).listById(item.getItemId())
-            if !GameConstants.isRechargable(item.getItemId()):
+            if not GameConstants.isRechargable(item.getItemId()):
                 if quantity <= 0:
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
                     c.getSession().write(MaplePacketCreator.showItemUnavailable())
                     return False
                 if existing > 0:
                     i = existing.iterator()
-                    while (quantity > 0 &&
+                    while (quantity > 0 and
                     i.hasNext())
                         eItem = i.next()
                         oldQ = eItem.getQuantity()
-                        if oldQ < slotMax && item.getOwner() == (eItem.getOwner()) && item.getExpiration() == eItem.getExpiration():
+                        if oldQ < slotMax and item.getOwner() == (eItem.getOwner()) and item.getExpiration() == eItem.getExpiration():
                             newQ = min(oldQ + quantity, slotMax)
                             quantity = (short)(quantity - newQ - oldQ)
                             eItem.setQuantity(newQ)
@@ -556,7 +556,7 @@ class MapleInventoryManipulator:
             c.getSession().write(MaplePacketCreator.addInventorySlot(type, item, False))
         else:
             raise RuntimeError("Trying to create equip with non-one quantity")
-        if item.getQuantity() >= 50 && GameConstants.isUpgradeScroll(item.getItemId()):
+        if item.getQuantity() >= 50 and GameConstants.isUpgradeScroll(item.getItemId()):
         c.setMonitored(True)
         if before == 0:
         # switch (item.getItemId()):
@@ -577,7 +577,7 @@ class MapleInventoryManipulator:
     def checkEnhanced(self, before: Any, chr: Any) -> Any:
         if isinstance(before, Equip):
             eq = before
-            if eq.getState() == 0 && (eq.getUpgradeSlots() >= 1 || eq.getLevel() >= 1) && Randomizer.nextInt(100) > 80:
+            if eq.getState() == 0 and (eq.getUpgradeSlots() >= 1 or eq.getLevel() >= 1) and Randomizer.nextInt(100) > 80:
                 eq.resetPotential()
         return before
 
@@ -586,51 +586,51 @@ class MapleInventoryManipulator:
 
     def checkSpace(self, c: Any, itemid: int, quantity: int, owner: str) -> bool:
         ii = MapleItemInformationProvider.getInstance()
-        if c.getPlayer() is None || (ii.isPickupRestricted(itemid) && c.getPlayer().haveItem(itemid, 1, True, False)):
+        if c.getPlayer() is None or (ii.isPickupRestricted(itemid) and c.getPlayer().haveItem(itemid, 1, True, False)):
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
-        if quantity <= 0 && !GameConstants.isRechargable(itemid):
+        if quantity <= 0 and not GameConstants.isRechargable(itemid):
             return False
         type = GameConstants.getInventoryType(itemid)
-        if c.getPlayer() is None || c.getPlayer().getInventory(type) is None:
+        if c.getPlayer() is None or c.getPlayer().getInventory(type) is None:
             return False
-        if !type == (MapleInventoryType.EQUIP):
+        if not type == (MapleInventoryType.EQUIP):
             slotMax = ii.getSlotMax(c, itemid)
             existing = c.getPlayer().getInventory(type).listById(itemid)
-            if !GameConstants.isRechargable(itemid) && existing > 0:
+            if not GameConstants.isRechargable(itemid) and existing > 0:
                 for eItem in existing:
                     oldQ = eItem.getQuantity()
-                    if oldQ < slotMax && owner is not None && owner == (eItem.getOwner()):
+                    if oldQ < slotMax and owner is not None and owner == (eItem.getOwner()):
                         newQ = min(oldQ + quantity, slotMax)
                         quantity -= newQ - oldQ
                     if quantity <= 0:
                         break
             numSlotsNeeded = None
-            if slotMax > 0 && !GameConstants.isRechargable(itemid):
+            if slotMax > 0 and not GameConstants.isRechargable(itemid):
                 numSlotsNeeded = math.ceil(quantity / slotMax)
             else:
                 numSlotsNeeded = 1
-            return !c.getPlayer().getInventory(type).isFull(numSlotsNeeded - 1)
-        return !c.getPlayer().getInventory(type).isFull()
+            return not c.getPlayer().getInventory(type).isFull(numSlotsNeeded - 1)
+        return not c.getPlayer().getInventory(type).isFull()
 
     def removeFromSlot(self, c: Any, type: Any, slot: int, quantity: int, fromDrop: bool) -> None:
         removeFromSlot(c, type, slot, quantity, fromDrop, False)
 
     def removeFromSlot_c_type_slot_quantity_fromDrop_consume(self, c: Any, type: Any, slot: int, quantity: int, fromDrop: bool, consume: bool) -> None:
-        if c.getPlayer() is None || c.getPlayer().getInventory(type) is None:
+        if c.getPlayer() is None or c.getPlayer().getInventory(type) is None:
             return
         item = c.getPlayer().getInventory(type).getItem(slot)
         if item is not None:
-            allowZero = consume && GameConstants.isRechargable(item.getItemId())
+            allowZero = consume and GameConstants.isRechargable(item.getItemId())
             c.getPlayer().getInventory(type).removeItem(slot, quantity, allowZero)
-            if item.getQuantity() == 0 && !allowZero:
+            if item.getQuantity() == 0 and not allowZero:
                 c.getSession().write(MaplePacketCreator.clearInventoryItem(type, item.getPosition(), fromDrop))
             else:
                 c.getSession().write(MaplePacketCreator.updateInventorySlot(type, item, fromDrop))
 
     def removeById(self, c: Any, type: Any, itemId: int, quantity: int, fromDrop: bool, consume: bool) -> bool:
         remremove = quantity
-        if c.getPlayer() is None || c.getPlayer().getInventory(type) is None:
+        if c.getPlayer() is None or c.getPlayer().getInventory(type) is None:
             return False
         for item in c.getPlayer().getInventory(type).listById(itemId):
             theQ = item.getQuantity()
@@ -645,7 +645,7 @@ class MapleInventoryManipulator:
         return remremove <= 0
 
     def move(self, c: Any, type: Any, src: int, dst: int) -> None:
-        if src < 0 || dst < 0 || dst > c.getPlayer().getInventory(type).getSlotLimit() || src == dst:
+        if src < 0 or dst < 0 or dst > c.getPlayer().getInventory(type).getSlotLimit() or src == dst:
             return
         ii = MapleItemInformationProvider.getInstance()
         source = c.getPlayer().getInventory(type).getItem(src)
@@ -660,7 +660,7 @@ class MapleInventoryManipulator:
         oldsrcQ = source.getQuantity()
         slotMax = ii.getSlotMax(c, source.getItemId())
         c.getPlayer().getInventory(type).move(src, dst, slotMax)
-        if !type == (MapleInventoryType.EQUIP) && initialTarget is not None && initialTarget.getItemId() == source.getItemId() && initialTarget.getOwner() == (source.getOwner()) && initialTarget.getExpiration() == source.getExpiration() && !GameConstants.isRechargable(source.getItemId()) && !type == (MapleInventoryType.CASH):
+        if not type == (MapleInventoryType.EQUIP) and initialTarget is not None and initialTarget.getItemId() == source.getItemId() and initialTarget.getOwner() == (source.getOwner()) and initialTarget.getExpiration() == source.getExpiration() and not GameConstants.isRechargable(source.getItemId()) and not type == (MapleInventoryType.CASH):
             if olddstQ + oldsrcQ > slotMax:
                 c.getSession().write(MaplePacketCreator.moveAndMergeWithRestInventoryItem(type, src, dst, (short)(olddstQ + oldsrcQ - slotMax), slotMax))
             else:
@@ -677,35 +677,35 @@ class MapleInventoryManipulator:
         statst = c.getPlayer().getStat()
         source = chr.getInventory(MapleInventoryType.EQUIP).getItem(src)
         target = chr.getInventory(MapleInventoryType.EQUIPPED).getItem(dst)
-        if source is None || source.getDurability() == 0:
+        if source is None or source.getDurability() == 0:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         if MapleItemInformationProvider.getInstance().isUntradeableOnEquip(source.getItemId()):
             source.setFlag(ItemFlag.UNTRADEABLE.getValue())
             itemChanged = True
         stats = ii.getEquipStats(source.getItemId())
-        if ii.isCash(source.getItemId()) && source.getUniqueId() <= 0:
+        if ii.isCash(source.getItemId()) and source.getUniqueId() <= 0:
             source.setUniqueId(1)
             c.getSession().write(MaplePacketCreator.updateSpecialItemUse_(source, GameConstants.getInventoryType(source.getItemId()).getType()))
-        if dst < -999 && !GameConstants.isEvanDragonItem(source.getItemId()) && !GameConstants.is豆豆装备(source.getItemId()):
+        if dst < -999 and not GameConstants.isEvanDragonItem(source.getItemId()) and not GameConstants.is豆豆装备(source.getItemId()):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if dst >= -999 && dst < -99 && stats.get("cash") == 0 && !GameConstants.is豆豆装备(source.getItemId()) && !GameConstants.isEffectRing(source.getItemId()):
+        if dst >= -999 and dst < -99 and stats.get("cash") == 0 and not GameConstants.is豆豆装备(source.getItemId()) and not GameConstants.isEffectRing(source.getItemId()):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if !ii.canEquip(stats, source.getItemId(), chr.getLevel(), chr.getJob(), chr.getFame(), statst.getTotalStr(), statst.getTotalDex(), statst.getTotalLuk(), statst.getTotalInt(), c.getPlayer().getStat().levelBonus):
+        if not ii.canEquip(stats, source.getItemId(), chr.getLevel(), chr.getJob(), chr.getFame(), statst.getTotalStr(), statst.getTotalDex(), statst.getTotalLuk(), statst.getTotalInt(), c.getPlayer().getStat().levelBonus):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if GameConstants.isWeapon(source.getItemId()) && dst != -10 && dst != -11:
+        if GameConstants.isWeapon(source.getItemId()) and dst != -10 and dst != -11:
             AutobanManager.getInstance().autoban(c, "Equipment hack, itemid " + source.getItemId() + " to slot " + dst)
             return
-        if !ii.isCash(source.getItemId()) && !GameConstants.isMountItemAvailable(source.getItemId(), c.getPlayer().getJob()):
+        if not ii.isCash(source.getItemId()) and not GameConstants.isMountItemAvailable(source.getItemId(), c.getPlayer().getJob()):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         # switch (dst):
             # case -6:
                 top = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-5))
-                if top is None || !GameConstants.isOverall(top.getItemId()):
+                if top is None or not GameConstants.isOverall(top.getItemId()):
                     break
                 if chr.getInventory(MapleInventoryType.EQUIP).isFull():
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
@@ -716,13 +716,13 @@ class MapleInventoryManipulator:
             # case -5:
                 top = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-5))
                 bottom = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-6))
-                if top is not None && GameConstants.isOverall(source.getItemId()):
-                    if chr.getInventory(MapleInventoryType.EQUIP).isFull((bottom is not None && GameConstants.isOverall(source.getItemId())) ? 1 : 0):
+                if top is not None and GameConstants.isOverall(source.getItemId()):
+                    if chr.getInventory(MapleInventoryType.EQUIP).isFull((bottom is not None and GameConstants.isOverall(source.getItemId())) ? 1 : 0):
                         c.getSession().write(MaplePacketCreator.getInventoryFull())
                         c.getSession().write(MaplePacketCreator.getShowInventoryFull())
                         return
                     unequip(c, (short)(-5), chr.getInventory(MapleInventoryType.EQUIP).getNextFreeSlot())
-                if bottom is None || !GameConstants.isOverall(source.getItemId()):
+                if bottom is None or not GameConstants.isOverall(source.getItemId()):
                     break
                 if chr.getInventory(MapleInventoryType.EQUIP).isFull():
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
@@ -733,13 +733,13 @@ class MapleInventoryManipulator:
             # case -10:
                 weapon = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-11))
                 if GameConstants.isKatara(source.getItemId()):
-                    if (chr.getJob() != 900 && (chr.getJob() < 430 || chr.getJob() > 434)) || weapon is None || !GameConstants.isDagger(weapon.getItemId()):
+                    if (chr.getJob() != 900 and (chr.getJob() < 430 or chr.getJob() > 434)) or weapon is None or not GameConstants.isDagger(weapon.getItemId()):
                         c.getSession().write(MaplePacketCreator.getInventoryFull())
                         c.getSession().write(MaplePacketCreator.getShowInventoryFull())
                         return
                     break
                 else:
-                    if weapon is None || !GameConstants.isTwoHanded(weapon.getItemId()):
+                    if weapon is None or not GameConstants.isTwoHanded(weapon.getItemId()):
                         break
                     if chr.getInventory(MapleInventoryType.EQUIP).isFull():
                         c.getSession().write(MaplePacketCreator.getInventoryFull())
@@ -749,7 +749,7 @@ class MapleInventoryManipulator:
                     break
             # case -11:
                 shield = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-10))
-                if shield is None || !GameConstants.isTwoHanded(source.getItemId()):
+                if shield is None or not GameConstants.isTwoHanded(source.getItemId()):
                     break
                 if chr.getInventory(MapleInventoryType.EQUIP).isFull():
                     c.getSession().write(MaplePacketCreator.getInventoryFull())
@@ -764,7 +764,7 @@ class MapleInventoryManipulator:
             return
         flag = source.getFlag()
         if stats.get("equipTradeBlock") == 1:
-            if !ItemFlag.UNTRADEABLE.check(flag):
+            if not ItemFlag.UNTRADEABLE.check(flag):
                 flag |= ItemFlag.UNTRADEABLE.getValue()
                 source.setFlag(flag)
                 c.getSession().write(MaplePacketCreator.updateSpecialItemUse_(source, GameConstants.getInventoryType(source.getItemId()).getType()))
@@ -808,10 +808,10 @@ class MapleInventoryManipulator:
     def unequip(self, c: Any, src: int, dst: int) -> None:
         source = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(src)
         target = c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(dst)
-        if dst < 0 || source is None:
+        if dst < 0 or source is None:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if target is not None && src <= 0:
+        if target is not None and src <= 0:
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return
         c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).removeSlot(src)
@@ -847,20 +847,20 @@ class MapleInventoryManipulator:
         if c.getPlayer() is None:
             return False
         source = c.getPlayer().getInventory(type).getItem(src)
-        if source is None || (!npcInduced && GameConstants.isPet(source.getItemId())):
+        if source is None or (not npcInduced and GameConstants.isPet(source.getItemId())):
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
-        if ii.isCash(source.getItemId()) || source.getExpiration() > 0:
+        if ii.isCash(source.getItemId()) or source.getExpiration() > 0:
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
         flag = source.getFlag()
         id = source.getItemId()
-        if GameConstants.isRechargable(id) && source.getQuantity() == 0:
+        if GameConstants.isRechargable(id) and source.getQuantity() == 0:
             source.setQuantity(1)
         if quantity > source.getQuantity():
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
-        if ItemFlag.LOCK.check(flag) || (quantity != 1 && type == MapleInventoryType.EQUIP):
+        if ItemFlag.LOCK.check(flag) or (quantity != 1 and type == MapleInventoryType.EQUIP):
             c.getSession().write(MaplePacketCreator.enableActions())
             return False
         c.getPlayer().setCurrenttime(int(time.time() * 1000))
@@ -871,12 +871,12 @@ class MapleInventoryManipulator:
         c.getPlayer().setLasttime(int(time.time() * 1000))
         dropPos = Point(c.getPlayer().getPosition())
         c.getPlayer().getCheatTracker().checkDrop()
-        if quantity < source.getQuantity() && !GameConstants.isRechargable(source.getItemId()):
+        if quantity < source.getQuantity() and not GameConstants.isRechargable(source.getItemId()):
             target = source.copy()
             target.setQuantity(quantity)
             source.setQuantity((short)(source.getQuantity() - quantity))
             c.getSession().write(MaplePacketCreator.dropInventoryItemUpdate(type, source))
-            if ii.isDropRestricted(target.getItemId()) || ii.isAccountShared(target.getItemId()):
+            if ii.isDropRestricted(target.getItemId()) or ii.isAccountShared(target.getItemId()):
                 if ItemFlag.KARMA_EQ.check(flag):
                     target.setFlag((byte)(flag - ItemFlag.KARMA_EQ.getValue()))
                     c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), target, dropPos, True, True)
@@ -885,7 +885,7 @@ class MapleInventoryManipulator:
                     c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), target, dropPos, True, True)
                 else:
                     c.getPlayer().getMap().disappearingItemDrop(c.getPlayer(), c.getPlayer(), target, dropPos)
-            elif GameConstants.isPet(source.getItemId()) || ItemFlag.UNTRADEABLE.check(flag):
+            elif GameConstants.isPet(source.getItemId()) or ItemFlag.UNTRADEABLE.check(flag):
                 c.getPlayer().getMap().disappearingItemDrop(c.getPlayer(), c.getPlayer(), target, dropPos)
             else:
                 c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), target, dropPos, True, True)
@@ -894,7 +894,7 @@ class MapleInventoryManipulator:
             c.getSession().write(MaplePacketCreator.dropInventoryItem((src < 0) ? MapleInventoryType.EQUIP : type, src))
             if src < 0:
                 c.getPlayer().equipChanged()
-            if ii.isDropRestricted(source.getItemId()) || ii.isAccountShared(source.getItemId()):
+            if ii.isDropRestricted(source.getItemId()) or ii.isAccountShared(source.getItemId()):
                 if ItemFlag.KARMA_EQ.check(flag):
                     source.setFlag((byte)(flag - ItemFlag.KARMA_EQ.getValue()))
                     c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), source, dropPos, True, True)
@@ -903,7 +903,7 @@ class MapleInventoryManipulator:
                     c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), source, dropPos, True, True)
                 else:
                     c.getPlayer().getMap().disappearingItemDrop(c.getPlayer(), c.getPlayer(), source, dropPos)
-            elif GameConstants.isPet(source.getItemId()) || ItemFlag.UNTRADEABLE.check(flag):
+            elif GameConstants.isPet(source.getItemId()) or ItemFlag.UNTRADEABLE.check(flag):
                 c.getPlayer().getMap().disappearingItemDrop(c.getPlayer(), c.getPlayer(), source, dropPos)
             else:
                 c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), source, dropPos, True, True)
@@ -917,7 +917,7 @@ class MapleInventoryManipulator:
         copyEquipItems = c.getPlayer().getInventory(MapleInventoryType.EQUIP).listByEquipOnlyId(equipOnlyId)
         for item in copyEquipItems:
             if item is not None:
-                if !locked:
+                if not locked:
                     flag = item.getFlag()
                     flag |= ItemFlag.LOCK.getValue()
                     flag |= ItemFlag.UNTRADEABLE.getValue()
@@ -935,7 +935,7 @@ class MapleInventoryManipulator:
         copyEquipedItems = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).listByEquipOnlyId(equipOnlyId)
         for item2 in copyEquipedItems:
             if item2 is not None:
-                if !locked:
+                if not locked:
                     flag2 = item2.getFlag()
                     flag2 |= ItemFlag.LOCK.getValue()
                     flag2 |= ItemFlag.UNTRADEABLE.getValue()
@@ -954,7 +954,7 @@ class MapleInventoryManipulator:
         copyUseItems = c.getPlayer().getInventory(MapleInventoryType.USE).listByEquipOnlyId(equipOnlyId)
         for item3 in copyUseItems:
             if item3 is not None:
-                if !locked:
+                if not locked:
                     flag3 = item3.getFlag()
                     flag3 |= ItemFlag.LOCK.getValue()
                     flag3 |= ItemFlag.UNTRADEABLE.getValue()
@@ -973,7 +973,7 @@ class MapleInventoryManipulator:
         copyEtcItems = c.getPlayer().getInventory(MapleInventoryType.ETC).listByEquipOnlyId(equipOnlyId)
         for item4 in copyEtcItems:
             if item4 is not None:
-                if !locked:
+                if not locked:
                     flag4 = item4.getFlag()
                     flag4 |= ItemFlag.LOCK.getValue()
                     flag4 |= ItemFlag.UNTRADEABLE.getValue()
@@ -992,7 +992,7 @@ class MapleInventoryManipulator:
         copyCashItems = c.getPlayer().getInventory(MapleInventoryType.CASH).listByEquipOnlyId(equipOnlyId)
         for item5 in copyCashItems:
             if item5 is not None:
-                if !locked:
+                if not locked:
                     flag5 = item5.getFlag()
                     flag5 |= ItemFlag.LOCK.getValue()
                     flag5 |= ItemFlag.UNTRADEABLE.getValue()

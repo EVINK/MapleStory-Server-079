@@ -58,7 +58,7 @@ class ItemMakerFactory:
                                 if rewardNRecipe.getName() == ("randomReward"):
                                     ret.addRandomReward(MapleDataTool.getInt("item", ind, 0), MapleDataTool.getInt("prob", ind, 0))
                                 else:
-                                    if !rewardNRecipe.getName() == ("recipe"):
+                                    if not rewardNRecipe.getName() == ("recipe"):
                                         continue
                                     ret.addReqRecipe(MapleDataTool.getInt("item", ind, 0), MapleDataTool.getInt("count", ind, 0))
                         self.gemCache.put(int(itemFolder.getName()), ret)

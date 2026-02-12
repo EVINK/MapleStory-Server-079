@@ -62,7 +62,8 @@ class MapleMonsterInformationProvider:
                     ps.close()
                 if rs is not None:
                     rs.close()
-            catch (SQLException ex) {}
+            except SQLException as ex:
+                pass
 
     def retrieveDrop(self, monsterId: int) -> list:
         if (monsterId in self.drops):

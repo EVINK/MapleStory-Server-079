@@ -83,7 +83,7 @@ class Start:
         start = int(time.time() * 1000)
         checkSingleInstance()
         if bool(ServerProperties.getProperty("RoyMS.Admin")):
-            printSection("[!!! 已开启只能管理员登录模式 !!!]")
+            printSection("[not not not 已开启只能管理员登录模式 not not not ]")
         if bool(ServerProperties.getProperty("RoyMS.AutoRegister")):
             print("加载 自动注册完成 :::")
         try:
@@ -117,7 +117,7 @@ class Start:
         memoryRecical(10)
         MapleServerHandler.registerMBean()
         LoginServer.setOn()
-        print("\r\n经验倍率：" + int(ServerProperties.getProperty("RoyMS.Exp")) + "  物品倍率：" + int(ServerProperties.getProperty("RoyMS.Drop")) + "  金币倍率：" + int(ServerProperties.getProperty("RoyMS.Meso")) + "  BOSS爆率：" + int(ServerProperties.getProperty("RoyMS.BDrop")))
+        print("\r\n经验倍率：" + int(ServerProperties.getProperty("RoyMS.Exp")) + " 物品倍率：" + int(ServerProperties.getProperty("RoyMS.Drop")) + " 金币倍率：" + int(ServerProperties.getProperty("RoyMS.Meso")) + " BOSS爆率：" + int(ServerProperties.getProperty("RoyMS.BDrop")))
         if bool(ServerProperties.getProperty("RoyMS.检测复制装备", "False")):
             checkCopyItemFromSql()
         if bool(ServerProperties.getProperty("RoyMS.防万能检测", "False")):
@@ -189,55 +189,59 @@ class Start:
         MapleMapFactory.loadCustomLife()
 
     def auto_save(self, time: int) -> None:
+        def _task_1():
+            ppl = 0
+            try:
+                for cserv in ChannelServer.getAllInstances():
+                    for chr in cserv.getPlayerStorage().getAllCharacters():
+                        if chr is None:
+                            continue
+                        ppl += 1
+                        chr.saveToDB(False, False)
+            except Exception as ex:
+                pass
+
         print("服务端启用自动存档." + time + "分钟自动执行数据存档.")
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                ppl = 0
-                try:
-                    for cserv in ChannelServer.getAllInstances():
-                        for chr in cserv.getPlayerStorage().getAllCharacters():
-                            if chr is None:
-                                continue
-                            ppl += 1
-                            chr.saveToDB(False, False)
-                catch (Exception ex) {}
+        Timer.WorldTimer.getInstance().register(_task_1, 60000 * time)
 
     def onlineTime(self, time: int) -> None:
+        def _task_1():
+            try:
+                for chan in ChannelServer.getAllInstances():
+                    for chr in chan.getPlayerStorage().getAllCharacters():
+                        if chr is None:
+                            continue
+                        chr.gainGamePoints(1)
+                        if chr.getGamePoints() >= 5:
+                            continue
+                        chr.resetFBRW()
+                        chr.resetFBRWA()
+                        chr.resetSBOSSRW()
+                        chr.resetSBOSSRWA()
+                        chr.resetSGRW()
+                        chr.resetSGRWA()
+                        chr.resetSJRW()
+                        chr.resetlb()
+                        chr.setmrsjrw(0)
+                        chr.setmrfbrw(0)
+                        chr.setmrsgrw(0)
+                        chr.setmrsbossrw(0)
+                        chr.setmrfbrwa(0)
+                        chr.setmrsgrwa(0)
+                        chr.setmrsbossrwa(0)
+                        chr.setmrfbrwas(0)
+                        chr.setmrsgrwas(0)
+                        chr.setmrsbossrwas(0)
+                        chr.setmrfbrws(0)
+                        chr.setmrsgrws(0)
+                        chr.setmrsbossrws(0)
+                        chr.resetGamePointsPS()
+                        chr.resetGamePointsPD()
+            except Exception as ex:
+                pass
+
         print("服务端启用在线时间统计." + time + "分钟记录一次在线时间.")
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                try:
-                    for chan in ChannelServer.getAllInstances():
-                        for chr in chan.getPlayerStorage().getAllCharacters():
-                            if chr is None:
-                                continue
-                            chr.gainGamePoints(1)
-                            if chr.getGamePoints() >= 5:
-                                continue
-                            chr.resetFBRW()
-                            chr.resetFBRWA()
-                            chr.resetSBOSSRW()
-                            chr.resetSBOSSRWA()
-                            chr.resetSGRW()
-                            chr.resetSGRWA()
-                            chr.resetSJRW()
-                            chr.resetlb()
-                            chr.setmrsjrw(0)
-                            chr.setmrfbrw(0)
-                            chr.setmrsgrw(0)
-                            chr.setmrsbossrw(0)
-                            chr.setmrfbrwa(0)
-                            chr.setmrsgrwa(0)
-                            chr.setmrsbossrwa(0)
-                            chr.setmrfbrwas(0)
-                            chr.setmrsgrwas(0)
-                            chr.setmrsbossrwas(0)
-                            chr.setmrfbrws(0)
-                            chr.setmrsgrws(0)
-                            chr.setmrsbossrws(0)
-                            chr.resetGamePointsPS()
-                            chr.resetGamePointsPD()
-                catch (Exception ex) {}
+        Timer.WorldTimer.getInstance().register(_task_1, 60000 * time)
 
     def checkSingleInstance(self) -> None:
         try:
@@ -285,7 +289,7 @@ class Start:
         print(ServerProperties.getProperty("RoyMS.Admin"))
         print("========================")
         if bool(ServerProperties.getProperty("RoyMS.Admin")):
-            printSection("[!!! 已开启只能管理员登录模式 !!!]")
+            printSection("[not not not 已开启只能管理员登录模式 not not not ]")
         if bool(ServerProperties.getProperty("RoyMS.AutoRegister")):
             print("加载 自动注册完成 :::")
         # try-with-resources: final PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("UPDATE accounts SET loggedin = 0")
@@ -314,7 +318,7 @@ class Start:
         memoryRecical(360)
         MapleServerHandler.registerMBean()
         LoginServer.setOn()
-        print("\r\n经验倍率：" + int(ServerProperties.getProperty("RoyMS.Exp")) + "  物品倍率：" + int(ServerProperties.getProperty("RoyMS.Drop")) + "  金币倍率：" + int(ServerProperties.getProperty("RoyMS.Meso")) + "  BOSS爆率：" + int(ServerProperties.getProperty("RoyMS.BDrop")))
+        print("\r\n经验倍率：" + int(ServerProperties.getProperty("RoyMS.Exp")) + " 物品倍率：" + int(ServerProperties.getProperty("RoyMS.Drop")) + " 金币倍率：" + int(ServerProperties.getProperty("RoyMS.Meso")) + " BOSS爆率：" + int(ServerProperties.getProperty("RoyMS.BDrop")))
         if bool(ServerProperties.getProperty("RoyMS.检测复制装备", "False")):
             checkCopyItemFromSql()
         if bool(ServerProperties.getProperty("RoyMS.防万能检测", "False")):
@@ -332,41 +336,44 @@ class Start:
         (Start.CashGui = RoyMS()).setVisible(True)
 
     def onlineStatistics(self, time: int) -> None:
+        def _task_1():
+            connected = World.getConnected()
+            conStr = "" + " 在线人数: ")
+            for i in connected.keys():
+                if i == 0:
+                    users = connected.get(i)
+                    conStr.append(StringUtil.getRightPaddedStr(str(users), ' ', 3))
+                    if users > Start.maxUsers:
+                        Start.maxUsers = users
+                    conStr.append(" 最高在线: ")
+                    conStr.append(Start.maxUsers)
+                    break
+            print(conStr)
+            if Start.maxUsers > 0:
+                FileoutputUtil.log("logs/在线统计.log", conStr)
+
         print("服务端启用在线统计." + time + "分钟统计一次在线的人数信息.")
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                connected = World.getConnected()
-                conStr = "" + " 在线人数: ")
-                for i in connected.keys():
-                    if i == 0:
-                        users = connected.get(i)
-                        conStr.append(StringUtil.getRightPaddedStr(str(users), ' ', 3))
-                        if users > Start.maxUsers:
-                            Start.maxUsers = users
-                        conStr.append(" 最高在线: ")
-                        conStr.append(Start.maxUsers)
-                        break
-                print(conStr)
-                if Start.maxUsers > 0:
-                    FileoutputUtil.log("logs/在线统计.log", conStr)
+        Timer.WorldTimer.getInstance().register(_task_1, 60000 * time)
 
     def printSection(self, s: str) -> None:
         for (s = "-[ " + s + " ]"; s.encode("utf-8").length < 79; s = "=" + s) {}
         print(s)
 
     def startCheck(self) -> None:
+        def _task_1():
+            for cserv_ in ChannelServer.getAllInstances():
+                for chr in cserv_.getPlayerStorage().getAllCharacters():
+                    if chr is not None:
+                        chr.startCheck()
+
         print("服务端启用检测.30秒检测一次角色是否与登录器断开连接.")
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                for cserv_ in ChannelServer.getAllInstances():
-                    for chr in cserv_.getPlayerStorage().getAllCharacters():
-                        if chr is not None:
-                            chr.startCheck()
+        Timer.WorldTimer.getInstance().register(_task_1, 30000)
 
     def memoryRecical(self, time: int) -> None:
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                gc.collect()
+        def _task_1():
+            gc.collect()
+
+        Timer.WorldTimer.getInstance().register(_task_1, 60000 * time)
 
     @staticmethod
     def run() -> None:

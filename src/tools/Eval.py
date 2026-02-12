@@ -43,28 +43,28 @@ class Eval:
         len = self.string
         start = self.position
         ch = None
-        while self.position < len && (Character.isDigit(ch = self.string[self.position]) || ch == '.'):
+        while self.position < len and (Character.isDigit(ch = self.string[self.position]) or ch == '.'):
             self.position += 1
-        if self.position < len && ((ch = self.string[self.position]) == 'E' || ch == 'e'):
+        if self.position < len and ((ch = self.string[self.position]) == 'E' or ch == 'e'):
             self.position += 1
-            if self.position < len && ((ch = self.string[self.position]) == '+' || ch == '-'):
+            if self.position < len and ((ch = self.string[self.position]) == '+' or ch == '-'):
                 self.position += 1
-            while self.position < len && Character.isDigit(ch = self.string[self.position]):
+            while self.position < len and Character.isDigit(ch = self.string[self.position]):
                 self.position += 1
         return BigDecimal(self.string[start:self.position])
 
     def validateOperandType(self, operand: Any, type: Any) -> None:
         operandType = None
-        if isinstance(operand, Operation) && (operandType = (operand).type) != type:
+        if isinstance(operand, Operation) and (operandType = (operand).type) != type:
             raise RuntimeError("cannot use " + operandType.name + " operands with " + type.name + " operators")
 
     def evaluateOperand(self, operand: Any, variables: dict) -> Any:
         if isinstance(operand, Operation):
             return (operand).eval(variables)
-        if !(isinstance(operand, String)):
+        if not (isinstance(operand, String)):
             return operand
         value = None
-        if variables is None || (value = variables.get(operand)) is None:
+        if variables is None or (value = variables.get(operand)) is None:
             raise RuntimeError("no value for variable \"" + operand + "\"")
         return value
 
@@ -83,7 +83,7 @@ class Eval:
                 if nextOperator == Operator.END:
                     operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
                     operator = Operator.END
-                    if preReadOperator is None || endOfExpressionChar == '\0':
+                    if preReadOperator is None or endOfExpressionChar == '\0':
                         continue
                     self.tokeniser.pushBack(Operator.END)
                 elif nextOperator.precedence <= terminatePrecedence:
@@ -96,7 +96,7 @@ class Eval:
                 else:
                     operand = Operation.binaryOperationfactory(operator, operand, self.compile(nextOperand, nextOperator, nestingLevel, endOfExpressionChar, operator.precedence))
                     operator = self.tokeniser.getOperator(endOfExpressionChar)
-                    if operator != Operator.END || preReadOperator is None || endOfExpressionChar == '\0':
+                    if operator != Operator.END or preReadOperator is None or endOfExpressionChar == '\0':
                         continue
                     self.tokeniser.pushBack(Operator.END)
         return operand
@@ -140,13 +140,13 @@ class Tokeniser:
         len = self.string
         start = self.position
         ch = None
-        while self.position < len && (Character.isDigit(ch = self.string[self.position]) || ch == '.'):
+        while self.position < len and (Character.isDigit(ch = self.string[self.position]) or ch == '.'):
             self.position += 1
-        if self.position < len && ((ch = self.string[self.position]) == 'E' || ch == 'e'):
+        if self.position < len and ((ch = self.string[self.position]) == 'E' or ch == 'e'):
             self.position += 1
-            if self.position < len && ((ch = self.string[self.position]) == '+' || ch == '-'):
+            if self.position < len and ((ch = self.string[self.position]) == '+' or ch == '-'):
                 self.position += 1
-            while self.position < len && Character.isDigit(ch = self.string[self.position]):
+            while self.position < len and Character.isDigit(ch = self.string[self.position]):
                 self.position += 1
         return BigDecimal(self.string[start:self.position])
 
@@ -187,16 +187,16 @@ class Operation:
 
     def validateOperandType(self, operand: Any, type: Any) -> None:
         operandType = None
-        if isinstance(operand, Operation) && (operandType = (operand).type) != type:
+        if isinstance(operand, Operation) and (operandType = (operand).type) != type:
             raise RuntimeError("cannot use " + operandType.name + " operands with " + type.name + " operators")
 
     def evaluateOperand(self, operand: Any, variables: dict) -> Any:
         if isinstance(operand, Operation):
             return (operand).eval(variables)
-        if !(isinstance(operand, String)):
+        if not (isinstance(operand, String)):
             return operand
         value = None
-        if variables is None || (value = variables.get(operand)) is None:
+        if variables is None or (value = variables.get(operand)) is None:
             raise RuntimeError("no value for variable \"" + operand + "\"")
         return value
 
@@ -235,7 +235,7 @@ class Compiler:
                 if nextOperator == Operator.END:
                     operand = Operation.binaryOperationfactory(operator, operand, nextOperand)
                     operator = Operator.END
-                    if preReadOperator is None || endOfExpressionChar == '\0':
+                    if preReadOperator is None or endOfExpressionChar == '\0':
                         continue
                     self.tokeniser.pushBack(Operator.END)
                 elif nextOperator.precedence <= terminatePrecedence:
@@ -248,7 +248,7 @@ class Compiler:
                 else:
                     operand = Operation.binaryOperationfactory(operator, operand, self.compile(nextOperand, nextOperator, nestingLevel, endOfExpressionChar, operator.precedence))
                     operator = self.tokeniser.getOperator(endOfExpressionChar)
-                    if operator != Operator.END || preReadOperator is None || endOfExpressionChar == '\0':
+                    if operator != Operator.END or preReadOperator is None or endOfExpressionChar == '\0':
                         continue
                     self.tokeniser.pushBack(Operator.END)
         return operand

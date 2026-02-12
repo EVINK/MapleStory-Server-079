@@ -75,7 +75,7 @@ class PlayerHandler:
                 return False
 
     def ChangeMonsterBookCover(self, bookid: int, c: Any, chr: Any) -> None:
-        if bookid == 0 || GameConstants.isMonsterCard(bookid):
+        if bookid == 0 or GameConstants.isMonsterCard(bookid):
             chr.setMonsterBookCover(bookid)
             chr.getMonsterBook().updateCard(c, bookid)
 
@@ -91,7 +91,7 @@ class PlayerHandler:
             chr.updateMacros(i, macro)
 
     def ChangeKeymap(self, slea: Any, chr: Any) -> None:
-        if slea.available() > 8 && chr is not None:
+        if slea.available() > 8 and chr is not None:
             chr.updateTick(slea.readInt())
             numChanges = slea.readInt(), i = 0
             while i < numChanges:
@@ -120,7 +120,7 @@ class PlayerHandler:
                     break
 
     def UseChair(self, itemId: int, c: Any, chr: Any) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             return
         toUse = chr.getInventory(MapleInventoryType.SETUP).findById(itemId)
         if toUse is None:
@@ -171,25 +171,25 @@ class PlayerHandler:
             if addrem == 0:
                 chr.deleteFromRocks(slea.readInt())
             elif addrem == 1:
-                if !FieldLimitType.VipRock.check(chr.getMap().getFieldLimit()):
+                if not FieldLimitType.VipRock.check(chr.getMap().getFieldLimit()):
                     chr.addRockMap()
                 else:
                     chr.dropMessage(1, "你可能不能添加此地图.")
         elif addrem == 0:
             chr.deleteFromRegRocks(slea.readInt())
         elif addrem == 1:
-            if !FieldLimitType.VipRock.check(chr.getMap().getFieldLimit()):
+            if not FieldLimitType.VipRock.check(chr.getMap().getFieldLimit()):
                 chr.addRegRockMap()
             else:
                 chr.dropMessage(1, "你可能不能添加此地图.")
         c.getSession().write(MTSCSPacket.getTrockRefresh(chr, vip == 1, addrem == 3))
 
     def CharInfoRequest(self, objectid: int, c: Any, chr: Any) -> None:
-        if c.getPlayer() is None || c.getPlayer().getMap() is None:
+        if c.getPlayer() is None or c.getPlayer().getMap() is None:
             return
         player = c.getPlayer().getMap().getCharacterById(objectid)
         c.getSession().write(MaplePacketCreator.enableActions())
-        if player is not None && !player.isClone() && (!player.isGM() || c.getPlayer().isGM()):
+        if player is not None and not player.isClone() and (not player.isGM() or c.getPlayer().isGM()):
             c.getSession().write(MaplePacketCreator.charInfo(player, c.getPlayer().getId() == objectid))
 
     def resetAllBossLog(self, chr: Any) -> None:
@@ -214,12 +214,12 @@ class PlayerHandler:
         is_pg = False
         isDeadlyAttack = False
         attacker = None
-        if chr.isHidden() || chr.getMap() is None:
+        if chr.isHidden() or chr.getMap() is None:
             return
-        if chr.isGM() && chr.isInvincible():
+        if chr.isGM() and chr.isInvincible():
             return
         stats = chr.getStat()
-        if type != -2 && type != -3 && type != -4:
+        if type != -2 and type != -3 and type != -4:
             monsteridfrom = slea.readInt()
             oid = slea.readInt()
             attacker = chr.getMap().getMonsterByOid(oid)
@@ -235,12 +235,12 @@ class PlayerHandler:
                     else:
                         mpattack += attackInfo.getMpBurn()
                     skill = MobSkillFactory.getMobSkill(attackInfo.getDiseaseSkill(), attackInfo.getDiseaseLevel())
-                    if skill is not None && (damage == -1 || damage > 0):
+                    if skill is not None and (damage == -1 or damage > 0):
                         skill.applyEffect(chr, attacker, False)
                     attacker.setMp(attacker.getMp() - attackInfo.getMpCon())
         if damage == -1:
             fake = 4020002 + (chr.getJob() / 10 - 40) * 100000
-        elif damage < -1 || damage > 60000:
+        elif damage < -1 or damage > 60000:
             AutobanManager.getInstance().addPoints(c, 1000, 60000, "Taking abnormal amounts of damge from " + monsteridfrom + ": " + damage)
             return
         chr.getCheatTracker().checkTakeDamage(damage)
@@ -254,16 +254,16 @@ class PlayerHandler:
                     skill = MobSkillFactory.getMobSkill(slea.readShort(), level)
                     if skill is not None:
                         skill.applyEffect(chr, attacker, False)
-            if type != -2 && type != -3 && type != -4:
-                bouncedam_ = ((Randomizer.nextInt(100) < chr.getStat().DAMreflect_rate) ? chr.getStat().DAMreflect : 0) + ((type == -1 && chr.getBuffedValue(MapleBuffStat.伤害反击) is not None) ? chr.getBuffedValue(MapleBuffStat.伤害反击) : 0) + ((type == -1 && chr.getBuffedValue(MapleBuffStat.PERFECT_ARMOR) is not None) ? chr.getBuffedValue(MapleBuffStat.PERFECT_ARMOR) : 0)
-                if bouncedam_ > 0 && attacker is not None:
+            if type != -2 and type != -3 and type != -4:
+                bouncedam_ = ((Randomizer.nextInt(100) < chr.getStat().DAMreflect_rate) ? chr.getStat().DAMreflect : 0) + ((type == -1 and chr.getBuffedValue(MapleBuffStat.伤害反击) is not None) ? chr.getBuffedValue(MapleBuffStat.伤害反击) : 0) + ((type == -1 and chr.getBuffedValue(MapleBuffStat.PERFECT_ARMOR) is not None) ? chr.getBuffedValue(MapleBuffStat.PERFECT_ARMOR) : 0)
+                if bouncedam_ > 0 and attacker is not None:
                     bouncedamage = damage * bouncedam_ / 100
                     bouncedamage = min(bouncedamage, attacker.getMobMaxHp() / 10)
                     attacker.damage(chr, bouncedamage, True)
                     damage -= bouncedamage
                     chr.getMap().broadcastMessage(chr, MobPacket.damageMonster(oid, bouncedamage), chr.getPosition())
                     is_pg = True
-            if type != -1 && type != -2 && type != -3 && type != -4:
+            if type != -1 and type != -2 and type != -3 and type != -4:
                 # switch (chr.getJob()):
                     # case 112:
                         skill2 = SkillFactory.getSkill(1120004)
@@ -296,7 +296,7 @@ class PlayerHandler:
                         chr.checkMonsterAggro(attacker)
                         c.getPlayer().setHp(c.getPlayer().getHp() - damage)
             zhanshenkangya = chr.getBuffedValue(MapleBuffStat.战神抗压)
-            if zhanshenkangya is not None && damage > 0:
+            if zhanshenkangya is not None and damage > 0:
                 attacker = chr.getMap().getMapObject(oid, MapleMapObjectType.MONSTER)
                 if attacker is not None:
                     kangya = SkillFactory.getSkill(21101003)
@@ -307,7 +307,7 @@ class PlayerHandler:
                     chr.checkMonsterAggro(attacker)
                     c.getPlayer().setHp(c.getPlayer().getHp() - damage)
             bouncedam_A = chr.getStatForBuff(MapleBuffStat.战神抗压)
-            if attacker is not None && bouncedam_A is not None && damage > 0:
+            if attacker is not None and bouncedam_A is not None and damage > 0:
                 kangya2 = SkillFactory.getSkill(21101003)
                 bouncedamage2 = (int)(kangya2.getEffect(chr.getSkillLevel(21101003)).getDamage() / 100.0 * damage)
                 attacker.damage(chr, bouncedamage2, True)
@@ -321,7 +321,7 @@ class PlayerHandler:
             blueAura = chr.getStatForBuff(MapleBuffStat.蓝色灵气)
             if blueAura is not None:
                 damage -= (int)(blueAura.getY() / 100.0 * damage)
-            if chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_PROC) is not None && chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_ABSORB) is not None:
+            if chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_PROC) is not None and chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_ABSORB) is not None:
                 buff = chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_PROC)
                 buffz = chr.getBuffedValue(MapleBuffStat.SATELLITESAFE_ABSORB)
                 if (int)(buff / 100.0 * chr.getStat().getMaxHp()) <= damage:
@@ -356,7 +356,7 @@ class PlayerHandler:
                     chr.cancelBuffStats(MapleBuffStat.金钱护盾)
                 else:
                     chr.gainMeso(-mesoloss, False)
-                if isDeadlyAttack && stats.getMp() > 1:
+                if isDeadlyAttack and stats.getMp() > 1:
                     mpattack = stats.getMp() - 1
                 chr.addMPHP(-damage, -mpattack)
             elif isDeadlyAttack:
@@ -364,14 +364,14 @@ class PlayerHandler:
             else:
                 chr.addMPHP(-damage, -mpattack)
             chr.handleBattleshipHP(-damage)
-        if !chr.isHidden():
+        if not chr.isHidden():
             chr.getMap().broadcastMessage(chr, MaplePacketCreator.damagePlayer(type, monsteridfrom, chr.getId(), damage, fake, direction, reflect, is_pg, oid, pos_x, pos_y), False)
 
     def AranCombo144(self, c: Any, chr: Any, toAdd: int) -> None:
-        if chr is not None && chr.getJob() >= 2000 && chr.getJob() <= 2112:
+        if chr is not None and chr.getJob() >= 2000 and chr.getJob() <= 2112:
             combo = chr.getCombo()
             curr = int(time.time() * 1000)
-            if combo > 0 && curr - chr.getLastCombo() > 7000:
+            if combo > 0 and curr - chr.getLastCombo() > 7000:
                 combo = 0
             combo = min(30000, combo + toAdd)
             chr.setLastComboTime(curr)
@@ -394,13 +394,13 @@ class PlayerHandler:
                     break
 
     def AranCombo(self, c: Any, chr: Any) -> None:
-        if chr is not None && chr.getJob() >= 2000 && chr.getJob() <= 2112:
+        if chr is not None and chr.getJob() >= 2000 and chr.getJob() <= 2112:
             combo = chr.getCombo()
             curr = int(time.time() * 1000)
-            if combo > 0 && curr - chr.getLastCombo() > 7000:
+            if combo > 0 and curr - chr.getLastCombo() > 7000:
                 combo = 0
                 skill = SkillFactory.getSkill(21000000)
-                if combo <= 1 && skill is not None:
+                if combo <= 1 and skill is not None:
                     SkillFactory.getSkill(21000000).getEffect(0).applyComboBuff(chr, 0)
             if combo < 30000:
                 combo += 1
@@ -425,7 +425,7 @@ class PlayerHandler:
 
     def UseItemEffect(self, itemId: int, c: Any, chr: Any) -> None:
         toUse = chr.getInventory(MapleInventoryType.CASH).findById(itemId)
-        if toUse is None || toUse.getItemId() != itemId || toUse.getQuantity() < 1:
+        if toUse is None or toUse.getItemId() != itemId or toUse.getQuantity() < 1:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         if itemId != 5510000:
@@ -467,29 +467,29 @@ class PlayerHandler:
         if chr is None:
             return
         skilllevel_serv = chr.getSkillLevel(skill)
-        if skilllevel_serv > 0 && skilllevel_serv == level && skill.isChargeSkill():
+        if skilllevel_serv > 0 and skilllevel_serv == level and skill.isChargeSkill():
             chr.setKeyDownSkill_Time(int(time.time() * 1000))
             chr.getMap().broadcastMessage(chr, MaplePacketCreator.skillEffect(chr, skillId, level, flags, speed, unk), False)
 
     def SpecialMove(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || !chr.isAlive() || chr.getMap() is None:
+        if chr is None or not chr.isAlive() or chr.getMap() is None:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         slea.skip(4)
         skillid = slea.readInt()
         skillLevel = slea.readByte()
         skill = SkillFactory.getSkill(skillid)
-        if chr.getSkillLevel(skill) <= 0 || chr.getSkillLevel(skill) != skillLevel:
-            if !GameConstants.isMulungSkill(skillid) && !GameConstants.isPyramidSkill(skillid):
+        if chr.getSkillLevel(skill) <= 0 or chr.getSkillLevel(skill) != skillLevel:
+            if not GameConstants.isMulungSkill(skillid) and not GameConstants.isPyramidSkill(skillid):
                 return
             if GameConstants.isMulungSkill(skillid):
                 if chr.getMapId() / 10000 != 92502:
                     return
                 chr.mulung_EnergyModify(False)
-            elif GameConstants.isPyramidSkill(skillid) && chr.getMapId() / 10000 != 92602:
+            elif GameConstants.isPyramidSkill(skillid) and chr.getMapId() / 10000 != 92602:
                 return
         effect = skill.getEffect(chr.getSkillLevel(GameConstants.getLinkedAranSkill(skillid)))
-        if effect.getCooldown() > 0 && !chr.isGM():
+        if effect.getCooldown() > 0 and not chr.isGM():
             if chr.skillisCooling(skillid):
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
@@ -514,26 +514,26 @@ class PlayerHandler:
                 break
             # default:
                 pos = None
-                if slea.available() == 7 || skill.getId() == 3111002 || skill.getId() == 3211002:
+                if slea.available() == 7 or skill.getId() == 3111002 or skill.getId() == 3211002:
                     pos = slea.readPos()
                 if effect.is时空门():
-                    if !FieldLimitType.MysticDoor.check(chr.getMap().getFieldLimit()):
+                    if not FieldLimitType.MysticDoor.check(chr.getMap().getFieldLimit()):
                         effect.applyTo(c.getPlayer(), pos)
                         break
                     c.getSession().write(MaplePacketCreator.enableActions())
                     break
                 else:
                     mountid = MapleStatEffect.parseMountInfo(c.getPlayer(), skill.getId())
-                    if mountid != 0 && mountid != GameConstants.getMountItem(skill.getId()) && !c.getPlayer().isGM() && c.getPlayer().getBuffedValue(MapleBuffStat.骑兽技能) is None && c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-118)) is None && !GameConstants.isMountItemAvailable(mountid, c.getPlayer().getJob()):
+                    if mountid != 0 and mountid != GameConstants.getMountItem(skill.getId()) and not c.getPlayer().isGM() and c.getPlayer().getBuffedValue(MapleBuffStat.骑兽技能) is None and c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-118)) is None and not GameConstants.isMountItemAvailable(mountid, c.getPlayer().getJob()):
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
                     effect.applyTo(c.getPlayer(), pos)
                     break
 
     def closeRangeAttack(self, slea: Any, c: Any, chr: Any, energy: bool) -> None:
-        if chr is None || (energy && chr.getBuffedValue(MapleBuffStat.能量获得) is None && chr.getBuffedValue(MapleBuffStat.战神抗压) is None && !GameConstants.isKOC(chr.getJob())):
+        if chr is None or (energy and chr.getBuffedValue(MapleBuffStat.能量获得) is None and chr.getBuffedValue(MapleBuffStat.战神抗压) is None and not GameConstants.isKOC(chr.getJob())):
             return
-        if !chr.isAlive() || chr.getMap() is None:
+        if not chr.isAlive() or chr.getMap() is None:
             chr.getCheatTracker().registerOffense(CheatingOffense.人物死亡攻击)
             return
         隐身 = chr.getBuffedValue(MapleBuffStat.隐身术)
@@ -541,19 +541,19 @@ class PlayerHandler:
         if 隐身 is not None:
             if attack.skill == 0:
                 chr.cancelEffectFromBuffStat(MapleBuffStat.隐身术)
-            if chr.getJob() == 1410 && attack.skill != 14100005 && attack.skill != 0:
+            if chr.getJob() == 1410 and attack.skill != 14100005 and attack.skill != 0:
                 chr.dropMessage(5, "夜行者隐身状态除非使用驱逐技能。其他技能均无效！")
                 return
-            if (chr.getJob() != 400 || chr.getJob() != 410 || chr.getJob() != 411 || chr.getJob() != 412) && attack.skill != 4221001 && attack.skill != 4221007 && attack.skill != 0:
+            if (chr.getJob() != 400 or chr.getJob() != 410 or chr.getJob() != 411 or chr.getJob() != 412) and attack.skill != 4221001 and attack.skill != 4221007 and attack.skill != 0:
                 chr.dropMessage(5, "隐身状态下除非使用刀飞的暗杀技能和一出双击技能。其他技能均无效！")
                 return
         mirror = chr.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) is not None
         maxdamage = chr.getStat().getCurrentMaxBaseDamage()
-        attackCount = (chr.getJob() >= 430 && chr.getJob() <= 434) ? 2 : 1
+        attackCount = (chr.getJob() >= 430 and chr.getJob() <= 434) ? 2 : 1
         skillLevel = 0
         effect = None
         skill = None
-        if attack.skill == 21100004 || attack.skill == 21100005 || attack.skill == 21110004 || attack.skill == 21120006 || attack.skill == 21120007:
+        if attack.skill == 21100004 or attack.skill == 21100005 or attack.skill == 21110004 or attack.skill == 21120006 or attack.skill == 21120007:
             chr.setCombo(1)
         if attack.skill != 0:
             skill = SkillFactory.getSkill(GameConstants.getLinkedAranSkill(attack.skill))
@@ -563,15 +563,15 @@ class PlayerHandler:
                 return
             maxdamage *= effect.getDamage() / 100.0
             attackCount = effect.getAttackCount()
-            if effect.getCooldown() > 0 && !chr.isGM():
+            if effect.getCooldown() > 0 and not chr.isGM():
                 if chr.skillisCooling(attack.skill):
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 c.getSession().write(MaplePacketCreator.skillCooldown(attack.skill, effect.getCooldown()))
                 chr.addCooldown(attack.skill, int(time.time() * 1000), effect.getCooldown() * 1000)
         attackCount *= (mirror ? 2 : 1)
-        if !energy:
-            if (chr.getMapId() == 109060000 || chr.getMapId() == 109060002 || chr.getMapId() == 109060004) && attack.skill == 0:
+        if not energy:
+            if (chr.getMapId() == 109060000 or chr.getMapId() == 109060002 or chr.getMapId() == 109060004) and attack.skill == 0:
                 MapleSnowball.MapleSnowballs.hitSnowball(chr)
             numFinisherOrbs = 0
             comboBuff = chr.getBuffedValue(MapleBuffStat.斗气集中)
@@ -579,7 +579,7 @@ class PlayerHandler:
                 if comboBuff is not None:
                     numFinisherOrbs = comboBuff - 1
                 chr.handleOrbconsume()
-            elif attack.targets > 0 && comboBuff is not None:
+            elif attack.targets > 0 and comboBuff is not None:
                 # switch (chr.getJob()):
                     # case 111:
                     # case 112:
@@ -603,7 +603,7 @@ class PlayerHandler:
                 maxdamage *= numFinisherOrbs
             elif comboBuff is not None:
                 combo = None
-                if c.getPlayer().getJob() == 1110 || c.getPlayer().getJob() == 1111:
+                if c.getPlayer().getJob() == 1110 or c.getPlayer().getJob() == 1111:
                     combo = SkillFactory.getSkill(11111001)
                 else:
                     combo = SkillFactory.getSkill(1111002)
@@ -620,7 +620,7 @@ class PlayerHandler:
     def rangedAttack(self, slea: Any, c: Any, chr: Any) -> None:
         if chr is None:
             return
-        if !chr.isAlive() || chr.getMap() is None:
+        if not chr.isAlive() or chr.getMap() is None:
             chr.getCheatTracker().registerOffense(CheatingOffense.人物死亡攻击)
             return
         attack = DamageParse.Modify_AttackCrit(DamageParse.parseDmgR(slea, chr), chr, 2)
@@ -642,7 +642,7 @@ class PlayerHandler:
                 # default:
                     bulletCount = effect.getBulletCount()
                     break
-            if effect.getCooldown() > 0 && !chr.isGM():
+            if effect.getCooldown() > 0 and not chr.isGM():
                 if chr.skillisCooling(attack.skill):
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
@@ -653,7 +653,7 @@ class PlayerHandler:
             bulletCount *= 2
         projectile = 0
         visProjectile = 0
-        if attack.AOE != 0 && chr.getBuffedValue(MapleBuffStat.无形箭弩) is None && attack.skill != 4111004:
+        if attack.AOE != 0 and chr.getBuffedValue(MapleBuffStat.无形箭弩) is None and attack.skill != 4111004:
             if chr.getInventory(MapleInventoryType.USE).getItem(attack.starSlot) is None:
                 return
             projectile = chr.getInventory(MapleInventoryType.USE).getItem(attack.starSlot).getItemId()
@@ -665,9 +665,9 @@ class PlayerHandler:
                 visProjectile = projectile
             if chr.getBuffedValue(MapleBuffStat.暗器伤人) is None:
                 bulletConsume = bulletCount
-                if effect is not None && effect.getBulletConsume() != 0:
+                if effect is not None and effect.getBulletConsume() != 0:
                     bulletConsume = effect.getBulletConsume() * ((ShadowPartner is not None) ? 2 : 1)
-                if !MapleInventoryManipulator.removeById(c, MapleInventoryType.USE, projectile, bulletConsume, False, True):
+                if not MapleInventoryManipulator.removeById(c, MapleInventoryType.USE, projectile, bulletConsume, False, True):
                     chr.dropMessage(5, "您的箭/子弹/飞镖不足。")
                     return
         # switch (chr.getJob()):
@@ -696,9 +696,13 @@ class PlayerHandler:
         DamageParse.applyAttack(attack, skill, chr, bulletCount, basedamage, effect, (ShadowPartner is not None) ? AttackType.RANGED_WITH_SHADOWPARTNER : AttackType.RANGED)
 
     def MagicDamage(self, slea: Any, c: Any, chr: Any) -> None:
+        def _task_1():
+            clone.getMap().broadcastMessage(MaplePacketCreator.magicAttack(clone.getId(), attack2.tbyte, attack2.skill, skillLevel2, attack2.display, attack2.animation, attack2.speed, attack2.allDamage, attack2.charge, clone.getLevel(), attack2.unk))
+            DamageParse.applyAttackMagic(attack2, skil2, chr, eff2)
+
         if chr is None:
             return
-        if !chr.isAlive() || chr.getMap() is None:
+        if not chr.isAlive() or chr.getMap() is None:
             chr.getCheatTracker().registerOffense(CheatingOffense.人物死亡攻击)
             return
         attack = DamageParse.Modify_AttackCrit(DamageParse.parseDmgMa(slea, chr), chr, 3)
@@ -708,7 +712,7 @@ class PlayerHandler:
         effect = attack.getAttackEffect(chr, skillLevel, skill)
         if effect is None:
             return
-        if effect.getCooldown() > 0 && !chr.isGM():
+        if effect.getCooldown() > 0 and not chr.isGM():
             if chr.skillisCooling(attack.skill):
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
@@ -725,17 +729,14 @@ class PlayerHandler:
                 eff2 = effect
                 skillLevel2 = skillLevel
                 attack2 = DamageParse.DivideAttack(attack, chr.isGM() ? 1 : 4)
-                Timer.CloneTimer.getInstance().schedule(Runnable()
-                    public void run()
-                        clone.getMap().broadcastMessage(MaplePacketCreator.magicAttack(clone.getId(), attack2.tbyte, attack2.skill, skillLevel2, attack2.display, attack2.animation, attack2.speed, attack2.allDamage, attack2.charge, clone.getLevel(), attack2.unk))
-                        DamageParse.applyAttackMagic(attack2, skil2, chr, eff2)
+                Timer.CloneTimer.getInstance().schedule(_task_1, 500 * i + 500)
 
     def run(self) -> None:
         clone.getMap().broadcastMessage(MaplePacketCreator.magicAttack(clone.getId(), attack2.tbyte, attack2.skill, skillLevel2, attack2.display, attack2.animation, attack2.speed, attack2.allDamage, attack2.charge, clone.getLevel(), attack2.unk))
         DamageParse.applyAttackMagic(attack2, skil2, chr, eff2)
 
     def DropMeso(self, meso: int, chr: Any) -> None:
-        if !chr.isAlive() || meso < 10 || meso > 50000 || meso > chr.getMeso():
+        if not chr.isAlive() or meso < 10 or meso > 50000 or meso > chr.getMeso():
             chr.getClient().getSession().write(MaplePacketCreator.enableActions())
             return
         chr.gainMeso(-meso, False, True)
@@ -743,21 +744,22 @@ class PlayerHandler:
         chr.getCheatTracker().checkDrop(True)
 
     def ChangeEmotion(self, emote: int, chr: Any) -> None:
+        def _task_1():
+            clone.getMap().broadcastMessage(MaplePacketCreator.facialExpression(clone, emote))
+
         if emote > 7:
             emoteid = 5159992 + emote
             type = GameConstants.getInventoryType(emoteid)
             if chr.getInventory(type).findById(emoteid) is None:
                 chr.getCheatTracker().registerOffense(CheatingOffense.使用不存在道具, Integer.toString(emoteid))
                 return
-        if emote > 0 && chr is not None && chr.getMap() is not None:
+        if emote > 0 and chr is not None and chr.getMap() is not None:
             chr.getMap().broadcastMessage(chr, MaplePacketCreator.facialExpression(chr, emote), False)
             clones = chr.getClones()
             for i in range(len(clones)):
                 if clones[i].get() is not None:
                     clone = clones[i].get()
-                    Timer.CloneTimer.getInstance().schedule(Runnable()
-                        public void run()
-                            clone.getMap().broadcastMessage(MaplePacketCreator.facialExpression(clone, emote))
+                    Timer.CloneTimer.getInstance().schedule(_task_1, 500 * i + 500)
 
     def Heal(self, slea: Any, chr: Any) -> None:
         if chr is None:
@@ -770,18 +772,30 @@ class PlayerHandler:
         check_mp = stats.getHealMP()
         if stats.getHp() <= 0:
             return
-        if chr.canHP() && healHP != 0:
+        if chr.canHP() and healHP != 0:
             if chr.getChair() != 0:
                 check_hp += 150
-            if healHP > check_hp * 2 && healHP > 20:
+            if healHP > check_hp * 2 and healHP > 20:
                 chr.getCheatTracker().registerOffense(CheatingOffense.回复过多HP, str(healHP) + " 服务器:" + check_hp)
             chr.addHP(healHP)
-        if chr.canMP() && healMP != 0:
-            if healMP > check_mp * 2 && healMP > 20:
+        if chr.canMP() and healMP != 0:
+            if healMP > check_mp * 2 and healMP > 20:
                 chr.getCheatTracker().registerOffense(CheatingOffense.回复过多MP, str(healMP) + "服务器:" + check_mp)
             chr.addMP(healMP)
 
     def MovePlayer(self, slea: Any, c: Any, chr: Any) -> None:
+        def _task_1():
+            try:
+                if clone.getMap() == map:
+                    if clone.isHidden():
+                        clone.setLastRes(res3)
+                    else:
+                        map.broadcastMessage(clone, MaplePacketCreator.movePlayer(clone.getId(), res3, Original_Pos), False)
+                    MovementParse.updatePosition(res3, clone, 0)
+                    map.movePlayer(clone, pos)
+            except Exception as ex:
+                pass
+
         if chr is None:
             return
         Original_Pos = chr.getPosition()
@@ -793,8 +807,8 @@ class PlayerHandler:
             print("AIOBE Type1:\n")
             # System.out.println("AIOBE Type1:\n" + slea.toString(true));
             return
-        if res is not None && c.getPlayer().getMap() is not None:
-            if slea.available() < 13 || slea.available() > 26:
+        if res is not None and c.getPlayer().getMap() is not None:
+            if slea.available() < 13 or slea.available() > 26:
                 # System.out.println("slea.available != 13-26 (movement parsing error)\n" + slea.toString(true));
                 print("slea.available != 13-26 (movement parsing error)\n")
                 return
@@ -808,7 +822,7 @@ class PlayerHandler:
             MovementParse.updatePosition(res, chr, 0)
             pos = chr.getPosition()
             map.movePlayer(chr, pos)
-            if chr.getFollowId() > 0 && chr.isFollowOn() && chr.isFollowInitiator():
+            if chr.getFollowId() > 0 and chr.isFollowOn() and chr.isFollowInitiator():
                 fol = map.getCharacterById(chr.getFollowId())
                 if fol is not None:
                     original_pos = fol.getPosition()
@@ -821,19 +835,9 @@ class PlayerHandler:
                 if clones[i].get() is not None:
                     clone = clones[i].get()
                     res3 = []
-                    Timer.CloneTimer.getInstance().schedule(Runnable()
-                        public void run()
-                            try:
-                                if clone.getMap() == map:
-                                    if clone.isHidden():
-                                        clone.setLastRes(res3)
-                                    else:
-                                        map.broadcastMessage(clone, MaplePacketCreator.movePlayer(clone.getId(), res3, Original_Pos), False)
-                                    MovementParse.updatePosition(res3, clone, 0)
-                                    map.movePlayer(clone, pos)
-                            catch (Exception ex) {}
+                    Timer.CloneTimer.getInstance().schedule(_task_1, 500 * i + 500)
             count = c.getPlayer().getFallCounter()
-            if map.getFootholds().findBelow(c.getPlayer().getPosition()) is None && c.getPlayer().getPosition().y > c.getPlayer().getOldPosition().y && c.getPlayer().getPosition().x == c.getPlayer().getOldPosition().x:
+            if map.getFootholds().findBelow(c.getPlayer().getPosition()) is None and c.getPlayer().getPosition().y > c.getPlayer().getOldPosition().y and c.getPlayer().getPosition().x == c.getPlayer().getOldPosition().x:
                 if count > 10:
                     c.getPlayer().changeMap(map, map.getPortal(0))
                     c.getPlayer().setFallCounter(0)
@@ -857,7 +861,7 @@ class PlayerHandler:
             c.getSession().write(MaplePacketCreator.enableActions())
 
     def ChangeMap(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             NPCScriptManager.getInstance().dispose(c)
             c.getSession().write(MaplePacketCreator.enableActions())
             return
@@ -868,16 +872,16 @@ class PlayerHandler:
             if targetid == 0:
                 targetid = 1000000
             portal = chr.getMap().getPortal(slea.readMapleAsciiString())
-            wheel = slea.readShort() > 0 && !MapConstants.isEventMap(chr.getMapId()) && chr.haveItem(5510000, 1, False, True)
-            if targetid != -1 && !chr.isAlive():
+            wheel = slea.readShort() > 0 and not MapConstants.isEventMap(chr.getMapId()) and chr.haveItem(5510000, 1, False, True)
+            if targetid != -1 and not chr.isAlive():
                 chr.setStance(0)
-                if chr.getEventInstance() is not None && chr.getEventInstance().revivePlayer(chr) && chr.isAlive():
+                if chr.getEventInstance() is not None and chr.getEventInstance().revivePlayer(chr) and chr.isAlive():
                     return
                 if chr.getPyramidSubway() is not None:
                     chr.getStat().setHp(50)
                     chr.getPyramidSubway().fail(chr)
                     return
-                if !wheel:
+                if not wheel:
                     chr.getStat().setHp(50)
                     to = chr.getMap().getReturnMap()
                     resetAllBossLog(chr)
@@ -888,12 +892,12 @@ class PlayerHandler:
                     MapleInventoryManipulator.removeById(c, MapleInventoryType.CASH, 5510000, 1, True, False)
                     to = chr.getMap()
                     chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && chr.isGM():
+            elif targetid != -1 and chr.isGM():
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                 chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && !chr.isGM():
+            elif targetid != -1 and not chr.isGM():
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
-                if c.getPlayer().isGM() || (chr.getMapId() == 0 && to.getId() == 10000) || (chr.getMapId() == 2010000 && to.getId() == 104000000) || (chr.getMapId() == 1020100 && to.getId() == 1020000) || (chr.getMapId() == 1020200 && to.getId() == 1020000) || (chr.getMapId() == 1020300 && to.getId() == 1020000) || (chr.getMapId() == 1020400 && to.getId() == 1020000) || (chr.getMapId() == 1020500 && to.getId() == 1020000) || (chr.getMapId() == 914090010 && to.getId() == 914090011) || (chr.getMapId() == 914090011 && to.getId() == 914090012) || (chr.getMapId() == 914090012 && to.getId() == 914090013) || (chr.getMapId() == 914090013 && to.getId() == 140090000) || (chr.getMapId() == 914090100 && to.getId() == 140000000):
+                if c.getPlayer().isGM() or (chr.getMapId() == 0 and to.getId() == 10000) or (chr.getMapId() == 2010000 and to.getId() == 104000000) or (chr.getMapId() == 1020100 and to.getId() == 1020000) or (chr.getMapId() == 1020200 and to.getId() == 1020000) or (chr.getMapId() == 1020300 and to.getId() == 1020000) or (chr.getMapId() == 1020400 and to.getId() == 1020000) or (chr.getMapId() == 1020500 and to.getId() == 1020000) or (chr.getMapId() == 914090010 and to.getId() == 914090011) or (chr.getMapId() == 914090011 and to.getId() == 914090012) or (chr.getMapId() == 914090012 and to.getId() == 914090013) or (chr.getMapId() == 914090013 and to.getId() == 140090000) or (chr.getMapId() == 914090100 and to.getId() == 140000000):
                     pto = to.getPortal(0)
                     chr.changeMap(to, pto)
                 else:
@@ -905,7 +909,7 @@ class PlayerHandler:
                 c.getSession().write(MaplePacketCreator.enableActions())
 
     def ChangeMap33(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             NPCScriptManager.getInstance().dispose(c)
             c.getSession().write(MaplePacketCreator.enableActions())
             return
@@ -926,16 +930,16 @@ class PlayerHandler:
                 targetid = 1000000
             startwp = slea.readMapleAsciiString()
             portal = c.getPlayer().getMap().getPortal(startwp)
-            wheel = slea.readShort() > 0 && !MapConstants.isEventMap(chr.getMapId()) && chr.haveItem(5510000, 1, False, True)
-            if targetid != -1 && !chr.isAlive():
+            wheel = slea.readShort() > 0 and not MapConstants.isEventMap(chr.getMapId()) and chr.haveItem(5510000, 1, False, True)
+            if targetid != -1 and not chr.isAlive():
                 chr.setStance(0)
-                if chr.getEventInstance() is not None && chr.getEventInstance().revivePlayer(chr) && chr.isAlive():
+                if chr.getEventInstance() is not None and chr.getEventInstance().revivePlayer(chr) and chr.isAlive():
                     return
                 if chr.getPyramidSubway() is not None:
                     chr.getStat().setHp(50)
                     chr.getPyramidSubway().fail(chr)
                     return
-                if !wheel:
+                if not wheel:
                     chr.getStat().setHp(50)
                     to = chr.getMap().getReturnMap()
                     resetAllBossLog(chr)
@@ -946,12 +950,12 @@ class PlayerHandler:
                     MapleInventoryManipulator.removeById(c, MapleInventoryType.CASH, 5510000, 1, True, False)
                     to = chr.getMap()
                     chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && chr.isGM():
+            elif targetid != -1 and chr.isGM():
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                 chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && !chr.isGM():
+            elif targetid != -1 and not chr.isGM():
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
-                if c.getPlayer().isGM() || (chr.getMapId() == 0 && to.getId() == 10000) || (chr.getMapId() == 2010000 && to.getId() == 104000000) || (chr.getMapId() == 1020100 && to.getId() == 1020000) || (chr.getMapId() == 1020200 && to.getId() == 1020000) || (chr.getMapId() == 1020300 && to.getId() == 1020000) || (chr.getMapId() == 1020400 && to.getId() == 1020000) || (chr.getMapId() == 1020500 && to.getId() == 1020000) || (chr.getMapId() == 914090010 && to.getId() == 914090011) || (chr.getMapId() == 914090011 && to.getId() == 914090012) || (chr.getMapId() == 914090012 && to.getId() == 914090013) || (chr.getMapId() == 914090013 && to.getId() == 140090000) || (chr.getMapId() == 914090100 && to.getId() == 140000000):
+                if c.getPlayer().isGM() or (chr.getMapId() == 0 and to.getId() == 10000) or (chr.getMapId() == 2010000 and to.getId() == 104000000) or (chr.getMapId() == 1020100 and to.getId() == 1020000) or (chr.getMapId() == 1020200 and to.getId() == 1020000) or (chr.getMapId() == 1020300 and to.getId() == 1020000) or (chr.getMapId() == 1020400 and to.getId() == 1020000) or (chr.getMapId() == 1020500 and to.getId() == 1020000) or (chr.getMapId() == 914090010 and to.getId() == 914090011) or (chr.getMapId() == 914090011 and to.getId() == 914090012) or (chr.getMapId() == 914090012 and to.getId() == 914090013) or (chr.getMapId() == 914090013 and to.getId() == 140090000) or (chr.getMapId() == 914090100 and to.getId() == 140000000):
                     pto = to.getPortal(0)
                     chr.changeMap(to, pto)
                 else:
@@ -982,16 +986,16 @@ class PlayerHandler:
             if targetid == 0:
                 targetid = 1000000
             portal = chr.getMap().getPortal(slea.readMapleAsciiString())
-            wheel = slea.readShort() > 0 && !MapConstants.isEventMap(chr.getMapId()) && chr.haveItem(5510000, 1, False, True)
-            if targetid != -1 && !chr.isAlive():
+            wheel = slea.readShort() > 0 and not MapConstants.isEventMap(chr.getMapId()) and chr.haveItem(5510000, 1, False, True)
+            if targetid != -1 and not chr.isAlive():
                 chr.setStance(0)
-                if chr.getEventInstance() is not None && chr.getEventInstance().revivePlayer(chr) && chr.isAlive():
+                if chr.getEventInstance() is not None and chr.getEventInstance().revivePlayer(chr) and chr.isAlive():
                     return
                 if chr.getPyramidSubway() is not None:
                     chr.getStat().setHp(50)
                     chr.getPyramidSubway().fail(chr)
                     return
-                if !wheel:
+                if not wheel:
                     chr.getStat().setHp(50)
                     to = chr.getMap().getReturnMap()
                     resetAllBossLog(chr)
@@ -1002,53 +1006,53 @@ class PlayerHandler:
                     MapleInventoryManipulator.removeById(c, MapleInventoryType.CASH, 5510000, 1, True, False)
                     to = chr.getMap()
                     chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && chr.isGM():
+            elif targetid != -1 and chr.isGM():
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                 chr.changeMap(to, to.getPortal(0))
-            elif targetid != -1 && !chr.isGM():
+            elif targetid != -1 and not chr.isGM():
                 divi = chr.getMapId() / 100
                 if divi == 9130401:
-                    if targetid == 130000000 || targetid / 100 == 9130401:
+                    if targetid == 130000000 or targetid / 100 == 9130401:
                         to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                         chr.changeMap(to2, to2.getPortal(0))
                 elif divi == 9140900:
-                    if targetid == 914090011 || targetid == 914090012 || targetid == 914090013 || targetid == 140090000:
+                    if targetid == 914090011 or targetid == 914090012 or targetid == 914090013 or targetid == 140090000:
                         to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                         chr.changeMap(to2, to2.getPortal(0))
-                elif divi == 9140901 && targetid == 140000000:
+                elif divi == 9140901 and targetid == 140000000:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif divi == 9140902 && (targetid == 140030000 || targetid == 140000000):
+                elif divi == 9140902 and (targetid == 140030000 or targetid == 140000000):
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif divi == 9000900 && targetid / 100 == 9000900 && targetid > chr.getMapId():
+                elif divi == 9000900 and targetid / 100 == 9000900 and targetid > chr.getMapId():
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif divi / 1000 == 9000 && targetid / 100000 == 9000:
-                    if targetid < 900090000 || targetid > 900090004:
+                elif divi / 1000 == 9000 and targetid / 100000 == 9000:
+                    if targetid < 900090000 or targetid > 900090004:
                         c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif divi / 10 == 1020 && targetid == 1020000:
+                elif divi / 10 == 1020 and targetid == 1020000:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif chr.getMapId() == 900090101 && targetid == 100030100:
+                elif chr.getMapId() == 900090101 and targetid == 100030100:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif chr.getMapId() == 2010000 && targetid == 104000000:
+                elif chr.getMapId() == 2010000 and targetid == 104000000:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
-                elif chr.getMapId() == 106020001 || chr.getMapId() == 106020502:
+                elif chr.getMapId() == 106020001 or chr.getMapId() == 106020502:
                     if targetid == chr.getMapId() - 1:
                         c.getSession().write(MaplePacketCreator.enableActions())
                         to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                         chr.changeMap(to2, to2.getPortal(0))
-                elif chr.getMapId() == 0 && targetid == 10000:
+                elif chr.getMapId() == 0 and targetid == 10000:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     to2 = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid)
                     chr.changeMap(to2, to2.getPortal(0))
@@ -1084,6 +1088,6 @@ class PlayerHandler:
         damage = slea.readInt() + 100
         attackto = slea.readInt()
         mob = c.getPlayer().getMap().getMonsterByOid(attackto)
-        if mob is not None && mob.getHp() > 0:
+        if mob is not None and mob.getHp() > 0:
             mob.damage(c.getPlayer(), damage, True)
 

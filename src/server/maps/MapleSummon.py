@@ -47,7 +47,7 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
             self.fh = owner.getMap().getFootholds().findBelow(pos).getId()
         except TypeError as e:
             self.fh = 0
-        if !self.is替身术():
+        if not self.is替身术():
             self.lastSummonTickCount = 0
             self.Summon_tickResetCount = 0
             self.Server_ClientSummonTickDiff = 0
@@ -107,7 +107,7 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
         return self.skill == 1321007
 
     def isMultiSummon(self) -> bool:
-        return self.skill == 5211002 || self.skill == 5211001 || self.skill == 5220002 || self.skill == 32111006
+        return self.skill == 5211002 or self.skill == 5211001 or self.skill == 5220002 or self.skill == 32111006
 
     def isSummon(self) -> bool:
         # switch (self.skill):

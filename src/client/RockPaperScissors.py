@@ -30,11 +30,11 @@ class RockPaperScissors:
 
 
     def answer(self, c: Any, answer: int) -> bool:
-        if self.ableAnswer && !self.win && answer >= 0 && answer <= 2:
+        if self.ableAnswer and not self.win and answer >= 0 and answer <= 2:
             response = Randomizer.nextInt(3)
             if response == answer:
                 c.getSession().write(MaplePacketCreator.getRPSMode(11, -1, response, self.round))
-            elif (answer == 0 && response == 2) || (answer == 1 && response == 0) || (answer == 2 && response == 1):
+            elif (answer == 0 and response == 2) or (answer == 1 and response == 0) or (answer == 2 and response == 1):
                 c.getSession().write(MaplePacketCreator.getRPSMode(11, -1, response, (byte)(self.round + 1)))
                 self.ableAnswer = False
                 self.win = True
@@ -46,7 +46,7 @@ class RockPaperScissors:
         return False
 
     def timeOut(self, c: Any) -> bool:
-        if self.ableAnswer && !self.win:
+        if self.ableAnswer and not self.win:
             self.ableAnswer = False
             c.getSession().write(MaplePacketCreator.getRPSMode(10, -1, -1, -1))
             return True

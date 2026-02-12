@@ -59,11 +59,13 @@ class DumpNpcNames:
                 if npcData.getData(n) is None:
                     continue
                 name = MapleDataTool.getString("name", c, "MISSINGNO")
-                if ("Maple TV" in name) || ("Baby Moon Bunny" in name):
+                if ("Maple TV" in name) or ("Baby Moon Bunny" in name):
                     continue
                 DumpNpcNames.npcNames.put(nid, name)
-            catch (NullPointerException ex2) {}
-            catch (RuntimeException ex3) {}
+            except NullPointerException as ex2:
+                pass
+            except Exception as ex3:
+                pass
         for key in DumpNpcNames.npcNames.keys():
             try:
                 # try-with-resources: final PreparedStatement ps2 = self.con.prepareStatement("INSERT INTO `wz_npcnamedata` (`npc`, `name`) VALUES (?, ?)")

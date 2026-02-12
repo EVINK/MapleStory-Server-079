@@ -35,14 +35,14 @@ class CommandProcessor:
     # cL = []
     # for c in a:
     # try:
-    # if !Modifier.isAbstract(c.getModifiers()) && !c.isSynthetic():
+    # if not Modifier.isAbstract(c.getModifiers()) and not c.isSynthetic():
     # o = c.newInstance()
     # enabled = None
     # try:
     # enabled = c.getDeclaredField("enabled").getBoolean(c.getDeclaredField("enabled"))
     # except NoSuchFieldException as ex3:
     # enabled = True
-    # if isinstance(o, CommandExecute) && enabled:
+    # if isinstance(o, CommandExecute) and enabled:
     # cL.add(rankNeeded.getCommandPrefix() + c.getSimpleName().lower())
     # CommandProcessor.commands.put(rankNeeded.getCommandPrefix() + c.getSimpleName().lower(), CommandObject(rankNeeded.getCommandPrefix() + c.getSimpleName().lower(), o, rankNeeded.getLevel()))
     # except Exception:
@@ -69,20 +69,20 @@ class CommandProcessor:
 
     def processCommand(self, c: Any, line: str, type: Any) -> bool:
         if line[0] != ServerConstants.PlayerGMRank.NORMAL.getCommandPrefix():  # 管理员命令
-            if c.getPlayer().getGMLevel() > ServerConstants.PlayerGMRank.NORMAL.getLevel() && (line[0] == ServerConstants.PlayerGMRank.GM.getCommandPrefix() || line[0] == ServerConstants.PlayerGMRank.ADMIN.getCommandPrefix() || line[0] == ServerConstants.PlayerGMRank.INTERN.getCommandPrefix()):
+            if c.getPlayer().getGMLevel() > ServerConstants.PlayerGMRank.NORMAL.getLevel() and (line[0] == ServerConstants.PlayerGMRank.GM.getCommandPrefix() or line[0] == ServerConstants.PlayerGMRank.ADMIN.getCommandPrefix() or line[0] == ServerConstants.PlayerGMRank.INTERN.getCommandPrefix()):
                 splitted = line.split(" ")
                 splitted[0] = splitted[0].lower()
-                if line[0] == '!':
+                if line[0] == 'not ':
                     co = CommandProcessor.commands.get(splitted[0])
-                    if splitted[0] == ("!help"):
+                    if splitted[0] == ("not help"):
                         dropHelp(c, 0)
                         return True
-                    if co is None || co.getType() != type:
+                    if co is None or co.getType() != type:
                         sendDisplayMessage(c, "输入的命令不存在.", type)
                         return True
                     if c.getPlayer().getGMLevel() >= co.getReqGMLevel():
                         ret = co.execute(c, splitted)
-                        if ret > 0 && c.getPlayer() is not None:
+                        if ret > 0 and c.getPlayer() is not None:
                             logGMCommandToDB(c.getPlayer(), line)
                             print("[ " + c.getPlayer().getName() + " ] 使用了指令: " + line)
                     else:
@@ -93,7 +93,7 @@ class CommandProcessor:
             splitted = line.split(" ")
             splitted[0] = splitted[0].lower()
             co = CommandProcessor.commands.get(splitted[0])
-            if co is None || co.getType() != type:
+            if co is None or co.getType() != type:
                 sendDisplayMessage(c, "输入的玩家命令不存在,可以使用 @帮助/@help 来查看指令.", type)
                 return True
             try:

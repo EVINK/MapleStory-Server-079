@@ -58,7 +58,7 @@ class HiredMerchant(AbstractPlayerStore):
     def searchItem(self, itemSearch: int) -> list:
         itemz = []
         for item in self.items:
-            if item.item.getItemId() == itemSearch && item.bundles > 0:
+            if item.item.getItemId() == itemSearch and item.bundles > 0:
                 itemz.add(item)
         return itemz
 
@@ -74,7 +74,7 @@ class HiredMerchant(AbstractPlayerStore):
             newItem.setFlag((byte)(flag - ItemFlag.KARMA_EQ.getValue()))
         elif ItemFlag.KARMA_USE.check(flag):
             newItem.setFlag((byte)(flag - ItemFlag.KARMA_USE.getValue()))
-        if !c.getPlayer().canHold(newItem.getItemId()):
+        if not c.getPlayer().canHold(newItem.getItemId()):
             c.getPlayer().dropMessage(1, "背包已满")
             c.sendPacket(MaplePacketCreator.enableActions())
             return
@@ -121,7 +121,8 @@ class HiredMerchant(AbstractPlayerStore):
                             HMM = HM
                             if HMM.getOwnerId() == self.getOwnerId():
                                 map.removeMapObject(this)
-        catch (Exception ex) {}
+        except Exception as ex:
+            pass
         self.schedule = None
 
     def getTimeLeft(self) -> int:

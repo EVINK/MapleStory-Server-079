@@ -95,16 +95,16 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
 
     def broadcastToVisitors_packet_owner(self, packet: Any, owner: bool) -> None:
         for chr in self.chrs:
-            if chr is not None && chr.get() is not None:
+            if chr is not None and chr.get() is not None:
                 chr.get().getClient().getSession().write(packet)
-        if self.getShopType() != 1 && owner && self.getMCOwner() is not None:
+        if self.getShopType() != 1 and owner and self.getMCOwner() is not None:
             self.getMCOwner().getClient().getSession().write(packet)
 
     def broadcastToVisitors_packet_exception(self, packet: Any, exception: int) -> None:
         for chr in self.chrs:
-            if chr is not None && chr.get() is not None && self.getVisitorSlot(chr.get()) != exception:
+            if chr is not None and chr.get() is not None and self.getVisitorSlot(chr.get()) != exception:
                 chr.get().getClient().getSession().write(packet)
-        if self.getShopType() != 1 && self.getMCOwner() is not None && exception != self.ownerId:
+        if self.getShopType() != 1 and self.getMCOwner() is not None and exception != self.ownerId:
             self.getMCOwner().getClient().getSession().write(packet)
 
     def getMeso(self) -> int:
@@ -149,7 +149,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
                 ps2.setLong(6, int(time.time() * 1000))
                 ps2.executeUpdate()
                 rs2 = ps2.getGeneratedKeys()
-                if !rs2.next():
+                if not rs2.next():
                     ps.close()
                     rs.close()
                     rs2.close()
@@ -165,8 +165,8 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
                 raise RuntimeError("保存雇佣商店信息出错.")
             iters = new ArrayList<Pair<IItem, MapleInventoryType>>()
             for pItems in self.items:
-                if pItems.item is not None && pItems.bundles > 0:
-                    if pItems.item.getQuantity() <= 0 && !GameConstants.isRechargable(pItems.item.getItemId()):
+                if pItems.item is not None and pItems.bundles > 0:
+                    if pItems.item.getQuantity() <= 0 and not GameConstants.isRechargable(pItems.item.getItemId()):
                         continue
                     item = pItems.item.copy()
                     item.setQuantity((short)(item.getQuantity() * pItems.bundles))
@@ -196,7 +196,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
             else:
                 self.broadcastToVisitors(PlayerShopPacket.shopVisitorAdd(visitor, i))
             self.chrs[i - 1] = new WeakReference<MapleCharacter>(visitor)
-            if !self.isOwner(visitor):
+            if not self.isOwner(visitor):
                 self.visitors.add(visitor.getName())
             if i == 3:
                 self.update()
@@ -213,7 +213,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
     def getVisitorSlot(self, visitor: Any) -> int:
         i = 0
         while i < self.len(chrs):
-            if self.chrs[i] is not None && self.chrs[i].get() is not None && self.chrs[i].get().getId() == visitor.getId():
+            if self.chrs[i] is not None and self.chrs[i].get() is not None and self.chrs[i].get().getId() == visitor.getId():
                 return (byte)(i + 1)
         if visitor.getId() == self.ownerId:
             return 0
@@ -248,7 +248,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
         chrz = new LinkedList<Pair<Byte, MapleCharacter>>()
         i = 0
         while i < self.len(chrs):
-            if self.chrs[i] is not None && self.chrs[i].get() is not None:
+            if self.chrs[i] is not None and self.chrs[i].get() is not None:
                 chrz.add(new Pair<Byte, MapleCharacter>((byte)(i + 1), self.chrs[i].get()))
         return chrz
 
@@ -267,7 +267,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
     def getFreeSlot(self) -> int:
         i = 0
         while i < self.len(chrs):
-            if self.chrs[i] is None || self.chrs[i].get() is None:
+            if self.chrs[i] is None or self.chrs[i].get() is None:
                 return (byte)(i + 1)
         return -1
 
@@ -275,7 +275,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop):
         return self.itemId
 
     def isOwner(self, chr: Any) -> bool:
-        return chr.getId() == self.ownerId && chr.getName() == (self.ownerName)
+        return chr.getId() == self.ownerId and chr.getName() == (self.ownerName)
 
     def getPassword(self) -> str:
         if self.pass is None:

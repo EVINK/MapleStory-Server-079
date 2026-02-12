@@ -135,24 +135,25 @@ class World:
         return ChannelServer.getInstance(channel).getPlayerStorage()
 
     def scheduleRateDelay(self, type: str, delay: int) -> None:
-        Timer.WorldTimer.getInstance().schedule(Runnable()
-            public void run()
-                rate = type
-                if rate == ("经验"):
-                    for cservs in ChannelServer.getAllInstances():
-                        cservs.setExpRate(1)
-                elif rate == ("爆率"):
-                    for cservs in ChannelServer.getAllInstances():
-                        cservs.setDropRate(1)
-                elif rate == ("金币"):
-                    for cservs in ChannelServer.getAllInstances():
-                        cservs.setMesoRate(1)
-                elif rate.lower() == "boss爆率".lower():
-                    for cservs in ChannelServer.getAllInstances():
-                        cservs.setBossDropRate(1)
-                else if (rate == ("宠物经验")) {}
+        def _task_1():
+            rate = type
+            if rate == ("经验"):
                 for cservs in ChannelServer.getAllInstances():
-                    cservs.broadcastPacket(MaplePacketCreator.serverNotice(6, " 系统双倍活动已经结束。系统已成功自动切换为正常游戏模式！"))
+                    cservs.setExpRate(1)
+            elif rate == ("爆率"):
+                for cservs in ChannelServer.getAllInstances():
+                    cservs.setDropRate(1)
+            elif rate == ("金币"):
+                for cservs in ChannelServer.getAllInstances():
+                    cservs.setMesoRate(1)
+            elif rate.lower() == "boss爆率".lower():
+                for cservs in ChannelServer.getAllInstances():
+                    cservs.setBossDropRate(1)
+            else if (rate == ("宠物经验")) {}
+            for cservs in ChannelServer.getAllInstances():
+                cservs.broadcastPacket(MaplePacketCreator.serverNotice(6, " 系统双倍活动已经结束。系统已成功自动切换为正常游戏模式！"))
+
+        Timer.WorldTimer.getInstance().schedule(_task_1, delay * 1000)
 
     def run(self) -> None:
         rate = type
@@ -187,7 +188,7 @@ class World:
         if numTimes % 100 == 0:
             for pet in chr.getPets():
                 if pet.getSummoned():
-                    if pet.getPetItemId() == 5000054 && pet.getSecondsLeft() > 0:
+                    if pet.getPetItemId() == 5000054 and pet.getSecondsLeft() > 0:
                         pet.setSecondsLeft(pet.getSecondsLeft() - 1)
                         if pet.getSecondsLeft() <= 0:
                             chr.unequipPet(pet, True)
@@ -206,15 +207,15 @@ class World:
                 chr.expirationTask(True)
             if chr.getDiseaseSize() > 0:
                 for i in chr.getAllDiseases():
-                    if i is not None && i.startTime + len(i) < now:
+                    if i is not None and i.startTime + len(i) < now:
                         chr.dispelDebuff(i.disease)
-            if numTimes % 7 == 0 && chr.getMount() is not None && chr.getMount().canTire(now):
+            if numTimes % 7 == 0 and chr.getMount() is not None and chr.getMount().canTire(now):
                 chr.getMount().increaseFatigue()
                 if chr.getMount().getFatigue() >= 90:
                     chr.dropMessage(5, "坐骑疲劳值快满了，请使用坐骑疲劳恢复药。")
             if numTimes % 26 == 0:
                 for pet in chr.getSummonedPets():
-                    if pet.getPetItemId() == 5000054 && pet.getSecondsLeft() > 0:
+                    if pet.getPetItemId() == 5000054 and pet.getSecondsLeft() > 0:
                         pet.setSecondsLeft(pet.getSecondsLeft() - 1)
                         if pet.getSecondsLeft() <= 0:
                             chr.unequipPet(pet, True)
@@ -227,8 +228,8 @@ class World:
                     else:
                         pet.setFullness(newFullness)
                         chr.getClient().getSession().write(PetPacket.updatePet(pet, chr.getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
-            if hurt && chr.getInventory(MapleInventoryType.EQUIPPED).findById(chr.getMap().getHPDecProtect()) is None:
-                if (chr.getMapId() == 749040100 && chr.getInventory(MapleInventoryType.CASH).findById(5451000) is None) || (chr.getMapId() >= 211000000 && chr.getMapId() <= 211999999):
+            if hurt and chr.getInventory(MapleInventoryType.EQUIPPED).findById(chr.getMap().getHPDecProtect()) is None:
+                if (chr.getMapId() == 749040100 and chr.getInventory(MapleInventoryType.CASH).findById(5451000) is None) or (chr.getMapId() >= 211000000 and chr.getMapId() <= 211999999):
                     chr.addHP(-chr.getMap().getHPDec())
                 elif chr.getMapId() != 749040100:
                     chr.addHP(-chr.getMap().getHPDec())
@@ -252,7 +253,7 @@ class World:
                 if item.shouldExpire():
                     item.expire(map)
                 else:
-                    if !item.shouldFFA():
+                    if not item.shouldFFA():
                         continue
                     item.setDropType(2)
         if map.characterSize() > 0:
@@ -261,7 +262,7 @@ class World:
             hurt = map.canHurt()
             for chr in map.getCharactersThreadsafe():
                 handleCooldowns(chr, numTimes, hurt)
-        if numTimes % 10 == 0 && map.getId() == 220080001 && map.playerCount() == 0:
+        if numTimes % 10 == 0 and map.getId() == 220080001 and map.playerCount() == 0:
             ChannelServer.getInstance(map.getChannel()).getMapFactory().getMap(220080000).resetReactors()
 
     @staticmethod
@@ -273,7 +274,7 @@ class World:
             ch = Find.findChannel(partychar.getName())
             if ch > 0:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
-                if chr is None || chr.getName().lower() == namefrom.lower():
+                if chr is None or chr.getName().lower() == namefrom.lower():
                     continue
                 chr.getClient().getSession().write(MaplePacketCreator.multiChat(namefrom, chattext, 1))
 
@@ -343,7 +344,7 @@ class World:
             ch = Find.findChannel(characterId)
             if ch > 0:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(characterId)
-                if chr is not None && chr.getBuddylist().containsVisible(cidFrom):
+                if chr is not None and chr.getBuddylist().containsVisible(cidFrom):
                     chr.getClient().getSession().write(MaplePacketCreator.multiChat(nameFrom, chattext, 0))
 
     def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
@@ -354,10 +355,10 @@ class World:
                 if chr is None:
                     continue
                 ble = chr.getBuddylist().get(characterId)
-                if ble is None || !ble.isVisible():
+                if ble is None or not ble.isVisible():
                     continue
                 mcChannel = None
-                if offline || (isHidden && chr.getGMLevel() < gmLevel):
+                if offline or (isHidden and chr.getGMLevel() < gmLevel):
                     ble.setChannel(-1)
                     mcChannel = -1
                 else:
@@ -394,7 +395,7 @@ class World:
                 buddylist = addChar.getBuddylist()
                 if buddylist.isFull():
                     return BuddyList.BuddyAddResult.BUDDYLIST_FULL
-                if !(cidFrom in buddylist):
+                if not (cidFrom in buddylist):
                     buddylist.addBuddyRequest(addChar.getClient(), cidFrom, nameFrom, channelFrom, levelFrom, jobFrom)
                 elif buddylist.containsVisible(cidFrom):
                     return BuddyList.BuddyAddResult.ALREADY_ON_LIST
@@ -458,7 +459,7 @@ class World:
         messenger = getMessenger(messengerid)
         position = messenger.getPositionByName(namefrom)
         for messengerchar in messenger.getMembers():
-            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+            if messengerchar is not None and not messengerchar.getName() == (namefrom):
                 ch = Find.findChannel(messengerchar.getName())
                 if ch <= 0:
                     continue
@@ -483,7 +484,7 @@ class World:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
                 if chr is None:
                     continue
-                if !messengerchar.getName() == (from):
+                if not messengerchar.getName() == (from):
                     fromCh = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(from)
                     chr.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(from, fromCh, position, fromchannel - 1))
                     fromCh.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(chr.getName(), chr, mposition, messengerchar.getChannel() - 1))
@@ -495,7 +496,7 @@ class World:
         if messenger is None:
             raise ValueError("No messenger with the specified messengerid exists")
         for messengerchar in messenger.getMembers():
-            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+            if messengerchar is not None and not messengerchar.getName() == (namefrom):
                 ch = Find.findChannel(messengerchar.getName())
                 if ch <= 0:
                     continue
@@ -517,8 +518,8 @@ class World:
             if ch > 0:
                 from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(sender)
                 targeter = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(target)
-                if targeter is not None && targeter.getMessenger() is None:
-                    if !targeter.isGM() || gm:
+                if targeter is not None and targeter.getMessenger() is None:
+                    if not targeter.isGM() or gm:
                         targeter.getClient().getSession().write(MaplePacketCreator.messengerInvite(sender, messengerid))
                         from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 1))
                     else:
@@ -541,7 +542,7 @@ class World:
             Guild.lock.writeLock().lock()
             try:
                 ret = MapleGuild(id)
-                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                if ret is None or ret.getId() <= 0 or not ret.isProper():
                     return None
                 Guild.guilds.put(id, ret)
             finally:
@@ -639,7 +640,7 @@ class World:
 
     def increaseGuildCapacity(self, gid: int) -> bool:
         g = getGuild(gid)
-        return g is not None && g.increaseCapacity()
+        return g is not None and g.increaseCapacity()
 
     def gainGP(self, gid: int, amount: int) -> None:
         g = getGuild(gid)
@@ -722,7 +723,7 @@ class World:
         if mc is None:
             return
         bDifferentGuild = None
-        if guildid == -1 && rank == -1:
+        if guildid == -1 and rank == -1:
             bDifferentGuild = True
         else:
             bDifferentGuild = (guildid != mc.getGuildId())
@@ -730,7 +731,7 @@ class World:
             mc.setGuildRank(rank)
             mc.setAllianceRank(alliancerank)
             mc.saveGuildStatus()
-        if bDifferentGuild && ch > 0:
+        if bDifferentGuild and ch > 0:
             mc.getMap().broadcastMessage(mc, MaplePacketCreator.removePlayerFromMap(cid, mc), False)
             mc.getMap().broadcastMessage(mc, MaplePacketCreator.spawnPlayerMapobject(mc), False)
 
@@ -766,7 +767,7 @@ class World:
         if ch < 0:
             return
         c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
-        if c is not None && c.getGuildId() == guildid:
+        if c is not None and c.getGuildId() == guildid:
             c.getClient().getSession().write(packet)
 
     def sendFamilyPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
@@ -776,7 +777,7 @@ class World:
         if ch < 0:
             return
         c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
-        if c is not None && c.getFamilyId() == guildid:
+        if c is not None and c.getFamilyId() == guildid:
             c.getClient().getSession().write(packet)
 
     def broadcastMessage_serverNotice(self, serverNotice: Any) -> None:
@@ -785,7 +786,7 @@ class World:
 
     @staticmethod
     def addClient(c: Any) -> None:
-        if !(c in Client.clients):
+        if not (c in Client.clients):
             Client.clients.add(c)
 
     def removeClient(self, c: Any) -> bool:
@@ -834,7 +835,7 @@ class World:
             Find.lock.readLock().unlock()
         if ret is None:
             return -1
-        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+        if ret != -10 and ret != -20 and ChannelServer.getInstance(ret) is None:
             forceDeregister(id)
             return -1
         return ret
@@ -848,7 +849,7 @@ class World:
             Find.lock.readLock().unlock()
         if ret is None:
             return -1
-        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+        if ret != -10 and ret != -20 and ChannelServer.getInstance(ret) is None:
             forceDeregister(st)
             return -1
         return ret
@@ -874,7 +875,7 @@ class World:
             Alliance.lock.writeLock().lock()
             try:
                 ret = MapleGuildAlliance(allianceid)
-                if ret is None || ret.getId() <= 0:
+                if ret is None or ret.getId() <= 0:
                     return None
                 Alliance.alliances.put(allianceid, ret)
             finally:
@@ -899,31 +900,31 @@ class World:
 
     def canInvite(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.getCapacity() > mga.getNoGuilds()
+        return mga is not None and mga.getCapacity() > mga.getNoGuilds()
 
     def changeAllianceLeader(self, allianceid: int, cid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.setLeaderId(cid)
+        return mga is not None and mga.setLeaderId(cid)
 
     def changeAllianceRank(self, allianceid: int, cid: int, change: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.changeAllianceRank(cid, change)
+        return mga is not None and mga.changeAllianceRank(cid, change)
 
     def changeAllianceCapacity(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.setCapacity()
+        return mga is not None and mga.setCapacity()
 
     def disbandAlliance(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.disband()
+        return mga is not None and mga.disband()
 
     def addGuildToAlliance(self, allianceid: int, gid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.addGuild(gid)
+        return mga is not None and mga.addGuild(gid)
 
     def removeGuildFromAlliance(self, allianceid: int, gid: int, expelled: bool) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.removeGuild(gid, expelled)
+        return mga is not None and mga.removeGuild(gid, expelled)
 
     def sendGuild(self, allianceid: int) -> None:
         alliance = getAlliance(allianceid)
@@ -936,7 +937,7 @@ class World:
         if alliance is not None:
             for i in range(alliance.getNoGuilds()):
                 gid = alliance.getGuildId(i)
-                if gid > 0 && gid != exceptionId:
+                if gid > 0 and gid != exceptionId:
                     Guild.guildPacket(gid, packet)
 
     def createAlliance(self, alliancename: str, cid: int, cid2: int, gid: int, gid2: int) -> bool:
@@ -969,7 +970,7 @@ class World:
     def setNewAlliance(self, gid: int, allianceid: int) -> None:
         alliance = getAlliance(allianceid)
         guild = Guild.getGuild(gid)
-        if alliance is not None && guild is not None:
+        if alliance is not None and guild is not None:
             for i in range(alliance.getNoGuilds()):
                 if gid == alliance.getGuildId(i):
                     guild.setAllianceId(allianceid)
@@ -993,7 +994,7 @@ class World:
                 if guild is None:
                     if gid != alliance.getGuildId(i):
                         alliance.removeGuild(gid, False)
-                elif g_ is None || gid == alliance.getGuildId(i):
+                elif g_ is None or gid == alliance.getGuildId(i):
                     guild.changeARank(5)
                     guild.setAllianceId(0)
                     guild.broadcast(MaplePacketCreator.disbandAlliance(allianceid))
@@ -1030,7 +1031,7 @@ class World:
             Family.lock.writeLock().lock()
             try:
                 ret = MapleFamily(id)
-                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                if ret is None or ret.getId() <= 0 or not ret.isProper():
                     return None
                 Family.families.put(id, ret)
             finally:
@@ -1060,7 +1061,7 @@ class World:
         mc = World.getStorage(ch).getCharacterById(cid)
         if mc is None:
             return
-        bDifferent = mc.getFamilyId() != familyid || mc.getSeniorId() != seniorid || mc.getJunior1() != junior1 || mc.getJunior2() != junior2
+        bDifferent = mc.getFamilyId() != familyid or mc.getSeniorId() != seniorid or mc.getJunior1() != junior1 or mc.getJunior2() != junior2
         mc.setFamily(familyid, seniorid, junior1, junior2)
         mc.setCurrentRep(currentrep)
         mc.setTotalRep(totalrep)
@@ -1113,7 +1114,7 @@ class Party:
             ch = Find.findChannel(partychar.getName())
             if ch > 0:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(partychar.getName())
-                if chr is None || chr.getName().lower() == namefrom.lower():
+                if chr is None or chr.getName().lower() == namefrom.lower():
                     continue
                 chr.getClient().getSession().write(MaplePacketCreator.multiChat(namefrom, chattext, 1))
 
@@ -1190,7 +1191,7 @@ class Buddy:
             ch = Find.findChannel(characterId)
             if ch > 0:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(characterId)
-                if chr is not None && chr.getBuddylist().containsVisible(cidFrom):
+                if chr is not None and chr.getBuddylist().containsVisible(cidFrom):
                     chr.getClient().getSession().write(MaplePacketCreator.multiChat(nameFrom, chattext, 0))
 
     def updateBuddies(self, characterId: int, channel: int, buddies: list, offline: bool, gmLevel: int, isHidden: bool) -> None:
@@ -1201,10 +1202,10 @@ class Buddy:
                 if chr is None:
                     continue
                 ble = chr.getBuddylist().get(characterId)
-                if ble is None || !ble.isVisible():
+                if ble is None or not ble.isVisible():
                     continue
                 mcChannel = None
-                if offline || (isHidden && chr.getGMLevel() < gmLevel):
+                if offline or (isHidden and chr.getGMLevel() < gmLevel):
                     ble.setChannel(-1)
                     mcChannel = -1
                 else:
@@ -1241,7 +1242,7 @@ class Buddy:
                 buddylist = addChar.getBuddylist()
                 if buddylist.isFull():
                     return BuddyList.BuddyAddResult.BUDDYLIST_FULL
-                if !(cidFrom in buddylist):
+                if not (cidFrom in buddylist):
                     buddylist.addBuddyRequest(addChar.getClient(), cidFrom, nameFrom, channelFrom, levelFrom, jobFrom)
                 elif buddylist.containsVisible(cidFrom):
                     return BuddyList.BuddyAddResult.ALREADY_ON_LIST
@@ -1317,7 +1318,7 @@ class Messenger:
         messenger = getMessenger(messengerid)
         position = messenger.getPositionByName(namefrom)
         for messengerchar in messenger.getMembers():
-            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+            if messengerchar is not None and not messengerchar.getName() == (namefrom):
                 ch = Find.findChannel(messengerchar.getName())
                 if ch <= 0:
                     continue
@@ -1342,7 +1343,7 @@ class Messenger:
                 chr = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(messengerchar.getName())
                 if chr is None:
                     continue
-                if !messengerchar.getName() == (from):
+                if not messengerchar.getName() == (from):
                     fromCh = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(from)
                     chr.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(from, fromCh, position, fromchannel - 1))
                     fromCh.getClient().getSession().write(MaplePacketCreator.addMessengerPlayer(chr.getName(), chr, mposition, messengerchar.getChannel() - 1))
@@ -1354,7 +1355,7 @@ class Messenger:
         if messenger is None:
             raise ValueError("No messenger with the specified messengerid exists")
         for messengerchar in messenger.getMembers():
-            if messengerchar is not None && !messengerchar.getName() == (namefrom):
+            if messengerchar is not None and not messengerchar.getName() == (namefrom):
                 ch = Find.findChannel(messengerchar.getName())
                 if ch <= 0:
                     continue
@@ -1376,8 +1377,8 @@ class Messenger:
             if ch > 0:
                 from = ChannelServer.getInstance(fromchannel).getPlayerStorage().getCharacterByName(sender)
                 targeter = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(target)
-                if targeter is not None && targeter.getMessenger() is None:
-                    if !targeter.isGM() || gm:
+                if targeter is not None and targeter.getMessenger() is None:
+                    if not targeter.isGM() or gm:
                         targeter.getClient().getSession().write(MaplePacketCreator.messengerInvite(sender, messengerid))
                         from.getClient().getSession().write(MaplePacketCreator.messengerNote(target, 4, 1))
                     else:
@@ -1417,7 +1418,7 @@ class Guild:
             Guild.lock.writeLock().lock()
             try:
                 ret = MapleGuild(id)
-                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                if ret is None or ret.getId() <= 0 or not ret.isProper():
                     return None
                 Guild.guilds.put(id, ret)
             finally:
@@ -1515,7 +1516,7 @@ class Guild:
 
     def increaseGuildCapacity(self, gid: int) -> bool:
         g = getGuild(gid)
-        return g is not None && g.increaseCapacity()
+        return g is not None and g.increaseCapacity()
 
     def gainGP(self, gid: int, amount: int) -> None:
         g = getGuild(gid)
@@ -1598,7 +1599,7 @@ class Guild:
         if mc is None:
             return
         bDifferentGuild = None
-        if guildid == -1 && rank == -1:
+        if guildid == -1 and rank == -1:
             bDifferentGuild = True
         else:
             bDifferentGuild = (guildid != mc.getGuildId())
@@ -1606,7 +1607,7 @@ class Guild:
             mc.setGuildRank(rank)
             mc.setAllianceRank(alliancerank)
             mc.saveGuildStatus()
-        if bDifferentGuild && ch > 0:
+        if bDifferentGuild and ch > 0:
             mc.getMap().broadcastMessage(mc, MaplePacketCreator.removePlayerFromMap(cid, mc), False)
             mc.getMap().broadcastMessage(mc, MaplePacketCreator.spawnPlayerMapobject(mc), False)
 
@@ -1649,7 +1650,7 @@ class Broadcast:
         if ch < 0:
             return
         c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
-        if c is not None && c.getGuildId() == guildid:
+        if c is not None and c.getGuildId() == guildid:
             c.getClient().getSession().write(packet)
 
     def sendFamilyPacket(self, targetIds: int, packet: Any, exception: int, guildid: int) -> None:
@@ -1659,7 +1660,7 @@ class Broadcast:
         if ch < 0:
             return
         c = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterById(targetIds)
-        if c is not None && c.getFamilyId() == guildid:
+        if c is not None and c.getFamilyId() == guildid:
             c.getClient().getSession().write(packet)
 
     def broadcastMessage_serverNotice(self, serverNotice: Any) -> None:
@@ -1679,7 +1680,7 @@ class Client:
 
     @staticmethod
     def addClient(c: Any) -> None:
-        if !(c in Client.clients):
+        if not (c in Client.clients):
             Client.clients.add(c)
 
     def removeClient(self, c: Any) -> bool:
@@ -1741,7 +1742,7 @@ class Find:
             Find.lock.readLock().unlock()
         if ret is None:
             return -1
-        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+        if ret != -10 and ret != -20 and ChannelServer.getInstance(ret) is None:
             forceDeregister(id)
             return -1
         return ret
@@ -1755,7 +1756,7 @@ class Find:
             Find.lock.readLock().unlock()
         if ret is None:
             return -1
-        if ret != -10 && ret != -20 && ChannelServer.getInstance(ret) is None:
+        if ret != -10 and ret != -20 and ChannelServer.getInstance(ret) is None:
             forceDeregister(st)
             return -1
         return ret
@@ -1797,7 +1798,7 @@ class Alliance:
             Alliance.lock.writeLock().lock()
             try:
                 ret = MapleGuildAlliance(allianceid)
-                if ret is None || ret.getId() <= 0:
+                if ret is None or ret.getId() <= 0:
                     return None
                 Alliance.alliances.put(allianceid, ret)
             finally:
@@ -1822,31 +1823,31 @@ class Alliance:
 
     def canInvite(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.getCapacity() > mga.getNoGuilds()
+        return mga is not None and mga.getCapacity() > mga.getNoGuilds()
 
     def changeAllianceLeader(self, allianceid: int, cid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.setLeaderId(cid)
+        return mga is not None and mga.setLeaderId(cid)
 
     def changeAllianceRank(self, allianceid: int, cid: int, change: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.changeAllianceRank(cid, change)
+        return mga is not None and mga.changeAllianceRank(cid, change)
 
     def changeAllianceCapacity(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.setCapacity()
+        return mga is not None and mga.setCapacity()
 
     def disbandAlliance(self, allianceid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.disband()
+        return mga is not None and mga.disband()
 
     def addGuildToAlliance(self, allianceid: int, gid: int) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.addGuild(gid)
+        return mga is not None and mga.addGuild(gid)
 
     def removeGuildFromAlliance(self, allianceid: int, gid: int, expelled: bool) -> bool:
         mga = getAlliance(allianceid)
-        return mga is not None && mga.removeGuild(gid, expelled)
+        return mga is not None and mga.removeGuild(gid, expelled)
 
     def sendGuild(self, allianceid: int) -> None:
         alliance = getAlliance(allianceid)
@@ -1859,7 +1860,7 @@ class Alliance:
         if alliance is not None:
             for i in range(alliance.getNoGuilds()):
                 gid = alliance.getGuildId(i)
-                if gid > 0 && gid != exceptionId:
+                if gid > 0 and gid != exceptionId:
                     Guild.guildPacket(gid, packet)
 
     def createAlliance(self, alliancename: str, cid: int, cid2: int, gid: int, gid2: int) -> bool:
@@ -1892,7 +1893,7 @@ class Alliance:
     def setNewAlliance(self, gid: int, allianceid: int) -> None:
         alliance = getAlliance(allianceid)
         guild = Guild.getGuild(gid)
-        if alliance is not None && guild is not None:
+        if alliance is not None and guild is not None:
             for i in range(alliance.getNoGuilds()):
                 if gid == alliance.getGuildId(i):
                     guild.setAllianceId(allianceid)
@@ -1916,7 +1917,7 @@ class Alliance:
                 if guild is None:
                     if gid != alliance.getGuildId(i):
                         alliance.removeGuild(gid, False)
-                elif g_ is None || gid == alliance.getGuildId(i):
+                elif g_ is None or gid == alliance.getGuildId(i):
                     guild.changeARank(5)
                     guild.setAllianceId(0)
                     guild.broadcast(MaplePacketCreator.disbandAlliance(allianceid))
@@ -1979,7 +1980,7 @@ class Family:
             Family.lock.writeLock().lock()
             try:
                 ret = MapleFamily(id)
-                if ret is None || ret.getId() <= 0 || !ret.isProper():
+                if ret is None or ret.getId() <= 0 or not ret.isProper():
                     return None
                 Family.families.put(id, ret)
             finally:
@@ -2018,7 +2019,7 @@ class Family:
         mc = World.getStorage(ch).getCharacterById(cid)
         if mc is None:
             return
-        bDifferent = mc.getFamilyId() != familyid || mc.getSeniorId() != seniorid || mc.getJunior1() != junior1 || mc.getJunior2() != junior2
+        bDifferent = mc.getFamilyId() != familyid or mc.getSeniorId() != seniorid or mc.getJunior1() != junior1 or mc.getJunior2() != junior2
         mc.setFamily(familyid, seniorid, junior1, junior2)
         mc.setCurrentRep(currentrep)
         mc.setTotalRep(totalrep)

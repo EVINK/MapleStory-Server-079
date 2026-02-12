@@ -149,7 +149,7 @@ class PlayerStorage:
             itr = self.nameToChar.values().iterator()
             while itr.hasNext():
                 chr = itr.next()
-                if !chr.isGM() || !checkGM:
+                if not chr.isGM() or not checkGM:
                     chr.getClient().disconnect(False, False, True)
                     chr.getClient().getSession().close(True)
                     World.Find.forceDeregister(chr.getId(), chr.getName())
@@ -172,7 +172,7 @@ class PlayerStorage:
             self.rL.lock()
             try:
                 for chr in self.nameToChar.values():
-                    if !chr.isGM():
+                    if not chr.isGM():
                         sb.append(MapleCharacterUtil.makeMapleReadable(chr.getName()))
                         sb.append(", ")
             finally:
@@ -192,7 +192,7 @@ class PlayerStorage:
         self.rL.lock()
         try:
             for chr in self.nameToChar.values():
-                if chr.getClient().isLoggedIn() && chr.getSmega():
+                if chr.getClient().isLoggedIn() and chr.getSmega():
                     chr.getClient().getSession().write(data)
         finally:
             self.rL.unlock()
@@ -201,7 +201,7 @@ class PlayerStorage:
         self.rL.lock()
         try:
             for chr in self.nameToChar.values():
-                if chr.getClient().isLoggedIn() && chr.isGM():
+                if chr.getClient().isLoggedIn() and chr.isGM():
                     chr.getClient().getSession().write(data)
         finally:
             self.rL.unlock()

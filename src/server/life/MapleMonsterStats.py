@@ -227,7 +227,7 @@ class MapleMonsterStats:
 
     def hasSkill(self, skillId: int, level: int) -> bool:
         for skill in self.skills:
-            if skill.getLeft() == skillId && skill.getRight() == level:
+            if skill.getLeft() == skillId and skill.getRight() == level:
                 return True
         return False
 

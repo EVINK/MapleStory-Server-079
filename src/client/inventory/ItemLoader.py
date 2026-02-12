@@ -48,7 +48,7 @@ class ItemLoader(Enum):
         rs = ps.executeQuery()
         while rs.next():
             mit = MapleInventoryType.getByType(rs.getByte("inventorytype"))
-            if mit == (MapleInventoryType.EQUIP) || mit == (MapleInventoryType.EQUIPPED):
+            if mit == (MapleInventoryType.EQUIP) or mit == (MapleInventoryType.EQUIPPED):
                 equip = Equip(rs.getInt("itemid"), rs.getShort("position"), rs.getInt("uniqueid"), rs.getByte("flag"))
                 equip.setQuantity(1)
                 equip.setOwner(rs.getString("owner"))
@@ -83,7 +83,7 @@ class ItemLoader(Enum):
                 equip.setGiftFrom(rs.getString("sender"))
                 equip.setEquipLevel(rs.getByte("itemlevel"))
                 equip.setEquipOnlyId(rs.getInt("equipOnlyId"))
-                if (equip.getUniqueId() > -1 &&
+                if (equip.getUniqueId() > -1 and
                 GameConstants.isEffectRing(rs.getInt("itemid")))
                     ring = MapleRing.loadFromDb(equip.getUniqueId(), mit == (MapleInventoryType.EQUIPPED))
                     if ring is not None:
@@ -136,9 +136,9 @@ class ItemLoader(Enum):
         rs = ps.executeQuery()
         while rs.next():
             mit = MapleInventoryType.getByType(rs.getByte("inventorytype"))
-            if mit == (MapleInventoryType.EQUIP) || mit == (MapleInventoryType.EQUIPPED):
+            if mit == (MapleInventoryType.EQUIP) or mit == (MapleInventoryType.EQUIPPED):
                 equip = Equip(rs.getInt("itemid"), rs.getShort("position"), rs.getInt("uniqueid"), rs.getByte("flag"))
-                if !login:
+                if not login:
                     equip.setQuantity(1)
                     equip.setOwner(rs.getString("owner"))
                     equip.setExpiration(rs.getLong("expiredate"))
@@ -172,7 +172,7 @@ class ItemLoader(Enum):
                     equip.setGiftFrom(rs.getString("sender"))
                     equip.setEquipLevel(rs.getByte("itemlevel"))
                     equip.setEquipOnlyId(rs.getInt("equipOnlyId"))
-                    if (equip.getUniqueId() > -1 &&
+                    if (equip.getUniqueId() > -1 and
                     GameConstants.isEffectRing(rs.getInt("itemid")))
                         ring = MapleRing.loadFromDb(equip.getUniqueId(), mit == (MapleInventoryType.EQUIPPED))
                         if ring is not None:
@@ -240,10 +240,10 @@ class ItemLoader(Enum):
                 checkItems.put(Integer.valueOf(equipOnlyId), Integer.valueOf(itemId))
             find = False
             for item in items:
-                if (item.getLeft()).getEquipOnlyId() == equipOnlyId && (item.getLeft()).getItemId() == itemId:
+                if (item.getLeft()).getEquipOnlyId() == equipOnlyId and (item.getLeft()).getItemId() == itemId:
                     find = True
                     break
-            if !find || (Integer.valueOf(equipOnlyId in equipOnlyIds)):
+            if not find or (Integer.valueOf(equipOnlyId in equipOnlyIds)):
                 queryDelete = ""
                 queryDelete.append("DELETE FROM `")
                 queryDelete.append(self.table)
@@ -295,7 +295,7 @@ class ItemLoader(Enum):
                 queryItemUpdate = ""
                 queryItemUpdate.append(self.table)
                 queryItemUpdate.append("` SET ")
-                queryItemUpdate.append("`itemid` = ?, `inventorytype` = ?, `position` = ?, `quantity` = ?, `owner` = ?, `GM_Log` = ?, `uniqueid` = ?, `expiredate` = ?, `flag` = ?, `type` = ?, `sender` = ?  WHERE `equipOnlyId` = ? and (`")
+                queryItemUpdate.append("`itemid` = ?, `inventorytype` = ?, `position` = ?, `quantity` = ?, `owner` = ?, `GM_Log` = ?, `uniqueid` = ?, `expiredate` = ?, `flag` = ?, `type` = ?, `sender` = ? WHERE `equipOnlyId` = ? and (`")
                 queryItemUpdate.append(self.arg.get(0))
                 queryItemUpdate.append("` = ?")
                 if self.arg > 1:
@@ -327,7 +327,7 @@ class ItemLoader(Enum):
                         ps2.close()
                     except SQLException as ex:
                         print("GMLOG : " + itemUpdate.getGMLog() + "1 Table_equip : " + self.table + " " + ex)
-                    if mit == (MapleInventoryType.EQUIP) || mit == (MapleInventoryType.EQUIPPED):
+                    if mit == (MapleInventoryType.EQUIP) or mit == (MapleInventoryType.EQUIPPED):
                         pse = con.prepareStatement("UPDATE `" + self.table_equip + "` SET `upgradeslots` = ?, `level` = ?, `str` = ?, `dex` = ?, `int` = ?, `luk` = ?, `hp` = ?, `mp` = ?, `watk` = ?, `matk` = ?, `wdef` = ?, `mdef` = ?, `acc` = ?, `avoid` = ?, `hands` = ?, `speed` = ?, `jump` = ?, `ViciousHammer` = ?, `itemEXP` = ?, `durability` = ?, `enhance` = ?, `potential1` = ?, `potential2` = ?, `potential3` = ?, `hpR` = ?, `mpR` = ?, `itemlevel` = ? WHERE `equipOnlyId` = ?")
                         equip = itemUpdate
                         pse.setInt(1, equip.getUpgradeSlots())
@@ -416,7 +416,7 @@ class ItemLoader(Enum):
                     else:
                         onlyID = itemTmp.getEquipOnlyId()
                     ps3.close()
-                    if mit == (MapleInventoryType.EQUIP) || mit == (MapleInventoryType.EQUIPPED):
+                    if mit == (MapleInventoryType.EQUIP) or mit == (MapleInventoryType.EQUIPPED):
                         if onlyID == 0:
                         raise RuntimeError("Inserting item failed.")
                         try:

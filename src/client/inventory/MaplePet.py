@@ -58,7 +58,7 @@ class MaplePet:
             ps = con.prepareStatement("SELECT * FROM pets WHERE petid = ?")
             ps.setInt(1, petid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return None
@@ -107,7 +107,7 @@ class MaplePet:
         return pet
 
     def saveToDb(self) -> None:
-        if !self.changed:
+        if not self.changed:
         return
         try:
             ps = DatabaseConnection.getConnection().prepareStatement("UPDATE pets SET name = ?, level = ?, closeness = ?, fullness = ?, seconds = ?, flags = ? WHERE petid = ?")
@@ -153,7 +153,7 @@ class MaplePet:
         return self.closeness
 
     def setCloseness(self, closeness: int) -> None:
-        if closeness >= Integer.MAX_VALUE || closeness <= 0:
+        if closeness >= Integer.MAX_VALUE or closeness <= 0:
         closeness = 1
         self.closeness = closeness
         self.changed = True

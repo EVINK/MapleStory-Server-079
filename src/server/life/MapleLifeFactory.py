@@ -72,7 +72,7 @@ class MapleLifeFactory:
                 for entry in mapz.getFiles():
                     id = int(entry.getName()[0:entry.getName(] - 4))
                     dat = MapleLifeFactory.data.getData("QuestCountGroup/" + entry.getName())
-                    if dat is not None && dat.getChildByPath("info") is not None:
+                    if dat is not None and dat.getChildByPath("info") is not None:
                         z = []
                         for da in dat.getChildByPath("info"):
                             z.add(MapleDataTool.getInt(da, 0))
@@ -109,10 +109,10 @@ class MapleLifeFactory:
             stats.setrareItemDropLevel(MapleDataTool.getIntConvert("rareItemDropLevel", monsterInfoData, 0))
             stats.setFixedDamage(MapleDataTool.getIntConvert("fixedDamage", monsterInfoData, -1))
             stats.setOnlyNormalAttack(MapleDataTool.getIntConvert("onlyNormalAttack", monsterInfoData, 0) > 0)
-            stats.setBoss(MapleDataTool.getIntConvert("boss", monsterInfoData, 0) > 0 || mid == 8810018 || mid == 9410066 || (mid >= 8810118 && mid <= 8810122))
+            stats.setBoss(MapleDataTool.getIntConvert("boss", monsterInfoData, 0) > 0 or mid == 8810018 or mid == 9410066 or (mid >= 8810118 and mid <= 8810122))
             stats.setExplosiveReward(MapleDataTool.getIntConvert("explosiveReward", monsterInfoData, 0) > 0)
             stats.setFfaLoot(MapleDataTool.getIntConvert("publicReward", monsterInfoData, 0) > 0)
-            stats.setUndead(MapleDataTool.getIntConvert("undead", monsterInfoData, 0) > 0 || mid == 9700004 || mid == 9700009 || mid == 9700010)
+            stats.setUndead(MapleDataTool.getIntConvert("undead", monsterInfoData, 0) > 0 or mid == 9700004 or mid == 9700009 or mid == 9700010)
             stats.setName(MapleDataTool.getString(mid + "/name", MapleLifeFactory.mobStringData, "MISSINGNO"))
             stats.setBuffToGive(MapleDataTool.getIntConvert("buff", monsterInfoData, -1))
             stats.setFriendly(MapleDataTool.getIntConvert("damagedByMob", monsterInfoData, 0) > 0)
@@ -125,7 +125,7 @@ class MapleLifeFactory:
             stats.setPhysicalDefense(MapleDataTool.getIntConvert("PDDamage", monsterInfoData, 0))
             stats.setMagicDefense(MapleDataTool.getIntConvert("MDDamage", monsterInfoData, 0))
             stats.setEva(MapleDataTool.getIntConvert("eva", monsterInfoData, 0))
-            hideHP = MapleDataTool.getIntConvert("HPgaugeHide", monsterInfoData, 0) > 0 || MapleDataTool.getIntConvert("hideHP", monsterInfoData, 0) > 0
+            hideHP = MapleDataTool.getIntConvert("HPgaugeHide", monsterInfoData, 0) > 0 or MapleDataTool.getIntConvert("hideHP", monsterInfoData, 0) > 0
             selfd = monsterInfoData.getChildByPath("selfDestruction")
             if selfd is not None:
                 stats.setSelfDHP(MapleDataTool.getIntConvert("hp", selfd, 0))
@@ -138,8 +138,8 @@ class MapleLifeFactory:
                     stats.setFirstAttack(Math.round(MapleDataTool.getFloat(firstAttackData)) > 0)
                 else:
                     stats.setFirstAttack(MapleDataTool.getInt(firstAttackData) > 0)
-            if stats.isBoss() || isDmgSponge(mid):
-                if hideHP || monsterInfoData.getChildByPath("hpTagColor") is None || monsterInfoData.getChildByPath("hpTagBgcolor") is None:
+            if stats.isBoss() or isDmgSponge(mid):
+                if hideHP or monsterInfoData.getChildByPath("hpTagColor") is None or monsterInfoData.getChildByPath("hpTagBgcolor") is None:
                     stats.setTagColor(0)
                     stats.setTagBgColor(0)
                 else:
@@ -171,7 +171,7 @@ class MapleLifeFactory:
                     stats.setFly(True)
                     stats.setMobile(True)
                     break
-                if !idata.getName() == ("move"):
+                if not idata.getName() == ("move"):
                     continue
                 stats.setMobile(True)
             hpdisplaytype = -1
@@ -179,9 +179,9 @@ class MapleLifeFactory:
                 hpdisplaytype = 0
             elif stats.isFriendly():
                 hpdisplaytype = 1
-            elif mid >= 9300184 && mid <= 9300215:
+            elif mid >= 9300184 and mid <= 9300215:
                 hpdisplaytype = 2
-            elif !stats.isBoss() || mid == 9410066:
+            elif not stats.isBoss() or mid == 9410066:
                 hpdisplaytype = 3
             stats.setHPDisplayType(hpdisplaytype)
             MapleLifeFactory.monsterStats.put(mid, stats)

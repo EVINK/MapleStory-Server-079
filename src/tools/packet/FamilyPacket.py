@@ -126,9 +126,9 @@ class FamilyPacket:
             if chr.getSeniorId() > 0:
                 senior = family.getMFC(chr.getSeniorId())
                 if senior is not None:
-                    if senior.getJunior1() > 0 && senior.getJunior1() != chr.getId():
+                    if senior.getJunior1() > 0 and senior.getJunior1() != chr.getId():
                         addFamilyCharInfo(family.getMFC(senior.getJunior1()), mplew)
-                    elif senior.getJunior2() > 0 && senior.getJunior2() != chr.getId():
+                    elif senior.getJunior2() > 0 and senior.getJunior2() != chr.getId():
                         addFamilyCharInfo(family.getMFC(senior.getJunior2()), mplew)
             if chr.getJunior1() > 0:
                 addFamilyCharInfo(family.getMFC(chr.getJunior1()), mplew)
@@ -225,7 +225,7 @@ class FamilyPacket:
             print("familyBuff--------------------")
         mplew.writeShort(SendPacketOpcode.FAMILY_BUFF.getValue())
         mplew.write(type)
-        if type >= 2 && type <= 4:
+        if type >= 2 and type <= 4:
             mplew.writeInt(buffnr)
             mplew.writeInt((type == 3) ? 0 : amount)
             mplew.writeInt((type == 2) ? 0 : amount)

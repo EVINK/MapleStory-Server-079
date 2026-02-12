@@ -146,9 +146,9 @@ class MapleServerHandler(IoHandlerAdapter, MapleServerHandlerMBean):
             if MapleServerHandler.Packet_Log == MapleServerHandler.Log_Size:
                 logged = MapleServerHandler.Packet_Log.remove(0)
             if logged is None:
-                logged = LoggedPacket(packet, op, io.getRemoteAddress(), (c is None) ? -1 : c.getAccID(), (c is None || c.getAccountName() is None) ? "[Null]" : c.getAccountName(), (c is None || c.getPlayer() is None || c.getPlayer().getName() is None) ? "[Null]" : c.getPlayer().getName())
+                logged = LoggedPacket(packet, op, io.getRemoteAddress(), (c is None) ? -1 : c.getAccID(), (c is None or c.getAccountName() is None) ? "[Null]" : c.getAccountName(), (c is None or c.getPlayer() is None or c.getPlayer().getName() is None) ? "[Null]" : c.getPlayer().getName())
             else:
-                logged.setInfo(packet, op, io.getRemoteAddress(), (c is None) ? -1 : c.getAccID(), (c is None || c.getAccountName() is None) ? "[Null]" : c.getAccountName(), (c is None || c.getPlayer() is None || c.getPlayer().getName() is None) ? "[Null]" : c.getPlayer().getName())
+                logged.setInfo(packet, op, io.getRemoteAddress(), (c is None) ? -1 : c.getAccID(), (c is None or c.getAccountName() is None) ? "[Null]" : c.getAccountName(), (c is None or c.getPlayer() is None or c.getPlayer().getName() is None) ? "[Null]" : c.getPlayer().getName())
             MapleServerHandler.Packet_Log.add(logged)
         finally:
             MapleServerHandler.Packet_Log_Lock.writeLock().unlock()
@@ -284,23 +284,23 @@ class MapleServerHandler(IoHandlerAdapter, MapleServerHandlerMBean):
             while i < length:
                 recv = values[i]
                 if recv.getValue() == header_num:
-                    if MapleServerHandler.debugMode && !RecvPacketOpcode.isSpamHeader(recv):
+                    if MapleServerHandler.debugMode and not RecvPacketOpcode.isSpamHeader(recv):
                         sb = "" + "\n")
                         sb.append(HexTool.toString((byte[])message)).append("\n").append(HexTool.toStringFromAscii((byte[])message))
                         print(sb)
                     c = session.getAttribute(MapleClient.CLIENT_KEY)
-                    if !c.isReceiving():
+                    if not c.isReceiving():
                         return
-                    if recv.NeedsChecking() && !c.isLoggedIn():
+                    if recv.NeedsChecking() and not c.isLoggedIn():
                         return
-                    if (c.getPlayer() is None || !c.isMonitored() || !(recv in MapleServerHandler.blocked)) {}
+                    if (c.getPlayer() is None or not c.isMonitored() or not (recv in MapleServerHandler.blocked)) {}
                     if MapleServerHandler.Log_Packets:
                         log(slea, recv, c, session)
                     handlePacket(recv, slea, c, self.cs)
                     fw = isLoggedIP(session)
-                    if fw is not None && !(recv in MapleServerHandler.blocked):
-                        if recv == RecvPacketOpcode.PLAYER_LOGGEDIN && c is not None:
-                            fw.write(">> [AccountName: " + ((c.getAccountName() is None) ? "None" : c.getAccountName()) + "] | [IGN: " + ((c.getPlayer() is None || c.getPlayer().getName() is None) ? "None" : c.getPlayer().getName()) + "] | [Time: " + FileoutputUtil.CurrentReadable_Time() + "]")
+                    if fw is not None and not (recv in MapleServerHandler.blocked):
+                        if recv == RecvPacketOpcode.PLAYER_LOGGEDIN and c is not None:
+                            fw.write(">> [AccountName: " + ((c.getAccountName() is None) ? "None" : c.getAccountName()) + "] | [IGN: " + ((c.getPlayer() is None or c.getPlayer().getName() is None) ? "None" : c.getPlayer().getName()) + "] | [Time: " + FileoutputUtil.CurrentReadable_Time() + "]")
                             fw.write(MapleServerHandler.nl)
                         fw.write("[" + recv + "]" + slea.toString(True))
                         fw.write(MapleServerHandler.nl)

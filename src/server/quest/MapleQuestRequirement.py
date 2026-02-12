@@ -115,7 +115,7 @@ class MapleQuestRequirement:
         # switch (self.type):
             # case job:
             for a in self.dataStore:
-                if (a.getRight()) == c.getJob() || c.isGM():
+                if (a.getRight()) == c.getJob() or c.isGM():
                 return True
             return False
             # case skill:
@@ -131,17 +131,17 @@ class MapleQuestRequirement:
                     if c.getSkillLevel(skil) == 0:
                     return False
                     continue
-                if c.getSkillLevel(skil) > 0 || c.getMasterLevel(skil) > 0:
+                if c.getSkillLevel(skil) > 0 or c.getMasterLevel(skil) > 0:
                 return False
             return True
             # case quest:
             for a in self.dataStore:
                 q = c.getQuest(MapleQuest.getInstance((a.getLeft())))
                 state = (a.getRight())
-                if (state == 0 || (
-                q = = None && state == 0))
+                if (state == 0 or (
+                q = = None and state == 0))
                 continue
-                if q is None || q.getStatus() != state:
+                if q is None or q.getStatus() != state:
                 return False
             return True
             # case item:
@@ -152,7 +152,7 @@ class MapleQuestRequirement:
                 for item in c.getInventory(iType).listById(itemId):
                 quantity = (short)(quantity + item.getQuantity())
                 count = (a.getRight())
-                if quantity < count || (count <= 0 && quantity > 0):
+                if quantity < count or (count <= 0 and quantity > 0):
                 return False
             return True
             # case lvmin:
@@ -172,7 +172,7 @@ class MapleQuestRequirement:
                 return False
             return True
             # case npc:
-            return (npcid is None || npcid == self.intStore)
+            return (npcid is None or npcid == self.intStore)
             # case fieldEnter:
             if self.intStore != -1:
             return (self.intStore == c.getMapId())
@@ -193,7 +193,7 @@ class MapleQuestRequirement:
             # case questComplete:
             return (c.getNumQuest() >= self.intStore)
             # case interval:
-            return (c.getQuest(self.quest).getStatus() != 2 || c.getQuest(self.quest).getCompletionTime() <= int(time.time() * 1000) - (self.intStore * 60) * 1000)
+            return (c.getQuest(self.quest).getStatus() != 2 or c.getQuest(self.quest).getCompletionTime() <= int(time.time() * 1000) - (self.intStore * 60) * 1000)
             # case pet:
             for a in self.dataStore:
                 if c.getPetIndexById((a.getRight())) == -1:
@@ -201,7 +201,7 @@ class MapleQuestRequirement:
             return True
             # case pettamenessmin:
             for pet in c.getPets():
-                if pet.getSummoned() && pet.getCloseness() >= self.intStore:
+                if pet.getSummoned() and pet.getCloseness() >= self.intStore:
                 return True
             return False
         return True

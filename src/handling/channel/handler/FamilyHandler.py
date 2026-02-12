@@ -41,22 +41,22 @@ class FamilyHandler:
         final MapleFamilyBuff.MapleFamilyBuffEntry entry = MapleFamilyBuff.getBuffEntry(type)
         if entry is None:
             return
-        success = c.getPlayer().getFamilyId() > 0 && c.getPlayer().canUseFamilyBuff(entry) && c.getPlayer().getCurrentRep() > entry.rep
-        if !success:
+        success = c.getPlayer().getFamilyId() > 0 and c.getPlayer().canUseFamilyBuff(entry) and c.getPlayer().getCurrentRep() > entry.rep
+        if not success:
             return
         victim = None
         # switch (type):
             # case 0:
                 victim = c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
-                if FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) || !c.getPlayer().isAlive():
+                if FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) or not c.getPlayer().isAlive():
                     c.getPlayer().dropMessage(5, "传唤失败。您当前的位置或状态不允许传唤.")
                     success = False
                     break
-                if victim is None || (victim.isGM() && !c.getPlayer().isGM()):
+                if victim is None or (victim.isGM() and not c.getPlayer().isGM()):
                     c.getPlayer().dropMessage(1, "无效名称或您不在同一频道.")
                     success = False
                     break
-                if victim.getFamilyId() == c.getPlayer().getFamilyId() && !FieldLimitType.VipRock.check(victim.getMap().getFieldLimit()) && victim.getId() != c.getPlayer().getId():
+                if victim.getFamilyId() == c.getPlayer().getFamilyId() and not FieldLimitType.VipRock.check(victim.getMap().getFieldLimit()) and victim.getId() != c.getPlayer().getId():
                     c.getPlayer().changeMap(victim.getMap(), victim.getMap().getPortal(0))
                     break
                 c.getPlayer().dropMessage(5, "传唤失败。您当前的位置或状态不允许传唤.")
@@ -64,13 +64,13 @@ class FamilyHandler:
                 break
             # case 1:
                 victim = c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
-                if FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) || !c.getPlayer().isAlive():
+                if FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) or not c.getPlayer().isAlive():
                     c.getPlayer().dropMessage(5, "传唤失败。您当前的位置或状态不允许传唤.")
-                elif victim is None || (victim.isGM() && !c.getPlayer().isGM()):
+                elif victim is None or (victim.isGM() and not c.getPlayer().isGM()):
                     c.getPlayer().dropMessage(1, "无效名称或您不在同一频道.")
                 elif victim.getTeleportName() > 0:
                     c.getPlayer().dropMessage(1, "另一个角色要求传唤这个角色。请稍后再试.")
-                elif victim.getFamilyId() == c.getPlayer().getFamilyId() && !FieldLimitType.VipRock.check(victim.getMap().getFieldLimit()) && victim.getId() != c.getPlayer().getId():
+                elif victim.getFamilyId() == c.getPlayer().getFamilyId() and not FieldLimitType.VipRock.check(victim.getMap().getFieldLimit()) and victim.getId() != c.getPlayer().getId():
                     victim.getClient().getSession().write(FamilyPacket.familySummonRequest(c.getPlayer().getName(), c.getPlayer().getMap().getMapName()))
                     victim.setTeleportName(c.getPlayer().getName())
                 else:
@@ -122,7 +122,7 @@ class FamilyHandler:
         addChr = c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
         if addChr is None:
             c.getPlayer().dropMessage(1, "您邀请的玩家角色名字不正确或者尚未登入.")
-        elif addChr.getFamilyId() == c.getPlayer().getFamilyId() && addChr.getFamilyId() > 0:
+        elif addChr.getFamilyId() == c.getPlayer().getFamilyId() and addChr.getFamilyId() > 0:
             c.getPlayer().dropMessage(1, "已经在相同的学院里.")
         elif addChr.getMapId() != c.getPlayer().getMapId():
             c.getPlayer().dropMessage(1, "不再相同的地图里.")
@@ -134,7 +134,7 @@ class FamilyHandler:
             c.getPlayer().dropMessage(1, "您邀请的玩家等级必須相差20等级以内.")
         elif addChr.getLevel() < 10:
             c.getPlayer().dropMessage(1, "您必須邀请10級以上的玩家.")
-        elif c.getPlayer().getJunior1() > 0 && c.getPlayer().getJunior2() > 0:
+        elif c.getPlayer().getJunior1() > 0 and c.getPlayer().getJunior2() > 0:
             c.getPlayer().dropMessage(1, "您学院已经有两个人了，请找您的后代继续邀请別人吧.")
         else:
             addChr.getClient().getSession().write(FamilyPacket.sendFamilyInvite(c.getPlayer().getId(), c.getPlayer().getLevel(), c.getPlayer().getJob(), c.getPlayer().getName()))
@@ -142,7 +142,7 @@ class FamilyHandler:
 
     def FamilyPrecept(self, slea: Any, c: Any) -> None:
         fam = World.Family.getFamily(c.getPlayer().getFamilyId())
-        if fam is None || fam.getLeaderId() != c.getPlayer().getId():
+        if fam is None or fam.getLeaderId() != c.getPlayer().getId():
             return
         fam.setNotice(slea.readMapleAsciiString())
         c.getPlayer().dropMessage(1, "重开家族视窗即可套用.")
@@ -151,7 +151,7 @@ class FamilyHandler:
         TYPE = 1
         final MapleFamilyBuff.MapleFamilyBuffEntry cost = MapleFamilyBuff.getBuffEntry(TYPE)
         tt = c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
-        if c.getPlayer().getFamilyId() > 0 && tt is not None && tt.getFamilyId() == c.getPlayer().getFamilyId() && !FieldLimitType.VipRock.check(tt.getMap().getFieldLimit()) && !FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) && c.getPlayer().isAlive() && tt.isAlive() && tt.canUseFamilyBuff(cost) && c.getPlayer().getTeleportName() == (tt.getName()) && tt.getCurrentRep() > cost.rep && c.getPlayer().getEventInstance() is None && tt.getEventInstance() is None:
+        if c.getPlayer().getFamilyId() > 0 and tt is not None and tt.getFamilyId() == c.getPlayer().getFamilyId() and not FieldLimitType.VipRock.check(tt.getMap().getFieldLimit()) and not FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) and c.getPlayer().isAlive() and tt.isAlive() and tt.canUseFamilyBuff(cost) and c.getPlayer().getTeleportName() == (tt.getName()) and tt.getCurrentRep() > cost.rep and c.getPlayer().getEventInstance() is None and tt.getEventInstance() is None:
             accepted = slea.readByte() > 0
             if accepted:
                 c.getPlayer().changeMap(tt.getMap(), tt.getMap().getPortal(0))
@@ -166,7 +166,7 @@ class FamilyHandler:
 
     def DeleteJunior(self, slea: Any, c: Any) -> None:
         juniorid = slea.readInt()
-        if c.getPlayer().getFamilyId() <= 0 || juniorid <= 0 || (c.getPlayer().getJunior1() != juniorid && c.getPlayer().getJunior2() != juniorid):
+        if c.getPlayer().getFamilyId() <= 0 or juniorid <= 0 or (c.getPlayer().getJunior1() != juniorid and c.getPlayer().getJunior2() != juniorid):
             return
         fam = World.Family.getFamily(c.getPlayer().getFamilyId())
         other = fam.getMFC(juniorid)
@@ -182,15 +182,15 @@ class FamilyHandler:
         other.setSeniorId(0)
         MapleFamily.setOfflineFamilyStatus(other.getFamilyId(), other.getSeniorId(), other.getJunior1(), other.getJunior2(), other.getCurrentRep(), other.getTotalRep(), other.getId())
         MapleCharacterUtil.sendNote(other.getName(), c.getPlayer().getName(), c.getPlayer().getName() + " 我做人失败 解散了家族", 0)
-        if !fam.splitFamily(juniorid, other):
-            if !junior2:
+        if not fam.splitFamily(juniorid, other):
+            if not junior2:
                 fam.resetDescendants()
             fam.resetPedigree()
         c.getPlayer().dropMessage(1, "踢出了 (" + other.getName() + ").")
         c.getSession().write(MaplePacketCreator.enableActions())
 
     def DeleteSenior(self, slea: Any, c: Any) -> None:
-        if c.getPlayer().getFamilyId() <= 0 || c.getPlayer().getSeniorId() <= 0:
+        if c.getPlayer().getFamilyId() <= 0 or c.getPlayer().getSeniorId() <= 0:
             return
         fam = World.Family.getFamily(c.getPlayer().getFamilyId())
         mgc = fam.getMFC(c.getPlayer().getSeniorId())
@@ -204,8 +204,8 @@ class FamilyHandler:
         MapleFamily.setOfflineFamilyStatus(mgc.getFamilyId(), mgc.getSeniorId(), mgc.getJunior1(), mgc.getJunior2(), mgc.getCurrentRep(), mgc.getTotalRep(), mgc.getId())
         c.getPlayer().saveFamilyStatus()
         MapleCharacterUtil.sendNote(mgc.getName(), c.getPlayer().getName(), c.getPlayer().getName() + " 我展翅高飞了 离开你的家族", 0)
-        if !fam.splitFamily(c.getPlayer().getId(), mgc_):
-            if !junior2:
+        if not fam.splitFamily(c.getPlayer().getId(), mgc_):
+            if not junior2:
                 fam.resetDescendants()
             fam.resetPedigree()
         c.getPlayer().dropMessage(1, "退出了 (" + mgc.getName() + ") 的家族.")
@@ -213,7 +213,7 @@ class FamilyHandler:
 
     def AcceptFamily(self, slea: Any, c: Any) -> None:
         inviter = c.getPlayer().getMap().getCharacterById(slea.readInt())
-        if inviter is not None && c.getPlayer().getSeniorId() == 0 && (c.getPlayer().isGM() || !inviter.isHidden()) && inviter.getLevel() - 20 <= c.getPlayer().getLevel() && inviter.getLevel() >= 10 && inviter.getName() == (slea.readMapleAsciiString()) && inviter.getNoJuniors() < 2 && c.getPlayer().getLevel() >= 10:
+        if inviter is not None and c.getPlayer().getSeniorId() == 0 and (c.getPlayer().isGM() or not inviter.isHidden()) and inviter.getLevel() - 20 <= c.getPlayer().getLevel() and inviter.getLevel() >= 10 and inviter.getName() == (slea.readMapleAsciiString()) and inviter.getNoJuniors() < 2 and c.getPlayer().getLevel() >= 10:
             accepted = slea.readByte() > 0
             inviter.getClient().getSession().write(FamilyPacket.sendFamilyJoinResponse(accepted, c.getPlayer().getName()))
             if accepted:
@@ -221,7 +221,7 @@ class FamilyHandler:
                 old = (c.getPlayer().getMFC() is None) ? 0 : c.getPlayer().getMFC().getFamilyId()
                 oldj1 = (c.getPlayer().getMFC() is None) ? 0 : c.getPlayer().getMFC().getJunior1()
                 oldj2 = (c.getPlayer().getMFC() is None) ? 0 : c.getPlayer().getMFC().getJunior2()
-                if inviter.getFamilyId() > 0 && World.Family.getFamily(inviter.getFamilyId()) is not None:
+                if inviter.getFamilyId() > 0 and World.Family.getFamily(inviter.getFamilyId()) is not None:
                     fam = World.Family.getFamily(inviter.getFamilyId())
                     c.getPlayer().setFamily((old <= 0) ? inviter.getFamilyId() : old, inviter.getId(), (oldj1 <= 0) ? 0 : oldj1, (oldj2 <= 0) ? 0 : oldj2)
                     mf = inviter.getMFC()
@@ -230,14 +230,14 @@ class FamilyHandler:
                     else:
                         mf.setJunior1(c.getPlayer().getId())
                     inviter.saveFamilyStatus()
-                    if old > 0 && World.Family.getFamily(old) is not None:
+                    if old > 0 and World.Family.getFamily(old) is not None:
                         MapleFamily.mergeFamily(fam, World.Family.getFamily(old))
                     else:
                         c.getPlayer().setFamily(inviter.getFamilyId(), inviter.getId(), (oldj1 <= 0) ? 0 : oldj1, (oldj2 <= 0) ? 0 : oldj2)
                         fam.setOnline(c.getPlayer().getId(), True, c.getChannel())
                         c.getPlayer().saveFamilyStatus()
                     if fam is not None:
-                        if inviter.getNoJuniors() == 1 || old > 0:
+                        if inviter.getNoJuniors() == 1 or old > 0:
                             fam.resetDescendants()
                         fam.resetPedigree()
                 else:
@@ -249,7 +249,7 @@ class FamilyHandler:
                         c.getPlayer().setFamily(id, inviter.getId(), (oldj1 <= 0) ? 0 : oldj1, (oldj2 <= 0) ? 0 : oldj2)
                         fam2 = World.Family.getFamily(id)
                         fam2.setOnline(inviter.getId(), True, inviter.getClient().getChannel())
-                        if old > 0 && World.Family.getFamily(old) is not None:
+                        if old > 0 and World.Family.getFamily(old) is not None:
                             MapleFamily.mergeFamily(fam2, World.Family.getFamily(old))
                         else:
                             fam2.setOnline(c.getPlayer().getId(), True, c.getChannel())

@@ -50,7 +50,7 @@ class PlayersHandler:
                 fame = slea.readByte() > 0
                 slea.readInt()
                 itemz = chr.getCashInventory().findByCashId(slea.readLong())
-                if itemz is None || !itemz.getGiftFrom().lower() == name.lower() || !chr.getCashInventory().canSendNote(itemz.getUniqueId()):
+                if itemz is None or not itemz.getGiftFrom().lower() == name.lower() or not chr.getCashInventory().canSendNote(itemz.getUniqueId()):
                     return
                 try:
                     chr.sendNote(name, msg, fame ? 1 : 0)
@@ -86,7 +86,7 @@ class PlayersHandler:
                 if abs(target.getFame() + famechange) <= 30000:
                     target.addFame(famechange)
                     target.updateSingleStat(MapleStat.FAME, target.getFame())
-                if !chr.isGM():
+                if not chr.isGM():
                     chr.hasGivenFame(target)
                 c.getSession().write(MaplePacketCreator.giveFameResponse(mode, target.getName(), target.getFame()))
                 target.getClient().getSession().write(MaplePacketCreator.receiveFame(mode, chr.getName()))
@@ -127,7 +127,7 @@ class PlayersHandler:
         itemId = slea.readInt()
         target = slea.readMapleAsciiString().lower()
         toUse = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is None || toUse.getQuantity() < 1 || toUse.getItemId() != itemId:
+        if toUse is None or toUse.getQuantity() < 1 or toUse.getItemId() != itemId:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         # switch (itemId):
@@ -147,7 +147,7 @@ class PlayersHandler:
         charPos = slea.readInt()
         stance = slea.readShort()
         reactor = c.getPlayer().getMap().getReactorByOid(oid)
-        if reactor is None || !reactor.isAlive():
+        if reactor is None or not reactor.isAlive():
             return
         if c.getPlayer().isGM():
             c.getPlayer().dropMessage("[系统提示]你已攻击反应物" + reactor.getReactorId())
@@ -157,13 +157,13 @@ class PlayersHandler:
         oid = slea.readInt()
         touched = slea.readByte() > 0
         reactor = c.getPlayer().getMap().getReactorByOid(oid)
-        if !touched || reactor is None || !reactor.isAlive() || reactor.getReactorId() < 6109013 || reactor.getReactorId() > 6109027 || reactor.getTouch() == 0:
+        if not touched or reactor is None or not reactor.isAlive() or reactor.getReactorId() < 6109013 or reactor.getReactorId() > 6109027 or reactor.getTouch() == 0:
             return
         if c.getPlayer().isAdmin():
             c.getPlayer().dropMessage(5, "反应堆信息 - oid: " + oid + " Touch: " + reactor.getTouch() + " isTimerActive: " + reactor.isTimerActive() + " ReactorType: " + reactor.getReactorType())
         if reactor.getTouch() == 2:
             ReactorScriptManager.getInstance().act(c, reactor)
-        elif reactor.getTouch() == 1 && !reactor.isTimerActive():
+        elif reactor.getTouch() == 1 and not reactor.isTimerActive():
             if reactor.getReactorType() == 100:
                 itemid = GameConstants.getCustomReactItem(reactor.getReactorId(), reactor.getReactItem().getLeft())
                 if c.getPlayer().haveItem(itemid, reactor.getReactItem().getRight()):
@@ -181,25 +181,25 @@ class PlayersHandler:
         id = slea.readShort()
         co = "椰子"
         map = c.getChannelServer().getEvent(MapleEventType.打椰子比赛)
-        if map is None || !map.isRunning():
+        if map is None or not map.isRunning():
             map = c.getChannelServer().getEvent(MapleEventType.打瓶盖比赛)
             co = "瓶盖"
-            if map is None || !map.isRunning():
+            if map is None or not map.isRunning():
                 return
         final MapleCoconut.MapleCoconuts nut = map.getCoconut(id)
-        if nut is None || !nut.isHittable():
+        if nut is None or not nut.isHittable():
             return
         if int(time.time() * 1000) < nut.getHitTime():
             return
-        if nut.getHits() > 2 && random.random() < 0.4 && !nut.isStopped():
+        if nut.getHits() > 2 and random.random() < 0.4 and not nut.isStopped():
             nut.setHittable(False)
-            if random.random() < 0.01 && map.getStopped() > 0:
+            if random.random() < 0.01 and map.getStopped() > 0:
                 nut.setStopped(True)
                 map.stopCoconut()
                 c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.hitCoconut(False, id, 1))
                 return
             nut.resetHits()
-            if random.random() < 0.05 && map.getBombings() > 0:
+            if random.random() < 0.05 and map.getBombings() > 0:
                 c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.hitCoconut(False, id, 2))
                 map.bombCoconut()
             elif map.getFalling() > 0:
@@ -231,13 +231,13 @@ class PlayersHandler:
                     errcode = 18
                 elif chr.getMapId() != c.getPlayer().getMapId():
                     errcode = 19
-                elif !c.getPlayer().haveItem(itemid, 1) || itemid < 2240004 || itemid > 2240015:
+                elif not c.getPlayer().haveItem(itemid, 1) or itemid < 2240004 or itemid > 2240015:
                     errcode = 13
-                elif chr.getMarriageId() > 0 || chr.getMarriageItemId() > 0:
+                elif chr.getMarriageId() > 0 or chr.getMarriageItemId() > 0:
                     errcode = 24
-                elif !MapleInventoryManipulator.checkSpace(c, newItemId, 1, ""):
+                elif not MapleInventoryManipulator.checkSpace(c, newItemId, 1, ""):
                     errcode = 20
-                elif !MapleInventoryManipulator.checkSpace(chr.getClient(), newItemId, 1, ""):
+                elif not MapleInventoryManipulator.checkSpace(chr.getClient(), newItemId, 1, ""):
                     errcode = 21
                 if errcode > 0:
                     c.getSession().write(MaplePacketCreator.sendEngagement(errcode, 0, None, None))
@@ -254,13 +254,13 @@ class PlayersHandler:
                 name2 = slea.readMapleAsciiString()
                 id = slea.readInt()
                 chr = c.getChannelServer().getPlayerStorage().getCharacterByName(name2)
-                if c.getPlayer().getMarriageId() > 0 || chr is None || chr.getId() != id || chr.getMarriageItemId() <= 0 || !chr.haveItem(chr.getMarriageItemId(), 1) || chr.getMarriageId() > 0:
+                if c.getPlayer().getMarriageId() > 0 or chr is None or chr.getId() != id or chr.getMarriageItemId() <= 0 or not chr.haveItem(chr.getMarriageItemId(), 1) or chr.getMarriageId() > 0:
                     c.getSession().write(MaplePacketCreator.sendEngagement(29, 0, None, None))
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 if accepted:
                     newItemId2 = 1112300 + (chr.getMarriageItemId() - 2240004)
-                    if !MapleInventoryManipulator.checkSpace(c, newItemId2, 1, "") || !MapleInventoryManipulator.checkSpace(chr.getClient(), newItemId2, 1, ""):
+                    if not MapleInventoryManipulator.checkSpace(c, newItemId2, 1, "") or not MapleInventoryManipulator.checkSpace(chr.getClient(), newItemId2, 1, ""):
                         c.getSession().write(MaplePacketCreator.sendEngagement(21, 0, None, None))
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -279,13 +279,13 @@ class PlayersHandler:
                 itemId = slea.readInt()
                 type = GameConstants.getInventoryType(itemId)
                 item = c.getPlayer().getInventory(type).findById(itemId)
-                if item is not None && type == MapleInventoryType.ETC && itemId / 10000 == 421:
+                if item is not None and type == MapleInventoryType.ETC and itemId / 10000 == 421:
                     MapleInventoryManipulator.drop(c, type, item.getPosition(), item.getQuantity())
                     break
                 break
 
     def LieDetector(self, slea: Any, c: Any, chr: Any, isItem: bool) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             return
         target = slea.readMapleAsciiString()
         slot = 0
@@ -293,19 +293,19 @@ class PlayersHandler:
             slot = slea.readShort()
             itemId = slea.readInt()
             toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-            if toUse is None || toUse.getQuantity() <= 0 || toUse.getItemId() != itemId || itemId != 2190000:
+            if toUse is None or toUse.getQuantity() <= 0 or toUse.getItemId() != itemId or itemId != 2190000:
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if (FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) && isItem) || chr.getMap().getReturnMapId() == chr.getMapId():
+            if (FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) and isItem) or chr.getMap().getReturnMapId() == chr.getMapId():
                 chr.dropMessage(5, "当前地图无法使用测谎仪.")
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
             search_chr = chr.getMap().getCharacterByName(target)
-            if search_chr is None || search_chr.getId() == chr.getId():
+            if search_chr is None or search_chr.getId() == chr.getId():
                 chr.dropMessage(1, "未找到角色.")
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if search_chr.getEventInstance() is not None || search_chr.getMapId() == 180000001:
+            if search_chr.getEventInstance() is not None or search_chr.getMapId() == 180000001:
                 chr.dropMessage(5, "当前地图无法使用测谎仪.")
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
@@ -313,11 +313,11 @@ class PlayersHandler:
                 c.getSession().write(MaplePacketCreator.LieDetectorResponse(3))
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if (search_chr.getAntiMacro().isPassed() && isItem) || search_chr.getAntiMacro().getAttempt() == 2:
+            if (search_chr.getAntiMacro().isPassed() and isItem) or search_chr.getAntiMacro().getAttempt() == 2:
                 c.getSession().write(MaplePacketCreator.LieDetectorResponse(2))
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if !search_chr.getAntiMacro().startLieDetector(chr.getName(), isItem, False):
+            if not search_chr.getAntiMacro().startLieDetector(chr.getName(), isItem, False):
                 chr.dropMessage(5, "使用测谎仪失败.")
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
@@ -328,16 +328,16 @@ class PlayersHandler:
             chr.dropMessage(1, "".append(" 测谎仪还未完善，暂时关闭."))
 
     def LieDetectorResponse(self, slea: Any, c: Any) -> None:
-        if c.getPlayer() is None || c.getPlayer().getMap() is None:
+        if c.getPlayer() is None or c.getPlayer().getMap() is None:
             return
         answer = slea.readMapleAsciiString()
         ld = c.getPlayer().getAntiMacro()
-        if !ld.inProgress() || (ld.isPassed() && ld.getLastType() == 0) || ld.getAnswer() is None || answer <= 0:
+        if not ld.inProgress() or (ld.isPassed() and ld.getLastType() == 0) or ld.getAnswer() is None or answer <= 0:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         if answer.lower() == ld.getAnswer(.lower()):
             search_chr = c.getPlayer().getMap().getCharacterByName(ld.getTester())
-            if search_chr is not None && search_chr.getId() != c.getPlayer().getId():
+            if search_chr is not None and search_chr.getId() != c.getPlayer().getId():
                 search_chr.dropMessage(5, c.getPlayer().getName() + " 通过了测谎仪的检测.")
             c.getSession().write(MaplePacketCreator.LieDetectorResponse(12, 1))
             c.getPlayer().gainMeso(5000, True)
@@ -346,7 +346,7 @@ class PlayersHandler:
             ld.startLieDetector(ld.getTester(), ld.getLastType() == 0, True)
         else:
             search_chr = c.getPlayer().getMap().getCharacterByName(ld.getTester())
-            if search_chr is not None && search_chr.getId() != c.getPlayer().getId():
+            if search_chr is not None and search_chr.getId() != c.getPlayer().getId():
                 search_chr.dropMessage(5, c.getPlayer().getName() + " 通过测谎仪的检测，恭喜你获得7000的金币.")
                 search_chr.gainMeso(7000, True)
             ld.end()
@@ -356,7 +356,7 @@ class PlayersHandler:
             c.getPlayer().changeMap(map, map.getPortal(0))
 
     def LieDetectorRefresh(self, slea: Any, c: Any) -> None:
-        if c.getPlayer() is None || c.getPlayer().getMap() is None:
+        if c.getPlayer() is None or c.getPlayer().getMap() is None:
             return
         ld = c.getPlayer().getAntiMacro()
         if ld.getAttempt() < 3:

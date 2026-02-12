@@ -77,11 +77,11 @@ class MTSCSPacket:
             equipped.add(item)
         Collections.sort(equipped)
         for item2 in equipped:
-            if item2.getPosition() < 0 && item2.getPosition() > -100:
+            if item2.getPosition() < 0 and item2.getPosition() > -100:
                 PacketHelper.addItemInfo(mplew, item2, False, False)
         mplew.write(0)
         for item2 in equipped:
-            if item2.getPosition() <= -100 && item2.getPosition() > -1000:
+            if item2.getPosition() <= -100 and item2.getPosition() > -1000:
                 PacketHelper.addItemInfo(mplew, item2, False, False)
         mplew.write(0)
         iv = chr.getInventory(MapleInventoryType.EQUIP)
@@ -369,7 +369,7 @@ class MTSCSPacket:
             print("useChalkboard--------------------")
         mplew.writeShort(SendPacketOpcode.CHALKBOARD.getValue())
         mplew.writeInt(charid)
-        if msg is None || msg <= 0:
+        if msg is None or msg <= 0:
             mplew.write(0)
         else:
             mplew.write(1)
@@ -611,7 +611,8 @@ class MTSCSPacket:
             sn = None
             try:
                 sn = CashItemFactory.getInstance().getSnFromId(itemz.getItemId())
-            catch (Exception ex) {}
+            except Exception as ex:
+                pass
             mplew.writeLong(itemz.getUniqueId())
             mplew.writeLong(c.getAccID())
             mplew.writeInt(itemz.getItemId())

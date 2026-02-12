@@ -23,7 +23,7 @@ class MapleAESOFB:
         except Exception:
             print("ERROR" + e)
         except InvalidKeyException as e:
-            print("Error initalizing the encryption cipher.  Make sure you're using the Unlimited Strength cryptography jar files.")
+            print("Error initalizing the encryption cipher. Make sure you're using the Unlimited Strength cryptography jar files.")
         setIv(iv)
         self.mapleVersion = (short)(mapleVersion >> 8 & 0xFF | mapleVersion << 8 & 0xFF00)
 
@@ -115,7 +115,7 @@ class MapleAESOFB:
         return new byte[] { (byte)(iiv >>> 8 & 0xFF), (byte)(iiv & 0xFF), (byte)(mlength >>> 8 & 0xFF), (byte)(mlength & 0xFF) }
 
     def checkPacket(self, packet: bytes) -> bool:
-        return ((packet[0] ^ self.iv[2]) & 0xFF) == (self.mapleVersion >> 8 & 0xFF) && ((packet[1] ^ self.iv[3]) & 0xFF) == (self.mapleVersion & 0xFF)
+        return ((packet[0] ^ self.iv[2]) & 0xFF) == (self.mapleVersion >> 8 & 0xFF) and ((packet[1] ^ self.iv[3]) & 0xFF) == (self.mapleVersion & 0xFF)
 
     def checkPacket_packetHeader(self, packetHeader: int) -> bool:
         return self.checkPacket(new byte[] { (byte)(packetHeader >> 24 & 0xFF), (byte)(packetHeader >> 16 & 0xFF) })

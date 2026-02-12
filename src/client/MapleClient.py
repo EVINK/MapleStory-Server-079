@@ -145,11 +145,12 @@ class MapleClient:
                 if macs.matches(filter):
                     matched = True
                     break
-            if !matched:
+            if not matched:
                 ps.setString(1, macs)
                 try:
                     ps.executeUpdate()
-                catch (SQLException ex) {}
+                except SQLException as ex:
+                    pass
             ps.close()
         except Exception as e:
             print("Error banning MACs" + e)
@@ -171,11 +172,12 @@ class MapleClient:
                     if mac.matches(filter):
                         matched = True
                         break
-                if !matched:
+                if not matched:
                     ps.setString(1, mac)
                     try:
                         ps.executeUpdate()
-                    catch (SQLException ex) {}
+                    except SQLException as ex:
+                        pass
             ps.close()
         except Exception as e:
             print("Error banning MACs" + e)
@@ -186,7 +188,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT accountid from characters where name = ?")
             ps.setString(1, charname)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -233,7 +235,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT accountid from characters where name = ?")
             ps.setString(1, charname)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -243,7 +245,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT * FROM accounts WHERE id = ?")
             ps.setInt(1, accid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -262,7 +264,7 @@ class MapleClient:
                 split = None
                 macz = split = macs.split(", ")
                 for mac in split:
-                    if !mac == (""):
+                    if not mac == (""):
                         psa2 = con.prepareStatement("DELETE FROM macbans WHERE mac = ?")
                         psa2.setString(1, mac)
                         psa2.execute()
@@ -279,7 +281,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT accountid from characters where name = ?")
             ps.setString(1, charname)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -289,7 +291,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT * FROM accounts WHERE id = ?")
             ps.setInt(1, accid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -393,7 +395,7 @@ class MapleClient:
         return self.greason
 
     def isBannedMac(self, mac: str) -> bool:
-        if mac.lower() == "00-00-00-00-00-00".lower() || mac != 17:
+        if mac.lower() == "00-00-00-00-00-00".lower() or mac != 17:
             return False
         ret = False
         # try-with-resources: final PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT COUNT(*) FROM macbans WHERE mac = ?")
@@ -475,7 +477,7 @@ class MapleClient:
             ps = con.prepareStatement("SELECT macs FROM accounts WHERE id = ?")
             ps.setInt(1, self.accId)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 raise RuntimeError("No valid account associated with this client.")
@@ -483,7 +485,7 @@ class MapleClient:
                 split = None
                 macData = split = rs.getString("macs").split(", ")
                 for mac in split:
-                    if !mac == (""):
+                    if not mac == (""):
                         self.macs.add(mac)
             rs.close()
             ps.close()
@@ -492,7 +494,7 @@ class MapleClient:
         MapleClient.login_mutex.lock()
         try:
             state = self.getLoginState()
-            if state > MapleClient.LOGIN_NOTLOGGEDIN && state != MapleClient.LOGIN_WAITING:
+            if state > MapleClient.LOGIN_NOTLOGGEDIN and state != MapleClient.LOGIN_WAITING:
                 self.loggedIn = False
                 return 7
             self.updateLoginState(MapleClient.LOGIN_LOGGEDIN, self.getSessionIPAddress())
@@ -518,10 +520,10 @@ class MapleClient:
                 self.greason = rs.getByte("greason")
                 self.tempban = self.getTempBanCalendar(rs)
                 self.gender = rs.getByte("gender")
-                if self.secondPassword is not None && self.salt2 is not None:
+                if self.secondPassword is not None and self.salt2 is not None:
                     self.secondPassword = LoginCrypto.rand_r(self.secondPassword)
                 ps.close()
-                if banned > 0 && !self.gm:
+                if banned > 0 and not self.gm:
                     loginok = 3
                 else:
                     if banned == -1:
@@ -529,7 +531,7 @@ class MapleClient:
                     loginstate = self.getLoginState()
                     if loginstate > MapleClient.LOGIN_NOTLOGGEDIN:
                         self.loggedIn = False
-                        if salt is None && LoginCrypto.checkSha1Hash(passhash, pwd):
+                        if salt is None and LoginCrypto.checkSha1Hash(passhash, pwd):
                             loginok = 7
                             self.unlockAcc()
                         else:
@@ -537,12 +539,12 @@ class MapleClient:
                     else:
                         updatePasswordHash = False
                         updatePasswordHashtosha1 = False
-                        if LoginCryptoLegacy.isLegacyPassword(passhash) && LoginCryptoLegacy.checkPassword(pwd, passhash):
+                        if LoginCryptoLegacy.isLegacyPassword(passhash) and LoginCryptoLegacy.checkPassword(pwd, passhash):
                             loginok = 0
                             updatePasswordHashtosha1 = True
-                        elif salt is None && LoginCrypto.checkSha1Hash(passhash, pwd):
+                        elif salt is None and LoginCrypto.checkSha1Hash(passhash, pwd):
                             loginok = 0
-                        elif pwd.lower() == ServerConstants.superpw.lower() && ServerConstants.Super_password:
+                        elif pwd.lower() == ServerConstants.superpw.lower() and ServerConstants.Super_password:
                             loginok = 0
                         elif LoginCrypto.checkSaltedSha512Hash(passhash, pwd, salt):
                             loginok = 0
@@ -578,8 +580,8 @@ class MapleClient:
     def unlockAcc(self) -> None:
         unLocked = False
         for c in World.Client.getClients():
-            if c.getAccID() == self.accId && c.isLoggedIn():
-                if !c.getSession().isConnected():
+            if c.getAccID() == self.accId and c.isLoggedIn():
+                if not c.getSession().isConnected():
                     charName = c.loadCharacterNames(c.getWorld())
                     for cha in charName:
                         chr = CashShopServer.getPlayerStorage().getCharacterByName(cha)
@@ -597,45 +599,50 @@ class MapleClient:
                 c.unLockDisconnect()
                 unLocked = True
                 break
-        if !unLocked:
+        if not unLocked:
             try:
                 con = DatabaseConnection.getConnection()
                 ps = con.prepareStatement("UPDATE accounts SET loggedin = 0 WHERE name = ?")
                 ps.setString(1, self.accountName)
                 ps.executeUpdate()
                 ps.close()
-            catch (SQLException ex) {}
+            except SQLException as ex:
+                pass
 
     def unLockDisconnect(self) -> None:
+        def _task_1():
+            try:
+                Thread.sleep(1000)
+            except InterruptedException as ex:
+                pass
+            MapleClient.self.getSession().close(True)
+
         self.getSession().write(MaplePacketCreator.serverNotice(1, "您的账号已被他人登录!"))
         self.disconnect(self.serverTransition, self.getChannel() == -10)
         client = this
-        closeSession = Thread()
-            public void run()
-                try:
-                    Thread.sleep(1000)
-                catch (InterruptedException ex) {}
-                MapleClient.self.getSession().close(True)
+        closeSession = _task_1
         try:
             closeSession.start()
-        catch (Exception ex) {}
+        except Exception as ex:
+            pass
 
     def run(self) -> None:
         try:
             Thread.sleep(1000)
-        catch (InterruptedException ex) {}
+        except InterruptedException as ex:
+            pass
         MapleClient.self.getSession().close(True)
 
     def CheckSecondPassword(self, in: str) -> bool:
         allow = False
         updatePasswordHash = False
-        if LoginCryptoLegacy.isLegacyPassword(self.secondPassword) && LoginCryptoLegacy.checkPassword(in, self.secondPassword):
+        if LoginCryptoLegacy.isLegacyPassword(self.secondPassword) and LoginCryptoLegacy.checkPassword(in, self.secondPassword):
             allow = True
             updatePasswordHash = True
-        elif self.salt2 is None && LoginCrypto.checkSha1Hash(self.secondPassword, in):
+        elif self.salt2 is None and LoginCrypto.checkSha1Hash(self.secondPassword, in):
             allow = True
             updatePasswordHash = True
-        elif in == (GameConstants.MASTER) || LoginCrypto.checkSaltedSha512Hash(self.secondPassword, in, self.salt2):
+        elif in == (GameConstants.MASTER) or LoginCrypto.checkSaltedSha512Hash(self.secondPassword, in, self.salt2):
             allow = True
         if updatePasswordHash:
             con = DatabaseConnection.getConnection()
@@ -682,12 +689,12 @@ class MapleClient:
                 ps.close()
             except Exception as e:
                 print("error updating login state" + e)
-        if newstate == MapleClient.LOGIN_NOTLOGGEDIN || newstate == MapleClient.LOGIN_WAITING:
+        if newstate == MapleClient.LOGIN_NOTLOGGEDIN or newstate == MapleClient.LOGIN_WAITING:
             self.loggedIn = False
             self.serverTransition = False
         else:
-            self.serverTransition = (newstate == MapleClient.LOGIN_SERVER_TRANSITION || newstate == MapleClient.CHANGE_CHANNEL)
-            self.loggedIn = !self.serverTransition
+            self.serverTransition = (newstate == MapleClient.LOGIN_SERVER_TRANSITION or newstate == MapleClient.CHANGE_CHANNEL)
+            self.loggedIn = not self.serverTransition
 
     def updateSecondPassword(self) -> None:
         try:
@@ -719,12 +726,12 @@ class MapleClient:
             ps = con.prepareStatement("SELECT loggedin, lastlogin, `birthday` + 0 AS `bday` FROM accounts WHERE id = ?")
             ps.setInt(1, self.getAccID())
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 ps.close()
                 raise DatabaseException("Everything sucks")
             self.birthday = rs.getInt("bday")
             state = rs.getByte("loggedin")
-            if (state == MapleClient.LOGIN_SERVER_TRANSITION || state == MapleClient.CHANGE_CHANNEL) && rs.getTimestamp("lastlogin").getTime() + 20000 < int(time.time() * 1000):
+            if (state == MapleClient.LOGIN_SERVER_TRANSITION or state == MapleClient.CHANGE_CHANNEL) and rs.getTimestamp("lastlogin").getTime() + 20000 < int(time.time() * 1000):
                 state = MapleClient.LOGIN_NOTLOGGEDIN
                 self.updateLoginState(state, self.getSessionIPAddress())
             rs.close()
@@ -748,7 +755,7 @@ class MapleClient:
             if self.player.getMarriageId() > 0:
                 stat1 = self.player.getQuestNAdd(MapleQuest.getInstance(160001))
                 stat2 = self.player.getQuestNAdd(MapleQuest.getInstance(160002))
-                if stat1.getCustomData() is not None && (stat1.getCustomData() == ("2_") || stat1.getCustomData() == ("2")):
+                if stat1.getCustomData() is not None and (stat1.getCustomData() == ("2_") or stat1.getCustomData() == ("2")):
                     if stat2.getCustomData() is not None:
                         stat2.setCustomData("0")
                     stat1.setCustomData("3")
@@ -759,13 +766,13 @@ class MapleClient:
             if shop is not None:
                 shop.removeVisitor(self.player)
                 if shop.isOwner(self.player):
-                    if shop.getShopType() == 1 && shop.isAvailable():
+                    if shop.getShopType() == 1 and shop.isAvailable():
                         shop.setOpen(True)
                     else:
                         shop.closeShop(True, True)
             self.player.setMessenger(None)
-            if self.player is not None && self.player.getMap() is not None:
-                if shutdown || (self.getChannelServer() is not None && self.getChannelServer().isShutdown()):
+            if self.player is not None and self.player.getMap() is not None:
+                if shutdown or (self.getChannelServer() is not None and self.getChannelServer().isShutdown()):
                     # switch (self.player.getMapId()):
                         # case 220080001:
                         # case 541010100:
@@ -788,7 +795,7 @@ class MapleClient:
         self.disconnect(RemoveInChannelServer, fromCS, False)
 
     def disconnect_RemoveInChannelServer_fromCS_shutdown(self, RemoveInChannelServer: bool, fromCS: bool, shutdown: bool) -> None:
-        if self.player is not None && self.isLoggedIn():
+        if self.player is not None and self.isLoggedIn():
             if self.player.getMaster() > 0:
                 self.player.getMster().dropMessage(5, "由于你的徒弟断开，你的学徒已复位.")
                 self.player.getMster().setApprentice(0)
@@ -818,10 +825,10 @@ class MapleClient:
                 self.player = None
                 self.receiving = False
                 return
-            if !fromCS:
+            if not fromCS:
                 ch = ChannelServer.getInstance((map is None) ? self.channel : map.getChannel())
                 try:
-                    if ch is None || clone || ch.isShutdown():
+                    if ch is None or clone or ch.isShutdown():
                         self.player = None
                         return
                     if messengerid > 0:
@@ -829,13 +836,13 @@ class MapleClient:
                     if party is not None:
                         chrp.setOnline(False)
                         World.Party.updateParty(party.getId(), PartyOperation.LOG_ONOFF, chrp)
-                        if map is not None && party.getLeader().getId() == idz:
+                        if map is not None and party.getLeader().getId() == idz:
                             lchr = None
                             for pchr in party.getMembers():
-                                if pchr is not None && map.getCharacterById(pchr.getId()) is not None && (lchr is None || lchr.getLevel() < pchr.getLevel()):
+                                if pchr is not None and map.getCharacterById(pchr.getId()) is not None and (lchr is None or lchr.getLevel() < pchr.getLevel()):
                                     lchr = pchr
                     if bl is not None:
-                        if !self.serverTransition && self.isLoggedIn():
+                        if not self.serverTransition and self.isLoggedIn():
                             World.Buddy.loggedOff(namez, idz, self.channel, bl.getBuddiesIds(), gmLevel, hidden)
                         else:
                             World.Buddy.loggedOn(namez, idz, self.channel, bl.getBuddiesIds(), gmLevel, hidden)
@@ -848,7 +855,7 @@ class MapleClient:
                     FileoutputUtil.outputFileError(FileoutputUtil.Acc_Stuck, e)
                     print(getLogMessage(this, "ERROR") + e)
                 finally:
-                    if RemoveInChannelServer && ch is not None:
+                    if RemoveInChannelServer and ch is not None:
                         ch.removePlayer(idz, namez)
                     self.player = None
             else:
@@ -860,7 +867,7 @@ class MapleClient:
                     if party is not None:
                         chrp.setOnline(False)
                         World.Party.updateParty(party.getId(), PartyOperation.LOG_ONOFF, chrp)
-                    if !self.serverTransition && self.isLoggedIn():
+                    if not self.serverTransition and self.isLoggedIn():
                         World.Buddy.loggedOff(namez, idz, self.channel, bl.getBuddiesIds(), gmLevel, hidden)
                     else:
                         World.Buddy.loggedOn(namez, idz, self.channel, bl.getBuddiesIds(), gmLevel, hidden)
@@ -873,10 +880,10 @@ class MapleClient:
                     FileoutputUtil.outputFileError(FileoutputUtil.Acc_Stuck, e)
                     print(getLogMessage(this, "ERROR") + e)
                 finally:
-                    if RemoveInChannelServer && ch2 > 0:
+                    if RemoveInChannelServer and ch2 > 0:
                         CashShopServer.getPlayerStorage().deregisterPlayer(idz, namez)
                     self.player = None
-        if !self.serverTransition && self.isLoggedIn():
+        if not self.serverTransition and self.isLoggedIn():
             self.updateLoginState(MapleClient.LOGIN_NOTLOGGEDIN, self.getSessionIPAddress())
         self.engines.clear()
 
@@ -931,7 +938,7 @@ class MapleClient:
             ps.setInt(1, cid)
             ps.setInt(2, self.accId)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return 1
@@ -1012,18 +1019,19 @@ class MapleClient:
         self.lastPong = int(time.time() * 1000)
 
     def sendPing(self) -> None:
+        def _task_1():
+            try:
+                if MapleClient.self.getLatency() < 0:
+                    MapleClient.self.disconnect(True, False)
+                    if MapleClient.self.getSession().isConnected():
+                        MapleClient.self.updateLoginState(MapleClient.LOGIN_NOTLOGGEDIN, MapleClient.self.getSessionIPAddress())
+                        MapleClient.self.getSession().close(True)
+            except TypeError as e:
+                MapleClient.self.getSession().close(True)
+
         self.lastPing = int(time.time() * 1000)
         self.session.write(LoginPacket.getPing())
-        Timer.PingTimer.getInstance().schedule(Runnable()
-            public void run()
-                try:
-                    if MapleClient.self.getLatency() < 0:
-                        MapleClient.self.disconnect(True, False)
-                        if MapleClient.self.getSession().isConnected():
-                            MapleClient.self.updateLoginState(MapleClient.LOGIN_NOTLOGGEDIN, MapleClient.self.getSessionIPAddress())
-                            MapleClient.self.getSession().close(True)
-                except TypeError as e:
-                    MapleClient.self.getSession().close(True)
+        Timer.PingTimer.getInstance().schedule(_task_1, 15000)
 
     def getMacs(self) -> set:
         return Collections.unmodifiableSet((Set<? extends String>)self.macs)
@@ -1101,7 +1109,7 @@ class MapleClient:
         return self.mac
 
     def setMac(self, macData: str) -> None:
-        if macData.lower() == "00-00-00-00-00-00".lower() || macData != 17:
+        if macData.lower() == "00-00-00-00-00-00".lower() or macData != 17:
             return
         self.mac = macData
 
@@ -1109,7 +1117,7 @@ class MapleClient:
         self.updateMacs(self.mac)
 
     def updateMacs_macData(self, macData: str) -> None:
-        if macData.lower() == "00-00-00-00-00-00".lower() || macData != 17:
+        if macData.lower() == "00-00-00-00-00-00".lower() or macData != 17:
             return
         try:
             con = DatabaseConnection.getConnection()
@@ -1137,14 +1145,16 @@ class MapleClient:
                 self.gender = rs.getByte("gender")
                 ps.close()
                 rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
         finally:
             try:
-                if ps is not None && !ps.isClosed():
+                if ps is not None and not ps.isClosed():
                     ps.close()
-                if rs is not None && !rs.isClosed():
+                if rs is not None and not rs.isClosed():
                     rs.close()
-            catch (SQLException ex2) {}
+            except SQLException as ex2:
+                pass
 
     def canClickNPC(self) -> bool:
         return self.lastNpcClick + 500 < int(time.time() * 1000)
@@ -1176,7 +1186,7 @@ class MapleClient:
         return self.handsome2
 
     def isBanndMac2(self, mac: str) -> bool:
-        if mac.lower() == "00-00-00-00-00-00".lower() || mac != 17:
+        if mac.lower() == "00-00-00-00-00-00".lower() or mac != 17:
             return False
         ret = False
         # try-with-resources: final PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT COUNT(*) FROM macbans2 WHERE mac = ?")

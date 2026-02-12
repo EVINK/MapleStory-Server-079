@@ -35,7 +35,7 @@ class ExpTable:
         return ExpTable.closeness[level - 1]
 
     def getMountExpNeededForLevel(self, level: int) -> int:
-        if level > ExpTable.len(mountexp) || level < 0:
+        if level > ExpTable.len(mountexp) or level < 0:
             return 4550
         return ExpTable.mountexp[level - 1]
 

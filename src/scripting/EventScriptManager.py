@@ -30,7 +30,7 @@ class EventScriptManager(AbstractScriptManager):
         self.events = {}
         self.runningInstanceMapId = AtomicInteger(0)
         for script in scripts:
-            if !script == (""):
+            if not script == (""):
                 iv = self.getInvocable("event"+ File.separator + script + ".js", None)
                 if iv is not None:
                     self.events.put(script, EventEntry(script, iv, EventManager(cserv, iv, script)))

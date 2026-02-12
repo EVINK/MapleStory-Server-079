@@ -143,7 +143,7 @@ class MapleItemInformationProvider:
         return cls._instance
 
     def load(self) -> None:
-        if self.setItems != 0 || self.potentialCache != 0:
+        if self.setItems != 0 or self.potentialCache != 0:
             return
         self.getAllItems()
 
@@ -183,72 +183,72 @@ class MapleItemInformationProvider:
         data = None
         if itemId >= 5010000:
             data = self.cashStringData
-        elif itemId >= 2000000 && itemId < 3000000:
+        elif itemId >= 2000000 and itemId < 3000000:
             data = self.consumeStringData
-        elif (itemId >= 1132000 && itemId < 1183000) || (itemId >= 1010000 && itemId < 1040000) || (itemId >= 1122000 && itemId < 1123000):
+        elif (itemId >= 1132000 and itemId < 1183000) or (itemId >= 1010000 and itemId < 1040000) or (itemId >= 1122000 and itemId < 1123000):
             data = self.eqpStringData
             cat = "Eqp/Accessory"
-        elif itemId >= 1662000 && itemId < 1680000:
+        elif itemId >= 1662000 and itemId < 1680000:
             data = self.eqpStringData
             cat = "Eqp/Android"
-        elif itemId >= 1000000 && itemId < 1010000:
+        elif itemId >= 1000000 and itemId < 1010000:
             data = self.eqpStringData
             cat = "Eqp/Cap"
-        elif itemId >= 1102000 && itemId < 1103000:
+        elif itemId >= 1102000 and itemId < 1103000:
             data = self.eqpStringData
             cat = "Eqp/Cape"
-        elif itemId >= 1040000 && itemId < 1050000:
+        elif itemId >= 1040000 and itemId < 1050000:
             data = self.eqpStringData
             cat = "Eqp/Coat"
-        elif itemId >= 20000 && itemId < 22000:
+        elif itemId >= 20000 and itemId < 22000:
             data = self.eqpStringData
             cat = "Eqp/Face"
-        elif itemId >= 1080000 && itemId < 1090000:
+        elif itemId >= 1080000 and itemId < 1090000:
             data = self.eqpStringData
             cat = "Eqp/Glove"
-        elif itemId >= 30000 && itemId < 35000:
+        elif itemId >= 30000 and itemId < 35000:
             data = self.eqpStringData
             cat = "Eqp/Hair"
-        elif itemId >= 1050000 && itemId < 1060000:
+        elif itemId >= 1050000 and itemId < 1060000:
             data = self.eqpStringData
             cat = "Eqp/Longcoat"
-        elif itemId >= 1060000 && itemId < 1070000:
+        elif itemId >= 1060000 and itemId < 1070000:
             data = self.eqpStringData
             cat = "Eqp/Pants"
-        elif itemId >= 1610000 && itemId < 1660000:
+        elif itemId >= 1610000 and itemId < 1660000:
             data = self.eqpStringData
             cat = "Eqp/Mechanic"
-        elif itemId >= 1802000 && itemId < 1820000:
+        elif itemId >= 1802000 and itemId < 1820000:
             data = self.eqpStringData
             cat = "Eqp/PetEquip"
-        elif itemId >= 1920000 && itemId < 2000000:
+        elif itemId >= 1920000 and itemId < 2000000:
             data = self.eqpStringData
             cat = "Eqp/Dragon"
-        elif itemId >= 1112000 && itemId < 1120000:
+        elif itemId >= 1112000 and itemId < 1120000:
             data = self.eqpStringData
             cat = "Eqp/Ring"
-        elif itemId >= 1092000 && itemId < 1100000:
+        elif itemId >= 1092000 and itemId < 1100000:
             data = self.eqpStringData
             cat = "Eqp/Shield"
-        elif itemId >= 1070000 && itemId < 1080000:
+        elif itemId >= 1070000 and itemId < 1080000:
             data = self.eqpStringData
             cat = "Eqp/Shoes"
-        elif itemId >= 1900000 && itemId < 1920000:
+        elif itemId >= 1900000 and itemId < 1920000:
             data = self.eqpStringData
             cat = "Eqp/Taming"
-        elif itemId >= 1200000 && itemId < 1210000:
+        elif itemId >= 1200000 and itemId < 1210000:
             data = self.eqpStringData
             cat = "Eqp/Totem"
-        elif itemId >= 1210000 && itemId < 1800000:
+        elif itemId >= 1210000 and itemId < 1800000:
             data = self.eqpStringData
             cat = "Eqp/Weapon"
-        elif itemId >= 4000000 && itemId < 5000000:
+        elif itemId >= 4000000 and itemId < 5000000:
             data = self.etcStringData
             cat = "Etc"
-        elif itemId >= 3000000 && itemId < 4000000:
+        elif itemId >= 3000000 and itemId < 4000000:
             data = self.insStringData
         else:
-            if itemId < 5000000 || itemId >= 5010000:
+            if itemId < 5000000 or itemId >= 5010000:
                 return None
             data = self.petStringData
         if cat is None:
@@ -331,7 +331,7 @@ class MapleItemInformationProvider:
             if pData is None:
                 return -1.0
             pEntry = MapleDataTool.getIntConvert(pData)
-        if itemId == 2070019 || itemId == 2330007:
+        if itemId == 2070019 or itemId == 2330007:
             pEntry = 1.0
         self.priceCache.put(itemId, pEntry)
         return pEntry
@@ -503,9 +503,9 @@ class MapleItemInformationProvider:
         return ret
 
     def canEquip(self, stats: dict, itemid: int, level: int, job: int, fame: int, str: int, dex: int, luk: int, int_: int, supremacy: int) -> bool:
-        if level + supremacy >= stats.get("reqLevel") && str >= stats.get("reqSTR") && dex >= stats.get("reqDEX") && luk >= stats.get("reqLUK") && int_ >= stats.get("reqINT"):
+        if level + supremacy >= stats.get("reqLevel") and str >= stats.get("reqSTR") and dex >= stats.get("reqDEX") and luk >= stats.get("reqLUK") and int_ >= stats.get("reqINT"):
             fameReq = stats.get("reqPOP")
-            return fameReq == 0 || fame >= fameReq
+            return fameReq == 0 or fame >= fameReq
         return False
 
     def getReqLevel(self, itemId: int) -> int:
@@ -514,7 +514,7 @@ class MapleItemInformationProvider:
         return self.getEquipStats(itemId).get("reqLevel")
 
     def isCashItem(self, itemId: int) -> bool:
-        return self.getEquipStats(itemId) is not None && self.getEquipStats(itemId).get("cash") == 1
+        return self.getEquipStats(itemId) is not None and self.getEquipStats(itemId).get("cash") == 1
 
     def getSlots(self, itemId: int) -> int:
         if self.getEquipStats(itemId) is None:
@@ -546,10 +546,10 @@ class MapleItemInformationProvider:
             nEquip = equip
             stats = self.getEquipStats(scrollId.getItemId())
             eqstats = self.getEquipStats(equip.getItemId())
-            succ = GameConstants.isTablet(scrollId.getItemId()) ? GameConstants.getSuccessTablet(scrollId.getItemId(), nEquip.getLevel()) : ((GameConstants.isEquipScroll(scrollId.getItemId()) || GameConstants.isPotentialScroll(scrollId.getItemId())) ? 0 : stats.get("success"))
-            curse = GameConstants.isTablet(scrollId.getItemId()) ? GameConstants.getCurseTablet(scrollId.getItemId(), nEquip.getLevel()) : ((GameConstants.isEquipScroll(scrollId.getItemId()) || GameConstants.isPotentialScroll(scrollId.getItemId())) ? 0 : stats.get("cursed"))
-            success = succ + ((vegas == 5610000 && succ == 10) ? 20 : ((vegas == 5610001 && succ == 60) ? 30 : 0))
-            if GameConstants.isPotentialScroll(scrollId.getItemId()) || GameConstants.isEquipScroll(scrollId.getItemId()) || Randomizer.nextInt(100) <= success || checkIfGM:
+            succ = GameConstants.isTablet(scrollId.getItemId()) ? GameConstants.getSuccessTablet(scrollId.getItemId(), nEquip.getLevel()) : ((GameConstants.isEquipScroll(scrollId.getItemId()) or GameConstants.isPotentialScroll(scrollId.getItemId())) ? 0 : stats.get("success"))
+            curse = GameConstants.isTablet(scrollId.getItemId()) ? GameConstants.getCurseTablet(scrollId.getItemId(), nEquip.getLevel()) : ((GameConstants.isEquipScroll(scrollId.getItemId()) or GameConstants.isPotentialScroll(scrollId.getItemId())) ? 0 : stats.get("cursed"))
+            success = succ + ((vegas == 5610000 and succ == 10) ? 20 : ((vegas == 5610001 and succ == 60) ? 30 : 0))
+            if GameConstants.isPotentialScroll(scrollId.getItemId()) or GameConstants.isEquipScroll(scrollId.getItemId()) or Randomizer.nextInt(100) <= success or checkIfGM:
                 # switch (scrollId.getItemId()):
                     # case 2049000:
                     # case 2049001:
@@ -581,7 +581,7 @@ class MapleItemInformationProvider:
                     # default:
                         if GameConstants.isChaosScroll(scrollId.getItemId()):
                             z = GameConstants.getChaosNumber(scrollId.getItemId())
-                            if scrollId.getItemId() == 2049122 || scrollId.getItemId() == 2049124:
+                            if scrollId.getItemId() == 2049122 or scrollId.getItemId() == 2049124:
                                 if nEquip.getStr() > 0:
                                     nEquip.setStr((short) (nEquip.getStr() + Randomizer.nextInt(z) + 1))
                                 if nEquip.getDex() > 0:
@@ -701,11 +701,11 @@ class MapleItemInformationProvider:
                                         nEquip.setMpR((short) (nEquip.getMpR() + stat.getValue()))
                                         continue
                             break
-                if !GameConstants.isCleanSlate(scrollId.getItemId()) && !GameConstants.isSpecialScroll(scrollId.getItemId()) && !GameConstants.isEquipScroll(scrollId.getItemId()) && !GameConstants.isPotentialScroll(scrollId.getItemId()):
+                if not GameConstants.isCleanSlate(scrollId.getItemId()) and not GameConstants.isSpecialScroll(scrollId.getItemId()) and not GameConstants.isEquipScroll(scrollId.getItemId()) and not GameConstants.isPotentialScroll(scrollId.getItemId()):
                     nEquip.setUpgradeSlots((byte) (nEquip.getUpgradeSlots() - 1))
                     nEquip.setLevel((byte) (nEquip.getLevel() + 1))
             else:
-                if !ws && !GameConstants.isCleanSlate(scrollId.getItemId()) && !GameConstants.isSpecialScroll(scrollId.getItemId()) && !GameConstants.isEquipScroll(scrollId.getItemId()) && !GameConstants.isPotentialScroll(scrollId.getItemId()):
+                if not ws and not GameConstants.isCleanSlate(scrollId.getItemId()) and not GameConstants.isSpecialScroll(scrollId.getItemId()) and not GameConstants.isEquipScroll(scrollId.getItemId()) and not GameConstants.isPotentialScroll(scrollId.getItemId()):
                     nEquip.setUpgradeSlots((byte) (nEquip.getUpgradeSlots() - 1))
                 if Randomizer.nextInt(99) < curse:
                     return None
@@ -850,7 +850,7 @@ class MapleItemInformationProvider:
     def getSummonMobs(self, itemId: int) -> list:
         if (itemId in self.summonMobCache):
             return self.summonMobCache.get(itemId)
-        if !GameConstants.isSummonSack(itemId):
+        if not GameConstants.isSummonSack(itemId):
             return None
         data = self.getItemData(itemId).getChildByPath("mob")
         if data is None:
@@ -931,7 +931,7 @@ class MapleItemInformationProvider:
         consume = MapleDataTool.getIntConvert("spec/consumeOnPickup", data, 0)
         if consume == 0:
             consume = MapleDataTool.getIntConvert("specEx/consumeOnPickup", data, 0)
-        if consume == 1 && MapleDataTool.getIntConvert("spec/party", self.getItemData(itemId), 0) > 0:
+        if consume == 1 and MapleDataTool.getIntConvert("spec/party", self.getItemData(itemId), 0) > 0:
             consume = 2
         self.consumeOnPickupCache.put(itemId, consume)
         return consume
@@ -941,7 +941,7 @@ class MapleItemInformationProvider:
             return self.dropRestrictionCache.get(itemId)
         data = self.getItemData(itemId)
         trade = False
-        if MapleDataTool.getIntConvert("info/tradeBlock", data, 0) == 1 || MapleDataTool.getIntConvert("info/quest", data, 0) == 1:
+        if MapleDataTool.getIntConvert("info/tradeBlock", data, 0) == 1 or MapleDataTool.getIntConvert("info/quest", data, 0) == 1:
             trade = True
         self.dropRestrictionCache.put(itemId, trade)
         return trade
@@ -1037,7 +1037,7 @@ class MapleItemInformationProvider:
     def getSkillStats(self, itemId: int) -> dict:
         if (itemId in self.SkillStatsCache):
             return self.SkillStatsCache.get(itemId)
-        if itemId / 10000 != 228 && itemId / 10000 != 229 && itemId / 10000 != 562:
+        if itemId / 10000 != 228 and itemId / 10000 != 229 and itemId / 10000 != 562:
             return None
         item = self.getItemData(itemId)
         if item is None:
@@ -1063,7 +1063,7 @@ class MapleItemInformationProvider:
             return self.petsCanConsumeCache.get(itemId)
         ret = []
         data = self.getItemData(itemId)
-        if data is None || data.getChildByPath("spec") is None:
+        if data is None or data.getChildByPath("spec") is None:
             return ret
         curPetId = 0
         for c in data.getChildByPath("spec"):
@@ -1088,10 +1088,10 @@ class MapleItemInformationProvider:
     def questItemInfo(self, itemId: int) -> Any:
         if (itemId in self.questItems):
             return self.questItems.get(itemId)
-        if itemId / 10000 != 422 || self.getItemData(itemId) is None:
+        if itemId / 10000 != 422 or self.getItemData(itemId) is None:
             return None
         itemD = self.getItemData(itemId).getChildByPath("info")
-        if itemD is None || itemD.getChildByPath("consumeItem") is None:
+        if itemD is None or itemD.getChildByPath("consumeItem") is None:
             return None
         consumeItems = []
         for consume in itemD.getChildByPath("consumeItem"):
@@ -1101,12 +1101,12 @@ class MapleItemInformationProvider:
         return questItem
 
     def itemExists(self, itemId: int) -> bool:
-        return GameConstants.getInventoryType(itemId) != MapleInventoryType.UNDEFINED && self.getItemData(itemId) is not None
+        return GameConstants.getInventoryType(itemId) != MapleInventoryType.UNDEFINED and self.getItemData(itemId) is not None
 
     def isCash(self, itemId: int) -> bool:
         if self.getEquipStats(itemId) is None:
             return GameConstants.getInventoryType(itemId) == MapleInventoryType.CASH
-        return GameConstants.getInventoryType(itemId) == MapleInventoryType.CASH || self.getEquipStats(itemId).get("cash") > 0
+        return GameConstants.getInventoryType(itemId) == MapleInventoryType.CASH or self.getEquipStats(itemId).get("cash") > 0
 
     def getInventoryType(self, itemId: int) -> Any:
         if (itemId in self.inventoryTypeCache):
@@ -1199,7 +1199,7 @@ class MapleItemInformationProvider:
                         elif da.getName().startswith("incSpeedMin"):
                             list.add(new Pair<String, Integer>("incSpeed", self.rand(MapleDataTool.getInt(da), MapleDataTool.getInt(data3.getChildByPath("incSpeedMax")))))
                         else:
-                            if !da.getName().startswith("incJumpMin"):
+                            if not da.getName().startswith("incJumpMin"):
                                 continue
                             list.add(new Pair<String, Integer>("incJump", self.rand(MapleDataTool.getInt(da), MapleDataTool.getInt(data3.getChildByPath("incJumpMax")))))
         return list
@@ -1232,7 +1232,7 @@ class MapleItemInformationProvider:
         return (face in self.faceList)
 
     def getLimitBreak(self, itemId: int) -> int:
-        if self.getEquipStats(itemId) is None || !self.getEquipStats(itemId).__contains__("limitBreak"):
+        if self.getEquipStats(itemId) is None or not self.getEquipStats(itemId).__contains__("limitBreak"):
             return 999999
         return self.getEquipStats(itemId).get("limitBreak")
 
@@ -1263,7 +1263,7 @@ class MapleItemInformationProvider:
         if reload:
             self.hairList.clear()
             self.faceList.clear()
-        if !self.hairList == 0 || !self.faceList == 0:
+        if not self.hairList == 0 or not self.faceList == 0:
             return
         array = None
         types = array = new String[]{"Hair", "Face"}

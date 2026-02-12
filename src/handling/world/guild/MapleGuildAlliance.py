@@ -39,7 +39,7 @@ class MapleGuildAlliance:
             ps = con.prepareStatement("SELECT * FROM alliances WHERE id = ?")
             ps.setInt(1, id)
             rs = ps.executeQuery()
-            if !rs.first():
+            if not rs.first():
                 rs.close()
                 ps.close()
                 self.allianceid = -1
@@ -230,7 +230,7 @@ class MapleGuildAlliance:
         while i < self.getNoGuilds():
             if self.guilds[i] == guildid:
                 self.broadcast(None, guildid, GAOp.DISBAND, expelled)
-                if i > 0 && i != self.getNoGuilds() - 1:
+                if i > 0 and i != self.getNoGuilds() - 1:
                     x = i + 1
                     while x < self.getNoGuilds():
                         if self.guilds[x] > 0:
@@ -262,15 +262,15 @@ class MapleGuildAlliance:
             if g_ is not None:
                 newLead = g_.getMGC(c)
                 oldLead = g_.getMGC(self.leaderid)
-                if newLead is not None && oldLead is not None:
+                if newLead is not None and oldLead is not None:
                     return False
-                if newLead is not None && newLead.getGuildRank() == 1 && newLead.getAllianceRank() == 2:
+                if newLead is not None and newLead.getGuildRank() == 1 and newLead.getAllianceRank() == 2:
                     g_.changeARank(c, 1)
                     g = i
                     leaderName = newLead.getName()
-                elif oldLead is not None && oldLead.getGuildRank() == 1 && oldLead.getAllianceRank() == 1:
+                elif oldLead is not None and oldLead.getGuildRank() == 1 and oldLead.getAllianceRank() == 1:
                     g_.changeARank(self.leaderid, 2)
-                elif oldLead is not None || newLead is not None:
+                elif oldLead is not None or newLead is not None:
                     return False
         if g == -1:
             return False
@@ -288,14 +288,14 @@ class MapleGuildAlliance:
         return True
 
     def changeAllianceRank(self, cid: int, change: int) -> bool:
-        if self.leaderid == cid || change < 0 || change > 1:
+        if self.leaderid == cid or change < 0 or change > 1:
             return False
         for i in range(self.getNoGuilds()):
             g_ = World.Guild.getGuild(self.guilds[i])
             if g_ is not None:
                 chr = g_.getMGC(cid)
-                if chr is not None && chr.getAllianceRank() > 2:
-                    if (change == 0 && chr.getAllianceRank() >= 5) || (change == 1 && chr.getAllianceRank() <= 3):
+                if chr is not None and chr.getAllianceRank() > 2:
+                    if (change == 0 and chr.getAllianceRank() >= 5) or (change == 1 and chr.getAllianceRank() <= 3):
                         return False
                     g_.changeARank(cid, chr.getAllianceRank() + ((change == 0) ? 1 : -1))
                     return True

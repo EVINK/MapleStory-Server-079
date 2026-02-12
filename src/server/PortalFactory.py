@@ -38,7 +38,7 @@ class PortalFactory:
         myPortal.setTargetMapId(MapleDataTool.getInt(portal.getChildByPath("tm")))
         myPortal.setPosition(Point(MapleDataTool.getInt(portal.getChildByPath("x")), MapleDataTool.getInt(portal.getChildByPath("y"))))
         script = MapleDataTool.getString("script", portal, None)
-        if script is not None && script == (""):
+        if script is not None and script == (""):
             script = None
         myPortal.setScriptName(script)
         if myPortal.getType() == 6:

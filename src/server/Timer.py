@@ -32,7 +32,7 @@ class Timer:
 
 
     def start(self) -> None:
-        if self.ses is not None && !self.ses.isShutdown() && !self.ses.isTerminated():
+        if self.ses is not None and not self.ses.isShutdown() and not self.ses.isTerminated():
             return
         self.file = "logs/Log_" + self.name + "_Except.rtf"
         tname = self.name + Randomizer.nextInt()
@@ -75,12 +75,6 @@ class Timer:
 
     def scheduleAtTimestamp(self, r: Any, timestamp: int) -> Any:
         return self.schedule(r, timestamp - int(time.time() * 1000))
-
-    @classmethod
-    def get_instance(cls) -> "Any":
-        if not hasattr(cls, "_instance") or cls._instance is None:
-            cls._instance = cls()
-        return cls._instance
 
     @classmethod
     def get_instance(cls) -> "Any":

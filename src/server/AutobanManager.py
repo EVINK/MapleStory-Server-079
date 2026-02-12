@@ -51,7 +51,7 @@ class AutobanManager(Runnable):
         return cls._instance
 
     def autoban(self, c: Any, reason: str) -> None:
-        if c.getPlayer().isGM() || c.getPlayer().isClone():
+        if c.getPlayer().isGM() or c.getPlayer().isClone():
             c.getPlayer().dropMessage(5, "[WARNING] A/b triggled : " + reason)
             return
         self.addPoints(c, AUTOBAN_POINTS, 0, reason)
@@ -73,7 +73,7 @@ class AutobanManager(Runnable):
                 reasonList.add(reason)
                 self.reasons.put(acc, reasonList)
             if self.points.get(acc) >= AUTOBAN_POINTS:
-                if c.getPlayer().isGM() || c.getPlayer().isClone():
+                if c.getPlayer().isGM() or c.getPlayer().isClone():
                     c.getPlayer().dropMessage(5, "[WARNING] A/b triggled : " + reason)
                     return
                 sb = ""
@@ -107,10 +107,10 @@ class AutobanManager(Runnable):
         return (int)(self.time - o.time)
 
     def equals(self, oth: Any) -> bool:
-        if !(isinstance(oth, ExpirationEntry)):
+        if not (isinstance(oth, ExpirationEntry)):
             return False
         ee = oth
-        return self.time == ee.time && self.points == ee.points && self.acc == ee.acc
+        return self.time == ee.time and self.points == ee.points and self.acc == ee.acc
 
 
 # Inner class from Java (originally nested)
@@ -133,8 +133,8 @@ class ExpirationEntry:
         return (int)(self.time - o.time)
 
     def equals(self, oth: Any) -> bool:
-        if !(isinstance(oth, ExpirationEntry)):
+        if not (isinstance(oth, ExpirationEntry)):
             return False
         ee = oth
-        return self.time == ee.time && self.points == ee.points && self.acc == ee.acc
+        return self.time == ee.time and self.points == ee.points and self.acc == ee.acc
 

@@ -65,18 +65,20 @@ class AramiaFireWorks:
         return (short)(self.kegs / 10000 * 10000)
 
     def broadcastEvent(self, c: Any) -> None:
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                AramiaFireWorks.self.startEvent(c.getClient().getChannelServer().getMapFactory().getMap(209080000))
+        def _task_1():
+            AramiaFireWorks.self.startEvent(c.getClient().getChannelServer().getMapFactory().getMap(209080000))
+
+        Timer.EventTimer.getInstance().schedule(_task_1, 10000)
 
     def run(self) -> None:
         AramiaFireWorks.self.startEvent(c.getClient().getChannelServer().getMapFactory().getMap(209080000))
 
     def startEvent(self, map: Any) -> None:
+        def _task_1():
+            AramiaFireWorks.self.spawnMonster(map)
+
         map.startMapEffect("雪人大大出現啦", 5120000)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                AramiaFireWorks.self.spawnMonster(map)
+        Timer.EventTimer.getInstance().schedule(_task_1, 5000)
 
     def spawnMonster(self, map: Any) -> None:
         for i in range(AramiaFireWorks.len(arrayMob)):
@@ -114,17 +116,19 @@ class AramiaFireWorks:
         return (short)(self.sunshines / 14000 * 10000)
 
     def broadcastSun(self, c: Any) -> None:
+        def _task_1():
+            AramiaFireWorks.self.startSun(c.getClient().getChannelServer().getMapFactory().getMap(970010000))
+
         self.broadcastServer(c, 4001246)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                AramiaFireWorks.self.startSun(c.getClient().getChannelServer().getMapFactory().getMap(970010000))
+        Timer.EventTimer.getInstance().schedule(_task_1, 10000)
 
     def startSun(self, map: Any) -> None:
+        def _task_1():
+            AramiaFireWorks.self.spawnItem(map)
+
         map.startMapEffect("The tree is bursting with sunshine!", 5121010)
         for i in range(3):
-            Timer.EventTimer.getInstance().schedule(Runnable()
-                public void run()
-                    AramiaFireWorks.self.spawnItem(map)
+            Timer.EventTimer.getInstance().schedule(_task_1, 5000 + i * 10000)
 
     def spawnItem(self, map: Any) -> None:
         for i in range(Randomizer.nextInt(5) + 10):
@@ -162,17 +166,19 @@ class AramiaFireWorks:
         return (short)(self.decorations / 18000 * 10000)
 
     def broadcastDec(self, c: Any) -> None:
+        def _task_1():
+            AramiaFireWorks.self.startDec(c.getClient().getChannelServer().getMapFactory().getMap(555000000))
+
         self.broadcastServer(c, 4001473)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                AramiaFireWorks.self.startDec(c.getClient().getChannelServer().getMapFactory().getMap(555000000))
+        Timer.EventTimer.getInstance().schedule(_task_1, 10000)
 
     def startDec(self, map: Any) -> None:
+        def _task_1():
+            AramiaFireWorks.self.spawnDec(map)
+
         map.startMapEffect("The tree is bursting with snow!", 5120000)
         for i in range(3):
-            Timer.EventTimer.getInstance().schedule(Runnable()
-                public void run()
-                    AramiaFireWorks.self.spawnDec(map)
+            Timer.EventTimer.getInstance().schedule(_task_1, 5000 + i * 10000)
 
     def spawnDec(self, map: Any) -> None:
         for i in range(Randomizer.nextInt(10) + 40):

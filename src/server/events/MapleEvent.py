@@ -34,6 +34,9 @@ class MapleEvent:
 
 
     def setEvent(self, cserv: Any, auto: bool) -> None:
+        def _task_1():
+            e.startEvent()
+
         if auto:
             for t in MapleEventType.values():
                 e = cserv.getEvent(t)
@@ -42,9 +45,7 @@ class MapleEvent:
                         if cserv.getEvent() == i:
                             e.broadcast(MaplePacketCreator.serverNotice(0, "距离活动开始只剩下一分钟!"))
                             e.broadcast(MaplePacketCreator.getClock(60))
-                            Timer.EventTimer.getInstance().schedule(Runnable()
-                                public void run()
-                                    e.startEvent()
+                            Timer.EventTimer.getInstance().schedule(_task_1, 60000)
                             break
         cserv.setEvent(-1)
 
@@ -73,7 +74,7 @@ class MapleEvent:
                         chr.dropMessage(5, str(t) + " 活动开始")
 
     def scheduleEvent(self, event: Any, cserv: Any) -> str:
-        if cserv.getEvent() != -1 || cserv.getEvent(event) is None:
+        if cserv.getEvent() != -1 or cserv.getEvent(event) is None:
             return "改活动已经被禁止安排了."
         for i in cserv.getEvent(event).mapid:
             if cserv.getMapFactory().getMap(i).getCharactersSize() > 0:

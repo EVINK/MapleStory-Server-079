@@ -173,7 +173,8 @@ class ChannelServer:
                         if c.getClient() is not None:
                             c.getClient().disconnect(True, False, False)
                             c.getClient().getSession().close(True)
-                    catch (Exception ex) {}
+                    except Exception as ex:
+                        pass
                     chrs = ch.getPlayerStorage().getAllCharactersThreadSafe()
                     if (c in chrs):
                         ch.removePlayer(c)
@@ -187,9 +188,10 @@ class ChannelServer:
             for chr in chrs:
                 if chr.getAccountID() == accid:
                     try:
-                        if chr.getClient() is not None && chr.getClient() != c:
+                        if chr.getClient() is not None and chr.getClient() != c:
                             chr.getClient().disconnect(True, False, False)
-                    catch (Exception ex) {}
+                    except Exception as ex:
+                        pass
                     chrs = ch.getPlayerStorage().getAllCharactersThreadSafe()
                     if chr.getClient() == c:
                         continue
@@ -203,11 +205,13 @@ class ChannelServer:
             for chr2 in chrs2:
                 if chr2.getAccountID() == accid:
                     try:
-                        if chr2.getClient() is None || chr2.getClient() == c:
+                        if chr2.getClient() is None or chr2.getClient() == c:
                             continue
                         chr2.getClient().disconnect(True, False, False)
-                    catch (Exception ex2) {}
-        catch (Exception ex3) {}
+                    except Exception as ex2:
+                        pass
+        except Exception as ex3:
+            pass
 
     def forceRemovePlayerByAccId_accid(self, accid: int) -> None:
         for ch in getAllInstances():
@@ -217,7 +221,8 @@ class ChannelServer:
                     try:
                         if c.getClient() is not None:
                             c.getClient().disconnect(True, False, False)
-                    catch (Exception ex) {}
+                    except Exception as ex:
+                        pass
                     chrs = ch.getPlayerStorage().getAllCharactersThreadSafe()
                     if (c in chrs):
                         ch.removePlayer(c)
@@ -392,34 +397,34 @@ class ChannelServer:
         self.dropRate = dropRate
 
     def getDoubleExp(self) -> int:
-        if self.doubleExp < 0 || self.doubleExp > 2:
+        if self.doubleExp < 0 or self.doubleExp > 2:
             return 1
         return self.doubleExp
 
     def setDoubleExp(self, doubleExp: int) -> None:
-        if doubleExp < 0 || doubleExp > 2:
+        if doubleExp < 0 or doubleExp > 2:
             self.doubleExp = 1
         else:
             self.doubleExp = doubleExp
 
     def getDoubleMeso(self) -> int:
-        if self.doubleMeso < 0 || self.doubleMeso > 2:
+        if self.doubleMeso < 0 or self.doubleMeso > 2:
             return 1
         return self.doubleMeso
 
     def setDoubleMeso(self, doubleMeso: int) -> None:
-        if doubleMeso < 0 || doubleMeso > 2:
+        if doubleMeso < 0 or doubleMeso > 2:
             self.doubleMeso = 1
         else:
             self.doubleMeso = doubleMeso
 
     def getDoubleDrop(self) -> int:
-        if self.doubleDrop < 0 || self.doubleDrop > 2:
+        if self.doubleDrop < 0 or self.doubleDrop > 2:
             return 1
         return self.doubleDrop
 
     def setDoubleDrop(self, doubleDrop: int) -> None:
-        if doubleDrop < 0 || doubleDrop > 2:
+        if doubleDrop < 0 or doubleDrop > 2:
             self.doubleDrop = 1
         else:
             self.doubleDrop = doubleDrop
@@ -435,20 +440,20 @@ class ChannelServer:
 
     def addMapleSquad(self, squad: Any, type: str) -> bool:
         final MapleSquad.MapleSquadType types = MapleSquad.MapleSquadType.valueOf(type.lower())
-        if types is not None && !(types in self.mapleSquads):
+        if types is not None and not (types in self.mapleSquads):
             self.mapleSquads.put(types, squad)
             squad.scheduleRemoval()
             return True
         return False
 
     def removeMapleSquad(self, squad: Any, type: Any) -> bool:
-        if type is not None && (type in self.mapleSquads) && self.mapleSquads.get(type) == squad:
+        if type is not None and (type in self.mapleSquads) and self.mapleSquads.get(type) == squad:
             self.mapleSquads.remove(type)
             return True
         return False
 
     def removeMapleSquad_types(self, types: Any) -> bool:
-        if types is not None && (types in self.mapleSquads):
+        if types is not None and (types in self.mapleSquads):
             self.mapleSquads.remove(types)
             return True
         return False
@@ -513,7 +518,7 @@ class ChannelServer:
         return list
 
     def toggleMegaphoneMuteState(self) -> None:
-        self.MegaphoneMuteState = !self.MegaphoneMuteState
+        self.MegaphoneMuteState = not self.MegaphoneMuteState
 
     def getMegaphoneMuteState(self) -> bool:
         return self.MegaphoneMuteState
@@ -613,7 +618,8 @@ class ChannelServer:
                     if chr.getGamePoints() >= 5:
                         continue
                     chr.resetGamePointsPD()
-        catch (Exception ex) {}
+        except Exception as ex:
+            pass
 
     def getInstanceId(self) -> int:
         return self.instanceId

@@ -132,7 +132,7 @@ class BossRankManager:
             # default:
                 doUpdate = False
                 break
-        if !doUpdate:
+        if not doUpdate:
             if add:
                 self.add(info)
             return ret
@@ -145,7 +145,7 @@ class BossRankManager:
         con1 = DatabaseConnection.getConnection()
         ps = None
         try:
-            ps = con1.prepareStatement("update bossrank set points = ?,count = ?  where cid = ? and bossname = ?")
+            ps = con1.prepareStatement("update bossrank set points = ?,count = ? where cid = ? and bossname = ?")
             ps.setInt(1, info.getPoints())
             ps.setInt(2, info.getCount())
             ps.setInt(3, info.getCid())

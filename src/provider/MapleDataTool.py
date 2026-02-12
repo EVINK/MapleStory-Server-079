@@ -20,7 +20,7 @@ class MapleDataTool:
         return data.getData()
 
     def getString_data_def(self, data: Any, def: str) -> str:
-        if data is None || data.getData() is None:
+        if data is None or data.getData() is None:
             return def
         return data.getData()
 
@@ -37,7 +37,7 @@ class MapleDataTool:
         return data.getData()
 
     def getFloat_data_def(self, data: Any, def: float) -> float:
-        if data is None || data.getData() is None:
+        if data is None or data.getData() is None:
             return def
         return data.getData()
 
@@ -45,7 +45,7 @@ class MapleDataTool:
         return data.getData()
 
     def getInt_data_def(self, data: Any, def: int) -> int:
-        if data is None || data.getData() is None:
+        if data is None or data.getData() is None:
             return def
         if data.getType() == MapleDataType.STRING:
             return int(getString(data))

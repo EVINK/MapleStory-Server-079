@@ -34,8 +34,8 @@ class CheaterData:
         return (thisVal < anotherVal) ? 1 : ((thisVal == anotherVal) ? 0 : -1)
 
     def equals(self, oth: Any) -> bool:
-        if !(isinstance(oth, CheaterData)):
+        if not (isinstance(oth, CheaterData)):
             return False
         obj = oth
-        return obj.points == self.points && obj.info == (self.info)
+        return obj.points == self.points and obj.info == (self.info)
 

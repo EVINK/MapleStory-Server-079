@@ -74,10 +74,10 @@ class CashItemInfo:
         return self.gender
 
     def onSale(self) -> bool:
-        return self.onSale || (CashItemFactory.getInstance().getModInfo(self.sn) is not None && CashItemFactory.getInstance().getModInfo(self.sn).showUp)
+        return self.onSale or (CashItemFactory.getInstance().getModInfo(self.sn) is not None and CashItemFactory.getInstance().getModInfo(self.sn).showUp)
 
     def genderEquals(self, g: int) -> bool:
-        return g == self.gender || self.gender == 2
+        return g == self.gender or self.gender == 2
 
     def toCItem(self, backup: Any) -> Any:
         if self.cii is not None:
@@ -111,8 +111,8 @@ class CashItemInfo:
         else:
             gen = self.gender
         onSale = None
-        if !self.showUp:
-            onSale = (backup is not None && backup.onSale())
+        if not self.showUp:
+            onSale = (backup is not None and backup.onSale())
         else:
             onSale = self.showUp
         return self.cii = CashItemInfo(item, c, price, self.sn, expire, gen, onSale)
@@ -176,7 +176,7 @@ class CashModInfo:
             self.flags |= 0x200
         if self.showUp:
             self.flags |= 0x400
-        if self.mark >= -1 || self.mark <= 3:
+        if self.mark >= -1 or self.mark <= 3:
             self.flags |= 0x800
         if (self.unk_3 > 0) {}
         if self.packagez:
@@ -215,8 +215,8 @@ class CashModInfo:
         else:
             gen = self.gender
         onSale = None
-        if !self.showUp:
-            onSale = (backup is not None && backup.onSale())
+        if not self.showUp:
+            onSale = (backup is not None and backup.onSale())
         else:
             onSale = self.showUp
         return self.cii = CashItemInfo(item, c, price, self.sn, expire, gen, onSale)

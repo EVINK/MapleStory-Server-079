@@ -108,33 +108,34 @@ class MapleCoconut(MapleEvent):
             self.coconuts.add(MapleCoconuts())
 
     def startEvent(self) -> None:
+        def _task_1():
+            if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
+                MapleCoconut.self.bonusTime()
+            elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    if chr.getCoconutTeam() == 0:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                    else:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                MapleCoconut.self.warpOut()
+            else:
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    if chr.getCoconutTeam() == 1:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                    else:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                MapleCoconut.self.warpOut()
+
         self.reset()
         self.setHittable(True)
-        self.getMap(0).broadcastMessage(MaplePacketCreator.serverNotice(5, "活动开始!!"))
+        self.getMap(0).broadcastMessage(MaplePacketCreator.serverNotice(5, "活动开始!not "))
         self.getMap(0).broadcastMessage(MaplePacketCreator.hitCoconut(True, 0, 0))
         self.getMap(0).broadcastMessage(MaplePacketCreator.getClock(360))
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
-                    MapleCoconut.self.bonusTime()
-                elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
-                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
-                        if chr.getCoconutTeam() == 0:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
-                        else:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
-                    MapleCoconut.self.warpOut()
-                else:
-                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
-                        if chr.getCoconutTeam() == 1:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
-                        else:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
-                    MapleCoconut.self.warpOut()
+        Timer.EventTimer.getInstance().schedule(_task_1, 360000)
 
     def run(self) -> None:
         if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
@@ -159,42 +160,44 @@ class MapleCoconut(MapleEvent):
             MapleCoconut.self.warpOut()
 
     def bonusTime(self) -> None:
-        self.getMap(0).broadcastMessage(MaplePacketCreator.getClock(120))
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
-                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+        def _task_1():
+            if MapleCoconut.self.getMapleScore() == MapleCoconut.self.getStoryScore():
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                    chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                MapleCoconut.self.warpOut()
+            elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    if chr.getCoconutTeam() == 0:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                    else:
                         chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
                         chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
-                    MapleCoconut.self.warpOut()
-                elif MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore():
-                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
-                        if chr.getCoconutTeam() == 0:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
-                        else:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
-                    MapleCoconut.self.warpOut()
-                else:
-                    for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
-                        if chr.getCoconutTeam() == 1:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
-                        else:
-                            chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
-                            chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
-                    MapleCoconut.self.warpOut()
+                MapleCoconut.self.warpOut()
+            else:
+                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                    if chr.getCoconutTeam() == 1:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/victory"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Victory"))
+                    else:
+                        chr.getClient().getSession().write(MaplePacketCreator.showEffect("event/coconut/lose"))
+                        chr.getClient().getSession().write(MaplePacketCreator.playSound("Coconut/Failed"))
+                MapleCoconut.self.warpOut()
+
+        self.getMap(0).broadcastMessage(MaplePacketCreator.getClock(120))
+        Timer.EventTimer.getInstance().schedule(_task_1, 120000)
 
     def warpOut(self) -> None:
+        def _task_1():
+            for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
+                if (MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore() and chr.getCoconutTeam() == 0) or (MapleCoconut.self.getStoryScore() > MapleCoconut.self.getMapleScore() and chr.getCoconutTeam() == 1):
+                    MapleCoconut.self.givePrize(chr)
+                MapleCoconut.self.warpBack(chr)
+            MapleCoconut.self.unreset()
+
         self.setHittable(False)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                for chr in MapleCoconut.self.getMap(0).getCharactersThreadsafe():
-                    if (MapleCoconut.self.getMapleScore() > MapleCoconut.self.getStoryScore() && chr.getCoconutTeam() == 0) || (MapleCoconut.self.getStoryScore() > MapleCoconut.self.getMapleScore() && chr.getCoconutTeam() == 1):
-                        MapleCoconut.self.givePrize(chr)
-                    MapleCoconut.self.warpBack(chr)
-                MapleCoconut.self.unreset()
+        Timer.EventTimer.getInstance().schedule(_task_1, 12000)
 
     def hit(self) -> None:
         self.hittime = int(time.time() * 1000) + 1000

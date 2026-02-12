@@ -47,7 +47,7 @@ class HiredMerchantHandler:
                     break
                 # case 0:
                     merch = World.hasMerchant(c.getPlayer().getAccountID())
-                    if !merch:
+                    if not merch:
                         c.getSession().write(PlayerShopPacket.sendTitleBox())
                         break
                     c.getPlayer().dropMessage(1, "请换个地方开或者是你已经有开店了")
@@ -96,7 +96,7 @@ class HiredMerchantHandler:
                         deletePackage(c.getPlayer().getId(), c.getPlayer().getAccountID())
                         c.getPlayer().setConversation(0)
                     elif pack.getItems() <= 0:
-                        if !check(c.getPlayer(), pack):
+                        if not check(c.getPlayer(), pack):
                             c.getSession().write(PlayerShopPacket.merchItem_Message(33))
                             return
                         if deletePackage(c.getPlayer().getId(), c.getPlayer().getAccountID(), pack.getPackageid()):
@@ -126,7 +126,7 @@ class HiredMerchantHandler:
                 if pack2 is None:
                     c.getPlayer().dropMessage(1, "发生未知错误。\r\n你没有物品可以领取！")
                     return
-                if !check(c.getPlayer(), pack2):
+                if not check(c.getPlayer(), pack2):
                     c.getPlayer().dropMessage(1, "因为背包空间不足，无法领取道具.")
                     c.getSession().write(PlayerShopPacket.merchItem_Message(33))
                     return
@@ -160,7 +160,7 @@ class HiredMerchantHandler:
         if pack is None:
             c.getPlayer().dropMessage(1, "发生未知错误。")
             return
-        if !check(c.getPlayer(), pack):
+        if not check(c.getPlayer(), pack):
             c.getPlayer().dropMessage(1, "你背包格子不够。")
             return
         if deletePackage(c.getPlayer().getId(), c.getPlayer().getAccountID(), pack.getPackageid()):
@@ -200,11 +200,11 @@ class HiredMerchantHandler:
                     # case CASH:
                         cash += 1
                         break
-            if MapleItemInformationProvider.getInstance().isPickupRestricted(item.getItemId()) && chr.haveItem(item.getItemId(), 1):
+            if MapleItemInformationProvider.getInstance().isPickupRestricted(item.getItemId()) and chr.haveItem(item.getItemId(), 1):
                 print("[雇佣] " + chr.getName() + " 雇佣取回道具是否可以捡取错误 时间: " + FileoutputUtil.CurrentReadable_Date())
                 FileoutputUtil.hiredMerchLog(chr.getName(), "雇佣取回道具是否可以捡取错误")
                 return False
-        if chr.getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() < eq || chr.getInventory(MapleInventoryType.USE).getNumFreeSlot() < use || chr.getInventory(MapleInventoryType.SETUP).getNumFreeSlot() < setup || chr.getInventory(MapleInventoryType.ETC).getNumFreeSlot() < etc || chr.getInventory(MapleInventoryType.CASH).getNumFreeSlot() < cash:
+        if chr.getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() < eq or chr.getInventory(MapleInventoryType.USE).getNumFreeSlot() < use or chr.getInventory(MapleInventoryType.SETUP).getNumFreeSlot() < setup or chr.getInventory(MapleInventoryType.ETC).getNumFreeSlot() < etc or chr.getInventory(MapleInventoryType.CASH).getNumFreeSlot() < cash:
             print("[雇佣] " + chr.getName() + " 雇佣取回道具背包空间不够 时间: " + FileoutputUtil.CurrentReadable_Date())
             FileoutputUtil.hiredMerchLog(chr.getName(), "雇佣取回道具背包空间不够")
             return False
@@ -245,7 +245,7 @@ class HiredMerchantHandler:
             ps.setInt(1, charid)
             ps.setInt(2, accountid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 ps.close()
                 rs.close()
                 return None
@@ -257,11 +257,11 @@ class HiredMerchantHandler:
             rs.close()
             items = ItemLoader.HIRED_MERCHANT.loadItems_hm(packageid, accountid)
             mesos = chr.getMerchantMeso()
-            if mesos == 0 && items == 0:
+            if mesos == 0 and items == 0:
                 FileoutputUtil.hiredMerchLog(chr.getName(), "加载弗洛兰德道具信息 金币 " + mesos + " 是否有道具 " + items)
                 return None
             pack.setMesos(mesos)
-            if !items == 0:
+            if not items == 0:
                 iters = []
                 for z in items.values():
                     iters.add(z.left)

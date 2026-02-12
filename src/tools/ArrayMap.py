@@ -85,13 +85,13 @@ class ArrayMap(AbstractMap):
         return oldValue
 
     def equals(self, o: Any) -> bool:
-        if !(isinstance(o, Map).Entry):
+        if not (isinstance(o, Map).Entry):
             return False
         final Map.Entry e = (Map.Entry)o
         if self.key is None:
             if e.getKey() is not None:
                 return False
-        elif !self.key == (e.getKey()):
+        elif not self.key == (e.getKey()):
             return False
         if (self.value is not None) ? self.value == (e.getValue()) : (e.getValue() is None):
             return True
@@ -135,13 +135,13 @@ class Entry(Map.Entry, V>):
         return oldValue
 
     def equals(self, o: Any) -> bool:
-        if !(isinstance(o, Map).Entry):
+        if not (isinstance(o, Map).Entry):
             return False
         final Map.Entry e = (Map.Entry)o
         if self.key is None:
             if e.getKey() is not None:
                 return False
-        elif !self.key == (e.getKey()):
+        elif not self.key == (e.getKey()):
             return False
         if (self.value is not None) ? self.value == (e.getValue()) : (e.getValue() is None):
             return True

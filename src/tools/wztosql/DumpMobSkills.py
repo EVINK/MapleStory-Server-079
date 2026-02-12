@@ -74,7 +74,7 @@ class DumpMobSkills:
         return self.hadError
 
     def dumpMobSkills(self) -> None:
-        if !self.hadError:
+        if not self.hadError:
             ps = self.con.prepareStatement("INSERT INTO wz_mobskilldata(skillid, `level`, hp, mpcon, x, y, time, prop, `limit`, spawneffect,`interval`, summons, ltx, lty, rbx, rby, once) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
             try:
                 self.dumpMobSkills(ps)
@@ -100,7 +100,7 @@ class DumpMobSkills:
         return ret
 
     def dumpMobSkills_ps(self, ps: Any) -> None:
-        if !self.update:
+        if not self.update:
             self.delete("DELETE FROM wz_mobskilldata")
             print("Deleted wz_mobskilldata successfully.")
         skillz = self.skill.getData("MobSkill.img")
@@ -109,7 +109,7 @@ class DumpMobSkills:
             for lvlz in ids.getChildByPath("level").getChildren():
                 self.id = int(ids.getName())
                 lvl = int(lvlz.getName())
-                if self.update && self.doesExist("SELECT * FROM wz_mobskilldata WHERE skillid = " + self.id + " AND level = " + lvl):
+                if self.update and self.doesExist("SELECT * FROM wz_mobskilldata WHERE skillid = " + self.id + " AND level = " + lvl):
                     continue
                 ps.setInt(1, self.id)
                 ps.setInt(2, lvl)
@@ -125,7 +125,7 @@ class DumpMobSkills:
                 summ = ""
                 toSummon = []
                 i = 0
-                while i > -1 && lvlz.getChildByPath(str(i)) is not None:
+                while i > -1 and lvlz.getChildByPath(str(i)) is not None:
                     toSummon.add(MapleDataTool.getInt(lvlz.getChildByPath(str(i)), 0))
                 for summon in toSummon:
                     if summ > 0:

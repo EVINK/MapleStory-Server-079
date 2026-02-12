@@ -18,7 +18,7 @@ class CommandProcessorUtil:
 
     def joinAfterString(self, splitted: list, str: str) -> str:
         for i in range(1, len(splitted)):
-            if splitted[i].lower() == str.lower() && i + 1 < len(splitted):
+            if splitted[i].lower() == str.lower() and i + 1 < len(splitted):
                 return StringUtil.joinStringFrom(splitted, i + 1)
         return None
 
@@ -33,7 +33,7 @@ class CommandProcessorUtil:
     def getNamedArg(self, splitted: list, startpos: int, name: str) -> str:
         i = startpos
         while i < len(splitted):
-            if splitted[i].lower() == name.lower() && i + 1 < len(splitted):
+            if splitted[i].lower() == name.lower() and i + 1 < len(splitted):
                 return splitted[i + 1]
         return None
 
@@ -42,7 +42,8 @@ class CommandProcessorUtil:
         if arg is not None:
             try:
                 return int(arg)
-            catch (NumberFormatException ex) {}
+            except NumberFormatException as ex:
+                pass
         return None
 
     def getNamedIntArg(self, splitted: list, startpos: int, name: str) -> int:
@@ -50,7 +51,8 @@ class CommandProcessorUtil:
         if arg is not None:
             try:
                 return int(arg)
-            catch (NumberFormatException ex) {}
+            except NumberFormatException as ex:
+                pass
         return None
 
     def getNamedIntArg_splitted_startpos_name_def(self, splitted: list, startpos: int, name: str, def: int) -> int:
@@ -64,6 +66,7 @@ class CommandProcessorUtil:
         if arg is not None:
             try:
                 return float(arg)
-            catch (NumberFormatException ex) {}
+            except NumberFormatException as ex:
+                pass
         return None
 

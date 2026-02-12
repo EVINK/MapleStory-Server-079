@@ -76,7 +76,7 @@ class MTSStorage:
 
     def checkCart(self, packageid: int, charID: int) -> bool:
         item = self.getSingleItem(packageid)
-        return item is not None && item.getCharacterId() != charID
+        return item is not None and item.getCharacterId() != charID
 
     def getSingleItem(self, packageid: int) -> Any:
         self.mutex.readLock().lock()
@@ -101,7 +101,7 @@ class MTSStorage:
         try:
             if (id in self.buyNow):
                 r = self.buyNow.get(id)
-                if !check || r.getCharacterId() == cidBought:
+                if not check or r.getCharacterId() == cidBought:
                     item = r.getItem()
                     self.buyNow.remove(id)
         finally:
@@ -127,10 +127,10 @@ class MTSStorage:
             while rs.next():
                 lastPackage = rs.getInt("id")
                 cId = rs.getInt("characterid")
-                if !(cId in self.idToCart):
+                if not (cId in self.idToCart):
                     self.idToCart.put(cId, MTSCart(cId))
                 items = ItemLoader.MTS.loadItems(False, lastPackage)
-                if items is not None && items > 0:
+                if items is not None and items > 0:
                     for i in items.values():
                         self.buyNow.put(lastPackage, MTSItemInfo(rs.getInt("price"), i.getLeft(), rs.getString("seller"), lastPackage, cId, rs.getLong("expiration")))
             rs.close()
@@ -158,7 +158,7 @@ class MTSStorage:
             ps = con.prepareStatement("INSERT INTO mts_items VALUES (?, ?, ?, ?, ?, ?)")
             for m in self.buyNow.values():
                 if now > m.getEndingDate():
-                    if !(m.getCharacterId( in expire)):
+                    if not (m.getCharacterId( in expire)):
                         expire.put(m.getCharacterId(), [])
                     expire.get(m.getCharacterId()).add(m.getItem())
                     toRemove.add(m.getId())
@@ -171,7 +171,7 @@ class MTSStorage:
                     ps.setString(5, m.getSeller())
                     ps.setLong(6, m.getEndingDate())
                     ps.executeUpdate()
-                    if !(m.getId( in items)):
+                    if not (m.getId( in items)):
                         items.put(m.getId(), new ArrayList<Pair<IItem, MapleInventoryType>>())
                     items.get(m.getId()).add(new Pair<IItem, MapleInventoryType>(m.getItem(), GameConstants.getInventoryType(m.getItem().getItemId())))
             for i in toRemove:
@@ -266,9 +266,9 @@ class MTSStorage:
         if page > size:
             page = 0
         i = page * 16
-        while i < page * 16 + 16 && self.buyNow >= i + 1:
+        while i < page * 16 + 16 and self.buyNow >= i + 1:
             r = rett.get(i)
-            if r is not None && (type == 0 || GameConstants.getInventoryType(r.getItem().getItemId()).getType() == type):
+            if r is not None and (type == 0 or GameConstants.getInventoryType(r.getItem().getItemId()).getType() == type):
                 ret.add(r)
         return ret
 
@@ -280,7 +280,7 @@ class MTSStorage:
             if r is None:
                 cart.removeFromCart(i)
             else:
-                if cart.getType() != 0 && GameConstants.getInventoryType(r.getItem().getItemId()).getType() != cart.getType():
+                if cart.getType() != 0 and GameConstants.getInventoryType(r.getItem().getItemId()).getType() != cart.getType():
                     continue
                 ret.add(r)
         return ret

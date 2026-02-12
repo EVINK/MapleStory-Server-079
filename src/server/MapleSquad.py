@@ -66,18 +66,18 @@ class MapleSquad:
 
 
     def copy(self) -> None:
-        while self.type.queue.get(self.ch) > 0 && ChannelServer.getInstance(self.ch).getMapleSquad(self.type) is None:
+        while self.type.queue.get(self.ch) > 0 and ChannelServer.getInstance(self.ch).getMapleSquad(self.type) is None:
             index = 0
             lowest = 0
             for i in range(self.type.queue.get(self.ch)):
-                if lowest == 0 || self.type.queue.get(self.ch).get(i).right < lowest:
+                if lowest == 0 or self.type.queue.get(self.ch).get(i).right < lowest:
                     index = i
                     lowest = self.type.queue.get(self.ch).get(i).right
             nextPlayerId = self.type.queue.get(self.ch).remove(index).left
             theirCh = World.Find.findChannel(nextPlayerId)
             if theirCh > 0:
                 lead = ChannelServer.getInstance(theirCh).getPlayerStorage().getCharacterByName(nextPlayerId)
-                if lead is not None && lead.getMapId() == self.beginMapId && lead.getClient().getChannel() == self.ch:
+                if lead is not None and lead.getMapId() == self.beginMapId and lead.getClient().getChannel() == self.ch:
                     squad = MapleSquad(self.ch, self.type.name(), lead, self.expiration, self.toSay)
                     if ChannelServer.getInstance(self.ch).addMapleSquad(squad, self.type.name()):
                         self.getBeginMap().broadcastMessage(MaplePacketCreator.getClock(self.expiration / 1000))
@@ -116,14 +116,15 @@ class MapleSquad:
         return self.expiration - (int(time.time() * 1000) - self.startTime)
 
     def scheduleRemoval(self) -> None:
-        self.removal = Timer.EtcTimer.getInstance().schedule(Runnable()
-            public void run()
-                if MapleSquad.self.status != 0 && MapleSquad.self.leader is not None && (MapleSquad.self.getLeader() is None || MapleSquad.self.status == 1):
-                    MapleSquad.self.clear()
-                    MapleSquad.self.copy()
+        def _task_1():
+            if MapleSquad.self.status != 0 and MapleSquad.self.leader is not None and (MapleSquad.self.getLeader() is None or MapleSquad.self.status == 1):
+                MapleSquad.self.clear()
+                MapleSquad.self.copy()
+
+        self.removal = Timer.EtcTimer.getInstance().schedule(_task_1, self.expiration)
 
     def run(self) -> None:
-        if MapleSquad.self.status != 0 && MapleSquad.self.leader is not None && (MapleSquad.self.getLeader() is None || MapleSquad.self.status == 1):
+        if MapleSquad.self.status != 0 and MapleSquad.self.leader is not None and (MapleSquad.self.getLeader() is None or MapleSquad.self.status == 1):
             MapleSquad.self.clear()
             MapleSquad.self.copy()
 
@@ -160,8 +161,8 @@ class MapleSquad:
         self.type.queue.get(self.ch).add(new Pair<String, Long>(i, int(time.time() * 1000)))
 
     def getLeader(self) -> Any:
-        if self.leader is None || self.leader.get() is None:
-            if self.members <= 0 || self.getChar(self.leaderName) is None:
+        if self.leader is None or self.leader.get() is None:
+            if self.members <= 0 or self.getChar(self.leaderName) is None:
                 if self.status != 0:
                     self.clear()
                 return None
@@ -191,7 +192,7 @@ class MapleSquad:
             return -1
         job = MapleCarnivalChallenge.getJobBasicNameById(member.getJob())
         if join:
-            if self.containsMember(member) || self.getAllNextPlayer().__contains__(member.getName()):
+            if self.containsMember(member) or self.getAllNextPlayer().__contains__(member.getName()):
                 return -1
             if self.members <= 30:
                 self.members.put(member.getName(), job)
@@ -206,11 +207,11 @@ class MapleSquad:
             return -1
 
     def acceptMember(self, pos: int) -> None:
-        if pos < 0 || pos >= self.bannedMembers:
+        if pos < 0 or pos >= self.bannedMembers:
             return
         membersAsList = self.getBannedMembers()
         toadd = membersAsList.get(pos)
-        if toadd is not None && self.getChar(toadd) is not None:
+        if toadd is not None and self.getChar(toadd) is not None:
             self.members.put(toadd, self.bannedMembers.get(toadd))
             self.bannedMembers.remove(toadd)
             self.getChar(toadd).dropMessage(5, self.getLeaderName() + " 允许你从新回来远征队")
@@ -228,18 +229,18 @@ class MapleSquad:
             self.members.remove(chr)
 
     def banMember(self, pos: int) -> None:
-        if pos <= 0 || pos >= self.members:
+        if pos <= 0 or pos >= self.members:
             return
         membersAsList = self.getMembers()
         toban = membersAsList.get(pos)
-        if toban is not None && self.getChar(toban) is not None:
+        if toban is not None and self.getChar(toban) is not None:
             self.bannedMembers.put(toban, self.members.get(toban))
             self.members.remove(toban)
             self.getChar(toban).dropMessage(5, self.getLeaderName() + " 从远征队中删除了您.")
 
     def setStatus(self, status: int) -> None:
         self.status = status
-        if status == 2 && self.removal is not None:
+        if status == 2 and self.removal is not None:
             self.removal.cancel(False)
             self.removal = None
 

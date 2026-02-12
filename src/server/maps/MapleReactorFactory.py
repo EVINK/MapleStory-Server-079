@@ -53,18 +53,18 @@ class MapleReactorFactory:
                     if reactorD is None:
                         break
                     reactorInfoData_ = reactorD.getChildByPath("event")
-                    if reactorInfoData_ is not None && reactorInfoData_.getChildByPath("0") is not None:
+                    if reactorInfoData_ is not None and reactorInfoData_.getChildByPath("0") is not None:
                         reactorInfoData = reactorInfoData_.getChildByPath("0")
                         reactItem = None
                         type = MapleDataTool.getIntConvert("type", reactorInfoData)
                         if type == 100:
                             reactItem = new Pair<Integer, Integer>(MapleDataTool.getIntConvert("0", reactorInfoData), MapleDataTool.getIntConvert("1", reactorInfoData, 1))
-                            if !areaSet:
+                            if not areaSet:
                                 stats.setTL(MapleDataTool.getPoint("lt", reactorInfoData))
                                 stats.setBR(MapleDataTool.getPoint("rb", reactorInfoData))
                                 areaSet = True
                         foundState = True
-                        stats.addState(i, type, reactItem, MapleDataTool.getIntConvert("state", reactorInfoData), MapleDataTool.getIntConvert("timeOut", reactorInfoData_, -1), (byte)((MapleDataTool.getIntConvert("2", reactorInfoData, 0) > 0 || reactorInfoData.getChildByPath("clickArea") is not None || type == 9) ? 1 : (canTouch ? 2 : 0)))
+                        stats.addState(i, type, reactItem, MapleDataTool.getIntConvert("state", reactorInfoData), MapleDataTool.getIntConvert("timeOut", reactorInfoData_, -1), (byte)((MapleDataTool.getIntConvert("2", reactorInfoData, 0) > 0 or reactorInfoData.getChildByPath("clickArea") is not None or type == 9) ? 1 : (canTouch ? 2 : 0)))
                     else:
                         stats.addState(i, 999, None, (byte)(foundState ? -1 : (i + 1)), 0, 0)
                     i += 1

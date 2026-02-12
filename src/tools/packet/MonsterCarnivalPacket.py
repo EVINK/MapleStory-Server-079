@@ -58,7 +58,7 @@ class MonsterCarnivalPacket:
         mplew = MaplePacketLittleEndianWriter()
         if ServerConstants.调试输出封包:
             print("CPUpdate--------------------")
-        if !party:
+        if not party:
             mplew.writeShort(SendPacketOpcode.MONSTER_CARNIVAL_OBTAINED_CP.getValue())
         else:
             mplew.writeShort(SendPacketOpcode.MONSTER_CARNIVAL_PARTY_CP.getValue())

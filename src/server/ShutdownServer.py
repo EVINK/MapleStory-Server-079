@@ -62,12 +62,14 @@ class ShutdownServer(Runnable):
             World.Guild.save()
             World.Alliance.save()
             World.Family.save()
-        catch (Exception ex) {}
+        except Exception as ex:
+            pass
         World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(0, " 游戏服务器将关闭维护，请玩家安全下线..."))
         for cs in ChannelServer.getAllInstances():
             try:
                 cs.setServerMessage("游戏服务器将关闭维护，请玩家安全下线...")
-            catch (Exception ex2) {}
+            except Exception as ex2:
+                pass
         channels = ChannelServer.getAllInstance()
         for channel in channels:
             try:
@@ -82,14 +84,17 @@ class ShutdownServer(Runnable):
         try:
             LoginServer.shutdown()
             print("登录伺服器关闭完成...")
-        catch (Exception ex3) {}
+        except Exception as ex3:
+            pass
         try:
             CashShopServer.shutdown()
             print("商城伺服器关闭完成...")
-        catch (Exception ex4) {}
+        except Exception as ex4:
+            pass
         try:
             DatabaseConnection.closeAll()
-        catch (SQLException ex5) {}
+        except SQLException as ex5:
+            pass
         Timer.PingTimer.getInstance().stop()
         print("服务端关闭事件 2 已完成.")
         try:

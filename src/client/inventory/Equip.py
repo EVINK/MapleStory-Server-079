@@ -274,7 +274,7 @@ class Equip(Item, IEquip):
         if self.getEquipExp() <= 0:
             return 0
         expz = self.getEquipExp()
-        for (int i = self.getBaseLevel(); i <= GameConstants.getMaxLevel(self.getItemId()) && expz >= GameConstants.getExpForLevel(i, self.getItemId()); expz -= GameConstants.getExpForLevel(i, self.getItemId()), ++i) {}
+        for (int i = self.getBaseLevel(); i <= GameConstants.getMaxLevel(self.getItemId()) and expz >= GameConstants.getExpForLevel(i, self.getItemId()); expz -= GameConstants.getExpForLevel(i, self.getItemId()), ++i) {}
         return expz
 
     def getExpPercentage(self) -> int:
@@ -305,7 +305,7 @@ class Equip(Item, IEquip):
         return (GameConstants.getStatFromWeapon(self.getItemId()) is None) ? 1 : 0
 
     def setQuantity(self, quantity: int) -> None:
-        if quantity < 0 || quantity > 1:
+        if quantity < 0 or quantity > 1:
             raise RuntimeError("Setting the quantity to " + quantity + " on an equip (itemid: " + self.getItemId() + ")")
         super.setQuantity(quantity)
 
@@ -341,9 +341,9 @@ class Equip(Item, IEquip):
 
     def getState(self) -> int:
         pots = self.potential1 + self.potential2 + self.potential3
-        if self.potential1 >= 30000 || self.potential2 >= 30000 || self.potential3 >= 30000:
+        if self.potential1 >= 30000 or self.potential2 >= 30000 or self.potential3 >= 30000:
             return 7
-        if self.potential1 >= 20000 || self.potential2 >= 20000 || self.potential3 >= 20000:
+        if self.potential1 >= 20000 or self.potential2 >= 20000 or self.potential3 >= 20000:
             return 6
         if pots >= 1:
             return 5
@@ -358,7 +358,7 @@ class Equip(Item, IEquip):
         self.setPotential3(0)
 
     def renewPotential(self) -> None:
-        rank = (Randomizer.nextInt(100) < 4 && self.getState() != 7) ? (-(self.getState() + 1)) : (-self.getState())
+        rank = (Randomizer.nextInt(100) < 4 and self.getState() != 7) ? (-(self.getState() + 1)) : (-self.getState())
         self.setPotential1(rank)
         self.setPotential2((short)((self.getPotential3() > 0) ? rank : 0))
         self.setPotential3(0)

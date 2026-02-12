@@ -62,8 +62,8 @@ class DumpOxQuizData:
                     qs = q.getData()
                 if d is not None:
                     ds = d.getData()
-                if DumpOxQuizData.asciiEncoder.canEncode(child1.getName()) && DumpOxQuizData.asciiEncoder.canEncode(child2.getName()) && DumpOxQuizData.asciiEncoder.canEncode(qs) && DumpOxQuizData.asciiEncoder.canEncode(ds):
-                    if !DumpOxQuizData.asciiEncoder.canEncode(as):
+                if DumpOxQuizData.asciiEncoder.canEncode(child1.getName()) and DumpOxQuizData.asciiEncoder.canEncode(child2.getName()) and DumpOxQuizData.asciiEncoder.canEncode(qs) and DumpOxQuizData.asciiEncoder.canEncode(ds):
+                    if not DumpOxQuizData.asciiEncoder.canEncode(as):
                         continue
                     ps = self.con.prepareStatement("INSERT INTO `wz_oxdata` (`questionset`, `questionid`, `question`, `display`, `answer`) VALUES (?, ?, ?, ?, ?)")
                     ps.setString(1, child1.getName())

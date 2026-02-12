@@ -40,13 +40,13 @@ class MobSkillFactory:
         ret = MobSkillFactory.mobSkills.get(Pair(skillId, level))
         if ret is not None:
             return ret
-        if MobSkillFactory.skillRoot is None || MobSkillFactory.skillRoot.getChildren() is None || MobSkillFactory.skillRoot.getChildByPath(str(skillId)) is None || MobSkillFactory.skillRoot.getChildByPath(str(skillId)).getChildren() is None || MobSkillFactory.skillRoot.getChildByPath(str(skillId)).getChildByPath("level") is None:
+        if MobSkillFactory.skillRoot is None or MobSkillFactory.skillRoot.getChildren() is None or MobSkillFactory.skillRoot.getChildByPath(str(skillId)) is None or MobSkillFactory.skillRoot.getChildByPath(str(skillId)).getChildren() is None or MobSkillFactory.skillRoot.getChildByPath(str(skillId)).getChildByPath("level") is None:
             return None
         skillData = MobSkillFactory.skillRoot.getChildByPath(skillId + "/level/" + level)
-        if skillData is not None && skillData.getChildren() is not None:
+        if skillData is not None and skillData.getChildren() is not None:
             toSummon = []
             i = 0
-            while i > -1 && skillData.getChildByPath(str(i)) is not None:
+            while i > -1 and skillData.getChildByPath(str(i)) is not None:
                 toSummon.add(MapleDataTool.getInt(skillData.getChildByPath(str(i)), 0))
             ltd = skillData.getChildByPath("lt")
             lt = None

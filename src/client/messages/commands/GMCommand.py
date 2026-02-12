@@ -62,7 +62,7 @@ class GMCommand:
 
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) < 2:
-            c.getPlayer().dropMessage(6, "[Syntax] !" + self.getCommand() + " <原因>")
+            c.getPlayer().dropMessage(6, "[Syntax] not " + self.getCommand() + " <原因>")
             return 0
         ret = None
         if self.hellban:
@@ -96,7 +96,7 @@ class GMCommand:
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!exprate <倍率> - 更改经验倍率")
+        return "".append("not exprate <倍率> - 更改经验倍率")
 
 
 # Inner class from Java (originally nested)
@@ -233,7 +233,7 @@ class UnBan(CommandExecute):
 
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) < 2:
-            c.getPlayer().dropMessage(6, "[Syntax] !" + self.getCommand() + " <原因>")
+            c.getPlayer().dropMessage(6, "[Syntax] not " + self.getCommand() + " <原因>")
             return 0
         ret = None
         if self.hellban:
@@ -327,17 +327,17 @@ class spy(CommandExecute):
 
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) < 2:
-            c.getPlayer().dropMessage(6, "使用规则: !spy <玩家名字>")
+            c.getPlayer().dropMessage(6, "使用规则: not spy <玩家名字>")
         else:
             victim = c.getChannelServer().getPlayerStorage().getCharacterByName(splitted[1])
-            if victim.getGMLevel() > c.getPlayer().getGMLevel() && c.getPlayer().getId() != victim.getId():
+            if victim.getGMLevel() > c.getPlayer().getGMLevel() and c.getPlayer().getId() != victim.getId():
                 c.getPlayer().dropMessage(5, "你不能查看比你高权限的人!")
                 return 0
             if victim is not None:
                 c.getPlayer().dropMessage(5, "此玩家(" + victim.getId() + ")状态:")
                 c.getPlayer().dropMessage(5, "等級: " + victim.getLevel() + "职业: " + victim.getJob() + "名声: " + victim.getFame())
                 c.getPlayer().dropMessage(5, "地图: " + victim.getMapId() + " - " + victim.getMap().getMapName())
-                c.getPlayer().dropMessage(5, "力量: " + victim.getStat().getStr() + "  ||  敏捷: " + victim.getStat().getDex() + "  ||  智力: " + victim.getStat().getInt() + "  ||  运气: " + victim.getStat().getLuk())
+                c.getPlayer().dropMessage(5, "力量: " + victim.getStat().getStr() + " or 敏捷: " + victim.getStat().getDex() + " or 智力: " + victim.getStat().getInt() + " or 运气: " + victim.getStat().getLuk())
                 c.getPlayer().dropMessage(5, "拥有 " + victim.getMeso() + " 金币.")
             else:
                 c.getPlayer().dropMessage(5, "找不到此玩家.")
@@ -404,7 +404,7 @@ class ExpRate(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) > 1:
             rate = int(splitted[1])
-            if len(splitted) > 2 && splitted[2].lower() == "all".lower():
+            if len(splitted) > 2 and splitted[2].lower() == "all".lower():
                 for cserv in ChannelServer.getAllInstances():
                     cserv.setExpRate(rate)
             else:
@@ -414,7 +414,7 @@ class ExpRate(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!exprate <倍率> - 更改经验倍率")
+        return "".append("not exprate <倍率> - 更改经验倍率")
 
 
 # Inner class from Java (originally nested)
@@ -455,7 +455,7 @@ class GainCash(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!gaingash <數量> <玩家> - 取得Gash点数")
+        return "".append("not gaingash <數量> <玩家> - 取得Gash点数")
 
 
 # Inner class from Java (originally nested)
@@ -482,7 +482,7 @@ class CheckGash(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!checkgash <玩家名称> - 检查点数")
+        return "".append("not checkgash <玩家名称> - 检查点数")
 
 
 # Inner class from Java (originally nested)
@@ -505,5 +505,5 @@ class Say(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!say 讯息 - 服务器公告")
+        return "".append("not say 讯息 - 服务器公告")
 

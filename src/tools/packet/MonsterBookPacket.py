@@ -24,7 +24,7 @@ class MonsterBookPacket:
         if ServerConstants.调试输出封包:
             print("addCard--------------------")
         mplew.writeShort(SendPacketOpcode.MONSTERBOOK_ADD.getValue())
-        if !full:
+        if not full:
             mplew.write(1)
             mplew.writeInt(cardid)
             mplew.writeInt(level)

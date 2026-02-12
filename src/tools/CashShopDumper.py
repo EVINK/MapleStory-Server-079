@@ -78,9 +78,9 @@ class CashShopDumper:
                 check = False
                 if meso > 0:
                     check = True
-                if MapleItemInformationProvider.getInstance().getInventoryType(itemId) == MapleInventoryType.EQUIP && !MapleItemInformationProvider.getInstance().isCashItem(itemId):
+                if MapleItemInformationProvider.getInstance().getInventoryType(itemId) == MapleInventoryType.EQUIP and not MapleItemInformationProvider.getInstance().isCashItem(itemId):
                     check = True
-                if MapleItemInformationProvider.getInstance().getInventoryType(itemId) == MapleInventoryType.EQUIP && period > 0:
+                if MapleItemInformationProvider.getInstance().getInventoryType(itemId) == MapleInventoryType.EQUIP and period > 0:
                     check = True
                 if check:
                     print(MapleItemInformationProvider.getInstance().getName(itemId))
@@ -108,7 +108,7 @@ class CashShopDumper:
             l = dics.get(key)
             fos = None
             try:
-                if !fout.exists():
+                if not fout.exists():
                     fout.createNewFile()
                 fos = FileOutputStream(fout)
                 bw = BufferedWriter(OutputStreamWriter(fos))

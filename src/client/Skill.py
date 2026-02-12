@@ -74,8 +74,8 @@ class Skill(ISkill):
             else:
                 action = True
             ret.action = action
-            isBuff = (effect is not None && hit is None && ball is None)
-            isBuff |= (action_ is not None && MapleDataTool.getString("0", action_, "") == ("alert2"))
+            isBuff = (effect is not None and hit is None and ball is None)
+            isBuff |= (action_ is not None and MapleDataTool.getString("0", action_, "") == ("alert2"))
             # switch (id):
                 # case 2111002:
                 # case 2111003:
@@ -181,16 +181,16 @@ class Skill(ISkill):
     def canBeLearnedBy(self, job: int) -> bool:
         jid = job
         skillForJob = self.id / 10000
-        return (skillForJob == 2001 && GameConstants.isEvan(job)) || (jid / 100 == skillForJob / 100 && jid / 1000 == skillForJob / 1000 && (!GameConstants.isAdventurer(skillForJob) || GameConstants.isAdventurer(job)) && (!GameConstants.isKOC(skillForJob) || GameConstants.isKOC(job)) && (!GameConstants.isAran(skillForJob) || GameConstants.isAran(job)) && (!GameConstants.isEvan(skillForJob) || GameConstants.isEvan(job)) && (!GameConstants.isResist(skillForJob) || GameConstants.isResist(job)) && skillForJob / 10 % 10 <= jid / 10 % 10 && skillForJob % 10 <= jid % 10)
+        return (skillForJob == 2001 and GameConstants.isEvan(job)) or (jid / 100 == skillForJob / 100 and jid / 1000 == skillForJob / 1000 and (not GameConstants.isAdventurer(skillForJob) or GameConstants.isAdventurer(job)) and (not GameConstants.isKOC(skillForJob) or GameConstants.isKOC(job)) and (not GameConstants.isAran(skillForJob) or GameConstants.isAran(job)) and (not GameConstants.isEvan(skillForJob) or GameConstants.isEvan(job)) and (not GameConstants.isResist(skillForJob) or GameConstants.isResist(job)) and skillForJob / 10 % 10 <= jid / 10 % 10 and skillForJob % 10 <= jid % 10)
 
     def isTimeLimited(self) -> bool:
         return self.timeLimited
 
     def isFourthJob(self) -> bool:
-        if self.id / 10000 >= 2212 && self.id / 10000 < 3000:
+        if self.id / 10000 >= 2212 and self.id / 10000 < 3000:
             return self.id / 10000 % 10 >= 7
-        if self.id / 10000 >= 430 && self.id / 10000 <= 434:
-            return self.id / 10000 % 10 == 4 || self.getMasterLevel() > 0
+        if self.id / 10000 >= 430 and self.id / 10000 <= 434:
+            return self.id / 10000 % 10 == 4 or self.getMasterLevel() > 0
         return self.id / 10000 % 10 == 2
 
     def getElement(self) -> Any:
@@ -204,5 +204,5 @@ class Skill(ISkill):
 
     def isBeginnerSkill(self) -> bool:
         jobId = self.id / 10000
-        return jobId == 0 || jobId == 1000 || jobId == 2000 || jobId == 2001 || jobId == 3000
+        return jobId == 0 or jobId == 1000 or jobId == 2000 or jobId == 2001 or jobId == 3000
 

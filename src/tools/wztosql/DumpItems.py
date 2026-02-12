@@ -68,7 +68,7 @@ class DumpItems:
         self.update = update
         self.item = MapleDataProviderFactory.getDataProvider(File(os.environ.get("wzPath") + "/Item.wz"))
         self.character = MapleDataProviderFactory.getDataProvider(File(os.environ.get("wzPath") + "/Character.wz"))
-        if self.item is None || self.string is None || self.character is None:
+        if self.item is None or self.string is None or self.character is None:
             self.hadError = True
 
 
@@ -76,7 +76,7 @@ class DumpItems:
         return self.hadError
 
     def dumpItems(self) -> None:
-        if !self.hadError:
+        if not self.hadError:
             psa = self.con.prepareStatement("INSERT INTO wz_itemadddata(itemid, `key`, `subKey`, `value`) VALUES (?, ?, ?, ?)")
             psr = self.con.prepareStatement("INSERT INTO wz_itemrewarddata(itemid, item, prob, quantity, period, worldMsg, effect) VALUES (?, ?, ?, ?, ?, ?, ?)")
             ps = self.con.prepareStatement("INSERT INTO wz_itemdata(itemid, name, msg, `desc`, slotMax, price, wholePrice, stateChange, flags, karma, meso, monsterBook, itemMakeLevel, questId, scrollReqs, consumeItem, totalprob, incSkill, replaceId, replaceMsg, `create`, afterImage) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
@@ -111,10 +111,10 @@ class DumpItems:
 
     def dumpItems_d_psa_psr_ps_pse_charz(self, d: Any, psa: Any, psr: Any, ps: Any, pse: Any, charz: bool) -> None:
         for topDir in d.getRoot().getSubdirectories():
-            if !topDir.getName().lower() == "Special".lower() && !topDir.getName().lower() == "Hair".lower() && !topDir.getName().lower() == "Face".lower() && !topDir.getName().lower() == "Afterimage".lower():
+            if not topDir.getName().lower() == "Special".lower() and not topDir.getName().lower() == "Hair".lower() and not topDir.getName().lower() == "Face".lower() and not topDir.getName().lower() == "Afterimage".lower():
                 for ifile in topDir.getFiles():
                     iz = d.getData(topDir.getName() + "/" + ifile.getName())
-                    if charz || topDir.getName().lower() == "Pet".lower():
+                    if charz or topDir.getName().lower() == "Pet".lower():
                         self.dumpItem(psa, psr, ps, pse, iz)
                     else:
                         for itemData in iz:
@@ -128,10 +128,10 @@ class DumpItems:
                 self.id = int(iz.getName())
         except ValueError as nfe:
             return
-        if (self.id in self.doneIds) || GameConstants.getInventoryType(self.id) == MapleInventoryType.UNDEFINED:
+        if (self.id in self.doneIds) or GameConstants.getInventoryType(self.id) == MapleInventoryType.UNDEFINED:
             return
         self.doneIds.add(self.id)
-        if self.update && self.doesExist("SELECT * FROM wz_itemdata WHERE itemid = " + self.id):
+        if self.update and self.doesExist("SELECT * FROM wz_itemdata WHERE itemid = " + self.id):
             return
         ps.setInt(1, self.id)
         stringData = self.getStringData(self.id)
@@ -166,7 +166,7 @@ class DumpItems:
                 pEntry = -1.0
             else:
                 pEntry = MapleDataTool.getIntConvert(pData)
-        if self.id == 2070019 || self.id == 2330007:
+        if self.id == 2070019 or self.id == 2330007:
             pEntry = 1.0
         ps.setString(6, str(pEntry))
         ps.setInt(7, MapleDataTool.getIntConvert("info/price", iz, -1))
@@ -184,11 +184,11 @@ class DumpItems:
             flags |= 0x100
         if MapleDataTool.getIntConvert("info/quest", iz, 0) > 0:
             flags |= 0x200
-        if self.id != 4310008 && MapleDataTool.getIntConvert("info/tradeBlock", iz, 0) > 0:
+        if self.id != 4310008 and MapleDataTool.getIntConvert("info/tradeBlock", iz, 0) > 0:
             flags |= 0x400
         if MapleDataTool.getIntConvert("info/accountShareTag", iz, 0) > 0:
             flags |= 0x800
-        if MapleDataTool.getIntConvert("info/mobHP", iz, 0) > 0 && MapleDataTool.getIntConvert("info/mobHP", iz, 0) < 100:
+        if MapleDataTool.getIntConvert("info/mobHP", iz, 0) > 0 and MapleDataTool.getIntConvert("info/mobHP", iz, 0) < 100:
             flags |= 0x1000
         ps.setInt(9, flags)
         ps.setInt(10, MapleDataTool.getIntConvert("info/tradeAvailable", iz, 0))
@@ -224,7 +224,7 @@ class DumpItems:
         if dat is not None:
             for info in dat:
                 for data in info:
-                    if data.getName() == 1 && data.getChildByPath("Skill") is not None:
+                    if data.getName() == 1 and data.getChildByPath("Skill") is not None:
                         for skil in data.getChildByPath("Skill"):
                             incSkillz = MapleDataTool.getIntConvert("id", skil, 0)
                             if incSkillz != 0:
@@ -351,7 +351,7 @@ class DumpItems:
         ps.addBatch()
 
     def dumpItems_psa_psr_ps_pse(self, psa: Any, psr: Any, ps: Any, pse: Any) -> None:
-        if !self.update:
+        if not self.update:
             self.delete("DELETE FROM wz_itemdata")
             self.delete("DELETE FROM wz_itemequipdata")
             self.delete("DELETE FROM wz_itemadddata")
@@ -361,9 +361,9 @@ class DumpItems:
         self.dumpItems(self.item, psa, psr, ps, pse, False)
         self.dumpItems(self.character, psa, psr, ps, pse, True)
         print("Done wz_itemdata...")
-        if !self.subMain == 0:
+        if not self.subMain == 0:
             print(self.subMain)
-        if !self.subCon == 0:
+        if not self.subCon == 0:
             print(self.subCon)
 
     def currentId(self) -> int:
@@ -400,75 +400,75 @@ class DumpItems:
         data = None
         if itemId >= 5010000:
             data = self.cashStringData
-        elif itemId >= 2000000 && itemId < 3000000:
+        elif itemId >= 2000000 and itemId < 3000000:
             data = self.consumeStringData
-        elif (itemId >= 1132000 && itemId < 1183000) || (itemId >= 1010000 && itemId < 1040000) || (itemId >= 1122000 && itemId < 1123000):
+        elif (itemId >= 1132000 and itemId < 1183000) or (itemId >= 1010000 and itemId < 1040000) or (itemId >= 1122000 and itemId < 1123000):
             data = self.eqpStringData
             cat = "Eqp/Accessory"
-        elif itemId >= 1172000 && itemId < 1180000:
+        elif itemId >= 1172000 and itemId < 1180000:
             data = self.eqpStringData
             cat = "Eqp/MonsterBook"
-        elif itemId >= 1662000 && itemId < 1680000:
+        elif itemId >= 1662000 and itemId < 1680000:
             data = self.eqpStringData
             cat = "Eqp/Android"
-        elif itemId >= 1000000 && itemId < 1010000:
+        elif itemId >= 1000000 and itemId < 1010000:
             data = self.eqpStringData
             cat = "Eqp/Cap"
-        elif itemId >= 1102000 && itemId < 1103000:
+        elif itemId >= 1102000 and itemId < 1103000:
             data = self.eqpStringData
             cat = "Eqp/Cape"
-        elif itemId >= 1040000 && itemId < 1050000:
+        elif itemId >= 1040000 and itemId < 1050000:
             data = self.eqpStringData
             cat = "Eqp/Coat"
-        elif itemId >= 20000 && itemId < 22000:
+        elif itemId >= 20000 and itemId < 22000:
             data = self.eqpStringData
             cat = "Eqp/Face"
-        elif itemId >= 1080000 && itemId < 1090000:
+        elif itemId >= 1080000 and itemId < 1090000:
             data = self.eqpStringData
             cat = "Eqp/Glove"
-        elif itemId >= 30000 && itemId < 35000:
+        elif itemId >= 30000 and itemId < 35000:
             data = self.eqpStringData
             cat = "Eqp/Hair"
-        elif itemId >= 1050000 && itemId < 1060000:
+        elif itemId >= 1050000 and itemId < 1060000:
             data = self.eqpStringData
             cat = "Eqp/Longcoat"
-        elif itemId >= 1060000 && itemId < 1070000:
+        elif itemId >= 1060000 and itemId < 1070000:
             data = self.eqpStringData
             cat = "Eqp/Pants"
-        elif itemId >= 1610000 && itemId < 1660000:
+        elif itemId >= 1610000 and itemId < 1660000:
             data = self.eqpStringData
             cat = "Eqp/Mechanic"
-        elif itemId >= 1802000 && itemId < 1820000:
+        elif itemId >= 1802000 and itemId < 1820000:
             data = self.eqpStringData
             cat = "Eqp/PetEquip"
-        elif itemId >= 1920000 && itemId < 2000000:
+        elif itemId >= 1920000 and itemId < 2000000:
             data = self.eqpStringData
             cat = "Eqp/Dragon"
-        elif itemId >= 1112000 && itemId < 1120000:
+        elif itemId >= 1112000 and itemId < 1120000:
             data = self.eqpStringData
             cat = "Eqp/Ring"
-        elif itemId >= 1092000 && itemId < 1100000:
+        elif itemId >= 1092000 and itemId < 1100000:
             data = self.eqpStringData
             cat = "Eqp/Shield"
-        elif itemId >= 1070000 && itemId < 1080000:
+        elif itemId >= 1070000 and itemId < 1080000:
             data = self.eqpStringData
             cat = "Eqp/Shoes"
-        elif itemId >= 1900000 && itemId < 1920000:
+        elif itemId >= 1900000 and itemId < 1920000:
             data = self.eqpStringData
             cat = "Eqp/Taming"
-        elif itemId >= 1200000 && itemId < 1210000:
+        elif itemId >= 1200000 and itemId < 1210000:
             data = self.eqpStringData
             cat = "Eqp/Totem"
-        elif itemId >= 1210000 && itemId < 1800000:
+        elif itemId >= 1210000 and itemId < 1800000:
             data = self.eqpStringData
             cat = "Eqp/Weapon"
-        elif itemId >= 4000000 && itemId < 5000000:
+        elif itemId >= 4000000 and itemId < 5000000:
             data = self.etcStringData
             cat = "Etc"
-        elif itemId >= 3000000 && itemId < 4000000:
+        elif itemId >= 3000000 and itemId < 4000000:
             data = self.insStringData
         else:
-            if itemId < 5000000 || itemId >= 5010000:
+            if itemId < 5000000 or itemId >= 5010000:
                 return None
             data = self.petStringData
         if cat is None:

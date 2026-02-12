@@ -47,7 +47,7 @@ class HexTool:
     def toStringFromAscii(self, bytes: bytes) -> str:
         ret = new byte[len(bytes)]
         for x in range(len(bytes)):
-            if bytes[x] < 32 && bytes[x] >= 0:
+            if bytes[x] < 32 and bytes[x] >= 0:
                 ret[x] = 46
             else:
                 chr = bytes[x] & 0xFF
@@ -64,7 +64,7 @@ class HexTool:
         ret = "" * 3)
         for i in range(str):
             ret.append(str[i])
-            ret.append("  ")
+            ret.append(" ")
         return ret
 
     def getByteArrayFromHexString(self, hex: str) -> bytes:
@@ -79,11 +79,11 @@ class HexTool:
                 if nexti == hex:
                     Block_2 = None
                 chr = hex[nexti]
-                if chr >= '0' && chr <= '9':
+                if chr >= '0' and chr <= '9':
                     number = chr - '0'
-                elif chr >= 'a' && chr <= 'f':
+                elif chr >= 'a' and chr <= 'f':
                     number = chr - 'a' + 10
-                elif chr >= 'A' && chr <= 'F':
+                elif chr >= 'A' and chr <= 'F':
                     number = chr - 'A' + 10
                 else:
                     number = -1

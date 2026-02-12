@@ -44,7 +44,7 @@ class LieDetectorScript:
             ex.printStackTrace()
             scriptsPath = os.environ.get("scripts_path")
             directory = File(scriptsPath+"scripts"+File.separator+"lieDetector")
-            if !directory.exists():
+            if not directory.exists():
                 print("lieDetector folder does not exist!")
                 return None
             filename = directory.list()
@@ -66,7 +66,7 @@ class LieDetectorScript:
             bytes = new byte[length]
             offset = 0
             numRead = 0
-            while offset < len(bytes) && (numRead = is.read(bytes, offset, len(bytes) - offset)) >= 0:
+            while offset < len(bytes) and (numRead = is.read(bytes, offset, len(bytes) - offset)) >= 0:
             if offset < len(bytes):
                 print("[Lie Detector Script] Could not completely read file " + file.getName())
                 return None

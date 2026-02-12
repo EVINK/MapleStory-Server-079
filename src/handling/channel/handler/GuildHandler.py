@@ -42,7 +42,7 @@ class GuildHandler:
             cfrom.getClient().getSession().write(MaplePacketCreator.denyGuildInvitation(c.getPlayer().getName()))
 
     def isGuildNameAcceptable(self, name: str) -> bool:
-        return name <= 15 && name >= 3
+        return name <= 15 and name >= 3
 
     def respawnPlayer(self, mc: Any) -> None:
         mc.getMap().broadcastMessage(mc, MaplePacketCreator.removePlayerFromMap(mc.getId(), mc), False)
@@ -58,14 +58,14 @@ class GuildHandler:
             GuildHandler.nextPruneTime = int(time.time() * 1000) + 1200000
         # switch (slea.readByte()):
             # case 2:
-                if c.getPlayer().getGuildId() > 0 || c.getPlayer().getMapId() != 200000301:
+                if c.getPlayer().getGuildId() > 0 or c.getPlayer().getMapId() != 200000301:
                     c.getPlayer().dropMessage(1, "你不能在创建一个新的家族.")
                     return
                 if c.getPlayer().getMeso() < 15000000:
                     c.getPlayer().dropMessage(1, "你的金币不够，无法创建家族")
                     return
                 guildName = slea.readMapleAsciiString()
-                if !isGuildNameAcceptable(guildName):
+                if not isGuildNameAcceptable(guildName):
                     c.getPlayer().dropMessage(1, "这个家族的名称不允许使用.")
                     return
                 guildId = World.Guild.createGuild(c.getPlayer().getId(), guildName)
@@ -82,7 +82,7 @@ class GuildHandler:
                 respawnPlayer(c.getPlayer())
                 break
             # case 5:
-                if c.getPlayer().getGuildId() <= 0 || c.getPlayer().getGuildRank() > 2:
+                if c.getPlayer().getGuildId() <= 0 or c.getPlayer().getGuildRank() > 2:
                     return
                 name = slea.readMapleAsciiString()
                 mgr = MapleGuild.sendInvite(c, name)
@@ -90,7 +90,7 @@ class GuildHandler:
                     c.getSession().write(mgr.getPacket())
                     break
                 inv2 = Invited(name, c.getPlayer().getGuildId())
-                if !(inv2 in GuildHandler.invited):
+                if not (inv2 in GuildHandler.invited):
                     GuildHandler.invited.add(inv2)
                 break
             # case 6:
@@ -104,7 +104,7 @@ class GuildHandler:
                 itr2 = GuildHandler.invited.iterator()
                 while itr2.hasNext():
                     inv3 = itr2.next()
-                    if guildId == inv3.gid && name == (inv3.name):
+                    if guildId == inv3.gid and name == (inv3.name):
                         c.getPlayer().setGuildId(guildId)
                         c.getPlayer().setGuildRank(5)
                         itr2.remove()
@@ -125,7 +125,7 @@ class GuildHandler:
             # case 7:
                 cid = slea.readInt()
                 name = slea.readMapleAsciiString()
-                if cid != c.getPlayer().getId() || !name == (c.getPlayer().getName()) || c.getPlayer().getGuildId() <= 0:
+                if cid != c.getPlayer().getId() or not name == (c.getPlayer().getName()) or c.getPlayer().getGuildId() <= 0:
                     return
                 World.Guild.leaveGuild(c.getPlayer().getMGC())
                 c.getSession().write(MaplePacketCreator.showGuildInfo(None))
@@ -134,12 +134,12 @@ class GuildHandler:
             # case 8:
                 cid = slea.readInt()
                 name = slea.readMapleAsciiString()
-                if c.getPlayer().getGuildRank() > 2 || c.getPlayer().getGuildId() <= 0:
+                if c.getPlayer().getGuildRank() > 2 or c.getPlayer().getGuildId() <= 0:
                     return
                 World.Guild.expelMember(c.getPlayer().getMGC(), name, cid)
                 break
             # case 13:
-                if c.getPlayer().getGuildId() <= 0 || c.getPlayer().getGuildRank() != 1:
+                if c.getPlayer().getGuildId() <= 0 or c.getPlayer().getGuildRank() != 1:
                     return
                 ranks = new String[5]
                 for i in range(5):
@@ -149,12 +149,12 @@ class GuildHandler:
             # case 14:
                 cid = slea.readInt()
                 newRank = slea.readByte()
-                if newRank <= 1 || newRank > 5 || c.getPlayer().getGuildRank() > 2 || (newRank <= 2 && c.getPlayer().getGuildRank() != 1) || c.getPlayer().getGuildId() <= 0:
+                if newRank <= 1 or newRank > 5 or c.getPlayer().getGuildRank() > 2 or (newRank <= 2 and c.getPlayer().getGuildRank() != 1) or c.getPlayer().getGuildId() <= 0:
                     return
                 World.Guild.changeRank(c.getPlayer().getGuildId(), cid, newRank)
                 break
             # case 15:
-                if c.getPlayer().getGuildId() <= 0 || c.getPlayer().getGuildRank() != 1 || c.getPlayer().getMapId() != 200000301:
+                if c.getPlayer().getGuildId() <= 0 or c.getPlayer().getGuildRank() != 1 or c.getPlayer().getMapId() != 200000301:
                     return
                 if c.getPlayer().getMeso() < 5000000:
                     c.getPlayer().dropMessage(1, "你的金币不够，无法创建家族勋章")
@@ -169,16 +169,16 @@ class GuildHandler:
                 break
             # case 16:
                 notice = slea.readMapleAsciiString()
-                if notice > 100 || c.getPlayer().getGuildId() <= 0 || c.getPlayer().getGuildRank() > 2:
+                if notice > 100 or c.getPlayer().getGuildId() <= 0 or c.getPlayer().getGuildRank() > 2:
                     return
                 World.Guild.setGuildNotice(c.getPlayer().getGuildId(), notice)
                 break
 
     def equals(self, other: Any) -> bool:
-        if !(isinstance(other, Invited)):
+        if not (isinstance(other, Invited)):
             return False
         oth = other
-        return self.gid == oth.gid && self.name == (oth.name)
+        return self.gid == oth.gid and self.name == (oth.name)
 
 
 # Inner class from Java (originally nested)
@@ -197,8 +197,8 @@ class Invited:
 
 
     def equals(self, other: Any) -> bool:
-        if !(isinstance(other, Invited)):
+        if not (isinstance(other, Invited)):
             return False
         oth = other
-        return self.gid == oth.gid && self.name == (oth.name)
+        return self.gid == oth.gid and self.name == (oth.name)
 

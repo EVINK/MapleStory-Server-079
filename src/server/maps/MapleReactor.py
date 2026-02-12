@@ -105,22 +105,23 @@ class MapleReactor(AbstractMapleMapObject):
         self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, 0))
 
     def delayedDestroyReactor(self, delay: int) -> None:
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleReactor.self.map.destroyReactor(MapleReactor.self.getObjectId())
+        def _task_1():
+            MapleReactor.self.map.destroyReactor(MapleReactor.self.getObjectId())
+
+        Timer.MapTimer.getInstance().schedule(_task_1, delay)
 
     def run(self) -> None:
         MapleReactor.self.map.destroyReactor(MapleReactor.self.getObjectId())
 
     def hitReactor_charPos_stance_c(self, charPos: int, stance: int, c: Any) -> None:
-        if self.stats.getType(self.state) < 999 && self.stats.getType(self.state) != -1:
+        if self.stats.getType(self.state) < 999 and self.stats.getType(self.state) != -1:
             oldState = self.state
             pass = False
-            pass = (self.getReactorId() == 1072000 || self.stats.getType(self.state) != 2)
-            if pass || (charPos != 0 && charPos != 2):
+            pass = (self.getReactorId() == 1072000 or self.stats.getType(self.state) != 2)
+            if pass or (charPos != 0 and charPos != 2):
                 self.state = self.stats.getNextState(self.state)
-                if self.stats.getNextState(self.state) == -1 || self.stats.getType(self.state) == 999:
-                    if (self.stats.getType(self.state) < 100 || self.stats.getType(self.state) == 999) && self.delay > 0:
+                if self.stats.getNextState(self.state) == -1 or self.stats.getType(self.state) == 999:
+                    if (self.stats.getType(self.state) < 100 or self.stats.getType(self.state) == 999) and self.delay > 0:
                         self.map.destroyReactor(self.getObjectId())
                     else:
                         self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, stance))
@@ -128,12 +129,12 @@ class MapleReactor(AbstractMapleMapObject):
                 else:
                     done = False
                     self.map.broadcastMessage(MaplePacketCreator.triggerReactor(this, stance))
-                    if self.state == self.stats.getNextState(self.state) || self.rid == 2618000 || self.rid == 2309000:
+                    if self.state == self.stats.getNextState(self.state) or self.rid == 2618000 or self.rid == 2309000:
                         if self.rid > 200011:
                             ReactorScriptManager.getInstance().act(c, this)
                         done = True
                     if self.stats.getTimeOut(self.state) > 0:
-                        if !done && self.rid > 200011:
+                        if not done and self.rid > 200011:
                             ReactorScriptManager.getInstance().act(c, this)
                         self.scheduleSetState(self.state, oldState, self.stats.getTimeOut(self.state))
 
@@ -154,13 +155,15 @@ class MapleReactor(AbstractMapleMapObject):
         return "Reactor " + self.getObjectId() + " of id " + self.rid + " at position " + self.getPosition() + " state" + self.state + " type " + self.stats.getType(self.state)
 
     def delayedHitReactor(self, c: Any, delay: int) -> None:
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleReactor.self.hitReactor(c)
+        def _task_1():
+            MapleReactor.self.hitReactor(c)
+
+        Timer.MapTimer.getInstance().schedule(_task_1, delay)
 
     def scheduleSetState(self, oldState: int, newState: int, delay: int) -> None:
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                if MapleReactor.self.state == oldState:
-                    MapleReactor.self.forceHitReactor(newState)
+        def _task_1():
+            if MapleReactor.self.state == oldState:
+                MapleReactor.self.forceHitReactor(newState)
+
+        Timer.MapTimer.getInstance().schedule(_task_1, delay)
 

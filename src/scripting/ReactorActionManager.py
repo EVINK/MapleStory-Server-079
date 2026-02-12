@@ -49,12 +49,12 @@ class ReactorActionManager(AbstractPlayerInteraction):
     def dropItems_meso_mesoChance_minMeso_maxMeso_minItems(self, meso: bool, mesoChance: int, minMeso: int, maxMeso: int, minItems: int) -> None:
         chances = ReactorScriptManager.getInstance().getDrops(self.reactor.getReactorId())
         items = []
-        if meso && random.random() < 1.0 / mesoChance:
+        if meso and random.random() < 1.0 / mesoChance:
             items.add(ReactorDropEntry(0, mesoChance, -1))
         numItems = 0
         for d in chances:
             count = 1.0 / d.chance
-            if random.random() < 1.0 / d.chance && (d.questid <= 0 || self.getPlayer().getQuestStatus(d.questid) == 1):
+            if random.random() < 1.0 / d.chance and (d.questid <= 0 or self.getPlayer().getQuestStatus(d.questid) == 1):
                 numItems += 1
                 items.add(d)
         while items < minItems:

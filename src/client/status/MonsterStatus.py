@@ -49,7 +49,7 @@ class MonsterStatus(Enum):
         return self.first
 
     def isEmpty(self) -> bool:
-        return this == MonsterStatus.召唤怪物 || this == MonsterStatus.空白BUFF
+        return this == MonsterStatus.召唤怪物 or this == MonsterStatus.空白BUFF
 
     def getValue(self) -> int:
         return self.i

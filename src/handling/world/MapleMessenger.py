@@ -34,23 +34,23 @@ class MapleMessenger:
 
     def addMember(self, member: Any) -> None:
         position = self.getLowestPosition()
-        if position > -1 && position < 4:
+        if position > -1 and position < 4:
             self.addMem(position, member)
 
     def removeMember(self, member: Any) -> None:
         position = self.getPositionByName(member.getName())
-        if position > -1 && position < 4:
+        if position > -1 and position < 4:
             self.members[position] = None
 
     def silentRemoveMember(self, member: Any) -> None:
         position = self.getPositionByName(member.getName())
-        if position > -1 && position < 4:
+        if position > -1 and position < 4:
             self.members[position] = None
             self.silentLink[position] = member.getName()
 
     def silentAddMember(self, member: Any) -> None:
         for i in range(self.len(silentLink)):
-            if self.silentLink[i] is not None && self.silentLink[i].lower() == member.getName(.lower()):
+            if self.silentLink[i] is not None and self.silentLink[i].lower() == member.getName(.lower()):
                 self.addMem(i, member)
                 self.silentLink[i] = None
                 return
@@ -72,7 +72,7 @@ class MapleMessenger:
     def getPositionByName(self, name: str) -> int:
         for i in range(self.len(members)):
             messengerchar = self.members[i]
-            if messengerchar is not None && messengerchar.getName().lower() == name.lower():
+            if messengerchar is not None and messengerchar.getName().lower() == name.lower():
                 return i
         return 4
 

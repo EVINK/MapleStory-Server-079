@@ -43,7 +43,7 @@ class MaplePlayerShop(AbstractPlayerStore):
                 newItem.setFlag((byte)(flag - ItemFlag.KARMA_USE.getValue()))
             gainmeso = pItem.price * quantity
             if c.getPlayer().getMeso() >= gainmeso:
-                if self.getMCOwner().getMeso() + gainmeso > 0 && MapleInventoryManipulator.checkSpace(c, newItem.getItemId(), newItem.getQuantity(), newItem.getOwner()) && MapleInventoryManipulator.addFromDrop(c, newItem, False):
+                if self.getMCOwner().getMeso() + gainmeso > 0 and MapleInventoryManipulator.checkSpace(c, newItem.getItemId(), newItem.getQuantity(), newItem.getOwner()) and MapleInventoryManipulator.addFromDrop(c, newItem, False):
                     maplePlayerShopItem = pItem
                     maplePlayerShopItem.bundles -= quantity
                     self.bought.add(BoughtItem(newItem.getItemId(), quantity, gainmeso, c.getPlayer().getName()))
@@ -71,7 +71,7 @@ class MaplePlayerShop(AbstractPlayerStore):
             if items.bundles > 0:
                 newItem = items.item.copy()
                 newItem.setQuantity((short)(items.bundles * newItem.getQuantity()))
-                if !MapleInventoryManipulator.addFromDrop(owner.getClient(), newItem, False):
+                if not MapleInventoryManipulator.addFromDrop(owner.getClient(), newItem, False):
                     self.saveItems()
                     break
                 items.bundles = 0
@@ -80,7 +80,7 @@ class MaplePlayerShop(AbstractPlayerStore):
         self.getMCOwner().getClient().getSession().write(PlayerShopPacket.shopErrorMessage(10, 1))
 
     def banPlayer(self, name: str) -> None:
-        if !(name in self.bannedList):
+        if not (name in self.bannedList):
             self.bannedList.add(name)
         for i in range(3):
             chr = self.getVisitor(i)

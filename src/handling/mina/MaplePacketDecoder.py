@@ -45,11 +45,11 @@ class MaplePacketDecoder(CumulativeProtocolDecoder):
         if decoderState.packetlength == -1:
             if in.remaining() >= 4:
                 packetHeader = in.getInt()
-                if !client.getReceiveCrypto().checkPacket(packetHeader):
+                if not client.getReceiveCrypto().checkPacket(packetHeader):
                     session.close(True)
                     return False
                 decoderState.packetlength = MapleAESOFB.getPacketLength(packetHeader)
-            elif in.remaining() < 4 && decoderState.packetlength == -1:
+            elif in.remaining() < 4 and decoderState.packetlength == -1:
                 MaplePacketDecoder.log.trace("解码…没有足够的数据/就是所谓的包不完整")
                 return False
         if in.remaining() >= decoderState.packetlength:
@@ -85,7 +85,7 @@ class MaplePacketDecoder(CumulativeProtocolDecoder):
                     if show:
                         FileoutputUtil.packetLog("logs/客户端封包.log", SendTo)
                         print(SendTo)
-                    SendTos = "\r\n时间：" + FileoutputUtil.CurrentReadable_Time() + "  "
+                    SendTos = "\r\n时间：" + FileoutputUtil.CurrentReadable_Time() + " "
                     if op == ("UNKNOWN"):
                         FileoutputUtil.packetLog("logs/未知客服端封包.log", SendTos + SendTo)
                 else:

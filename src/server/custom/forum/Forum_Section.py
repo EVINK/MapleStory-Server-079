@@ -89,7 +89,7 @@ class Forum_Section:
             if getSectionById(id) is not None:
                 Forum_Section.AllSection.remove(getSectionById(id))
                 isExist = True
-            if !isExist:
+            if not isExist:
                 return isExist
             Forum_Thread.deleteThread(id, 0, True)
             query2 = ""

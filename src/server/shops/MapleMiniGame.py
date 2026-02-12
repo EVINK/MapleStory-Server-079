@@ -69,7 +69,7 @@ class MapleMiniGame(AbstractPlayerStore):
         return ret
 
     def checkWin(self) -> None:
-        if self.getPoints() >= self.getMatchesToWin() && !self.isOpen():
+        if self.getPoints() >= self.getMatchesToWin() and not self.isOpen():
             x = 0
             highest = 0
             tie = False
@@ -130,19 +130,19 @@ class MapleMiniGame(AbstractPlayerStore):
         c.getSession().write(PlayerShopPacket.getMiniGame(c, this))
 
     def setReady(self, slot: int) -> None:
-        self.ready[slot] = !self.ready[slot]
+        self.ready[slot] = not self.ready[slot]
 
     def isReady(self, slot: int) -> bool:
         return self.ready[slot]
 
     def setPiece(self, move1: int, move2: int, type: int, chr: Any) -> None:
-        if self.piece[move1][move2] == 0 && !self.isOpen():
+        if self.piece[move1][move2] == 0 and not self.isOpen():
             self.piece[move1][move2] = type
             self.broadcastToVisitors(PlayerShopPacket.getMiniGameMoveOmok(move1, move2, type))
             found = False
             for y in range(15):
                 for x in range(15):
-                    if !found && self.searchCombo(x, y, type):
+                    if not found and self.searchCombo(x, y, type):
                         self.broadcastToVisitors(PlayerShopPacket.getMiniGameResult(this, 2, self.getVisitorSlot(chr)))
                         self.setOpen(True)
                         self.update()
@@ -166,11 +166,11 @@ class MapleMiniGame(AbstractPlayerStore):
             self.removeVisitor(player)
 
     def isExitAfter(self, player: Any) -> bool:
-        return self.getVisitorSlot(player) > -1 && self.exitAfter[self.getVisitorSlot(player)]
+        return self.getVisitorSlot(player) > -1 and self.exitAfter[self.getVisitorSlot(player)]
 
     def setExitAfter(self, player: Any) -> None:
         if self.getVisitorSlot(player) > -1:
-            self.exitAfter[self.getVisitorSlot(player)] = !self.exitAfter[self.getVisitorSlot(player)]
+            self.exitAfter[self.getVisitorSlot(player)] = not self.exitAfter[self.getVisitorSlot(player)]
 
     def checkExitAfterGame(self) -> None:
         for i in range(2):
@@ -180,25 +180,25 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def searchCombo(self, x: int, y: int, type: int) -> bool:
         ret = False
-        if !ret && x < 11:
+        if not ret and x < 11:
             ret = True
             for i in range(5):
                 if self.piece[x + i][y] != type:
                     ret = False
                     break
-        if !ret && y < 11:
+        if not ret and y < 11:
             ret = True
             for i in range(5):
                 if self.piece[x][y + i] != type:
                     ret = False
                     break
-        if !ret && x < 11 && y < 11:
+        if not ret and x < 11 and y < 11:
             ret = True
             for i in range(5):
                 if self.piece[x + i][y + i] != type:
                     ret = False
                     break
-        if !ret && x > 3 && y < 11:
+        if not ret and x > 3 and y < 11:
             ret = True
             for i in range(5):
                 if self.piece[x - i][y + i] != type:
@@ -253,7 +253,7 @@ class MapleMiniGame(AbstractPlayerStore):
             record.setCustomData("0,0,0")
         else:
             record = chr.getQuestNoAdd(quest)
-            if record.getCustomData() is None || record.getCustomData() < 5 || record.getCustomData().find(",") == -1:
+            if record.getCustomData() is None or record.getCustomData() < 5 or record.getCustomData().find(",") == -1:
                 record.setCustomData("0,0,0")
         return record.getCustomData()
 

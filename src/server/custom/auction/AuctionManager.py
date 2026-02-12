@@ -54,12 +54,12 @@ class AuctionManager:
         if quantity >= 0:
             ii = MapleItemInformationProvider.getInstance()
             type = GameConstants.getInventoryType(item.getItemId())
-            if !MapleInventoryManipulator.checkSpace(cg, item.getItemId(), quantity, ""):
+            if not MapleInventoryManipulator.checkSpace(cg, item.getItemId(), quantity, ""):
                 return
-            if type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(item.getItemId()) && !GameConstants.isBullet(item.getItemId()):
+            if type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(item.getItemId()) and not GameConstants.isBullet(item.getItemId()):
                 equip = item
                 name = ii.getName(item.getItemId())
-                if item.getItemId() / 10000 == 114 && name is not None && name > 0:
+                if item.getItemId() / 10000 == 114 and name is not None and name > 0:
                     msg = "你已获得称号 <" + name + ">"
                     cg.getPlayer().dropMessage(5, msg)
                     cg.getPlayer().dropMessage(5, msg)
@@ -72,16 +72,16 @@ class AuctionManager:
 
     def putInt(self, player: Any, source: Any, quantity: int) -> int:
         ret = 1
-        if player is None || source is None:
+        if player is None or source is None:
             return -4
         ii = MapleItemInformationProvider.getInstance()
         if source.getExpiration() > 0:
             return -5
         flag = source.getFlag()
-        if quantity > source.getQuantity() || quantity < 1:
+        if quantity > source.getQuantity() or quantity < 1:
             return -6
         itemtype = self.getItemTypeByItemId(source.getItemId())
-        if ItemFlag.LOCK.check(flag) || ItemFlag.UNTRADEABLE.check(flag) || (quantity != 1 && itemtype == MapleInventoryType.EQUIP):
+        if ItemFlag.LOCK.check(flag) or ItemFlag.UNTRADEABLE.check(flag) or (quantity != 1 and itemtype == MapleInventoryType.EQUIP):
             return -7
         item_id = OtherSettings()
         itemgy_id = item_id.getItempb_id()
@@ -98,7 +98,7 @@ class AuctionManager:
         if id < 1:
             return id
         auctionItem.setId(id)
-        if GameConstants.isThrowingStar(source.getItemId()) || GameConstants.isBullet(source.getItemId()):
+        if GameConstants.isThrowingStar(source.getItemId()) or GameConstants.isBullet(source.getItemId()):
             quantity = source.getQuantity()
         MapleInventoryManipulator.removeFromSlot(player.getClient(), itemtype, source.getPosition(), quantity, False)
         return ret
@@ -122,12 +122,12 @@ class AuctionManager:
             return -6
         if AuctionState.下架 != auctionItem.getAuctionState():
             return -7
-        if count > auctionItem.getQuantity() || count < 1:
+        if count > auctionItem.getQuantity() or count < 1:
             return -8
-        if !MapleInventoryManipulator.checkSpace(player.getClient(), auctionItem.getItem().getItemId(), count, ""):
+        if not MapleInventoryManipulator.checkSpace(player.getClient(), auctionItem.getItem().getItemId(), count, ""):
             return -9
         ret = 1
-        if count < auctionItem.getQuantity() && !GameConstants.isThrowingStar(auctionItem.getItem().getItemId()) && !GameConstants.isBullet(auctionItem.getItem().getItemId()):
+        if count < auctionItem.getQuantity() and not GameConstants.isThrowingStar(auctionItem.getItem().getItemId()) and not GameConstants.isBullet(auctionItem.getItem().getItemId()):
             auctionItem.setQuantity(auctionItem.getQuantity() - count)
             ret = getInstance().update(auctionItem)
         else:
@@ -153,7 +153,7 @@ class AuctionManager:
             return -7
         if auctionPoint.getPoint() < auctionItem.getPrice():
             return -8
-        if !MapleInventoryManipulator.checkSpace(player.getClient(), auctionItem.getItem().getItemId(), auctionItem.getQuantity(), ""):
+        if not MapleInventoryManipulator.checkSpace(player.getClient(), auctionItem.getItem().getItemId(), auctionItem.getQuantity(), ""):
             return -9
         auctionItem.setAuctionState(AuctionState.已售)
         auctionItem.setBuyer(player.getId())
@@ -301,14 +301,14 @@ class AuctionManager:
         ps = None
         rs = None
         try:
-            if itemtype == (MapleInventoryType.EQUIP) || itemtype == (MapleInventoryType.EQUIPPED):
+            if itemtype == (MapleInventoryType.EQUIP) or itemtype == (MapleInventoryType.EQUIPPED):
                 ps = DatabaseConnection.getConnection().prepareStatement("INSERT INTO `auctionitems` VALUES (None, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 1)
             else:
                 ps = DatabaseConnection.getConnection().prepareStatement("INSERT INTO `auctionitems` (characterid,characterName,auctionState,buyer,buyerName,price,itemid,inventorytype,quantity,owner,GM_Log,uniqueid,flag,expiredate,sender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", 1)
             self.mapSavePs(ps, auctionItem)
             ps.executeUpdate()
             rs = ps.getGeneratedKeys()
-            if rs is not None && rs.next():
+            if rs is not None and rs.next():
                 ret = rs.getInt(1)
             try:
                 if rs is not None:
@@ -338,12 +338,12 @@ class AuctionManager:
         ps = None
         rs = None
         try:
-            if itemtype == (MapleInventoryType.EQUIP) || itemtype == (MapleInventoryType.EQUIPPED):
+            if itemtype == (MapleInventoryType.EQUIP) or itemtype == (MapleInventoryType.EQUIPPED):
                 ps = DatabaseConnection.getConnection().prepareStatement("UPDATE `auctionitems` SET characterid = ? ,characterName = ? ,auctionState = ?,buyer = ?,buyerName = ? ,price = ?,itemid = ?,inventorytype = ?,quantity = ?,owner = ?,GM_Log = ?,uniqueid = ?,flag = ?,expiredate = ?,sender = ?,upgradeslots = ?,level = ?,str = ?,dex = ?,_int = ?,luk = ?,hp = ?,mp = ?,watk = ?,matk = ?,wdef = ?,mdef = ?,acc = ?,avoid = ?,hands = ?,speed = ?,jump = ?,ViciousHammer = ?,itemEXP = ?,durability = ?,enhance = ?,potential1 = ?,potential2 = ?,potential3 = ?,hpR = ?,mpR = ?,itemlevel = ? where id = ?")
             else:
                 ps = DatabaseConnection.getConnection().prepareStatement("UPDATE `auctionitems` SET characterid = ?, characterName = ? ,auctionState = ?,buyer = ?,buyerName = ? ,price = ?,itemid = ?,inventorytype = ?,quantity = ?,owner = ?,GM_Log = ?,uniqueid = ?,flag = ?,expiredate = ?,sender = ? where id = ?")
             self.mapSavePs(ps, auctionItem)
-            if itemtype == (MapleInventoryType.EQUIP) || itemtype == (MapleInventoryType.EQUIPPED):
+            if itemtype == (MapleInventoryType.EQUIP) or itemtype == (MapleInventoryType.EQUIPPED):
                 ps.setLong(43, auctionItem.getId())
             else:
                 ps.setLong(16, auctionItem.getId())
@@ -374,7 +374,7 @@ class AuctionManager:
         ret = -1
         ps_del = None
         try:
-            ps_del = DatabaseConnection.getConnection().prepareStatement("DELETE  FROM auctionItems where id = ?")
+            ps_del = DatabaseConnection.getConnection().prepareStatement("DELETE FROM auctionItems where id = ?")
             ps_del.setLong(1, id)
             ret = ps_del.executeUpdate()
             try:
@@ -399,7 +399,7 @@ class AuctionManager:
         ret = -1
         ps_del = None
         try:
-            ps_del = DatabaseConnection.getConnection().prepareStatement("DELETE  FROM auctionItems where characterid = ? and auctionState = ?")
+            ps_del = DatabaseConnection.getConnection().prepareStatement("DELETE FROM auctionItems where characterid = ? and auctionState = ?")
             ps_del.setInt(1, characterid)
             ps_del.setInt(2, AuctionState.已售.getState())
             ret = ps_del.executeUpdate()
@@ -533,7 +533,7 @@ class AuctionManager:
         ps.setByte(13, item.getFlag())
         ps.setLong(14, item.getExpiration())
         ps.setString(15, item.getGiftFrom())
-        if itemtype == (MapleInventoryType.EQUIP) || itemtype == (MapleInventoryType.EQUIPPED):
+        if itemtype == (MapleInventoryType.EQUIP) or itemtype == (MapleInventoryType.EQUIPPED):
             equip = item
             ps.setInt(16, equip.getUpgradeSlots())
             ps.setInt(17, equip.getLevel())
@@ -608,7 +608,7 @@ class AuctionManager:
         mpR = rs.getShort("mpR")
         itemlevel = rs.getByte("itemlevel")
         mit = MapleInventoryType.getByType(inventorytype)
-        if characterid < 1 || mit is None:
+        if characterid < 1 or mit is None:
             return None
         auctionItem = AuctionItem()
         auctionItem.setId(id)
@@ -619,7 +619,7 @@ class AuctionManager:
         auctionItem.setCharacterid(characterid)
         auctionItem.setCharacterName(characterName)
         auctionItem.setQuantity(quantity)
-        if mit == (MapleInventoryType.EQUIP) || mit == (MapleInventoryType.EQUIPPED):
+        if mit == (MapleInventoryType.EQUIP) or mit == (MapleInventoryType.EQUIPPED):
             equip = Equip(itemid, 0, uniqueid, flag)
             equip.setQuantity(1)
             equip.setOwner(owner)
@@ -653,7 +653,7 @@ class AuctionManager:
             equip.setMpR(mpR)
             equip.setGiftFrom(sender)
             equip.setEquipLevel(itemlevel)
-            if equip.getUniqueId() > -1 && GameConstants.isEffectRing(itemid):
+            if equip.getUniqueId() > -1 and GameConstants.isEffectRing(itemid):
                 ring = MapleRing.loadFromDb(equip.getUniqueId(), mit == (MapleInventoryType.EQUIPPED))
                 if ring is not None:
                     equip.setRing(ring)

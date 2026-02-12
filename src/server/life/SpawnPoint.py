@@ -39,7 +39,7 @@ class SpawnPoint(Spawns):
         self.mobTime = ((mobTime < 0) ? -1 : (mobTime * 1000))
         self.carnivalTeam = carnivalTeam
         self.msg = msg
-        self.immobile = !monster.getStats().getMobile()
+        self.immobile = not monster.getStats().getMobile()
         self.nextPossibleSpawn = int(time.time() * 1000)
 
 
@@ -59,7 +59,7 @@ class SpawnPoint(Spawns):
         return self.carnival
 
     def shouldSpawn(self) -> bool:
-        return self.mobTime >= 0 && ((self.mobTime == 0 && !self.immobile) || self.spawnedMonsters.get() <= 0) && self.spawnedMonsters.get() <= 1 && self.nextPossibleSpawn <= int(time.time() * 1000)
+        return self.mobTime >= 0 and ((self.mobTime == 0 and not self.immobile) or self.spawnedMonsters.get() <= 0) and self.spawnedMonsters.get() <= 1 and self.nextPossibleSpawn <= int(time.time() * 1000)
 
     def spawnMonster(self, map: Any) -> Any:
         mob = MapleMonster(self.monster)
@@ -75,7 +75,7 @@ class SpawnPoint(Spawns):
         map.spawnMonster(mob, -2)
         if self.carnivalTeam > -1:
             for r in map.getAllReactorsThreadsafe():
-                if r.getName().startswith(str(self.carnivalTeam)) && r.getReactorId() == 9980000 + self.carnivalTeam && r.getState() < 5:
+                if r.getName().startswith(str(self.carnivalTeam)) and r.getReactorId() == 9980000 + self.carnivalTeam and r.getState() < 5:
                     num = int(r.getName()[1:2])
                     final MapleCarnivalFactory.MCSkill skil = MapleCarnivalFactory.getInstance().getGuardian(num)
                     if skil is None:

@@ -47,7 +47,7 @@ class MapleQuestAction:
     def canGetItem(self, item: Any, c: Any) -> bool:
         if item.getChildByPath("gender") is not None:
             gender = MapleDataTool.getInt(item.getChildByPath("gender"))
-            if gender != 2 && gender != c.getGender():
+            if gender != 2 and gender != c.getGender():
                 return False
         if item.getChildByPath("job") is not None:
             job = MapleDataTool.getInt(item.getChildByPath("job"))
@@ -57,7 +57,7 @@ class MapleQuestAction:
                 if codec / 100 == c.getJob() / 100:
                     jobFound = True
                     break
-            if !jobFound && item.getChildByPath("jobEx") is not None:
+            if not jobFound and item.getChildByPath("jobEx") is not None:
                 jobEx = MapleDataTool.getInt(item.getChildByPath("jobEx"))
                 codeEx = getJobBy5ByteEncoding(jobEx)
                 for codec2 in codeEx:
@@ -117,7 +117,7 @@ class MapleQuestAction:
                 retitem = MapleDataTool.getInt(iEntry.getChildByPath("id"), -1)
                 counts = MapleDataTool.getInt(iEntry.getChildByPath("count"), -1)
                 if retitem == itemid:
-                    if !c.haveItem(retitem, counts, True, False):
+                    if not c.haveItem(retitem, counts, True, False):
                         c.removeAll(retitem)
                         MapleInventoryManipulator.addById(c.getClient(), retitem, counts, 0)
                     return True
@@ -135,7 +135,7 @@ class MapleQuestAction:
                 props = {}
                 for iEntry in self.data.getChildren():
                     prop = iEntry.getChildByPath("prop")
-                    if prop is not None && MapleDataTool.getInt(prop) != -1 && canGetItem(iEntry, c):
+                    if prop is not None and MapleDataTool.getInt(prop) != -1 and canGetItem(iEntry, c):
                         for i in range(MapleDataTool.getInt(iEntry.getChildByPath("prop"))):
                             props.put(props, MapleDataTool.getInt(iEntry.getChildByPath("id")))
                 selection = 0
@@ -143,7 +143,7 @@ class MapleQuestAction:
                 if props > 0:
                     selection = props.get(Randomizer.nextInt(props))
                 for iEntry2 in self.data.getChildren():
-                    if !canGetItem(iEntry2, c):
+                    if not canGetItem(iEntry2, c):
                         continue
                     id = MapleDataTool.getInt(iEntry2.getChildByPath("id"), -1)
                     if iEntry2.getChildByPath("prop") is not None:
@@ -162,7 +162,7 @@ class MapleQuestAction:
                     else:
                         period = MapleDataTool.getInt(iEntry2.getChildByPath("period"), 0) / 1440
                         name = MapleItemInformationProvider.getInstance().getName(id)
-                        if id / 10000 == 114 && name is not None && name > 0:
+                        if id / 10000 == 114 and name is not None and name > 0:
                             msg = "你已獲得稱號 <" + name + ">"
                             c.dropMessage(5, msg)
                             c.dropMessage(5, msg)
@@ -192,7 +192,7 @@ class MapleQuestAction:
                     masterLevel = MapleDataTool.getInt(sEntry.getChildByPath("masterLevel"), 0)
                     skillObject = SkillFactory.getSkill(skillid)
                     for applicableJob in sEntry.getChildByPath("job"):
-                        if skillObject.isBeginnerSkill() || c.getJob() == MapleDataTool.getInt(applicableJob):
+                        if skillObject.isBeginnerSkill() or c.getJob() == MapleDataTool.getInt(applicableJob):
                             c.changeSkillLevel(skillObject, max(skillLevel, c.getSkillLevel(skillObject)), max(masterLevel, c.getMasterLevel(skillObject)))
                             break
                 break
@@ -224,7 +224,7 @@ class MapleQuestAction:
                         finalJob = 0
                         for jEntry in iEntry3.getChildByPath("job").getChildren():
                             job_val = MapleDataTool.getInt(jEntry, 0)
-                            if c.getJob() >= job_val && job_val > finalJob:
+                            if c.getJob() >= job_val and job_val > finalJob:
                                 finalJob = job_val
                         if finalJob == 0:
                             c.gainSP(sp_val)
@@ -240,7 +240,7 @@ class MapleQuestAction:
                 props = {}
                 for iEntry in self.data.getChildren():
                     prop = iEntry.getChildByPath("prop")
-                    if prop is not None && MapleDataTool.getInt(prop) != -1 && canGetItem(iEntry, c):
+                    if prop is not None and MapleDataTool.getInt(prop) != -1 and canGetItem(iEntry, c):
                         for i in range(MapleDataTool.getInt(iEntry.getChildByPath("prop"))):
                             props.put(props, MapleDataTool.getInt(iEntry.getChildByPath("id")))
                 selection = 0
@@ -253,7 +253,7 @@ class MapleQuestAction:
                 etc = 0
                 cash = 0
                 for iEntry2 in self.data.getChildren():
-                    if !canGetItem(iEntry2, c):
+                    if not canGetItem(iEntry2, c):
                         continue
                     id = MapleDataTool.getInt(iEntry2.getChildByPath("id"), -1)
                     if iEntry2.getChildByPath("prop") is not None:
@@ -264,12 +264,12 @@ class MapleQuestAction:
                             continue
                     count = MapleDataTool.getInt(iEntry2.getChildByPath("count"), 1)
                     if count < 0:
-                        if !c.haveItem(id, count, False, True):
+                        if not c.haveItem(id, count, False, True):
                             c.dropMessage(1, "You are short of some item to complete quest.")
                             return False
                         continue
                     else:
-                        if MapleItemInformationProvider.getInstance().isPickupRestricted(id) && c.haveItem(id, 1, True, False):
+                        if MapleItemInformationProvider.getInstance().isPickupRestricted(id) and c.haveItem(id, 1, True, False):
                             c.dropMessage(1, "You have this item already: " + MapleItemInformationProvider.getInstance().getName(id))
                             return False
                         # switch (GameConstants.getInventoryType(id)):
@@ -309,7 +309,7 @@ class MapleQuestAction:
                 if c.getMeso() + meso < 0:
                     c.dropMessage(1, "Meso exceed the max amount, 2147483647.")
                     return False
-                if meso < 0 && c.getMeso() < abs(meso):
+                if meso < 0 and c.getMeso() < abs(meso):
                     c.dropMessage(1, "Insufficient meso.")
                     return False
                 return True
@@ -325,7 +325,7 @@ class MapleQuestAction:
                 props = {}
                 for iEntry in self.data.getChildren():
                     prop = iEntry.getChildByPath("prop")
-                    if prop is not None && MapleDataTool.getInt(prop) != -1 && canGetItem(iEntry, c):
+                    if prop is not None and MapleDataTool.getInt(prop) != -1 and canGetItem(iEntry, c):
                         for i in range(MapleDataTool.getInt(iEntry.getChildByPath("prop"))):
                             props.put(props, MapleDataTool.getInt(iEntry.getChildByPath("id")))
                 selection = 0
@@ -333,7 +333,7 @@ class MapleQuestAction:
                 if props > 0:
                     selection = props.get(Randomizer.nextInt(props))
                 for iEntry2 in self.data.getChildren():
-                    if !canGetItem(iEntry2, c):
+                    if not canGetItem(iEntry2, c):
                         continue
                     id = MapleDataTool.getInt(iEntry2.getChildByPath("id"), -1)
                     if iEntry2.getChildByPath("prop") is not None:
@@ -349,7 +349,7 @@ class MapleQuestAction:
                     else:
                         period = MapleDataTool.getInt(iEntry2.getChildByPath("period"), 0) / 1440
                         name = MapleItemInformationProvider.getInstance().getName(id)
-                        if id / 10000 == 114 && name is not None && name > 0:
+                        if id / 10000 == 114 and name is not None and name > 0:
                             msg = "You have attained title <" + name + ">"
                             c.dropMessage(5, msg)
                             c.dropMessage(5, msg)
@@ -373,7 +373,7 @@ class MapleQuestAction:
                     masterLevel = MapleDataTool.getInt(sEntry.getChildByPath("masterLevel"), 0)
                     skillObject = SkillFactory.getSkill(skillid)
                     for applicableJob in sEntry.getChildByPath("job"):
-                        if skillObject.isBeginnerSkill() || c.getJob() == MapleDataTool.getInt(applicableJob):
+                        if skillObject.isBeginnerSkill() or c.getJob() == MapleDataTool.getInt(applicableJob):
                             c.changeSkillLevel(skillObject, max(skillLevel, c.getSkillLevel(skillObject)), max(masterLevel, c.getMasterLevel(skillObject)))
                             break
                 break
@@ -396,7 +396,7 @@ class MapleQuestAction:
                         finalJob = 0
                         for jEntry in iEntry3.getChildByPath("job").getChildren():
                             job_val = MapleDataTool.getInt(jEntry, 0)
-                            if c.getJob() >= job_val && job_val > finalJob:
+                            if c.getJob() >= job_val and job_val > finalJob:
                                 finalJob = job_val
                         c.gainSP(sp_val, GameConstants.getSkillBook(finalJob))
                     else:

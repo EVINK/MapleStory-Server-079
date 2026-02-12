@@ -60,7 +60,7 @@ class MapleDoor(AbstractMapleMapObject):
                 return 1
         for obj in self.town.getAllDoorsThreadsafe():
             door = obj
-            if door.getOwner() is not None && door.getOwner().getParty() is not None && self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(door.getOwnerId()) is not None:
+            if door.getOwner() is not None and door.getOwner().getParty() is not None and self.getOwner() is not None and self.getOwner().getParty() is not None and self.getOwner().getParty().getMemberById(door.getOwnerId()) is not None:
                 freePortals.remove(door.getTownPortal())
         if freePortals <= 0:
             return None
@@ -76,24 +76,24 @@ class MapleDoor(AbstractMapleMapObject):
     def sendSpawnData(self, client: Any) -> None:
         if self.getOwner() is None:
             return
-        if self.target.getId() == client.getPlayer().getMapId() || self.getOwnerId() == client.getPlayer().getId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+        if self.target.getId() == client.getPlayer().getMapId() or self.getOwnerId() == client.getPlayer().getId() or (self.getOwner() is not None and self.getOwner().getParty() is not None and self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
             client.getSession().write(MaplePacketCreator.spawnDoor(self.getOwnerId(), (self.town.getId() == client.getPlayer().getMapId()) ? self.townPortal.getPosition() : self.targetPosition, True))
-            if self.getOwner() is not None && self.getOwner().getParty() is not None && (self.getOwnerId() == client.getPlayer().getId() || self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+            if self.getOwner() is not None and self.getOwner().getParty() is not None and (self.getOwnerId() == client.getPlayer().getId() or self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
                 client.getSession().write(MaplePacketCreator.partyPortal(self.town.getId(), self.target.getId(), self.skillId, self.targetPosition))
             client.getSession().write(MaplePacketCreator.spawnPortal(self.town.getId(), self.target.getId(), self.skillId, self.targetPosition))
 
     def sendDestroyData(self, client: Any) -> None:
         if self.getOwner() is None:
             return
-        if self.target.getId() == client.getPlayer().getMapId() || self.getOwnerId() == client.getPlayer().getId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
-            if self.getOwner().getParty() is not None && (self.getOwnerId() == client.getPlayer().getId() || self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+        if self.target.getId() == client.getPlayer().getMapId() or self.getOwnerId() == client.getPlayer().getId() or (self.getOwner() is not None and self.getOwner().getParty() is not None and self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
+            if self.getOwner().getParty() is not None and (self.getOwnerId() == client.getPlayer().getId() or self.getOwner().getParty().getMemberById(client.getPlayer().getId()) is not None):
                 client.getSession().write(MaplePacketCreator.partyPortal(999999999, 999999999, 0, Point(-1, -1)))
             client.getSession().write(MaplePacketCreator.removeDoor(self.getOwnerId(), False))
             client.getSession().write(MaplePacketCreator.removeDoor(self.getOwnerId(), True))
 
     def warp(self, chr: Any, toTown: bool) -> None:
-        if chr.getId() == self.getOwnerId() || (self.getOwner() is not None && self.getOwner().getParty() is not None && self.getOwner().getParty().getMemberById(chr.getId()) is not None):
-            if !toTown:
+        if chr.getId() == self.getOwnerId() or (self.getOwner() is not None and self.getOwner().getParty() is not None and self.getOwner().getParty().getMemberById(chr.getId()) is not None):
+            if not toTown:
                 chr.changeMap(self.target, self.targetPosition)
             else:
                 chr.changeMap(self.town, self.townPortal)

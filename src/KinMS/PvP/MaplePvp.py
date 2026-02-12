@@ -38,7 +38,7 @@ class MaplePvp:
         ret.attackCount = 1
         pvpRange = attack.isCloseRangeAttack ? 35 : 70
         ret.facingLeft = (attack.animation < 0)
-        if skillId != 0 && effect is not None:
+        if skillId != 0 and effect is not None:
             ret.skillDamage = effect.getDamage()
             ret.mobCount = max(1, effect.getMobCount())
             ret.attackCount = max(effect.getBulletCount(), effect.getAttackCount())
@@ -74,7 +74,7 @@ class MaplePvp:
         return False
 
     def monsterBomb(self, player: Any, attacked: Any, map: Any, attack: Any) -> None:
-        if player is None || attacked is None || map is None:
+        if player is None or attacked is None or map is None:
             return
         maxDamage = attack.maxDamage
         isCritDamage = False
@@ -124,23 +124,23 @@ class MaplePvp:
             player.dropTopMsg("你对玩家 " + attacked.getName() + " 造成了 " + hploss + " 点伤害! 对方血量: " + attacked.getStat().getHp() + "/" + attacked.getStat().getCurrentMaxHp())
             attacked.dropTopMsg("玩家 " + player.getName() + " 对你造成了 " + hploss + " 点伤害!")
         map.killMonster(pvpMob, player, False, False, 1)
-        if attacked.getStat().getHp() <= 0 && !attacked.isAlive():
+        if attacked.getStat().getHp() <= 0 and not attacked.isAlive():
             expReward = attacked.getLevel() * 10 * (attacked.getLevel() / player.getLevel())
             gpReward = math.floor(random.random() * 10.0 + 10.0)
             if player.getPvpKills() * 0.25 >= player.getPvpDeaths():
                 expReward *= 2
             player.gainExp(expReward, True, False, True)
-            if player.getGuildId() > 0 && player.getGuildId() != attacked.getGuildId():
+            if player.getGuildId() > 0 and player.getGuildId() != attacked.getGuildId():
                 World.Guild.gainGP(player.getGuildId(), gpReward)
             player.gainPvpKill()
-            player.dropMessage(6, "你击败了玩家 " + attacked.getName() + "!! ")
+            player.dropMessage(6, "你击败了玩家 " + attacked.getName() + "not not ")
             pvpVictory = attacked.getPvpVictory()
             attacked.gainPvpDeath()
             attacked.dropMessage(6, player.getName() + " 将你击败!")
             packet = MaplePacketCreator.serverNotice(10, "[Pvp] 玩家 " + player.getName() + " 终结了 " + attacked.getName() + " 的 " + pvpVictory + " 连斩。")
-            if pvpVictory >= 5 && pvpVictory < 10:
+            if pvpVictory >= 5 and pvpVictory < 10:
                 map.broadcastMessage(packet)
-            elif pvpVictory >= 10 && pvpVictory < 20:
+            elif pvpVictory >= 10 and pvpVictory < 20:
                 player.getClient().getChannelServer().broadcastMessage(packet)
             elif pvpVictory >= 20:
                 World.Broadcast.broadcastMessage(packet)
@@ -149,7 +149,7 @@ class MaplePvp:
         pvpAttack = parsePvpAttack(attack, player, effect)
         mobCount = 0
         for attacked in player.getMap().getCharactersIntersect(pvpAttack.box):
-            if attacked.getId() != player.getId() && attacked.isAlive() && !attacked.isHidden() && mobCount < pvpAttack.mobCount:
+            if attacked.getId() != player.getId() and attacked.isAlive() and not attacked.isHidden() and mobCount < pvpAttack.mobCount:
                 mobCount += 1
                 monsterBomb(player, attacked, map, pvpAttack)
 
@@ -157,7 +157,7 @@ class MaplePvp:
         pvpAttack = parsePvpAttack(attack, player, effect)
         mobCount = 0
         for attacked in player.getMap().getCharactersIntersect(pvpAttack.box):
-            if attacked.getId() != player.getId() && attacked.isAlive() && !attacked.isHidden() && (player.getParty() is None || player.getParty() != attacked.getParty()) && mobCount < pvpAttack.mobCount:
+            if attacked.getId() != player.getId() and attacked.isAlive() and not attacked.isHidden() and (player.getParty() is None or player.getParty() != attacked.getParty()) and mobCount < pvpAttack.mobCount:
                 mobCount += 1
                 monsterBomb(player, attacked, map, pvpAttack)
 
@@ -165,7 +165,7 @@ class MaplePvp:
         pvpAttack = parsePvpAttack(attack, player, effect)
         mobCount = 0
         for attacked in player.getMap().getCharactersIntersect(pvpAttack.box):
-            if attacked.getId() != player.getId() && attacked.isAlive() && !attacked.isHidden() && (player.getGuildId() == 0 || player.getGuildId() != attacked.getGuildId()) && mobCount < pvpAttack.mobCount:
+            if attacked.getId() != player.getId() and attacked.isAlive() and not attacked.isHidden() and (player.getGuildId() == 0 or player.getGuildId() != attacked.getGuildId()) and mobCount < pvpAttack.mobCount:
                 mobCount += 1
                 monsterBomb(player, attacked, map, pvpAttack)
 

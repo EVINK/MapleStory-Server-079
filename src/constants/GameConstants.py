@@ -63,13 +63,13 @@ class GameConstants:
         for i in range(1, = 50):
             if i <= 5:
                 GameConstants.exp[i] = i * (i * i / 2 + 15)
-            elif i > 5 && i <= 50:
+            elif i > 5 and i <= 50:
                 GameConstants.exp[i] = i * i / 3 * (i * i / 3 + 19)
         for i in range(51, = 200):
             GameConstants.exp[i] = (int)(GameConstants.exp[i - 1] * 1.0548)
 
     def getExpNeededForLevel(self, level: int) -> int:
-        if level < 0 || level >= GameConstants.len(exp):
+        if level < 0 or level >= GameConstants.len(exp):
             return Integer.MAX_VALUE
         return GameConstants.exp[level]
 
@@ -95,22 +95,22 @@ class GameConstants:
         return Double.POSITIVE_INFINITY
 
     def isJobFamily(self, baseJob: int, currentJob: int) -> bool:
-        return currentJob >= baseJob && currentJob / 100 == baseJob / 100
+        return currentJob >= baseJob and currentJob / 100 == baseJob / 100
 
     def isKOC(self, job: int) -> bool:
-        return job >= 1000 && job < 2000
+        return job >= 1000 and job < 2000
 
     def isEvan(self, job: int) -> bool:
-        return job == 2001 || (job >= 2200 && job <= 2218)
+        return job == 2001 or (job >= 2200 and job <= 2218)
 
     def isAran(self, job: int) -> bool:
-        return job >= 2000 && job <= 2112 && job != 2001
+        return job >= 2000 and job <= 2112 and job != 2001
 
     def isResist(self, job: int) -> bool:
-        return job >= 3000 && job <= 3512
+        return job >= 3000 and job <= 3512
 
     def isAdventurer(self, job: int) -> bool:
-        return job >= 0 && job < 1000
+        return job >= 0 and job < 1000
 
     def isRecoveryIncSkill(self, id: int) -> bool:
         # switch (id):
@@ -244,7 +244,7 @@ class GameConstants:
         return itemId / 10000 == 233
 
     def isRechargable(self, itemId: int) -> bool:
-        return is飞镖道具(itemId) || is子弹道具(itemId)
+        return is飞镖道具(itemId) or is子弹道具(itemId)
 
     def isOverall(self, itemId: int) -> bool:
         return itemId / 10000 == 105
@@ -253,21 +253,21 @@ class GameConstants:
         return itemId / 10000 == 500
 
     def isArrowForCrossBow(self, itemId: int) -> bool:
-        return itemId >= 2061000 && itemId < 2062000
+        return itemId >= 2061000 and itemId < 2062000
 
     def isArrowForBow(self, itemId: int) -> bool:
-        return itemId >= 2060000 && itemId < 2061000
+        return itemId >= 2060000 and itemId < 2061000
 
     def isMagicWeapon(self, itemId: int) -> bool:
         s = itemId / 10000
-        return s == 137 || s == 138
+        return s == 137 or s == 138
 
     def isWeapon(self, itemId: int) -> bool:
-        return itemId >= 1300000 && itemId < 1500000
+        return itemId >= 1300000 and itemId < 1500000
 
     def getInventoryType(self, itemId: int) -> Any:
         type = (byte)(itemId / 1000000)
-        if type < 1 || type > 5:
+        if type < 1 or type > 5:
             return MapleInventoryType.UNDEFINED
         return MapleInventoryType.getByType(type)
 
@@ -327,7 +327,7 @@ class GameConstants:
         return itemId / 100 == 20492
 
     def isChaosScroll(self, itemId: int) -> bool:
-        return (itemId < 2049105 || itemId > 2049110) && itemId / 100 == 20491
+        return (itemId < 2049105 or itemId > 2049110) and itemId / 100 == 20491
 
     def getChaosNumber(self, itemId: int) -> int:
         return (itemId == 2049116) ? 10 : 5
@@ -363,16 +363,16 @@ class GameConstants:
                 return False
 
     def isTownScroll(self, id: int) -> bool:
-        return id >= 2030000 && id < 2040000
+        return id >= 2030000 and id < 2040000
 
     def isUpgradeScroll(self, id: int) -> bool:
-        return id >= 2040000 && id < 2050000
+        return id >= 2040000 and id < 2050000
 
     def isGun(self, id: int) -> bool:
-        return id >= 1492000 && id < 1500000
+        return id >= 1492000 and id < 1500000
 
     def isUse(self, id: int) -> bool:
-        return id >= 2000000 && id <= 2490000
+        return id >= 2000000 and id <= 2490000
 
     def isSummonSack(self, id: int) -> bool:
         return id / 10000 == 210
@@ -387,7 +387,7 @@ class GameConstants:
         return id % 10000
 
     def isGem(self, id: int) -> bool:
-        return id >= 4250000 && id <= 4251402
+        return id >= 4250000 and id <= 4251402
 
     def isOtherGem(self, id: int) -> bool:
         # switch (id):
@@ -864,10 +864,10 @@ class GameConstants:
                 return False
 
     def isRing(self, itemId: int) -> bool:
-        return itemId >= 1112000 && itemId < 1113000
+        return itemId >= 1112000 and itemId < 1113000
 
     def isEffectRing(self, itemid: int) -> bool:
-        return isFriendshipRing(itemid) || isCrushRing(itemid) || isMarriageRing(itemid)
+        return isFriendshipRing(itemid) or isCrushRing(itemid) or isMarriageRing(itemid)
 
     def isFriendshipRing(self, itemId: int) -> bool:
         # switch (itemId):
@@ -1018,7 +1018,7 @@ class GameConstants:
                 return 0
 
     def getSkillBook(self, job: int) -> int:
-        if job >= 2210 && job <= 2218:
+        if job >= 2210 and job <= 2218:
             return job - 2209
         # switch (job):
             # case 3210:
@@ -1256,10 +1256,10 @@ class GameConstants:
         return itemId / 10000 == 133
 
     def isApplicableSkill(self, skil: int) -> bool:
-        return skil < 40000000 && (skil % 10000 < 8000 || skil % 10000 > 8003)
+        return skil < 40000000 and (skil % 10000 < 8000 or skil % 10000 > 8003)
 
     def isApplicableSkill_(self, skil: int) -> bool:
-        return skil >= 90000000 || (skil % 10000 >= 8000 && skil % 10000 <= 8003)
+        return skil >= 90000000 or (skil % 10000 >= 8000 and skil % 10000 <= 8003)
 
     def isTablet(self, itemId: int) -> bool:
         return itemId / 1000 == 2047
@@ -1375,16 +1375,16 @@ class GameConstants:
                         return 100
 
     def isAccessory(self, itemId: int) -> bool:
-        return (itemId >= 1010000 && itemId < 1040000) || (itemId >= 1122000 && itemId < 1153000) || (itemId >= 1112000 && itemId < 1113000)
+        return (itemId >= 1010000 and itemId < 1040000) or (itemId >= 1122000 and itemId < 1153000) or (itemId >= 1112000 and itemId < 1113000)
 
     def potentialIDFits(self, potentialID: int, newstate: int, i: int) -> bool:
         # switch (newstate):
             # case 7:
-                return (i == 0 || Randomizer.nextInt(10) == 0) ? (potentialID >= 30000) : (potentialID >= 20000 && potentialID < 30000)
+                return (i == 0 or Randomizer.nextInt(10) == 0) ? (potentialID >= 30000) : (potentialID >= 20000 and potentialID < 30000)
             # case 6:
-                return (i == 0 || Randomizer.nextInt(10) == 0) ? (potentialID >= 20000 && potentialID < 30000) : (potentialID >= 10000 && potentialID < 20000)
+                return (i == 0 or Randomizer.nextInt(10) == 0) ? (potentialID >= 20000 and potentialID < 30000) : (potentialID >= 10000 and potentialID < 20000)
             # case 5:
-                return (i == 0 || Randomizer.nextInt(10) == 0) ? (potentialID >= 10000 && potentialID < 20000) : (potentialID < 10000)
+                return (i == 0 or Randomizer.nextInt(10) == 0) ? (potentialID >= 10000 and potentialID < 20000) : (potentialID < 10000)
             # default:
                 return False
 
@@ -1393,7 +1393,7 @@ class GameConstants:
             # case 10:
                 return isWeapon(itemId)
             # case 11:
-                return !isWeapon(itemId)
+                return not isWeapon(itemId)
             # case 20:
                 return itemId / 10000 == 109
             # case 21:
@@ -1405,7 +1405,7 @@ class GameConstants:
             # case 52:
                 return itemId / 10000 == 110
             # case 53:
-                return itemId / 10000 == 104 || itemId / 10000 == 105 || itemId / 10000 == 106
+                return itemId / 10000 == 104 or itemId / 10000 == 105 or itemId / 10000 == 106
             # case 54:
                 return itemId / 10000 == 108
             # case 55:
@@ -1416,25 +1416,25 @@ class GameConstants:
                 return True
 
     def isMountItemAvailable(self, mountid: int, jobid: int) -> bool:
-        if jobid != 900 && mountid / 10000 == 190:
+        if jobid != 900 and mountid / 10000 == 190:
             if isKOC(jobid):
-                if mountid < 1902005 || mountid > 1902007:
+                if mountid < 1902005 or mountid > 1902007:
                     return False
             elif isAdventurer(jobid):
-                if mountid < 1902000 || mountid > 1902002:
+                if mountid < 1902000 or mountid > 1902002:
                     return False
             elif isAran(jobid):
-                if mountid < 1902015 || mountid > 1902018:
+                if mountid < 1902015 or mountid > 1902018:
                     return False
-            elif isEvan(jobid) && (mountid < 1902040 || mountid > 1902042):
+            elif isEvan(jobid) and (mountid < 1902040 or mountid > 1902042):
                 return False
         return True
 
     def isEvanDragonItem(self, itemId: int) -> bool:
-        return itemId >= 1940000 && itemId < 1980000
+        return itemId >= 1940000 and itemId < 1980000
 
     def canScroll(self, itemId: int) -> bool:
-        return itemId / 100000 != 19 && itemId / 100000 != 16
+        return itemId / 100000 != 19 and itemId / 100000 != 16
 
     def canHammer(self, itemId: int) -> bool:
         # switch (itemId):
@@ -1445,18 +1445,18 @@ class GameConstants:
                 return canScroll(itemId)
 
     def getMasterySkill(self, job: int) -> int:
-        if job >= 1410 && job <= 1412:
+        if job >= 1410 and job <= 1412:
             return 14100000
-        if job >= 410 && job <= 412:
+        if job >= 410 and job <= 412:
             return 4100000
-        if job >= 520 && job <= 522:
+        if job >= 520 and job <= 522:
             return 5200000
         return 0
 
     def getExpRate_Below10(self, job: int) -> int:
         if isEvan(job):
             return 1
-        if isAran(job) || isKOC(job):
+        if isAran(job) or isKOC(job):
             return 5
         return 1
 
@@ -1489,7 +1489,7 @@ class GameConstants:
             # case 925100100:
                 return True
             # default:
-                return mapid / 100000 == 9800 && (mapid % 10 == 1 || mapid % 1000 == 100)
+                return mapid / 100000 == 9800 and (mapid % 10 == 1 or mapid % 1000 == 100)
 
     def getCustomSpawnID(self, summoner: int, def: int) -> int:
         # switch (summoner):
@@ -1510,7 +1510,7 @@ class GameConstants:
                 return True
 
     def isEventMap(self, mapid: int) -> bool:
-        return (mapid >= 109010000 && mapid < 109050000) || (mapid > 109050001 && mapid < 109090000) || (mapid >= 809040000 && mapid <= 809040100)
+        return (mapid >= 109010000 and mapid < 109050000) or (mapid > 109050001 and mapid < 109090000) or (mapid >= 809040000 and mapid <= 809040100)
 
     def translated_is豆豆装备(self, itemId: int) -> bool:
         # switch (itemId):
@@ -2092,7 +2092,7 @@ class GameConstants:
                 return False
 
     def getMonsterHP(self, level: int) -> int:
-        if level < 0 || level >= GameConstants.len(mobHpVal):
+        if level < 0 or level >= GameConstants.len(mobHpVal):
             return Integer.MAX_VALUE
         return GameConstants.mobHpVal[level]
 
@@ -2142,12 +2142,12 @@ class GameConstants:
     def getBalloons(self) -> list:
         if GameConstants.lBalloon == 0:
             GameConstants.lBalloon.add(Balloon("["+os.environ.get("server_name")+"冒险岛]", 250, 286))
-            GameConstants.lBalloon.add(Balloon(os.environ.get("server_name")+"冒险岛  尽情浪吧", 0, 276))
+            GameConstants.lBalloon.add(Balloon(os.environ.get("server_name")+"冒险岛 尽情浪吧", 0, 276))
             GameConstants.lBalloon.add(Balloon("冒险岛"+os.environ.get("server_name")+"BY LOC 鞠婧祎", 490, 270))
         return GameConstants.lBalloon
 
     def isFishingMap(self, mapid: int) -> bool:
-        return mapid == 741000200 || mapid == 741000201 || mapid == 741000202 || mapid == 741000203 || mapid == 741000204 || mapid == 741000205 || mapid == 741000206 || mapid == 741000207 || mapid == 741000208
+        return mapid == 741000200 or mapid == 741000201 or mapid == 741000202 or mapid == 741000203 or mapid == 741000204 or mapid == 741000205 or mapid == 741000206 or mapid == 741000207 or mapid == 741000208
 
     def getFishingTime(self, vip: bool, gm: bool) -> int:
         Fishing = FishingConstants()
@@ -2857,8 +2857,8 @@ class GameConstants:
         return itemId / 10000 == 233
 
     def isTeamMap(self, mapid: int) -> bool:
-        return mapid == 109080000 || mapid == 109080001 || mapid == 109080002 || mapid == 109080003 || mapid == 109080010 || mapid == 109080011 || mapid == 109080012 || mapid == 109090300 || mapid == 109090301 || mapid == 109090302 || mapid == 109090303 || mapid == 109090304 || mapid == 910040100 || mapid == 960020100 || mapid == 960020101 || mapid == 960020102 || mapid == 960020103 || mapid == 960030100 || mapid == 689000000 || mapid == 689000010
+        return mapid == 109080000 or mapid == 109080001 or mapid == 109080002 or mapid == 109080003 or mapid == 109080010 or mapid == 109080011 or mapid == 109080012 or mapid == 109090300 or mapid == 109090301 or mapid == 109090302 or mapid == 109090303 or mapid == 109090304 or mapid == 910040100 or mapid == 960020100 or mapid == 960020101 or mapid == 960020102 or mapid == 960020103 or mapid == 960030100 or mapid == 689000000 or mapid == 689000010
 
     def translated_is物理武器(self, itemId: int) -> bool:
-        return itemId != 1342069 && ((itemId >= 1300000 && itemId < 1540000) || itemId / 1000 == 1212 || itemId / 1000 == 1222 || itemId / 1000 == 1232 || itemId / 1000 == 1242 || itemId / 1000 == 1252)
+        return itemId != 1342069 and ((itemId >= 1300000 and itemId < 1540000) or itemId / 1000 == 1212 or itemId / 1000 == 1222 or itemId / 1000 == 1232 or itemId / 1000 == 1242 or itemId / 1000 == 1252)
 

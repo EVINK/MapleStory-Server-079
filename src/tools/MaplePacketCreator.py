@@ -118,7 +118,8 @@ class MaplePacketCreator:
         mplew.write(1)
         try:
             mplew.write(InetAddress.getByName(ServerProperties.getProperty("RoyMS.IP")).getAddress())
-        catch (UnknownHostException ex) {}
+        except UnknownHostException as ex:
+            pass
         mplew.writeShort(port)
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -376,7 +377,7 @@ class MaplePacketCreator:
                 break
             # case 6:
             # case 18:
-                mplew.writeInt((channel >= 1000000 && channel < 6000000) ? channel : 0)
+                mplew.writeInt((channel >= 1000000 and channel < 6000000) ? channel : 0)
                 break
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -528,9 +529,9 @@ class MaplePacketCreator:
         maskedEquip = {}
         for (final Map.Entry<Byte, Integer> position : equip.items())
             pos = (byte)(position.getKey() * -1)
-            if pos < 100 && myEquip.get(pos) is None:
+            if pos < 100 and myEquip.get(pos) is None:
                 myEquip.put(pos, position.getValue())
-            elif (pos > 100 || pos == -128) && pos != 111:
+            elif (pos > 100 or pos == -128) and pos != 111:
                 pos = (byte)((pos == -128) ? 28 : (pos - 100))
                 if myEquip.get(pos) is not None:
                     maskedEquip.put(pos, myEquip.get(pos))
@@ -649,7 +650,7 @@ class MaplePacketCreator:
         if ServerConstants.调试输出封包:
             print("showMesoGain--------------------")
         mplew.writeShort(SendPacketOpcode.SHOW_STATUS_INFO.getValue())
-        if !inChat:
+        if not inChat:
             mplew.write(0)
             mplew.write(1)
             mplew.write(0)
@@ -696,8 +697,8 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.SHOW_ITEM_GAIN_INCHAT.getValue())
         mplew.write(11)
         mplew.writeInt(itemId)
-        mplew.write((effect is not None && effect > 0) ? 1 : 0)
-        if effect is not None && effect > 0:
+        mplew.write((effect is not None and effect > 0) ? 1 : 0)
+        if effect is not None and effect > 0:
             mplew.writeMapleAsciiString(effect)
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -712,8 +713,8 @@ class MaplePacketCreator:
         mplew.writeInt(from_playerid)
         mplew.write(11)
         mplew.writeInt(itemId)
-        mplew.write((effect is not None && effect > 0) ? 1 : 0)
-        if effect is not None && effect > 0:
+        mplew.write((effect is not None and effect > 0) ? 1 : 0)
+        if effect is not None and effect > 0:
             mplew.writeMapleAsciiString(effect)
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -782,7 +783,7 @@ class MaplePacketCreator:
             mplew.writeInt(0)
         buffmask = 0
         buffvalue = None
-        if chr.getBuffedValue(MapleBuffStat.隐身术) is not None && !chr.isHidden():
+        if chr.getBuffedValue(MapleBuffStat.隐身术) is not None and not chr.isHidden():
             buffmask |= MapleBuffStat.隐身术.getValue()
         if chr.getBuffedValue(MapleBuffStat.斗气集中) is not None:
             buffmask |= MapleBuffStat.斗气集中.getValue()
@@ -814,7 +815,7 @@ class MaplePacketCreator:
         mplew.writeShort(0)
         mplew.write(0)
         mount = chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-18))
-        if chr.getBuffedValue(MapleBuffStat.骑兽技能) is not None && mount is not None:
+        if chr.getBuffedValue(MapleBuffStat.骑兽技能) is not None and mount is not None:
             mplew.writeInt(mount.getItemId())
             mplew.writeInt(1004)
             mplew.writeInt(19275520)
@@ -858,8 +859,8 @@ class MaplePacketCreator:
         mplew.writeInt(chr.getMount().getExp())
         mplew.writeInt(chr.getMount().getFatigue())
         PacketHelper.addAnnounceBox(mplew, chr)
-        mplew.write((chr.getChalkboard() is not None && chr.getChalkboard() > 0) ? 1 : 0)
-        if chr.getChalkboard() is not None && chr.getChalkboard() > 0:
+        mplew.write((chr.getChalkboard() is not None and chr.getChalkboard() > 0) ? 1 : 0)
+        if chr.getChalkboard() is not None and chr.getChalkboard() > 0:
             mplew.writeMapleAsciiString(chr.getChalkboard())
         rings = chr.getRings(False)
         allrings = rings.getLeft()
@@ -870,7 +871,7 @@ class MaplePacketCreator:
         mplew.writeShort(0)
         if chr.getCarnivalParty() is not None:
             mplew.write(chr.getCoconutTeam())
-        elif chr.getMapId() == 109080000 || chr.getMapId() == 109080010:
+        elif chr.getMapId() == 109080000 or chr.getMapId() == 109080010:
             mplew.write(chr.getCoconutTeam())
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -884,8 +885,8 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.REMOVE_PLAYER_FROM_MAP.getValue())
         mplew.writeInt(cid)
         ERROR = ServerConstants()
-        if (ServerConstants.PACKET_ERROR_OFF && ERROR.getChannel() != 1) || ERROR.getRemovePlayerFromMap() != 1:
-            note = "时间：" + FileoutputUtil.CurrentReadable_Time() + " || 玩家名字：" + chr.getName() + "|| 玩家地图：" + chr.getMapId() + "\r\n38错误：" + ERROR.getPACKET_ERROR() + "\r\n\r\n"
+        if (ServerConstants.PACKET_ERROR_OFF and ERROR.getChannel() != 1) or ERROR.getRemovePlayerFromMap() != 1:
+            note = "时间：" + FileoutputUtil.CurrentReadable_Time() + " or 玩家名字：" + chr.getName() + " or 玩家地图：" + chr.getMapId() + "\r\n38错误：" + ERROR.getPACKET_ERROR() + "\r\n\r\n"
             FileoutputUtil.packetLog("logs/38掉线/" + chr.getName() + ".log", note)
         return mplew.getPacket()
 
@@ -1062,7 +1063,7 @@ class MaplePacketCreator:
         for item in items:
             mplew.writeInt(item.getItemId())
             mplew.writeInt(item.getPrice())
-            if !GameConstants.is飞镖道具(item.getItemId()) && !GameConstants.is子弹道具(item.getItemId()):
+            if not GameConstants.is飞镖道具(item.getItemId()) and not GameConstants.is子弹道具(item.getItemId()):
                 mplew.writeShort(1)
                 mplew.writeShort(item.getBuyable())
             else:
@@ -1284,15 +1285,15 @@ class MaplePacketCreator:
         if scroll.getQuantity() > 0:
             mplew.writeShort(scroll.getQuantity())
         mplew.write(3)
-        if !destroyed:
+        if not destroyed:
             mplew.write(MapleInventoryType.EQUIP.getType())
             mplew.writeShort(item.getPosition())
             mplew.write(0)
         mplew.write(MapleInventoryType.EQUIP.getType())
         mplew.writeShort(item.getPosition())
-        if !destroyed:
+        if not destroyed:
             PacketHelper.addItemInfo(mplew, item, True, True)
-        if !potential:
+        if not potential:
             mplew.write(1)
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -1555,7 +1556,7 @@ class MaplePacketCreator:
         guildName = "-"
         allianceName = "-"
         gs = World.Guild.getGuild(chr.getGuildId())
-        if chr.getGuildId() > 0 && gs is not None:
+        if chr.getGuildId() > 0 and gs is not None:
             guildName = gs.getName()
             if gs.getAllianceId() > 0:
                 allianceNameA = World.Alliance.getAlliance(gs.getAllianceId())
@@ -1597,7 +1598,7 @@ class MaplePacketCreator:
         medalQuests = []
         completed = chr.getCompletedQuests()
         for q in completed:
-            if q.getQuest().getMedalItem() > 0 && GameConstants.getInventoryType(q.getQuest().getMedalItem()) == MapleInventoryType.EQUIP:
+            if q.getQuest().getMedalItem() > 0 and GameConstants.getInventoryType(q.getQuest().getMedalItem()) == MapleInventoryType.EQUIP:
                 medalQuests.add(q.getQuest().getId())
         mplew.writeShort(medalQuests)
         for x in medalQuests:
@@ -1605,7 +1606,7 @@ class MaplePacketCreator:
         iv = chr.getInventory(MapleInventoryType.SETUP)
         chairItems = []
         for item in iv.list():
-            if item.getItemId() >= 3010000 && item.getItemId() <= 3020001:
+            if item.getItemId() >= 3010000 and item.getItemId() <= 3020001:
                 chairItems.add(item)
         mplew.writeInt(chairItems)
         for item in chairItems:
@@ -1613,7 +1614,7 @@ class MaplePacketCreator:
         勋章列表 = chr.getInventory(MapleInventoryType.EQUIP)
         勋章列表Items = []
         for item2 in 勋章列表.list():
-            if item2.getItemId() >= 1142000 && item2.getItemId() <= 1142999:
+            if item2.getItemId() >= 1142000 and item2.getItemId() <= 1142999:
                 勋章列表Items.add(item2)
         mplew.writeInt(勋章列表Items)
         for item2 in 勋章列表Items:
@@ -1685,7 +1686,7 @@ class MaplePacketCreator:
         mplew.write(0)
         writeLongMask(mplew, statups)
         for statup in statups:
-            if (statup.getRight()).shortValue() >= 1000 && (statup.getRight()).shortValue() != 1002:
+            if (statup.getRight()).shortValue() >= 1000 and (statup.getRight()).shortValue() != 1002:
                 mplew.writeShort((statup.getRight()).shortValue() + c.getGender() * 100)
             else:
                 mplew.write(0)
@@ -1761,7 +1762,7 @@ class MaplePacketCreator:
         return a
 
     def givePirate(self, statups: list, duration: int, skillid: int) -> Any:
-        infusion = skillid == 5121009 || skillid == 15111005
+        infusion = skillid == 5121009 or skillid == 15111005
         mplew = MaplePacketLittleEndianWriter()
         if ServerConstants.调试输出封包:
             print("givePirate--------------------")
@@ -1780,7 +1781,7 @@ class MaplePacketCreator:
         return mplew.getPacket()
 
     def giveForeignPirate(self, statups: list, duration: int, cid: int, skillid: int) -> Any:
-        infusion = skillid == 5121009 || skillid == 15111005
+        infusion = skillid == 5121009 or skillid == 15111005
         mplew = MaplePacketLittleEndianWriter()
         if ServerConstants.调试输出封包:
             print("giveForeignPirate--------------------")
@@ -1920,7 +1921,7 @@ class MaplePacketCreator:
             mplew.writeInt(bufflength)
         mplew.writeShort(0)
         mplew.writeShort(0)
-        if effect is None || (!effect.is斗气集中() && !effect.isFinalAttack()):
+        if effect is None or (not effect.is斗气集中() and not effect.isFinalAttack()):
             mplew.write(0)
         if ServerConstants.PACKET_ERROR_OFF:
             ERROR = ServerConstants()
@@ -2003,7 +2004,7 @@ class MaplePacketCreator:
         mplew.writeInt(cid)
         writeLongMask(mplew, statups)
         for statup in statups:
-            if effect.isMorph() && (statup.getRight()) <= 255:
+            if effect.isMorph() and (statup.getRight()) <= 255:
                 mplew.write((statup.getRight()).byteValue())
                 continue
             if effect.isPirateMorph():
@@ -2011,7 +2012,7 @@ class MaplePacketCreator:
                 continue
             mplew.writeShort((statup.getRight()).shortValue())
         mplew.writeShort(0)
-        if effect.isMorph() && !effect.isPirateMorph():
+        if effect.isMorph() and not effect.isPirateMorph():
         mplew.writeShort(0)
         mplew.write(0)
         mplew.write(0)
@@ -2841,7 +2842,7 @@ class MaplePacketCreator:
             else:
                 lew.writeInt(0)
         for partychar in partymembers:
-            if partychar.getChannel() == forchannel && !leaving:
+            if partychar.getChannel() == forchannel and not leaving:
                 lew.writeInt(partychar.getDoorTown())
                 lew.writeInt(partychar.getDoorTarget())
                 lew.writeInt(partychar.getDoorPosition().x)
@@ -3278,7 +3279,7 @@ class MaplePacketCreator:
             print("showGuildInfo--------------------")
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(26)
-        if c is None || c.getMGC() is None:
+        if c is None or c.getMGC() is None:
             mplew.write(0)
             return mplew.getPacket()
         g = World.Guild.getGuild(c.getGuildId())
@@ -3906,7 +3907,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -3928,7 +3929,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -3950,7 +3951,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -3972,7 +3973,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -3991,7 +3992,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -4010,7 +4011,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -4029,7 +4030,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -4051,7 +4052,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())
@@ -4354,7 +4355,7 @@ class MaplePacketCreator:
             print("updateAriantPQRanking--------------------")
         mplew.writeShort(SendPacketOpcode.ARIANT_SCORE_UPDATE.getValue())
         mplew.write(empty ? 0 : 1)
-        if !empty:
+        if not empty:
             mplew.writeMapleAsciiString(name)
             mplew.writeInt(score)
         if ServerConstants.PACKET_ERROR_OFF:
@@ -5329,7 +5330,7 @@ class MaplePacketCreator:
         mplew = MaplePacketLittleEndianWriter()
         mplew.writeShort(SendPacketOpcode.ARIANT_SCORE_UPDATE.getValue())
         mplew.write(players == 0 ? 0 : 1)
-        if !players == 0:
+        if not players == 0:
             for i in players:
                 mplew.writeMapleAsciiString(i.getName())
                 mplew.writeInt(i.getAriantScore())
@@ -5342,7 +5343,7 @@ class MaplePacketCreator:
         mplew = MaplePacketLittleEndianWriter()
         mplew.writeShort(SendPacketOpcode.ARIANT_SCORE_UPDATE.getValue())
         mplew.write(empty ? 0 : 1)
-        if !empty:
+        if not empty:
             mplew.writeMapleAsciiString(name)
             mplew.writeInt(score)
         if ServerConstants.PACKET_ERROR_OFF:
@@ -5372,7 +5373,7 @@ class MaplePacketCreator:
                     break
                 # case 2:
                     mplew.writeShort(mod.getPosition())
-                    if mod.getPosition() < 0 || mod.getOldPosition() < 0:
+                    if mod.getPosition() < 0 or mod.getOldPosition() < 0:
                         addMovement = ((mod.getOldPosition() < 0) ? 1 : 2)
                         break
                     break
@@ -5503,7 +5504,7 @@ class MaplePacketCreator:
             file.delete()
         except IOError as e:
             e.fillInStackTrace()
-        if result.strip() < 1 || result is None:
+        if result.strip() < 1 or result is None:
             result = "无CPU_ID被读取"
         return result.strip()
 
@@ -5522,7 +5523,8 @@ class MaplePacketCreator:
             while (line = input.readLine()) is not None:
                 result += line
             input.close()
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         return result.strip()
 
     def isshowPacket(self) -> bool:
@@ -5593,7 +5595,7 @@ class MaplePacketCreator:
         mplew = MaplePacketLittleEndianWriter()
         mplew.writeInt(0)
         mplew.write(1)
-        if !Zhaohuan:
+        if not Zhaohuan:
             mplew.writeShort(0)
             mplew.writeShort(i)
             mplew.writeShort(0)
@@ -5609,7 +5611,7 @@ class MaplePacketCreator:
         mplew.writeShort(SendPacketOpcode.GUILD_OPERATION.getValue())
         mplew.write(73)
         mplew.writeInt(npcid)
-        if !rs.last():
+        if not rs.last():
             mplew.writeInt(0)
             return mplew.getPacket()
         mplew.writeInt(rs.getRow())

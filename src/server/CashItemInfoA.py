@@ -34,7 +34,7 @@ class CashItemInfoA:
 
     def getInventoryType(self, itemId: int) -> Any:
         type = (byte)(itemId / 1000000)
-        if type < 1 || type > 5:
+        if type < 1 or type > 5:
             return MapleInventoryType.UNDEFINED
         return MapleInventoryType.getByType(type)
 
@@ -45,7 +45,7 @@ class CashItemInfoA:
         return self.itemId
 
     def genderEquals(self, g: int) -> bool:
-        return g == self.gender || self.gender == 2
+        return g == self.gender or self.gender == 2
 
     def getItemId(self) -> int:
         return self.itemId

@@ -52,10 +52,10 @@ class Event_DojoAgent:
         bossid = 9500336 + thisStage
         if map.countMonsterById(bossid) > 0:
             return False
-        if !fromResting:
+        if not fromResting:
             clearMap(map, True)
         ch = c.getClient().getChannelServer()
-        if currentmap >= 970032700 && currentmap <= 970032800:
+        if currentmap >= 970032700 and currentmap <= 970032800:
             map = ch.getMapFactory().getMap(970030000)
             c.changeMap(map, map.getPortal(0))
             return True
@@ -72,7 +72,7 @@ class Event_DojoAgent:
 
     def warpStartDojo(self, c: Any, party: bool) -> bool:
         stage = 1
-        if party || stage <= -1 || stage > 38:
+        if party or stage <= -1 or stage > 38:
             stage = 1
         mapid = 925020000 + stage * 100
         canenter = False
@@ -92,7 +92,7 @@ class Event_DojoAgent:
         map2 = ch.getMapFactory().getMap(mapid)
         mapidd = c.getMap()
         if canenter:
-            if party && c.getParty() is not None:
+            if party and c.getParty() is not None:
                 for mem in c.getParty().getMembers():
                     chr = mapidd.getCharacterById(mem.getId())
                     if chr is not None:
@@ -109,9 +109,9 @@ class Event_DojoAgent:
             thisStage = temp - temp / 100 * 100
             points = getDojoPoints(thisStage)
             ch = c.getClient().getChannelServer()
-            if !fromResting:
+            if not fromResting:
                 clearMap(currentmap, True)
-                if c.getParty() is not None && c.getParty().getMembers() > 1:
+                if c.getParty() is not None and c.getParty().getMembers() > 1:
                     for mem in c.getParty().getMembers():
                         chr = currentmap.getCharacterById(mem.getId())
                         if chr is not None:
@@ -122,7 +122,7 @@ class Event_DojoAgent:
                     point2 = (points + 1) * 3
                     c.setDojo(c.getDojo() + point2)
                     c.getClient().getSession().write(MaplePacketCreator.Mulung_Pts(point2, c.getDojo()))
-            if currentmap.getId() >= 925023800 && currentmap.getId() <= 925023814:
+            if currentmap.getId() >= 925023800 and currentmap.getId() <= 925023814:
                 map = ch.getMapFactory().getMap(925020003)
                 if c.getParty() is not None:
                     for mem2 in c.getParty().getMembers():
@@ -163,7 +163,7 @@ class Event_DojoAgent:
         return False
 
     def clearMap(self, map: Any, check: bool) -> None:
-        if check && map.getCharactersSize() != 0:
+        if check and map.getCharactersSize() != 0:
             return
         map.resetFully()
 
@@ -212,6 +212,9 @@ class Event_DojoAgent:
                 return 0
 
     def spawnMonster(self, map: Any, stage: int) -> None:
+        def _task_1():
+            map.spawnMonsterWithEffect(MapleLifeFactory.getMonster(mobid), 15, (rand == 0) ? Event_DojoAgent.point1 : ((rand == 1) ? Event_DojoAgent.point2 : Event_DojoAgent.point3))
+
         mobid = None
         # switch (stage):
             # case 1:
@@ -314,9 +317,7 @@ class Event_DojoAgent:
             return
         if mobid != 0:
             rand = Randomizer.nextInt(3)
-            Timer.MapTimer.getInstance().schedule(Runnable()
-                public void run()
-                    map.spawnMonsterWithEffect(MapleLifeFactory.getMonster(mobid), 15, (rand == 0) ? Event_DojoAgent.point1 : ((rand == 1) ? Event_DojoAgent.point2 : Event_DojoAgent.point3))
+            Timer.MapTimer.getInstance().schedule(_task_1,3000)
 
     def run(self) -> None:
         map.spawnMonsterWithEffect(MapleLifeFactory.getMonster(mobid), 15, (rand == 0) ? Event_DojoAgent.point1 : ((rand == 1) ? Event_DojoAgent.point2 : Event_DojoAgent.point3))

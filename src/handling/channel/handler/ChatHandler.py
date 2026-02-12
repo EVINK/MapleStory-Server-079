@@ -33,7 +33,7 @@ class ChatHandler:
                     return
             except Exception as e:
                 print(e)
-            if !chr.isGM() && text >= 80:
+            if not chr.isGM() and text >= 80:
                 return
             if chr.isHidden():
                 chr.getMap().broadcastGMMessage(chr, MaplePacketCreator.getChatText(chr.getId(), text, c.getPlayer().isGM(), unk), True)
@@ -49,7 +49,7 @@ class ChatHandler:
         while i < numRecipients:
             recipients[i] = slea.readInt()
         chattext = slea.readMapleAsciiString()
-        if chr is None || !chr.getCanTalk():
+        if chr is None or not chr.getCanTalk():
             c.getSession().write(MaplePacketCreator.serverNotice(6, "你已经被禁言，因此无法说话."))
             return
         if CommandProcessor.processCommand(c, chattext, ServerConstants.CommandType.NORMAL):
@@ -87,7 +87,7 @@ class ChatHandler:
                         messenger = World.Messenger.getMessenger(messengerid)
                         if messenger is not None:
                             position = messenger.getLowestPosition()
-                            if position > -1 && position < 4:
+                            if position > -1 and position < 4:
                                 c.getPlayer().setMessenger(messenger)
                                 World.Messenger.joinMessenger(messenger.getId(), MapleMessengerCharacter(c.getPlayer()), c.getPlayer().getName(), c.getChannel())
                     break
@@ -103,13 +103,13 @@ class ChatHandler:
                 if messenger is None:
                     break
                 position2 = messenger.getLowestPosition()
-                if position2 <= -1 || position2 >= 4:
+                if position2 <= -1 or position2 >= 4:
                     return
                 input = slea.readMapleAsciiString()
                 target = c.getChannelServer().getPlayerStorage().getCharacterByName(input)
                 if target is not None:
                     if target.getMessenger() is None:
-                        if !target.isGM() || c.getPlayer().isGM():
+                        if not target.isGM() or c.getPlayer().isGM():
                             c.getSession().write(MaplePacketCreator.messengerNote(input, 4, 1))
                             target.getClient().getSession().write(MaplePacketCreator.messengerInvite(c.getPlayer().getName(), messenger.getId()))
                         else:
@@ -130,7 +130,7 @@ class ChatHandler:
                         break
                     break
                 else:
-                    if !c.getPlayer().isGM():
+                    if not c.getPlayer().isGM():
                         World.Messenger.declineChat(targeted, c.getPlayer().getName())
                         break
                     break
@@ -154,7 +154,7 @@ class ChatHandler:
                         if player is None:
                             break
                         if player is not None:
-                            if !player.isGM() || (c.getPlayer().isGM() && player.isGM()):
+                            if not player.isGM() or (c.getPlayer().isGM() and player.isGM()):
                                 c.getSession().write(MaplePacketCreator.getFindReply(recipient, ch, mode == 68))
                             else:
                                 c.getSession().write(MaplePacketCreator.getWhisperReply(recipient, 0))
@@ -170,13 +170,13 @@ class ChatHandler:
                             c.getSession().write(MaplePacketCreator.getWhisperReply(recipient, 0))
                             break
                     break
-                if !player.isGM() || (c.getPlayer().isGM() && player.isGM()):
+                if not player.isGM() or (c.getPlayer().isGM() and player.isGM()):
                     c.getSession().write(MaplePacketCreator.getFindReplyWithMap(player.getName(), player.getMap().getId(), mode == 68))
                     break
                 c.getSession().write(MaplePacketCreator.getWhisperReply(recipient, 0))
                 break
             # case 6:
-                if !c.getPlayer().getCanTalk():
+                if not c.getPlayer().getCanTalk():
                     c.getSession().write(MaplePacketCreator.serverNotice(6, "你已经被禁言，因此无法说话."))
                     return
                 c.getPlayer().getCheatTracker().checkMsg()
@@ -190,7 +190,7 @@ class ChatHandler:
                 if player2 is None:
                     break
                 player2.getClient().getSession().write(MaplePacketCreator.getWhisper(c.getPlayer().getName(), c.getChannel(), text))
-                if !c.getPlayer().isGM() && player2.isGM():
+                if not c.getPlayer().isGM() and player2.isGM():
                     c.getSession().write(MaplePacketCreator.getWhisperReply(recipient, 0))
                 else:
                     c.getSession().write(MaplePacketCreator.getWhisperReply(recipient, 1))

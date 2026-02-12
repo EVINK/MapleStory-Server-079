@@ -77,7 +77,7 @@ class MapleGenericPortal(MaplePortal):
         if self.getPosition().distanceSq(c.getPlayer().getPosition()) > 22500.0:
             c.getPlayer().getCheatTracker().registerOffense(CheatingOffense.使用过远传送点)
         currentmap = c.getPlayer().getMap()
-        if self.portalState || c.getPlayer().isGM():
+        if self.portalState or c.getPlayer().isGM():
             if self.getScriptName() is not None:
                 c.getPlayer().checkFollow()
                 try:
@@ -86,12 +86,12 @@ class MapleGenericPortal(MaplePortal):
                     e.printStackTrace()
             elif self.getTargetMapId() != 999999999:
                 to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(self.getTargetMapId())
-                if !c.getPlayer().isGM():
+                if not c.getPlayer().isGM():
                     if to is None:
                         c.getPlayer().dropMessage(5, "本地图目前尚未开放.")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
-                    if to.getLevelLimit() > 0 && to.getLevelLimit() > c.getPlayer().getLevel():
+                    if to.getLevelLimit() > 0 and to.getLevelLimit() > c.getPlayer().getLevel():
                         c.getPlayer().dropMessage(5, "You are too low of a level to enter this place.")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -100,7 +100,7 @@ class MapleGenericPortal(MaplePortal):
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 c.getPlayer().changeMapPortal(to, (to.getPortal(self.getTarget()) is None) ? to.getPortal(0) : to.getPortal(self.getTarget()))
-        if c is not None && c.getPlayer() is not None && c.getPlayer().getMap() == currentmap:
+        if c is not None and c.getPlayer() is not None and c.getPlayer().getMap() == currentmap:
             c.getSession().write(MaplePacketCreator.enableActions())
 
     def getPortalState(self) -> bool:

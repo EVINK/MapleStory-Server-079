@@ -84,7 +84,7 @@ class MapleShop:
             ps = con.prepareStatement(isShopId ? "SELECT * FROM shops WHERE shopid = ?" : "SELECT * FROM shops WHERE npcid = ?")
             ps.setInt(1, id)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return None
@@ -97,10 +97,10 @@ class MapleShop:
             rs = ps.executeQuery()
             recharges = []
             while rs.next():
-                if GameConstants.is飞镖道具(rs.getInt("itemid")) || GameConstants.is子弹道具(rs.getInt("itemid")):
+                if GameConstants.is飞镖道具(rs.getInt("itemid")) or GameConstants.is子弹道具(rs.getInt("itemid")):
                     starItem = MapleShopItem(1, rs.getInt("itemid"), rs.getInt("price"))
                     ret.addItem(starItem)
-                    if !(starItem.getItemId( in MapleShop.rechargeableItems)):
+                    if not (starItem.getItemId( in MapleShop.rechargeableItems)):
                         # continue;
                         recharges.remove(starItem.getItemId())
                 else:
@@ -118,7 +118,7 @@ class MapleShop:
 
     def sendShop(self, c: Any) -> None:
         npc = MapleLifeFactory.getNPC(self.getNpcId())
-        if npc is None || npc.getName() == ("MISSINGNO"):
+        if npc is None or npc.getName() == ("MISSINGNO"):
             c.getPlayer().dropMessage(1, "商店" + self.id + "找不到此代码为" + self.getNpcId() + "的Npc")
             return
         if c.getPlayer().isAdmin():
@@ -130,13 +130,13 @@ class MapleShop:
         if quantity <= 0:
             AutobanManager.getInstance().addPoints(c, 1000, 0, "购买道具数量 " + quantity + " 道具: " + itemId)
             return
-        if c.getPlayer().getMapId() != 809030000 && self.getId() == 9100109:
+        if c.getPlayer().getMapId() != 809030000 and self.getId() == 9100109:
             c.getPlayer().dropMessage(5, "无法正常操作A！" + c.getPlayer().getMapId() + "/" + self.getId())
-        elif c.getPlayer().getMapId() == 809030000 && self.getId() == 9100109:
+        elif c.getPlayer().getMapId() == 809030000 and self.getId() == 9100109:
             item = self.findById(itemId)
-            if item is not None && item.getPrice() > 0:
+            if item is not None and item.getPrice() > 0:
                 price = GameConstants.isRechargable(itemId) ? item.getPrice() : (item.getPrice() * quantity)
-                if price >= 0 && c.getPlayer().getddj() >= price:
+                if price >= 0 and c.getPlayer().getddj() >= price:
                     if MapleInventoryManipulator.checkSpace(c, itemId, quantity, ""):
                         c.getPlayer().gainddj(-price)
                         if GameConstants.isPet(itemId):
@@ -152,13 +152,13 @@ class MapleShop:
                     c.getSession().write(MaplePacketCreator.confirmShopTransaction(0))
                 else:
                     c.getPlayer().dropMessage(1, "你的豆豆机中奖次数不足!\r\n请继续打豆豆中奖!\r\n中奖次数够了以后才能\r\n当前豆豆中奖次数：" + c.getPlayer().getddj())
-        elif c.getPlayer().getMapId() != 809030000 && self.getId() == 9120104:
+        elif c.getPlayer().getMapId() != 809030000 and self.getId() == 9120104:
             c.getPlayer().dropMessage(5, "无法正常操作A！" + c.getPlayer().getMapId() + "/" + self.getId())
-        elif c.getPlayer().getMapId() == 809030000 && self.getId() == 9120104:
+        elif c.getPlayer().getMapId() == 809030000 and self.getId() == 9120104:
             item = self.findById(itemId)
-            if item is not None && item.getPrice() > 0:
+            if item is not None and item.getPrice() > 0:
                 price = GameConstants.isRechargable(itemId) ? item.getPrice() : (item.getPrice() * quantity)
-                if price >= 0 && c.getPlayer().getBeans() >= price:
+                if price >= 0 and c.getPlayer().getBeans() >= price:
                     if MapleInventoryManipulator.checkSpace(c, itemId, quantity, ""):
                         c.getPlayer().gainBeans(-price)
                         if GameConstants.isPet(itemId):
@@ -176,9 +176,9 @@ class MapleShop:
                     c.getPlayer().dropMessage(1, "你的豆豆数量不足!\r\n请去商城购买!")
         else:
             item = self.findById(itemId)
-            if item is not None && item.getPrice() > 0:
+            if item is not None and item.getPrice() > 0:
                 price = GameConstants.isRechargable(itemId) ? item.getPrice() : (item.getPrice() * quantity)
-                if price >= 0 && c.getPlayer().getMeso() >= price:
+                if price >= 0 and c.getPlayer().getMeso() >= price:
                     if MapleInventoryManipulator.checkSpace(c, itemId, quantity, ""):
                         c.getPlayer().gainMeso(-price, False)
                         if GameConstants.isPet(itemId):
@@ -193,12 +193,12 @@ class MapleShop:
                     c.getSession().write(MaplePacketCreator.confirmShopTransaction(0))
 
     def sell(self, c: Any, type: Any, slot: int, quantity: int) -> None:
-        if quantity == 65535 || quantity == 0:
+        if quantity == 65535 or quantity == 0:
             quantity = 1
         item = c.getPlayer().getInventory(type).getItem(slot)
         if item is None:
             return
-        if GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId()):
+        if GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId()):
             quantity = item.getQuantity()
         if quantity < 0:
             AutobanManager.getInstance().addPoints(c, 1000, 0, "Selling " + quantity + " " + item.getItemId() + " (" + type.name() + "/" + slot + ")")
@@ -209,21 +209,21 @@ class MapleShop:
         ii = MapleItemInformationProvider.getInstance()
         if ii.cantSell(item.getItemId()):
             return
-        if quantity <= iQuant && iQuant > 0:
+        if quantity <= iQuant and iQuant > 0:
             MapleInventoryManipulator.removeFromSlot(c, type, slot, quantity, False)
             price = None
-            if GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId()):
+            if GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId()):
                 price = ii.getWholePrice(item.getItemId()) / ii.getSlotMax(c, item.getItemId())
             else:
                 price = ii.getPrice(item.getItemId())
             recvMesos = max(math.ceil(price * quantity), 0.0)
-            if price != -1.0 && recvMesos > 0:
+            if price != -1.0 and recvMesos > 0:
                 c.getPlayer().gainMeso(recvMesos, False)
             c.getSession().write(MaplePacketCreator.confirmShopTransaction(8))
 
     def recharge(self, c: Any, slot: int) -> None:
         item = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot)
-        if item is None || (!GameConstants.is飞镖道具(item.getItemId()) && !GameConstants.is子弹道具(item.getItemId())):
+        if item is None or (not GameConstants.is飞镖道具(item.getItemId()) and not GameConstants.is子弹道具(item.getItemId())):
             return
         ii = MapleItemInformationProvider.getInstance()
         slotMax = ii.getSlotMax(c, item.getItemId())

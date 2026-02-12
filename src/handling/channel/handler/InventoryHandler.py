@@ -71,14 +71,14 @@ class InventoryHandler:
 
     @staticmethod
     def ItemMove(slea: Any, c: Any) -> None:
-        if c.getPlayer().getPlayerShop() is not None || c.getPlayer().getConversation() > 0 || c.getPlayer().getTrade() is not None:
+        if c.getPlayer().getPlayerShop() is not None or c.getPlayer().getConversation() > 0 or c.getPlayer().getTrade() is not None:
             return
         c.getPlayer().updateTick(slea.readInt())
         type = MapleInventoryType.getByType(slea.readByte())
         src = slea.readShort()
         dst = slea.readShort()
         quantity = slea.readShort()
-        if src < 0 && dst > 0:
+        if src < 0 and dst > 0:
             MapleInventoryManipulator.unequip(c, src, dst)
         elif dst < 0:
             MapleInventoryManipulator.equip(c, src, dst)
@@ -98,7 +98,7 @@ class InventoryHandler:
             return
         pInv = c.getPlayer().getInventory(pInvType)
         sorted = False
-        while !sorted:
+        while not sorted:
             freeSlot = pInv.getNextFreeSlot()
             if freeSlot != -1:
                 itemSlot = -1
@@ -153,15 +153,15 @@ class InventoryHandler:
     def UseRewardItem(self, slot: int, itemId: int, c: Any, chr: Any) -> bool:
         toUse = c.getPlayer().getInventory(GameConstants.getInventoryType(itemId)).getItem(slot)
         c.getSession().write(MaplePacketCreator.enableActions())
-        if toUse is not None && toUse.getQuantity() >= 1 && toUse.getItemId() == itemId:
-            if chr.getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > -1 && chr.getInventory(MapleInventoryType.USE).getNextFreeSlot() > -1 && chr.getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > -1 && chr.getInventory(MapleInventoryType.ETC).getNextFreeSlot() > -1:
+        if toUse is not None and toUse.getQuantity() >= 1 and toUse.getItemId() == itemId:
+            if chr.getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > -1 and chr.getInventory(MapleInventoryType.USE).getNextFreeSlot() > -1 and chr.getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > -1 and chr.getInventory(MapleInventoryType.ETC).getNextFreeSlot() > -1:
                 ii = MapleItemInformationProvider.getInstance()
                 rewards = ii.getRewardItem(itemId)
-                if rewards is not None && rewards.getLeft() > 0:
+                if rewards is not None and rewards.getLeft() > 0:
                     rewarded = False
-                    while !rewarded:
+                    while not rewarded:
                         for reward in rewards.getRight():
-                            if reward.prob > 0 && Randomizer.nextInt(rewards.getLeft()) < reward.prob:
+                            if reward.prob > 0 and Randomizer.nextInt(rewards.getLeft()) < reward.prob:
                                 if GameConstants.getInventoryType(reward.itemid) == MapleInventoryType.EQUIP:
                                     item = ii.getEquipById(reward.itemid)
                                     if reward.period > 0:
@@ -179,7 +179,7 @@ class InventoryHandler:
         return False
 
     def QuestKJ(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || !chr.isAlive() || chr.getCSPoints(2) < 200:
+        if chr is None or not chr.isAlive() or chr.getCSPoints(2) < 200:
             chr.dropMessage(1, "你没有足够的抵用卷！")
             c.getSession().write(MaplePacketCreator.enableActions())
             return
@@ -198,7 +198,7 @@ class InventoryHandler:
         chr.modifyCSPoints(2, -200)
 
     def UseItem(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || !chr.isAlive() || chr.getMapId() == 749040100 || chr.getMap() is None:
+        if chr is None or not chr.isAlive() or chr.getMapId() == 749040100 or chr.getMap() is None:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         time = int(time.time() * 1000)
@@ -210,10 +210,10 @@ class InventoryHandler:
         slot = slea.readShort()
         itemId = slea.readInt()
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is None || toUse.getQuantity() < 1 || toUse.getItemId() != itemId:
+        if toUse is None or toUse.getQuantity() < 1 or toUse.getItemId() != itemId:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if !FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) || chr.getMapId() == 610030600:
+        if not FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) or chr.getMapId() == 610030600:
             if MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyTo(chr):
                 MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, 1, False)
                 if chr.getMap().getConsumeItemCoolTime() > 0:
@@ -222,14 +222,14 @@ class InventoryHandler:
             c.getSession().write(MaplePacketCreator.enableActions())
 
     def UseReturnScroll(self, slea: Any, c: Any, chr: Any) -> None:
-        if !chr.isAlive() || chr.getMapId() == 749040100:
+        if not chr.isAlive() or chr.getMapId() == 749040100:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         c.getPlayer().updateTick(slea.readInt())
         slot = slea.readShort()
         itemId = slea.readInt()
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is None || toUse.getQuantity() < 1 || toUse.getItemId() != itemId:
+        if toUse is None or toUse.getQuantity() < 1 or toUse.getItemId() != itemId:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         if MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyReturnScroll(chr):
@@ -264,74 +264,74 @@ class InventoryHandler:
         if scroll is None:
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
-        if !GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && !GameConstants.isPotentialScroll(scroll.getItemId()):
+        if not GameConstants.isSpecialScroll(scroll.getItemId()) and not GameConstants.isCleanSlate(scroll.getItemId()) and not GameConstants.isEquipScroll(scroll.getItemId()) and not GameConstants.isPotentialScroll(scroll.getItemId()):
             if toScroll.getUpgradeSlots() < 1:
                 c.getSession().write(MaplePacketCreator.getInventoryFull())
                 return False
         elif GameConstants.isEquipScroll(scroll.getItemId()):
-            if toScroll.getUpgradeSlots() >= 1 || toScroll.getEnhance() >= 100 || vegas > 0 || ii.isCash(toScroll.getItemId()):
+            if toScroll.getUpgradeSlots() >= 1 or toScroll.getEnhance() >= 100 or vegas > 0 or ii.isCash(toScroll.getItemId()):
                 c.getSession().write(MaplePacketCreator.getInventoryFull())
                 return False
-        elif GameConstants.isPotentialScroll(scroll.getItemId()) && (toScroll.getState() >= 1 || (toScroll.getLevel() == 0 && toScroll.getUpgradeSlots() == 0) || vegas > 0 || ii.isCash(toScroll.getItemId())):
+        elif GameConstants.isPotentialScroll(scroll.getItemId()) and (toScroll.getState() >= 1 or (toScroll.getLevel() == 0 and toScroll.getUpgradeSlots() == 0) or vegas > 0 or ii.isCash(toScroll.getItemId())):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
-        if !GameConstants.canScroll(toScroll.getItemId()) && !GameConstants.isChaosScroll(toScroll.getItemId()):
+        if not GameConstants.canScroll(toScroll.getItemId()) and not GameConstants.isChaosScroll(toScroll.getItemId()):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
-        if (GameConstants.isCleanSlate(scroll.getItemId()) || GameConstants.isTablet(scroll.getItemId()) || GameConstants.isChaosScroll(scroll.getItemId())) && (vegas > 0 || ii.isCash(toScroll.getItemId())):
+        if (GameConstants.isCleanSlate(scroll.getItemId()) or GameConstants.isTablet(scroll.getItemId()) or GameConstants.isChaosScroll(scroll.getItemId())) and (vegas > 0 or ii.isCash(toScroll.getItemId())):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
-        if GameConstants.isTablet(scroll.getItemId()) && toScroll.getDurability() < 0:
+        if GameConstants.isTablet(scroll.getItemId()) and toScroll.getDurability() < 0:
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
-        if !GameConstants.isTablet(scroll.getItemId()) && toScroll.getDurability() >= 0:
+        if not GameConstants.isTablet(scroll.getItemId()) and toScroll.getDurability() >= 0:
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
         wscroll = None
         scrollReqs = ii.getScrollReqs(scroll.getItemId())
-        if scrollReqs > 0 && !(toScroll.getItemId( in scrollReqs)):
+        if scrollReqs > 0 and not (toScroll.getItemId( in scrollReqs)):
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return False
         if whiteScroll:
             wscroll = chr.getInventory(MapleInventoryType.USE).findById(2340000)
             if wscroll is None:
                 whiteScroll = False
-        if scroll.getItemId() == 2049115 && toScroll.getItemId() != 1003068:
+        if scroll.getItemId() == 2049115 and toScroll.getItemId() != 1003068:
             return False
         if GameConstants.isTablet(scroll.getItemId()):
             # switch (scroll.getItemId() % 1000 / 100):
                 # case 0:
-                    if GameConstants.isTwoHanded(toScroll.getItemId()) || !GameConstants.isWeapon(toScroll.getItemId()):
+                    if GameConstants.isTwoHanded(toScroll.getItemId()) or not GameConstants.isWeapon(toScroll.getItemId()):
                         return False
                     break
                 # case 1:
-                    if !GameConstants.isTwoHanded(toScroll.getItemId()) || !GameConstants.isWeapon(toScroll.getItemId()):
+                    if not GameConstants.isTwoHanded(toScroll.getItemId()) or not GameConstants.isWeapon(toScroll.getItemId()):
                         return False
                     break
                 # case 2:
-                    if GameConstants.isAccessory(toScroll.getItemId()) || GameConstants.isWeapon(toScroll.getItemId()):
+                    if GameConstants.isAccessory(toScroll.getItemId()) or GameConstants.isWeapon(toScroll.getItemId()):
                         return False
                     break
                 # case 3:
-                    if !GameConstants.isAccessory(toScroll.getItemId()) || GameConstants.isWeapon(toScroll.getItemId()):
+                    if not GameConstants.isAccessory(toScroll.getItemId()) or GameConstants.isWeapon(toScroll.getItemId()):
                         return False
                     break
-        elif !GameConstants.isAccessoryScroll(scroll.getItemId()) && !GameConstants.isChaosScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && !GameConstants.isPotentialScroll(scroll.getItemId()) && !ii.canScroll(scroll.getItemId(), toScroll.getItemId()):
+        elif not GameConstants.isAccessoryScroll(scroll.getItemId()) and not GameConstants.isChaosScroll(scroll.getItemId()) and not GameConstants.isCleanSlate(scroll.getItemId()) and not GameConstants.isEquipScroll(scroll.getItemId()) and not GameConstants.isPotentialScroll(scroll.getItemId()) and not ii.canScroll(scroll.getItemId(), toScroll.getItemId()):
             return False
-        if GameConstants.isAccessoryScroll(scroll.getItemId()) && !GameConstants.isAccessory(toScroll.getItemId()):
+        if GameConstants.isAccessoryScroll(scroll.getItemId()) and not GameConstants.isAccessory(toScroll.getItemId()):
             return False
         if scroll.getQuantity() <= 0:
             return False
-        if legendarySpirit && vegas == 0 && chr.getSkillLevel(SkillFactory.getSkill(1003)) <= 0 && chr.getSkillLevel(SkillFactory.getSkill(10001003)) <= 0 && chr.getSkillLevel(SkillFactory.getSkill(20001003)) <= 0 && chr.getSkillLevel(SkillFactory.getSkill(20011003)) <= 0 && chr.getSkillLevel(SkillFactory.getSkill(30001003)) <= 0:
+        if legendarySpirit and vegas == 0 and chr.getSkillLevel(SkillFactory.getSkill(1003)) <= 0 and chr.getSkillLevel(SkillFactory.getSkill(10001003)) <= 0 and chr.getSkillLevel(SkillFactory.getSkill(20001003)) <= 0 and chr.getSkillLevel(SkillFactory.getSkill(20011003)) <= 0 and chr.getSkillLevel(SkillFactory.getSkill(30001003)) <= 0:
             AutobanManager.getInstance().addPoints(c, 50, 120000, "Using the Skill 'Legendary Spirit' without having it.")
             return False
         scrolled = ii.scrollEquipWithId(toScroll, scroll, whiteScroll, chr, vegas, checkIfGM)
         IEquip.ScrollResult scrollSuccess
         if scrolled is None:
             scrollSuccess = IEquip.ScrollResult.CURSE
-        elif scrolled.getLevel() > oldLevel || scrolled.getEnhance() > oldEnhance || scrolled.getState() > oldState || scrolled.getFlag() > oldFlag:
+        elif scrolled.getLevel() > oldLevel or scrolled.getEnhance() > oldEnhance or scrolled.getState() > oldState or scrolled.getFlag() > oldFlag:
             scrollSuccess = IEquip.ScrollResult.SUCCESS
-        elif GameConstants.isCleanSlate(scroll.getItemId()) && scrolled.getUpgradeSlots() > oldSlots:
+        elif GameConstants.isCleanSlate(scroll.getItemId()) and scrolled.getUpgradeSlots() > oldSlots:
             scrollSuccess = IEquip.ScrollResult.SUCCESS
         else:
             scrollSuccess = IEquip.ScrollResult.FAIL
@@ -347,7 +347,7 @@ class InventoryHandler:
         elif vegas == 0:
             c.getSession().write(MaplePacketCreator.scrolledItem(scroll, scrolled, False, False))
         chr.getMap().broadcastMessage(chr, MaplePacketCreator.getScrollEffect(c.getPlayer().getId(), scrollSuccess, legendarySpirit), vegas == 0)
-        if dst < 0 && (scrollSuccess == IEquip.ScrollResult.SUCCESS || scrollSuccess == IEquip.ScrollResult.CURSE) && vegas == 0:
+        if dst < 0 and (scrollSuccess == IEquip.ScrollResult.SUCCESS or scrollSuccess == IEquip.ScrollResult.CURSE) and vegas == 0:
             chr.equipChanged()
         return True
 
@@ -357,7 +357,7 @@ class InventoryHandler:
         itemid = slea.readInt()
         mob = chr.getMap().getMonsterByOid(slea.readInt())
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is not None && toUse.getQuantity() > 0 && toUse.getItemId() == itemid && mob is not None:
+        if toUse is not None and toUse.getQuantity() > 0 and toUse.getItemId() == itemid and mob is not None:
             # switch (itemid):
                 # case 2270004:
                     map = chr.getMap()
@@ -411,14 +411,14 @@ class InventoryHandler:
         itemid = slea.readInt()
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
         mount = chr.getMount()
-        if itemid / 10000 == 226 && toUse is not None && toUse.getQuantity() > 0 && toUse.getItemId() == itemid && mount is not None:
+        if itemid / 10000 == 226 and toUse is not None and toUse.getQuantity() > 0 and toUse.getItemId() == itemid and mount is not None:
             fatigue = mount.getFatigue()
             levelup = False
             mount.setFatigue((byte)(-30))
             if fatigue > 0:
                 mount.increaseExp()
                 level = mount.getLevel()
-                if mount.getExp() >= GameConstants.getMountExpNeededForLevel(level + 1) && level < 31:
+                if mount.getExp() >= GameConstants.getMountExpNeededForLevel(level + 1) and level < 31:
                     mount.setLevel((byte)(level + 1))
                     levelup = True
             chr.getMap().broadcastMessage(MaplePacketCreator.updateMount(chr, levelup))
@@ -563,7 +563,7 @@ class InventoryHandler:
         itemid = slea.readInt()
         ii = MapleItemInformationProvider.getInstance()
         item = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot)
-        if item is None || item.getItemId() != itemid || c.getPlayer().getLevel() > 255:
+        if item is None or item.getItemId() != itemid or c.getPlayer().getLevel() > 255:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         expGained = ii.getExpCache(itemid) * c.getChannelServer().getExpRate()
@@ -572,10 +572,10 @@ class InventoryHandler:
         MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, 1, False)
 
     def UseSummonBag(self, slea: Any, c: Any, chr: Any) -> None:
-        if !chr.isAlive():
+        if not chr.isAlive():
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if chr.getMapId() >= 910000000 && chr.getMapId() <= 910000022:
+        if chr.getMapId() >= 910000000 and chr.getMapId() <= 910000022:
             c.getSession().write(MaplePacketCreator.enableActions())
             c.getPlayer().dropMessage(5, "市场无法使用召唤包.")
             return
@@ -583,9 +583,9 @@ class InventoryHandler:
         slot = slea.readShort()
         itemId = slea.readInt()
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is not None && toUse.getQuantity() >= 1 && toUse.getItemId() == itemId:
+        if toUse is not None and toUse.getQuantity() >= 1 and toUse.getItemId() == itemId:
             MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, 1, False)
-            if c.getPlayer().isGM() || !FieldLimitType.SummoningBag.check(chr.getMap().getFieldLimit()):
+            if c.getPlayer().isGM() or not FieldLimitType.SummoningBag.check(chr.getMap().getFieldLimit()):
                 toSpawn = MapleItemInformationProvider.getInstance().getSummonMobs(itemId)
                 if toSpawn is None:
                     c.getSession().write(MaplePacketCreator.enableActions())
@@ -602,7 +602,7 @@ class InventoryHandler:
         itemid = slea.readInt()
         useCash = slea.readByte() > 0
         toUse = chr.getInventory(MapleInventoryType.ETC).getItem(slot)
-        if toUse is None || toUse.getQuantity() <= 0 || toUse.getItemId() != itemid:
+        if toUse is None or toUse.getQuantity() <= 0 or toUse.getItemId() != itemid:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         ii = MapleItemInformationProvider.getInstance()
@@ -636,13 +636,13 @@ class InventoryHandler:
             # case 2000005:
                 amount = 100
                 break
-        if useCash && chr.getCSPoints(2) < price:
+        if useCash and chr.getCSPoints(2) < price:
             chr.dropMessage(1, "抵用券不足" + price + "点")
             c.getSession().write(MaplePacketCreator.enableActions())
         elif chr.getInventory(MapleInventoryType.CASH).countById(keyIDforRemoval) < 0:
             chr.dropMessage(1, "孵化" + box + "需要" + key + "，请到商城购买！")
             c.getSession().write(MaplePacketCreator.enableActions())
-        elif chr.getInventory(MapleInventoryType.CASH).countById(keyIDforRemoval) > 0 || (useCash && chr.getCSPoints(2) > price):
+        elif chr.getInventory(MapleInventoryType.CASH).countById(keyIDforRemoval) > 0 or (useCash and chr.getCSPoints(2) > price):
             item = MapleInventoryManipulator.addbyId_Gachapon(c, reward, amount)
             if item is None:
                 chr.dropMessage(1, "孵化失败，请重试一次。\r\n你的背包可能满了")
@@ -655,7 +655,7 @@ class InventoryHandler:
                 MapleInventoryManipulator.removeById(c, MapleInventoryType.CASH, keyIDforRemoval, 1, True, False)
             c.getSession().write(MaplePacketCreator.getShowItemGain(reward, amount, True))
             rareness = GameConstants.gachaponRareItem(item.getItemId())
-            if rareness > 0 || reward > 0:
+            if rareness > 0 or reward > 0:
                 World.Broadcast.broadcastMessage(MaplePacketCreator.getGachaponMega(c.getPlayer().getName(), " : 从" + box + "中获得{" + ii.getName(item.getItemId()) + "}！大家一起恭喜他（她）吧！！！！", item, rareness, c.getChannel()))
         else:
             chr.dropMessage(5, "孵化" + box + "失败\r\n请检查是否有" + key + "\r\n或者抵用卷是否有" + price + "点。")
@@ -665,7 +665,7 @@ class InventoryHandler:
         slot = slea.readShort()
         itemId = slea.readInt()
         toUse = c.getPlayer().getInventory(MapleInventoryType.CASH).getItem(slot)
-        if toUse is None || toUse.getItemId() != itemId || toUse.getQuantity() < 1:
+        if toUse is None or toUse.getItemId() != itemId or toUse.getQuantity() < 1:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         used = False
@@ -683,11 +683,11 @@ class InventoryHandler:
                     questid = slea.readShort()
                     npcid = slea.readInt()
                     quest = MapleQuest.getInstance(questid)
-                    if c.getPlayer().getQuest(quest).getStatus() == 1 && quest.canComplete(c.getPlayer(), npcid):
+                    if c.getPlayer().getQuest(quest).getStatus() == 1 and quest.canComplete(c.getPlayer(), npcid):
                         mapId = MapleLifeFactory.getNPCLocation(npcid)
                         if mapId != -1:
                             map = c.getChannelServer().getMapFactory().getMap(mapId)
-                            if map.containsNPC(npcid) && !FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) && !FieldLimitType.VipRock.check(map.getFieldLimit()) && c.getPlayer().getEventInstance() is None:
+                            if map.containsNPC(npcid) and not FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) and not FieldLimitType.VipRock.check(map.getFieldLimit()) and c.getPlayer().getEventInstance() is None:
                                 c.getPlayer().changeMap(map, map.getPortal(0))
                             used = True
                         else:
@@ -699,13 +699,13 @@ class InventoryHandler:
                 # case 5041000:
                     if slea.readByte() == 0:
                         target = c.getChannelServer().getMapFactory().getMap(slea.readInt())
-                        if target is not None && ((itemId == 5041000 && c.getPlayer().isRockMap(target.getId())) || (itemId != 5041000 && c.getPlayer().isRegRockMap(target.getId()))) && !FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) && !FieldLimitType.VipRock.check(target.getFieldLimit()) && c.getPlayer().getEventInstance() is None:
+                        if target is not None and ((itemId == 5041000 and c.getPlayer().isRockMap(target.getId())) or (itemId != 5041000 and c.getPlayer().isRegRockMap(target.getId()))) and not FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) and not FieldLimitType.VipRock.check(target.getFieldLimit()) and c.getPlayer().getEventInstance() is None:
                             c.getPlayer().changeMap(target, target.getPortal(0))
                             used = True
                         break
                     victim = c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
-                    if victim is not None && !victim.isGM() && c.getPlayer().getEventInstance() is None && victim.getEventInstance() is None:
-                        if !FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) && !FieldLimitType.VipRock.check(c.getChannelServer().getMapFactory().getMap(victim.getMapId()).getFieldLimit()) && (itemId == 5041000 || victim.getMapId() / 100000000 == c.getPlayer().getMapId() / 100000000):
+                    if victim is not None and not victim.isGM() and c.getPlayer().getEventInstance() is None and victim.getEventInstance() is None:
+                        if not FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) and not FieldLimitType.VipRock.check(c.getChannelServer().getMapFactory().getMap(victim.getMapId()).getFieldLimit()) and (itemId == 5041000 or victim.getMapId() / 100000000 == c.getPlayer().getMapId() / 100000000):
                             c.getPlayer().changeMap(victim.getMap(), victim.getMap().findClosestSpawnpoint(victim.getPosition()))
                             used = True
                     else:
@@ -720,10 +720,10 @@ class InventoryHandler:
                     job = c.getPlayer().getJob()
                     playerst = c.getPlayer().getStat()
                     used = True
-                    if apfrom == 8192 && apto != 32768:
+                    if apfrom == 8192 and apto != 32768:
                         c.sendPacket(MaplePacketCreator.enableActions())
                         return
-                    if apfrom == 32768 && apto != 8192:
+                    if apfrom == 32768 and apto != 8192:
                         c.sendPacket(MaplePacketCreator.enableActions())
                         return
                     # switch (apto):
@@ -824,7 +824,7 @@ class InventoryHandler:
                         break
                     if skillSPFrom.isBeginnerSkill():
                         break
-                    if c.getPlayer().getSkillLevel(skillSPTo) + 1 <= skillSPTo.getMaxLevel() && c.getPlayer().getSkillLevel(skillSPFrom) > 0:
+                    if c.getPlayer().getSkillLevel(skillSPTo) + 1 <= skillSPTo.getMaxLevel() and c.getPlayer().getSkillLevel(skillSPFrom) > 0:
                         c.getPlayer().changeSkillLevel(skillSPFrom, (byte)(c.getPlayer().getSkillLevel(skillSPFrom) - 1), c.getPlayer().getMasterLevel(skillSPFrom))
                         c.getPlayer().changeSkillLevel(skillSPTo, (byte)(c.getPlayer().getSkillLevel(skillSPTo) + 1), c.getPlayer().getMasterLevel(skillSPTo))
                         used = True
@@ -898,7 +898,7 @@ class InventoryHandler:
                 # case 5520000:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && !ItemFlag.KARMA_EQ.check(item.getFlag()) && !ItemFlag.KARMA_USE.check(item.getFlag()) && ((itemId == 5520000 && MapleItemInformationProvider.getInstance().isKarmaEnabled(item.getItemId())) || MapleItemInformationProvider.getInstance().isPKarmaEnabled(item.getItemId())):
+                    if item is not None and not ItemFlag.KARMA_EQ.check(item.getFlag()) and not ItemFlag.KARMA_USE.check(item.getFlag()) and ((itemId == 5520000 and MapleItemInformationProvider.getInstance().isKarmaEnabled(item.getItemId())) or MapleItemInformationProvider.getInstance().isPKarmaEnabled(item.getItemId())):
                         flag = item.getFlag()
                         if type == MapleInventoryType.EQUIP:
                             flag |= ItemFlag.KARMA_EQ.getValue()
@@ -915,7 +915,7 @@ class InventoryHandler:
                     item2 = c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(slea.readInt())
                     if item2 is None:
                         break
-                    if GameConstants.canHammer(item2.getItemId()) && MapleItemInformationProvider.getInstance().getSlots(item2.getItemId()) > 0 && item2.getViciousHammer() <= 2:
+                    if GameConstants.canHammer(item2.getItemId()) and MapleItemInformationProvider.getInstance().getSlots(item2.getItemId()) > 0 and item2.getViciousHammer() <= 2:
                         item2.setViciousHammer((byte)(item2.getViciousHammer() + 1))
                         item2.setUpgradeSlots((byte)(item2.getUpgradeSlots() + 1))
                         c.getPlayer().forceReAddItem(item2, MapleInventoryType.EQUIP)
@@ -928,7 +928,7 @@ class InventoryHandler:
                 # case 5060001:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && item.getExpiration() == -1:
+                    if item is not None and item.getExpiration() == -1:
                         flag = item.getFlag()
                         flag |= ItemFlag.LOCK.getValue()
                         item.setFlag(flag)
@@ -939,7 +939,7 @@ class InventoryHandler:
                 # case 5061000:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && item.getExpiration() == -1:
+                    if item is not None and item.getExpiration() == -1:
                         flag = item.getFlag()
                         flag |= ItemFlag.LOCK.getValue()
                         item.setFlag(flag)
@@ -951,7 +951,7 @@ class InventoryHandler:
                 # case 5061001:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && item.getExpiration() == -1:
+                    if item is not None and item.getExpiration() == -1:
                         flag2 = item.getFlag()
                         flag2 |= ItemFlag.LOCK.getValue()
                         item.setFlag(flag2)
@@ -972,7 +972,7 @@ class InventoryHandler:
                 # case 5061002:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && item.getExpiration() == -1:
+                    if item is not None and item.getExpiration() == -1:
                         flag2 = item.getFlag()
                         flag2 |= ItemFlag.LOCK.getValue()
                         item.setFlag(flag2)
@@ -993,7 +993,7 @@ class InventoryHandler:
                 # case 5061003:
                     type = MapleInventoryType.getByType(slea.readInt())
                     item = c.getPlayer().getInventory(type).getItem(slea.readInt())
-                    if item is not None && item.getExpiration() == -1:
+                    if item is not None and item.getExpiration() == -1:
                         flag2 = item.getFlag()
                         flag2 |= ItemFlag.LOCK.getValue()
                         item.setFlag(flag2)
@@ -1015,7 +1015,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1030,7 +1030,7 @@ class InventoryHandler:
                     sb.append(" : ")
                     sb.append(message)
                     ear = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1046,7 +1046,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1056,7 +1056,7 @@ class InventoryHandler:
                     if message > 65:
                         break
                     ear2 = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1077,7 +1077,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1093,7 +1093,7 @@ class InventoryHandler:
                             break
                         messages.add(c.getPlayer().getName() + " : " + message2)
                     ear3 = slea.readByte() > 0
-                    if (c.getPlayer().isPlayer() && messages.find("幹") != -1) || messages.find("豬") != -1 || messages.find("笨") != -1 || messages.find("靠") != -1 || messages.find("腦包") != -1 || messages.find("腦") != -1 || messages.find("智障") != -1 || messages.find("白目") != -1 || messages.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and messages.find("幹") != -1) or messages.find("豬") != -1 or messages.find("笨") != -1 or messages.find("靠") != -1 or messages.find("腦包") != -1 or messages.find("腦") != -1 or messages.find("智障") != -1 or messages.find("白目") != -1 or messages.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1109,7 +1109,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1124,7 +1124,7 @@ class InventoryHandler:
                     sb.append(" : ")
                     sb.append(message)
                     ear = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1140,7 +1140,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1155,7 +1155,7 @@ class InventoryHandler:
                     sb.append(" : ")
                     sb.append(message)
                     ear = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1171,7 +1171,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須要10等以上才能使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1186,7 +1186,7 @@ class InventoryHandler:
                     sb.append(" : ")
                     sb.append(message)
                     ear = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1202,7 +1202,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必須等級10級以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1222,7 +1222,7 @@ class InventoryHandler:
                         invType = slea.readInt()
                         pos = slea.readInt()
                         item3 = c.getPlayer().getInventory(MapleInventoryType.getByType(invType)).getItem(pos)
-                    if (c.getPlayer().isPlayer() && message.find("幹") != -1) || message.find("豬") != -1 || message.find("笨") != -1 || message.find("靠") != -1 || message.find("腦包") != -1 || message.find("腦") != -1 || message.find("智障") != -1 || message.find("白目") != -1 || message.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and message.find("幹") != -1) or message.find("豬") != -1 or message.find("笨") != -1 or message.find("靠") != -1 or message.find("腦包") != -1 or message.find("腦") != -1 or message.find("智障") != -1 or message.find("白目") != -1 or message.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1248,9 +1248,9 @@ class InventoryHandler:
                     tvType = itemId % 10
                     if tvType == 3:
                         slea.readByte()
-                    ear2 = tvType != 1 && tvType != 2 && slea.readByte() > 1
-                    victim2 = (tvType == 1 || tvType == 4) ? None : c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
-                    if tvType == 0 || tvType == 3:
+                    ear2 = tvType != 1 and tvType != 2 and slea.readByte() > 1
+                    victim2 = (tvType == 1 or tvType == 4) ? None : c.getChannelServer().getPlayerStorage().getCharacterByName(slea.readMapleAsciiString())
+                    if tvType == 0 or tvType == 3:
                         victim2 = None
                     elif victim2 is None:
                         c.getPlayer().dropMessage(1, "这个角色不是在频道里.")
@@ -1315,7 +1315,7 @@ class InventoryHandler:
                             if pet.getUniqueId() != uniqueid:
                                 break
                     final MaplePet.PetFlag zz = MaplePet.PetFlag.getByAddId(itemId)
-                    if zz is not None && !zz.check(pet.getFlags()):
+                    if zz is not None and not zz.check(pet.getFlags()):
                         pet.setFlags(pet.getFlags() | zz.getValue())
                         c.getSession().write(PetPacket.updatePet(pet, c.getPlayer().getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
                         c.getPlayer().getClient().getSession().write(PetPacket.petStatUpdate(c.getPlayer()))
@@ -1347,7 +1347,7 @@ class InventoryHandler:
                             if pet.getUniqueId() != uniqueid:
                                 break
                     final MaplePet.PetFlag zz = MaplePet.PetFlag.getByDelId(itemId)
-                    if zz is not None && zz.check(pet.getFlags()):
+                    if zz is not None and zz.check(pet.getFlags()):
                         pet.setFlags(pet.getFlags() - zz.getValue())
                         c.getSession().write(PetPacket.updatePet(pet, c.getPlayer().getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
                         c.getSession().write(MaplePacketCreator.enableActions())
@@ -1399,15 +1399,15 @@ class InventoryHandler:
                     pet2 = c.getPlayer().getPet(0)
                     if pet2 is None:
                         break
-                    if !pet2.canConsume(itemId):
+                    if not pet2.canConsume(itemId):
                         pet2 = c.getPlayer().getPet(1)
                         if pet2 is None:
                             break
-                        if !pet2.canConsume(itemId):
+                        if not pet2.canConsume(itemId):
                             pet2 = c.getPlayer().getPet(2)
                             if pet2 is None:
                                 break
-                            if !pet2.canConsume(itemId):
+                            if not pet2.canConsume(itemId):
                                 break
                     petindex = c.getPlayer().getPetIndex(pet2)
                     pet2.setFullness(100)
@@ -1485,7 +1485,7 @@ class InventoryHandler:
                     if c.getPlayer().getLevel() < 10:
                         c.getPlayer().dropMessage(5, "必须等级10级以上才可以使用.")
                         break
-                    if !c.getPlayer().getCheatTracker().canAvatarSmega2():
+                    if not c.getPlayer().getCheatTracker().canAvatarSmega2():
                         c.getPlayer().dropMessage(6, "很抱歉為了防止刷廣,所以你每10秒只能用一次.")
                         break
                     if c.getChannelServer().getMegaphoneMuteState():
@@ -1495,7 +1495,7 @@ class InventoryHandler:
                     if text > 55:
                         break
                     ear2 = slea.readByte() != 0
-                    if (c.getPlayer().isPlayer() && text.find("幹") != -1) || text.find("豬") != -1 || text.find("笨") != -1 || text.find("靠") != -1 || text.find("腦包") != -1 || text.find("腦") != -1 || text.find("智障") != -1 || text.find("白目") != -1 || text.find("白吃") != -1:
+                    if (c.getPlayer().isPlayer() and text.find("幹") != -1) or text.find("豬") != -1 or text.find("笨") != -1 or text.find("靠") != -1 or text.find("腦包") != -1 or text.find("腦") != -1 or text.find("智障") != -1 or text.find("白目") != -1 or text.find("白吃") != -1:
                         c.getPlayer().dropMessage("說髒話是不禮貌的，請勿說髒話。")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
@@ -1516,10 +1516,10 @@ class InventoryHandler:
                     item4 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort())
                     ii = MapleItemInformationProvider.getInstance()
                     days2 = 20
-                    if item4 is not None && !GameConstants.isAccessory(item4.getItemId()) && item4.getExpiration() > -1 && !ii.isCash(item4.getItemId()) && int(time.time() * 1000) + 8640000000 > item4.getExpiration() + days2 * 24 * 60 * 60 * 1000:
+                    if item4 is not None and not GameConstants.isAccessory(item4.getItemId()) and item4.getExpiration() > -1 and not ii.isCash(item4.getItemId()) and int(time.time() * 1000) + 8640000000 > item4.getExpiration() + days2 * 24 * 60 * 60 * 1000:
                         change = True
                         for z in GameConstants.RESERVED:
-                            if c.getPlayer().getName().find(z) != -1 || item4.getOwner().find(z) != -1:
+                            if c.getPlayer().getName().find(z) != -1 or item4.getOwner().find(z) != -1:
                                 change = False
                         if change:
                             item4.setExpiration(item4.getExpiration() + days2 * 24 * 60 * 60 * 1000)
@@ -1547,7 +1547,7 @@ class InventoryHandler:
                             Label_10360 = None
                         # case 520:
                             mesars = MapleItemInformationProvider.getInstance().getMeso(itemId)
-                            if mesars <= 0 || c.getPlayer().getMeso() >= Integer.MAX_VALUE - mesars:
+                            if mesars <= 0 or c.getPlayer().getMeso() >= Integer.MAX_VALUE - mesars:
                                 Label_10360 = None
                             used = True
                             if random.random() > 0.1:
@@ -1569,19 +1569,19 @@ class InventoryHandler:
         c.getSession().write(MaplePacketCreator.enableActions())
         c.getSession().write(MaplePacketCreator.enableActions())
         if cc:
-            if !c.getPlayer().isAlive() || c.getPlayer().getEventInstance() is not None || FieldLimitType.ChannelSwitch.check(c.getPlayer().getMap().getFieldLimit()):
+            if not c.getPlayer().isAlive() or c.getPlayer().getEventInstance() is not None or FieldLimitType.ChannelSwitch.check(c.getPlayer().getMap().getFieldLimit()):
                 c.getPlayer().dropMessage(1, "刷新人物数据失败.")
                 return
             c.getPlayer().dropMessage(5, "正在刷新人数据.请等待...")
             c.getPlayer().fakeRelog()
 
     def Pickup_Player(self, slea: Any, c: Any, chr: Any) -> None:
-        if c.getPlayer().getPlayerShop() is not None || c.getPlayer().getConversation() > 0 || c.getPlayer().getTrade() is not None:
+        if c.getPlayer().getPlayerShop() is not None or c.getPlayer().getConversation() > 0 or c.getPlayer().getTrade() is not None:
             return
         chr.updateTick(slea.readInt())
         slea.skip(1)
         Client_Reportedpos = slea.readPos()
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             return
         ob = chr.getMap().getMapObject(slea.readInt(), MapleMapObjectType.ITEM)
         if ob is None:
@@ -1594,10 +1594,10 @@ class InventoryHandler:
             if mapitem.isPickedUp():
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if mapitem.getOwner() != chr.getId() && ((!mapitem.isPlayerDrop() && mapitem.getDropType() == 0) || (mapitem.isPlayerDrop() && chr.getMap().getEverlast())):
+            if mapitem.getOwner() != chr.getId() and ((not mapitem.isPlayerDrop() and mapitem.getDropType() == 0) or (mapitem.isPlayerDrop() and chr.getMap().getEverlast())):
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
-            if !mapitem.isPlayerDrop() && mapitem.getDropType() == 1 && mapitem.getOwner() != chr.getId() && (chr.getParty() is None || chr.getParty().getMemberById(mapitem.getOwner()) is None):
+            if not mapitem.isPlayerDrop() and mapitem.getDropType() == 1 and mapitem.getOwner() != chr.getId() and (chr.getParty() is None or chr.getParty().getMemberById(mapitem.getOwner()) is None):
                 c.getSession().write(MaplePacketCreator.enableActions())
                 return
             Distance = Client_Reportedpos.distanceSq(mapitem.getPosition())
@@ -1608,7 +1608,7 @@ class InventoryHandler:
                 chr.getCheatTracker().registerOffense(CheatingOffense.全图吸物_服务端)
                 World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "[GM消息] " + chr.getName() + " ID: " + chr.getId() + " (等级 " + chr.getLevel() + ") 全屏捡物。地图ID: " + chr.getMapId() + " 范围: " + Distance).encode("utf-8"))
             if mapitem.getMeso() > 0:
-                if chr.getParty() is not None && mapitem.getOwner() != chr.getId():
+                if chr.getParty() is not None and mapitem.getOwner() != chr.getId():
                     toGive = []
                     for z in chr.getParty().getMembers():
                         m = chr.getMap().getCharacterById(z.getId())
@@ -1625,7 +1625,7 @@ class InventoryHandler:
             elif useItem(c, mapitem.getItemId()):
                 removeItem(c.getPlayer(), mapitem, ob)
             elif MapleInventoryManipulator.checkSpace(c, mapitem.getItem().getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()):
-                if mapitem.getItem().getQuantity() >= 50 && GameConstants.isUpgradeScroll(mapitem.getItem().getItemId()):
+                if mapitem.getItem().getQuantity() >= 50 and GameConstants.isUpgradeScroll(mapitem.getItem().getItemId()):
                     c.setMonitored(True)
                 if MapleInventoryManipulator.addFromDrop(c, mapitem.getItem(), True, mapitem.getDropper() instanceof MapleMonster):
                     removeItem(chr, mapitem, ob)
@@ -1645,40 +1645,40 @@ class InventoryHandler:
         chr.updateTick(slea.readInt())
         Client_Reportedpos = slea.readPos()
         ob = chr.getMap().getMapObject(slea.readInt(), MapleMapObjectType.ITEM)
-        if ob is None || pet is None:
+        if ob is None or pet is None:
             return
         mapitem = ob
         if mapitem.isPickedUp():
             c.getSession().write(MaplePacketCreator.getInventoryFull())
             return
-        if mapitem.getOwner() != chr.getId() && mapitem.isPlayerDrop():
+        if mapitem.getOwner() != chr.getId() and mapitem.isPlayerDrop():
             return
-        if mapitem.getOwner() != chr.getId() && ((!mapitem.isPlayerDrop() && mapitem.getDropType() == 0) || (mapitem.isPlayerDrop() && chr.getMap().getEverlast())):
+        if mapitem.getOwner() != chr.getId() and ((not mapitem.isPlayerDrop() and mapitem.getDropType() == 0) or (mapitem.isPlayerDrop() and chr.getMap().getEverlast())):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if !mapitem.isPlayerDrop() && mapitem.getDropType() == 1 && mapitem.getOwner() != chr.getId() && (chr.getParty() is None || chr.getParty().getMemberById(mapitem.getOwner()) is None):
+        if not mapitem.isPlayerDrop() and mapitem.getDropType() == 1 and mapitem.getOwner() != chr.getId() and (chr.getParty() is None or chr.getParty().getMemberById(mapitem.getOwner()) is None):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if mapitem.isPlayerDrop() && mapitem.getDropType() == 2 && mapitem.getOwner() == chr.getId():
+        if mapitem.isPlayerDrop() and mapitem.getDropType() == 2 and mapitem.getOwner() == chr.getId():
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if mapitem.isPlayerDrop() && mapitem.getDropType() == 0 && mapitem.getOwner() == chr.getId() && mapitem.getMeso() != 0:
+        if mapitem.isPlayerDrop() and mapitem.getDropType() == 0 and mapitem.getOwner() == chr.getId() and mapitem.getMeso() != 0:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         Distance = Client_Reportedpos.distanceSq(mapitem.getPosition())
-        if Distance > 10000.0 && (mapitem.getMeso() > 0 || mapitem.getItemId() != 4001025):
+        if Distance > 10000.0 and (mapitem.getMeso() > 0 or mapitem.getItemId() != 4001025):
             chr.getCheatTracker().registerOffense(CheatingOffense.宠物全图吸物_客户端, str(Distance))
             World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "[GM消息] " + chr.getName() + " ID: " + chr.getId() + " (等级 " + chr.getLevel() + ") 全屏宠吸。地图ID: " + chr.getMapId() + " 范围: " + Distance).encode("utf-8"))
         elif pet.getPos().distanceSq(mapitem.getPosition()) > 640000.0:
             chr.getCheatTracker().registerOffense(CheatingOffense.宠物全图吸物_服务端)
             World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "[GM消息] " + chr.getName() + " ID: " + chr.getId() + " (等级 " + chr.getLevel() + ") 全屏宠吸。地图ID: " + chr.getMapId() + " 范围: " + Distance).encode("utf-8"))
         if mapitem.getMeso() > 0:
-            if chr.getParty() is not None && mapitem.getOwner() != chr.getId():
+            if chr.getParty() is not None and mapitem.getOwner() != chr.getId():
                 toGive = []
                 splitMeso = mapitem.getMeso() * 40 / 100
                 for z in chr.getParty().getMembers():
                     m = chr.getMap().getCharacterById(z.getId())
-                    if m is not None && m.getId() != chr.getId():
+                    if m is not None and m.getId() != chr.getId():
                         toGive.add(m)
                 for i in toGive:
                     i.gainMeso(splitMeso / toGive + (i.getStat().hasPartyBonus ? ((int)(mapitem.getMeso() / 20.0)) : 0), True)
@@ -1686,12 +1686,12 @@ class InventoryHandler:
             else:
                 chr.gainMeso(mapitem.getMeso(), True)
             removeItem_Pet(chr, mapitem, petz)
-        elif MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItemId()) || mapitem.getItemId() / 10000 == 291:
+        elif MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItemId()) or mapitem.getItemId() / 10000 == 291:
             c.getSession().write(MaplePacketCreator.enableActions())
         elif useItem(c, mapitem.getItemId()):
             removeItem_Pet(chr, mapitem, petz)
         elif MapleInventoryManipulator.checkSpace(c, mapitem.getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()):
-            if mapitem.getItem().getQuantity() >= 50 && mapitem.getItemId() == 2340000:
+            if mapitem.getItem().getQuantity() >= 50 and mapitem.getItemId() == 2340000:
                 c.setMonitored(True)
             MapleInventoryManipulator.pet_addFromDrop(c, mapitem.getItem(), True, mapitem.getDropper() instanceof MapleMonster)
             removeItem_Pet(chr, mapitem, petz)
@@ -1736,7 +1736,7 @@ class InventoryHandler:
         slot = slea.readShort()
         itemid = slea.readInt()
         toUse = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is not None && toUse.getQuantity() > 0 && toUse.getItemId() == itemid && itemid == 2310000:
+        if toUse is not None and toUse.getQuantity() > 0 and toUse.getItemId() == itemid and itemid == 2310000:
             itemSearch = slea.readInt()
             hms = c.getChannelServer().searchMerchant(itemSearch)
             if hms > 0:
@@ -1747,8 +1747,8 @@ class InventoryHandler:
         c.getSession().write(MaplePacketCreator.enableActions())
 
     def Owl(self, slea: Any, c: Any) -> None:
-        if c.getPlayer().haveItem(5230000, 1, True, False) || c.getPlayer().haveItem(5230001, 1, True, False):
-            if c.getPlayer().getMapId() >= 910000000 && c.getPlayer().getMapId() <= 910000022:
+        if c.getPlayer().haveItem(5230000, 1, True, False) or c.getPlayer().haveItem(5230001, 1, True, False):
+            if c.getPlayer().getMapId() >= 910000000 and c.getPlayer().getMapId() <= 910000022:
                 c.getSession().write(MaplePacketCreator.getOwlOpen())
             else:
                 c.getPlayer().dropMessage(5, "商店搜索器只能在自由市场使用.")
@@ -1756,10 +1756,10 @@ class InventoryHandler:
 
     def OwlWarp(self, slea: Any, c: Any) -> None:
         c.getSession().write(MaplePacketCreator.enableActions())
-        if c.getPlayer().getMapId() >= 910000000 && c.getPlayer().getMapId() <= 910000022 && c.getPlayer().getPlayerShop() is None:
+        if c.getPlayer().getMapId() >= 910000000 and c.getPlayer().getMapId() <= 910000022 and c.getPlayer().getPlayerShop() is None:
             id = slea.readInt()
             map = slea.readInt()
-            if map >= 910000001 && map <= 910000022:
+            if map >= 910000001 and map <= 910000022:
                 mapp = c.getChannelServer().getMapFactory().getMap(map)
                 c.getPlayer().changeMap(mapp, mapp.getPortal(0))
                 merchant = None
@@ -1769,7 +1769,7 @@ class InventoryHandler:
                         for ob in objects:
                             if isinstance(ob, IMaplePlayerShop):
                                 ips = ob
-                                if !(isinstance(ips, HiredMerchant)):
+                                if not (isinstance(ips, HiredMerchant)):
                                     continue
                                 merch = ips
                                 if merch.getOwnerId() == id:
@@ -1782,7 +1782,7 @@ class InventoryHandler:
                         for ob in objects:
                             if isinstance(ob, IMaplePlayerShop):
                                 ips = ob
-                                if !(isinstance(ips, HiredMerchant)):
+                                if not (isinstance(ips, HiredMerchant)):
                                     continue
                                 merch = ips
                                 if merch.getStoreId() == id:
@@ -1792,7 +1792,7 @@ class InventoryHandler:
                         break
                     # default:
                         ob2 = mapp.getMapObject(id, MapleMapObjectType.HIRED_MERCHANT)
-                        if !(isinstance(ob2, IMaplePlayerShop)):
+                        if not (isinstance(ob2, IMaplePlayerShop)):
                             break
                         ips2 = ob2
                         if isinstance(ips2, HiredMerchant):
@@ -1805,7 +1805,7 @@ class InventoryHandler:
                         merchant.removeAllVisitors(16, 0)
                         c.getPlayer().setPlayerShop(merchant)
                         c.getSession().write(PlayerShopPacket.getHiredMerch(c.getPlayer(), merchant, False))
-                    elif !merchant.isOpen() || !merchant.isAvailable():
+                    elif not merchant.isOpen() or not merchant.isAvailable():
                         c.getPlayer().dropMessage(1, "主人正在整理商店物品\r\n请稍后再度光临！.")
                     elif merchant.getFreeSlot() == -1:
                         c.getPlayer().dropMessage(1, "店铺已达到最大人数\r\n请稍后再度光临！.")
@@ -1823,7 +1823,7 @@ class InventoryHandler:
         slot = slea.readShort()
         itemId = slea.readInt()
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is None || toUse.getQuantity() < 1 || toUse.getItemId() != itemId:
+        if toUse is None or toUse.getQuantity() < 1 or toUse.getItemId() != itemId:
             return False
         skilldata = MapleItemInformationProvider.getInstance().getSkillStats(toUse.getItemId())
         if skilldata is None:
@@ -1844,9 +1844,9 @@ class InventoryHandler:
             if math.floor(CurrentLoopedSkillId / 10000) != chr.getJob():
                 continue
             CurrSkillData = SkillFactory.getSkill(CurrentLoopedSkillId)
-            if chr.getSkillLevel(CurrSkillData) >= ReqSkillLevel && chr.getMasterLevel(CurrSkillData) < MasterLevel:
+            if chr.getSkillLevel(CurrSkillData) >= ReqSkillLevel and chr.getMasterLevel(CurrSkillData) < MasterLevel:
                 canuse = True
-                if Randomizer.nextInt(99) <= SuccessRate && SuccessRate != 0:
+                if Randomizer.nextInt(99) <= SuccessRate and SuccessRate != 0:
                     success = True
                     skill2 = CurrSkillData
                     chr.changeSkillLevel(skill2, chr.getSkillLevel(skill2), MasterLevel)
@@ -1862,19 +1862,19 @@ class InventoryHandler:
     def changeFace(self, player: Any, color: int) -> None:
         if player.getFace() % 1000 < 100:
             player.setFace(player.getFace() + color)
-        elif player.getFace() % 1000 >= 100 && player.getFace() % 1000 < 200:
+        elif player.getFace() % 1000 >= 100 and player.getFace() % 1000 < 200:
             player.setFace(player.getFace() - 100 + color)
-        elif player.getFace() % 1000 >= 200 && player.getFace() % 1000 < 300:
+        elif player.getFace() % 1000 >= 200 and player.getFace() % 1000 < 300:
             player.setFace(player.getFace() - 200 + color)
-        elif player.getFace() % 1000 >= 300 && player.getFace() % 1000 < 400:
+        elif player.getFace() % 1000 >= 300 and player.getFace() % 1000 < 400:
             player.setFace(player.getFace() - 300 + color)
-        elif player.getFace() % 1000 >= 400 && player.getFace() % 1000 < 500:
+        elif player.getFace() % 1000 >= 400 and player.getFace() % 1000 < 500:
             player.setFace(player.getFace() - 400 + color)
-        elif player.getFace() % 1000 >= 500 && player.getFace() % 1000 < 600:
+        elif player.getFace() % 1000 >= 500 and player.getFace() % 1000 < 600:
             player.setFace(player.getFace() - 500 + color)
-        elif player.getFace() % 1000 >= 600 && player.getFace() % 1000 < 700:
+        elif player.getFace() % 1000 >= 600 and player.getFace() % 1000 < 700:
             player.setFace(player.getFace() - 600 + color)
-        elif player.getFace() % 1000 >= 700 && player.getFace() % 1000 < 800:
+        elif player.getFace() % 1000 >= 700 and player.getFace() % 1000 < 800:
             player.setFace(player.getFace() - 700 + color)
         player.updateSingleStat(MapleStat.FACE, player.getFace())
         player.equipChanged()

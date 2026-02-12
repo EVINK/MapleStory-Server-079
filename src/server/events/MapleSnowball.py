@@ -66,13 +66,17 @@ class MapleSnowball(MapleEvent):
         return self.balls[teamz]
 
     def hitSnowball(self, chr: Any) -> None:
+        def _task_1():
+            oBall.setHittable(True)
+            oBall.broadcast(map2, 5)
+
         team = (chr.getPosition().y <= -80) ? 1 : 0
         sb = chr.getClient().getChannelServer().getEvent(MapleEventType.雪球赛)
         ball = sb.getSnowBall(team)
-        if ball is not None && !ball.isInvis():
-            snowman = chr.getPosition().x < -360 && chr.getPosition().x > -560
-            if !snowman:
-                damage = ((random.random() < 0.01 || (chr.getPosition().x > ball.getLeftX() && chr.getPosition().x < ball.getRightX())) && ball.isHittable()) ? 10 : 0
+        if ball is not None and not ball.isInvis():
+            snowman = chr.getPosition().x < -360 and chr.getPosition().x > -560
+            if not snowman:
+                damage = ((random.random() < 0.01 or (chr.getPosition().x > ball.getLeftX() and chr.getPosition().x < ball.getRightX())) and ball.isHittable()) ? 10 : 0
                 chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team, damage, 0, 1))
                 if damage == 0:
                     if random.random() < 0.2:
@@ -80,7 +84,7 @@ class MapleSnowball(MapleEvent):
                         chr.getClient().getSession().write(MaplePacketCreator.enableActions())
                 else:
                     ball.setPositionX(ball.getPosition() + 1)
-                    if ball.getPosition() == 255 || ball.getPosition() == 511 || ball.getPosition() == 767:
+                    if ball.getPosition() == 255 or ball.getPosition() == 511 or ball.getPosition() == 767:
                         ball.setStartPoint(chr.getMap())
                         chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
                     elif ball.getPosition() == 899:
@@ -90,7 +94,7 @@ class MapleSnowball(MapleEvent):
                             map.broadcastMessage(MaplePacketCreator.rollSnowball(i + 2, sb.getSnowBall(0), sb.getSnowBall(1)))
                         chr.getMap().broadcastMessage(MaplePacketCreator.serverNotice(6, "[恭喜] " + ((team == 0) ? "蓝队" : "红队") + " 赢得胜利!"))
                         for chrz in chr.getMap().getCharactersThreadsafe():
-                            if (team == 0 && chrz.getPosition().y > -80) || (team == 1 && chrz.getPosition().y <= -80):
+                            if (team == 0 and chrz.getPosition().y > -80) or (team == 1 and chrz.getPosition().y <= -80):
                                 sb.givePrize(chrz)
                             sb.warpBack(chrz)
                         sb.unreset()
@@ -113,12 +117,9 @@ class MapleSnowball(MapleEvent):
                         oBall.setHittable(False)
                         map2 = chr.getMap()
                         oBall.broadcast(map2, 4)
-                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
-                            public void run()
-                                oBall.setHittable(True)
-                                oBall.broadcast(map2, 5)
+                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(_task_1, 10000)
                         for chrz2 in chr.getMap().getCharactersThreadsafe():
-                            if (ball.getTeam() == 0 && chr.getPosition().y < -80) || (ball.getTeam() == 1 && chr.getPosition().y > -80):
+                            if (ball.getTeam() == 0 and chr.getPosition().y < -80) or (ball.getTeam() == 1 and chr.getPosition().y > -80):
                                 chrz2.giveDebuff(MapleDisease.诱惑, MobSkillFactory.getMobSkill(128, 1))
 
     def run(self) -> None:
@@ -149,7 +150,7 @@ class MapleSnowball(MapleEvent):
         self.invis = i
 
     def isHittable(self) -> bool:
-        return self.hittable && !self.invis
+        return self.hittable and not self.invis
 
     def setHittable(self, b: bool) -> None:
         self.hittable = b
@@ -162,7 +163,7 @@ class MapleSnowball(MapleEvent):
 
     def broadcast(self, map: Any, message: int) -> None:
         for chr in map.getCharactersThreadsafe():
-            if (self.team == 0 && chr.getPosition().y > -80) || (self.team == 1 && chr.getPosition().y <= -80):
+            if (self.team == 0 and chr.getPosition().y > -80) or (self.team == 1 and chr.getPosition().y <= -80):
                 chr.getClient().getSession().write(MaplePacketCreator.snowballMessage(self.team, message))
 
     def getLeftX(self) -> int:
@@ -195,13 +196,17 @@ class MapleSnowballs:
 
 
     def hitSnowball(self, chr: Any) -> None:
+        def _task_1():
+            oBall.setHittable(True)
+            oBall.broadcast(map2, 5)
+
         team = (chr.getPosition().y <= -80) ? 1 : 0
         sb = chr.getClient().getChannelServer().getEvent(MapleEventType.雪球赛)
         ball = sb.getSnowBall(team)
-        if ball is not None && !ball.isInvis():
-            snowman = chr.getPosition().x < -360 && chr.getPosition().x > -560
-            if !snowman:
-                damage = ((random.random() < 0.01 || (chr.getPosition().x > ball.getLeftX() && chr.getPosition().x < ball.getRightX())) && ball.isHittable()) ? 10 : 0
+        if ball is not None and not ball.isInvis():
+            snowman = chr.getPosition().x < -360 and chr.getPosition().x > -560
+            if not snowman:
+                damage = ((random.random() < 0.01 or (chr.getPosition().x > ball.getLeftX() and chr.getPosition().x < ball.getRightX())) and ball.isHittable()) ? 10 : 0
                 chr.getMap().broadcastMessage(MaplePacketCreator.hitSnowBall(team, damage, 0, 1))
                 if damage == 0:
                     if random.random() < 0.2:
@@ -209,7 +214,7 @@ class MapleSnowballs:
                         chr.getClient().getSession().write(MaplePacketCreator.enableActions())
                 else:
                     ball.setPositionX(ball.getPosition() + 1)
-                    if ball.getPosition() == 255 || ball.getPosition() == 511 || ball.getPosition() == 767:
+                    if ball.getPosition() == 255 or ball.getPosition() == 511 or ball.getPosition() == 767:
                         ball.setStartPoint(chr.getMap())
                         chr.getMap().broadcastMessage(MaplePacketCreator.rollSnowball(4, sb.getSnowBall(0), sb.getSnowBall(1)))
                     elif ball.getPosition() == 899:
@@ -219,7 +224,7 @@ class MapleSnowballs:
                             map.broadcastMessage(MaplePacketCreator.rollSnowball(i + 2, sb.getSnowBall(0), sb.getSnowBall(1)))
                         chr.getMap().broadcastMessage(MaplePacketCreator.serverNotice(6, "[恭喜] " + ((team == 0) ? "蓝队" : "红队") + " 赢得胜利!"))
                         for chrz in chr.getMap().getCharactersThreadsafe():
-                            if (team == 0 && chrz.getPosition().y > -80) || (team == 1 && chrz.getPosition().y <= -80):
+                            if (team == 0 and chrz.getPosition().y > -80) or (team == 1 and chrz.getPosition().y <= -80):
                                 sb.givePrize(chrz)
                             sb.warpBack(chrz)
                         sb.unreset()
@@ -242,12 +247,9 @@ class MapleSnowballs:
                         oBall.setHittable(False)
                         map2 = chr.getMap()
                         oBall.broadcast(map2, 4)
-                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
-                            public void run()
-                                oBall.setHittable(True)
-                                oBall.broadcast(map2, 5)
+                        oBall.snowmanSchedule = Timer.EventTimer.getInstance().schedule(_task_1, 10000)
                         for chrz2 in chr.getMap().getCharactersThreadsafe():
-                            if (ball.getTeam() == 0 && chr.getPosition().y < -80) || (ball.getTeam() == 1 && chr.getPosition().y > -80):
+                            if (ball.getTeam() == 0 and chr.getPosition().y < -80) or (ball.getTeam() == 1 and chr.getPosition().y > -80):
                                 chrz2.giveDebuff(MapleDisease.诱惑, MobSkillFactory.getMobSkill(128, 1))
 
     def run(self) -> None:
@@ -278,7 +280,7 @@ class MapleSnowballs:
         self.invis = i
 
     def isHittable(self) -> bool:
-        return self.hittable && !self.invis
+        return self.hittable and not self.invis
 
     def setHittable(self, b: bool) -> None:
         self.hittable = b
@@ -291,7 +293,7 @@ class MapleSnowballs:
 
     def broadcast(self, map: Any, message: int) -> None:
         for chr in map.getCharactersThreadsafe():
-            if (self.team == 0 && chr.getPosition().y > -80) || (self.team == 1 && chr.getPosition().y <= -80):
+            if (self.team == 0 and chr.getPosition().y > -80) or (self.team == 1 and chr.getPosition().y <= -80):
                 chr.getClient().getSession().write(MaplePacketCreator.snowballMessage(self.team, message))
 
     def getLeftX(self) -> int:

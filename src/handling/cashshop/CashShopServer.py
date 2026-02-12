@@ -41,7 +41,7 @@ class CashShopServer:
         try:
             CashShopServer.acceptor.setHandler(MapleServerHandler(-1, True))
             CashShopServer.acceptor.bind(InetSocketAddress(CashShopServer.PORT))
-            print("商城    1: 启动端口 " + CashShopServer.PORT)
+            print("商城 1: 启动端口 " + CashShopServer.PORT)
         except IOError as e:
             print("Binding to port " + CashShopServer.PORT + " failed")
             e.printStackTrace()

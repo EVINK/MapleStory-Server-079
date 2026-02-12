@@ -108,7 +108,7 @@ class MaplePartyCharacter:
         if self.name is None:
             if other.name is not None:
                 return False
-        elif !self.name == (other.name):
+        elif not self.name == (other.name):
             return False
         return True
 

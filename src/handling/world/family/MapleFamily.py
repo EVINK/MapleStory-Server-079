@@ -52,7 +52,7 @@ class MapleFamily:
             ps = con.prepareStatement("SELECT * FROM families WHERE familyid = ?")
             ps.setInt(1, fid)
             rs = ps.executeQuery()
-            if !rs.first():
+            if not rs.first():
                 rs.close()
                 ps.close()
                 self.id = -1
@@ -71,18 +71,18 @@ class MapleFamily:
                 self.members.put(rs.getInt("id"), MapleFamilyCharacter(rs.getInt("id"), rs.getShort("level"), rs.getString("name"), -1, rs.getInt("job"), fid, rs.getInt("seniorid"), rs.getInt("junior1"), rs.getInt("junior2"), rs.getInt("currentrep"), rs.getInt("totalrep"), False))
             rs.close()
             ps.close()
-            if self.leadername is None || self.members < 2:
-                print("Leader " + self.leaderid + " isn't in family " + self.id + ".  Impossible... family is disbanding.")
+            if self.leadername is None or self.members < 2:
+                print("Leader " + self.leaderid + " isn't in family " + self.id + ". Impossible... family is disbanding.")
                 self.proper = False
                 return
             for mfc in self.members.values():
-                if mfc.getJunior1() > 0 && (self.getMFC(mfc.getJunior1()) is None || mfc.getId() == mfc.getJunior1()):
+                if mfc.getJunior1() > 0 and (self.getMFC(mfc.getJunior1()) is None or mfc.getId() == mfc.getJunior1()):
                     mfc.setJunior1(0)
-                if mfc.getJunior2() > 0 && (self.getMFC(mfc.getJunior2()) is None || mfc.getId() == mfc.getJunior2() || mfc.getJunior1() == mfc.getJunior2()):
+                if mfc.getJunior2() > 0 and (self.getMFC(mfc.getJunior2()) is None or mfc.getId() == mfc.getJunior2() or mfc.getJunior1() == mfc.getJunior2()):
                     mfc.setJunior2(0)
-                if mfc.getSeniorId() > 0 && (self.getMFC(mfc.getSeniorId()) is None || mfc.getId() == mfc.getSeniorId()):
+                if mfc.getSeniorId() > 0 and (self.getMFC(mfc.getSeniorId()) is None or mfc.getId() == mfc.getSeniorId()):
                     mfc.setSeniorId(0)
-                if mfc.getJunior2() > 0 && mfc.getJunior1() <= 0:
+                if mfc.getJunior2() > 0 and mfc.getJunior1() <= 0:
                     mfc.setJunior1(mfc.getJunior2())
                     mfc.setJunior2(0)
                 if mfc.getJunior1() > 0:
@@ -154,7 +154,7 @@ class MapleFamily:
             ps.setInt(1, leaderId)
             ps.executeUpdate()
             rs = ps.getGeneratedKeys()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return 0
@@ -204,7 +204,7 @@ class MapleFamily:
     def writeToDB(self, bDisband: bool) -> None:
         try:
             con = DatabaseConnection.getConnection()
-            if !bDisband:
+            if not bDisband:
                 if self.changed:
                     ps = con.prepareStatement("UPDATE families SET notice = ? WHERE familyid = ?")
                     ps.setString(1, self.notice)
@@ -247,38 +247,38 @@ class MapleFamily:
             self.bDirty = True
             return
         for mgc in self.members.values():
-            if cids is None || (mgc.getId( in cids)):
+            if cids is None or (mgc.getId( in cids)):
                 if bcop == FCOp.DISBAND:
                     if mgc.isOnline():
                         World.Family.setFamily(0, 0, 0, 0, mgc.getCurrentRep(), mgc.getTotalRep(), mgc.getId())
                     else:
                         setOfflineFamilyStatus(0, 0, 0, 0, mgc.getCurrentRep(), mgc.getTotalRep(), mgc.getId())
                 else:
-                    if !mgc.isOnline() || mgc.getId() == exceptionId:
+                    if not mgc.isOnline() or mgc.getId() == exceptionId:
                         continue
                     World.Broadcast.sendFamilyPacket(mgc.getId(), packet, exceptionId, self.id)
 
     def buildNotifications(self) -> None:
-        if !self.bDirty:
+        if not self.bDirty:
             return
         final Iterator<Map.Entry<Integer, MapleFamilyCharacter>> toRemove = self.members.items().iterator()
         while toRemove.hasNext():
             mfc = toRemove.next().getValue()
-            if mfc.getJunior1() > 0 && self.getMFC(mfc.getJunior1()) is None:
+            if mfc.getJunior1() > 0 and self.getMFC(mfc.getJunior1()) is None:
                 mfc.setJunior1(0)
-            if mfc.getJunior2() > 0 && self.getMFC(mfc.getJunior2()) is None:
+            if mfc.getJunior2() > 0 and self.getMFC(mfc.getJunior2()) is None:
                 mfc.setJunior2(0)
-            if mfc.getSeniorId() > 0 && self.getMFC(mfc.getSeniorId()) is None:
+            if mfc.getSeniorId() > 0 and self.getMFC(mfc.getSeniorId()) is None:
                 mfc.setSeniorId(0)
             if mfc.getFamilyId() != self.id:
                 toRemove.remove()
-        if self.members < 2 && World.Family.getFamily(self.id) is not None:
+        if self.members < 2 and World.Family.getFamily(self.id) is not None:
             World.Family.disbandFamily(self.id)
         self.bDirty = False
 
     def setOnline(self, cid: int, online: bool, channel: int) -> None:
         mgc = self.getMFC(cid)
-        if mgc is not None && mgc.getFamilyId() == self.id:
+        if mgc is not None and mgc.getFamilyId() == self.id:
             if mgc.isOnline() != online:
                 self.broadcast(FamilyPacket.familyLoggedIn(online, mgc.getName()), cid, (mgc.getId() == self.leaderid) ? None : mgc.getPedigree())
             mgc.setOnline(online)
@@ -287,7 +287,7 @@ class MapleFamily:
 
     def setRep(self, cid: int, addrep: int, oldLevel: int) -> int:
         mgc = self.getMFC(cid)
-        if mgc is not None && mgc.getFamilyId() == self.id:
+        if mgc is not None and mgc.getFamilyId() == self.id:
             if oldLevel > mgc.getLevel():
                 addrep /= 2
             if mgc.isOnline():
@@ -331,7 +331,7 @@ class MapleFamily:
 
     def leaveFamily_mgc_skipLeader(self, mgc: Any, skipLeader: bool) -> None:
         self.bDirty = True
-        if mgc.getId() == self.leaderid && !skipLeader:
+        if mgc.getId() == self.leaderid and not skipLeader:
             self.leadername = None
             World.Family.disbandFamily(self.id)
         else:

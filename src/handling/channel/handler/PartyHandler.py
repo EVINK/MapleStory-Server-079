@@ -60,7 +60,7 @@ class PartyHandler:
                     c.getPlayer().setParty(party)
                     c.getSession().write(MaplePacketCreator.partyCreated(party.getId()))
                     break
-                if partyplayer == (party.getLeader()) && party.getMembers() == 1:
+                if partyplayer == (party.getLeader()) and party.getMembers() == 1:
                     c.getSession().write(MaplePacketCreator.partyCreated(party.getId()))
                     break
                 c.getPlayer().dropMessage(5, "你不能创建一个组队,因为你已经存在一个队伍中")
@@ -103,7 +103,7 @@ class PartyHandler:
                 if invited is None:
                     c.getSession().write(MaplePacketCreator.partyStatusMessage(18))
                     break
-                if invited.getParty() is not None || party is None:
+                if invited.getParty() is not None or party is None:
                     c.getSession().write(MaplePacketCreator.partyStatusMessage(16))
                     break
                 if party.getMembers() < 6:
@@ -112,24 +112,24 @@ class PartyHandler:
                 c.getSession().write(MaplePacketCreator.partyStatusMessage(17))
                 break
             # case 5:
-                if party is None || partyplayer is None:
+                if party is None or partyplayer is None:
                     break
-                if !partyplayer == (party.getLeader()):
+                if not partyplayer == (party.getLeader()):
                     break
                 if partyplayer == (party.getLeader()):
                     expelled = party.getMemberById(slea.readInt())
                     if expelled is not None:
                         World.Party.updateParty(party.getId(), PartyOperation.EXPEL, expelled)
-                        if c.getPlayer().getEventInstance() is not None && expelled.isOnline():
+                        if c.getPlayer().getEventInstance() is not None and expelled.isOnline():
                             c.getPlayer().getEventInstance().disbandParty()
-                        if c.getPlayer().getPyramidSubway() is not None && expelled.isOnline():
+                        if c.getPlayer().getPyramidSubway() is not None and expelled.isOnline():
                             c.getPlayer().getPyramidSubway().fail(c.getPlayer())
                     break
                 break
             # case 6:
                 if party is not None:
                     newleader = party.getMemberById(slea.readInt())
-                    if newleader is not None && partyplayer == (party.getLeader()):
+                    if newleader is not None and partyplayer == (party.getLeader()):
                         party.setLeader(newleader)
                         World.Party.updateParty(party.getId(), PartyOperation.SILENT_UPDATE, newleader)
                     c.getSession().write(MaplePacketCreator.enableActions())

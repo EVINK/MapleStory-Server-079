@@ -40,7 +40,7 @@ class MapleOxQuiz(MapleEvent):
             self.oxSchedule2 = None
 
     def onMapLoad(self, chr: Any) -> None:
-        if chr.getMapId() == self.mapid[0] && !chr.isGM():
+        if chr.getMapId() == self.mapid[0] and not chr.isGM():
             chr.canTalk(False)
 
     def reset(self) -> None:
@@ -61,51 +61,64 @@ class MapleOxQuiz(MapleEvent):
         self.sendQuestion(self.getMap(0))
 
     def sendQuestion_toSend(self, toSend: Any) -> None:
+        def _task_1():
+            number = 0
+            for mc in toSend.getCharactersThreadsafe():
+                if mc.isGM() or not mc.isAlive():
+                    number += 1
+            if toSend.getCharactersSize() - number <= 1 or MapleOxQuiz.self.timesAsked == 10:
+                toSend.broadcastMessage(MaplePacketCreator.serverNotice(6, "人数不足！活动自动结束！"))
+                MapleOxQuiz.self.unreset()
+                for chr in toSend.getCharactersThreadsafe():
+                    if chr is not None and not chr.isGM() and chr.isAlive():
+                        chr.canTalk(True)
+                        MapleOxQuiz.self.givePrize(chr)
+                        MapleOxQuiz.self.warpBack(chr)
+                return
+            final Map.Entry<Pair<Integer, Integer>, MapleOxQuizFactory.MapleOxQuizEntry> question = MapleOxQuizFactory.getInstance().grabRandomQuestion()
+            toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, True))
+            toSend.broadcastMessage(MaplePacketCreator.getClock(12))
+            if MapleOxQuiz.self.oxSchedule is not None:
+                MapleOxQuiz.self.oxSchedule.cancel(False)
+            MapleOxQuiz.self.oxSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
+                public void run()
+                    toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, False))
+                    MapleOxQuiz.self.timesAsked += 1
+                    for chr in toSend.getCharactersThreadsafe():
+                        if chr is not None and not chr.isGM() and chr.isAlive():
+                            if not MapleOxQuiz.self.isCorrectAnswer(chr, question.getValue().getAnswer()):
+                                chr.getStat().setHp(0)
+                                chr.updateSingleStat(MapleStat.HP, 0)
+                            else:
+                                chr.gainExp(3000, True, True, False)
+                    MapleOxQuiz.self.sendQuestion()
+
         if self.oxSchedule2 is not None:
             self.oxSchedule2.cancel(False)
-        self.oxSchedule2 = Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                number = 0
-                for mc in toSend.getCharactersThreadsafe():
-                    if mc.isGM() || !mc.isAlive():
-                        number += 1
-                if toSend.getCharactersSize() - number <= 1 || MapleOxQuiz.self.timesAsked == 10:
-                    toSend.broadcastMessage(MaplePacketCreator.serverNotice(6, "人数不足！活动自动结束！"))
-                    MapleOxQuiz.self.unreset()
-                    for chr in toSend.getCharactersThreadsafe():
-                        if chr is not None && !chr.isGM() && chr.isAlive():
-                            chr.canTalk(True)
-                            MapleOxQuiz.self.givePrize(chr)
-                            MapleOxQuiz.self.warpBack(chr)
-                    return
-                final Map.Entry<Pair<Integer, Integer>, MapleOxQuizFactory.MapleOxQuizEntry> question = MapleOxQuizFactory.getInstance().grabRandomQuestion()
-                toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, True))
-                toSend.broadcastMessage(MaplePacketCreator.getClock(12))
-                if MapleOxQuiz.self.oxSchedule is not None:
-                    MapleOxQuiz.self.oxSchedule.cancel(False)
-                MapleOxQuiz.self.oxSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
-                    public void run()
-                        toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, False))
-                        MapleOxQuiz.self.timesAsked += 1
-                        for chr in toSend.getCharactersThreadsafe():
-                            if chr is not None && !chr.isGM() && chr.isAlive():
-                                if !MapleOxQuiz.self.isCorrectAnswer(chr, question.getValue().getAnswer()):
-                                    chr.getStat().setHp(0)
-                                    chr.updateSingleStat(MapleStat.HP, 0)
-                                else:
-                                    chr.gainExp(3000, True, True, False)
-                        MapleOxQuiz.self.sendQuestion()
+        self.oxSchedule2 = Timer.EventTimer.getInstance().schedule(_task_1, 10000)
 
     def run(self) -> None:
+        def _task_1():
+            toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, False))
+            MapleOxQuiz.self.timesAsked += 1
+            for chr in toSend.getCharactersThreadsafe():
+                if chr is not None and not chr.isGM() and chr.isAlive():
+                    if not MapleOxQuiz.self.isCorrectAnswer(chr, question.getValue().getAnswer()):
+                        chr.getStat().setHp(0)
+                        chr.updateSingleStat(MapleStat.HP, 0)
+                    else:
+                        chr.gainExp(3000, True, True, False)
+            MapleOxQuiz.self.sendQuestion()
+
         number = 0
         for mc in toSend.getCharactersThreadsafe():
-            if mc.isGM() || !mc.isAlive():
+            if mc.isGM() or not mc.isAlive():
                 number += 1
-        if toSend.getCharactersSize() - number <= 1 || MapleOxQuiz.self.timesAsked == 10:
+        if toSend.getCharactersSize() - number <= 1 or MapleOxQuiz.self.timesAsked == 10:
             toSend.broadcastMessage(MaplePacketCreator.serverNotice(6, "人数不足！活动自动结束！"))
             MapleOxQuiz.self.unreset()
             for chr in toSend.getCharactersThreadsafe():
-                if chr is not None && !chr.isGM() && chr.isAlive():
+                if chr is not None and not chr.isGM() and chr.isAlive():
                     chr.canTalk(True)
                     MapleOxQuiz.self.givePrize(chr)
                     MapleOxQuiz.self.warpBack(chr)
@@ -115,23 +128,12 @@ class MapleOxQuiz(MapleEvent):
         toSend.broadcastMessage(MaplePacketCreator.getClock(12))
         if MapleOxQuiz.self.oxSchedule is not None:
             MapleOxQuiz.self.oxSchedule.cancel(False)
-        MapleOxQuiz.self.oxSchedule = Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                toSend.broadcastMessage(MaplePacketCreator.showOXQuiz(question.getKey().left, question.getKey().right, False))
-                MapleOxQuiz.self.timesAsked += 1
-                for chr in toSend.getCharactersThreadsafe():
-                    if chr is not None && !chr.isGM() && chr.isAlive():
-                        if !MapleOxQuiz.self.isCorrectAnswer(chr, question.getValue().getAnswer()):
-                            chr.getStat().setHp(0)
-                            chr.updateSingleStat(MapleStat.HP, 0)
-                        else:
-                            chr.gainExp(3000, True, True, False)
-                MapleOxQuiz.self.sendQuestion()
+        MapleOxQuiz.self.oxSchedule = Timer.EventTimer.getInstance().schedule(_task_1, 12000)
 
     def isCorrectAnswer(self, chr: Any, answer: int) -> bool:
         x = chr.getPosition().getX()
         y = chr.getPosition().getY()
-        if (x > -234.0 && y > -26.0 && answer == 0) || (x < -234.0 && y > -26.0 && answer == 1):
+        if (x > -234.0 and y > -26.0 and answer == 0) or (x < -234.0 and y > -26.0 and answer == 1):
             chr.dropMessage(6, "[OX答题活动] 恭喜答对!")
             return True
         chr.dropMessage(6, "[OX答题活动] 你答错了!")

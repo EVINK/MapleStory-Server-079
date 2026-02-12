@@ -50,7 +50,7 @@ class DumpQuests:
         return self.hadError
 
     def dumpQuests(self) -> None:
-        if !self.hadError:
+        if not self.hadError:
             psai = self.con.prepareStatement("INSERT INTO wz_questactitemdata(uniqueid, itemid, count, period, gender, job, jobEx, prop) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
             psas = self.con.prepareStatement("INSERT INTO wz_questactskilldata(uniqueid, skillid, skillLevel, masterLevel) VALUES (?, ?, ?, ?)")
             psaq = self.con.prepareStatement("INSERT INTO wz_questactquestdata(uniqueid, quest, state) VALUES (?, ?, ?)")
@@ -94,7 +94,7 @@ class DumpQuests:
         return ret
 
     def dumpQuests_psai_psas_psaq_ps_psr_psq_psa(self, psai: Any, psas: Any, psaq: Any, ps: Any, psr: Any, psq: Any, psa: Any) -> None:
-        if !self.update:
+        if not self.update:
             self.delete("DELETE FROM wz_questdata")
             self.delete("DELETE FROM wz_questactdata")
             self.delete("DELETE FROM wz_questactitemdata")
@@ -111,7 +111,7 @@ class DumpQuests:
         uniqueid = 0
         for qz in checkz.getChildren():
             self.id = int(qz.getName())
-            if self.update && self.doesExist("SELECT * FROM wz_questdata WHERE questid = " + self.id):
+            if self.update and self.doesExist("SELECT * FROM wz_questdata WHERE questid = " + self.id):
                 continue
             ps.setInt(1, self.id)
             for i in range(2):
@@ -125,7 +125,7 @@ class DumpQuests:
                         psr.setString(3, req.getName())
                         if req.getName() == ("fieldEnter"):
                             psr.setString(4, str(MapleDataTool.getIntConvert("0", req, 0)))
-                        elif req.getName() == ("end") || req.getName() == ("startscript") || req.getName() == ("endscript"):
+                        elif req.getName() == ("end") or req.getName() == ("startscript") or req.getName() == ("endscript"):
                             psr.setString(4, MapleDataTool.getString(req, ""))
                         else:
                             psr.setString(4, str(MapleDataTool.getInt(req, 0)))
@@ -148,7 +148,7 @@ class DumpQuests:
                                 childdata = child.get(x)
                                 if childdata is not None:
                                     dataStore.add(new Pair<Integer, Integer>(MapleDataTool.getInt(childdata.getChildByPath("id"), 0), MapleDataTool.getInt(childdata.getChildByPath("state"), 0)))
-                        elif req.getName() == ("item") || req.getName() == ("mob"):
+                        elif req.getName() == ("item") or req.getName() == ("mob"):
                             child = req.getChildren()
                             for x in range(child):
                                 childdata = child.get(x)
@@ -188,7 +188,7 @@ class DumpQuests:
                         else:
                             psa.setInt(4, MapleDataTool.getInt(act, 0))
                         applicableJobs = ""
-                        if act.getName() == ("sp") || act.getName() == ("skill"):
+                        if act.getName() == ("sp") or act.getName() == ("skill"):
                             index = 0
                             while act.getChildByPath(index + "/job") is not None:
                                 for d in act.getChildByPath(index + "/job"):
@@ -257,7 +257,7 @@ class DumpQuests:
                 ps.setInt(9, 0)
             ps.addBatch()
             pinfoData = pinfoz.getChildByPath(str(self.id))
-            if pinfoData is not None && pinfoData.getChildByPath("rank") is not None:
+            if pinfoData is not None and pinfoData.getChildByPath("rank") is not None:
                 psq.setInt(1, self.id)
                 for d3 in pinfoData.getChildByPath("rank"):
                     psq.setString(2, d3.getName())

@@ -147,12 +147,12 @@ class MapleStatEffect:
                 # case 13101002:
                     ret.mobCount = 6
                     break
-        if !ret.skill && ret.duration > -1:
+        if not ret.skill and ret.duration > -1:
             ret.overTime = True
         else:
             mapleStatEffect = ret
             mapleStatEffect.duration *= 1000
-            ret.overTime = (overTime || ret.isMorph() || ret.isPirateMorph() || ret.isFinalAttack())
+            ret.overTime = (overTime or ret.isMorph() or ret.isPirateMorph() or ret.isFinalAttack())
         statups = new ArrayList<Pair<MapleBuffStat, Integer>>()
         ret.mastery = MapleDataTool.getInt("mastery", source, 0)
         ret.watk = MapleDataTool.getInt("pad", source, 0)
@@ -204,7 +204,7 @@ class MapleStatEffect:
         ret.itemConNo = MapleDataTool.getInt("itemConNo", source, 0)
         ret.moveTo = MapleDataTool.getInt("moveTo", source, -1)
         monsterStatus = new EnumMap<MonsterStatus, Integer>(MonsterStatus.class)
-        if ret.overTime && ret.getSummonMovementType() is None:
+        if ret.overTime and ret.getSummonMovementType() is None:
             addBuffStatPairToListIfNotZero(statups, MapleBuffStat.物理攻击, ret.watk)
             addBuffStatPairToListIfNotZero(statups, MapleBuffStat.物理防御, ret.wdef)
             addBuffStatPairToListIfNotZero(statups, MapleBuffStat.魔法攻击, ret.matk)
@@ -555,7 +555,7 @@ class MapleStatEffect:
                     break
         if ret.isMonsterRiding():
             statups.add(new Pair<MapleBuffStat, Integer>(MapleBuffStat.骑兽技能, 1))
-        if ret.isMorph() || ret.isPirateMorph():
+        if ret.isMorph() or ret.isPirateMorph():
             statups.add(new Pair<MapleBuffStat, Integer>(MapleBuffStat.变身, ret.getMorph()))
         ret.monsterStatus = monsterStatus
         statups.trimToSize()
@@ -590,7 +590,7 @@ class MapleStatEffect:
                 # case 2100000:
                 # case 2200000:
                 # case 2300000:
-                    if obj is None || obj.getType() != MapleMapObjectType.MONSTER:
+                    if obj is None or obj.getType() != MapleMapObjectType.MONSTER:
                         return
                     mob = obj
                     if mob.getStats().isBoss():
@@ -619,24 +619,24 @@ class MapleStatEffect:
         return self.applyTo(applyfrom, applyto, primary, pos, self.duration)
 
     def applyTo_applyfrom_applyto_primary_pos_newDuration(self, applyfrom: Any, applyto: Any, primary: bool, pos: Any, newDuration: int) -> bool:
-        if self.is群体治愈() && (applyfrom.getMapId() == 749040100 || applyto.getMapId() == 749040100):
+        if self.is群体治愈() and (applyfrom.getMapId() == 749040100 or applyto.getMapId() == 749040100):
             return False
-        if self.sourceid == 4341006 && applyfrom.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) is None:
+        if self.sourceid == 4341006 and applyfrom.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) is None:
             applyfrom.getClient().getSession().write(MaplePacketCreator.enableActions())
             return False
-        if self.sourceid == 33101004 && applyfrom.getMap().isTown():
+        if self.sourceid == 33101004 and applyfrom.getMap().isTown():
             applyfrom.dropMessage(5, "你不能在城镇使用这种技能.")
             applyfrom.getClient().getSession().write(MaplePacketCreator.enableActions())
             return False
         hpchange = self.calcHPChange(applyfrom, primary)
         mpchange = self.calcMPChange(applyfrom, primary)
         if primary:
-            if self.itemConNo != 0 && !applyto.isClone():
+            if self.itemConNo != 0 and not applyto.isClone():
                 MapleInventoryManipulator.removeById(applyto.getClient(), GameConstants.getInventoryType(self.itemCon), self.itemCon, self.itemConNo, False, True)
-        elif !primary && self.is复活术():
+        elif not primary and self.is复活术():
             hpchange = applyto.getMaxHp()
             applyto.setStance(0)
-        if self.is净化() && self.makeChanceResult():
+        if self.is净化() and self.makeChanceResult():
             applyto.dispelDebuffs()
         elif self.is勇士的意志():
             applyto.dispelDebuff(MapleDisease.诱惑)
@@ -651,15 +651,15 @@ class MapleStatEffect:
             else:
                 hpchange = ((applyto.getHp() == 1) ? 0 : (applyto.getHp() - 1))
         hpmpupdate = new ArrayList<Pair<MapleStat, Integer>>(2)
-        if applyto.getMapId() != LoginServer.家族PK地图() || applyto.getMapId() != LoginServer.个人PK地图() || applyto.getMapId() != LoginServer.组队PK地图():
+        if applyto.getMapId() != LoginServer.家族PK地图() or applyto.getMapId() != LoginServer.个人PK地图() or applyto.getMapId() != LoginServer.组队PK地图():
             if hpchange != 0:
-                if hpchange < 0 && -hpchange > applyto.getHp() && !applyto.hasDisease(MapleDisease.ZOMBIFY):
+                if hpchange < 0 and -hpchange > applyto.getHp() and not applyto.hasDisease(MapleDisease.ZOMBIFY):
                     return False
                 applyto.setHp(applyto.getHp() + hpchange)
                 hpmpupdate.add(new Pair<MapleStat, Integer>(MapleStat.HP, applyto.getHp()))
                 applyto.updateSingleStat(MapleStat.HP, applyto.getHp())
             if mpchange != 0:
-                if mpchange < 0 && -mpchange > applyto.getMp():
+                if mpchange < 0 and -mpchange > applyto.getMp():
                     applyto.getClient().getSession().write(MaplePacketCreator.enableActions())
                     return False
                 applyto.setMp(applyto.getMp() + mpchange)
@@ -673,50 +673,50 @@ class MapleStatEffect:
             applyto.gainExp(self.expinc, True, True, False)
         elif GameConstants.isMonsterCard(self.sourceid):
             applyto.getMonsterBook().addCard(applyto.getClient(), self.sourceid)
-        elif self.is暗器伤人() && !applyto.isClone():
+        elif self.is暗器伤人() and not applyto.isClone():
             use = applyto.getInventory(MapleInventoryType.USE)
             itemz = False
             for i in range(use.getSlotLimit()):
                 item = use.getItem(i)
-                if item is not None && GameConstants.is飞镖道具(item.getItemId()) && item.getQuantity() >= 200:
+                if item is not None and GameConstants.is飞镖道具(item.getItemId()) and item.getQuantity() >= 200:
                     MapleInventoryManipulator.removeById(applyto.getClient(), MapleInventoryType.USE, item.getItemId(), 200, False, True)
                     itemz = True
                     break
-            if !itemz:
+            if not itemz:
                 return False
-        elif self.cp != 0 && applyto.getCarnivalParty() is not None:
+        elif self.cp != 0 and applyto.getCarnivalParty() is not None:
             applyto.getCarnivalParty().addCP(applyto, self.cp)
             applyto.CPUpdate(False, applyto.getAvailableCP(), applyto.getTotalCP(), 0)
             for chr in applyto.getMap().getCharactersThreadsafe():
                 chr.CPUpdate(True, applyto.getCarnivalParty().getAvailableCP(), applyto.getCarnivalParty().getTotalCP(), applyto.getCarnivalParty().getTeam())
-        elif self.nuffSkill != 0 && applyto.getParty() is not None:
+        elif self.nuffSkill != 0 and applyto.getParty() is not None:
             final MapleCarnivalFactory.MCSkill skil = MapleCarnivalFactory.getInstance().getSkill(self.nuffSkill)
             if skil is not None:
                 dis = skil.getDisease()
                 for chr2 in applyto.getMap().getCharactersThreadsafe():
-                    if (chr2.getParty() is None || chr2.getParty().getId() != applyto.getParty().getId()) && (skil.targetsAll || Randomizer.nextBoolean()):
+                    if (chr2.getParty() is None or chr2.getParty().getId() != applyto.getParty().getId()) and (skil.targetsAll or Randomizer.nextBoolean()):
                         if dis is None:
                             chr2.dispel()
                         elif skil.getSkill() is None:
                             chr2.giveDebuff(dis, 1, 30000, MapleDisease.getByDisease(dis), 1)
                         else:
                             chr2.giveDebuff(dis, skil.getSkill())
-                        if !skil.targetsAll:
+                        if not skil.targetsAll:
                             break
                         continue
-        if self.overTime && !self.is能量获得():
+        if self.overTime and not self.is能量获得():
             self.applyBuffEffect(applyfrom, applyto, primary, newDuration)
         if self.skill:
             self.removeMonsterBuff(applyfrom)
         if primary:
-            if (self.overTime || self.is群体治愈()) && !self.is能量获得():
+            if (self.overTime or self.is群体治愈()) and not self.is能量获得():
                 self.applyBuff(applyfrom, newDuration)
             if self.isMonsterBuff():
                 self.applyMonsterBuff(applyfrom)
         summonMovementType = self.getSummonMovementType()
         if summonMovementType is not None:
             tosummon = MapleSummon(applyfrom, this, Point((pos is None) ? applyfrom.getPosition() : pos), summonMovementType)
-            if !tosummon.is替身术():
+            if not tosummon.is替身术():
                 applyfrom.getCheatTracker().resetSummonAttack()
             applyfrom.getMap().spawnSummon(tosummon)
             applyfrom.addSummon(tosummon)
@@ -759,7 +759,7 @@ class MapleStatEffect:
                 target = applyto.getMap().getReturnMap()
             else:
                 target = ChannelServer.getInstance(applyto.getClient().getChannel()).getMapFactory().getMap(self.moveTo)
-                if target.getId() / 10000000 != 60 && applyto.getMapId() / 10000000 != 61 && target.getId() / 10000000 != 21 && applyto.getMapId() / 10000000 != 20 && target.getId() / 10000000 != 12 && target.getId() / 10000000 != applyto.getMapId() / 10000000:
+                if target.getId() / 10000000 != 60 and applyto.getMapId() / 10000000 != 61 and target.getId() / 10000000 != 21 and applyto.getMapId() / 10000000 != 20 and target.getId() / 10000000 != 12 and target.getId() / 10000000 != applyto.getMapId() / 10000000:
                     return False
             try:
                 applyto.changeMap(target, target.getPortal(0))
@@ -770,35 +770,35 @@ class MapleStatEffect:
         return False
 
     def isSoulStone(self) -> bool:
-        return self.skill && self.sourceid == 22181003
+        return self.skill and self.sourceid == 22181003
 
     def applyBuff(self, applyfrom: Any, newDuration: int) -> None:
         if self.isSoulStone():
             if applyfrom.getParty() is not None:
                 membrs = 0
                 for chr in applyfrom.getMap().getCharactersThreadsafe():
-                    if chr.getParty() is not None && chr.getParty() == (applyfrom.getParty()) && chr.isAlive():
+                    if chr.getParty() is not None and chr.getParty() == (applyfrom.getParty()) and chr.isAlive():
                         membrs += 1
                 awarded = []
                 while awarded < min(membrs, self.y):
                     for chr2 in applyfrom.getMap().getCharactersThreadsafe():
-                        if chr2.isAlive() && chr2.getParty() == (applyfrom.getParty()) && !(chr2 in awarded) && Randomizer.nextInt(self.y) == 0:
+                        if chr2.isAlive() and chr2.getParty() == (applyfrom.getParty()) and not (chr2 in awarded) and Randomizer.nextInt(self.y) == 0:
                             awarded.add(chr2)
                 for chr2 in awarded:
                     self.applyTo(applyfrom, chr2, False, None, newDuration)
                     chr2.getClient().getSession().write(MaplePacketCreator.showOwnBuffEffect(self.sourceid, 2))
                     chr2.getMap().broadcastMessage(chr2, MaplePacketCreator.showBuffeffect(chr2.getId(), self.sourceid, 2), False)
-        elif self.isPartyBuff() && (applyfrom.getParty() is not None || self.isGmBuff()):
+        elif self.isPartyBuff() and (applyfrom.getParty() is not None or self.isGmBuff()):
             bounds = self.calculateBoundingBox(applyfrom.getPosition(), applyfrom.isFacingLeft())
             affecteds = applyfrom.getMap().getMapObjectsInRect(bounds, Arrays.asList(MapleMapObjectType.PLAYER))
             for affectedmo in affecteds:
                 affected = affectedmo
-                if affected != applyfrom && (self.isGmBuff() || applyfrom.getParty() == (affected.getParty())):
-                    if (self.is复活术() && !affected.isAlive()) || (!self.is复活术() && affected.isAlive()):
+                if affected != applyfrom and (self.isGmBuff() or applyfrom.getParty() == (affected.getParty())):
+                    if (self.is复活术() and not affected.isAlive()) or (not self.is复活术() and affected.isAlive()):
                         self.applyTo(applyfrom, affected, False, None, newDuration)
                         affected.getClient().getSession().write(MaplePacketCreator.showOwnBuffEffect(self.sourceid, 2))
                         affected.getMap().broadcastMessage(affected, MaplePacketCreator.showBuffeffect(affected.getId(), self.sourceid, 2), False)
-                    if !self.is伺机待发():
+                    if not self.is伺机待发():
                         continue
                     for i in affected.getCooldowns():
                         if i.skillId != 5121010:
@@ -846,7 +846,7 @@ class MapleStatEffect:
                 break
 
     def calculateBoundingBox(self, posFrom: Any, facingLeft: bool) -> Any:
-        if self.lt is None || self.rb is None:
+        if self.lt is None or self.rb is None:
             return Rectangle(posFrom.x, posFrom.y, facingLeft ? 1 : -1, 1)
         mylt = None
         myrb = None
@@ -865,9 +865,9 @@ class MapleStatEffect:
         localDuration = self.alchemistModifyVal(chr, self.duration, False)
         chr.registerEffect(this, starttime, Timer.BuffTimer.getInstance().schedule(CancelEffectAction(chr, this, starttime), starttime + localDuration - int(time.time() * 1000)))
         summonMovementType = self.getSummonMovementType()
-        if summonMovementType is not None && !summonMovementType == (SummonMovementType.WALK_STATIONARY):
+        if summonMovementType is not None and not summonMovementType == (SummonMovementType.WALK_STATIONARY):
             tosummon = MapleSummon(chr, this, chr.getPosition(), summonMovementType)
-            if !tosummon.is替身术():
+            if not tosummon.is替身术():
                 chr.getCheatTracker().resetSummonAttack()
                 chr.getMap().spawnSummon(tosummon)
                 chr.addSummon(tosummon)
@@ -982,7 +982,7 @@ class MapleStatEffect:
                 applyto.handleOrbconsume()
                 break
             # default:
-                if self.isMorph() || self.isPirateMorph():
+                if self.isMorph() or self.isPirateMorph():
                     stat = Collections.singletonList(new Pair<MapleBuffStat, Integer>(MapleBuffStat.变身, self.getMorph(applyto)))
                     applyto.getMap().broadcastMessage(applyto, MaplePacketCreator.giveForeignBuff(applyto, applyto.getId(), stat, this), False)
                     break
@@ -990,7 +990,7 @@ class MapleStatEffect:
                     localDuration = 2100000000
                     mountid = parseMountInfo(applyto, self.sourceid)
                     mountid2 = parseMountInfo_Pure(applyto, self.sourceid)
-                    if mountid != 0 && mountid2 != 0:
+                    if mountid != 0 and mountid2 != 0:
                         stat2 = Collections.singletonList(new Pair<MapleBuffStat, Integer>(MapleBuffStat.骑兽技能, 0))
                         applyto.cancelEffectFromBuffStat(MapleBuffStat.战神抗压)
                         applyto.cancelEffectFromBuffStat(MapleBuffStat.伤害反击)
@@ -1019,7 +1019,7 @@ class MapleStatEffect:
                         applyto.getMap().broadcastMessage(applyto, MaplePacketCreator.giveForeignBuff(applyto, applyto.getId(), localstatups, this), False)
                         applyto.getClient().getSession().write(MaplePacketCreator.giveBuff(self.sourceid, localDuration, localstatups, this))
                         break
-                    if self.isBerserkFury() || self.berserk2 > 0:
+                    if self.isBerserkFury() or self.berserk2 > 0:
                         stat = Collections.singletonList(new Pair<MapleBuffStat, Integer>(MapleBuffStat.狂暴战魂, 1))
                         applyto.getMap().broadcastMessage(applyto, MaplePacketCreator.giveForeignBuff(applyto, applyto.getId(), stat, this), False)
                         break
@@ -1028,9 +1028,9 @@ class MapleStatEffect:
                         applyto.getMap().broadcastMessage(applyto, MaplePacketCreator.giveForeignBuff(applyto, applyto.getId(), stat, this), False)
                         break
                     break
-        if !self.isMonsterRiding_():
+        if not self.isMonsterRiding_():
             applyto.cancelEffect(this, True, -1, localstatups)
-        if normal && self.statups > 0:
+        if normal and self.statups > 0:
             applyto.getClient().getSession().write(MaplePacketCreator.giveBuff(self.skill ? self.sourceid : (-self.sourceid), localDuration, self.statups, this))
         starttime = int(time.time() * 1000)
         if localDuration > 0:
@@ -1054,7 +1054,7 @@ class MapleStatEffect:
             # case 20001004:
             # case 20011004:
             # case 30001004:
-                if player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-118)) is not None && player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-119)) is not None:
+                if player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-118)) is not None and player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-119)) is not None:
                     return player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-118)).getItemId()
                 return parseMountInfo_Pure(player, skillid)
             # default:
@@ -1069,7 +1069,7 @@ class MapleStatEffect:
             # case 20011004:
             # case 20021004:
             # case 80001000:
-                if player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-18)) is not None && player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-19)) is not None:
+                if player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-18)) is not None and player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-19)) is not None:
                     return player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-18)).getItemId()
                 return 0
             # default:
@@ -1078,7 +1078,7 @@ class MapleStatEffect:
     def calcHPChange(self, applyfrom: Any, primary: bool) -> int:
         hpchange = 0
         if self.hp != 0:
-            if !self.skill:
+            if not self.skill:
                 if primary:
                     hpchange += self.alchemistModifyVal(applyfrom, self.hp, True)
                 else:
@@ -1091,7 +1091,7 @@ class MapleStatEffect:
                     hpchange = -hpchange
         if self.hpR != 0.0:
             hpchange += (int)(applyfrom.getStat().getCurrentMaxHp() * self.hpR) / (applyfrom.hasDisease(MapleDisease.ZOMBIFY) ? 2 : 1)
-        if primary && self.hpCon != 0:
+        if primary and self.hpCon != 0:
             hpchange -= self.hpCon
         # switch (self.sourceid):
             # case 4211001:
@@ -1112,7 +1112,7 @@ class MapleStatEffect:
                 mpchange += self.mp
         if self.mpR != 0.0:
             mpchange += (int)(applyfrom.getStat().getCurrentMaxMp() * self.mpR)
-        if primary && self.mpCon != 0:
+        if primary and self.mpCon != 0:
             mod = 1.0
             ElemSkillId = getElementalAmp(applyfrom.getJob())
             if ElemSkillId != -1:
@@ -1130,7 +1130,7 @@ class MapleStatEffect:
         return mpchange
 
     def alchemistModifyVal(self, chr: Any, val: int, withX: bool) -> int:
-        if !self.skill:
+        if not self.skill:
             offset = chr.getStat().RecoveryUP
             alchemistEffect = self.getAlchemistEffect(chr)
             if alchemistEffect is not None:
@@ -1155,7 +1155,7 @@ class MapleStatEffect:
                     return None
                 return al.getEffect(chr.getSkillLevel(al))
             # default:
-                if !GameConstants.isResist(chr.getJob()):
+                if not GameConstants.isResist(chr.getJob()):
                     return None
                 al = SkillFactory.getSkill(30000002)
                 if chr.getSkillLevel(al) <= 0:
@@ -1183,7 +1183,7 @@ class MapleStatEffect:
                 return False
 
     def translated_is能量获得(self) -> bool:
-        return self.skill && (self.sourceid == 5110001 || self.sourceid == 15100004)
+        return self.skill and (self.sourceid == 5110001 or self.sourceid == 15100004)
 
     def isMonsterBuff(self) -> bool:
         # switch (self.sourceid):
@@ -1212,7 +1212,7 @@ class MapleStatEffect:
         self.partyBuff = pb
 
     def isPartyBuff(self) -> bool:
-        if self.lt is None || self.rb is None || !self.partyBuff:
+        if self.lt is None or self.rb is None or not self.partyBuff:
             return self.isSoulStone()
         # switch (self.sourceid):
             # case 1211003:
@@ -1231,10 +1231,10 @@ class MapleStatEffect:
                 return True
 
     def translated_is群体治愈(self) -> bool:
-        return self.sourceid == 2301002 || self.sourceid == 9101000
+        return self.sourceid == 2301002 or self.sourceid == 9101000
 
     def translated_is复活术(self) -> bool:
-        return self.sourceid == 9001005 || self.sourceid == 2321006
+        return self.sourceid == 9001005 or self.sourceid == 2321006
 
     def translated_is伺机待发(self) -> bool:
         return self.sourceid == 5121010
@@ -1285,7 +1285,7 @@ class MapleStatEffect:
         return self.statups
 
     def sameSource(self, effect: Any) -> bool:
-        return effect is not None && self.sourceid == effect.sourceid && self.skill == effect.skill
+        return effect is not None and self.sourceid == effect.sourceid and self.skill == effect.skill
 
     def getX(self) -> int:
         return self.x
@@ -1324,37 +1324,37 @@ class MapleStatEffect:
         return self.berserk
 
     def translated_is隐藏术(self) -> bool:
-        return self.skill && self.sourceid == 9001004
+        return self.skill and self.sourceid == 9001004
 
     def isDragonBlood(self) -> bool:
-        return self.skill && self.sourceid == 1311008
+        return self.skill and self.sourceid == 1311008
 
     def isBerserk(self) -> bool:
-        return self.skill && self.sourceid == 1320006
+        return self.skill and self.sourceid == 1320006
 
     def translated_is灵魂助力(self) -> bool:
-        return self.skill && self.sourceid == 1321007
+        return self.skill and self.sourceid == 1321007
 
     def translated_is生命分流(self) -> bool:
-        return self.skill && self.sourceid == 5101005
+        return self.skill and self.sourceid == 5101005
 
     def isMonsterRiding_(self) -> bool:
-        return self.skill && (self.sourceid == 1004 || self.sourceid == 10001004 || self.sourceid == 20001004 || self.sourceid == 20011004 || self.sourceid == 30001004)
+        return self.skill and (self.sourceid == 1004 or self.sourceid == 10001004 or self.sourceid == 20001004 or self.sourceid == 20011004 or self.sourceid == 30001004)
 
     def isMonsterRiding(self) -> bool:
-        return self.skill && (self.isMonsterRiding_() || GameConstants.getMountItem(self.sourceid) != 0)
+        return self.skill and (self.isMonsterRiding_() or GameConstants.getMountItem(self.sourceid) != 0)
 
     def isMonsterS(self) -> bool:
-        return (self.skill && self.sourceid == 1017) || self.sourceid == 20001019 || self.sourceid == 10001019
+        return (self.skill and self.sourceid == 1017) or self.sourceid == 20001019 or self.sourceid == 10001019
 
     def translated_is神圣祈祷(self) -> bool:
-        return self.skill && self.sourceid == 2311003
+        return self.skill and self.sourceid == 2311003
 
     def translated_is时空门(self) -> bool:
-        return self.skill && (self.sourceid == 2311002 || self.sourceid == 8001 || self.sourceid == 10008001 || self.sourceid == 20008001 || self.sourceid == 20018001 || self.sourceid == 30008001)
+        return self.skill and (self.sourceid == 2311002 or self.sourceid == 8001 or self.sourceid == 10008001 or self.sourceid == 20008001 or self.sourceid == 20018001 or self.sourceid == 30008001)
 
     def isMesoGuard(self) -> bool:
-        return self.skill && self.sourceid == 4211005
+        return self.skill and self.sourceid == 4211005
 
     def isCharge(self) -> bool:
         # switch (self.sourceid):
@@ -1382,13 +1382,13 @@ class MapleStatEffect:
                 return False
 
     def isMist(self) -> bool:
-        return self.skill && (self.sourceid == 2111003 || self.sourceid == 4221006 || self.sourceid == 12111005 || self.sourceid == 14111006 || self.sourceid == 22161003)
+        return self.skill and (self.sourceid == 2111003 or self.sourceid == 4221006 or self.sourceid == 12111005 or self.sourceid == 14111006 or self.sourceid == 22161003)
 
     def translated_is暗器伤人(self) -> bool:
-        return self.skill && self.sourceid == 4121006
+        return self.skill and self.sourceid == 4121006
 
     def translated_is净化(self) -> bool:
-        return self.skill && (self.sourceid == 2311001 || self.sourceid == 9001000)
+        return self.skill and (self.sourceid == 2311001 or self.sourceid == 9001000)
 
     def translated_is勇士的意志(self) -> bool:
         # switch (self.sourceid):
@@ -1482,7 +1482,7 @@ class MapleStatEffect:
         return self.level
 
     def getSummonMovementType(self) -> Any:
-        if !self.skill:
+        if not self.skill:
             return None
         # switch (self.sourceid):
             # case 3111002:
@@ -1541,19 +1541,19 @@ class MapleStatEffect:
                 return False
 
     def makeChanceResult(self) -> bool:
-        return self.prop == 100 || Randomizer.nextInt(99) < self.prop
+        return self.prop == 100 or Randomizer.nextInt(99) < self.prop
 
     def getProb(self) -> int:
         return self.prop
 
     def isBattleShip(self) -> bool:
-        return self.skill && self.sourceid == 5221006
+        return self.skill and self.sourceid == 5221006
 
     def getMpCon(self) -> int:
         return self.mpCon
 
     def calculateBoundingBox_posFrom_facingLeft_addedRange(self, posFrom: Any, facingLeft: bool, addedRange: int) -> Any:
-        if self.lt is None || self.rb is None:
+        if self.lt is None or self.rb is None:
             return Rectangle((facingLeft ? (-200 - addedRange) : 0) + posFrom.x, -100 - addedRange + posFrom.y, 200 + addedRange, 100 + addedRange)
         mylt = None
         myrb = None
@@ -1567,7 +1567,7 @@ class MapleStatEffect:
 
     def run(self) -> None:
         realTarget = self.target.get()
-        if realTarget is not None && !realTarget.isClone():
+        if realTarget is not None and not realTarget.isClone():
             realTarget.cancelEffect(self.effect, False, self.startTime)
 
 
@@ -1589,6 +1589,6 @@ class CancelEffectAction(Runnable):
 
     def run(self) -> None:
         realTarget = self.target.get()
-        if realTarget is not None && !realTarget.isClone():
+        if realTarget is not None and not realTarget.isClone():
             realTarget.cancelEffect(self.effect, False, self.startTime)
 

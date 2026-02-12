@@ -45,11 +45,6 @@ class CherryMSLotteryImpl(CherryMSLottery):
             cls._instance = cls()
         return cls._instance
 
-    def getInstance_cserv_mapFactory(self, cserv: Any, mapFactory: Any) -> Any:
-        if CherryMSLotteryImpl.instance is None:
-            CherryMSLotteryImpl.instance = CherryMSLotteryImpl(cserv, mapFactory)
-        return CherryMSLotteryImpl.instance
-
     def getChannelServer(self) -> Any:
         return self.cserv
 
@@ -137,7 +132,7 @@ class CherryMSLotteryImpl(CherryMSLottery):
                 sumNX += charZhuNX
                 if charType == 2:
                     toucount2 += 1
-                    if self.zjNum == 1 || self.zjNum == 3 || (self.zjNum == 5 && charNum == 1) || self.zjNum == 2 || self.zjNum == 4 || (self.zjNum == 6 && charNum == 2):
+                    if self.zjNum == 1 or self.zjNum == 3 or (self.zjNum == 5 and charNum == 1) or self.zjNum == 2 or self.zjNum == 4 or (self.zjNum == 6 and charNum == 2):
                         charZhuNX *= int(ServerProperties.getProperty("RoyMS.赌博A赔率", "2"))
                         charZhuNX -= charZhuNX * int(ServerProperties.getProperty("RoyMS.赌博手续费", "5")) / 100
                         chr.modifyCSPoints(1, charZhuNX)
@@ -151,7 +146,7 @@ class CherryMSLotteryImpl(CherryMSLottery):
                         chr.dropMessage(1, "本期号码：【" + self.zjNum + "】\r\n对不起您没有中奖，请继续努力")
                 if charType == 3:
                     toucount3 += 1
-                    if (self.zjNum > 4 && charNum > 4) || (self.zjNum < 3 && charNum < 3) || (self.zjNum >= 3 && self.zjNum <= 4 && charNum <= 4 && charNum >= 3):
+                    if (self.zjNum > 4 and charNum > 4) or (self.zjNum < 3 and charNum < 3) or (self.zjNum >= 3 and self.zjNum <= 4 and charNum <= 4 and charNum >= 3):
                         charZhuNX *= int(ServerProperties.getProperty("RoyMS.赌博B赔率", "3"))
                         charZhuNX -= charZhuNX * int(ServerProperties.getProperty("RoyMS.赌博手续费", "5")) / 100
                         chr.modifyCSPoints(1, charZhuNX)

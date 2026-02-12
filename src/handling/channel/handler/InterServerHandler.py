@@ -55,7 +55,7 @@ class InterServerHandler:
 
     def EnterCS(self, c: Any, chr: Any) -> None:
         if c.getPlayer().getMap().getId() != 180000001:
-            if !c.getChannelServer().WarpCSShop():
+            if not c.getChannelServer().WarpCSShop():
                 try:
                     socket = c.getChannelServer().getIP().split(":")
                     if c.getPlayer().getBuffedValue(MapleBuffStat.召唤兽) is not None:
@@ -88,7 +88,7 @@ class InterServerHandler:
 
     def EnterMTS(self, c: Any, chr: Any) -> None:
         if c.getPlayer().getMap().getId() != 180000001:
-            if !c.getChannelServer().WarpMTS():
+            if not c.getChannelServer().WarpMTS():
                 try:
                     socket = c.getChannelServer().getIP().split(":")
                     if c.getPlayer().getBuffedValue(MapleBuffStat.召唤兽) is not None:
@@ -151,7 +151,7 @@ class InterServerHandler:
                 IDs.add(rs.getInt("id"))
             rs.close()
             ps.close()
-            if !IDs == 0:
+            if not IDs == 0:
                 return IDs
             return None
         except Exception as ex:
@@ -161,7 +161,7 @@ class InterServerHandler:
     def Loggedin(self, playerid: int, c: Any) -> None:
         channelServer = c.getChannelServer()
         IDs = getSameAccountOtherCharID(playerid)
-        if IDs is not None && IDs > 0:
+        if IDs is not None and IDs > 0:
             for id in IDs:
                 channelServer.getPlayerStorage().deregisterPendingPlayer(id)
         transfer = channelServer.getPlayerStorage().getPendingCharacter(playerid)
@@ -179,12 +179,12 @@ class InterServerHandler:
         state = c.getLoginState()
         allowLogin = False
         allowLoginTip = None
-        if state == MapleClient.LOGIN_SERVER_TRANSITION || state == MapleClient.CHANGE_CHANNEL || state == MapleClient.LOGIN_NOTLOGGEDIN:
+        if state == MapleClient.LOGIN_SERVER_TRANSITION or state == MapleClient.CHANGE_CHANNEL or state == MapleClient.LOGIN_NOTLOGGEDIN:
             charNames = c.loadCharacterNames(c.getWorld())
-            allowLogin = !World.isCharacterListConnected(charNames)
-            if !allowLogin:
+            allowLogin = not World.isCharacterListConnected(charNames)
+            if not allowLogin:
                 allowLoginTip = World.getAllowLoginTip(charNames)
-        if !allowLogin:
+        if not allowLogin:
             msg = "检测账号下已有角色登陆游戏 服务端断开这个连接 [角色ID: " + player.getId() + " 名字: " + player.getName() + " ]\r\n" + allowLoginTip
             print("自动断开连接2")
             c.setPlayer(None)
@@ -277,19 +277,19 @@ class InterServerHandler:
         if c.getChannelServer().getDoubleExp() > 1:
             player.dropMessage(6, "[系统提示] 当前服务器处于双倍经验活动中，祝您玩的愉快！目前倍率：" + c.getChannelServer().getDoubleExp() + " 倍")
         阴森世界地图 = 551030200
-        if c.getPlayer().getHp() != 50 && (c.getPlayer().getBossLog("狮熊Boss") >= 1 || c.getPlayer().getBossLogChannel("狮熊Boss") > 0) && c.getPlayer().getMap().getId() != 阴森世界地图 && c.getPlayer().获取怪物数量(阴森世界地图) >= 1 && c.getPlayer().getBossLogChannel("狮熊Boss") == c.getChannel():
+        if c.getPlayer().getHp() != 50 and (c.getPlayer().getBossLog("狮熊Boss") >= 1 or c.getPlayer().getBossLogChannel("狮熊Boss") > 0) and c.getPlayer().getMap().getId() != 阴森世界地图 and c.getPlayer().获取怪物数量(阴森世界地图) >= 1 and c.getPlayer().getBossLogChannel("狮熊Boss") == c.getChannel():
             c.getPlayer().changeMap(阴森世界地图)
         else:
             c.getPlayer().resetBossLog("狮熊Boss")
         树精地图 = 541020800
-        if c.getPlayer().getHp() != 50 && (c.getPlayer().getBossLog("树精Boss") >= 1 || c.getPlayer().getBossLogChannel("树精Boss") > 0) && c.getPlayer().getMap().getId() != 树精地图 && c.getPlayer().获取怪物数量(树精地图) >= 0 && c.getPlayer().getBossLogChannel("树精Boss") == c.getChannel():
+        if c.getPlayer().getHp() != 50 and (c.getPlayer().getBossLog("树精Boss") >= 1 or c.getPlayer().getBossLogChannel("树精Boss") > 0) and c.getPlayer().getMap().getId() != 树精地图 and c.getPlayer().获取怪物数量(树精地图) >= 0 and c.getPlayer().getBossLogChannel("树精Boss") == c.getChannel():
             c.getPlayer().changeMap(树精地图)
         else:
             c.getPlayer().resetBossLog("树精Boss")
         普通黑龙地图阶段1 = 240060000
         普通黑龙地图阶段2 = 240060100
         普通黑龙地图阶段3 = 240060200
-        if c.getPlayer().getHp() != 50 && (c.getPlayer().getBossLog("普通黑龙") >= 1 || c.getPlayer().getBossLogChannel("普通黑龙") > 0):
+        if c.getPlayer().getHp() != 50 and (c.getPlayer().getBossLog("普通黑龙") >= 1 or c.getPlayer().getBossLogChannel("普通黑龙") > 0):
             type = c.getPlayer().getBossLogType("普通黑龙")
             mapID = 0
             # switch (type):
@@ -302,7 +302,7 @@ class InterServerHandler:
                 # case 3:
                     mapID = 普通黑龙地图阶段3
                     break
-            if c.getPlayer().getMap().getId() != mapID && c.getPlayer().getBossLogChannel("普通黑龙") == c.getChannel():
+            if c.getPlayer().getMap().getId() != mapID and c.getPlayer().getBossLogChannel("普通黑龙") == c.getChannel():
                 preheadCheck = 4
                 if type == 1:
                     if c.getPlayer().获取怪物数量(mapID) >= 1:
@@ -328,15 +328,15 @@ class InterServerHandler:
         else:
             c.getPlayer().resetBossLog("普通黑龙")
         扎昆祭台地图 = 280030000
-        if c.getPlayer().getHp() != 50 && (c.getPlayer().getBossLog("普通扎昆") >= 1 || c.getPlayer().getBossLogChannel("普通扎昆") > 0) && c.getPlayer().getMap().getId() != 扎昆祭台地图 && c.getPlayer().获取怪物数量(扎昆祭台地图) >= 1 && c.getPlayer().getBossLogChannel("普通扎昆") == c.getChannel():
+        if c.getPlayer().getHp() != 50 and (c.getPlayer().getBossLog("普通扎昆") >= 1 or c.getPlayer().getBossLogChannel("普通扎昆") > 0) and c.getPlayer().getMap().getId() != 扎昆祭台地图 and c.getPlayer().获取怪物数量(扎昆祭台地图) >= 1 and c.getPlayer().getBossLogChannel("普通扎昆") == c.getChannel():
             c.getPlayer().changeMap(扎昆祭台地图)
         else:
             c.getPlayer().resetBossLog("普通扎昆")
         player.checkCopyItems()
-        print("login: "+DateUtil.getCurrentDateStr()+"[服务端-用户:][名字:" + c.getPlayer().getName() + "][  等级:" + c.getPlayer().getLevel() + "] 进入游戏.")
+        print("login: "+DateUtil.getCurrentDateStr()+"[服务端-用户:][名字:" + c.getPlayer().getName() + "][ 等级:" + c.getPlayer().getLevel() + "] 进入游戏.")
 
     def ChangeChannel(self, slea: Any, c: Any, chr: Any) -> None:
-        if c.getPlayer().getTrade() is not None || !chr.isAlive() || chr.getEventInstance() is not None || chr.getMap() is None || FieldLimitType.ChannelSwitch.check(chr.getMap().getFieldLimit()):
+        if c.getPlayer().getTrade() is not None or not chr.isAlive() or chr.getEventInstance() is not None or chr.getMap() is None or FieldLimitType.ChannelSwitch.check(chr.getMap().getFieldLimit()):
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         chr.changeChannel(slea.readByte() + 1)

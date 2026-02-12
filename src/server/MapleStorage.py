@@ -91,7 +91,7 @@ class MapleStorage:
         return ret
 
     def saveToDB(self) -> None:
-        if !self.changed:
+        if not self.changed:
             return
         try:
             con = DatabaseConnection.getConnection()
@@ -109,7 +109,7 @@ class MapleStorage:
             print("Error saving storage" + ex)
 
     def takeOut(self, slot: int) -> Any:
-        if slot >= self.items || slot < 0:
+        if slot >= self.items or slot < 0:
             return None
         self.changed = True
         ret = self.items.remove(slot)
@@ -136,7 +136,7 @@ class MapleStorage:
     def getSlot(self, type: Any, slot: int) -> int:
         ret = 0
         it = self.typeItems.get(type)
-        if slot >= it || slot < 0:
+        if slot >= it or slot < 0:
             return -1
         for item in self.items:
             if item == it.get(slot):
@@ -207,7 +207,7 @@ class MapleStorage:
     def listByEquipOnlyId(self, equipOnlyId: int) -> list:
         ret = []
         for item in self.items:
-            if item.getEquipOnlyId() > 0 && item.getEquipOnlyId() == equipOnlyId:
+            if item.getEquipOnlyId() > 0 and item.getEquipOnlyId() == equipOnlyId:
                 ret.add(item)
         if ret > 1:
             Collections.sort(ret)

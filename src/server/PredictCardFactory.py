@@ -46,7 +46,7 @@ class PredictCardFactory:
         return cls._instance
 
     def initialize(self) -> None:
-        if !self.predictCard == 0 || !self.predictCardComment == 0:
+        if not self.predictCard == 0 or not self.predictCardComment == 0:
             return
         infoData = self.etcData.getData("PredictCard.img")
         for cardDat in infoData:
@@ -66,12 +66,12 @@ class PredictCardFactory:
             self.predictCardComment.put(int(commentDat.getName()), comment)
 
     def getPredictCard(self, id: int) -> Any:
-        if !(id in self.predictCard):
+        if not (id in self.predictCard):
             return None
         return self.predictCard.get(id)
 
     def getPredictCardComment(self, id: int) -> Any:
-        if !(id in self.predictCardComment):
+        if not (id in self.predictCardComment):
             return None
         return self.predictCardComment.get(id)
 

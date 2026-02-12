@@ -58,7 +58,7 @@ class DueyHandler:
                 recipient = slea.readMapleAsciiString()
                 quickdelivery = slea.readByte() > 0
                 finalcost = mesos + GameConstants.getTaxAmount(mesos) + (quickdelivery ? 0 : 5000)
-                if mesos >= 0 && mesos <= 100000000 && c.getPlayer().getMeso() >= finalcost:
+                if mesos >= 0 and mesos <= 100000000 and c.getPlayer().getMeso() >= finalcost:
                     accid = MapleCharacterUtil.getIdByName(recipient)
                     if accid != -1:
                         if accid != c.getAccID():
@@ -70,14 +70,14 @@ class DueyHandler:
                                     c.getSession().write(MaplePacketCreator.sendDuey(17, None))
                                     return
                                 flag = item.getFlag()
-                                if ItemFlag.UNTRADEABLE.check(flag) || ItemFlag.LOCK.check(flag):
+                                if ItemFlag.UNTRADEABLE.check(flag) or ItemFlag.LOCK.check(flag):
                                     c.getSession().write(MaplePacketCreator.enableActions())
                                     return
                                 if c.getPlayer().getItemQuantity(item.getItemId(), False) >= amount:
                                     ii = MapleItemInformationProvider.getInstance()
-                                    if !ii.isDropRestricted(item.getItemId()) && !ii.isAccountShared(item.getItemId()):
+                                    if not ii.isDropRestricted(item.getItemId()) and not ii.isAccountShared(item.getItemId()):
                                         if addItemToDB(item, amount, mesos, c.getPlayer().getName(), accid, recipientOn):
-                                            if GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId()):
+                                            if GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId()):
                                                 MapleInventoryManipulator.removeFromSlot(c, inv, itemPos, item.getQuantity(), True)
                                             else:
                                                 MapleInventoryManipulator.removeFromSlot(c, inv, itemPos, amount, True, False)
@@ -108,10 +108,10 @@ class DueyHandler:
                 dp = loadSingleItem(packageid, c.getPlayer().getId())
                 if dp is None:
                     return
-                if dp.getItem() is not None && !MapleInventoryManipulator.checkSpace(c, dp.getItem().getItemId(), dp.getItem().getQuantity(), dp.getItem().getOwner()):
+                if dp.getItem() is not None and not MapleInventoryManipulator.checkSpace(c, dp.getItem().getItemId(), dp.getItem().getQuantity(), dp.getItem().getOwner()):
                     c.getSession().write(MaplePacketCreator.sendDuey(16, None))
                     return
-                if dp.getMesos() < 0 || dp.getMesos() + c.getPlayer().getMeso() < 0:
+                if dp.getMesos() < 0 or dp.getMesos() + c.getPlayer().getMeso() < 0:
                     c.getSession().write(MaplePacketCreator.sendDuey(17, None))
                     return
                 removeItemFromDB(packageid, c.getPlayer().getId())
@@ -240,7 +240,7 @@ class DueyHandler:
     def getItemByPID(self, packageid: int) -> Any:
         try:
             iter = ItemLoader.DUEY.loadItems(False, packageid)
-            if iter is not None && iter > 0:
+            if iter is not None and iter > 0:
                 iterator = iter.values().iterator()
                 if iterator.hasNext():
                     i = iterator.next()

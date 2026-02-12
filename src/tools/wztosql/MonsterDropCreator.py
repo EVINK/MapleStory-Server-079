@@ -110,7 +110,7 @@ class MonsterDropCreator:
                     rate = getChance(itemid, idtoLog, (Integer.valueOf(idtoLog in bossCache)))
                     for (tools.Pair<Integer, MobInfo> Pair : mobCache)
                         if (Pair.getLeft()) == monsterId:
-                            if (Pair.getRight()).getBoss() <= 0 || rate > 100000:
+                            if (Pair.getRight()).getBoss() <= 0 or rate > 100000:
                             break
                             if (Pair.getRight()).rateItemDropLevel() == 2:
                                 rate *= 10
@@ -158,7 +158,7 @@ class MonsterDropCreator:
         SQL = ""
         bookName = ""
         for (tools.Pair<Integer, String> Pair : itemNameCache)
-            if (Pair.getLeft()) >= 2380000 && (Pair.getLeft()) <= 2388070:
+            if (Pair.getLeft()) >= 2380000 and (Pair.getLeft()) <= 2388070:
                 bookName.append(Pair.getRight())
                 if (" Card" in bookName):
                 bookName.delete(bookName - 5, bookName)
@@ -185,7 +185,7 @@ class MonsterDropCreator:
         i = 1
         lastmonsterbookid = 0
         for (tools.Pair<Integer, String> Pair : itemNameCache)
-            if (Pair.getLeft()) >= 2380000 && (Pair.getLeft()) <= 2388070:
+            if (Pair.getLeft()) >= 2380000 and (Pair.getLeft()) <= 2388070:
                 bookName.append(Pair.getRight())
                 if (" Card" in bookName):
                 bookName.delete(bookName - 5, bookName)
@@ -217,28 +217,28 @@ class MonsterDropCreator:
 
     def IncrementRate(self, itemid: int, times: int) -> int:
         if times == 0:
-            if itemid == 1002357 || itemid == 1002926 || itemid == 1002927:
+            if itemid == 1002357 or itemid == 1002926 or itemid == 1002927:
             return 999999
             if itemid == 1122000:
             return 999999
             if itemid == 1002972:
             return 999999
         elif times == 1:
-            if itemid == 1002357 || itemid == 1002926 || itemid == 1002927:
+            if itemid == 1002357 or itemid == 1002926 or itemid == 1002927:
             return 999999
             if itemid == 1122000:
             return 999999
             if itemid == 1002972:
             return 300000
         elif times == 2:
-            if itemid == 1002357 || itemid == 1002926 || itemid == 1002927:
+            if itemid == 1002357 or itemid == 1002926 or itemid == 1002927:
             return 300000
             if itemid == 1122000:
             return 300000
         elif times == 3:
-            if itemid == 1002357 || itemid == 1002926 || itemid == 1002927:
+            if itemid == 1002357 or itemid == 1002926 or itemid == 1002927:
             return 300000
-        elif times == 4 && (itemid == 1002357 || itemid == 1002926 || itemid == 1002927):
+        elif times == 4 and (itemid == 1002357 or itemid == 1002926 or itemid == 1002927):
             return 300000
         return -1
 
@@ -299,7 +299,7 @@ class MonsterDropCreator:
             # case 4000356:
             # case 4000364:
             # case 4000365:
-            if mobid == 2220000 || mobid == 3220000 || mobid == 3220001 || mobid == 4220000 || mobid == 5220000 || mobid == 5220002 || mobid == 5220003 || mobid == 6220000 || mobid == 4000119 || mobid == 7220000 || mobid == 7220002 || mobid == 8220000 || mobid == 8220002 || mobid == 8220003:
+            if mobid == 2220000 or mobid == 3220000 or mobid == 3220001 or mobid == 4220000 or mobid == 5220000 or mobid == 5220002 or mobid == 5220003 or mobid == 6220000 or mobid == 4000119 or mobid == 7220000 or mobid == 7220002 or mobid == 8220000 or mobid == 8220002 or mobid == 8220003:
             return 3
             return 1
         return 1

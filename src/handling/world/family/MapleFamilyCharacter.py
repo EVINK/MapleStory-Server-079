@@ -117,10 +117,10 @@ class MapleFamilyCharacter:
         return self.name
 
     def equals(self, other: Any) -> bool:
-        if !(isinstance(other, MapleFamilyCharacter)):
+        if not (isinstance(other, MapleFamilyCharacter)):
             return False
         o = other
-        return o.getId() == self.id && o.getName() == (self.name)
+        return o.getId() == self.id and o.getName() == (self.name)
 
     def setOnline(self, f: bool) -> None:
         self.online = f
@@ -148,11 +148,11 @@ class MapleFamilyCharacter:
                     ret.add(chr)
                 if chr.getJunior1() > 0:
                     chr2 = fam.getMFC(chr.getJunior1())
-                    if chr2 is not None && chr2.isOnline():
+                    if chr2 is not None and chr2.isOnline():
                         ret.add(chr2)
                 if chr.getJunior2() > 0:
                     chr2 = fam.getMFC(chr.getJunior2())
-                    if chr2 is not None && chr2.isOnline():
+                    if chr2 is not None and chr2.isOnline():
                         ret.add(chr2)
         if self.junior2 > 0:
             chr = fam.getMFC(self.junior2)
@@ -161,11 +161,11 @@ class MapleFamilyCharacter:
                     ret.add(chr)
                 if chr.getJunior1() > 0:
                     chr2 = fam.getMFC(chr.getJunior1())
-                    if chr2 is not None && chr2.isOnline():
+                    if chr2 is not None and chr2.isOnline():
                         ret.add(chr2)
                 if chr.getJunior2() > 0:
                     chr2 = fam.getMFC(chr.getJunior2())
-                    if chr2 is not None && chr2.isOnline():
+                    if chr2 is not None and chr2.isOnline():
                         ret.add(chr2)
         return ret
 
@@ -180,9 +180,9 @@ class MapleFamilyCharacter:
                 self.pedigree.add(self.seniorid)
                 if chr.getSeniorId() > 0:
                     self.pedigree.add(chr.getSeniorId())
-                if chr.getJunior1() > 0 && chr.getJunior1() != self.id:
+                if chr.getJunior1() > 0 and chr.getJunior1() != self.id:
                     self.pedigree.add(chr.getJunior1())
-                elif chr.getJunior2() > 0 && chr.getJunior2() != self.id:
+                elif chr.getJunior2() > 0 and chr.getJunior2() != self.id:
                     self.pedigree.add(chr.getJunior2())
         if self.junior1 > 0:
             chr = fam.getMFC(self.junior1)

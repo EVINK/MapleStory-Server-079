@@ -61,15 +61,16 @@ class MapleGuildRanking:
         return cls._instance
 
     def RankingUpdate(self) -> None:
-        Timer.WorldTimer.getInstance().register(Runnable()
-            public void run()
-                try:
-                    MapleGuildRanking.self.reload()
-                    MapleGuildRanking.self.showLevelRank()
-                    MapleGuildRanking.self.showMesoRank()
-                except Exception as ex:
-                    ex.printStackTrace()
-                    print("Could not update rankings")
+        def _task_1():
+            try:
+                MapleGuildRanking.self.reload()
+                MapleGuildRanking.self.showLevelRank()
+                MapleGuildRanking.self.showMesoRank()
+            except Exception as ex:
+                ex.printStackTrace()
+                print("Could not update rankings")
+
+        Timer.WorldTimer.getInstance().register(_task_1, 3600000, 3600000)
 
     def run(self) -> None:
         try:
@@ -122,7 +123,7 @@ class MapleGuildRanking:
     def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
         try:
             con = DatabaseConnection.getConnection()
-            ps = con.prepareStatement("SELECT `name`, `pvpkills`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpkills` WHERE gm < 1  DESC LIMIT 100")
+            ps = con.prepareStatement("SELECT `name`, `pvpkills`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpkills` WHERE gm < 1 DESC LIMIT 100")
             rs = ps.executeQuery()
             c.getSession().write(MaplePacketCreator.MapleMSpvpkills(npcid, rs))
             ps.close()
@@ -147,7 +148,7 @@ class MapleGuildRanking:
     def showMesoRank(self) -> None:
         self.ranks2.clear()
         con = DatabaseConnection.getConnection()
-        # try-with-resources: final PreparedStatement ps = con.prepareStatement("SELECT *, ( chr.meso + s.meso ) as money FROM `characters` as chr , `storages` as s WHERE chr.gm < 1  AND s.accountid = chr.accountid ORDER BY money DESC LIMIT 20")
+        # try-with-resources: final PreparedStatement ps = con.prepareStatement("SELECT *, ( chr.meso + s.meso ) as money FROM `characters` as chr , `storages` as s WHERE chr.gm < 1 AND s.accountid = chr.accountid ORDER BY money DESC LIMIT 20")
         try:
             rs = ps.executeQuery()
             while rs.next():

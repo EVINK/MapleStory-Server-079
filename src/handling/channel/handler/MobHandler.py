@@ -36,7 +36,7 @@ class MobHandler:
 
     def MoveMonster(self, slea: Any, c: Any, chr: Any) -> None:
         res = None
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
         return
         oid = slea.readInt()
         monster = chr.getMap().getMonsterByOid(oid)
@@ -60,16 +60,16 @@ class MobHandler:
                 realskill = (skillToUse.getLeft())
                 level = (skillToUse.getRight())
                 mobSkill = MobSkillFactory.getMobSkill(realskill, level)
-                if mobSkill is not None && !mobSkill.checkCurrentBuff(chr, monster):
+                if mobSkill is not None and not mobSkill.checkCurrentBuff(chr, monster):
                     now = int(time.time() * 1000)
                     ls = monster.getLastSkillUsed(realskill)
-                    if ls == 0 || now - ls > mobSkill.getCoolTime():
+                    if ls == 0 or now - ls > mobSkill.getCoolTime():
                         monster.setLastSkillUsed(realskill, now, mobSkill.getCoolTime())
                         reqHp = (int)(monster.getHp() / monster.getMobMaxHp() * 100.0)
                         if reqHp <= mobSkill.getHP():
                             used = True
                             mobSkill.applyEffect(chr, monster, True)
-            if !used:
+            if not used:
                 realskill = 0
                 level = 0
         slea.readByte()
@@ -88,7 +88,7 @@ class MobHandler:
             MovementParse.updatePosition(res, monster, -1)
             map.moveMonster(monster, monster.getPosition())
             map.broadcastMessage(chr, MobPacket.moveMonster(useSkill, skill, skill1, skill2, skill3, skill4, monster.getObjectId(), startPos, monster.getPosition(), res), monster.getPosition())
-            if !chr.isGM():
+            if not chr.isGM():
             chr.getCheatTracker().checkMoveMonster(monster.getPosition(), chr)
 
     def FriendlyDamage(self, slea: Any, chr: Any) -> None:
@@ -98,15 +98,15 @@ class MobHandler:
         mobfrom = map.getMonsterByOid(slea.readInt())
         slea.skip(4)
         mobto = map.getMonsterByOid(slea.readInt())
-        if mobfrom is not None && mobto is not None && mobto.getStats().isFriendly():
+        if mobfrom is not None and mobto is not None and mobto.getStats().isFriendly():
             damage = mobto.getStats().getLevel() * Randomizer.nextInt(mobto.getStats().getLevel()) / 2
             mobto.damage(chr, damage, True)
             checkShammos(chr, mobto, map)
 
     def checkShammos(self, chr: Any, mobto: Any, map: Any) -> None:
-        if !mobto.isAlive() && mobto.getId() == 9300275:
+        if not mobto.isAlive() and mobto.getId() == 9300275:
             for chrz in map.getCharactersThreadsafe():
-                if chrz.getParty() is not None && chrz.getParty().getLeader().getId() == chrz.getId():
+                if chrz.getParty() is not None and chrz.getParty().getLeader().getId() == chrz.getId():
                     if chrz.haveItem(2022698):
                         MapleInventoryManipulator.removeById(chrz.getClient(), MapleInventoryType.USE, 2022698, 1, False, True)
                         mobto.heal(mobto.getMobMaxHp(), mobto.getMobMaxMp(), True)
@@ -116,22 +116,22 @@ class MobHandler:
             mapp = chr.getClient().getChannelServer().getMapFactory().getMap(921120001)
             for chrz2 in map.getCharactersThreadsafe():
                 chrz2.changeMap(mapp, mapp.getPortal(0))
-        elif mobto.getId() == 9300275 && mobto.getEventInstance() is not None:
+        elif mobto.getId() == 9300275 and mobto.getEventInstance() is not None:
             mobto.getEventInstance().setProperty("HP", str(mobto.getHp()))
 
     def MonsterBomb(self, oid: int, chr: Any) -> None:
         monster = chr.getMap().getMonsterByOid(oid)
-        if monster is None || !chr.isAlive() || chr.isHidden():
+        if monster is None or not chr.isAlive() or chr.isHidden():
             return
         selfd = monster.getStats().getSelfD()
         if selfd != -1:
             chr.getMap().killMonster(monster, chr, False, False, selfd)
 
     def AutoAggro(self, monsteroid: int, chr: Any) -> None:
-        if chr is None || chr.getMap() is None || chr.isHidden():
+        if chr is None or chr.getMap() is None or chr.isHidden():
             return
         monster = chr.getMap().getMonsterByOid(monsteroid)
-        if monster is not None && chr.getPosition().distanceSq(monster.getPosition()) < 200000.0:
+        if monster is not None and chr.getPosition().distanceSq(monster.getPosition()) < 200000.0:
             if monster.getController() is not None:
                 if chr.getMap().getCharacterById(monster.getController().getId()) is None:
                     monster.switchController(chr, True)

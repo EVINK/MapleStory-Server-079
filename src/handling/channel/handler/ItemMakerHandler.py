@@ -39,7 +39,7 @@ class ItemMakerHandler:
                     final ItemMakerFactory.GemCreateEntry gem = ItemMakerFactory.getInstance().getGemInfo(toCreate)
                     if gem is None:
                         return
-                    if !hasSkill(c, gem.getReqSkillLevel()):
+                    if not hasSkill(c, gem.getReqSkillLevel()):
                         return
                     if c.getPlayer().getMeso() < gem.getCost():
                         return
@@ -58,7 +58,7 @@ class ItemMakerHandler:
                     final ItemMakerFactory.GemCreateEntry gem = ItemMakerFactory.getInstance().getGemInfo(toCreate)
                     if gem is None:
                         return
-                    if !hasSkill(c, gem.getReqSkillLevel()):
+                    if not hasSkill(c, gem.getReqSkillLevel()):
                         return
                     if c.getPlayer().getMeso() < gem.getCost():
                         return
@@ -82,7 +82,7 @@ class ItemMakerHandler:
                         return
                     if numEnchanter > create.getTUC():
                         return
-                    if !hasSkill(c, create.getReqSkillLevel()):
+                    if not hasSkill(c, create.getReqSkillLevel()):
                         return
                     if c.getPlayer().getMeso() < create.getCost():
                         return
@@ -93,7 +93,7 @@ class ItemMakerHandler:
                     c.getPlayer().gainMeso(-create.getCost(), False)
                     ii = MapleItemInformationProvider.getInstance()
                     toGive = ii.getEquipById(toCreate)
-                    if stimulator || numEnchanter > 0:
+                    if stimulator or numEnchanter > 0:
                         if c.getPlayer().haveItem(create.getStimulator(), 1, False, True):
                             ii.randomizeStats(toGive)
                             MapleInventoryManipulator.removeById(c, MapleInventoryType.ETC, create.getStimulator(), 1, False, False)
@@ -122,10 +122,10 @@ class ItemMakerHandler:
                 c.getPlayer().updateTick(slea.readInt())
                 slot = slea.readInt()
                 toUse = c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(slot)
-                if toUse is None || toUse.getItemId() != itemId || toUse.getQuantity() < 1:
+                if toUse is None or toUse.getItemId() != itemId or toUse.getQuantity() < 1:
                     return
                 ii2 = MapleItemInformationProvider.getInstance()
-                if !ii2.isDropRestricted(itemId) && !ii2.isAccountShared(itemId):
+                if not ii2.isDropRestricted(itemId) and not ii2.isAccountShared(itemId):
                     toGive2 = getCrystal(itemId, ii2.getReqLevel(itemId))
                     MapleInventoryManipulator.addById(c, toGive2[0], toGive2[1], 0)
                     MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.EQUIP, slot, 1, False)
@@ -136,21 +136,21 @@ class ItemMakerHandler:
     def getCreateCrystal(self, etc: int) -> int:
         level = MapleItemInformationProvider.getInstance().getItemMakeLevel(etc)
         itemid = None
-        if level >= 31 && level <= 50:
+        if level >= 31 and level <= 50:
             itemid = 4260000
-        elif level >= 51 && level <= 60:
+        elif level >= 51 and level <= 60:
             itemid = 4260001
-        elif level >= 61 && level <= 70:
+        elif level >= 61 and level <= 70:
             itemid = 4260002
-        elif level >= 71 && level <= 80:
+        elif level >= 71 and level <= 80:
             itemid = 4260003
-        elif level >= 81 && level <= 90:
+        elif level >= 81 and level <= 90:
             itemid = 4260004
-        elif level >= 91 && level <= 100:
+        elif level >= 91 and level <= 100:
             itemid = 4260005
-        elif level >= 101 && level <= 110:
+        elif level >= 101 and level <= 110:
             itemid = 4260006
-        elif level >= 111 && level <= 120:
+        elif level >= 111 and level <= 120:
             itemid = 4260007
         else:
             if level < 121:
@@ -160,27 +160,27 @@ class ItemMakerHandler:
 
     def getCrystal(self, itemid: int, level: int) -> list:
         all = { -1, 0 }
-        if level >= 31 && level <= 50:
+        if level >= 31 and level <= 50:
             all[0] = 4260000
-        elif level >= 51 && level <= 60:
+        elif level >= 51 and level <= 60:
             all[0] = 4260001
-        elif level >= 61 && level <= 70:
+        elif level >= 61 and level <= 70:
             all[0] = 4260002
-        elif level >= 71 && level <= 80:
+        elif level >= 71 and level <= 80:
             all[0] = 4260003
-        elif level >= 81 && level <= 90:
+        elif level >= 81 and level <= 90:
             all[0] = 4260004
-        elif level >= 91 && level <= 100:
+        elif level >= 91 and level <= 100:
             all[0] = 4260005
-        elif level >= 101 && level <= 110:
+        elif level >= 101 and level <= 110:
             all[0] = 4260006
-        elif level >= 111 && level <= 120:
+        elif level >= 111 and level <= 120:
             all[0] = 4260007
         else:
-            if level < 121 || level > 200:
+            if level < 121 or level > 200:
                 raise RuntimeError("Invalid Item Maker type" + level)
             all[0] = 4260008
-        if GameConstants.isWeapon(itemid) || GameConstants.isOverall(itemid):
+        if GameConstants.isWeapon(itemid) or GameConstants.isOverall(itemid):
             all[1] = Randomizer.rand(5, 11)
         else:
             all[1] = Randomizer.rand(3, 7)
@@ -259,7 +259,7 @@ class ItemMakerHandler:
     def checkRequiredNRemove(self, c: Any, recipe: list) -> int:
         itemid = 0
         for p in recipe:
-            if !c.getPlayer().haveItem(p.getLeft(), p.getRight(), False, True):
+            if not c.getPlayer().haveItem(p.getLeft(), p.getRight(), False, True):
                 return 0
         for p in recipe:
             itemid = p.getLeft()

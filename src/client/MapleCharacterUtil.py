@@ -30,7 +30,7 @@ class MapleCharacterUtil:
 
     @staticmethod
     def canCreateChar(name: str) -> bool:
-        return getIdByName(name) == -1 && isEligibleCharName(name)
+        return getIdByName(name) == -1 and isEligibleCharName(name)
 
     def isEligibleCharName(self, name: str) -> bool:
         if name > 15:
@@ -64,7 +64,7 @@ class MapleCharacterUtil:
             ps = con.prepareStatement("SELECT id FROM characters WHERE name = ?")
             ps.setString(1, name)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
@@ -84,19 +84,21 @@ class MapleCharacterUtil:
             ps = DatabaseConnection.getConnection().prepareStatement("SELECT * from game_poll_reply where AccountId = ?")
             ps.setInt(1, accountid)
             rs = ps.executeQuery()
-            prompt = !rs.next()
-        catch (SQLException ex) {}
+            prompt = not rs.next()
+        except SQLException as ex:
+            pass
         finally:
             try:
                 if ps is not None:
                     ps.close()
                 if rs is not None:
                     rs.close()
-            catch (SQLException ex2) {}
+            except SQLException as ex2:
+                pass
         return prompt
 
     def SetPoll(self, accountid: int, selection: int) -> bool:
-        if !PromptPoll(accountid):
+        if not PromptPoll(accountid):
             return False
         ps = None
         try:
@@ -104,12 +106,14 @@ class MapleCharacterUtil:
             ps.setInt(1, accountid)
             ps.setInt(2, selection)
             ps.execute()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
         finally:
             try:
                 if ps is not None:
                     ps.close()
-            catch (SQLException ex2) {}
+            except SQLException as ex2:
+                pass
         return True
 
     def Change_SecondPassword(self, accid: int, password: str, newpassword: str) -> int:
@@ -118,19 +122,19 @@ class MapleCharacterUtil:
             ps = con.prepareStatement("SELECT * from accounts where id = ?")
             ps.setInt(1, accid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return -1
             secondPassword = rs.getString("2ndpassword")
             salt2 = rs.getString("salt2")
-            if secondPassword is not None && salt2 is not None:
+            if secondPassword is not None and salt2 is not None:
                 secondPassword = LoginCrypto.rand_r(secondPassword)
-            elif secondPassword is None && salt2 is None:
+            elif secondPassword is None and salt2 is None:
                 rs.close()
                 ps.close()
                 return 0
-            if !check_ifPasswordEquals(secondPassword, password, salt2):
+            if not check_ifPasswordEquals(secondPassword, password, salt2):
                 rs.close()
                 ps.close()
                 return 1
@@ -146,7 +150,7 @@ class MapleCharacterUtil:
             ps.setString(1, SHA1hashedsecond)
             ps.setString(2, None)
             ps.setInt(3, accid)
-            if !ps.execute():
+            if not ps.execute():
                 ps.close()
                 return 2
             ps.close()
@@ -156,7 +160,7 @@ class MapleCharacterUtil:
             return -2
 
     def check_ifPasswordEquals(self, passhash: str, pwd: str, salt: str) -> bool:
-        return (LoginCryptoLegacy.isLegacyPassword(passhash) && LoginCryptoLegacy.checkPassword(pwd, passhash)) || (salt is None && LoginCrypto.checkSha1Hash(passhash, pwd)) || LoginCrypto.checkSaltedSha512Hash(passhash, pwd, salt)
+        return (LoginCryptoLegacy.isLegacyPassword(passhash) and LoginCryptoLegacy.checkPassword(pwd, passhash)) or (salt is None and LoginCrypto.checkSha1Hash(passhash, pwd)) or LoginCrypto.checkSaltedSha512Hash(passhash, pwd, salt)
 
     def getInfoByName(self, name: str, world: int) -> Any:
         try:
@@ -165,7 +169,7 @@ class MapleCharacterUtil:
             ps.setString(1, name)
             ps.setInt(2, world)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
                 return None

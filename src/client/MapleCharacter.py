@@ -346,7 +346,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def ReconstructChr(self, ct: Any, client: Any, isChannel: bool) -> Any:
         ret = MapleCharacter(True)
         ret.client = client
-        if !isChannel:
+        if not isChannel:
         ret.client.setChannel(ct.channel)
         ret.DebugMessage = ct.DebugMessage
         ret.id = ct.characterid
@@ -451,7 +451,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         partyid = ct.partyid
         if partyid >= 0:
             party = World.Party.getParty(partyid)
-            if party is not None && party.getMemberById(ret.id) is not None:
+            if party is not None and party.getMemberById(ret.id) is not None:
             ret.party = party
         for (Map.Entry<Integer, Object> qs : (Iterable<Map.Entry<Integer, Object>>)ct.Quest.items())
             quest = MapleQuest.getInstance((qs.getKey()))
@@ -507,7 +507,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps = con.prepareStatement("SELECT * FROM characters WHERE id = ?")
             ps.setInt(1, charid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 raise RuntimeError("Loading the Char Failed (char not found)")
             ret.name = rs.getString("name")
             ret.level = rs.getShort("level")
@@ -548,7 +548,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 ret.mgc = MapleGuildCharacter(ret)
             ret.buddylist = BuddyList(rs.getByte("buddyCapacity"))
             ret.subcategory = rs.getByte("subcategory")
-            ret.mount = MapleMount(ret, 0, (ret.job > 1000 && ret.job < 2000) ? 10001004 : ((ret.job >= 2000) ? ((ret.job == 2001 || (ret.job >= 2200 && ret.job <= 2218)) ? 20011004 : ((ret.job >= 3000) ? 30001004 : 20001004)) : 1004), 0, 1, 0)
+            ret.mount = MapleMount(ret, 0, (ret.job > 1000 and ret.job < 2000) ? 10001004 : ((ret.job >= 2000) ? ((ret.job == 2001 or (ret.job >= 2200 and ret.job <= 2218)) ? 20011004 : ((ret.job >= 3000) ? 30001004 : 20001004)) : 1004), 0, 1, 0)
             ret.rank = rs.getInt("rank")
             ret.rankMove = rs.getInt("rankMove")
             ret.jobRank = rs.getInt("jobRank")
@@ -604,7 +604,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 partyid = rs.getInt("party")
                 if partyid >= 0:
                     party = World.Party.getParty(partyid)
-                    if party is not None && party.getMemberById(ret.id) is not None:
+                    if party is not None and party.getMemberById(ret.id) is not None:
                         ret.party = party
                 ret.bookCover = rs.getInt("monsterbookcover")
                 ret.dojo = rs.getInt("dojo_pts")
@@ -652,7 +652,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 ps = con.prepareStatement("SELECT * FROM inventoryslot where characterid = ?")
                 ps.setInt(1, charid)
                 rs = ps.executeQuery()
-                if !rs.next():
+                if not rs.next():
                     rs.close()
                     ps.close()
                     raise RuntimeError("No Inventory slot column found in SQL. [inventoryslot]*********************")
@@ -700,7 +700,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 rs = ps.executeQuery()
                 while rs.next():
                     skil = SkillFactory.getSkill(rs.getInt("skillid"))
-                    if skil is not None && GameConstants.isApplicableSkill(rs.getInt("skillid")):
+                    if skil is not None and GameConstants.isApplicableSkill(rs.getInt("skillid")):
                         ret.skills.put(skil, SkillEntry(rs.getByte("skilllevel"), rs.getByte("masterlevel"), rs.getLong("expiration")))
                     else:
                         if skil is not None:
@@ -725,7 +725,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                         maxlevel_ = maxlevel
                         ret.BlessOfFairy_Origin = rs.getString("name")
                     else:
-                        if charid >= 17000 || compensate_previousEvans || ret.job < 2200 || ret.job > 2218:
+                        if charid >= 17000 or compensate_previousEvans or ret.job < 2200 or ret.job > 2218:
                             continue
                         for k in range(= GameConstants.getSkillBook(ret.job)):
                             remainingSp2 = ret.remainingSp
@@ -813,10 +813,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 ps = con.prepareStatement("SELECT * FROM mountdata WHERE characterid = ?")
                 ps.setInt(1, charid)
                 rs = ps.executeQuery()
-                if !rs.next():
+                if not rs.next():
                     raise RuntimeError("No mount data found on SQL column")
                 mount = ret.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-18))
-                ret.mount = MapleMount(ret, (mount is not None) ? mount.getItemId() : 0, (ret.job > 1000 && ret.job < 2000) ? 10001004 : ((ret.job >= 2000) ? ((ret.job == 2001 || ret.job >= 2200) ? 20011004 : ((ret.job >= 3000) ? 30001004 : 20001004)) : 1004), rs.getByte("Fatigue"), rs.getByte("Level"), rs.getInt("Exp"))
+                ret.mount = MapleMount(ret, (mount is not None) ? mount.getItemId() : 0, (ret.job > 1000 and ret.job < 2000) ? 10001004 : ((ret.job >= 2000) ? ((ret.job == 2001 or ret.job >= 2200) ? 20011004 : ((ret.job >= 3000) ? 30001004 : 20001004)) : 1004), rs.getByte("Fatigue"), rs.getByte("Level"), rs.getInt("Exp"))
                 ps.close()
                 rs.close()
                 ret.stats.recalcLocalStats(True)
@@ -833,7 +833,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     ps.close()
                 if rs is not None:
                     rs.close()
-            catch (SQLException ex) {}
+            except SQLException as ex:
+                pass
         return ret
 
     def saveNewCharToDB(self, chr: Any, type: int, db: bool) -> None:
@@ -885,7 +886,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps.setByte(37, chr.world)
             ps.executeUpdate()
             rs = ps.getGeneratedKeys()
-            if !rs.next():
+            if not rs.next():
                 raise DatabaseException("Inserting char failed.")
             chr.id = rs.getInt(1)
             ps.close()
@@ -944,7 +945,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 ps.execute()
             ps.close()
             con.commit()
-        catch (DatabaseException ex2) {}
+        except DatabaseException as ex2:
+            pass
         except Exception as e:
             e.printStackTrace()
             FileoutputUtil.outputFileError("logs/Packet_Except.log", e)
@@ -1017,7 +1019,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     rsa = psa.executeQuery()
                     if rsa.next():
                         sessionIP = rsa.getString("sessionIP")
-                        if sessionIP is not None && sessionIP.matches("/[0-9]{1,3}/..*"):
+                        if sessionIP is not None and sessionIP.matches("/[0-9]{1,3}/..*"):
                             psz = con.prepareStatement("INSERT INTO ipbans VALUES (DEFAULT, ?)")
                             psz.setString(1, sessionIP)
                             psz.execute()
@@ -1079,7 +1081,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         try:
             con.setTransactionIsolation(1)
             con.setAutoCommit(False)
-            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, monsterbookcover = ?, dojo_pts = ?, dojoRecord = ?, pets = ?, subcategory = ?, marriageId = ?, currentrep = ?, totalrep = ?, charmessage = ?, expression = ?, constellation = ?, blood = ?, month = ?, day = ?, beans = ?, prefix = ?, skillzq = ?, bosslog = ?, PGMaxDamage = ?, jzname = ?, mrfbrw = ?, mrsjrw = ?, mrsgrw = ?, mrsbossrw = ?, hythd = ?, mrsgrwa = ?, mrfbrwa = ?, mrsbossrwa = ?, mrsgrws = ?,  mrsbossrws = ?, mrfbrws = ?, mrsgrwas = ?,  mrsbossrwas = ?, mrfbrwas = ?, ddj = ?, vip = ?, djjl = ?, qiandao = ?, jf = ?, pvpDeaths = ?, pvpKills = ?, pvpVictory = ?, shaguai = ?, name = ? WHERE id = ?", DatabaseConnection.RETURN_GENERATED_KEYS)
+            ps = con.prepareStatement("UPDATE characters SET level = ?, fame = ?, str = ?, dex = ?, luk = ?, `int` = ?, exp = ?, hp = ?, mp = ?, maxhp = ?, maxmp = ?, sp = ?, ap = ?, gm = ?, skincolor = ?, gender = ?, job = ?, hair = ?, face = ?, map = ?, meso = ?, hpApUsed = ?, spawnpoint = ?, party = ?, buddyCapacity = ?, monsterbookcover = ?, dojo_pts = ?, dojoRecord = ?, pets = ?, subcategory = ?, marriageId = ?, currentrep = ?, totalrep = ?, charmessage = ?, expression = ?, constellation = ?, blood = ?, month = ?, day = ?, beans = ?, prefix = ?, skillzq = ?, bosslog = ?, PGMaxDamage = ?, jzname = ?, mrfbrw = ?, mrsjrw = ?, mrsgrw = ?, mrsbossrw = ?, hythd = ?, mrsgrwa = ?, mrfbrwa = ?, mrsbossrwa = ?, mrsgrws = ?, mrsbossrws = ?, mrfbrws = ?, mrsgrwas = ?, mrsbossrwas = ?, mrfbrwas = ?, ddj = ?, vip = ?, djjl = ?, qiandao = ?, jf = ?, pvpDeaths = ?, pvpKills = ?, pvpVictory = ?, shaguai = ?, name = ? WHERE id = ?", DatabaseConnection.RETURN_GENERATED_KEYS)
             ps.setInt(1, self.level)
             ps.setShort(2, self.fame)
             ps.setShort(3, self.stats.getStr())
@@ -1104,7 +1106,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps.setShort(17, self.job)
             ps.setInt(18, self.hair)
             ps.setInt(19, self.face)
-            if !fromcs && self.map is not None:
+            if not fromcs and self.map is not None:
                 if self.map.getForcedReturnId() != 999999999:
                     ps.setInt(20, self.map.getForcedReturnId())
                 else:
@@ -1291,7 +1293,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     if skill.getKey().getId() == skillID:
                         find = True
                         break
-                if !find:
+                if not find:
                     ps2 = con.prepareStatement("DELETE FROM skills WHERE `characterid` = ? AND `skillid` = ?")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, skillID)
@@ -1303,7 +1305,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps.setInt(1, self.id)
             for (final Map.Entry<ISkill, SkillEntry> skill2 : self.skills.items())
                 skillID2 = skill2.getKey().getId()
-                if !GameConstants.isApplicableSkill(skillID2):
+                if not GameConstants.isApplicableSkill(skillID2):
                     continue
                 ps.setInt(2, skillID2)
                 rs = ps.executeQuery()
@@ -1327,7 +1329,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 rs.close()
             ps.close()
             cd = self.getCooldowns()
-            if dc && cd > 0:
+            if dc and cd > 0:
                 ps = con.prepareStatement("INSERT INTO skills_cooldowns (charid, SkillID, StartTime, length) VALUES (?, ?, ?, ?)")
                 ps.setInt(1, self.getId())
                 for cooling in cd:
@@ -1343,10 +1345,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 locationType = rs.getInt("locationtype")
                 find2 = False
                 for savedLocationType in SavedLocationType.values():
-                    if self.savedLocations[savedLocationType.getValue()] != -1 && savedLocationType.getValue() == locationType:
+                    if self.savedLocations[savedLocationType.getValue()] != -1 and savedLocationType.getValue() == locationType:
                         find2 = True
                         break
-                if !find2:
+                if not find2:
                     ps2 = con.prepareStatement("DELETE FROM savedlocations WHERE `characterid` = ? AND `locationtype` = ?")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, locationType)
@@ -1385,10 +1387,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     buddyID = rs.getInt("buddyid")
                     find2 = False
                     for entry in self.buddylist.getBuddies():
-                        if entry is not None && entry.getCharacterId() == buddyID:
+                        if entry is not None and entry.getCharacterId() == buddyID:
                             find2 = True
                             break
-                    if !find2:
+                    if not find2:
                         ps2 = con.prepareStatement("DELETE FROM buddies WHERE `characterid` = ? AND `buddyid` = ?")
                         ps2.setInt(1, self.id)
                         ps2.setInt(2, buddyID)
@@ -1460,7 +1462,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     if self.rocks[l] == mapid:
                         find2 = True
                         break
-                if !find2:
+                if not find2:
                     ps2 = con.prepareStatement("DELETE FROM trocklocations WHERE `characterid` = ? AND `mapid` = ?")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, mapid)
@@ -1474,7 +1476,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 mapid2 = self.rocks[k]
                 ps.setInt(2, mapid2)
                 rs = ps.executeQuery()
-                if !rs.next():
+                if not rs.next():
                     ps2 = con.prepareStatement("INSERT INTO trocklocations (`characterid`, `mapid`) VALUES (?, ?)")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, mapid2)
@@ -1492,7 +1494,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     if self.regrocks[l] == mapid:
                         find2 = True
                         break
-                if !find2:
+                if not find2:
                     ps2 = con.prepareStatement("DELETE FROM regrocklocations WHERE `characterid` = ? AND `mapid` = ?")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, mapid)
@@ -1506,7 +1508,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 mapid2 = self.regrocks[k]
                 ps.setInt(2, mapid2)
                 rs = ps.executeQuery()
-                if !rs.next():
+                if not rs.next():
                     ps2 = con.prepareStatement("INSERT INTO regrocklocations (`characterid`, `mapid`) VALUES (?, ?)")
                     ps2.setInt(1, self.id)
                     ps2.setInt(2, mapid2)
@@ -1515,8 +1517,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 rs.close()
             ps.close()
             con.commit()
-        catch (SQLException ex2) {}
-        catch (DatabaseException ex3) {}
+        except SQLException as ex2:
+            pass
+        except DatabaseException as ex3:
+            pass
         except UnsupportedOperationException as e:
             FileoutputUtil.outputFileError(FileoutputUtil.PacketEx_Log, e)
             print(MapleClient.getLogMessage(this, "[charsave] 保存角色数据出现错误") + e)
@@ -1586,7 +1590,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def getNumQuest(self) -> int:
         i = 0
         for q in self.quests.values():
-            if q.getStatus() == 2 && !q.isCustom():
+            if q.getStatus() == 2 and not q.isCustom():
                 i += 1
         return i
 
@@ -1594,7 +1598,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return self.getQuest(MapleQuest.getInstance(quest)).getStatus()
 
     def getQuest(self, quest: Any) -> Any:
-        if !(quest in self.quests):
+        if not (quest in self.quests):
             return MapleQuestStatus(quest, 0)
         return self.quests.get(quest)
 
@@ -1607,13 +1611,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.quests.put(quest, stat)
 
     def setQuestAdd_quest_status_customData(self, quest: Any, status: int, customData: str) -> None:
-        if !(quest in self.quests):
+        if not (quest in self.quests):
             stat = MapleQuestStatus(quest, status)
             stat.setCustomData(customData)
             self.quests.put(quest, stat)
 
     def getQuestNAdd(self, quest: Any) -> Any:
-        if !(quest in self.quests):
+        if not (quest in self.quests):
             status = MapleQuestStatus(quest, 0)
             self.quests.put(quest, status)
             return status
@@ -1630,9 +1634,9 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def updateQuest_quest_update(self, quest: Any, update: bool) -> None:
         self.quests.put(quest.getQuest(), quest)
-        if !quest.isCustom():
+        if not quest.isCustom():
             self.client.getSession().write(MaplePacketCreator.updateQuest(quest))
-            if quest.getStatus() == 1 && !update:
+            if quest.getStatus() == 1 and not update:
                 self.client.getSession().write(MaplePacketCreator.updateQuestInfo(this, quest.getQuest().getId(), quest.getNpc(), 8))
 
     def getInfoQuest_Map(self) -> dict:
@@ -1644,7 +1648,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def isActiveBuffedValue(self, skillid: int) -> bool:
         allBuffs = [])
         for mbsvh in allBuffs:
-            if mbsvh.effect.isSkill() && mbsvh.effect.getSourceId() == skillid:
+            if mbsvh.effect.isSkill() and mbsvh.effect.getSourceId() == skillid:
                 return True
         return False
 
@@ -1666,7 +1670,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def isBuffFrom(self, stat: Any, skill: Any) -> bool:
         mbsvh = self.effects.get(stat)
-        return mbsvh is not None && mbsvh.effect.isSkill() && mbsvh.effect.getSourceId() == skill.getId()
+        return mbsvh is not None and mbsvh.effect.isSkill() and mbsvh.effect.getSourceId() == skill.getId()
 
     def getBuffSource(self, stat: Any) -> int:
         mbsvh = self.effects.get(stat)
@@ -1693,67 +1697,70 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return (mbsvh is None) ? None : mbsvh.effect
 
     def prepareDragonBlood(self, bloodEffect: Any) -> None:
+        def _task_1():
+            if MapleCharacter.self.stats.getHp() - bloodEffect.getX() > 1:
+                MapleCharacter.self.cancelBuffStats(MapleBuffStat.龙之力)
+            else:
+                MapleCharacter.self.addHP(-bloodEffect.getX())
+                MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(bloodEffect.getSourceId(), 5))
+                MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), bloodEffect.getSourceId(), 5), False)
+
         if self.dragonBloodSchedule is not None:
             self.dragonBloodSchedule.cancel(False)
-        self.dragonBloodSchedule = Timer.BuffTimer.getInstance().register(Runnable()
-            public void run()
-                if MapleCharacter.self.stats.getHp() - bloodEffect.getX() > 1:
-                    MapleCharacter.self.cancelBuffStats(MapleBuffStat.龙之力)
-                else:
-                    MapleCharacter.self.addHP(-bloodEffect.getX())
-                    MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(bloodEffect.getSourceId(), 5))
-                    MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), bloodEffect.getSourceId(), 5), False)
+        self.dragonBloodSchedule = Timer.BuffTimer.getInstance().register(_task_1, 4000, 4000)
 
     def startMapTimeLimitTask(self, time: int, to: Any) -> None:
+        def _task_1():
+            MapleCharacter.self.changeMap(to, to.getPortal(0))
+
         self.client.getSession().write(MaplePacketCreator.getClock(time))
         time *= 1000
-        self.mapTimeLimitTask = Timer.MapTimer.getInstance().register(Runnable()
-            public void run()
-                MapleCharacter.self.changeMap(to, to.getPortal(0))
+        self.mapTimeLimitTask = Timer.MapTimer.getInstance().register(_task_1, time, time)
 
     def startFishingTask(self, VIP: bool) -> None:
+        def _task_1():
+            expMulti = MapleCharacter.self.haveItem(2300001, 1, False, True)
+            if not expMulti and not MapleCharacter.self.haveItem(2300000, 1, False, True):
+                MapleCharacter.self.cancelFishingTask()
+                return
+            MapleInventoryManipulator.removeById(MapleCharacter.self.client, MapleInventoryType.USE, expMulti ? 2300001 : 2300000, 1, False, False)
+            randval = RandomRewards.getInstance().getFishingReward()
+            tmp = Randomizer.nextInt(10000)
+            tmp2 = Randomizer.nextInt(10000)
+            if tmp2 == 9998:
+                if MapleItemInformationProvider.getInstance().itemExists(2101070):
+                    if MapleCharacter.self.getInventory(GameConstants.getInventoryType(2101070)).getNextFreeSlot() > -1:
+                        MapleInventoryManipulator.addById(MapleCharacter.self.client, 2101070, 1, 0)
+                        MapleCharacter.self.client.getSession().write( UIPacket.fishingUpdate(0, 2101070))
+                        MapleCharacter.self.getClient().getSession().write(UIPacket.getTopMsg("钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(2101070) + "]not "))
+                        MapleCharacter.self.dropMessage(6, "钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(2101070) + "]not ")
+                        msg = MapleCharacter.self.getName() + "钓到了传说中的大金鱼，据说其肚内藏有无尽的宝物！"
+                        World.Broadcast.broadcastSmega(MaplePacketCreator.serverNotice(12, MapleCharacter.self.getClient().getChannel(), "[钓鱼公告] : " + msg).encode("utf-8"))
+                    else:
+                        MapleCharacter.self.dropMessage(5, "背包满了!停止钓鱼!")
+                        MapleCharacter.self.dropTopMsg("背包满了!停止钓鱼!")
+                        MapleCharacter.self.cancelFishingTask()
+            elif tmp == 9998:
+                MapleCharacter.self.dropMessage(5, "什么都没发生")
+                MapleCharacter.self.dropTopMsg("什么都没发生")
+            elif tmp % 3 == 0:
+                if MapleItemInformationProvider.getInstance().itemExists(randval):
+                    if MapleCharacter.self.getInventory(GameConstants.getInventoryType(randval)).getNextFreeSlot() > -1:
+                        MapleInventoryManipulator.addById(MapleCharacter.self.client, randval, 1, 0)
+                        MapleCharacter.self.client.getSession().write(UIPacket.fishingUpdate(0, randval))
+                        MapleCharacter.self.getClient().getSession().write(UIPacket.getTopMsg("钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(randval) + "]not "))
+                        MapleCharacter.self.dropMessage(6, "钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(randval) + "]not ")
+                    else:
+                        MapleCharacter.self.dropMessage(5, "背包满了!停止钓鱼!")
+                        MapleCharacter.self.dropTopMsg("背包满了!停止钓鱼!")
+                        MapleCharacter.self.cancelFishingTask()
+            else:
+                MapleCharacter.self.dropMessage(5, "运气背，什么都没钓到")
+            MapleCharacter.self.map.broadcastMessage(UIPacket.fishingCaught(MapleCharacter.self.id))
+
         time = 5000
         self.cancelFishingTask()
-        self.fishing = Timer.EtcTimer.getInstance().register(Runnable()
-            public void run()
-                expMulti = MapleCharacter.self.haveItem(2300001, 1, False, True)
-                if !expMulti && !MapleCharacter.self.haveItem(2300000, 1, False, True):
-                    MapleCharacter.self.cancelFishingTask()
-                    return
-                MapleInventoryManipulator.removeById(MapleCharacter.self.client, MapleInventoryType.USE, expMulti ? 2300001 : 2300000, 1, False, False)
-                randval = RandomRewards.getInstance().getFishingReward()
-                tmp = Randomizer.nextInt(10000)
-                tmp2 = Randomizer.nextInt(10000)
-                if tmp2 == 9998:
-                    if MapleItemInformationProvider.getInstance().itemExists(2101070):
-                        if MapleCharacter.self.getInventory(GameConstants.getInventoryType(2101070)).getNextFreeSlot() > -1:
-                            MapleInventoryManipulator.addById(MapleCharacter.self.client, 2101070, 1, 0)
-                            MapleCharacter.self.client.getSession().write( UIPacket.fishingUpdate(0, 2101070))
-                            MapleCharacter.self.getClient().getSession().write(UIPacket.getTopMsg("钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(2101070) + "]!"))
-                            MapleCharacter.self.dropMessage(6, "钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(2101070) + "]!")
-                            msg = MapleCharacter.self.getName() + "钓到了传说中的大金鱼，据说其肚内藏有无尽的宝物！"
-                            World.Broadcast.broadcastSmega(MaplePacketCreator.serverNotice(12, MapleCharacter.self.getClient().getChannel(), "[钓鱼公告] : " + msg).encode("utf-8"))
-                        else:
-                            MapleCharacter.self.dropMessage(5, "背包满了!停止钓鱼!")
-                            MapleCharacter.self.dropTopMsg("背包满了!停止钓鱼!")
-                            MapleCharacter.self.cancelFishingTask()
-                elif tmp == 9998:
-                    MapleCharacter.self.dropMessage(5, "什么都没发生")
-                    MapleCharacter.self.dropTopMsg("什么都没发生")
-                elif tmp % 3 == 0:
-                    if MapleItemInformationProvider.getInstance().itemExists(randval):
-                        if MapleCharacter.self.getInventory(GameConstants.getInventoryType(randval)).getNextFreeSlot() > -1:
-                            MapleInventoryManipulator.addById(MapleCharacter.self.client, randval, 1, 0)
-                            MapleCharacter.self.client.getSession().write(UIPacket.fishingUpdate(0, randval))
-                            MapleCharacter.self.getClient().getSession().write(UIPacket.getTopMsg("钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(randval) + "]!"))
-                            MapleCharacter.self.dropMessage(6, "钓鱼获得:[" + MapleItemInformationProvider.getInstance().getName(randval) + "]!")
-                        else:
-                            MapleCharacter.self.dropMessage(5, "背包满了!停止钓鱼!")
-                            MapleCharacter.self.dropTopMsg("背包满了!停止钓鱼!")
-                            MapleCharacter.self.cancelFishingTask()
-                else:
-                    MapleCharacter.self.dropMessage(5, "运气背，什么都没钓到")
-                MapleCharacter.self.map.broadcastMessage(UIPacket.fishingCaught(MapleCharacter.self.id))
+        self.fishing = Timer.EtcTimer.getInstance().register(_task_1, time, time)
 
     def dropTopMsg(self, message: str) -> None:
         self.client.getSession().write(UIPacket.getTopMsg(message))
@@ -1782,14 +1789,14 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.getMount().startSchedule()
         elif effect.is灵魂助力():
             self.prepareBeholderEffect()
-        elif effect.getSourceId() == 1001 || effect.getSourceId() == 10001001 || effect.getSourceId() == 1001:
+        elif effect.getSourceId() == 1001 or effect.getSourceId() == 10001001 or effect.getSourceId() == 1001:
             self.prepareRecovery()
         clonez = 0
         for statup in statups:
             if statup.getLeft() == MapleBuffStat.ILLUSION:
                 clonez = statup.getRight()
             value = statup.getRight()
-            if statup.getLeft() == MapleBuffStat.骑兽技能 && effect.getSourceId() == 5221006 && self.battleshipHP <= 0:
+            if statup.getLeft() == MapleBuffStat.骑兽技能 and effect.getSourceId() == 5221006 and self.battleshipHP <= 0:
                 self.battleshipHP = value
             self.effects.put(statup.getLeft(), MapleBuffStatValueHolder(effect, starttime, schedule, value))
         if clonez > 0:
@@ -1804,7 +1811,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         allBuffs = new EnumMap<MapleBuffStat, MapleBuffStatValueHolder>(self.effects)
         for (final Map.Entry<MapleBuffStat, MapleBuffStatValueHolder> stateffect : allBuffs.items())
             mbsvh = stateffect.getValue()
-            if mbsvh.effect.sameSource(effect) && (startTime == -1 || startTime == mbsvh.startTime):
+            if mbsvh.effect.sameSource(effect) and (startTime == -1 or startTime == mbsvh.startTime):
                 bstats.add(stateffect.getKey())
         return bstats
 
@@ -1816,18 +1823,18 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             if mbsvh is not None:
                 addMbsvh = True
                 for contained in effectsToCancel:
-                    if mbsvh.startTime == contained.startTime && contained.effect == mbsvh.effect:
+                    if mbsvh.startTime == contained.startTime and contained.effect == mbsvh.effect:
                         addMbsvh = False
                 if addMbsvh:
                     effectsToCancel.add(mbsvh)
-                if stat == MapleBuffStat.召唤兽 || stat == MapleBuffStat.替身术 || stat == MapleBuffStat.灵魂助力 || stat == MapleBuffStat.REAPER || stat == MapleBuffStat.RAINING_MINES:
+                if stat == MapleBuffStat.召唤兽 or stat == MapleBuffStat.替身术 or stat == MapleBuffStat.灵魂助力 or stat == MapleBuffStat.REAPER or stat == MapleBuffStat.RAINING_MINES:
                     summonId = mbsvh.effect.getSourceId()
                     toRemove = []
                     self.visibleMapObjectsLock.writeLock().lock()
                     self.summonsLock.writeLock().lock()
                     try:
                         for summon in self.summons:
-                            if summon.getSkill() == summonId || (stat == MapleBuffStat.RAINING_MINES && summonId == 33101008) || (summonId == 35121009 && summon.getSkill() == 35121011) || ((summonId == 86 || summonId == 88 || summonId == 91 || summonId == 180 || summonId == 96) && summon.getSkill() == summonId + 999) || ((summonId == 1085 || summonId == 1087 || summonId == 1090 || summonId == 1179 || summonId == 1154) && summon.getSkill() == summonId - 999):
+                            if summon.getSkill() == summonId or (stat == MapleBuffStat.RAINING_MINES and summonId == 33101008) or (summonId == 35121009 and summon.getSkill() == 35121011) or ((summonId == 86 or summonId == 88 or summonId == 91 or summonId == 180 or summonId == 96) and summon.getSkill() == summonId + 999) or ((summonId == 1085 or summonId == 1087 or summonId == 1090 or summonId == 1179 or summonId == 1154) and summon.getSkill() == summonId - 999):
                                 self.map.broadcastMessage(MaplePacketCreator.removeSummon(summon, True))
                                 self.map.removeMapObject(summon)
                                 self.visibleMapObjects.remove(summon)
@@ -1860,7 +1867,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     self.disposeClones()
                     clonez = True
         for cancelEffectCancelTasks in effectsToCancel:
-            if self.getBuffStats(cancelEffectCancelTasks.effect, cancelEffectCancelTasks.startTime) == 0 && cancelEffectCancelTasks.schedule is not None:
+            if self.getBuffStats(cancelEffectCancelTasks.effect, cancelEffectCancelTasks.startTime) == 0 and cancelEffectCancelTasks.schedule is not None:
                 cancelEffectCancelTasks.schedule.cancel(False)
         return clonez
 
@@ -1873,7 +1880,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if effect is None:
             return
         buffstats = None
-        if !overwrite:
+        if not overwrite:
             buffstats = self.getBuffStats(effect, startTime)
         else:
             buffstats = [])
@@ -1883,7 +1890,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             return
         clonez = self.deregisterBuffStats(buffstats)
         if effect.is时空门():
-            if !self.getDoors() == 0:
+            if not self.getDoors() == 0:
                 door = self.getDoors().iterator().next()
                 for chr in door.getTarget().getCharacters():
                     door.sendDestroyData(chr.client)
@@ -1904,12 +1911,12 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.cancelBuffStats(MapleBuffStat.神圣祈祷)
         elif effect.isAranCombo():
             self.aranCombo = 0
-        if !overwrite:
+        if not overwrite:
             if effect.isMonsterS():
                 self.cancelPlayerBuffs(buffstats, effect)
             else:
                 self.cancelPlayerBuffs(buffstats)
-            if effect.is隐藏术() && self.client.getChannelServer().getPlayerStorage().getCharacterById(self.getId()) is not None:
+            if effect.is隐藏术() and self.client.getChannelServer().getPlayerStorage().getCharacterById(self.getId()) is not None:
                 self.hidden = False
                 self.map.broadcastMessage(this, MaplePacketCreator.spawnPlayerMapobject(this), False)
                 for pet in self.pets:
@@ -1922,7 +1929,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     chr2 = clones[n]
                     if chr2.get() is not None:
                         self.map.broadcastMessage(chr2.get(), MaplePacketCreator.spawnPlayerMapobject(chr2.get()), False)
-        if !clonez:
+        if not clonez:
             clones2 = self.clones
             length2 = len(clones2)
             n2 = 0
@@ -1958,22 +1965,22 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.map.broadcastMessage(this, MaplePacketCreator.cancelForeignBuffMONSTERS(self.getId(), buffstats), False)
 
     def dispel(self) -> None:
-        if !self.isHidden():
+        if not self.isHidden():
             allBuffs = [])
             for mbsvh in allBuffs:
-                if mbsvh.effect.isSkill() && mbsvh.schedule is not None && !mbsvh.effect.isMorph():
+                if mbsvh.effect.isSkill() and mbsvh.schedule is not None and not mbsvh.effect.isMorph():
                     self.cancelEffect(mbsvh.effect, False, mbsvh.startTime)
 
     def dispelSkill(self, skillid: int) -> None:
         allBuffs = [])
         for mbsvh in allBuffs:
             if skillid == 0:
-                if mbsvh.effect.isSkill() && (mbsvh.effect.getSourceId() == 4331003 || mbsvh.effect.getSourceId() == 4331002 || mbsvh.effect.getSourceId() == 4341002 || mbsvh.effect.getSourceId() == 22131001 || mbsvh.effect.getSourceId() == 1321007 || mbsvh.effect.getSourceId() == 2121005 || mbsvh.effect.getSourceId() == 2221005 || mbsvh.effect.getSourceId() == 2311006 || mbsvh.effect.getSourceId() == 2321003 || mbsvh.effect.getSourceId() == 3111002 || mbsvh.effect.getSourceId() == 3111005 || mbsvh.effect.getSourceId() == 3211002 || mbsvh.effect.getSourceId() == 3211005 || mbsvh.effect.getSourceId() == 4111002):
+                if mbsvh.effect.isSkill() and (mbsvh.effect.getSourceId() == 4331003 or mbsvh.effect.getSourceId() == 4331002 or mbsvh.effect.getSourceId() == 4341002 or mbsvh.effect.getSourceId() == 22131001 or mbsvh.effect.getSourceId() == 1321007 or mbsvh.effect.getSourceId() == 2121005 or mbsvh.effect.getSourceId() == 2221005 or mbsvh.effect.getSourceId() == 2311006 or mbsvh.effect.getSourceId() == 2321003 or mbsvh.effect.getSourceId() == 3111002 or mbsvh.effect.getSourceId() == 3111005 or mbsvh.effect.getSourceId() == 3211002 or mbsvh.effect.getSourceId() == 3211005 or mbsvh.effect.getSourceId() == 4111002):
                     self.cancelEffect(mbsvh.effect, False, mbsvh.startTime)
                     break
                 continue
             else:
-                if mbsvh.effect.isSkill() && mbsvh.effect.getSourceId() == skillid:
+                if mbsvh.effect.isSkill() and mbsvh.effect.getSourceId() == skillid:
                     self.cancelEffect(mbsvh.effect, False, mbsvh.startTime)
                     break
                 continue
@@ -2002,7 +2009,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 # case 13111005:
                 case 15111002: {}
                 # default:
-                    if !mbsvh.effect.isMorph():
+                    if not mbsvh.effect.isMorph():
                         continue
                     self.cancelEffect(mbsvh.effect, False, mbsvh.startTime)
                     continue
@@ -2097,7 +2104,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ceffect = combo.getEffect(self.getSkillLevel(combo))
         if orbcount < ceffect.getX() + 1:
             neworbcount = orbcount + 1
-            if advComboSkillLevel > 0 && ceffect.makeChanceResult() && neworbcount < ceffect.getX() + 1:
+            if advComboSkillLevel > 0 and ceffect.makeChanceResult() and neworbcount < ceffect.getX() + 1:
                 neworbcount += 1
             stat = Collections.singletonList(new Pair<MapleBuffStat, Integer>(MapleBuffStat.斗气集中, neworbcount))
             self.setBuffedValue(MapleBuffStat.斗气集中, neworbcount)
@@ -2337,7 +2344,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if self.map.getId() == nowmapid:
             self.client.getSession().write(warpPacket)
             self.map.removePlayer(this)
-            if !self.isClone() && self.client.getChannelServer().getPlayerStorage().getCharacterById(self.getId()) is not None:
+            if not self.isClone() and self.client.getChannelServer().getPlayerStorage().getCharacterById(self.getId()) is not None:
                 self.map = to
                 self.setPosition(pos)
                 self.setStance(0)
@@ -2348,7 +2355,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.silentPartyUpdate()
             self.getClient().getSession().write(MaplePacketCreator.updateParty(self.getClient().getChannel(), self.party, PartyOperation.SILENT_UPDATE, None))
             self.updatePartyMemberHP()
-        if pyramid && self.pyramidSubway is not None:
+        if pyramid and self.pyramidSubway is not None:
             self.pyramidSubway.onChangeMap(this, to.getId())
 
     def leaveMap(self, map: Any) -> None:
@@ -2374,9 +2381,9 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def changeJob(self, newJob: int) -> None:
         try:
-            isEv = GameConstants.isEvan(self.job) || GameConstants.isResist(self.job)
+            isEv = GameConstants.isEvan(self.job) or GameConstants.isResist(self.job)
             self.job = newJob
-            if newJob != 0 && newJob != 1000 && newJob != 2000 && newJob != 2001 && newJob != 3000:
+            if newJob != 0 and newJob != 1000 and newJob != 2000 and newJob != 2001 and newJob != 3000:
                 if isEv:
                     remainingSp = self.remainingSp
                     skillBook = GameConstants.getSkillBook(newJob)
@@ -2390,10 +2397,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                         remainingSp3 = self.remainingSp
                         skillBook3 = GameConstants.getSkillBook(newJob)
                         remainingSp3[skillBook3] += 2
-            if newJob > 0 && !self.isGM():
+            if newJob > 0 and not self.isGM():
                 self.resetStatsByJob(True)
-                if !GameConstants.isEvan(newJob):
-                    if self.getLevel() > ((newJob == 200) ? 8 : 10) && newJob % 100 == 0 && newJob % 1000 / 100 > 0:
+                if not GameConstants.isEvan(newJob):
+                    if self.getLevel() > ((newJob == 200) ? 8 : 10) and newJob % 100 == 0 and newJob % 1000 / 100 > 0:
                         remainingSp4 = self.remainingSp
                         skillBook4 = GameConstants.getSkillBook(newJob)
                         remainingSp4[skillBook4] += 3 * (self.getLevel() - ((newJob == 200) ? 8 : 10))
@@ -2499,7 +2506,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             if skills is not None:
                 for i in skills:
                     skil = SkillFactory.getSkill(i)
-                    if skil is not None && !skil.isInvisible() && skil.isFourthJob() && self.getSkillLevel(skil) <= 0 && self.getMasterLevel(skil) <= 0 && skil.getMasterLevel() > 0:
+                    if skil is not None and not skil.isInvisible() and skil.isFourthJob() and self.getSkillLevel(skil) <= 0 and self.getMasterLevel(skil) <= 0 and skil.getMasterLevel() > 0:
                         self.changeSkillLevel(skil, 0, skil.getMasterLevel())
 
     def gainAp(self, ap: int) -> None:
@@ -2533,7 +2540,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def getAllSkillLevels(self) -> int:
         rett = 0
         for (Map.Entry<ISkill, SkillEntry> ret : self.skills.items())
-            if !(ret.getKey()).isBeginnerSkill() && (ret.getValue()).skillevel > 0:
+            if not (ret.getKey()).isBeginnerSkill() and (ret.getValue()).skillevel > 0:
             rett += (ret.getValue()).skillevel
         return rett
 
@@ -2543,11 +2550,11 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.changeSkillLevel(skill, newLevel, newMasterlevel, skill.isTimeLimited() ? (int(time.time() * 1000) + 2592000000) : -1)
 
     def changeSkillLevel_skill_newLevel_newMasterlevel_expiration(self, skill: Any, newLevel: int, newMasterlevel: int, expiration: int) -> None:
-        if skill is None || (!GameConstants.isApplicableSkill(skill.getId()) && !GameConstants.isApplicableSkill_(skill.getId())):
+        if skill is None or (not GameConstants.isApplicableSkill(skill.getId()) and not GameConstants.isApplicableSkill_(skill.getId())):
             return
         self.client.getSession().write(MaplePacketCreator.updateSkill(skill.getId(), newLevel, newMasterlevel, expiration))
-        if newLevel == 0 && newMasterlevel == 0:
-            if !(skill in self.skills):
+        if newLevel == 0 and newMasterlevel == 0:
+            if not (skill in self.skills):
                 return
             self.skills.remove(skill)
         else:
@@ -2561,7 +2568,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if skill is None:
             return
         self.client.getSession().write(MaplePacketCreator.updateSkill(skill.getId(), newLevel, newMasterlevel, -1))
-        if newLevel == 0 && newMasterlevel == 0:
+        if newLevel == 0 and newMasterlevel == 0:
             if (skill in self.skills):
                 self.skills.remove(skill)
         else:
@@ -2582,7 +2589,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         = 0
         while i < len(charmID):
             quantity = self.getItemQuantity(charmID[i], False)
-            if possesed == 0 && quantity > 0:
+            if possesed == 0 and quantity > 0:
                 possesed = quantity
                 break
         if possesed > 0:
@@ -2599,10 +2606,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.cancelEffectFromBuffStat(MapleBuffStat.REAPER)
             self.cancelEffectFromBuffStat(MapleBuffStat.替身术)
             self.checkFollow()
-            if self.job != 0 && self.job != 1000 && self.job != 2000:
+            if self.job != 0 and self.job != 1000 and self.job != 2000:
                 diepercentage = 0.0
                 expforlevel = GameConstants.getExpNeededForLevel(self.level)
-                if self.map.isTown() || FieldLimitType.RegularExpLoss.check(self.map.getFieldLimit()):
+                if self.map.isTown() or FieldLimitType.RegularExpLoss.check(self.map.getFieldLimit()):
                     diepercentage = 0.01
                 else:
                     v8 = 0.0
@@ -2616,7 +2623,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     v9 = 0
                 self.exp = v9
             self.updateSingleStat(MapleStat.EXP, self.exp)
-            if !self.stats.checkEquipDurabilitys(this, -100):
+            if not self.stats.checkEquipDurabilitys(this, -100):
                 self.dropMessage(5, "耐久度已经归零.")
             if self.pyramidSubway is not None:
                 self.stats.setHp(50)
@@ -2626,7 +2633,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if self.party is not None:
             channel = self.client.getChannel()
             for partychar in self.party.getMembers():
-                if partychar.getMapid() == self.getMapId() && partychar.getChannel() == channel:
+                if partychar.getMapid() == self.getMapId() and partychar.getChannel() == channel:
                     other = ChannelServer.getInstance(channel).getPlayerStorage().getCharacterByName(partychar.getName())
                     if other is None:
                         continue
@@ -2638,7 +2645,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             return
         channel = self.client.getChannel()
         for partychar in self.party.getMembers():
-            if partychar.getMapid() == self.getMapId() && partychar.getChannel() == channel:
+            if partychar.getMapid() == self.getMapId() and partychar.getChannel() == channel:
                 other = ChannelServer.getInstance(channel).getPlayerStorage().getCharacterByName(partychar.getName())
                 if other is None:
                     continue
@@ -2677,7 +2684,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.lastRecoveryTime = int(time.time() * 1000)
 
     def canRecovery(self) -> bool:
-        return self.lastRecoveryTime > 0 && self.lastRecoveryTime + 5000 < int(time.time() * 1000) + 5000
+        return self.lastRecoveryTime > 0 and self.lastRecoveryTime + 5000 < int(time.time() * 1000) + 5000
 
     def doRecovery(self) -> None:
         eff = self.getStatForBuff(MapleBuffStat.团队治疗)
@@ -2723,7 +2730,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         try:
             prevexp = self.getExp()
             needed = GameConstants.getExpNeededForLevel(self.level)
-            if self.level >= int(ServerProperties.getProperty("RoyMS.MLevel")) || (GameConstants.isKOC(self.job) && self.level >= int(ServerProperties.getProperty("RoyMS.QLevel"))):
+            if self.level >= int(ServerProperties.getProperty("RoyMS.MLevel")) or (GameConstants.isKOC(self.job) and self.level >= int(ServerProperties.getProperty("RoyMS.QLevel"))):
                 if self.exp + total > needed:
                     self.setExp(needed)
                 else:
@@ -2784,10 +2791,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if pty > 1:
             组队经验值 = (int)((float)(gain / 20.0) * (pty + 1))
             totalExp += 组队经验值
-        if gain > 0 && totalExp < gain:
+        if gain > 0 and totalExp < gain:
             totalExp = 2147483647
         needed = GameConstants.getExpNeededForLevel(self.level)
-        if self.level >= int(ServerProperties.getProperty("RoyMS.MLevel")) || (GameConstants.isKOC(self.job) && self.level >= int(ServerProperties.getProperty("RoyMS.QLevel"))):
+        if self.level >= int(ServerProperties.getProperty("RoyMS.MLevel")) or (GameConstants.isKOC(self.job) and self.level >= int(ServerProperties.getProperty("RoyMS.QLevel"))):
             if self.exp + totalExp > needed:
                 self.setExp(needed)
             else:
@@ -2879,7 +2886,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         for inv in MapleInventoryType.values():
             for item in self.getInventory(inv):
                 expiration = item.getExpiration()
-                if expiration != -1 && !GameConstants.isPet(item.getItemId()) && currenttime > expiration:
+                if expiration != -1 and not GameConstants.isPet(item.getItemId()) and currenttime > expiration:
                     if ItemFlag.LOCK.check(item.getFlag()):
                         tobeunlock.add(item)
                     else:
@@ -2887,7 +2894,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                             continue
                         toberemove.add(new Pair<MapleInventoryType, IItem>(inv, item))
                 else:
-                    if item.getItemId() != 5000054 || item.getPet() is None || item.getPet().getSecondsLeft() > 0:
+                    if item.getItemId() != 5000054 or item.getPet() is None or item.getPet().getSecondsLeft() > 0:
                         continue
                     toberemove.add(new Pair<MapleInventoryType, IItem>(inv, item))
         for itemz in toberemove:
@@ -2904,7 +2911,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         skilz = []
         toberem = []
         for (final Map.Entry<ISkill, SkillEntry> skil : self.skills.items())
-            if skil.getValue().expiration != -1 && currenttime > skil.getValue().expiration:
+            if skil.getValue().expiration != -1 and currenttime > skil.getValue().expiration:
                 toberem.add(skil.getKey())
         for skil2 in toberem:
             skilz.add(skil2.getId())
@@ -2969,7 +2976,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.client.getSession().write(MaplePacketCreator.showMesoGain(gain, inChat))
 
     def controlMonster(self, monster: Any, aggro: bool) -> None:
-        if self.clone || monster is None:
+        if self.clone or monster is None:
             return
         monster.setController(this)
         self.controlledLock.writeLock().lock()
@@ -2980,7 +2987,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.client.getSession().write(MobPacket.controlMonster(monster, False, aggro))
 
     def stopControllingMonster(self, monster: Any) -> None:
-        if self.clone || monster is None:
+        if self.clone or monster is None:
             return
         self.controlledLock.writeLock().lock()
         try:
@@ -2990,7 +2997,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.controlledLock.writeLock().unlock()
 
     def checkMonsterAggro(self, monster: Any) -> None:
-        if self.clone || monster is None:
+        if self.clone or monster is None:
             return
         if monster.getController() == this:
             monster.setControllerHasAggro(True)
@@ -3009,26 +3016,26 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def mobKilled(self, id: int, skillID: int) -> None:
         for q in self.quests.values():
             if q.getStatus() == 1:
-                if !q.hasMobKills():
+                if not q.hasMobKills():
                     continue
-                if !q.mobKilled(id, skillID):
+                if not q.mobKilled(id, skillID):
                     continue
                 self.client.getSession().write(MaplePacketCreator.updateQuestMobKills(q))
-                if !q.getQuest().canComplete(this, None):
+                if not q.getQuest().canComplete(this, None):
                     continue
                 self.client.getSession().write(MaplePacketCreator.getShowQuestCompletion(q.getQuest().getId()))
 
     def getStartedQuests(self) -> list:
         ret = []
         for q in self.quests.values():
-            if q.getStatus() == 1 && !q.isCustom():
+            if q.getStatus() == 1 and not q.isCustom():
                 ret.add(q)
         return ret
 
     def getCompletedQuests(self) -> list:
         ret = []
         for q in self.quests.values():
-            if q.getStatus() == 2 && !q.isCustom():
+            if q.getStatus() == 2 and not q.isCustom():
                 ret.add(q)
         return ret
 
@@ -3037,7 +3044,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def getSkillLevel_skill(self, skill: Any) -> int:
         ret = self.skills.get(skill)
-        if ret is None || ret.skillevel <= 0:
+        if ret is None or ret.skillevel <= 0:
             return 0
         return min(skill.getMaxLevel(), ret.skillevel + (skill.isBeginnerSkill() ? 0 : self.stats.incAllskill))
 
@@ -3060,61 +3067,61 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.remainingAp += 5
         maxhp = self.stats.getMaxHp()
         maxmp = self.stats.getMaxMp()
-        if self.job == 0 || self.job == 1000 || self.job == 2000 || self.job == 2001 || self.job == 3000:
+        if self.job == 0 or self.job == 1000 or self.job == 2000 or self.job == 2001 or self.job == 3000:
             maxhp += Randomizer.rand(12, 16)
             maxmp += Randomizer.rand(10, 12)
-        elif self.job >= 100 && self.job <= 132:
+        elif self.job >= 100 and self.job <= 132:
             improvingMaxHP = SkillFactory.getSkill(1000001)
             slevel = self.getSkillLevel(improvingMaxHP)
             if slevel > 0:
                 maxhp += improvingMaxHP.getEffect(slevel).getX()
             maxhp += Randomizer.rand(24, 28)
             maxmp += Randomizer.rand(4, 6)
-        elif self.job >= 200 && self.job <= 232:
+        elif self.job >= 200 and self.job <= 232:
             improvingMaxMP = SkillFactory.getSkill(2000001)
             slevel = self.getSkillLevel(improvingMaxMP)
             if slevel > 0:
                 maxmp += improvingMaxMP.getEffect(slevel).getX() * 2
             maxhp += Randomizer.rand(10, 14)
             maxmp += Randomizer.rand(22, 24)
-        elif self.job >= 3200 && self.job <= 3212:
+        elif self.job >= 3200 and self.job <= 3212:
             maxhp += Randomizer.rand(20, 24)
             maxmp += Randomizer.rand(42, 44)
-        elif (self.job >= 300 && self.job <= 322) || (self.job >= 400 && self.job <= 434) || (self.job >= 1300 && self.job <= 1311) || (self.job >= 1400 && self.job <= 1411) || (self.job >= 3300 && self.job <= 3312):
+        elif (self.job >= 300 and self.job <= 322) or (self.job >= 400 and self.job <= 434) or (self.job >= 1300 and self.job <= 1311) or (self.job >= 1400 and self.job <= 1411) or (self.job >= 3300 and self.job <= 3312):
             maxhp += Randomizer.rand(20, 24)
             maxmp += Randomizer.rand(14, 16)
-        elif (self.job >= 500 && self.job <= 522) || (self.job >= 3500 && self.job <= 3512):
+        elif (self.job >= 500 and self.job <= 522) or (self.job >= 3500 and self.job <= 3512):
             improvingMaxHP = SkillFactory.getSkill(5100000)
             slevel = self.getSkillLevel(improvingMaxHP)
             if slevel > 0:
                 maxhp += improvingMaxHP.getEffect(slevel).getX()
             maxhp += Randomizer.rand(22, 26)
             maxmp += Randomizer.rand(18, 22)
-        elif self.job >= 1100 && self.job <= 1111:
+        elif self.job >= 1100 and self.job <= 1111:
             improvingMaxHP = SkillFactory.getSkill(11000000)
             slevel = self.getSkillLevel(improvingMaxHP)
             if slevel > 0:
                 maxhp += improvingMaxHP.getEffect(slevel).getX()
             maxhp += Randomizer.rand(24, 28)
             maxmp += Randomizer.rand(4, 6)
-        elif self.job >= 1200 && self.job <= 1211:
+        elif self.job >= 1200 and self.job <= 1211:
             improvingMaxMP = SkillFactory.getSkill(12000000)
             slevel = self.getSkillLevel(improvingMaxMP)
             if slevel > 0:
                 maxmp += improvingMaxMP.getEffect(slevel).getX() * 2
             maxhp += Randomizer.rand(10, 14)
             maxmp += Randomizer.rand(22, 24)
-        elif self.job >= 1500 && self.job <= 1512:
+        elif self.job >= 1500 and self.job <= 1512:
             improvingMaxHP = SkillFactory.getSkill(15100000)
             slevel = self.getSkillLevel(improvingMaxHP)
             if slevel > 0:
                 maxhp += improvingMaxHP.getEffect(slevel).getX()
             maxhp += Randomizer.rand(22, 26)
             maxmp += Randomizer.rand(18, 22)
-        elif self.job >= 2100 && self.job <= 2112:
+        elif self.job >= 2100 and self.job <= 2112:
             maxhp += Randomizer.rand(50, 52)
             maxmp += Randomizer.rand(4, 6)
-        elif self.job >= 2200 && self.job <= 2218:
+        elif self.job >= 2200 and self.job <= 2218:
             maxhp += Randomizer.rand(12, 16)
             maxmp += Randomizer.rand(50, 52)
         else:
@@ -3125,7 +3132,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.level += 1
         level = self.getLevel()
         World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "[升级提示]" + self.getName() + "在" + self.getMap().getMapName() + " 等级达到" + level + "级，大家一起祝贺一下吧。"))
-        if (level == 3 || level == 6 || level == 9 || level == 12 || level == 15 || level == 18 || level == 21 || level == 24 || level == 27 || level == 30 || level == 33 || level == 36 || level == 39 || level == 42 || level == 45 || level == 48 || level == 51 || level == 54 || level == 57 || level == 60 || level == 63 || level == 66 || level == 69 || level == 72 || level == 75 || level == 78 || level == 81 || level == 84 || level == 87 || level == 90 || level == 93 || level == 96 || level == 99) {}
+        if (level == 3 or level == 6 or level == 9 or level == 12 or level == 15 or level == 18 or level == 21 or level == 24 or level == 27 or level == 30 or level == 33 or level == 36 or level == 39 or level == 42 or level == 45 or level == 48 or level == 51 or level == 54 or level == 57 or level == 60 or level == 63 or level == 66 or level == 69 or level == 72 or level == 75 or level == 78 or level == 81 or level == 84 or level == 87 or level == 90 or level == 93 or level == 96 or level == 99) {}
         maxhp = min(30000, maxhp)
         maxmp = min(30000, maxmp)
         statup = new ArrayList<Pair<MapleStat, Integer>>(8)
@@ -3136,7 +3143,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         statup.add(new Pair<MapleStat, Integer>(MapleStat.MP, maxmp))
         statup.add(new Pair<MapleStat, Integer>(MapleStat.EXP, self.exp))
         statup.add(new Pair<MapleStat, Integer>(MapleStat.LEVEL, level))
-        if self.isGM() || (self.job != 0 && self.job != 1000 && self.job != 2000 && self.job != 2001 && self.job != 3000):
+        if self.isGM() or (self.job != 0 and self.job != 1000 and self.job != 2000 and self.job != 2001 and self.job != 3000):
             remainingSp = self.remainingSp
             skillBook = GameConstants.getSkillBook(self.job)
             remainingSp[skillBook] += 3
@@ -3259,7 +3266,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def isMapObjectVisible(self, mo: Any) -> bool:
         self.visibleMapObjectsLock.readLock().lock()
         try:
-            return !self.clone && (mo in self.visibleMapObjects)
+            return not self.clone and (mo in self.visibleMapObjects)
         finally:
             self.visibleMapObjectsLock.readLock().unlock()
 
@@ -3292,7 +3299,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             for chr in self.clones:
                 if chr.get() is not None:
                     chr.get().sendSpawnData(client)
-            if self.summons is not None && self.summons > 0:
+            if self.summons is not None and self.summons > 0:
                 self.summonsLock.readLock().lock()
                 try:
                     for summon in self.summons:
@@ -3300,7 +3307,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                             client.getSession().write(MaplePacketCreator.spawnSummon(summon, False))
                 finally:
                     self.summonsLock.readLock().unlock()
-            if (self.followid <= 0 || self.followon) {}
+            if (self.followid <= 0 or self.followon) {}
 
     def equipChanged(self) -> None:
         self.map.broadcastMessage(this, MaplePacketCreator.updateCharLook(this), False)
@@ -3333,7 +3340,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         for i in range(3):
             ret.add(None)
         for pet in self.pets:
-            if pet is not None && pet.getSummoned():
+            if pet is not None and pet.getSummoned():
                 index = pet.getSummonedValue() - 1
                 ret.remove(index)
                 ret.add(index, pet)
@@ -3358,10 +3365,10 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                         if p.getSummonedValue() == i + 1:
                             indexBool[i] = True
                 if petsz > 1:
-                    if !indexBool[2]:
+                    if not indexBool[2]:
                         petsz.get(0).setSummoned(2)
                         petsz.get(1).setSummoned(3)
-                    elif !indexBool[1]:
+                    elif not indexBool[1]:
                         petsz.get(0).setSummoned(2)
                 elif indexBool[0]:
                     petsz.get(0).setSummoned(2)
@@ -3378,7 +3385,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     if p.getSummonedValue() == i + 1:
                         indexBool[i] = True
             for b in indexBool:
-                if !b:
+                if not b:
                     break
                 index += 1
             index = min(index, 2)
@@ -3436,7 +3443,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def canGiveFame(self, from: Any) -> Any:
         if self.lastfametime >= int(time.time() * 1000) - 86400000:
             return FameStatus.NOT_TODAY
-        if from is None || self.lastmonthfameids is None || (from.getId( in self.lastmonthfameids)):
+        if from is None or self.lastmonthfameids is None or (from.getId( in self.lastmonthfameids)):
             return FameStatus.NOT_THIS_MONTH
         return FameStatus.OK
 
@@ -3686,7 +3693,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     return
                 self.maplepoints += quantity
                 break
-        if show && quantity != 0:
+        if show and quantity != 0:
             self.dropMessage(5, "你已经 " + ((quantity > 0) ? "获得 " : "使用 ") + quantity + ((type == 1) ? " 点卷." : " 抵用卷."))
 
     def getCSPoints(self, type: int) -> int:
@@ -3704,7 +3711,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def haveItem(self, itemid: int, quantity: int, checkEquipped: bool, greaterOrEquals: bool) -> bool:
         type = GameConstants.getInventoryType(itemid)
         possesed = self.inventory[type.ordinal()].countById(itemid)
-        if checkEquipped && type == MapleInventoryType.EQUIP:
+        if checkEquipped and type == MapleInventoryType.EQUIP:
             possesed += self.inventory[MapleInventoryType.EQUIPPED.ordinal()].countById(itemid)
         if greaterOrEquals:
             return possesed >= quantity
@@ -3727,7 +3734,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 self.changeSkillLevel(skill, skill.getMaxLevel(), skill.getMaxLevel())
             except ValueError as nfe:
                 break
-            catch (NullPointerException ex) {}
+            except NullPointerException as ex:
+                pass
 
     def setAPQScore(self, score: int) -> None:
         self.APQScore = score
@@ -3771,7 +3779,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return self.antiMacro
 
     def startLieDetector(self, isItem: bool) -> None:
-        if !self.getAntiMacro().inProgress():
+        if not self.getAntiMacro().inProgress():
             self.getAntiMacro().startLieDetector(self.getName(), isItem, False)
 
     def getBuddyCapacity(self) -> int:
@@ -3834,13 +3842,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def giveDebuff_disease_x_duration_skillid_level(self, disease: Any, x: int, duration: int, skillid: int, level: int) -> None:
         debuff = Collections.singletonList(new Pair<MapleDisease, Integer>(disease, x))
-        if !self.hasDisease(disease) && self.diseases < 2:
-            if disease != MapleDisease.诱惑 && disease != MapleDisease.眩晕 && self.isActiveBuffedValue(2321005):
+        if not self.hasDisease(disease) and self.diseases < 2:
+            if disease != MapleDisease.诱惑 and disease != MapleDisease.眩晕 and self.isActiveBuffedValue(2321005):
                 return
             self.diseases.put(disease, MapleDiseaseValueHolder(disease, int(time.time() * 1000), duration))
             self.client.getSession().write(MaplePacketCreator.giveDebuff(debuff, skillid, level, duration))
             self.map.broadcastMessage(this, MaplePacketCreator.giveForeignDebuff(self.id, debuff, skillid, level), False)
-            if x > 0 && disease == MapleDisease.中毒:
+            if x > 0 and disease == MapleDisease.中毒:
                 self.addHP((int)(-(x * ((duration - self.stats.decreaseDebuff) / 1000))))
 
     def giveSilentDebuff(self, ld: list) -> None:
@@ -3897,7 +3905,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps = con.prepareStatement("SELECT gift FROM notes WHERE `id`=?")
             ps.setInt(1, id)
             rs = ps.executeQuery()
-            if rs.next() && rs.getInt("gift") == fame && fame > 0:
+            if rs.next() and rs.getInt("gift") == fame and fame > 0:
                 self.addFame(fame)
                 self.updateSingleStat(MapleStat.FAME, self.getFame())
                 self.client.getSession().write(MaplePacketCreator.getShowFameGain(fame))
@@ -3950,6 +3958,9 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.keydown_skill = keydown_skill
 
     def checkBerserk(self) -> None:
+        def _task_1():
+            MapleCharacter.self.checkBerserk()
+
         if self.BerserkSchedule is not None:
             self.BerserkSchedule.cancel(False)
             self.BerserkSchedule = None
@@ -3960,11 +3971,23 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.stats.Berserk = (self.stats.getHp() * 100 / self.stats.getMaxHp() <= ampStat.getX())
             self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(1320006, 1, (byte)(self.stats.Berserk ? 1 : 0)))
             self.map.broadcastMessage(this, MaplePacketCreator.showBuffeffect(self.getId(), 1320006, 1, (byte)(self.stats.Berserk ? 1 : 0)), False)
-            self.BerserkSchedule = Timer.BuffTimer.getInstance().schedule(Runnable()
-                public void run()
-                    MapleCharacter.self.checkBerserk()
+            self.BerserkSchedule = Timer.BuffTimer.getInstance().schedule(_task_1, 10000)
 
     def prepareBeholderEffect(self) -> None:
+        def _task_1():
+            remhppercentage = math.ceil(MapleCharacter.self.getStat().getHp() * 100.0 / MapleCharacter.self.getStat().getMaxHp())
+            if berserkLvl == 0 or remhppercentage >= berserkLvl + 10:
+                MapleCharacter.self.addHP(healEffect.getHp())
+            MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(1321007, 2))
+            MapleCharacter.self.map.broadcastMessage(MaplePacketCreator.summonSkill(MapleCharacter.self.getId(), 1321007, 5))
+            MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), 1321007, 2), False)
+
+        def _task_2():
+            buffEffect.applyTo(MapleCharacter.this)
+            MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(1321007, 2))
+            MapleCharacter.self.map.broadcastMessage(MaplePacketCreator.summonSkill(MapleCharacter.self.getId(), 1321007, Randomizer.nextInt(3) + 6))
+            MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), 1321007, 2), False)
+
         if self.beholderHealingSchedule is not None:
             self.beholderHealingSchedule.cancel(False)
         if self.beholderBuffSchedule is not None:
@@ -3975,25 +3998,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if bHealingLvl > 0:
             healEffect = bHealing.getEffect(bHealingLvl)
             healInterval = healEffect.getX() * 1000
-            self.beholderHealingSchedule = Timer.BuffTimer.getInstance().register(Runnable()
-                public void run()
-                    remhppercentage = math.ceil(MapleCharacter.self.getStat().getHp() * 100.0 / MapleCharacter.self.getStat().getMaxHp())
-                    if berserkLvl == 0 || remhppercentage >= berserkLvl + 10:
-                        MapleCharacter.self.addHP(healEffect.getHp())
-                    MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(1321007, 2))
-                    MapleCharacter.self.map.broadcastMessage(MaplePacketCreator.summonSkill(MapleCharacter.self.getId(), 1321007, 5))
-                    MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), 1321007, 2), False)
+            self.beholderHealingSchedule = Timer.BuffTimer.getInstance().register(_task_1, healInterval, healInterval)
         bBuff = SkillFactory.getSkill(1320009)
         bBuffLvl = self.getSkillLevel(bBuff)
         if bBuffLvl > 0:
             buffEffect = bBuff.getEffect(bBuffLvl)
             buffInterval = buffEffect.getX() * 1000
-            self.beholderBuffSchedule = Timer.BuffTimer.getInstance().register(Runnable()
-                public void run()
-                    buffEffect.applyTo(MapleCharacter.this)
-                    MapleCharacter.self.client.getSession().write(MaplePacketCreator.showOwnBuffEffect(1321007, 2))
-                    MapleCharacter.self.map.broadcastMessage(MaplePacketCreator.summonSkill(MapleCharacter.self.getId(), 1321007, Randomizer.nextInt(3) + 6))
-                    MapleCharacter.self.map.broadcastMessage(MapleCharacter.this, MaplePacketCreator.showBuffeffect(MapleCharacter.self.getId(), 1321007, 2), False)
+            self.beholderBuffSchedule = Timer.BuffTimer.getInstance().register(_task_2, buffInterval, buffInterval)
 
     def setChalkboard(self, text: str) -> None:
         self.chalktext = text
@@ -4122,7 +4133,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps.setString(2, bossid)
             ps.executeUpdate()
             ps.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def getBossLog(self, boss: str) -> int:
         return self.getBossLog(boss, 0)
@@ -4144,9 +4156,9 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     if bossTime is not None:
                         cal = Calendar.getInstance()
                         cal.setTimeInMillis(bossTime.getTime())
-                        if cal.get(6) + 1 <= Calendar.getInstance().get(6) || cal.get(1) + 1 <= Calendar.getInstance().get(1):
+                        if cal.get(6) + 1 <= Calendar.getInstance().get(6) or cal.get(1) + 1 <= Calendar.getInstance().get(1):
                             count = 0
-                            ps = con.prepareStatement("UPDATE bosslog SET count = 0  WHERE characterid = ? AND bossid = ?")
+                            ps = con.prepareStatement("UPDATE bosslog SET count = 0 WHERE characterid = ? AND bossid = ?")
                             ps.setInt(1, self.id)
                             ps.setString(2, boss)
                             ps.executeUpdate()
@@ -4251,7 +4263,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             ps.setString(2, bossid)
             ps.executeUpdate()
             ps.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def getPrizeLog(self, bossid: str) -> int:
         con1 = DatabaseConnection.getConnection()
@@ -4406,7 +4419,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             MapleInventoryManipulator.removeById(self.getClient(), type, id, possessed, True, False)
             if show:
                 self.getClient().getSession().write(MaplePacketCreator.getShowItemGain(id, (short)(-possessed), True))
-        if checkEquipped && type == MapleInventoryType.EQUIP:
+        if checkEquipped and type == MapleInventoryType.EQUIP:
             type = MapleInventoryType.EQUIPPED
             possessed = self.getInventory(type).countById(id)
             if possessed > 0:
@@ -4428,31 +4441,31 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             if item2.getRing() is not None:
                 ring = item2.getRing()
                 ring.setEquipped(True)
-                if !GameConstants.isFriendshipRing(item2.getItemId()) && !GameConstants.isCrushRing(item2.getItemId()):
+                if not GameConstants.isFriendshipRing(item2.getItemId()) and not GameConstants.isCrushRing(item2.getItemId()):
                     continue
                 if equip:
                     if GameConstants.isCrushRing(item2.getItemId()):
                         crings.add(ring)
                     else:
-                        if !GameConstants.isFriendshipRing(item2.getItemId()):
+                        if not GameConstants.isFriendshipRing(item2.getItemId()):
                             continue
                         frings.add(ring)
-                elif crings == 0 && GameConstants.isCrushRing(item2.getItemId()):
+                elif crings == 0 and GameConstants.isCrushRing(item2.getItemId()):
                     crings.add(ring)
                 else:
-                    if !frings == 0 || !GameConstants.isFriendshipRing(item2.getItemId()):
+                    if not frings == 0 or not GameConstants.isFriendshipRing(item2.getItemId()):
                         continue
                     frings.add(ring)
         if equip:
             iv = self.getInventory(MapleInventoryType.EQUIP)
             for item3 in iv.list():
-                if item3.getRing() is not None && GameConstants.isEffectRing(item3.getItemId()):
+                if item3.getRing() is not None and GameConstants.isEffectRing(item3.getItemId()):
                     ring = item3.getRing()
                     ring.setEquipped(False)
                     if GameConstants.isFriendshipRing(item3.getItemId()):
                         frings.add(ring)
                     else:
-                        if !GameConstants.isCrushRing(item3.getItemId()):
+                        if not GameConstants.isCrushRing(item3.getItemId()):
                             continue
                         crings.add(ring)
         Collections.sort(frings, new MapleRing.RingComparator())
@@ -4469,33 +4482,34 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.startFairySchedule(exp, False)
 
     def startFairySchedule_exp_equipped(self, exp: bool, equipped: bool) -> None:
+        def _task_1():
+            if MapleCharacter.self.fairyExp < 30 and MapleCharacter.self.stats.equippedFairy:
+                gamepoints = MapleCharacter.self.getGamePoints()
+                if gamepoints > 0 and gamepoints < 60:
+                    MapleCharacter.self.fairyExp = 10
+                elif gamepoints >= 60 and gamepoints < 120:
+                    MapleCharacter.self.fairyExp = 20
+                elif gamepoints >= 120:
+                    MapleCharacter.self.fairyExp = 30
+                MapleCharacter.self.dropMessage(5, "精灵吊坠经验获取量增加到 " + MapleCharacter.self.fairyExp + "%.")
+                MapleCharacter.self.startFairySchedule(False, True)
+            else:
+                MapleCharacter.self.cancelFairySchedule(not MapleCharacter.self.stats.equippedFairy)
+
         gamepoints = self.getGamePoints()
-        if gamepoints > 0 && gamepoints < 60:
+        if gamepoints > 0 and gamepoints < 60:
             self.fairyExp = 10
-        elif gamepoints >= 60 && gamepoints < 120:
+        elif gamepoints >= 60 and gamepoints < 120:
             self.fairyExp = 20
         elif gamepoints >= 120:
             self.fairyExp = 30
         self.cancelFairySchedule(exp)
-        if self.fairyExp < 30 && self.stats.equippedFairy:
+        if self.fairyExp < 30 and self.stats.equippedFairy:
             if equipped:
                 self.dropMessage(5, "您装备了精灵吊坠在1小时后经验获取将增加到 " + (self.fairyExp + 10) + "%.请保持在线哟~！！")
-            self.fairySchedule = Timer.EtcTimer.getInstance().schedule(Runnable()
-                public void run()
-                    if MapleCharacter.self.fairyExp < 30 && MapleCharacter.self.stats.equippedFairy:
-                        gamepoints = MapleCharacter.self.getGamePoints()
-                        if gamepoints > 0 && gamepoints < 60:
-                            MapleCharacter.self.fairyExp = 10
-                        elif gamepoints >= 60 && gamepoints < 120:
-                            MapleCharacter.self.fairyExp = 20
-                        elif gamepoints >= 120:
-                            MapleCharacter.self.fairyExp = 30
-                        MapleCharacter.self.dropMessage(5, "精灵吊坠经验获取量增加到 " + MapleCharacter.self.fairyExp + "%.")
-                        MapleCharacter.self.startFairySchedule(False, True)
-                    else:
-                        MapleCharacter.self.cancelFairySchedule(!MapleCharacter.self.stats.equippedFairy)
+            self.fairySchedule = Timer.EtcTimer.getInstance().schedule(_task_1, 1800000)
         else:
-            self.cancelFairySchedule(!self.stats.equippedFairy)
+            self.cancelFairySchedule(not self.stats.equippedFairy)
 
     def cancelFairySchedule(self, exp: bool) -> None:
         if self.fairySchedule is not None:
@@ -4522,7 +4536,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def spawnPet_slot_lead_broadcast(self, slot: int, lead: bool, broadcast: bool) -> None:
         item = self.getInventory(MapleInventoryType.CASH).getItem(slot)
         ii = MapleItemInformationProvider.getInstance()
-        if item is None || !GameConstants.isPet(item.getItemId()):
+        if item is None or not GameConstants.isPet(item.getItemId()):
             self.client.getSession().write(MaplePacketCreator.enableActions())
             return
         # switch (item.getItemId()):
@@ -4536,7 +4550,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 break
             # default:
                 pet = item.getPet()
-                if pet is None || (item.getItemId() == 5000054 && pet.getSecondsLeft() <= 0) || (item.getExpiration() != -1 && item.getExpiration() <= int(time.time() * 1000)):
+                if pet is None or (item.getItemId() == 5000054 and pet.getSecondsLeft() <= 0) or (item.getExpiration() != -1 and item.getExpiration() <= int(time.time() * 1000)):
                     break
                 if pet.getSummoned():
                     self.unequipPet(pet, False)
@@ -4546,7 +4560,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     leadid = 10000018
                 elif GameConstants.isAran(self.getJob()):
                     leadid = 20000024
-                if self.getSkillLevel(SkillFactory.getSkill(leadid)) == 0 && self.getPet(0) is not None:
+                if self.getSkillLevel(SkillFactory.getSkill(leadid)) == 0 and self.getPet(0) is not None:
                     self.unequipPet(self.getPet(0), False)
                 elif lead:
                     self.shiftPetsRight()
@@ -4671,7 +4685,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         ret.clone = True
         ret.client.setChannel(self.client.getChannel())
         print("cloneLooks输出：" + self.client.getChannel())
-        while self.map.getCharacterById(ret.id) is not None || self.client.getChannelServer().getPlayerStorage().getCharacterById(ret.id) is not None:
+        while self.map.getCharacterById(ret.id) is not None or self.client.getChannelServer().getPlayerStorage().getCharacterById(ret.id) is not None:
             mapleCharacter = ret
             mapleCharacter.id += 1
         ret.client.setPlayer(ret)
@@ -4706,7 +4720,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return z
 
     def spawnClones(self) -> None:
-        if self.numClones == 0 && self.stats.hasClone:
+        if self.numClones == 0 and self.stats.hasClone:
             self.cloneLook()
         for i in range(self.numClones):
             self.cloneLook()
@@ -4753,7 +4767,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.pyramidSubway = ps
 
     def getSubcategory(self) -> int:
-        if self.job >= 430 && self.job <= 434:
+        if self.job >= 430 and self.job <= 434:
             return 1
         return self.subcategory
 
@@ -4786,13 +4800,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def changeChannel(self, channel: int) -> None:
         energyLevel = self.getBuffedValue(MapleBuffStat.能量获得)
-        if energyLevel is not None && energyLevel > 0:
+        if energyLevel is not None and energyLevel > 0:
             self.setBuffedValue(MapleBuffStat.能量获得, energyLevel)
             stat = Collections.singletonList(new Pair<MapleBuffStat, Integer>(MapleBuffStat.能量获得, energyLevel))
             self.client.getSession().write(MaplePacketCreator.能量条(stat, 0))
         socket = self.client.getChannelServer().getIP().split(":")
         toch = ChannelServer.getInstance(channel)
-        if channel == self.client.getChannel() || toch is None || toch.isShutdown():
+        if channel == self.client.getChannel() or toch is None or toch.isShutdown():
             return
         self.changeRemoval()
         ch = ChannelServer.getInstance(self.client.getChannel())
@@ -4823,7 +4837,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.client.getSession().write(MaplePacketCreator.getSlotUpdate(type, inv.getSlotLimit()))
 
     def allowedToTarget(self, other: Any) -> bool:
-        return other is not None && (!other.isHidden() || self.getGMLevel() >= other.getGMLevel())
+        return other is not None and (not other.isHidden() or self.getGMLevel() >= other.getGMLevel())
 
     def getFollowId(self) -> int:
         return self.followid
@@ -4870,7 +4884,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def startPartyQuest(self, questid: int) -> bool:
         ret = False
-        if !(MapleQuest.getInstance(questid in self.quests)) || !(questid in self.questinfo):
+        if not (MapleQuest.getInstance(questid in self.quests)) or not (questid in self.questinfo):
             status = self.getQuestNAdd(MapleQuest.getInstance(questid))
             status.setStatus(1)
             self.updateQuest(status)
@@ -4893,18 +4907,18 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return ret
 
     def getOneInfo(self, questid: int, key: str) -> str:
-        if !(questid in self.questinfo) || key is None:
+        if not (questid in self.questinfo) or key is None:
             return None
         split3 = None
         split = split3 = self.questinfo.get(questid).split(";")
         for x in split3:
             split2 = x.split("=")
-            if len(split2) == 2 && split2[0] == (key):
+            if len(split2) == 2 and split2[0] == (key):
                 return split2[1]
         return None
 
     def updateOneInfo(self, questid: int, key: str, value: str) -> None:
-        if !(questid in self.questinfo) || key is None || value is None:
+        if not (questid in self.questinfo) or key is None or value is None:
             return
         split = self.questinfo.get(questid).split(";")
         changed = False
@@ -4921,9 +4935,9 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.updateInfoQuest(questid, changed ? newQuest[0:newQuest.__len__(] - 1) : newQuest)
 
     def recalcPartyQuestRank(self, questid: int) -> None:
-        if !self.startPartyQuest(questid):
+        if not self.startPartyQuest(questid):
             oldRank = self.getOneInfo(questid, "rank")
-            if oldRank is None || oldRank == ("S"):
+            if oldRank is None or oldRank == ("S"):
                 return
             split = self.questinfo.get(questid).split(";")
             newRank = None
@@ -4968,7 +4982,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                     # case "equal":
                         found = (vall == q.right.right)
                         break
-                if !found:
+                if not found:
                     return
             self.updateOneInfo(questid, "rank", newRank)
 
@@ -4990,7 +5004,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 secs = (int)(changeTime / 1000 % 60)
                 mins2 = int(self.getOneInfo(questid, "min"))
                 secs2 = int(self.getOneInfo(questid, "sec"))
-                if mins2 <= 0 || mins < mins2:
+                if mins2 <= 0 or mins < mins2:
                     self.updateOneInfo(questid, "min", str(mins))
                     self.updateOneInfo(questid, "sec", str(secs))
                     self.updateOneInfo(questid, "date", FileoutputUtil.CurrentReadable_Date())
@@ -5090,18 +5104,18 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             MapleTrade.cancelTrade(self.getTrade(), self.client)
         if self.getCheatTracker() is not None:
             self.getCheatTracker().dispose()
-        if !dc:
+        if not dc:
             self.cancelEffectFromBuffStat(MapleBuffStat.骑兽技能)
             self.cancelEffectFromBuffStat(MapleBuffStat.召唤兽)
             self.cancelEffectFromBuffStat(MapleBuffStat.REAPER)
             self.cancelEffectFromBuffStat(MapleBuffStat.替身术)
         if self.getPyramidSubway() is not None:
             self.getPyramidSubway().dispose(this)
-        if self.playerShop is not None && !dc:
+        if self.playerShop is not None and not dc:
             self.playerShop.removeVisitor(this)
             if self.playerShop.isOwner(this):
                 self.playerShop.setOpen(True)
-        if !self.getDoors() == 0:
+        if not self.getDoors() == 0:
             self.removeDoor()
         self.disposeClones()
         NPCScriptManager.getInstance().dispose(self.client)
@@ -5122,7 +5136,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
     def usedBuffs(self) -> list:
         used = new ArrayList<Pair<Integer, Integer>>()
         for (final MapleFamilyBuff.MapleFamilyBuffEntry buff : MapleFamilyBuff.getBuffEntry())
-            if !self.canUseFamilyBuff(buff):
+            if not self.canUseFamilyBuff(buff):
                 used.add(new Pair<Integer, Integer>(buff.index, buff.count))
         return used
 
@@ -5159,7 +5173,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.mfc = None
 
     def setFamily(self, newf: int, news: int, newj1: int, newj2: int) -> None:
-        if self.mfc is None || newf != self.mfc.getFamilyId() || news != self.mfc.getSeniorId() || newj1 != self.mfc.getJunior1() || newj2 != self.mfc.getJunior2():
+        if self.mfc is None or newf != self.mfc.getFamilyId() or news != self.mfc.getSeniorId() or newj1 != self.mfc.getJunior1() or newj2 != self.mfc.getJunior2():
             self.makeMFC(newf, news, newj1, newj2)
 
     def maxBattleshipHP(self, skillid: int) -> int:
@@ -5248,7 +5262,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.canSetBeansNum = canSetBeansNum
 
     def haveGM(self) -> bool:
-        return self.gmLevel >= 2 && self.gmLevel <= 3
+        return self.gmLevel >= 2 and self.gmLevel <= 3
 
     def setprefix(self, prefix: int) -> None:
         self.prefix = prefix
@@ -5263,11 +5277,12 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         self.startMapEffect(msg, itemId, 20000)
 
     def startMapEffect_msg_itemId_duration(self, msg: str, itemId: int, duration: int) -> None:
+        def _task_1():
+            MapleCharacter.self.getClient().getSession().write(mapEffect.makeDestroyData())
+
         mapEffect = MapleMapEffect(msg, itemId)
         self.getClient().getSession().write(mapEffect.makeStartData())
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleCharacter.self.getClient().getSession().write(mapEffect.makeDestroyData())
+        Timer.EventTimer.getInstance().schedule(_task_1, duration)
 
     def getDeadtime(self) -> int:
         return self.deadtime
@@ -5283,10 +5298,11 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 itemName = mii.getName(nEquip.getItemId())
                 if itemName is None:
                     continue
-                if (("重生" in itemName) || nEquip.getEquipLevel() >= 4) && (!("永恒" in itemName) || nEquip.getEquipLevel() >= 6):
+                if (("重生" in itemName) or nEquip.getEquipLevel() >= 4) and (not ("永恒" in itemName) or nEquip.getEquipLevel() >= 6):
                     continue
                 nEquip.gainItemExp(self.client, mobexp, ("永恒" in itemName))
-        catch (Exception ex) {}
+        except Exception as ex:
+            pass
 
     def petName(self, name: str) -> None:
         pet = self.getPet(0)
@@ -5382,7 +5398,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         if incluedEquip:
             iv = self.getInventory(MapleInventoryType.EQUIP)
             for item in iv.list():
-                if item.getRing() is not None && GameConstants.isMarriageRing(item.getItemId()):
+                if item.getRing() is not None and GameConstants.isMarriageRing(item.getItemId()):
                     ring = item.getRing()
                     ring.setEquipped(False)
                     return ring
@@ -5408,7 +5424,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def getIntNoRecord(self, questID: int) -> int:
         stat = self.getQuestNoAdd(MapleQuest.getInstance(questID))
-        if stat is None || stat.getCustomData() is None:
+        if stat is None or stat.getCustomData() is None:
             return 0
         return int(stat.getCustomData())
 
@@ -5419,12 +5435,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.client.getSession().write(MaplePacketCreator.petAutoMP(self.getIntRecord(122222)))
 
     def spawnBomb(self) -> None:
+        def _task_1():
+            MapleCharacter.self.map.killMonster(bomb, MapleCharacter.self.client.getPlayer(), False, False, 1)
+
         bomb = MapleLifeFactory.getMonster(9300166)
         bomb.changeLevel(250, True)
         self.getMap().spawnMonster_sSack(bomb, self.getPosition(), -2)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleCharacter.self.map.killMonster(bomb, MapleCharacter.self.client.getPlayer(), False, False, 1)
+        Timer.EventTimer.getInstance().schedule(_task_1, 10000)
 
     def isAriantPQMap(self) -> bool:
         # switch (self.getMapId()):
@@ -5775,7 +5792,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         pay = 0
         try:
             con = DatabaseConnection.getConnection()
-            ps = con.prepareStatement("select * from qmdb where characterid  = " + self.getId() + "")
+            ps = con.prepareStatement("select * from qmdb where characterid = " + self.getId() + "")
             rs = ps.executeQuery()
             if rs.next():
                 if lx == 1:
@@ -5825,7 +5842,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     sjrw = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET sjrw = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -5879,7 +5896,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     fbrw = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET fbrw = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -5933,7 +5950,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     fbrwa = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET fbrwa = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -5987,7 +6004,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     sgrw = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET sgrw = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6041,7 +6058,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     sgrwa = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET sgrwa = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6095,7 +6112,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     sbossrw = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET sbossrw = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6149,7 +6166,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     sbossrwa = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET sbossrwa = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6203,7 +6220,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     lb = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET lb = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6257,7 +6274,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     gamePoints = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET gamePoints = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6292,7 +6309,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     gamePointsPD = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET gamePointspd = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6365,7 +6382,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     gamePointsRQ = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET gamePointsrq = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6419,7 +6436,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
                 sqlcal = Calendar.getInstance()
                 if updateTime is not None:
                     sqlcal.setTimeInMillis(updateTime.getTime())
-                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) || sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) || sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
+                if sqlcal.get(5) + 1 <= Calendar.getInstance().get(5) or sqlcal.get(2) + 1 <= Calendar.getInstance().get(2) or sqlcal.get(1) + 1 <= Calendar.getInstance().get(1):
                     gamePointsRQ = 0
                     psu = con.prepareStatement("UPDATE accounts_info SET gamePointsps = 0, updateTime = CURRENT_TIMESTAMP() WHERE accId = ? AND worldId = ?")
                     psu.setInt(1, self.getClient().getAccID())
@@ -6694,11 +6711,11 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
         return mesos
 
     def canExpiration(self, now: int) -> bool:
-        return self.lastExpirationTime > 0 && self.lastExpirationTime + 60000 < now
+        return self.lastExpirationTime > 0 and self.lastExpirationTime + 60000 < now
 
     def startCheck(self) -> None:
         mac = self.client.getMac()
-        if !self.client.isBanndMac2(mac) && self.client.getHandSome(self.client.getAccountName()) == self.client.getHandSome2():
+        if not self.client.isBanndMac2(mac) and self.client.getHandSome(self.client.getAccountName()) == self.client.getHandSome2():
             print("[作弊] 检测到玩家 " + self.getName() + " 登录器关闭，系统对其进行断开连接处理。")
             FileoutputUtil.packetLog("logs/防万能检测.txt", "玩家名称：" + self.getName() + " 账号在数据库的ID：" + self.getAccountID() + "检测到其与登录器断开连接。服务器对他执行断线处理。他的MAC地址：" + self.getClient().getMac() + "\r\n")
             self.sendPolice()
@@ -6708,13 +6725,14 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
             self.sendPolice()
 
     def sendPolice(self) -> None:
+        def _task_1():
+            MapleCharacter.self.client.disconnect(True, False)
+            if MapleCharacter.self.client.getSession().isConnected():
+                MapleCharacter.self.client.getSession().close(True)
+            FileoutputUtil.packetLog("玩家被断开连接.txt", MapleCharacter.self.getName() + " 源代码 第8776行 原因：防万能检测到其与登陆器断开，服务器断开他的连接\r\n")
+
         self.client.getSession().write(MaplePacketCreator.serverNotice(1, "检测到登录器关闭，游戏即将断开。"))
-        Timer.WorldTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleCharacter.self.client.disconnect(True, False)
-                if MapleCharacter.self.client.getSession().isConnected():
-                    MapleCharacter.self.client.getSession().close(True)
-                FileoutputUtil.packetLog("玩家被断开连接.txt", MapleCharacter.self.getName() + " 源代码 第8776行 原因：防万能检测到其与登陆器断开，服务器断开他的连接\r\n")
+        Timer.WorldTimer.getInstance().schedule(_task_1, 6000)
 
     def translated_获取怪物数量(self, mapId: int) -> int:
         return self.client.getChannelServer().getMapFactory().getMap(mapId).getNumMonsters()

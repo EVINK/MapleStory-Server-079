@@ -199,13 +199,13 @@ class MapleMap:
         return self.soaring
 
     def toggleDrops(self) -> None:
-        self.dropsDisabled = !self.dropsDisabled
+        self.dropsDisabled = not self.dropsDisabled
 
     def setDrops(self, b: bool) -> None:
         self.dropsDisabled = b
 
     def toggleGDrops(self) -> None:
-        self.gDropsDisabled = !self.gDropsDisabled
+        self.gDropsDisabled = not self.gDropsDisabled
 
     def getId(self) -> int:
         return self.mapid
@@ -292,7 +292,7 @@ class MapleMap:
         return self.decHP
 
     def setHPDec(self, delta: int) -> None:
-        if delta > 0 || self.mapid == 749040100:
+        if delta > 0 or self.mapid == 749040100:
             self.lastHurtTime = int(time.time() * 1000)
         self.decHP = delta
 
@@ -337,7 +337,7 @@ class MapleMap:
         self.charactersLock.readLock().lock()
         try:
             for chr in self.characters:
-                if (condition is None || condition.canSpawn(chr)) && !chr.isClone() && chr.getPosition().distanceSq(mapobject.getPosition()) <= GameConstants.maxViewRangeSq():
+                if (condition is None or condition.canSpawn(chr)) and not chr.isClone() and chr.getPosition().distanceSq(mapobject.getPosition()) <= GameConstants.maxViewRangeSq():
                     packetbakery.sendPackets(chr.getClient())
                     chr.addVisibleMapObject(mapobject)
         finally:
@@ -355,7 +355,7 @@ class MapleMap:
         if fh is None:
             return None
         dropY = fh.getY1()
-        if !fh.isWall() && fh.getY1() != fh.getY2():
+        if not fh.isWall() and fh.getY1() != fh.getY2():
             s1 = abs(fh.getY2() - fh.getY1())
             s2 = abs(fh.getX2() - fh.getX1())
             if fh.getY2() < fh.getY1():
@@ -374,10 +374,10 @@ class MapleMap:
         self.dropFromMonster(chr, mob, False)
 
     def dropFromMonster_chr_mob_instanced(self, chr: Any, mob: Any, instanced: bool) -> None:
-        if mob is None || chr is None || ChannelServer.getInstance(self.channel) is None || self.dropsDisabled || mob.dropsDisabled() || chr.getPyramidSubway() is not None:
+        if mob is None or chr is None or ChannelServer.getInstance(self.channel) is None or self.dropsDisabled or mob.dropsDisabled() or chr.getPyramidSubway() is not None:
             return
         maxSize = 200
-        if !instanced && maxSize >= 300 && self.mapobjects.get(MapleMapObjectType.ITEM) >= maxSize:
+        if not instanced and maxSize >= 300 and self.mapobjects.get(MapleMapObjectType.ITEM) >= maxSize:
             self.removeDropsDelay()
             if chr.isGM():
                 chr.dropMessage(6, "[系统提示] 当前地图的道具数量达到 " + maxSize + " 系统已自动清理掉所有地上的物品信息.")
@@ -432,10 +432,10 @@ class MapleMap:
             self.spawnMobMesoDrop((int)(tempmeso * (chr.getStat().mesoBuff / 100.0) * chr.getDropMod() * cmServerrate), self.calcDropPos(pos, mob.getPosition()), mob, chr, False, droptype)
         globalEntry = [])
         Collections.shuffle(globalEntry)
-        cashz = ((mob.getStats().isBoss() && mob.getStats().getHPDisplayType() == 0) ? 20 : 1) * caServerrate
+        cashz = ((mob.getStats().isBoss() and mob.getStats().getHPDisplayType() == 0) ? 20 : 1) * caServerrate
         cashModifier = (int)(mob.getStats().isBoss() ? 0 : (mob.getMobExp() / 1000 + mob.getMobMaxHp() / 10000))
         for de2 in globalEntry:
-            if Randomizer.nextInt(999999) < de2.chance && (de2.continent < 0 || (de2.continent < 10 && self.mapid / 100000000 == de2.continent) || (de2.continent < 100 && self.mapid / 10000000 == de2.continent) || (de2.continent < 1000 && self.mapid / 1000000 == de2.continent)):
+            if Randomizer.nextInt(999999) < de2.chance and (de2.continent < 0 or (de2.continent < 10 and self.mapid / 100000000 == de2.continent) or (de2.continent < 100 and self.mapid / 10000000 == de2.continent) or (de2.continent < 1000 and self.mapid / 1000000 == de2.continent)):
                 if droptype == 3:
                     pos.x = mobpos + ((d % 2 == 0) ? (40 * (d + 1) / 2) : (-(40 * (d / 2))))
                 else:
@@ -453,7 +453,7 @@ class MapleMap:
                 d += 1
 
     def dropFromMonster2(self, chr: Any, mob: Any) -> None:
-        if mob is None || chr is None || ChannelServer.getInstance(self.channel) is None || self.dropsDisabled || mob.dropsDisabled() || chr.getPyramidSubway() is not None:
+        if mob is None or chr is None or ChannelServer.getInstance(self.channel) is None or self.dropsDisabled or mob.dropsDisabled() or chr.getPyramidSubway() is not None:
             return
         ii = MapleItemInformationProvider.getInstance()
         droptype = (byte)(mob.getStats().isExplosiveReward() ? 3 : (mob.getStats().isFfaLoot() ? 2 : ((chr.getParty() is not None) ? 1 : 0)))
@@ -503,7 +503,7 @@ class MapleMap:
                 else:
                     range = abs(de.Maximum - de.Minimum)
                     idrop = Item(de.itemId, 0, (short)((de.Maximum != 1) ? (Randomizer.nextInt((range <= 0) ? 1 : range) + de.Minimum) : 1), 0)
-                if Randomizer.nextInt(100) <= 3 && !mob.getStats().isBoss() && chr.getEventInstance() is None:
+                if Randomizer.nextInt(100) <= 3 and not mob.getStats().isBoss() and chr.getEventInstance() is None:
                     idrop = Item(2370005, 0, 1, 0)
                 self.spawnMobDrop(idrop, self.calcDropPos(pos, mob.getPosition()), mob, chr, droptype, de.questid)
                 d += 1
@@ -513,7 +513,7 @@ class MapleMap:
             if de2.chance != 0:
                 if de2.itemId == 0:
                     continue
-                if Randomizer.nextInt(999999) >= de2.chance || (de2.continent >= 0 && (de2.continent >= 10 || self.mapid / 100000000 != de2.continent) && (de2.continent >= 100 || self.mapid / 10000000 != de2.continent) && (de2.continent >= 1000 || self.mapid / 1000000 != de2.continent)) || self.gDropsDisabled:
+                if Randomizer.nextInt(999999) >= de2.chance or (de2.continent >= 0 and (de2.continent >= 10 or self.mapid / 100000000 != de2.continent) and (de2.continent >= 100 or self.mapid / 10000000 != de2.continent) and (de2.continent >= 1000 or self.mapid / 1000000 != de2.continent)) or self.gDropsDisabled:
                     continue
                 if droptype == 3:
                     pos.x = mobpos + ((d % 2 == 0) ? (40 * (d + 1) / 2) : (-(40 * (d / 2))))
@@ -575,84 +575,84 @@ class MapleMap:
         mobid = monster.getId()
         type = SpeedRunType.NULL
         sqd = self.getSquadByMap()
-        instanced = sqd is not None || monster.getEventInstance() is not None || self.getEMByMap() is not None
-        if mobid == 8810018 && self.mapid == 240060200:
+        instanced = sqd is not None or monster.getEventInstance() is not None or self.getEMByMap() is not None
+        if mobid == 8810018 and self.mapid == 240060200:
             World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "经过无数次的挑战，" + chr.getName() + "所带领的队伍终于击败了暗黑龙王的远征队！你们才是龙之林的真正英雄~").encode("utf-8"))
             if self.speedRunStart > 0:
                 type = SpeedRunType.Horntail
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 8810122 && self.mapid == 240060201:
+        elif mobid == 8810122 and self.mapid == 240060201:
             World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "经过无数次的挑战，" + chr.getName() + "所带领的队伍终于击败了混沌暗黑龙王的远征队！你们才是龙之林的真正英雄~").encode("utf-8"))
             if self.speedRunStart > 0:
                 type = SpeedRunType.ChaosHT
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 8500002 && self.mapid == 220080001:
+        elif mobid == 8500002 and self.mapid == 220080001:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Papulatus
-        elif mobid == 9400266 && self.mapid == 802000111:
+        elif mobid == 9400266 and self.mapid == 802000111:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Nameless_Magic_Monster
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400265 && self.mapid == 802000211:
+        elif mobid == 9400265 and self.mapid == 802000211:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Vergamot
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400270 && self.mapid == 802000411:
+        elif mobid == 9400270 and self.mapid == 802000411:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Dunas
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400273 && self.mapid == 802000611:
+        elif mobid == 9400273 and self.mapid == 802000611:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Nibergen
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400294 && self.mapid == 802000711:
+        elif mobid == 9400294 and self.mapid == 802000711:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Dunas_2
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400296 && self.mapid == 802000803:
+        elif mobid == 9400296 and self.mapid == 802000803:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Core_Blaze
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 9400289 && self.mapid == 802000821:
+        elif mobid == 9400289 and self.mapid == 802000821:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Aufhaven
             if sqd is not None:
                 self.doShrine(True)
-        elif (mobid == 9420549 || mobid == 9420544) && self.mapid == 551030200:
+        elif (mobid == 9420549 or mobid == 9420544) and self.mapid == 551030200:
             if self.speedRunStart > 0:
                 if mobid == 9420549:
                     type = SpeedRunType.Scarlion
                 else:
                     type = SpeedRunType.Targa
-        elif mobid == 8820001 && self.mapid == 270050100:
+        elif mobid == 8820001 and self.mapid == 270050100:
             World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, chr.getName() + "经过带领的队伍经过无数次的挑战，终于击败了时间的宠儿－品克缤的远征队！你们才是时间神殿的真正英雄~").encode("utf-8"))
             if self.speedRunStart > 0:
                 type = SpeedRunType.Pink_Bean
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 8800002 && self.mapid == 280030000:
+        elif mobid == 8800002 and self.mapid == 280030000:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Zakum
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid == 8800102 && self.mapid == 280030001:
+        elif mobid == 8800102 and self.mapid == 280030001:
             if self.speedRunStart > 0:
                 type = SpeedRunType.Chaos_Zakum
             if sqd is not None:
                 self.doShrine(True)
-        elif mobid >= 8800003 && mobid <= 8800010:
+        elif mobid >= 8800003 and mobid <= 8800010:
             makeZakReal = True
             monsters = self.getAllMonstersThreadsafe()
             for mons in monsters:
-                if mons.getId() >= 8800003 && mons.getId() <= 8800010:
+                if mons.getId() >= 8800003 and mons.getId() <= 8800010:
                     makeZakReal = False
                     break
             if makeZakReal:
@@ -663,11 +663,11 @@ class MapleMap:
                         self.killAllMonsters(True)
                         self.spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(8800000), pos)
                         break
-        elif mobid >= 8800103 && mobid <= 8800110:
+        elif mobid >= 8800103 and mobid <= 8800110:
             makeZakReal = True
             monsters = self.getAllMonstersThreadsafe()
             for mons in monsters:
-                if mons.getId() >= 8800103 && mons.getId() <= 8800110:
+                if mons.getId() >= 8800103 and mons.getId() <= 8800110:
                     makeZakReal = False
                     break
             if makeZakReal:
@@ -677,10 +677,10 @@ class MapleMap:
                         self.killAllMonsters(True)
                         self.spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(8800100), pos2)
                         break
-        if type != SpeedRunType.NULL && self.speedRunStart > 0 && self.speedRunLeader > 0:
+        if type != SpeedRunType.NULL and self.speedRunStart > 0 and self.speedRunLeader > 0:
             endTime = int(time.time() * 1000)
             time = StringUtil.getReadableMillis(self.speedRunStart, endTime)
-            self.broadcastMessage(MaplePacketCreator.serverNotice(5, self.speedRunLeader + "'远征队花了 " + time + " 时间打败了 " + type + "!"))
+            self.broadcastMessage(MaplePacketCreator.serverNotice(5, self.speedRunLeader + "'远征队花了 " + time + " 时间打败了 " + type + "not "))
             self.getRankAndAdd(self.speedRunLeader, time, type, endTime - self.speedRunStart, (sqd is None) ? None : sqd.getMembers())
             self.endSpeedRun()
         if mobid == 8820008:
@@ -688,10 +688,10 @@ class MapleMap:
                 mons3 = mmo
                 if mons3.getLinkOid() != monster.getObjectId():
                     self.killMonster(mons3, chr, False, False, animation)
-        elif mobid >= 8820010 && mobid <= 8820014:
+        elif mobid >= 8820010 and mobid <= 8820014:
             for mmo in self.getAllMonstersThreadsafe():
                 mons3 = mmo
-                if mons3.getId() != 8820000 && mons3.getObjectId() != monster.getObjectId() && mons3.getLinkOid() != monster.getObjectId():
+                if mons3.getId() != 8820000 and mons3.getObjectId() != monster.getObjectId() and mons3.getLinkOid() != monster.getObjectId():
                     self.killMonster(mons3, chr, False, False, animation)
         if withDrops:
             drop = None
@@ -811,7 +811,7 @@ class MapleMap:
         try:
             for obj in self.mapobjects.get(MapleMapObjectType.REACTOR).values():
                 mr = obj
-                if mr.getReactorId() >= first && mr.getReactorId() <= last:
+                if mr.getReactorId() >= first and mr.getReactorId() <= last:
                     toDestroy.add(mr)
         finally:
             self.mapobjectlocks.get(MapleMapObjectType.REACTOR).readLock().unlock()
@@ -819,15 +819,16 @@ class MapleMap:
             self.destroyReactor(mr2.getObjectId())
 
     def destroyReactor(self, oid: int) -> None:
+        def _task_1():
+            MapleMap.self.respawnReactor(reactor)
+
         reactor = self.getReactorByOid(oid)
         self.broadcastMessage(MaplePacketCreator.destroyReactor(reactor))
         reactor.setAlive(False)
         self.removeMapObject(reactor)
         reactor.setTimerActive(False)
         if reactor.getDelay() > 0:
-            Timer.MapTimer.getInstance().schedule(Runnable()
-                public void run()
-                    MapleMap.self.respawnReactor(reactor)
+            Timer.MapTimer.getInstance().schedule(_task_1, reactor.getDelay())
 
     def run(self) -> None:
         MapleMap.self.respawnReactor(reactor)
@@ -846,7 +847,7 @@ class MapleMap:
             self.mapobjectlocks.get(MapleMapObjectType.REACTOR).readLock().unlock()
         for r in toSpawn:
             self.removeMapObject(r)
-            if r.getReactorId() != 9980000 && r.getReactorId() != 9980001:
+            if r.getReactorId() != 9980000 and r.getReactorId() != 9980001:
                 self.respawnReactor(r)
 
     def resetReactors(self) -> None:
@@ -872,7 +873,7 @@ class MapleMap:
         try:
             for obj in self.mapobjects.get(MapleMapObjectType.REACTOR).values():
                 mr = obj
-                if mr.getReactorId() >= first && mr.getReactorId() <= last:
+                if mr.getReactorId() >= first and mr.getReactorId() <= last:
                     points.add(mr.getPosition())
         finally:
             self.mapobjectlocks.get(MapleMapObjectType.REACTOR).readLock().unlock()
@@ -881,13 +882,13 @@ class MapleMap:
         try:
             for obj in self.mapobjects.get(MapleMapObjectType.REACTOR).values():
                 mr = obj
-                if mr.getReactorId() >= first && mr.getReactorId() <= last:
+                if mr.getReactorId() >= first and mr.getReactorId() <= last:
                     mr.setPosition(points.remove(points - 1))
         finally:
             self.mapobjectlocks.get(MapleMapObjectType.REACTOR).readLock().unlock()
 
     def updateMonsterController(self, monster: Any) -> None:
-        if !monster.isAlive():
+        if not monster.isAlive():
             return
         if monster.getController() is not None:
             if monster.getController().getMap() == this:
@@ -898,7 +899,7 @@ class MapleMap:
         self.charactersLock.readLock().lock()
         try:
             for chr in self.characters:
-                if !chr.isHidden() && !chr.isClone() && (chr.getControlledSize() < mincontrolled || mincontrolled == -1) && chr.getTruePosition().distanceSq(monster.getTruePosition()) <= monster.getRange():
+                if not chr.isHidden() and not chr.isClone() and (chr.getControlledSize() < mincontrolled or mincontrolled == -1) and chr.getTruePosition().distanceSq(monster.getTruePosition()) <= monster.getRange():
                     mincontrolled = chr.getControlledSize()
                     newController = chr
         finally:
@@ -1029,7 +1030,7 @@ class MapleMap:
             itr = (self.mapobjects.get(MapleMapObjectType.NPC)).values().iterator()
             while itr.hasNext():
                 npc = itr.next()
-                if npc.isCustom() && npc.getId() == npcid:
+                if npc.isCustom() and npc.getId() == npcid:
                     broadcastMessage(MaplePacketCreator.removeNPC(npc.getObjectId()))
                     itr.remove()
         finally:
@@ -1094,12 +1095,13 @@ class MapleMap:
         return self.mapobjects.get(MapleMapObjectType.MONSTER)
 
     def checkRemoveAfter(self, monster: Any) -> None:
+        def _task_1():
+            if monster is not None and monster == MapleMap.self.getMapObject(monster.getObjectId(), monster.getType()):
+                MapleMap.self.killMonster(monster)
+
         ra = monster.getStats().getRemoveAfter()
         if ra > 0:
-            Timer.MapTimer.getInstance().schedule(Runnable()
-                public void run()
-                    if monster is not None && monster == MapleMap.self.getMapObject(monster.getObjectId(), monster.getType()):
-                        MapleMap.self.killMonster(monster)
+            Timer.MapTimer.getInstance().schedule(_task_1, ra * 1000)
 
     def spawnRevives(self, monster: Any, oid: int) -> None:
         monster.setMap(this)
@@ -1163,21 +1165,21 @@ class MapleMap:
         self.spawnAndAddRangedMapObject(door, DelayedPacketCreation()
             public void sendPackets(final MapleClient c)
                 c.getSession().write(MaplePacketCreator.spawnDoor(door.getOwner().getId(), door.getTargetPosition(), False))
-                if door.getOwner().getParty() is not None && (door.getOwner() == c.getPlayer() || door.getOwner().getParty().containsMembers(MaplePartyCharacter(c.getPlayer()))):
+                if door.getOwner().getParty() is not None and (door.getOwner() == c.getPlayer() or door.getOwner().getParty().containsMembers(MaplePartyCharacter(c.getPlayer()))):
                     c.getSession().write(MaplePacketCreator.partyPortal(door.getTown().getId(), door.getTarget().getId(), door.getSkill(), door.getTargetPosition()))
                 c.getSession().write(MaplePacketCreator.spawnPortal(door.getTown().getId(), door.getTarget().getId(), door.getSkill(), door.getTargetPosition()))
                 c.getSession().write(MaplePacketCreator.enableActions())
         public boolean canSpawn(final MapleCharacter chr)
-            return door.getTarget().getId() == chr.getMapId() || door.getOwnerId() == chr.getId() || (door.getOwner() is not None && door.getOwner().getParty() is not None && door.getOwner().getParty().getMemberById(chr.getId()) is not None)
+            return door.getTarget().getId() == chr.getMapId() or door.getOwnerId() == chr.getId() or (door.getOwner() is not None and door.getOwner().getParty() is not None and door.getOwner().getParty().getMemberById(chr.getId()) is not None)
 
     def canSpawn(self, chr: Any) -> bool:
-        return door.getTarget().getId() == chr.getMapId() || door.getOwnerId() == chr.getId() || (door.getOwner() is not None && door.getOwner().getParty() is not None && door.getOwner().getParty().getMemberById(chr.getId()) is not None)
+        return door.getTarget().getId() == chr.getMapId() or door.getOwnerId() == chr.getId() or (door.getOwner() is not None and door.getOwner().getParty() is not None and door.getOwner().getParty().getMemberById(chr.getId()) is not None)
 
     def spawnSummon(self, summon: Any) -> None:
         summon.updateMap(this)
         self.spawnAndAddRangedMapObject(summon, DelayedPacketCreation()
             public void sendPackets(final MapleClient c)
-                if summon is not None && c.getPlayer() is not None && (!summon.isChangedMap() || summon.getOwnerId() == c.getPlayer().getId()):
+                if summon is not None and c.getPlayer() is not None and (not summon.isChangedMap() or summon.getOwnerId() == c.getPlayer().getId()):
                     c.getSession().write(MaplePacketCreator.spawnSummon(summon, True))
 
     def spawnDragon(self, summon: Any) -> None:
@@ -1185,6 +1187,23 @@ class MapleMap:
             public void sendPackets(final MapleClient c)
 
     def spawnMist(self, mist: Any, duration: int, fake: bool) -> None:
+        def _task_1():
+            for mo in MapleMap.self.getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER)):
+                if mist.makeChanceResult() and not (mo).isBuffed(MonsterStatus.中毒):
+                (mo).applyStatus(owner, MonsterStatusEffect(MonsterStatus.中毒, Integer.valueOf(1), mist.getSourceSkill().getId(), None, False), True, duration, True)
+
+        def _task_2():
+            for mo in MapleMap.self.getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER)):
+                if mist.makeChanceResult():
+                    chr = mo
+                    chr.addMP((int)(mist.getSource().getX() * chr.getStat().getMaxMp() / 100.0))
+
+        def _task_3():
+            MapleMap.self.broadcastMessage(MaplePacketCreator.removeMist(mist.getObjectId(), False))
+            MapleMap.self.removeMapObject(mist)
+            if poisonSchedule is not None:
+            poisonSchedule.cancel(False)
+
         final ScheduledFuture<?> poisonSchedule
         owner = None
         spawnAndAddRangedMapObject(mist, DelayedPacketCreation()
@@ -1194,29 +1213,15 @@ class MapleMap:
         # switch (mist.isPoisonMist()):
             # case 1:
             owner = getCharacterById(mist.getOwnerId())
-            poisonSchedule = tMan.register(Runnable()
-                public void run()
-                    for mo in MapleMap.self.getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.MONSTER)):
-                        if mist.makeChanceResult() && !(mo).isBuffed(MonsterStatus.中毒):
-                        (mo).applyStatus(owner, MonsterStatusEffect(MonsterStatus.中毒, Integer.valueOf(1), mist.getSourceSkill().getId(), None, False), True, duration, True)
+            poisonSchedule = tMan.register(_task_1,2000, 2500)
             break
             # case 2:
-            poisonSchedule = tMan.register(Runnable()
-                public void run()
-                    for mo in MapleMap.self.getMapObjectsInRect(mist.getBox(), Collections.singletonList(MapleMapObjectType.PLAYER)):
-                        if mist.makeChanceResult():
-                            chr = mo
-                            chr.addMP((int)(mist.getSource().getX() * chr.getStat().getMaxMp() / 100.0))
+            poisonSchedule = tMan.register(_task_2,2000, 2500)
             break
             # default:
             poisonSchedule = None
             break
-        tMan.schedule(Runnable()
-            public void run()
-                MapleMap.self.broadcastMessage(MaplePacketCreator.removeMist(mist.getObjectId(), False))
-                MapleMap.self.removeMapObject(mist)
-                if poisonSchedule is not None:
-                poisonSchedule.cancel(False)
+        tMan.schedule(_task_3,duration)
 
     def disappearingItemDrop(self, dropper: Any, owner: Any, item: Any, pos: Any) -> None:
         droppos = self.calcDropPos(pos, pos)
@@ -1229,9 +1234,9 @@ class MapleMap:
         self.spawnAndAddRangedMapObject(mdrop, DelayedPacketCreation()
             public void sendPackets(final MapleClient c)
                 c.getSession().write(MaplePacketCreator.dropItemFromMapObject(mdrop, dropper.getPosition(), droppos, 1))
-        if !self.everlast:
+        if not self.everlast:
             mdrop.registerExpire(120000)
-            if droptype == 0 || droptype == 1:
+            if droptype == 0 or droptype == 1:
                 mdrop.registerFFA(30000)
 
     def spawnMobMesoDrop(self, meso: int, position: Any, dropper: Any, owner: Any, playerDrop: bool, droptype: int) -> None:
@@ -1240,17 +1245,17 @@ class MapleMap:
             public void sendPackets(final MapleClient c)
                 c.getSession().write(MaplePacketCreator.dropItemFromMapObject(mdrop, dropper.getPosition(), position, 1))
         mdrop.registerExpire(120000)
-        if droptype == 0 || droptype == 1:
+        if droptype == 0 or droptype == 1:
             mdrop.registerFFA(30000)
 
     def spawnMobDrop(self, idrop: Any, dropPos: Any, mob: Any, chr: Any, droptype: int, questid: int) -> None:
         mdrop = MapleMapItem(idrop, dropPos, mob, chr, droptype, False, questid)
         self.spawnAndAddRangedMapObject(mdrop, DelayedPacketCreation()
             public void sendPackets(final MapleClient c)
-                if questid <= 0 || c.getPlayer().getQuestStatus(questid) == 1:
+                if questid <= 0 or c.getPlayer().getQuestStatus(questid) == 1:
                     c.getSession().write(MaplePacketCreator.dropItemFromMapObject(mdrop, mob.getPosition(), dropPos, 1))
         mdrop.registerExpire(120000)
-        if droptype == 0 || droptype == 1:
+        if droptype == 0 or droptype == 1:
             mdrop.registerFFA(30000)
         self.activateItemReactors(mdrop, chr.getClient())
 
@@ -1278,7 +1283,7 @@ class MapleMap:
             public void sendPackets(final MapleClient c)
                 c.getSession().write(MaplePacketCreator.dropItemFromMapObject(drop, dropper.getPosition(), droppos, 1))
         self.broadcastMessage(MaplePacketCreator.dropItemFromMapObject(drop, dropper.getPosition(), droppos, 0))
-        if !self.everlast:
+        if not self.everlast:
             drop.registerExpire(120000)
             self.activateItemReactors(drop, owner.getClient())
 
@@ -1288,7 +1293,7 @@ class MapleMap:
         try:
             for o in self.mapobjects.get(MapleMapObjectType.REACTOR).values():
                 react = o
-                if react.getReactorType() == 100 && GameConstants.isCustomReactItem(react.getReactorId(), item.getItemId(), react.getReactItem().getLeft()) && react.getReactItem().getRight() == item.getQuantity() && react.getArea().__contains__(drop.getPosition()) && !react.isTimerActive():
+                if react.getReactorType() == 100 and GameConstants.isCustomReactItem(react.getReactorId(), item.getItemId(), react.getReactItem().getLeft()) and react.getReactItem().getRight() == item.getQuantity() and react.getArea().__contains__(drop.getPosition()) and not react.isTimerActive():
                     Timer.MapTimer.getInstance().schedule(ActivateItemReactor(drop, react, c), 1000)
                     react.setTimerActive(True)
                     break
@@ -1333,21 +1338,23 @@ class MapleMap:
         self.startMapEffect(msg, itemId, False)
 
     def startMapEffect_msg_itemId_jukebox(self, msg: str, itemId: int, jukebox: bool) -> None:
+        def _task_1():
+            MapleMap.self.broadcastMessage(MapleMap.self.mapEffect.makeDestroyData())
+            MapleMap.self.mapEffect = None
+
         if self.mapEffect is not None:
             return
         (self.mapEffect = MapleMapEffect(msg, itemId)).setJukebox(jukebox)
         self.broadcastMessage(self.mapEffect.makeStartData())
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleMap.self.broadcastMessage(MapleMap.self.mapEffect.makeDestroyData())
-                MapleMap.self.mapEffect = None
+        Timer.MapTimer.getInstance().schedule(_task_1, jukebox ? 300000 : 30000)
 
     def startExtendedMapEffect(self, msg: str, itemId: int) -> None:
+        def _task_1():
+            MapleMap.self.broadcastMessage(MaplePacketCreator.removeMapEffect())
+            MapleMap.self.broadcastMessage(MaplePacketCreator.startMapEffect(msg, itemId, False))
+
         self.broadcastMessage(MaplePacketCreator.startMapEffect(msg, itemId, True))
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleMap.self.broadcastMessage(MaplePacketCreator.removeMapEffect())
-                MapleMap.self.broadcastMessage(MaplePacketCreator.startMapEffect(msg, itemId, False))
+        Timer.MapTimer.getInstance().schedule(_task_1, 60000)
 
     def startJukebox(self, msg: str, itemId: int) -> None:
         self.startMapEffect(msg, itemId, True)
@@ -1364,30 +1371,30 @@ class MapleMap:
         finally:
             self.charactersLock.writeLock().unlock()
         进入地图开启显示数据 = False
-        if self.mapid == 109080000 || self.mapid == 109080001 || self.mapid == 109080002 || self.mapid == 109080003 || self.mapid == 109080010 || self.mapid == 109080011 || self.mapid == 109080012:
+        if self.mapid == 109080000 or self.mapid == 109080001 or self.mapid == 109080002 or self.mapid == 109080003 or self.mapid == 109080010 or self.mapid == 109080011 or self.mapid == 109080012:
             chr.setCoconutTeam(self.getAndSwitchTeam() ? 0 : 1)
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据A")
         packet = MaplePacketCreator.spawnPlayerMapobject(chr)
-        if !chr.isHidden():
+        if not chr.isHidden():
             self.broadcastMessage(chr, packet, False)
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据B")
-            if chr.isGM() && self.speedRunStart > 0:
+            if chr.isGM() and self.speedRunStart > 0:
                 self.endSpeedRun()
                 self.broadcastMessage(MaplePacketCreator.serverNotice(5, "The speed run has ended."))
-                if ServerConstants.封包显示 || 进入地图开启显示数据:
+                if ServerConstants.封包显示 or 进入地图开启显示数据:
                     print("进入地图加载数据C")
         else:
             self.broadcastGMMessage(chr, packet, False)
-        if !chr.isClone():
+        if not chr.isClone():
             self.sendObjectPlacement(chr)
             chr.getClient().getSession().write(MaplePacketCreator.spawnPlayerMapobject(chr))
-            if !self.onUserEnter == (""):
+            if not self.onUserEnter == (""):
                 MapScriptMethods.startScript_User(chr.getClient(), self.onUserEnter)
-            if !self.onFirstUserEnter == ("") && self.getCharactersSize() == 1:
+            if not self.onFirstUserEnter == ("") and self.getCharactersSize() == 1:
                 MapScriptMethods.startScript_FirstUser(chr.getClient(), self.onFirstUserEnter)
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据D")
             # switch (self.mapid):
                 # case 109030001:
@@ -1406,23 +1413,23 @@ class MapleMap:
                 pet.setPos(chr.getTruePosition())
                 chr.getClient().getSession().write(PetPacket.updatePet(pet, chr.getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), True))
                 self.broadcastMessage(chr, PetPacket.showPet(chr, pet, False, False), False)
-                if !ServerConstants.封包显示 && !进入地图开启显示数据:
+                if not ServerConstants.封包显示 and not 进入地图开启显示数据:
                     continue
                 print("进入地图加载数据F")
         if self.hasForcedEquip():
             chr.getClient().getSession().write(MaplePacketCreator.showForcedEquip())
         chr.getClient().getSession().write(MaplePacketCreator.removeTutorialStats())
-        if chr.getMapId() >= 914000200 && chr.getMapId() <= 914000220:
+        if chr.getMapId() >= 914000200 and chr.getMapId() <= 914000220:
             chr.getClient().getSession().write(MaplePacketCreator.addTutorialStats())
-        if (chr.getMapId() >= 140090100 && chr.getMapId() <= 140090500) || (chr.getJob() == 1000 && chr.getMapId() != 130030000):
+        if (chr.getMapId() >= 140090100 and chr.getMapId() <= 140090500) or (chr.getJob() == 1000 and chr.getMapId() != 130030000):
             chr.getClient().getSession().write(MaplePacketCreator.spawnTutorialSummon(1))
         else:
             chr.getClient().getSession().write(MaplePacketCreator.spawnTutorialSummon(0))
-        if !self.onUserEnter == (""):
+        if not self.onUserEnter == (""):
             MapScriptMethods.startScript_User(chr.getClient(), self.onUserEnter)
-        if !self.onFirstUserEnter == ("") && self.getCharacters() == 1:
+        if not self.onFirstUserEnter == ("") and self.getCharacters() == 1:
             MapScriptMethods.startScript_FirstUser(chr.getClient(), self.onFirstUserEnter)
-        if !chr.isClone():
+        if not chr.isClone():
             ss = chr.getSummonsReadLock()
             try:
                 for summon in ss:
@@ -1431,42 +1438,42 @@ class MapleMap:
                     self.spawnSummon(summon)
             finally:
                 chr.unlockSummonsReadLock()
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据H")
         if chr.getChalkboard() is not None:
             chr.getClient().getSession().write(MTSCSPacket.useChalkboard(chr.getId(), chr.getChalkboard()))
         self.broadcastMessage(MaplePacketCreator.loveEffect())
-        if self.timeLimit > 0 && self.getForcedReturnMap() is not None && !chr.isClone():
+        if self.timeLimit > 0 and self.getForcedReturnMap() is not None and not chr.isClone():
             chr.startMapTimeLimitTask(self.timeLimit, self.getForcedReturnMap())
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据I")
-        if self.getSquadBegin() is not None && self.getSquadBegin().getTimeLeft() > 0 && self.getSquadBegin().getStatus() == 1:
+        if self.getSquadBegin() is not None and self.getSquadBegin().getTimeLeft() > 0 and self.getSquadBegin().getStatus() == 1:
             chr.getClient().getSession().write(MaplePacketCreator.getClock((int)(self.getSquadBegin().getTimeLeft() / 1000)))
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据O")
-        if chr.getCarnivalParty() is not None && chr.getEventInstance() is not None:
+        if chr.getCarnivalParty() is not None and chr.getEventInstance() is not None:
             chr.getClient().getSession().write(chr.getCoconutTeam())
             chr.getEventInstance().onMapLoad(chr)
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据M")
         MapleEvent.mapLoad(chr, self.channel)
-        if chr.getEventInstance() is not None && chr.getEventInstance().isTimerStarted() && !chr.isClone():
+        if chr.getEventInstance() is not None and chr.getEventInstance().isTimerStarted() and not chr.isClone():
             chr.getClient().getSession().write(MaplePacketCreator.getClock((int)(chr.getEventInstance().getTimeLeft() / 1000)))
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据K")
         if self.hasClock():
             cal = Calendar.getInstance()
             chr.getClient().getSession().write(MaplePacketCreator.getClockTime(cal.get(11), cal.get(12), cal.get(13)))
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据L")
         if self.isTown():
             chr.cancelEffectFromBuffStat(MapleBuffStat.RAINING_MINES)
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据W-------------完")
-        if chr.getParty() is not None && !chr.isClone():
+        if chr.getParty() is not None and not chr.isClone():
             chr.receivePartyMemberHP()
             chr.updatePartyMemberHP()
-            if ServerConstants.封包显示 || 进入地图开启显示数据:
+            if ServerConstants.封包显示 or 进入地图开启显示数据:
                 print("进入地图加载数据G")
         if self.permanentWeather > 0:
             chr.getClient().getSession().write(MaplePacketCreator.startMapEffect("", self.permanentWeather, False))
@@ -1474,7 +1481,7 @@ class MapleMap:
             chr.getClient().getSession().write(MaplePacketCreator.getMovingPlatforms(this))
         if self.environment > 0:
             chr.getClient().getSession().write(MaplePacketCreator.getUpdateEnvironment(this))
-        if self.getNumMonsters() > 0 && (self.mapid == 280030001 || self.mapid == 240060201 || self.mapid == 280030000 || self.mapid == 280030100 || self.mapid == 240060200 || self.mapid == 220080001 || self.mapid == 541020800 || self.mapid == 541010100):
+        if self.getNumMonsters() > 0 and (self.mapid == 280030001 or self.mapid == 240060201 or self.mapid == 280030000 or self.mapid == 280030100 or self.mapid == 240060200 or self.mapid == 220080001 or self.mapid == 541020800 or self.mapid == 541010100):
             music = "Bgm09/TimeAttack"
             # switch (self.mapid):
                 # case 240060200:
@@ -1496,7 +1503,7 @@ class MapleMap:
             self.mapobjectlocks.get(MapleMapObjectType.ITEM).readLock().unlock()
 
     def hasForcedEquip(self) -> bool:
-        return self.fieldType == 81 || self.fieldType == 82
+        return self.fieldType == 81 or self.fieldType == 82
 
     def setFieldType(self, fieldType: int) -> None:
         self.fieldType = fieldType
@@ -1509,16 +1516,65 @@ class MapleMap:
             self.mapobjectlocks.get(MapleMapObjectType.MONSTER).readLock().unlock()
 
     def doShrine(self, spawned: bool) -> None:
+        def _task_1():
+            sqnow = MapleMap.self.getSquadByMap()
+            if MapleMap.self.getCharactersSize() > 0 and MapleMap.self.getNumMonsters() == monsterz and sqnow is not None and sqnow.getStatus() == 2 and sqnow.getLeaderName() == (leaderName) and MapleMap.self.getEMByMap().getProperty("state") == (state):
+                passed = monsterz == 0
+                for m in MapleMap.self.getAllMonstersThreadsafe():
+                    for i in monsteridz:
+                        if m.getObjectId() == i:
+                            passed = True
+                            break
+                    if passed:
+                        break
+                if passed:
+                    packet = None
+                    # switch (mode):
+                        # case 1:
+                            packet = MaplePacketCreator.showZakumShrine(spawned, 0)
+                            break
+                        # case 2:
+                            packet = MaplePacketCreator.showChaosZakumShrine(spawned, 0)
+                            break
+                        # default:
+                            packet = MaplePacketCreator.showHorntailShrine(spawned, 0)
+                            break
+                    for chr in MapleMap.self.getCharactersThreadsafe():
+                        chr.getClient().getSession().write(packet)
+                        chr.changeMap(returnMapz, returnMapz.getPortal(0))
+                    MapleMap.self.checkStates("")
+                    MapleMap.self.resetFully()
+
+        def _task_2():
+            sqnow = MapleMap.self.getSquadByMap()
+            if MapleMap.self.getCharactersSize() > 0 and sqnow is not None and sqnow.getStatus() == 2 and sqnow.getLeaderName() == (leaderName) and MapleMap.self.getEMByMap().getProperty("state") == (state):
+                packet = None
+                # switch (mode):
+                    # case 1:
+                        packet = MaplePacketCreator.showZakumShrine(spawned, 0)
+                        break
+                    # case 2:
+                        packet = MaplePacketCreator.showChaosZakumShrine(spawned, 0)
+                        break
+                    # default:
+                        packet = MaplePacketCreator.showHorntailShrine(spawned, 0)
+                        break
+                for chr in MapleMap.self.getCharactersThreadsafe():
+                    chr.getClient().getSession().write(packet)
+                    chr.changeMap(returnMapz, returnMapz.getPortal(0))
+                MapleMap.self.checkStates("")
+                MapleMap.self.resetFully()
+
         if self.squadSchedule is not None:
             self.cancelSquadSchedule()
         sqd = self.getSquadByMap()
-        mode = (self.mapid == 280030000 || self.mapid == 280030100) ? 1 : ((self.mapid == 280030001) ? 2 : ((self.mapid == 240060200 || self.mapid == 240060201) ? 3 : 0))
+        mode = (self.mapid == 280030000 or self.mapid == 280030100) ? 1 : ((self.mapid == 280030001) ? 2 : ((self.mapid == 240060200 or self.mapid == 240060201) ? 3 : 0))
         em = self.getEMByMap()
-        if sqd is not None && em is not None && self.getCharactersSize() > 0:
+        if sqd is not None and em is not None and self.getCharactersSize() > 0:
             leaderName = sqd.getLeaderName()
             state = em.getProperty("state")
             returnMapa = self.getForcedReturnMap()
-            if returnMapa is None || returnMapa.getId() == self.mapid:
+            if returnMapa is None or returnMapa.getId() == self.mapid:
                 returnMapa = self.getReturnMap()
             # switch (mode):
                 # case 1:
@@ -1533,65 +1589,18 @@ class MapleMap:
                 # default:
                     self.broadcastMessage(MaplePacketCreator.showHorntailShrine(spawned, 5))
                     break
-            if mode == 1 || spawned:
+            if mode == 1 or spawned:
                 self.broadcastMessage(MaplePacketCreator.getClock(300))
             returnMapz = returnMapa
             run = None
-            if !spawned:
+            if not spawned:
                 monsterz = self.getAllMonstersThreadsafe()
                 monsteridz = []
                 for m in monsterz:
                     monsteridz.add(m.getObjectId())
-                run = Runnable()
-                    public void run()
-                        sqnow = MapleMap.self.getSquadByMap()
-                        if MapleMap.self.getCharactersSize() > 0 && MapleMap.self.getNumMonsters() == monsterz && sqnow is not None && sqnow.getStatus() == 2 && sqnow.getLeaderName() == (leaderName) && MapleMap.self.getEMByMap().getProperty("state") == (state):
-                            passed = monsterz == 0
-                            for m in MapleMap.self.getAllMonstersThreadsafe():
-                                for i in monsteridz:
-                                    if m.getObjectId() == i:
-                                        passed = True
-                                        break
-                                if passed:
-                                    break
-                            if passed:
-                                packet = None
-                                # switch (mode):
-                                    # case 1:
-                                        packet = MaplePacketCreator.showZakumShrine(spawned, 0)
-                                        break
-                                    # case 2:
-                                        packet = MaplePacketCreator.showChaosZakumShrine(spawned, 0)
-                                        break
-                                    # default:
-                                        packet = MaplePacketCreator.showHorntailShrine(spawned, 0)
-                                        break
-                                for chr in MapleMap.self.getCharactersThreadsafe():
-                                    chr.getClient().getSession().write(packet)
-                                    chr.changeMap(returnMapz, returnMapz.getPortal(0))
-                                MapleMap.self.checkStates("")
-                                MapleMap.self.resetFully()
+                run = _task_1
             else:
-                run = Runnable()
-                    public void run()
-                        sqnow = MapleMap.self.getSquadByMap()
-                        if MapleMap.self.getCharactersSize() > 0 && sqnow is not None && sqnow.getStatus() == 2 && sqnow.getLeaderName() == (leaderName) && MapleMap.self.getEMByMap().getProperty("state") == (state):
-                            packet = None
-                            # switch (mode):
-                                # case 1:
-                                    packet = MaplePacketCreator.showZakumShrine(spawned, 0)
-                                    break
-                                # case 2:
-                                    packet = MaplePacketCreator.showChaosZakumShrine(spawned, 0)
-                                    break
-                                # default:
-                                    packet = MaplePacketCreator.showHorntailShrine(spawned, 0)
-                                    break
-                            for chr in MapleMap.self.getCharactersThreadsafe():
-                                chr.getClient().getSession().write(packet)
-                                chr.changeMap(returnMapz, returnMapz.getPortal(0))
-                            MapleMap.self.checkStates("")
-                            MapleMap.self.resetFully()
+                run = _task_2
             self.squadSchedule = Timer.MapTimer.getInstance().schedule(run, 300000)
 
     def getSquadByMap(self) -> Any:
@@ -1772,7 +1781,7 @@ class MapleMap:
             for summon in ss:
                 self.broadcastMessage(MaplePacketCreator.removeSummon(summon, True))
                 self.removeMapObject(summon)
-                if summon.getMovementType() == SummonMovementType.不会移动 || summon.getMovementType() == SummonMovementType.CIRCLE_STATIONARY || summon.getMovementType() == SummonMovementType.WALK_STATIONARY:
+                if summon.getMovementType() == SummonMovementType.不会移动 or summon.getMovementType() == SummonMovementType.CIRCLE_STATIONARY or summon.getMovementType() == SummonMovementType.WALK_STATIONARY:
                     toCancel.add(summon)
                 else:
                     summon.setChangedMap(True)
@@ -1781,7 +1790,7 @@ class MapleMap:
         for summon in toCancel:
             chr.removeSummon(summon)
             chr.dispelSkill(summon.getSkill())
-        if !chr.isClone():
+        if not chr.isClone():
             self.checkStates(chr.getName())
             if self.mapid == 109020001:
                 chr.canTalk(True)
@@ -1823,7 +1832,7 @@ class MapleMap:
         if chr is None:
             return
         for o in self.getMapObjectsInRange(chr.getTruePosition(), GameConstants.maxViewRangeSq(), GameConstants.rangedMapobjectTypes):
-            if o.getType() == MapleMapObjectType.REACTOR && !(o).isAlive():
+            if o.getType() == MapleMapObjectType.REACTOR and not (o).isAlive():
                 continue
             o.sendSpawnData(chr.getClient())
             chr.addVisibleMapObject(o)
@@ -1872,7 +1881,7 @@ class MapleMap:
         self.charactersLock.readLock().lock()
         try:
             for a in self.characters:
-                if (a in chrList) && (a.getPosition( in box)):
+                if (a in chrList) and (a.getPosition( in box)):
                     character.add(a)
         finally:
             self.charactersLock.readLock().unlock()
@@ -1921,7 +1930,7 @@ class MapleMap:
         self.monsterSpawn.clear()
         self.monsterSpawn.addAll(newBossSpawn)
         self.monsterSpawn.addAll(newSpawn)
-        if first && spawnSize > 0:
+        if first and spawnSize > 0:
             self.lastSpawnTime = int(time.time() * 1000)
             if GameConstants.isForceRespawn(self.mapid):
                 self.createMobInterval = 15000
@@ -1950,7 +1959,7 @@ class MapleMap:
         if pos3 is not None:
             point3 = pos3
             point3.y -= 1
-        if pos1 is None && pos2 is None && pos3 is None:
+        if pos1 is None and pos2 is None and pos3 is None:
             print("WARNING: mapid " + self.mapid + ", monster " + monster.getId() + " could not be spawned.")
             return
         if pos1 is not None:
@@ -1997,16 +2006,16 @@ class MapleMap:
         return None
 
     def updateMapObjectVisibility(self, chr: Any, mo: Any) -> None:
-        if chr is None || chr.isClone():
+        if chr is None or chr.isClone():
             return
-        if !chr.isMapObjectVisible(mo):
-            if mo.getType() == MapleMapObjectType.MIST || mo.getType() == MapleMapObjectType.SUMMON || mo.getPosition().distanceSq(chr.getPosition()) <= GameConstants.maxViewRangeSq():
+        if not chr.isMapObjectVisible(mo):
+            if mo.getType() == MapleMapObjectType.MIST or mo.getType() == MapleMapObjectType.SUMMON or mo.getPosition().distanceSq(chr.getPosition()) <= GameConstants.maxViewRangeSq():
                 chr.addVisibleMapObject(mo)
                 mo.sendSpawnData(chr.getClient())
-        elif mo.getType() != MapleMapObjectType.MIST && mo.getType() != MapleMapObjectType.SUMMON && mo.getPosition().distanceSq(chr.getPosition()) > GameConstants.maxViewRangeSq():
+        elif mo.getType() != MapleMapObjectType.MIST and mo.getType() != MapleMapObjectType.SUMMON and mo.getPosition().distanceSq(chr.getPosition()) > GameConstants.maxViewRangeSq():
             chr.removeVisibleMapObject(mo)
             mo.sendDestroyData(chr.getClient())
-        elif mo.getType() == MapleMapObjectType.MONSTER && chr.getTruePosition().distanceSq(mo.getPosition()) <= GameConstants.maxViewRangeSq():
+        elif mo.getType() == MapleMapObjectType.MONSTER and chr.getTruePosition().distanceSq(mo.getPosition()) <= GameConstants.maxViewRangeSq():
             self.updateMonsterController(mo)
 
     def moveMonster(self, monster: Any, reportedPos: Any) -> None:
@@ -2020,19 +2029,19 @@ class MapleMap:
 
     def movePlayer(self, player: Any, newPosition: Any) -> None:
         player.setPosition(newPosition)
-        if !player.isClone():
+        if not player.isClone():
             try:
                 visibleObjects = player.getAndWriteLockVisibleMapObjects()
                 copy = []
                 for mo in copy:
-                    if mo is not None && self.getMapObject(mo.getObjectId(), mo.getType()) == mo:
+                    if mo is not None and self.getMapObject(mo.getObjectId(), mo.getType()) == mo:
                         self.updateMapObjectVisibility(player, mo)
                     else:
                         if mo is None:
                             continue
                         visibleObjects.remove(mo)
                 for mo2 in self.getMapObjectsInRange(player.getPosition(), GameConstants.maxViewRangeSq()):
-                    if mo2 is not None && !player.isMapObjectVisible(mo2):
+                    if mo2 is not None and not player.isMapObjectVisible(mo2):
                         mo2.sendSpawnData(player.getClient())
                         visibleObjects.add(mo2)
             finally:
@@ -2043,7 +2052,7 @@ class MapleMap:
         shortestDistance = Double.POSITIVE_INFINITY
         for portal in self.portals.values():
             distance = portal.getPosition().distanceSq(from)
-            if portal.getType() >= 0 && portal.getType() <= 2 && distance < shortestDistance && portal.getTargetMapId() == 999999999:
+            if portal.getType() >= 0 and portal.getType() <= 2 and distance < shortestDistance and portal.getTargetMapId() == 999999999:
                 closest = portal
                 shortestDistance = distance
         return closest
@@ -2072,7 +2081,7 @@ class MapleMap:
         self.charactersLock.readLock().lock()
         try:
             for chr in self.characters:
-                if !chr.isClone():
+                if not chr.isClone():
                     ret += 1
         finally:
             self.charactersLock.readLock().unlock()
@@ -2085,13 +2094,14 @@ class MapleMap:
         return self.spawnedMonstersOnMap.get()
 
     def spawnLove(self, love: Any) -> None:
+        def _task_1():
+            MapleMap.self.removeMapObject(love)
+            MapleMap.self.broadcastMessage(love.makeDestroyData())
+
         self.addMapObject(love)
         self.broadcastMessage(love.makeSpawnData())
         final Timer.MapTimer tMan = Timer.MapTimer.getInstance()
-        tMan.schedule(Runnable()
-            public void run()
-                MapleMap.self.removeMapObject(love)
-                MapleMap.self.broadcastMessage(love.makeDestroyData())
+        tMan.schedule(_task_1, 3600000)
 
     def AutoNx(self, dy: int) -> None:
         # Boolean a = Boolean.parseBoolean(System.getProperty("RoyMS.AutoMessage"));
@@ -2121,7 +2131,7 @@ class MapleMap:
             itr = (self.mapobjects.get(MapleMapObjectType.NPC)).values().iterator()
             while itr.hasNext():
                 npc = itr.next()
-                if npcid == -1 || npc.getId() == npcid:
+                if npcid == -1 or npc.getId() == npcid:
                     broadcastMessage(MaplePacketCreator.removeNPCController(npc.getObjectId()))
                     broadcastMessage(MaplePacketCreator.removeNPC(npc.getObjectId()))
         finally:
@@ -2144,9 +2154,9 @@ class MapleMap:
                 randomSpawn = []
                 Collections.shuffle(randomSpawn)
                 for spawnPoint2 in randomSpawn:
-                    if !self.isSpawns && spawnPoint2.getMobTime() > 0:
+                    if not self.isSpawns and spawnPoint2.getMobTime() > 0:
                         continue
-                    if spawnPoint2.shouldSpawn() || GameConstants.isForceRespawn(self.mapid):
+                    if spawnPoint2.shouldSpawn() or GameConstants.isForceRespawn(self.mapid):
                         spawnPoint2.spawnMonster(this)
                         spawned += 1
                     if spawned >= numShouldSpawn:
@@ -2226,7 +2236,7 @@ class MapleMap:
 
     def disconnectAll(self) -> None:
         for chr in self.getCharactersThreadsafe():
-            if !chr.isGM():
+            if not chr.isGM():
                 chr.getClient().disconnect(True, False)
                 chr.getClient().getSession().close(True)
 
@@ -2323,18 +2333,18 @@ class MapleMap:
     def makeCarnivalSpawn(self, team: int, newMons: Any, num: int) -> bool:
         MapleNodes.MonsterPoint ret = None
         for (MapleNodes.MonsterPoint mp : self.nodes.getMonsterPoints())
-            if mp.team == team || mp.team == -1:
+            if mp.team == team or mp.team == -1:
                 newpos = calcPointBelow(Point(mp.x, mp.y))
                 newpos.y -= 1
                 found = False
                 for s in self.monsterSpawn:
-                    if s.getCarnivalId() > -1 && (mp.team == -1 || s.getCarnivalTeam() == mp.team) && (s.getPosition()).x == newpos.x && (s.getPosition()).y == newpos.y:
+                    if s.getCarnivalId() > -1 and (mp.team == -1 or s.getCarnivalTeam() == mp.team) and (s.getPosition()).x == newpos.x and (s.getPosition()).y == newpos.y:
                         found = True
                         break
-                if !found:
+                if not found:
                     ret = mp
                     break
-                if !found:
+                if not found:
                     ret = mp
                     break
         if ret is not None:
@@ -2351,18 +2361,18 @@ class MapleMap:
 
     def makeCarnivalReactor(self, team: int, num: int) -> bool:
         old = self.getReactorByName(team + "" + num)
-        if old is not None && old.getState() < 5:
+        if old is not None and old.getState() < 5:
             return False
         guardz = None
         react = self.getAllReactorsThreadsafe()
         for guard in self.nodes.getGuardians():
-            if guard.right == team || guard.right == -1:
+            if guard.right == team or guard.right == -1:
                 found = False
                 for r in react:
-                    if r.getPosition().x == guard.left.x && r.getPosition().y == guard.left.y && r.getState() < 5:
+                    if r.getPosition().x == guard.left.x and r.getPosition().y == guard.left.y and r.getState() < 5:
                         found = True
                         break
-                if !found:
+                if not found:
                     guardz = guard.left
                     break
                 continue
@@ -2415,16 +2425,16 @@ class MapleMap:
             if em is not None:
                 if sqd.getLeaderName() == (chr):
                     em.setProperty("leader", "False")
-                if chr == ("") || size == 0:
+                if chr == ("") or size == 0:
                     sqd.clear()
                     em.setProperty("state", "0")
                     em.setProperty("leader", "True")
                     self.cancelSquadSchedule()
-        if em is not None && em.getProperty("state") is not None && size == 0:
+        if em is not None and em.getProperty("state") is not None and size == 0:
             em.setProperty("state", "0")
             if em.getProperty("leader") is not None:
                 em.setProperty("leader", "True")
-        if self.speedRunStart > 0 && self.speedRunLeader.lower() == chr.lower():
+        if self.speedRunStart > 0 and self.speedRunLeader.lower() == chr.lower():
             if size > 0:
                 self.broadcastMessage(MaplePacketCreator.serverNotice(5, "队长不在地图上！你的挑战失败"))
             self.endSpeedRun()
@@ -2477,7 +2487,7 @@ class MapleMap:
                         chr.getClient().getSession().write(packet)
             else:
                 for chr in self.characters:
-                    if chr != source && chr.getGMLevel() >= source.getGMLevel():
+                    if chr != source and chr.getGMLevel() >= source.getGMLevel():
                         chr.getClient().getSession().write(packet)
         finally:
             self.charactersLock.readLock().unlock()
@@ -2489,7 +2499,7 @@ class MapleMap:
         return self.nodes.getSkillIds()
 
     def canHurt(self) -> bool:
-        if self.lastHurtTime > 0 && self.lastHurtTime + self.decHPInterval < int(time.time() * 1000):
+        if self.lastHurtTime > 0 and self.lastHurtTime + self.decHPInterval < int(time.time() * 1000):
             self.lastHurtTime = int(time.time() * 1000)
             return True
         return False
@@ -2500,7 +2510,7 @@ class MapleMap:
         try:
             for mmo in self.mapobjects.get(MapleMapObjectType.MONSTER).values():
                 theId = (mmo).getId()
-                if !(theId in ret):
+                if not (theId in ret):
                     ret.add(theId)
         finally:
             self.mapobjectlocks.get(MapleMapObjectType.MONSTER).readLock().unlock()
@@ -2532,7 +2542,7 @@ class MapleMap:
         return ret
 
     def hasBoat(self) -> int:
-        if self.boat && self.docked:
+        if self.boat and self.docked:
             return 2
         if self.boat:
             return 1
@@ -2558,7 +2568,7 @@ class MapleMap:
         monsters = self.getMapObjectsInRange(Point(0, 0), Double.POSITIVE_INFINITY, Arrays.asList(MapleMapObjectType.MONSTER))
         for monstermo in monsters:
             monster = monstermo
-            if monster.getId() == 3230300 || monster.getId() == 3230301:
+            if monster.getId() == 3230300 or monster.getId() == 3230301:
                 self.spawnedMonstersOnMap.decrementAndGet()
                 monster.setHp(0)
                 self.broadcastMessage(MobPacket.killMonster(monster.getObjectId(), (int)(animate ? 1 : 0)))

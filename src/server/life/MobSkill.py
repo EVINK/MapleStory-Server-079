@@ -108,7 +108,7 @@ class MobSkill:
             # case 143:
             # case 144:
             # case 145:
-                stop = (monster.isBuffed(MonsterStatus.免疫伤害) || monster.isBuffed(MonsterStatus.免疫魔法攻击) || monster.isBuffed(MonsterStatus.免疫物理攻击))
+                stop = (monster.isBuffed(MonsterStatus.免疫伤害) or monster.isBuffed(MonsterStatus.免疫魔法攻击) or monster.isBuffed(MonsterStatus.免疫物理攻击))
                 break
             # case 200:
                 stop = (player.getMap().getNumMonsters() >= self.limit)
@@ -153,14 +153,14 @@ class MobSkill:
                 stats.put(MonsterStatus.封印, self.x)
                 break
             # case 114:
-                if self.lt is not None && self.rb is not None && skill && monster is not None:
+                if self.lt is not None and self.rb is not None and skill and monster is not None:
                     objects = self.getObjectsInRange(monster, MapleMapObjectType.MONSTER)
                     hp = self.getX() / 1000 * (int)(950.0 + 1050.0 * random.random())
                     for mons in objects:
                         if (mons).getStats().isBoss():
                             (mons).heal(hp, self.getY(), True)
                     break
-                if monster is not None && monster.getStats().isBoss():
+                if monster is not None and monster.getStats().isBoss():
                     monster.heal(self.getX(), self.getY(), True)
                     break
                 break
@@ -181,7 +181,7 @@ class MobSkill:
                 disease = MapleDisease.getBySkill(self.skillId)
                 break
             # case 127:
-                if self.lt is not None && self.rb is not None && skill && monster is not None && player is not None:
+                if self.lt is not None and self.rb is not None and skill and monster is not None and player is not None:
                     for character in self.getPlayersInRange(monster, player):
                         character.dispel()
                     break
@@ -192,11 +192,11 @@ class MobSkill:
             # case 129:
                 if monster is None:
                     break
-                if monster.getEventInstance() is not None && monster.getEventInstance().getName().find("BossQuest") != -1:
+                if monster.getEventInstance() is not None and monster.getEventInstance().getName().find("BossQuest") != -1:
                     break
                 info = monster.getStats().getBanishInfo()
-                if info is not None && info.getMap() != 0 && info.getPortal() is not None:
-                    if self.lt is not None && self.rb is not None && skill && player is not None:
+                if info is not None and info.getMap() != 0 and info.getPortal() is not None:
+                    if self.lt is not None and self.rb is not None and skill and player is not None:
                         for chr in self.getPlayersInRange(monster, player):
                             chr.changeMapBanish(info.getMap(), info.getPortal(), info.getMsg())
                     elif player is not None:
@@ -285,14 +285,14 @@ class MobSkill:
                             break
                     monster.getMap().spawnMonsterWithEffect(toSpawn, self.getSpawnEffect(), monster.getMap().calcPointBelow(Point(xpos, ypos - 1)))
                 break
-        if stats > 0 && monster is not None:
-            if self.lt is not None && self.rb is not None && skill:
+        if stats > 0 and monster is not None:
+            if self.lt is not None and self.rb is not None and skill:
                 for mons2 in self.getObjectsInRange(monster, MapleMapObjectType.MONSTER):
                     (mons2).applyMonsterBuff(stats, self.getSkillId(), self.getDuration(), this, reflection)
             else:
                 monster.applyMonsterBuff(stats, self.getSkillId(), self.getDuration(), this, reflection)
-        if disease is not None && player is not None:
-            if self.lt is not None && self.rb is not None && skill && monster is not None:
+        if disease is not None and player is not None:
+            if self.lt is not None and self.rb is not None and skill and monster is not None:
                 for chr2 in self.getPlayersInRange(monster, player):
                     chr2.giveDebuff(disease, this)
             else:
@@ -340,7 +340,7 @@ class MobSkill:
         return self.limit
 
     def makeChanceResult(self) -> bool:
-        return self.prop >= 1.0 || random.random() < self.prop
+        return self.prop >= 1.0 or random.random() < self.prop
 
     def calculateBoundingBox(self, posFrom: Any, facingLeft: bool) -> Any:
         mylt = None

@@ -53,7 +53,7 @@ class CheatingOffense(Enum):
         return self.validityDuration
 
     def shouldAutoban(self, count: int) -> bool:
-        return self.autobancount != -1 && count >= self.autobancount
+        return self.autobancount != -1 and count >= self.autobancount
 
     def getBanType(self) -> int:
         return self.bantype

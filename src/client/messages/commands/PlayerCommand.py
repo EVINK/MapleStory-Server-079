@@ -57,7 +57,7 @@ class PlayerCommand:
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!abc <怪物ID>  - 召唤怪物")
+        return "".append("not abc <怪物ID> - 召唤怪物")
 
 
 # Inner class from Java (originally nested)
@@ -250,7 +250,7 @@ class CGM(CommandExecute):
         if c.getPlayer().isGM():
             c.getPlayer().dropMessage(6, "因为你自己是GM无法使用此命令,可以尝试!cngm <讯息> 來建立GM聊天頻道~")
             return 1
-        if !c.getPlayer().getCheatTracker().GMSpam(100000, 1):
+        if not c.getPlayer().getCheatTracker().GMSpam(100000, 1):
             World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "頻道 " + c.getPlayer().getClient().getChannel() + " 玩家 [" + c.getPlayer().getName() + "] : " + StringUtil.joinStringFrom(splitted, 1)).encode("utf-8"))
             c.getPlayer().dropMessage(6, "讯息已经发给GM了!")
         else:
@@ -269,10 +269,10 @@ class pg(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         VipCount = c.getPlayer().getVip()
         maxdamage = 199999 + VipCount * 10000
-        if maxdamage >= 2147483647 || maxdamage < 0:
+        if maxdamage >= 2147483647 or maxdamage < 0:
             maxdamage = 2147483647
         c.getPlayer().refreshPGDamage()
-        mds = "您当前的伤害上限为：" + maxdamage + "   当前破攻伤害为：" + c.getPlayer().curPGDamage
+        mds = "您当前的伤害上限为：" + maxdamage + " 当前破攻伤害为：" + c.getPlayer().curPGDamage
         c.getPlayer().dropMessage(5, "伤害上限计算公式： 基础伤害(199999) + 您的破功等级*10000 ")
         c.getPlayer().dropMessage(-1, mds)
         c.getPlayer().dropMessage(5, mds)
@@ -289,13 +289,13 @@ class help(CommandExecute):
 
     def execute(self, c: Any, splitted: list) -> int:
         c.getPlayer().dropMessage(5, "指令列表 :")
-        c.getPlayer().dropMessage(5, "@解卡/@查看/@ea  <解除异常+查看当前状态>")
-        c.getPlayer().dropMessage(5, "@爆率 爆率       <查询当前地图怪物爆率>")
-        c.getPlayer().dropMessage(5, "@自由/@zy     < 立即回到自于市场 >")
-        c.getPlayer().dropMessage(5, "@万能/@wn        < 打开多功能NPC >")
-        c.getPlayer().dropMessage(5, "@怪物/@Mob  <查看身边怪物信息/血量>")
-        c.getPlayer().dropMessage(5, "@pg           查看自己的破攻上限(也可以使用 @破攻 )")
-        c.getPlayer().dropMessage(5, "@abc   召唤怪物\n(蜗牛、黑木妖、火独眼兽、小石球、海胆、鲨鱼、骷髅龙、小铜人、银人、小金人)\n最高可召唤100只 每天召唤10次")
+        c.getPlayer().dropMessage(5, "@解卡/@查看/@ea <解除异常+查看当前状态>")
+        c.getPlayer().dropMessage(5, "@爆率 爆率 <查询当前地图怪物爆率>")
+        c.getPlayer().dropMessage(5, "@自由/@zy < 立即回到自于市场 >")
+        c.getPlayer().dropMessage(5, "@万能/@wn < 打开多功能NPC >")
+        c.getPlayer().dropMessage(5, "@怪物/@Mob <查看身边怪物信息/血量>")
+        c.getPlayer().dropMessage(5, "@pg 查看自己的破攻上限(也可以使用 @破攻 )")
+        c.getPlayer().dropMessage(5, "@abc 召唤怪物\n(蜗牛、黑木妖、火独眼兽、小石球、海胆、鲨鱼、骷髅龙、小铜人、银人、小金人)\n最高可召唤100只 每天召唤10次")
         return 1
 
 
@@ -351,5 +351,5 @@ class abc(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!abc <怪物ID>  - 召唤怪物")
+        return "".append("not abc <怪物ID> - 召唤怪物")
 

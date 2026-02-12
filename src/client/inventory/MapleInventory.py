@@ -85,7 +85,7 @@ class MapleInventory:
         return slotId
 
     def addFromDB(self, item: Any) -> None:
-        if item.getPosition() < 0 && !self.type == (MapleInventoryType.EQUIPPED):
+        if item.getPosition() < 0 and not self.type == (MapleInventoryType.EQUIPPED):
         return
         self.inventory.put(Short.valueOf(item.getPosition()), item)
 
@@ -100,8 +100,8 @@ class MapleInventory:
             source.setPosition(dSlot)
             self.inventory.put(Short.valueOf(dSlot), source)
             self.inventory.remove(Short.valueOf(sSlot))
-        elif target.getItemId() == source.getItemId() && !GameConstants.isThrowingStar(source.getItemId()) && !GameConstants.isBullet(source.getItemId()) && target.getOwner() == (source.getOwner()) && target.getExpiration() == source.getExpiration():
-            if self.type.getType() == MapleInventoryType.EQUIP.getType() || self.type.getType() == MapleInventoryType.CASH.getType():
+        elif target.getItemId() == source.getItemId() and not GameConstants.isThrowingStar(source.getItemId()) and not GameConstants.isBullet(source.getItemId()) and target.getOwner() == (source.getOwner()) and target.getExpiration() == source.getExpiration():
+            if self.type.getType() == MapleInventoryType.EQUIP.getType() or self.type.getType() == MapleInventoryType.CASH.getType():
                 swap(target, source)
             elif source.getQuantity() + target.getQuantity() > slotMax:
                 source.setQuantity((short)(source.getQuantity() + target.getQuantity() - slotMax))
@@ -137,7 +137,7 @@ class MapleInventory:
         item.setQuantity((short)(item.getQuantity() - quantity))
         if item.getQuantity() < 0:
         item.setQuantity(0)
-        if item.getQuantity() == 0 && !allowZero:
+        if item.getQuantity() == 0 and not allowZero:
         removeSlot(slot)
         if chr is not None:
             chr.getClient().sendPacket(MaplePacketCreator.modifyInventory(False, ModifyInventory(ModifyInventory.Types.REMOVE, item)))
@@ -157,7 +157,7 @@ class MapleInventory:
         return -1
         i = 1
         while i <= self.slotLimit:
-            if !self.inventory.keys().__contains__(Short.valueOf(i)):
+            if not self.inventory.keys().__contains__(Short.valueOf(i)):
             return i
         return -1
 
@@ -167,7 +167,7 @@ class MapleInventory:
         free = 0
         i = 1
         while i <= self.slotLimit:
-            if !self.inventory.keys().__contains__(Short.valueOf(i)):
+            if not self.inventory.keys().__contains__(Short.valueOf(i)):
             free = (byte)(free + 1)
         return free
 
@@ -180,7 +180,7 @@ class MapleInventory:
     def listByEquipOnlyId(self, equipOnlyId: int) -> list:
         ret = []
         for item in self.inventory.values():
-            if item.getEquipOnlyId() > 0 && item.getEquipOnlyId() == equipOnlyId:
+            if item.getEquipOnlyId() > 0 and item.getEquipOnlyId() == equipOnlyId:
             ret.add(item)
         if ret > 1:
         Collections.sort(ret)
@@ -188,7 +188,7 @@ class MapleInventory:
 
     def findByEquipOnlyId(self, onlyId: int, itemId: int) -> Any:
         for item in self.inventory.values():
-            if item.getEquipOnlyId() == onlyId && item.getItemId() == itemId:
+            if item.getEquipOnlyId() == onlyId and item.getItemId() == itemId:
             return item
         return None
 

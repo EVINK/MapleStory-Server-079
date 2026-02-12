@@ -44,7 +44,7 @@ class BuddyList:
             ps.setInt(2, pending)
             # try-with-resources: final ResultSet rs = ps.executeQuery()
             try:
-                if !rs.next():
+                if not rs.next():
                     raise RuntimeError("BuddyListHandler: getBuudyCount From DB is Error.")
                 count = rs.getInt("buddyCount")
         except Exception as ex:
@@ -97,7 +97,7 @@ class BuddyList:
 
     def containsVisible(self, charId: int) -> bool:
         ble = self.buddies.get(charId)
-        return ble is not None && ble.isVisible()
+        return ble is not None and ble.isVisible()
 
     def getCapacity(self) -> int:
         return self.capacity
@@ -136,7 +136,7 @@ class BuddyList:
         for (final Map.Entry<BuddyEntry, Boolean> qs : data.items())
             buddyid = qs.getKey()
             pair = qs.getValue()
-            if !pair:
+            if not pair:
                 self.pendingReqs.push(buddyid)
             else:
                 self.put(BuddyEntry(buddyid.getName(), buddyid.getCharacterId(), buddyid.getGroup(), -1, True, buddyid.getLevel(), buddyid.getJob()))

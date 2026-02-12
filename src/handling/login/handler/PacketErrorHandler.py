@@ -31,7 +31,7 @@ class PacketErrorHandler:
             op = lookupRecv(pHeader)
             from = ""
             if c.getPlayer() is not None:
-                from = "\r\n时间：" + FileoutputUtil.CurrentReadable_Time() + "  角色: " + c.getPlayer().getName() + "  等级(" + c.getPlayer().getLevel() + ") 职业: " + c.getPlayer().getJob() + " \r\n"
+                from = "\r\n时间：" + FileoutputUtil.CurrentReadable_Time() + " 角色: " + c.getPlayer().getName() + " 等级(" + c.getPlayer().getLevel() + ") 职业: " + c.getPlayer().getJob() + " \r\n"
             Recv = "封包出错: \r\n" + op + " [" + pHeaderStr + "] (" + (badPacketSize - 6) + ")\r\n" + slea.toString(True)
             FileoutputUtil.packetLog("logs/封包出错.log", from + Recv)
 

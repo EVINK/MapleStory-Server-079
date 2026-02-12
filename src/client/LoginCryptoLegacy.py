@@ -48,7 +48,7 @@ class LoginCryptoLegacy:
     def myCrypt(self, password: str, seed: str) -> str:
         out = None
         count = 8
-        if !seed[0:3] == ("$H$"):
+        if not seed[0:3] == ("$H$"):
             randomBytes = new byte[6]
             LoginCryptoLegacy.rand.nextBytes(randomBytes)
             seed = genSalt(randomBytes)
@@ -86,7 +86,7 @@ class LoginCryptoLegacy:
             halfbyte = data[i] >>> 4 & 0xF
             two_halfs = 0
             while True:
-                if 0 <= halfbyte && halfbyte <= 9:
+                if 0 <= halfbyte and halfbyte <= 9:
                     buf.append((char)(48 + halfbyte))
                 else:
                     buf.append((char)(97 + (halfbyte - 10)))

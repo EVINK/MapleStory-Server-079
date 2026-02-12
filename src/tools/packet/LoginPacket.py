@@ -231,7 +231,7 @@ class LoginPacket:
         mplew.writeInt(0)
         mplew.write(chars)
         for chr in chars:
-            addCharEntry(mplew, chr, !chr.isGM() && chr.getLevel() >= 10, False)
+            addCharEntry(mplew, chr, not chr.isGM() and chr.getLevel() >= 10, False)
         mplew.writeShort(3)
         mplew.writeInt(charslots)
         if ServerConstants.PACKET_ERROR_OFF:

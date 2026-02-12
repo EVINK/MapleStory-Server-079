@@ -36,7 +36,7 @@ class InternCommand:
         c.getPlayer().dropMessage(6, "頻道: " + c.getChannelServer().getChannel() + " 线上人数: " + curConnected)
         total += curConnected
         for chr in c.getChannelServer().getPlayerStorage().getAllCharacters():
-            if chr is not None && c.getPlayer().getGMLevel() >= chr.getGMLevel():
+            if chr is not None and c.getPlayer().getGMLevel() >= chr.getGMLevel():
                 ret = ""
                 ret.append(" 角色名称 ")
                 ret.append(StringUtil.getRightPaddedStr(chr.getName(), ' ', 15))
@@ -67,14 +67,14 @@ class InternCommand:
 
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) < 3:
-            c.getPlayer().dropMessage(5, "[Syntax] !" + self.getCommand() + " <玩家> <原因>")
+            c.getPlayer().dropMessage(5, "[Syntax] not " + self.getCommand() + " <玩家> <原因>")
             return 0
         ch = World.Find.findChannel(splitted[1])
         sb = "".getName())
         sb.append(" banned ").append(splitted[1]).append(": ").append(StringUtil.joinStringFrom(splitted, 2))
         target = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(splitted[1])
-        if target is None || ch < 1:
-            if MapleCharacter.ban(splitted[1], sb, False, c.getPlayer().isAdmin() ? 250 : c.getPlayer().getGMLevel(), splitted[0] == ("!hellban")):
+        if target is None or ch < 1:
+            if MapleCharacter.ban(splitted[1], sb, False, c.getPlayer().isAdmin() ? 250 : c.getPlayer().getGMLevel(), splitted[0] == ("not hellban")):
                 c.getPlayer().dropMessage(6, "[" + self.getCommand() + "] 成功离线封锁 " + splitted[1] + ".")
                 return 1
             c.getPlayer().dropMessage(6, "[" + self.getCommand() + "] 封锁失败 " + splitted[1])
@@ -164,7 +164,7 @@ class online(CommandExecute):
         c.getPlayer().dropMessage(6, "頻道: " + c.getChannelServer().getChannel() + " 线上人数: " + curConnected)
         total += curConnected
         for chr in c.getChannelServer().getPlayerStorage().getAllCharacters():
-            if chr is not None && c.getPlayer().getGMLevel() >= chr.getGMLevel():
+            if chr is not None and c.getPlayer().getGMLevel() >= chr.getGMLevel():
                 ret = ""
                 ret.append(" 角色名称 ")
                 ret.append(StringUtil.getRightPaddedStr(chr.getName(), ' ', 15))
@@ -208,14 +208,14 @@ class Ban(CommandExecute):
 
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) < 3:
-            c.getPlayer().dropMessage(5, "[Syntax] !" + self.getCommand() + " <玩家> <原因>")
+            c.getPlayer().dropMessage(5, "[Syntax] not " + self.getCommand() + " <玩家> <原因>")
             return 0
         ch = World.Find.findChannel(splitted[1])
         sb = "".getName())
         sb.append(" banned ").append(splitted[1]).append(": ").append(StringUtil.joinStringFrom(splitted, 2))
         target = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(splitted[1])
-        if target is None || ch < 1:
-            if MapleCharacter.ban(splitted[1], sb, False, c.getPlayer().isAdmin() ? 250 : c.getPlayer().getGMLevel(), splitted[0] == ("!hellban")):
+        if target is None or ch < 1:
+            if MapleCharacter.ban(splitted[1], sb, False, c.getPlayer().isAdmin() ? 250 : c.getPlayer().getGMLevel(), splitted[0] == ("not hellban")):
                 c.getPlayer().dropMessage(6, "[" + self.getCommand() + "] 成功离线封锁 " + splitted[1] + ".")
                 return 1
             c.getPlayer().dropMessage(6, "[" + self.getCommand() + "] 封锁失败 " + splitted[1])

@@ -52,7 +52,7 @@ class NPCScriptManager(AbstractScriptManager):
                     c.getPlayer().dropMessage("[系统提示]您已经建立与NPC:" + npc + "的对话。")
                 else:
                     c.getPlayer().dropMessage("[系统提示]您已经建立与NPC:" + npc + "_" + wh + "的对话。")
-            if !(c in self.mapleClientNPCConversationManagerMap):
+            if not (c in self.mapleClientNPCConversationManagerMap):
                 iv = None
                 if wh == 0:
                     iv = self.getInvocable("npc"+ File.separator + npc + ".js", c, True)
@@ -65,7 +65,7 @@ class NPCScriptManager(AbstractScriptManager):
                 else:
                     cm = NPCConversationManager(c, npc, -1, (byte) (-1), iv, wh)
                 self.mapleClientNPCConversationManagerMap.put(c, cm)
-                if iv is None || getInstance() is None:
+                if iv is None or getInstance() is None:
                     if wh == 0:
                         # switch (GameConstants.game):
                             # case 0:
@@ -103,7 +103,7 @@ class NPCScriptManager(AbstractScriptManager):
     def action_c_mode_type_selection_wh(self, c: Any, mode: int, type: int, selection: int, wh: int) -> None:
         if mode != -1:
             cm = self.mapleClientNPCConversationManagerMap.get(c)
-            if cm is None || cm.getLastMsg() > -1:
+            if cm is None or cm.getLastMsg() > -1:
                 return
             lock = c.getNPCLock()
             lock.lock()
@@ -124,12 +124,12 @@ class NPCScriptManager(AbstractScriptManager):
                 lock.unlock()
 
     def startQuest(self, c: Any, npc: int, quest: int) -> None:
-        if !MapleQuest.getInstance(quest).canStart(c.getPlayer(), None):
+        if not MapleQuest.getInstance(quest).canStart(c.getPlayer(), None):
             return
         lock = c.getNPCLock()
         lock.lock()
         try:
-            if !(c in self.mapleClientNPCConversationManagerMap):
+            if not (c in self.mapleClientNPCConversationManagerMap):
                 iv = self.getInvocable("quest"+File.separator + quest + ".js", c, True)
                 if iv is None:
                     self.dispose(c)
@@ -154,7 +154,7 @@ class NPCScriptManager(AbstractScriptManager):
     def startQuest_c_mode_type_selection(self, c: Any, mode: int, type: int, selection: int) -> None:
         lock = c.getNPCLock()
         cm = self.mapleClientNPCConversationManagerMap.get(c)
-        if cm is None || cm.getLastMsg() > -1:
+        if cm is None or cm.getLastMsg() > -1:
             return
         lock.lock()
         try:
@@ -172,12 +172,12 @@ class NPCScriptManager(AbstractScriptManager):
             lock.unlock()
 
     def endQuest(self, c: Any, npc: int, quest: int, customEnd: bool) -> None:
-        if !customEnd && !MapleQuest.getInstance(quest).canComplete(c.getPlayer(), None):
+        if not customEnd and not MapleQuest.getInstance(quest).canComplete(c.getPlayer(), None):
             return
         lock = c.getNPCLock()
         lock.lock()
         try:
-            if !(c in self.mapleClientNPCConversationManagerMap):
+            if not (c in self.mapleClientNPCConversationManagerMap):
                 iv = self.getInvocable("quest"+File.separator + quest + ".js", c, True)
                 if iv is None:
                     self.dispose(c)
@@ -200,7 +200,7 @@ class NPCScriptManager(AbstractScriptManager):
     def endQuest_c_mode_type_selection(self, c: Any, mode: int, type: int, selection: int) -> None:
         lock = c.getNPCLock()
         cm = self.mapleClientNPCConversationManagerMap.get(c)
-        if cm is None || cm.getLastMsg() > -1:
+        if cm is None or cm.getLastMsg() > -1:
             return
         lock.lock()
         try:
@@ -230,7 +230,7 @@ class NPCScriptManager(AbstractScriptManager):
                 c.removeScriptEngine(scriptsPath +"scripts"+File.separator+"npc"+File.separator+"notcoded.js")
             else:
                 c.removeScriptEngine(scriptsPath +"scripts"+File.separator+"quest"+File.separator + npccm.getQuest() + ".js")
-        if c.getPlayer() is not None && c.getPlayer().getConversation() == 1:
+        if c.getPlayer() is not None and c.getPlayer().getConversation() == 1:
             c.getPlayer().setConversation(0)
 
     def getCM(self, c: Any) -> Any:

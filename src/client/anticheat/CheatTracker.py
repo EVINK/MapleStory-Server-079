@@ -123,7 +123,7 @@ class CheatTracker:
             self.numZeroDamageTaken = 0
 
     def checkSameDamage(self, dmg: int) -> None:
-        if dmg > 2000 && self.lastDamage == dmg:
+        if dmg > 2000 and self.lastDamage == dmg:
             self.numSameDamage += 1
             if self.numSameDamage > 5:
                 self.numSameDamage = 0
@@ -139,7 +139,7 @@ class CheatTracker:
                 self.registerOffense(CheatingOffense.吸怪)
                 self.monsterMoveCount = 0
                 World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "[管理员信息] 开挂玩家[" + MapleCharacterUtil.makeMapleReadable(chr.getName()) + "] 地图ID[" + chr.getMapId() + "] 怀疑使用吸怪! ").encode("utf-8"))
-                note = "时间：" + FileoutputUtil.CurrentReadable_Time() + " || 玩家名字：" + chr.getName() + "|| 玩家地图：" + chr.getMapId() + "\r\n"
+                note = "时间：" + FileoutputUtil.CurrentReadable_Time() + " or 玩家名字：" + chr.getName() + " or 玩家地图：" + chr.getMapId() + "\r\n"
                 FileoutputUtil.packetLog("logs/吸怪检测/" + chr.getName() + ".log", note)
         else:
             self.lastMonsterMove = pos
@@ -162,20 +162,20 @@ class CheatTracker:
     def checkDrop_dc(self, dc: bool) -> None:
         if int(time.time() * 1000) - self.lastDropTime < 1000:
             self.dropsPerSecond += 1
-            if self.dropsPerSecond >= (dc ? 32 : 16) && self.chr.get() is not None:
+            if self.dropsPerSecond >= (dc ? 32 : 16) and self.chr.get() is not None:
                 self.chr.get().getClient().setMonitored(True)
         else:
             self.dropsPerSecond = 0
         self.lastDropTime = int(time.time() * 1000)
 
     def canAvatarSmega2(self) -> bool:
-        if self.lastASmegaTime + 10000 > int(time.time() * 1000) && self.chr.get() is not None && !self.chr.get().isGM():
+        if self.lastASmegaTime + 10000 > int(time.time() * 1000) and self.chr.get() is not None and not self.chr.get().isGM():
             return False
         self.lastASmegaTime = int(time.time() * 1000)
         return True
 
     def GMSpam(self, limit: int, type: int) -> bool:
-        if type < 0 || self.len(lastTime) < type:
+        if type < 0 or self.len(lastTime) < type:
             type = 1
         if int(time.time() * 1000) < limit + self.lastTime[type]:
             return True
@@ -203,7 +203,7 @@ class CheatTracker:
 
     def registerOffense_offense_param(self, offense: Any, param: str) -> None:
         chrhardref = self.chr.get()
-        if chrhardref is None || !offense.isEnabled() || chrhardref.isClone() || chrhardref.isGM():
+        if chrhardref is None or not offense.isEnabled() or chrhardref.isClone() or chrhardref.isGM():
             return
         entry = None
         self.rL.lock()
@@ -211,7 +211,7 @@ class CheatTracker:
             entry = self.offenses.get(offense)
         finally:
             self.rL.unlock()
-        if entry is not None && entry.isExpired():
+        if entry is not None and entry.isExpired():
             self.expireEntry(entry)
             entry = None
         if entry is None:
@@ -294,7 +294,7 @@ class CheatTracker:
         self.rL.lock()
         try:
             for entry in self.offenses.values():
-                if !entry.isExpired():
+                if not entry.isExpired():
                     offenseList.add(entry)
         finally:
             self.rL.unlock()
@@ -323,7 +323,7 @@ class CheatTracker:
         self.invalidationTask = None
 
     def canSaveDB(self) -> bool:
-        if self.lastSaveTime + 180000 > int(time.time() * 1000) && self.chr.get() is not None:
+        if self.lastSaveTime + 180000 > int(time.time() * 1000) and self.chr.get() is not None:
             return False
         self.lastSaveTime = int(time.time() * 1000)
         return True

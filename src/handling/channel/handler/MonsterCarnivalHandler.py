@@ -37,7 +37,7 @@ class MonsterCarnivalHandler:
         # switch (tab):
             # case 0:
                 mobs = c.getPlayer().getMap().getMobsToSpawn()
-                if num >= mobs || c.getPlayer().getAvailableCP() < mobs.get(num).right:
+                if num >= mobs or c.getPlayer().getAvailableCP() < mobs.get(num).right:
                     c.getPlayer().dropMessage(5, "你没有足够的CP.")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
@@ -49,7 +49,7 @@ class MonsterCarnivalHandler:
                     print("num：" + num)
                     print("判断A：" + mons is not None)
                     print("判断B：" + c.getPlayer().getMap().makeCarnivalSpawn(c.getPlayer().getCarnivalParty().getTeam(), mons, num))
-                if mons is not None && c.getPlayer().getMap().makeCarnivalSpawn(c.getPlayer().getCarnivalParty().getTeam(), mons, num):
+                if mons is not None and c.getPlayer().getMap().makeCarnivalSpawn(c.getPlayer().getCarnivalParty().getTeam(), mons, num):
                     c.getPlayer().getCarnivalParty().useCP(c.getPlayer(), mobs.get(num).right)
                     c.getPlayer().CPUpdate(False, c.getPlayer().getAvailableCP(), c.getPlayer().getTotalCP(), 0)
                     for chr in c.getPlayer().getMap().getCharactersThreadsafe():
@@ -67,14 +67,14 @@ class MonsterCarnivalHandler:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 final MapleCarnivalFactory.MCSkill skil = MapleCarnivalFactory.getInstance().getSkill(skillid.get(num))
-                if skil is None || c.getPlayer().getAvailableCP() < skil.cpLoss:
+                if skil is None or c.getPlayer().getAvailableCP() < skil.cpLoss:
                     c.getPlayer().dropMessage(5, "你没有足够的CP.")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 dis = skil.getDisease()
                 found = False
                 for chr2 in c.getPlayer().getMap().getCharactersThreadsafe():
-                    if (chr2.getParty() is None || (c.getPlayer().getParty() is not None && chr2.getParty().getId() != c.getPlayer().getParty().getId())) && (skil.targetsAll || Randomizer.nextBoolean()):
+                    if (chr2.getParty() is None or (c.getPlayer().getParty() is not None and chr2.getParty().getId() != c.getPlayer().getParty().getId())) and (skil.targetsAll or Randomizer.nextBoolean()):
                         found = True
                         if dis is None:
                             chr2.dispel()
@@ -82,7 +82,7 @@ class MonsterCarnivalHandler:
                             chr2.giveDebuff(dis, 1, 30000, MapleDisease.getByDisease(dis), 1)
                         else:
                             chr2.giveDebuff(dis, skil.getSkill())
-                        if !skil.targetsAll:
+                        if not skil.targetsAll:
                             break
                         continue
                 if found:
@@ -99,7 +99,7 @@ class MonsterCarnivalHandler:
                 break
             # case 2:
                 final MapleCarnivalFactory.MCSkill skil2 = MapleCarnivalFactory.getInstance().getGuardian(num)
-                if skil2 is None || c.getPlayer().getAvailableCP() < skil2.cpLoss:
+                if skil2 is None or c.getPlayer().getAvailableCP() < skil2.cpLoss:
                     c.getPlayer().dropMessage(5, "你没有足够的CP.")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return

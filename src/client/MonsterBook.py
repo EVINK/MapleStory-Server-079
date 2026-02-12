@@ -67,7 +67,7 @@ class MonsterBook:
         return (self.cards.get(cardid) is None) ? 0 : self.cards.get(cardid)
 
     def saveCards(self, charid: int) -> None:
-        if !self.changed || self.cards == 0:
+        if not self.changed or self.cards == 0:
             return
         con = DatabaseConnection.getConnection()
         ps = None

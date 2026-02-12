@@ -96,7 +96,7 @@ class MapleMapItem(AbstractMapleMapObject):
         return MapleMapObjectType.ITEM
 
     def sendSpawnData(self, client: Any) -> None:
-        if self.questid <= 0 || client.getPlayer().getQuestStatus(self.questid) == 1:
+        if self.questid <= 0 or client.getPlayer().getQuestStatus(self.questid) == 1:
             client.getSession().write(MaplePacketCreator.dropItemFromMapObject(this, None, self.getPosition(), 2))
 
     def sendDestroyData(self, client: Any) -> None:
@@ -112,10 +112,10 @@ class MapleMapItem(AbstractMapleMapObject):
         self.nextFFA = int(time.time() * 1000) + time
 
     def shouldExpire(self) -> bool:
-        return !self.pickedUp && self.nextExpiry > 0 && self.nextExpiry < int(time.time() * 1000)
+        return not self.pickedUp and self.nextExpiry > 0 and self.nextExpiry < int(time.time() * 1000)
 
     def shouldFFA(self) -> bool:
-        return !self.pickedUp && self.type < 2 && self.nextFFA > 0 && self.nextFFA < int(time.time() * 1000)
+        return not self.pickedUp and self.type < 2 and self.nextFFA > 0 and self.nextFFA < int(time.time() * 1000)
 
     def expire(self, map: Any) -> None:
         self.pickedUp = True

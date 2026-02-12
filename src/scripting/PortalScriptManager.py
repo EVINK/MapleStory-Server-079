@@ -45,7 +45,7 @@ class PortalScriptManager:
             return self.scripts.get(scriptName)
         scriptsPath = os.environ.get("scripts_path")
         scriptFile = File(scriptsPath+"scripts"+File.separator+"portal"+File.separator + scriptName + ".js")
-        if !scriptFile.exists():
+        if not scriptFile.exists():
             return None
         fr = None
         portal = PortalScriptManager.sef.getScriptEngine()

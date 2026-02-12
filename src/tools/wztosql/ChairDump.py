@@ -26,7 +26,7 @@ class ChairDump:
         sb.append("INSERT INTO shops (`shopid`, `npcid`) VALUES(").append(shopId).append(", ").append(npcId).append(");\r\n")
         price = 1
         for item in MapleItemInformationProvider.getInstance().getAllItems2():
-            if item.getLeft() >= 3010000 && item.getLeft() < 3020000:
+            if item.getLeft() >= 3010000 and item.getLeft() < 3020000:
                 sb.append("INSERT INTO shopitems (`shopid`, `itemid`, `price`, `position`) VALUES(").append(shopId).append(", ").append(item.getLeft()).append(", ").append(price).append(", 0);\r\n")
         out.write(sb.encode("utf-8"))
 

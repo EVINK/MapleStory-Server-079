@@ -44,7 +44,7 @@ class BeanGame:
             if 豆豆序號 == 1:
                 chr.setCanSetBeansNum(False)
         elif type == 2:
-            if type == 11 || type == 0:
+            if type == 11 or type == 0:
                 力度 = slea.readShort()
                 豆豆序號 = slea.readInt() + 1
                 chr.setBeansRange(力度)
@@ -62,7 +62,7 @@ class BeanGame:
                 chr.setBeansNum(chr.getBeansNum() + 循環次數)
             chr.gainBeans(-循環次數)
             chr.setCanSetBeansNum(True)
-        elif type == 11 || type == 6:
+        elif type == 11 or type == 6:
             力度 = slea.readShort()
             chr.setBeansRange(力度)
             size = (byte)(slea.readByte() + 1)

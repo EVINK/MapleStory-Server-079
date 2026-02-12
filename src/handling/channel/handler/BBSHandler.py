@@ -42,12 +42,12 @@ class BBSHandler:
                 title = correctLength(slea.readMapleAsciiString(), 25)
                 text = correctLength(slea.readMapleAsciiString(), 600)
                 icon = slea.readInt()
-                if icon >= 100 && icon <= 106:
-                    if !c.getPlayer().haveItem(5290000 + icon - 100, 1, False, True):
+                if icon >= 100 and icon <= 106:
+                    if not c.getPlayer().haveItem(5290000 + icon - 100, 1, False, True):
                         return
-                elif icon < 0 || icon > 2:
+                elif icon < 0 or icon > 2:
                     return
-                if !bEdit:
+                if not bEdit:
                     newBBSThread(c, title, text, icon, bNotice)
                     break
                 editBBSThread(c, title, text, icon, localthreadid)
@@ -114,6 +114,6 @@ class BBSHandler:
         bbsList = World.Guild.getBBS(c.getPlayer().getGuildId())
         if bbsList is not None:
             for t in bbsList:
-                if t is not None && t.localthreadID == localthreadid:
+                if t is not None and t.localthreadID == localthreadid:
                     c.getSession().write(MaplePacketCreator.showThread(t))
 

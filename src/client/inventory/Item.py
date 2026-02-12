@@ -144,16 +144,16 @@ class Item(IItem):
         return 1
 
     def equals(self, obj: Any) -> bool:
-        if !(isinstance(obj, IItem)):
+        if not (isinstance(obj, IItem)):
             return False
         ite = obj
-        return self.uniqueid == ite.getUniqueId() && self.id == ite.getItemId() && self.quantity == ite.getQuantity() && abs(self.position) == abs(ite.getPosition())
+        return self.uniqueid == ite.getUniqueId() and self.id == ite.getItemId() and self.quantity == ite.getQuantity() and abs(self.position) == abs(ite.getPosition())
 
     def toString(self) -> str:
         return "Item: " + self.id + " quantity: " + self.quantity
 
     def getRing(self) -> Any:
-        if !GameConstants.isEffectRing(self.id) || self.getUniqueId() <= 0:
+        if not GameConstants.isEffectRing(self.id) or self.getUniqueId() <= 0:
             return None
         if self.ring is None:
             self.ring = MapleRing.loadFromDb(self.getUniqueId(), self.position < 0)

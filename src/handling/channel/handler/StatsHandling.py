@@ -67,41 +67,41 @@ class StatsHandling:
                     break
                 # case 8192:
                     maxhp = stat.getMaxHp()
-                    if chr.getHpApUsed() >= 10000 || maxhp >= 30000:
+                    if chr.getHpApUsed() >= 10000 or maxhp >= 30000:
                         return
                     if job == 0:
                         maxhp += Randomizer.rand(8, 12)
-                    elif (job >= 100 && job <= 132) || (job >= 3200 && job <= 3212):
+                    elif (job >= 100 and job <= 132) or (job >= 3200 and job <= 3212):
                         improvingMaxHP = SkillFactory.getSkill(1000001)
                         improvingMaxHPLevel = c.getPlayer().getSkillLevel(improvingMaxHP)
                         maxhp += Randomizer.rand(20, 25)
                         if improvingMaxHPLevel >= 1:
                             maxhp += improvingMaxHP.getEffect(improvingMaxHPLevel).getX()
-                    elif (job >= 200 && job <= 232) || GameConstants.isEvan(job):
+                    elif (job >= 200 and job <= 232) or GameConstants.isEvan(job):
                         maxhp += Randomizer.rand(10, 20)
-                    elif (job >= 300 && job <= 322) || (job >= 400 && job <= 434) || (job >= 1300 && job <= 1312) || (job >= 1400 && job <= 1412) || (job >= 3300 && job <= 3312):
+                    elif (job >= 300 and job <= 322) or (job >= 400 and job <= 434) or (job >= 1300 and job <= 1312) or (job >= 1400 and job <= 1412) or (job >= 3300 and job <= 3312):
                         maxhp += Randomizer.rand(16, 20)
-                    elif (job >= 500 && job <= 522) || (job >= 3500 && job <= 3512):
+                    elif (job >= 500 and job <= 522) or (job >= 3500 and job <= 3512):
                         improvingMaxHP = SkillFactory.getSkill(5100000)
                         improvingMaxHPLevel = c.getPlayer().getSkillLevel(improvingMaxHP)
                         maxhp += Randomizer.rand(18, 22)
                         if improvingMaxHPLevel >= 1:
                             maxhp += improvingMaxHP.getEffect(improvingMaxHPLevel).getY()
-                    elif job >= 1500 && job <= 1512:
+                    elif job >= 1500 and job <= 1512:
                         improvingMaxHP = SkillFactory.getSkill(15100000)
                         improvingMaxHPLevel = c.getPlayer().getSkillLevel(improvingMaxHP)
                         maxhp += Randomizer.rand(18, 22)
                         if improvingMaxHPLevel >= 1:
                             maxhp += improvingMaxHP.getEffect(improvingMaxHPLevel).getY()
-                    elif job >= 1100 && job <= 1112:
+                    elif job >= 1100 and job <= 1112:
                         improvingMaxHP = SkillFactory.getSkill(11000000)
                         improvingMaxHPLevel = c.getPlayer().getSkillLevel(improvingMaxHP)
                         maxhp += Randomizer.rand(36, 42)
                         if improvingMaxHPLevel >= 1:
                             maxhp += improvingMaxHP.getEffect(improvingMaxHPLevel).getY()
-                    elif job >= 1200 && job <= 1212:
+                    elif job >= 1200 and job <= 1212:
                         maxhp += Randomizer.rand(15, 21)
-                    elif job >= 2000 && job <= 2112:
+                    elif job >= 2000 and job <= 2112:
                         maxhp += Randomizer.rand(40, 50)
                     else:
                         maxhp += Randomizer.rand(50, 100)
@@ -115,29 +115,29 @@ class StatsHandling:
                     Int = (short)((short)(stat.getInt() / 10) - 10)
                     if Int < 0:
                         Int = 0
-                    if chr.getHpApUsed() >= 10000 || stat.getMaxMp() >= 30000:
+                    if chr.getHpApUsed() >= 10000 or stat.getMaxMp() >= 30000:
                         return
                     if job == 0:
                         maxmp += Randomizer.rand(6, 8)
-                    elif job >= 100 && job <= 132:
+                    elif job >= 100 and job <= 132:
                         maxmp += Randomizer.rand(2, 4)
-                    elif (job >= 200 && job <= 232) || GameConstants.isEvan(job) || (job >= 3200 && job <= 3212):
+                    elif (job >= 200 and job <= 232) or GameConstants.isEvan(job) or (job >= 3200 and job <= 3212):
                         improvingMaxMP = SkillFactory.getSkill(2000001)
                         improvingMaxMPLevel = c.getPlayer().getSkillLevel(improvingMaxMP)
                         maxmp += Randomizer.rand(18, 20)
                         if improvingMaxMPLevel >= 1:
                             maxmp += (short)(improvingMaxMP.getEffect(improvingMaxMPLevel).getY() * 2)
-                    elif (job >= 300 && job <= 322) || (job >= 400 && job <= 434) || (job >= 500 && job <= 522) || (job >= 3200 && job <= 3212) || (job >= 3500 && job <= 3512) || (job >= 1300 && job <= 1312) || (job >= 1400 && job <= 1412) || (job >= 1500 && job <= 1512):
+                    elif (job >= 300 and job <= 322) or (job >= 400 and job <= 434) or (job >= 500 and job <= 522) or (job >= 3200 and job <= 3212) or (job >= 3500 and job <= 3512) or (job >= 1300 and job <= 1312) or (job >= 1400 and job <= 1412) or (job >= 1500 and job <= 1512):
                         maxmp += Randomizer.rand(10, 12)
-                    elif job >= 1100 && job <= 1112:
+                    elif job >= 1100 and job <= 1112:
                         maxmp += Randomizer.rand(6, 9)
-                    elif job >= 1200 && job <= 1212:
+                    elif job >= 1200 and job <= 1212:
                         improvingMaxMP = SkillFactory.getSkill(12000000)
                         improvingMaxMPLevel = c.getPlayer().getSkillLevel(improvingMaxMP)
                         maxmp += Randomizer.rand(18, 20)
                         if improvingMaxMPLevel >= 1:
                             maxmp += (short)(improvingMaxMP.getEffect(improvingMaxMPLevel).getY() * 2)
-                    elif job >= 2000 && job <= 2112:
+                    elif job >= 2000 and job <= 2112:
                         maxmp += Randomizer.rand(6, 9)
                     else:
                         maxmp += Randomizer.rand(50, 100)
@@ -207,23 +207,23 @@ class StatsHandling:
                 remainingSp = chr.getRemainingSp(GameConstants.getSkillBookForSkill(skillid))
                 break
         skill = SkillFactory.getSkill(skillid)
-        if skill.hasRequiredSkill() && chr.getSkillLevel(SkillFactory.getSkill(skill.getRequiredSkillId())) < skill.getRequiredSkillLevel():
+        if skill.hasRequiredSkill() and chr.getSkillLevel(SkillFactory.getSkill(skill.getRequiredSkillId())) < skill.getRequiredSkillLevel():
             return
         maxlevel = skill.isFourthJob() ? chr.getMasterLevel(skill) : skill.getMaxLevel()
         curLevel = chr.getSkillLevel(skill)
-        if skill.isInvisible() && chr.getSkillLevel(skill) == 0 && ((skill.isFourthJob() && chr.getMasterLevel(skill) == 0) || (!skill.isFourthJob() && maxlevel < 10 && !isBeginnerSkill)):
+        if skill.isInvisible() and chr.getSkillLevel(skill) == 0 and ((skill.isFourthJob() and chr.getMasterLevel(skill) == 0) or (not skill.isFourthJob() and maxlevel < 10 and not isBeginnerSkill)):
             return
         for i in GameConstants.blockedSkills:
             if skill.getId() == i:
                 chr.dropMessage(1, "你可能不会增加这个技能.")
                 return
-        if remainingSp > 0 && curLevel + 1 <= maxlevel && (skill.canBeLearnedBy(chr.getJob()) || isBeginnerSkill):
-            if !isBeginnerSkill:
+        if remainingSp > 0 and curLevel + 1 <= maxlevel and (skill.canBeLearnedBy(chr.getJob()) or isBeginnerSkill):
+            if not isBeginnerSkill:
                 skillbook = GameConstants.getSkillBookForSkill(skillid)
                 chr.setRemainingSp(chr.getRemainingSp(skillbook) - 1, skillbook)
             chr.updateSingleStat(MapleStat.AVAILABLESP, chr.getRemainingSp())
             chr.changeSkillLevel(skill, (byte)(curLevel + 1), chr.getMasterLevel(skill))
-        else if (!skill.canBeLearnedBy(chr.getJob())) {}
+        else if (not skill.canBeLearnedBy(chr.getJob())) {}
 
     def AutoAssignAP(self, slea: Any, c: Any, chr: Any) -> None:
         statupdate = []

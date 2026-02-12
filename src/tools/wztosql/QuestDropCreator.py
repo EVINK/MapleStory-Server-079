@@ -51,7 +51,7 @@ class QuestDropCreator:
         if data is not None:
             for req in data.getChildren():
                 type = MapleQuestRequirementType.getByWZName(req.getName())
-                if !type == (MapleQuestRequirementType.item):
+                if not type == (MapleQuestRequirementType.item):
                     continue
                 for d in req.getChildren():
                     if MapleDataTool.getInt(d.getChildByPath("id"), 0) == itemid:
@@ -85,7 +85,7 @@ class QuestDropCreator:
         items = MapleItemInformationProvider.getInstance().getAllItems()
         for item in items:
             itemid = item.getLeft()
-            if !(itemid in QuestDropCreator.itemIDs) && isQuestRequirement(itemid):
+            if not (itemid in QuestDropCreator.itemIDs) and isQuestRequirement(itemid):
                 QuestDropCreator.itemIDs.add(itemid)
 
     def main(self, args: list) -> None:

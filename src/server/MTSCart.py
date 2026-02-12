@@ -65,7 +65,7 @@ class MTSCart:
         return self.cart
 
     def addToCart(self, car: int) -> bool:
-        if !(car in self.cart):
+        if not (car in self.cart):
             self.cart.add(car)
             return True
         return False
@@ -123,7 +123,7 @@ class MTSCart:
             if iId < 0:
                 self.owedNX -= iId
             else:
-                if !MTSStorage.getInstance().check(iId):
+                if not MTSStorage.getInstance().check(iId):
                     continue
                 self.cart.add(iId)
         rs.close()

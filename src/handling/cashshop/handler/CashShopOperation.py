@@ -72,9 +72,9 @@ class CashShopOperation:
         c.setAccID(chr.getAccountID())
         state = c.getLoginState()
         allowLogin = False
-        if (state == MapleClient.LOGIN_SERVER_TRANSITION || state == MapleClient.CHANGE_CHANNEL) && !World.isCharacterListConnected(c.loadCharacterNames(c.getWorld())):
+        if (state == MapleClient.LOGIN_SERVER_TRANSITION or state == MapleClient.CHANGE_CHANNEL) and not World.isCharacterListConnected(c.loadCharacterNames(c.getWorld())):
             allowLogin = True
-        if !allowLogin:
+        if not allowLogin:
             c.setPlayer(None)
             c.getSession().close(True)
             return
@@ -175,8 +175,8 @@ class CashShopOperation:
                     c.getPlayer().dropMessage(1, "价格(" + item.getPrice() + ")低于100点卷的物品是禁止购买的.")
                     doCSPackets(c)
                     return
-                if item is not None && chr.getCSPoints(useNX) >= item.getPrice():
-                    if !ii.isCash(item.getId()):
+                if item is not None and chr.getCSPoints(useNX) >= item.getPrice():
+                    if not ii.isCash(item.getId()):
                         if c.getPlayer().getInventory(GameConstants.getInventoryType(item.getId())).getNextFreeSlot() < 0:
                             chr.dropMessage(1, "背包没空位了！")
                             doCSPackets(c)
@@ -195,7 +195,7 @@ class CashShopOperation:
                             doCSPackets(c)
                             return
                         itemz = chr.getCashInventory().toItem(item)
-                        if itemz is not None && itemz.getUniqueId() > 0 && itemz.getItemId() == item.getId() && itemz.getQuantity() == item.getCount():
+                        if itemz is not None and itemz.getUniqueId() > 0 and itemz.getItemId() == item.getId() and itemz.getQuantity() == item.getCount():
                             if useNX == 1:
                                 flag = itemz.getFlag()
                                 交易 = True
@@ -231,20 +231,20 @@ class CashShopOperation:
                     c.getPlayer().dropMessage(1, "价格低于100点卷的物品是禁止购买的.")
                     doCSPackets(c)
                     return
-                if itemz2 is None || itemz2.getUniqueId() <= 0 || itemz2.getItemId() != item2.getId() || itemz2.getQuantity() != item2.getCount():
+                if itemz2 is None or itemz2.getUniqueId() <= 0 or itemz2.getItemId() != item2.getId() or itemz2.getQuantity() != item2.getCount():
                     c.getPlayer().dropMessage(1, "这个物品是禁止购买的.")
                     doCSPackets(c)
                     break
-                if item2 is None || c.getPlayer().getCSPoints(type) < item2.getPrice() || message > 73 || message < 1:
+                if item2 is None or c.getPlayer().getCSPoints(type) < item2.getPrice() or message > 73 or message < 1:
                     c.getSession().write(MTSCSPacket.sendCSFail(0))
                     doCSPackets(c)
                     return
                 info = MapleCharacterUtil.getInfoByName(recipient, c.getPlayer().getWorld())
-                if info is None || info.getLeft() <= 0 || info.getLeft() == c.getPlayer().getId() || info.getRight().getLeft() == c.getAccID():
+                if info is None or info.getLeft() <= 0 or info.getLeft() == c.getPlayer().getId() or info.getRight().getLeft() == c.getAccID():
                     c.getSession().write(MTSCSPacket.sendCSFail(162))
                     doCSPackets(c)
                     return
-                if !item2.genderEquals(info.getRight().getRight()):
+                if not item2.genderEquals(info.getRight().getRight()):
                     c.getSession().write(MTSCSPacket.sendCSFail(163))
                     doCSPackets(c)
                     return
@@ -288,8 +288,8 @@ class CashShopOperation:
                             break
                     type2 = MapleInventoryType.getByType(types)
                     if chr.isAdmin():
-                        print("增加道具栏  snCS " + snCS3 + " 扩充: " + types)
-                    if chr.getCSPoints(yue) >= 1100 && chr.getInventory(type2).getSlotLimit() < 96:
+                        print("增加道具栏 snCS " + snCS3 + " 扩充: " + types)
+                    if chr.getCSPoints(yue) >= 1100 and chr.getInventory(type2).getSlotLimit() < 96:
                         chr.modifyCSPoints(yue, -1100, False)
                         chr.getInventory(type2).addSlot(8)
                         chr.dropMessage(1, "扩充" + snCS3 + "成功，当前栏位: " + chr.getInventory(type2).getSlotLimit() + " 个。")
@@ -299,7 +299,7 @@ class CashShopOperation:
                         chr.dropMessage(1, "扩充" + snCS3 + "失败，点卷余额不足或者栏位已超过上限。")
                     break
                 type3 = MapleInventoryType.getByType(slea.readByte())
-                if chr.getCSPoints(yue) >= 600 && chr.getInventory(type3).getSlotLimit() < 96:
+                if chr.getCSPoints(yue) >= 600 and chr.getInventory(type3).getSlotLimit() < 96:
                     chr.modifyCSPoints(yue, -600, False)
                     chr.getInventory(type3).addSlot(4)
                     chr.dropMessage(1, "背包已增加到 " + chr.getInventory(type3).getSlotLimit() + " 个。")
@@ -312,7 +312,7 @@ class CashShopOperation:
             # case 7:
                 yue = slea.readByte() + 1
                 youhuijia2 = (slea.readByte() > 0) ? 2 : 1
-                if chr.getCSPoints(yue) >= ((youhuijia2 == 2) ? 1100 : 600) && chr.getStorage().getSlots() < 97 - 4 * youhuijia2:
+                if chr.getCSPoints(yue) >= ((youhuijia2 == 2) ? 1100 : 600) and chr.getStorage().getSlots() < 97 - 4 * youhuijia2:
                     chr.modifyCSPoints(yue, (youhuijia2 == 2) ? -1100 : -600, False)
                     chr.getStorage().increaseSlots((byte)(4 * youhuijia2))
                     chr.getStorage().saveToDB()
@@ -327,7 +327,7 @@ class CashShopOperation:
                 slots = c.getCharacterSlots()
                 if slots >= LoginServer.getMaxCharacters():
                     chr.dropMessage(1, "角色列表已满无法增加！")
-                if item2 is None || c.getPlayer().getCSPoints(useNX2) < item2.getPrice() || slots > LoginServer.getMaxCharacters():
+                if item2 is None or c.getPlayer().getCSPoints(useNX2) < item2.getPrice() or slots > LoginServer.getMaxCharacters():
                     c.getSession().write(MTSCSPacket.sendCSFail(0))
                     doCSPackets(c)
                     return
@@ -345,7 +345,7 @@ class CashShopOperation:
                 type4 = slea.readByte()
                 unknown = slea.readByte()
                 item3 = c.getPlayer().getCashInventory().findByCashId(uniqueid)
-                if item3 is not None && item3.getQuantity() > 0 && MapleInventoryManipulator.checkSpace(c, item3.getItemId(), item3.getQuantity(), item3.getOwner()):
+                if item3 is not None and item3.getQuantity() > 0 and MapleInventoryManipulator.checkSpace(c, item3.getItemId(), item3.getQuantity(), item3.getOwner()):
                     item_ = item3.copy()
                     slot = MapleInventoryManipulator.addbyItem(c, item_, True)
                     if slot >= 0:
@@ -363,7 +363,7 @@ class CashShopOperation:
                 uniqueid = slea.readLong()
                 type5 = MapleInventoryType.getByType(slea.readByte())
                 item4 = c.getPlayer().getInventory(type5).findByUniqueId(uniqueid)
-                if item4 is not None && item4.getQuantity() > 0 && item4.getUniqueId() > 0 && c.getPlayer().getCashInventory().getItemsSize() < 100:
+                if item4 is not None and item4.getQuantity() > 0 and item4.getUniqueId() > 0 and c.getPlayer().getCashInventory().getItemsSize() < 100:
                     item_2 = item4.copy()
                     c.getPlayer().getInventory(type5).removeItem(item4.getPosition(), item4.getQuantity(), False)
                     sn = CashItemFactory.getInstance().getItemSN(item_2.getItemId())
@@ -391,11 +391,11 @@ class CashShopOperation:
                         c.getPlayer().dropMessage(1, "这个物品是禁止购买的.")
                         doCSPackets(c)
                         return
-                if item2 is None || !GameConstants.isEffectRing(item2.getId()) || c.getPlayer().getCSPoints(1) < item2.getPrice() || msg > 73 || msg < 1:
+                if item2 is None or not GameConstants.isEffectRing(item2.getId()) or c.getPlayer().getCSPoints(1) < item2.getPrice() or msg > 73 or msg < 1:
                     chr.dropMessage(1, "购买戒指错误：\r\n你没有足够的点卷或者该物品不存在。。")
                     doCSPackets(c)
                     return
-                if !item2.genderEquals(c.getPlayer().getGender()):
+                if not item2.genderEquals(c.getPlayer().getGender()):
                     chr.dropMessage(1, "购买戒指错误：B\r\n请联系GM！。")
                     doCSPackets(c)
                     return
@@ -405,7 +405,7 @@ class CashShopOperation:
                     return
                 if (item2.getPrice() == 2990) {}
                 info2 = MapleCharacterUtil.getInfoByName(partnerName, c.getPlayer().getWorld())
-                if info2 is None || info2.getLeft() <= 0 || info2.getLeft() == c.getPlayer().getId():
+                if info2 is None or info2.getLeft() <= 0 or info2.getLeft() == c.getPlayer().getId():
                     chr.dropMessage(1, "购买戒指错误：D\r\n请联系GM！。")
                     doCSPackets(c)
                     return
@@ -413,7 +413,7 @@ class CashShopOperation:
                     chr.dropMessage(1, "购买戒指错误：E\r\n请联系GM！。")
                     doCSPackets(c)
                     return
-                if info2.getRight().getRight() == c.getPlayer().getGender() && action == 29:
+                if info2.getRight().getRight() == c.getPlayer().getGender() and action == 29:
                     chr.dropMessage(1, "购买戒指错误：F\r\n请联系GM！。")
                     doCSPackets(c)
                     return
@@ -451,11 +451,11 @@ class CashShopOperation:
                 ccc = None
                 if item5 is not None:
                     ccc = CashItemFactory.getInstance().getPackageItems(item5.getId())
-                if item5 is None || ccc is None || c.getPlayer().getCSPoints(type6) < item5.getPrice():
+                if item5 is None or ccc is None or c.getPlayer().getCSPoints(type6) < item5.getPrice():
                     chr.dropMessage(1, "购买礼包错误：\r\n你没有足够的点卷或者该物品不存在。")
                     doCSPackets(c)
                     return
-                if !item5.genderEquals(c.getPlayer().getGender()):
+                if not item5.genderEquals(c.getPlayer().getGender()):
                     chr.dropMessage(1, "购买礼包错误：B\r\n请联系GM！。")
                     doCSPackets(c)
                     return
@@ -468,7 +468,7 @@ class CashShopOperation:
                     for iz in GameConstants.cashBlock:
                         if (i2.getId() == iz) {}
                     itemz4 = chr.getCashInventory().toItem(i2, chr, MapleInventoryManipulator.getUniqueId(i2.getId(), None), "")
-                    if itemz4 is not None && itemz4.getUniqueId() > 0:
+                    if itemz4 is not None and itemz4.getUniqueId() > 0:
                         if itemz4.getItemId() != i2.getId():
                             continue
                         ccz.put(i2.getSN(), itemz4)
@@ -478,15 +478,15 @@ class CashShopOperation:
                 break
             # case 42:
                 snCS3 = slea.readInt()
-                if snCS3 == 50200031 && c.getPlayer().getCSPoints(1) >= 500:
+                if snCS3 == 50200031 and c.getPlayer().getCSPoints(1) >= 500:
                     c.getPlayer().modifyCSPoints(1, -500)
                     c.getPlayer().modifyCSPoints(2, 500)
                     c.getSession().write(MaplePacketCreator.serverNotice(1, "兑换500抵用卷成功"))
-                elif snCS3 == 50200032 && c.getPlayer().getCSPoints(1) >= 1000:
+                elif snCS3 == 50200032 and c.getPlayer().getCSPoints(1) >= 1000:
                     c.getPlayer().modifyCSPoints(1, -1000)
                     c.getPlayer().modifyCSPoints(2, 1000)
                     c.getSession().write(MaplePacketCreator.serverNotice(1, "兑换抵1000用卷成功"))
-                elif snCS3 == 50200033 && c.getPlayer().getCSPoints(1) >= 5000:
+                elif snCS3 == 50200033 and c.getPlayer().getCSPoints(1) >= 5000:
                     c.getPlayer().modifyCSPoints(1, -5000)
                     c.getPlayer().modifyCSPoints(2, 5000)
                     c.getSession().write(MaplePacketCreator.serverNotice(1, "兑换5000抵用卷成功"))
@@ -505,7 +505,7 @@ class CashShopOperation:
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 item2 = CashItemFactory.getInstance().getItem(slea.readInt())
-                if item2 is None || !MapleItemInformationProvider.getInstance().isQuestItem(item2.getId()):
+                if item2 is None or not MapleItemInformationProvider.getInstance().isQuestItem(item2.getId()):
                     c.getSession().write(MTSCSPacket.sendCSFail(0))
                     doCSPackets(c)
                     return

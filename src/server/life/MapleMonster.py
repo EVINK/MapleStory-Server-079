@@ -193,7 +193,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         self.damage(from, damage, updateAttackTime, 0)
 
     def damage_from_damage_updateAttackTime_lastSkill(self, from: Any, damage: int, updateAttackTime: bool, lastSkill: int) -> None:
-        if from is None || damage <= 0 || !self.isAlive():
+        if from is None or damage <= 0 or not self.isAlive():
             return
         attacker = None
         if from.getParty() is not None:
@@ -206,7 +206,7 @@ class MapleMonster(AbstractLoadedMapleLife):
                 attacker = aentry
                 replaced = True
                 break
-        if !replaced:
+        if not replaced:
             self.attackers.add(attacker)
         rDamage = max(0, min(damage, self.hp))
         attacker.addDamage(from, rDamage, updateAttackTime)
@@ -218,12 +218,12 @@ class MapleMonster(AbstractLoadedMapleLife):
                 else:
                     for mattacker in self.attackers:
                         for cattacker in mattacker.getAttackers():
-                            if cattacker.getAttacker().getMap() == from.getMap() && cattacker.getLastAttackTime() >= int(time.time() * 1000) - 4000:
+                            if cattacker.getAttacker().getMap() == from.getMap() and cattacker.getLastAttackTime() >= int(time.time() * 1000) - 4000:
                                 cattacker.getAttacker().getClient().getSession().write(MobPacket.showMonsterHP(self.getObjectId(), math.ceil(self.hp * 100.0 / self.getMobMaxHp())))
             else:
                 self.map.killMonster(this, from, True, False, 1, lastSkill)
         else:
-            if self.sponge.get() is not None && self.sponge.get().hp > 0:
+            if self.sponge.get() is not None and self.sponge.get().hp > 0:
                 mapleMonster = self.sponge.get()
                 mapleMonster.hp -= rDamage
                 if self.sponge.get().hp <= 0:
@@ -239,7 +239,7 @@ class MapleMonster(AbstractLoadedMapleLife):
                     em = from.getEventInstance()
                     if em is not None:
                         em.monsterDamaged(from, this, rDamage)
-                if self.sponge.get() is None && self.hp > 0:
+                if self.sponge.get() is None and self.hp > 0:
                     # switch (self.stats.getHPDisplayType()):
                         # case 0:
                             self.map.broadcastMessage(MobPacket.showBossHP(this), self.getPosition())
@@ -258,14 +258,14 @@ class MapleMonster(AbstractLoadedMapleLife):
                         # case 3:
                             for mattacker2 in self.attackers:
                                 for cattacker2 in mattacker2.getAttackers():
-                                    if cattacker2.getAttacker().getMap() == from.getMap() && cattacker2.getLastAttackTime() >= int(time.time() * 1000) - 4000:
+                                    if cattacker2.getAttacker().getMap() == from.getMap() and cattacker2.getLastAttackTime() >= int(time.time() * 1000) - 4000:
                                         cattacker2.getAttacker().getClient().getSession().write(MobPacket.showMonsterHP(self.getObjectId(), math.ceil(self.hp * 100.0 / self.getMobMaxHp())))
                             break
                         # default:
                             print(self.stats.isBoss() + " " + self.stats.getHPDisplayType())
                             break
                 if self.hp <= 0:
-                    if self.stats.getHPDisplayType() == 0 || self.stats.getHPDisplayType() == -1:
+                    if self.stats.getHPDisplayType() == 0 or self.stats.getHPDisplayType() == -1:
                         self.map.broadcastMessage(MobPacket.showBossHP(self.getId(), -1, self.getMobMaxHp()), self.getPosition())
                     self.map.killMonster(this, from, True, False, 1, lastSkill)
         self.startDropItemSchedule()
@@ -340,15 +340,15 @@ class MapleMonster(AbstractLoadedMapleLife):
                 if self.eventInstance is not None:
                     self.eventInstance.unregisterMonster(this)
                     self.eventInstance = None
-                if killer is not None && killer.getPyramidSubway() is not None:
+                if killer is not None and killer.getPyramidSubway() is not None:
                     killer.getPyramidSubway().onKill(killer)
                 oldSponge = self.getSponge()
                 self.sponge = new WeakReference<MapleMonster>(None)
-                if oldSponge is not None && oldSponge.isAlive():
+                if oldSponge is not None and oldSponge.isAlive():
                     set = True
                     for mon in self.map.getAllMonstersThreadsafe():
                         mons = mon
-                        if mons.getObjectId() != oldSponge.getObjectId() && mons.getObjectId() != self.getObjectId() && (mons.getSponge() == oldSponge || mons.getLinkOid() == oldSponge.getObjectId()):
+                        if mons.getObjectId() != oldSponge.getObjectId() and mons.getObjectId() != self.getObjectId() and (mons.getSponge() == oldSponge or mons.getLinkOid() == oldSponge.getObjectId()):
                             set = False
                             break
                     if set:
@@ -391,7 +391,7 @@ class MapleMonster(AbstractLoadedMapleLife):
                     map.spawnRevives(spongy, self.getObjectId())
                     for mon in map.getAllMonstersThreadsafe():
                         mons = mon
-                        if mons.getObjectId() != spongy.getObjectId() && (mons.getSponge() == this || mons.getLinkOid() == self.getObjectId()):
+                        if mons.getObjectId() != spongy.getObjectId() and (mons.getSponge() == this or mons.getLinkOid() == self.getObjectId()):
                             mons.setSponge(spongy)
                             mons.setLinkOid(spongy.getObjectId())
                     break
@@ -474,21 +474,22 @@ class MapleMonster(AbstractLoadedMapleLife):
         if immediateAggro:
             self.setControllerHasAggro(True)
         self.setControllerKnowsAboutAggro(False)
-        if self.getId() == 9300275 && self.map.getId() >= 921120100 && self.map.getId() < 921120500:
-            if self.lastNodeController != -1 && self.lastNodeController != newController.getId():
+        if self.getId() == 9300275 and self.map.getId() >= 921120100 and self.map.getId() < 921120500:
+            if self.lastNodeController != -1 and self.lastNodeController != newController.getId():
                 self.resetShammos(newController.getClient())
             else:
                 self.setLastNodeController(newController.getId())
 
     def resetShammos(self, c: Any) -> None:
+        def _task_1():
+            if c.getPlayer() is not None:
+                c.getPlayer().changeMap(c.getPlayer().getMap(), c.getPlayer().getMap().getPortal(0))
+                if MapleMonster.self.map.getCharactersThreadsafe() > 1:
+                    MapScriptMethods.startScript_FirstUser(c, "shammos_Fenter")
+
         self.map.killAllMonsters(True)
         self.map.broadcastMessage(MaplePacketCreator.serverNotice(5, "A player has moved too far from Shammos. Shammos is going back to the start."))
-        Timer.EtcTimer.getInstance().schedule(Runnable()
-            public void run()
-                if c.getPlayer() is not None:
-                    c.getPlayer().changeMap(c.getPlayer().getMap(), c.getPlayer().getMap().getPortal(0))
-                    if MapleMonster.self.map.getCharactersThreadsafe() > 1:
-                        MapScriptMethods.startScript_FirstUser(c, "shammos_Fenter")
+        Timer.EtcTimer.getInstance().schedule(_task_1, 500)
 
     def run(self) -> None:
         if c.getPlayer() is not None:
@@ -512,7 +513,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         self.controllerKnowsAboutAggro = controllerKnowsAboutAggro
 
     def sendSpawnData(self, client: Any) -> None:
-        if !self.isAlive():
+        if not self.isAlive():
             return
         if self.isFake():
             client.getSession().write(MobPacket.spawnFakeMonster(this, 0))
@@ -520,18 +521,18 @@ class MapleMonster(AbstractLoadedMapleLife):
             client.getSession().write(MobPacket.spawnMonster(this, False))
         if self.reflectpack is not None:
             client.getSession().write(self.reflectpack)
-        if self.lastNode >= 0 && self.getId() == 9300275 && self.map.getId() >= 921120100 && self.map.getId() < 921120500:
+        if self.lastNode >= 0 and self.getId() == 9300275 and self.map.getId() >= 921120100 and self.map.getId() < 921120500:
             if self.lastNodeController != -1:
                 self.resetShammos(client)
             else:
                 self.setLastNodeController(client.getPlayer().getId())
 
     def sendDestroyData(self, client: Any) -> None:
-        if self.getEventInstance() is not None && self.lastNode >= 0:
+        if self.getEventInstance() is not None and self.lastNode >= 0:
             self.resetShammos(client)
         else:
             client.getSession().write(MobPacket.killMonster(self.getObjectId(), 0))
-        if self.getController() is not None && client.getPlayer() is not None && client.getPlayer().getId() == self.getController().getId():
+        if self.getController() is not None and client.getPlayer() is not None and client.getPlayer().getId() == self.getController().getId():
             client.getPlayer().stopControllingMonster(this)
 
     def toString(self) -> str:
@@ -555,7 +556,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         sb.append(self.getMobMaxMp())
         sb.append(" 魔力, 反应堆: ")
         sb.append(self.getObjectId())
-        sb.append(" || 仇恨目标 : ")
+        sb.append(" or 仇恨目标 : ")
         chr = self.controller.get()
         sb.append((chr is not None) ? chr.getName() : "无")
         return sb
@@ -576,7 +577,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         return -1
 
     def getEffectiveness(self, e: Any) -> Any:
-        if self.stati > 0 && self.stati.get(MonsterStatus.巫毒术) is not None:
+        if self.stati > 0 and self.stati.get(MonsterStatus.巫毒术) is not None:
             return ElementalEffectiveness.正常
         return self.stats.getEffectiveness(e)
 
@@ -584,7 +585,10 @@ class MapleMonster(AbstractLoadedMapleLife):
         self.applyStatus(from, status, poison, duration, venom, True)
 
     def applyStatus_from_status_poison_duration_venom_checkboss(self, from: Any, status: Any, poison: bool, duration: int, venom: bool, checkboss: bool) -> None:
-        if !self.isAlive():
+        def _task_1():
+            MapleMonster.self.cancelStatus(stat)
+
+        if not self.isAlive():
             return
         skilz = SkillFactory.getSkill(status.getSkill())
         if skilz is not None:
@@ -624,16 +628,16 @@ class MapleMonster(AbstractLoadedMapleLife):
                         # default:
                             Label_0277 = None
         stat = status.getStati()
-        if self.stats.isNoDoom() && stat == MonsterStatus.巫毒术:
+        if self.stats.isNoDoom() and stat == MonsterStatus.巫毒术:
             return
-        if self.getId() == 9600000 && (stat == MonsterStatus.冻结 || stat == MonsterStatus.中毒 || stat == MonsterStatus.眩晕):
+        if self.getId() == 9600000 and (stat == MonsterStatus.冻结 or stat == MonsterStatus.中毒 or stat == MonsterStatus.眩晕):
             return
         if self.stats.isBoss():
-            if self.stats.isBoss() && (stat == MonsterStatus.眩晕 || stat == MonsterStatus.中毒):
+            if self.stats.isBoss() and (stat == MonsterStatus.眩晕 or stat == MonsterStatus.中毒):
                 return
-            if checkboss && stat != MonsterStatus.速度 && stat != MonsterStatus.忍者伏击 && stat != MonsterStatus.中毒 && stat != MonsterStatus.物攻:
+            if checkboss and stat != MonsterStatus.速度 and stat != MonsterStatus.忍者伏击 and stat != MonsterStatus.中毒 and stat != MonsterStatus.物攻:
                 return
-        if (self.stats.isFriendly() || self.isFake()) && (stat == MonsterStatus.眩晕 || stat == MonsterStatus.速度 || stat == MonsterStatus.中毒):
+        if (self.stats.isFriendly() or self.isFake()) and (stat == MonsterStatus.眩晕 or stat == MonsterStatus.速度 or stat == MonsterStatus.中毒):
             return
         oldEffect = self.stati.get(stat)
         if oldEffect is not None:
@@ -642,10 +646,8 @@ class MapleMonster(AbstractLoadedMapleLife):
                 oldEffect.cancelTask()
                 oldEffect.cancelPoisonSchedule()
         final Timer.MobTimer timerManager = Timer.MobTimer.getInstance()
-        cancelTask = Runnable()
-            public void run()
-                MapleMonster.self.cancelStatus(stat)
-        if poison && self.getHp() > 1:
+        cancelTask = _task_1
+        if poison and self.getHp() > 1:
             poisonDamage = min(32767, (long)(self.getMobMaxHp() / (70.0 - from.getSkillLevel(status.getSkill())) + 0.999))
             status.setValue(MonsterStatus.中毒, poisonDamage)
             status.setPoisonSchedule(timerManager.register(PoisonTask(poisonDamage, from, status, cancelTask, False), 1000, 1000))
@@ -696,9 +698,9 @@ class MapleMonster(AbstractLoadedMapleLife):
             poisonDamage2 = min(32767, poisonDamage2)
             status.setValue(MonsterStatus.中毒, poisonDamage2)
             status.setPoisonSchedule(timerManager.register(PoisonTask(poisonDamage2, from, status, cancelTask, False), 1000, 1000))
-        elif statusSkill == 4111003 || statusSkill == 14111001:
+        elif statusSkill == 4111003 or statusSkill == 14111001:
             status.setPoisonSchedule(timerManager.schedule(PoisonTask((int)(self.getMobMaxHp() / 50.0 + 0.999), from, status, cancelTask, True), 3500))
-        elif statusSkill == 4121004 || statusSkill == 4221004:
+        elif statusSkill == 4121004 or statusSkill == 4221004:
             damage = (from.getStat().getStr() + from.getStat().getLuk()) * 2 * 0 + 100
             status.setPoisonSchedule(timerManager.register(PoisonTask(damage, from, status, cancelTask, False), 1000, 1000))
             if damage > 0:
@@ -707,7 +709,7 @@ class MapleMonster(AbstractLoadedMapleLife):
                 self.damage(from, damage, False)
         self.stati.put(stat, status)
         self.map.broadcastMessage(MobPacket.applyMonsterStatus(self.getObjectId(), status), self.getPosition())
-        if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+        if self.getController() is not None and not self.getController().isMapObjectVisible(this):
             self.getController().getClient().getSession().write(MobPacket.applyMonsterStatus(self.getObjectId(), status))
         aniTime = 0
         if skilz is not None:
@@ -718,40 +720,42 @@ class MapleMonster(AbstractLoadedMapleLife):
     def dispelSkill(self, skillId: Any) -> None:
         toCancel = []
         for (final Map.Entry<MonsterStatus, MonsterStatusEffect> effects : self.stati.items())
-            if effects.getValue().getMobSkill() is not None && effects.getValue().getMobSkill().getSkillId() == skillId.getSkillId():
+            if effects.getValue().getMobSkill() is not None and effects.getValue().getMobSkill().getSkillId() == skillId.getSkillId():
                 toCancel.add(effects.getKey())
         for stat in toCancel:
             self.cancelStatus(stat)
 
     def applyMonsterBuff(self, effect: dict, skillId: int, duration: int, skill: Any, reflection: list) -> None:
+        def _task_1():
+            if reflection > 0:
+                MapleMonster.self.reflectpack = None
+            if MapleMonster.self.isAlive():
+                for z in effect.keys():
+                    MapleMonster.self.cancelStatus(z)
+
         final Timer.MobTimer timerManager = Timer.MobTimer.getInstance()
-        cancelTask = Runnable()
-            public void run()
-                if reflection > 0:
-                    MapleMonster.self.reflectpack = None
-                if MapleMonster.self.isAlive():
-                    for z in effect.keys():
-                        MapleMonster.self.cancelStatus(z)
+        cancelTask = _task_1
         for (final Map.Entry<MonsterStatus, Integer> z : effect.items())
             effectz = MonsterStatusEffect(z.getKey(), z.getValue(), 0, skill, True)
             self.stati.put(z.getKey(), effectz)
         if reflection > 0:
             self.reflectpack = MobPacket.applyMonsterStatus(self.getObjectId(), effect, reflection, skill)
             self.map.broadcastMessage(self.reflectpack, self.getPosition())
-            if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+            if self.getController() is not None and not self.getController().isMapObjectVisible(this):
                 self.getController().getClient().getSession().write(self.reflectpack)
         else:
             for (final Map.Entry<MonsterStatus, Integer> z : effect.items())
                 self.map.broadcastMessage(MobPacket.applyMonsterStatus(self.getObjectId(), z.getKey(), z.getValue(), skill), self.getPosition())
-                if self.getController() is not None && !self.getController().isMapObjectVisible(this):
+                if self.getController() is not None and not self.getController().isMapObjectVisible(this):
                     self.getController().getClient().getSession().write(MobPacket.applyMonsterStatus(self.getObjectId(), z.getKey(), z.getValue(), skill))
         timerManager.schedule(cancelTask, duration)
 
     def setTempEffectiveness(self, e: Any, milli: int) -> None:
+        def _task_1():
+            MapleMonster.self.stats.removeEffectiveness(e)
+
         self.stats.setEffectiveness(e, ElementalEffectiveness.虚弱)
-        Timer.MobTimer.getInstance().schedule(Runnable()
-            public void run()
-                MapleMonster.self.stats.removeEffectiveness(e)
+        Timer.MobTimer.getInstance().schedule(_task_1, milli)
 
     def isBuffed(self, status: Any) -> bool:
         return (status in self.stati)
@@ -834,7 +838,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         steal = SkillFactory.getSkill(4201004)
         level = chr.getSkillLevel(steal)
         chServerrate = ChannelServer.getInstance(chr.getClient().getChannel()).getDropRate()
-        if level > 0 && !self.getStats().isBoss() && self.stolen == -1 && steal.getEffect(level).makeChanceResult():
+        if level > 0 and not self.getStats().isBoss() and self.stolen == -1 and steal.getEffect(level).makeChanceResult():
             mi = MapleMonsterInformationProvider.getInstance()
             de = mi.retrieveDrop(self.getId())
             if de is None:
@@ -843,7 +847,7 @@ class MapleMonster(AbstractLoadedMapleLife):
             dropEntry = []
             Collections.shuffle(dropEntry)
             for d in dropEntry:
-                if d.itemId > 0 && d.questid == 0 && d.itemId / 10000 != 238 && Randomizer.nextInt(999999) < (int)(10 * d.chance * chServerrate * chr.getDropMod() * (chr.getStat().dropBuff / 100.0) * (showdown / 100.0)):
+                if d.itemId > 0 and d.questid == 0 and d.itemId / 10000 != 238 and Randomizer.nextInt(999999) < (int)(10 * d.chance * chServerrate * chr.getDropMod() * (chr.getStat().dropBuff / 100.0) * (showdown / 100.0)):
                     idrop = None
                     if GameConstants.getInventoryType(d.itemId) == MapleInventoryType.EQUIP:
                         eq = MapleItemInformationProvider.getInstance().getEquipById(d.itemId)
@@ -869,10 +873,10 @@ class MapleMonster(AbstractLoadedMapleLife):
         return self.lastNodeController
 
     def cancelStatus(self, stat: Any) -> None:
-        if stat == MonsterStatus.空白BUFF || stat == MonsterStatus.召唤怪物:
+        if stat == MonsterStatus.空白BUFF or stat == MonsterStatus.召唤怪物:
             return
         mse = self.stati.get(stat)
-        if mse is None || !self.isAlive():
+        if mse is None or not self.isAlive():
             return
         if mse.isReflect():
             self.reflectpack = None
@@ -891,9 +895,16 @@ class MapleMonster(AbstractLoadedMapleLife):
             self.dropItemSchedule = None
 
     def startDropItemSchedule(self) -> None:
+        def _task_1():
+            if MapleMonster.self.isAlive() and MapleMonster.self.map is not None:
+            if MapleMonster.self.shouldDropItem:
+                MapleMonster.self.map.spawnAutoDrop(itemId, MapleMonster.self.getPosition())
+            else:
+                MapleMonster.self.shouldDropItem = True
+
         itemId = None
         cancelDropItem()
-        if self.stats.getDropItemPeriod() <= 0 || !isAlive():
+        if self.stats.getDropItemPeriod() <= 0 or not isAlive():
         return
         # switch (getId()):
             # case 9300061:
@@ -905,13 +916,7 @@ class MapleMonster(AbstractLoadedMapleLife):
             # default:
             return
         self.shouldDropItem = False
-        self.dropItemSchedule = Timer.MobTimer.getInstance().register(Runnable()
-            public void run()
-                if MapleMonster.self.isAlive() && MapleMonster.self.map is not None:
-                if MapleMonster.self.shouldDropItem:
-                    MapleMonster.self.map.spawnAutoDrop(itemId, MapleMonster.self.getPosition())
-                else:
-                    MapleMonster.self.shouldDropItem = True
+        self.dropItemSchedule = Timer.MobTimer.getInstance().register(_task_1,(self.stats.getDropItemPeriod() * 1000))
 
     def getNodePacket(self) -> Any:
         return self.nodepack
@@ -961,7 +966,7 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def killedMob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
         chr = map.getCharacterById(self.chrid)
-        if chr is not None && chr.isAlive():
+        if chr is not None and chr.isAlive():
             MapleMonster.self.giveExpToCharacter(chr, baseExp, mostDamage, 1, 0, 0, 0, lastSkill)
 
     def hashCode(self) -> int:
@@ -999,7 +1004,7 @@ class MapleMonster(AbstractLoadedMapleLife):
         else:
             onePartyAttacker = OnePartyAttacker(from.getParty(), damage)
             self.attackers.put(from.getId(), onePartyAttacker)
-            if !updateAttackTime:
+            if not updateAttackTime:
                 onePartyAttacker.lastAttackTime = 0
         self.totDamage += damage
 
@@ -1016,17 +1021,17 @@ class MapleMonster(AbstractLoadedMapleLife):
             网吧特别经验 = 0
             expApplicable = []
             for partychar in party.getMembers():
-                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 || MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
+                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 or MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
                     pchr = map.getCharacterById(partychar.getId())
-                    if pchr is None || !pchr.isAlive() || pchr.getMap() != map:
+                    if pchr is None or not pchr.isAlive() or pchr.getMap() != map:
                         continue
                     expApplicable.add(pchr)
                     averagePartyLevel += pchr.getLevel()
                     if Class_Bonus_EXP == 0:
                         Class_Bonus_EXP = ServerConstants.Class_Bonus_EXP(pchr.getJob())
-                    if pchr.getStat().equippedWelcomeBackRing && 网吧特别经验 == 0:
+                    if pchr.getStat().equippedWelcomeBackRing and 网吧特别经验 == 0:
                         网吧特别经验 = 80
-                    if !pchr.getStat().hasPartyBonus || added_组队经验值 >= 4:
+                    if not pchr.getStat().hasPartyBonus or added_组队经验值 >= 4:
                         continue
                     added_组队经验值 += 1
             iDamage = attacker.getValue().damage
@@ -1047,13 +1052,13 @@ class MapleMonster(AbstractLoadedMapleLife):
                     iexp = oexp
                 expWeight = (expReceiver == attacker.getKey()) ? 2.0 : 1.0
                 levelMod = expReceiver.getLevel() / averagePartyLevel
-                if levelMod > 1.0 || (expReceiver.getId( in self.attackers)):
+                if levelMod > 1.0 or (expReceiver.getId( in self.attackers)):
                     levelMod = 1.0
                 iexp += Math.round(expFraction * expWeight * levelMod)
                 expMap.put(expReceiver, ExpMap(iexp, (byte)(expApplicable + added_组队经验值), Class_Bonus_EXP, 网吧特别经验))
         for (final Map.Entry<MapleCharacter, ExpMap> expReceiver2 : expMap.items())
             expmap = expReceiver2.getValue()
-            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage && expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
+            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage and expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
 
     def equals_obj(self, obj: Any) -> bool:
         if this == obj:
@@ -1149,10 +1154,10 @@ class PoisonTask(Runnable):
         damage = self.poisonDamage
         if damage >= MapleMonster.self.hp:
             damage = MapleMonster.self.hp - 1
-            if !self.shadowWeb:
+            if not self.shadowWeb:
                 self.cancelTask.run()
                 self.status.cancelTask()
-        if MapleMonster.self.hp > 1 && damage > 0:
+        if MapleMonster.self.hp > 1 and damage > 0:
             MapleMonster.self.damage(self.chr, damage, False)
             if self.shadowWeb:
                 self.map.broadcastMessage(MobPacket.damageMonster(MapleMonster.self.getObjectId(), damage), MapleMonster.self.getPosition())
@@ -1195,7 +1200,7 @@ class SingleAttackerEntry(AttackerEntry):
 
     def killedMob(self, map: Any, baseExp: int, mostDamage: bool, lastSkill: int) -> None:
         chr = map.getCharacterById(self.chrid)
-        if chr is not None && chr.isAlive():
+        if chr is not None and chr.isAlive():
             MapleMonster.self.giveExpToCharacter(chr, baseExp, mostDamage, 1, 0, 0, 0, lastSkill)
 
     def hashCode(self) -> int:
@@ -1262,7 +1267,7 @@ class PartyAttackerEntry(AttackerEntry):
         else:
             onePartyAttacker = OnePartyAttacker(from.getParty(), damage)
             self.attackers.put(from.getId(), onePartyAttacker)
-            if !updateAttackTime:
+            if not updateAttackTime:
                 onePartyAttacker.lastAttackTime = 0
         self.totDamage += damage
 
@@ -1279,17 +1284,17 @@ class PartyAttackerEntry(AttackerEntry):
             网吧特别经验 = 0
             expApplicable = []
             for partychar in party.getMembers():
-                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 || MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
+                if attacker.getKey().getLevel() - partychar.getLevel() <= 5 or MapleMonster.self.stats.getLevel() - partychar.getLevel() <= 5:
                     pchr = map.getCharacterById(partychar.getId())
-                    if pchr is None || !pchr.isAlive() || pchr.getMap() != map:
+                    if pchr is None or not pchr.isAlive() or pchr.getMap() != map:
                         continue
                     expApplicable.add(pchr)
                     averagePartyLevel += pchr.getLevel()
                     if Class_Bonus_EXP == 0:
                         Class_Bonus_EXP = ServerConstants.Class_Bonus_EXP(pchr.getJob())
-                    if pchr.getStat().equippedWelcomeBackRing && 网吧特别经验 == 0:
+                    if pchr.getStat().equippedWelcomeBackRing and 网吧特别经验 == 0:
                         网吧特别经验 = 80
-                    if !pchr.getStat().hasPartyBonus || added_组队经验值 >= 4:
+                    if not pchr.getStat().hasPartyBonus or added_组队经验值 >= 4:
                         continue
                     added_组队经验值 += 1
             iDamage = attacker.getValue().damage
@@ -1310,13 +1315,13 @@ class PartyAttackerEntry(AttackerEntry):
                     iexp = oexp
                 expWeight = (expReceiver == attacker.getKey()) ? 2.0 : 1.0
                 levelMod = expReceiver.getLevel() / averagePartyLevel
-                if levelMod > 1.0 || (expReceiver.getId( in self.attackers)):
+                if levelMod > 1.0 or (expReceiver.getId( in self.attackers)):
                     levelMod = 1.0
                 iexp += Math.round(expFraction * expWeight * levelMod)
                 expMap.put(expReceiver, ExpMap(iexp, (byte)(expApplicable + added_组队经验值), Class_Bonus_EXP, 网吧特别经验))
         for (final Map.Entry<MapleCharacter, ExpMap> expReceiver2 : expMap.items())
             expmap = expReceiver2.getValue()
-            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage && expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
+            MapleMonster.self.giveExpToCharacter(expReceiver2.getKey(), expmap.exp, mostDamage and expReceiver2.getKey() == highest, expMap, expmap.ptysize, expmap.Class_Bonus_EXP, expmap.网吧特别经验, lastSkill)
 
     def hashCode(self) -> int:
         prime = 31

@@ -80,7 +80,7 @@ class CPUSampler:
         topConsumers = self.getTopConsumers()
         builder = ""
         builder.append("Top Methods:\n")
-        for i in range(topMethods && i < topConsumers.getTopConsumers()):
+        for i in range(topMethods and i < topConsumers.getTopConsumers()):
             builder.append(topConsumers.getTopConsumers().get(i).toString(topConsumers.getTotalInvocations(), 1))
         builder.append("\nStack Traces:\n")
         writer.write(builder)
@@ -108,15 +108,15 @@ class CPUSampler:
         for myIncluded in self.included:
             for i in range(len(trace)):
                 ste = trace[i]
-                if ste.getClassName().startswith(myIncluded) && (i < firstIncluded || firstIncluded == -1):
+                if ste.getClassName().startswith(myIncluded) and (i < firstIncluded or firstIncluded == -1):
                     firstIncluded = i
                     break
-        if firstIncluded >= 0 && trace[firstIncluded].getClassName() == ("tools.performance.CPUSampler$SamplerThread"):
+        if firstIncluded >= 0 and trace[firstIncluded].getClassName() == ("tools.performance.CPUSampler$SamplerThread"):
             return -1
         return firstIncluded
 
     def equals(self, obj: Any) -> bool:
-        if !(isinstance(obj, StackTrace)):
+        if not (isinstance(obj, StackTrace)):
             return False
         other = obj
         if other.len(trace) != self.len(trace):
@@ -124,7 +124,7 @@ class CPUSampler:
         if other.state != self.state:
             return False
         for i in range(self.len(trace)):
-            if !self.trace[i] == (other.trace[i]):
+            if not self.trace[i] == (other.trace[i]):
                 return False
         return True
 
@@ -166,7 +166,7 @@ class CPUSampler:
         return -Integer.valueOf(self.count).compareTo(o.count)
 
     def equals_oth(self, oth: Any) -> bool:
-        if !(isinstance(oth, StacktraceWithCount)):
+        if not (isinstance(oth, StacktraceWithCount)):
             return False
         o = oth
         return self.count == o.count
@@ -213,7 +213,7 @@ class StackTrace:
 
 
     def equals(self, obj: Any) -> bool:
-        if !(isinstance(obj, StackTrace)):
+        if not (isinstance(obj, StackTrace)):
             return False
         other = obj
         if other.len(trace) != self.len(trace):
@@ -221,7 +221,7 @@ class StackTrace:
         if other.state != self.state:
             return False
         for i in range(self.len(trace)):
-            if !self.trace[i] == (other.trace[i]):
+            if not self.trace[i] == (other.trace[i]):
                 return False
         return True
 
@@ -281,7 +281,7 @@ class StacktraceWithCount:
         return -Integer.valueOf(self.count).compareTo(o.count)
 
     def equals(self, oth: Any) -> bool:
-        if !(isinstance(oth, StacktraceWithCount)):
+        if not (isinstance(oth, StacktraceWithCount)):
             return False
         o = oth
         return self.count == o.count
@@ -341,7 +341,7 @@ class SamplerThread(Runnable):
 
 
     def start(self) -> None:
-        if !self.running:
+        if not self.running:
             self.shouldRun = True
             (self.rthread = Thread(this, "CPU Sampling Thread")).start()
             self.running = True

@@ -48,7 +48,7 @@ class SummonHandler:
         if chr is None:
             return
         for sum in chr.getSummons():
-            if sum.getObjectId() == oid && sum.getMovementType() != SummonMovementType.不会移动:
+            if sum.getObjectId() == oid and sum.getMovementType() != SummonMovementType.不会移动:
                 pos = sum.getPosition()
                 MovementParse.updatePosition(res, sum, 0)
                 if res > 0:
@@ -57,7 +57,7 @@ class SummonHandler:
                 break
 
     def DamageSummon(self, slea: Any, chr: Any) -> None:
-        if chr is None || !chr.isAlive() || chr.getMap() is None:
+        if chr is None or not chr.isAlive() or chr.getMap() is None:
             return
         unkByte = slea.readByte()
         damage = slea.readInt()
@@ -67,7 +67,7 @@ class SummonHandler:
         try:
             while iter.hasNext():
                 summon = iter.next()
-                if summon.is替身术() && summon.getOwnerId() == chr.getId() && damage > 0:
+                if summon.is替身术() and summon.getOwnerId() == chr.getId() and damage > 0:
                     summon.addHP((short)(-damage))
                     if summon.getHP() <= 0:
                         remove = True
@@ -79,14 +79,14 @@ class SummonHandler:
             chr.cancelEffectFromBuffStat(MapleBuffStat.替身术)
 
     def SummonAttack(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || !chr.isAlive() || chr.getMap() is None:
+        if chr is None or not chr.isAlive() or chr.getMap() is None:
             return
         map = chr.getMap()
         obj = map.getMapObject(slea.readInt(), MapleMapObjectType.SUMMON)
         if obj is None:
             return
         summon = obj
-        if summon.getOwnerId() != chr.getId() || summon.getSkillLevel() <= 0:
+        if summon.getOwnerId() != chr.getId() or summon.getSkillLevel() <= 0:
             return
         sse = SkillFactory.getSummonData(summon.getSkill())
         if sse is None:
@@ -114,7 +114,7 @@ class SummonHandler:
                 slea.skip(14)
                 damage = slea.readInt()
                 allDamage.add(SummonAttackEntry(mob, damage))
-        if (!summon.isChangedMap()) {}
+        if (not summon.isChangedMap()) {}
         summonSkill = SkillFactory.getSkill(summon.getSkill())
         summonEffect = summonSkill.getEffect(summon.getSkillLevel())
         if summonEffect is None:
@@ -123,10 +123,10 @@ class SummonHandler:
         for attackEntry in allDamage:
             toDamage = attackEntry.getDamage()
             mob2 = attackEntry.getMonster()
-            if toDamage > 0 && summonEffect.getMonsterStati() > 0 && summonEffect.makeChanceResult():
+            if toDamage > 0 and summonEffect.getMonsterStati() > 0 and summonEffect.makeChanceResult():
                 for (final Map.Entry<MonsterStatus, Integer> z : summonEffect.getMonsterStati().items())
                     mob2.applyStatus(chr, MonsterStatusEffect(z.getKey(), z.getValue(), summonSkill.getId(), None, False), summonEffect.isPoison(), 4000, False)
-            if !chr.isGM() && toDamage >= 199999:
+            if not chr.isGM() and toDamage >= 199999:
                 chr.getClient().getSession().write(MaplePacketCreator.serverNotice(1, "召唤兽攻击过高，你已被断开连接"))
                 c.disconnect(True, True)
                 return

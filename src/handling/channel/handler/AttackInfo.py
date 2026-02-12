@@ -44,17 +44,17 @@ class AttackInfo:
 
 
     def getAttackEffect(self, chr: Any, skillLevel: int, skill_: Any) -> Any:
-        if GameConstants.isMulungSkill(self.skill) || GameConstants.isPyramidSkill(self.skill):
+        if GameConstants.isMulungSkill(self.skill) or GameConstants.isPyramidSkill(self.skill):
             skillLevel = 1
         elif skillLevel <= 0:
             return None
         if GameConstants.isLinkedAranSkill(self.skill):
             skillLink = SkillFactory.getSkill(self.skill)
-            if self.display > 80 && !skillLink.getAction():
+            if self.display > 80 and not skillLink.getAction():
                 return None
             return skillLink.getEffect(skillLevel)
         else:
-            if self.display > 80 && !skill_.getAction():
+            if self.display > 80 and not skill_.getAction():
                 return None
             return skill_.getEffect(skillLevel)
 

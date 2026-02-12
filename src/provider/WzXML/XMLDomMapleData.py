@@ -42,13 +42,13 @@ class XMLDomMapleData(MapleData):
             for i in range(childNodes.getLength()):
                 try:
                     childNode = childNodes.item(i)
-                    if childNode is not None && childNode.getNodeType() == 1 && childNode.getAttributes().getNamedItem("name").getNodeValue() == (segments[x]):
+                    if childNode is not None and childNode.getNodeType() == 1 and childNode.getAttributes().getNamedItem("name").getNodeValue() == (segments[x]):
                         myNode = childNode
                         foundChild = True
                         break
                 except TypeError as e:
                     FileoutputUtil.outputFileError(FileoutputUtil.PacketEx_Log, e)
-            if !foundChild:
+            if not foundChild:
                 return None
         ret = XMLDomMapleData(myNode)
         ret.imageDataDir = File(self.imageDataDir, self.getName() + "/" + path).getParentFile()
@@ -59,7 +59,7 @@ class XMLDomMapleData(MapleData):
         childNodes = self.node.getChildNodes()
         for i in range(childNodes.getLength()):
             childNode = childNodes.item(i)
-            if childNode is not None && childNode.getNodeType() == 1:
+            if childNode is not None and childNode.getNodeType() == 1:
                 child = XMLDomMapleData(childNode)
                 child.imageDataDir = File(self.imageDataDir, self.getName())
                 ret.add(child)

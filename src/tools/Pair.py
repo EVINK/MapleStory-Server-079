@@ -49,12 +49,12 @@ class Pair:
         if self.left is None:
             if other.left is not None:
                 return False
-        elif !self.left == (other.left):
+        elif not self.left == (other.left):
             return False
         if self.right is None:
             if other.right is not None:
                 return False
-        elif !self.right == (other.right):
+        elif not self.right == (other.right):
             return False
         return True
 

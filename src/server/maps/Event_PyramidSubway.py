@@ -45,11 +45,11 @@ class Event_PyramidSubway:
             self.type = -1
         else:
             self.type = mapid % 10000 / 1000
-        if c.getParty() is None || c.getParty().getLeader() == (MaplePartyCharacter(c)):
+        if c.getParty() is None or c.getParty().getLeader() == (MaplePartyCharacter(c)):
             self.commenceTimerNextMap(c, 1)
             self.energyBarDecrease = Timer.MapTimer.getInstance().register(Runnable()
                 public void run()
-                    Event_PyramidSubway.self.energybar -= ((c.getParty() is not None && c.getParty().getMembers() > 1) ? 10 : 5)
+                    Event_PyramidSubway.self.energybar -= ((c.getParty() is not None and c.getParty().getMembers() > 1) ? 10 : 5)
                     if Event_PyramidSubway.self.broaded:
                         c.getMap().respawn(True)
                     else:
@@ -158,10 +158,10 @@ class Event_PyramidSubway:
 
     def changeMap_c_map_minLevel_maxLevel_clear(self, c: Any, map: Any, minLevel: int, maxLevel: int, clear: int) -> None:
         oldMap = c.getMap()
-        if c.getParty() is not None && c.getParty().getMembers() > 1:
+        if c.getParty() is not None and c.getParty().getMembers() > 1:
             for mpc in c.getParty().getMembers():
                 chr = oldMap.getCharacterById(mpc.getId())
-                if chr is not None && chr.getId() != c.getId() && chr.getLevel() >= minLevel && chr.getLevel() <= maxLevel:
+                if chr is not None and chr.getId() != c.getId() and chr.getLevel() >= minLevel and chr.getLevel() <= maxLevel:
                     if clear == 1:
                         chr.getClient().getSession().write(MaplePacketCreator.showEffect("pvp/victory"))
                     elif clear == 2:
@@ -174,12 +174,12 @@ class Event_PyramidSubway:
         c.changeMap(map, map.getPortal(0))
 
     def clearMap(self, map: Any, check: bool) -> None:
-        if check && map.getCharactersSize() > 0:
+        if check and map.getCharactersSize() > 0:
             return
         map.resetFully(False)
 
     def run(self) -> None:
-        Event_PyramidSubway.self.energybar -= ((c.getParty() is not None && c.getParty().getMembers() > 1) ? 10 : 5)
+        Event_PyramidSubway.self.energybar -= ((c.getParty() is not None and c.getParty().getMembers() > 1) ? 10 : 5)
         if Event_PyramidSubway.self.broaded:
             c.getMap().respawn(True)
         else:
@@ -197,6 +197,19 @@ class Event_PyramidSubway:
         self.broadcastUpdate(c)
 
     def commenceTimerNextMap(self, c: Any, stage: int) -> None:
+        def _task_1():
+            if map.countMonsterById(9300021) <= ((stage == 4) ? 1 : 2):
+                map.spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9300021), Point(pos))
+
+        def _task_2():
+            ret = False
+            if Event_PyramidSubway.self.type == -1:
+                ret = Event_PyramidSubway.warpNextMap_Subway(c)
+            else:
+                ret = Event_PyramidSubway.warpNextMap_Pyramid(c, Event_PyramidSubway.self.type)
+            if not ret:
+                Event_PyramidSubway.self.fail(c)
+
         if self.timerSchedule is not None:
             self.timerSchedule.cancel(False)
             self.timerSchedule = None
@@ -205,7 +218,7 @@ class Event_PyramidSubway:
             self.yetiSchedule = None
         ourMap = c.getMap()
         time = ((self.type == -1) ? 180 : ((stage == 1) ? 240 : 300)) - 1
-        if c.getParty() is not None && c.getParty().getMembers() > 1:
+        if c.getParty() is not None and c.getParty().getMembers() > 1:
             for mpc in c.getParty().getMembers():
                 chr = ourMap.getCharacterById(mpc.getId())
                 if chr is not None:
@@ -220,22 +233,11 @@ class Event_PyramidSubway:
             c.getClient().getSession().write(MaplePacketCreator.showEffect("killing/first/stage"))
             c.getClient().getSession().write(MaplePacketCreator.showEffect("killing/first/start"))
             self.fullUpdate(c, stage)
-        if self.type != -1 && (stage == 4 || stage == 5):
+        if self.type != -1 and (stage == 4 or stage == 5):
             pos = c.getPosition()
             map = c.getMap()
-            self.yetiSchedule = Timer.MapTimer.getInstance().register(Runnable()
-                public void run()
-                    if map.countMonsterById(9300021) <= ((stage == 4) ? 1 : 2):
-                        map.spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9300021), Point(pos))
-        self.timerSchedule = Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                ret = False
-                if Event_PyramidSubway.self.type == -1:
-                    ret = Event_PyramidSubway.warpNextMap_Subway(c)
-                else:
-                    ret = Event_PyramidSubway.warpNextMap_Pyramid(c, Event_PyramidSubway.self.type)
-                if !ret:
-                    Event_PyramidSubway.self.fail(c)
+            self.yetiSchedule = Timer.MapTimer.getInstance().register(_task_1, 10000)
+        self.timerSchedule = Timer.MapTimer.getInstance().schedule(_task_2, time * 1000)
 
     def onKill(self, c: Any) -> None:
         self.kill += 1
@@ -247,7 +249,7 @@ class Event_PyramidSubway:
         if self.type != -1:
             i = 5
             while i >= 1:
-                if (self.kill + self.cool) % (i * 100) == 0 && Randomizer.nextInt(100) < 50:
+                if (self.kill + self.cool) % (i * 100) == 0 and Randomizer.nextInt(100) < 50:
                     self.broadcastEffect(c, "killing/yeti" + (i - 1))
                     break
             if (self.kill + self.cool) % 500 == 0:
@@ -262,19 +264,19 @@ class Event_PyramidSubway:
         self.broadcastEnergy(c, "massacre_miss", self.miss)
 
     def onSkillUse(self, c: Any) -> bool:
-        if self.skill > 0 && self.type != -1:
+        if self.skill > 0 and self.type != -1:
             self.broadcastEnergy(c, "massacre_skill", --self.skill)
             return True
         return False
 
     def onChangeMap(self, c: Any, newmapid: int) -> None:
-        if (newmapid == 910330001 && self.type == -1) || (newmapid == 926020001 + self.type && self.type != -1):
+        if (newmapid == 910330001 and self.type == -1) or (newmapid == 926020001 + self.type and self.type != -1):
             self.succeed(c)
-        elif self.type == -1 && (newmapid < 910320100 || newmapid > 910320304):
+        elif self.type == -1 and (newmapid < 910320100 or newmapid > 910320304):
             self.dispose(c)
-        elif self.type != -1 && (newmapid < 926010100 || newmapid > 926013504):
+        elif self.type != -1 and (newmapid < 926010100 or newmapid > 926013504):
             self.dispose(c)
-        elif c.getParty() is None || c.getParty().getLeader() == (MaplePartyCharacter(c)):
+        elif c.getParty() is None or c.getParty().getLeader() == (MaplePartyCharacter(c)):
             self.commenceTimerNextMap(c, newmapid % 1000 / (self.energybar = 100))
 
     def succeed(self, c: Any) -> None:
@@ -290,19 +292,19 @@ class Event_PyramidSubway:
         if self.type == -1:
             if tk >= 2000:
                 rank = 0
-            elif tk >= 1500 && tk <= 1999:
+            elif tk >= 1500 and tk <= 1999:
                 rank = 1
-            elif tk >= 1000 && tk <= 1499:
+            elif tk >= 1000 and tk <= 1499:
                 rank = 2
-            elif tk >= 500 && tk <= 999:
+            elif tk >= 500 and tk <= 999:
                 rank = 3
         elif tk >= 3000:
             rank = 0
-        elif tk >= 2000 && tk <= 2999:
+        elif tk >= 2000 and tk <= 2999:
             rank = 1
-        elif tk >= 1500 && tk <= 1999:
+        elif tk >= 1500 and tk <= 1999:
             rank = 2
-        elif tk >= 500 && tk <= 1499:
+        elif tk >= 500 and tk <= 1499:
             rank = 3
         pt = 0
         Label_0581:
@@ -400,7 +402,7 @@ class Event_PyramidSubway:
         self.dispose(c)
 
     def dispose(self, c: Any) -> None:
-        lead = self.energyBarDecrease is not None && self.timerSchedule is not None
+        lead = self.energyBarDecrease is not None and self.timerSchedule is not None
         if self.energyBarDecrease is not None:
             self.energyBarDecrease.cancel(False)
             self.energyBarDecrease = None
@@ -410,14 +412,14 @@ class Event_PyramidSubway:
         if self.yetiSchedule is not None:
             self.yetiSchedule.cancel(False)
             self.yetiSchedule = None
-        if c.getParty() is not None && lead && c.getParty().getMembers() > 1:
+        if c.getParty() is not None and lead and c.getParty().getMembers() > 1:
             self.fail(c)
             return
         c.setPyramidSubway(None)
 
     def broadcastUpdate(self, c: Any) -> None:
         map = c.getMap()
-        if c.getParty() is not None && c.getParty().getMembers() > 1:
+        if c.getParty() is not None and c.getParty().getMembers() > 1:
             for mpc in c.getParty().getMembers():
                 chr = map.getCharacterById(mpc.getId())
                 if chr is not None:

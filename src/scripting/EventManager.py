@@ -69,13 +69,14 @@ class EventManager:
             FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + self.name + ", method Name : cancelSchedule:\n" + ex)
 
     def schedule(self, methodName: str, delay: int) -> Any:
-        return Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                try:
-                    EventManager.self.iv.invokeFunction(methodName, None)
-                except Exception as ex:
-                    print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
-                    FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+        def _task_1():
+            try:
+                EventManager.self.iv.invokeFunction(methodName, None)
+            except Exception as ex:
+                print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+                FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+
+        return Timer.EventTimer.getInstance().schedule(_task_1, delay)
 
     def run(self) -> None:
         try:
@@ -85,32 +86,35 @@ class EventManager:
             FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
 
     def schedule_methodName_delay_eim(self, methodName: str, delay: int, eim: Any) -> Any:
-        return Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                try:
-                    EventManager.self.iv.invokeFunction(methodName, eim)
-                except Exception as ex:
-                    print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
-                    FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+        def _task_1():
+            try:
+                EventManager.self.iv.invokeFunction(methodName, eim)
+            except Exception as ex:
+                print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+                FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+
+        return Timer.EventTimer.getInstance().schedule(_task_1, delay)
 
     def schedule_methodName_eim_delay(self, methodName: str, eim: Any, delay: int) -> Any:
-        return Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                try:
-                    EventManager.self.iv.invokeFunction(methodName, eim)
-                except Exception as ex:
-                    print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
-                    FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+        def _task_1():
+            try:
+                EventManager.self.iv.invokeFunction(methodName, eim)
+            except Exception as ex:
+                print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+                FileoutputUtil.log(FileoutputUtil.ScriptEx_Log, "Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+
+        return Timer.EventTimer.getInstance().schedule(_task_1, delay)
 
     def scheduleAtTimestamp(self, methodName: str, timestamp: int) -> Any:
-        return Timer.EventTimer.getInstance().scheduleAtTimestamp(Runnable()
-            public void run()
-                try:
-                    EventManager.self.iv.invokeFunction(methodName, None)
-                except ScriptException as ex:
-                    print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
-                except NoSuchMethodException as ex2:
-                    print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex2)
+        def _task_1():
+            try:
+                EventManager.self.iv.invokeFunction(methodName, None)
+            except ScriptException as ex:
+                print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex)
+            except NoSuchMethodException as ex2:
+                print("Event name : " + EventManager.self.name + ", method Name : " + methodName + ":\n" + ex2)
+
+        return Timer.EventTimer.getInstance().scheduleAtTimestamp(_task_1, timestamp)
 
     def getChannel(self) -> int:
         return self.channel
@@ -134,9 +138,9 @@ class EventManager:
 
     def disposeInstance(self, name: str) -> None:
         self.instances.remove(name)
-        if self.getProperty("state") is not None && self.instances == 0:
+        if self.getProperty("state") is not None and self.instances == 0:
             self.setProperty("state", "0")
-        if self.getProperty("leader") is not None && self.instances == 0 && self.getProperty("leader") == ("False"):
+        if self.getProperty("leader") is not None and self.instances == 0 and self.getProperty("leader") == ("False"):
             self.setProperty("leader", "True")
         if self.name == ("CWKPQ"):
             squad = ChannelServer.getInstance(self.channel).getMapleSquad("CWKPQ")
@@ -243,11 +247,11 @@ class EventManager:
     def startInstance_squad_map_questID(self, squad: Any, map: Any, questID: int) -> None:
         if squad.getStatus() == 0:
             return
-        if !squad.getLeader().isGM():
+        if not squad.getLeader().isGM():
             if squad.getMembers() < squad.getType().i:
                 squad.getLeader().dropMessage(5, "这个远征队至少要有 " + squad.getType().i + " 人以上才可以开战.")
                 return
-            if self.name == ("CWKPQ") && squad.getJobs() < 5:
+            if self.name == ("CWKPQ") and squad.getJobs() < 5:
                 squad.getLeader().dropMessage(5, "The squad requires members from every type of job.")
                 return
         try:
@@ -260,17 +264,17 @@ class EventManager:
     def startInstance_squad_map_bossid(self, squad: Any, map: Any, bossid: str) -> None:
         if squad.getStatus() == 0:
             return
-        if !squad.getLeader().isGM():
+        if not squad.getLeader().isGM():
             mapid = map.getId()
             chrSize = 0
             for chr in squad.getMembers():
                 player = squad.getChar(chr)
-                if player is not None && player.getMapId() == mapid:
+                if player is not None and player.getMapId() == mapid:
                     chrSize += 1
             if chrSize < squad.getType().i:
                 squad.getLeader().dropMessage(5, "远征队中人员少于 " + squad.getType().i + " 人，无法开始远征任务。注意必须队伍中的角色在线且在同一地图。当前人数: " + chrSize)
                 return
-            if self.name == ("CWKPQ") && squad.getJobs() < 5:
+            if self.name == ("CWKPQ") and squad.getJobs() < 5:
                 squad.getLeader().dropMessage(5, "远征队中成员职业的类型小于5种，无法开始远征任务。")
                 return
         try:
@@ -284,14 +288,14 @@ class EventManager:
         tomap = self.getMapFactory().getMap(to)
         frommap = self.getMapFactory().getMap(from)
         list = frommap.getCharactersThreadsafe()
-        if tomap is not None && frommap is not None && list is not None && frommap.getCharactersSize() > 0:
+        if tomap is not None and frommap is not None and list is not None and frommap.getCharactersSize() > 0:
             for mmo in list:
                 (mmo).changeMap(tomap, tomap.getPortal(0))
 
     def setAllPlayerBossLog(self, map: int, bosslog: str, type: int) -> None:
         frommap = self.getMapFactory().getMap(map)
         list = frommap.getCharactersThreadsafe()
-        if frommap is not None && list is not None && frommap.getCharactersSize() > 0:
+        if frommap is not None and list is not None and frommap.getCharactersSize() > 0:
             for mmo in list:
                 (mmo).setBossLog(bosslog, type)
 
@@ -329,7 +333,7 @@ class EventManager:
         pass
 
     def broadcastServerMsg(self, type: int, msg: str, weather: bool) -> None:
-        if !weather:
+        if not weather:
             self.getChannelServer().broadcastPacket(MaplePacketCreator.serverNotice(type, msg))
         else:
             for load in self.getMapFactory().getAllMaps():
@@ -343,8 +347,12 @@ class EventManager:
         return omg
 
     def scheduleRandomEventInChannel(self, chz: int) -> bool:
+        def _task_1():
+            if cs.getEvent() >= 0:
+                MapleEvent.setEvent(cs, True)
+
         cs = ChannelServer.getInstance(chz)
-        if cs is None || cs.getEvent() > -1:
+        if cs is None or cs.getEvent() > -1:
             return False
         t = None
         x = None
@@ -360,10 +368,7 @@ class EventManager:
         if msg > 0:
             self.broadcastYellowMsg(msg)
             return False
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if cs.getEvent() >= 0:
-                    MapleEvent.setEvent(cs, True)
+        Timer.EventTimer.getInstance().schedule(_task_1, 180000)
         return True
 
     def setWorldEvent(self) -> None:

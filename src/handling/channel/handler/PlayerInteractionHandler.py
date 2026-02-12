@@ -80,27 +80,27 @@ class PlayerInteractionHandler:
                 if createType == 3:
                     MapleTrade.startTrade(chr)
                     break
-                if createType != 1 && createType != 2 && createType != 4 && createType != 5:
+                if createType != 1 and createType != 2 and createType != 4 and createType != 5:
                     break
-                if createType == 4 && !chr.isAdmin():
+                if createType == 4 and not chr.isAdmin():
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 if chr.getMap().getMapObjectsInRange(chr.getPosition(), 20000.0, Arrays.asList(MapleMapObjectType.SHOP, MapleMapObjectType.HIRED_MERCHANT)) != 0:
                     chr.dropMessage(1, "你不可能在这里建立一个商店.")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
-                if (createType == 1 || createType == 2) && FieldLimitType.Minigames.check(chr.getMap().getFieldLimit()):
+                if (createType == 1 or createType == 2) and FieldLimitType.Minigames.check(chr.getMap().getFieldLimit()):
                     chr.dropMessage(1, "你不可以在这里使用的迷你游戏。")
                     c.getSession().write(MaplePacketCreator.enableActions())
                     return
                 desc = slea.readMapleAsciiString()
                 pass = ""
-                if slea.readByte() > 0 && (createType == 1 || createType == 2):
+                if slea.readByte() > 0 and (createType == 1 or createType == 2):
                     pass = slea.readMapleAsciiString()
-                if createType == 1 || createType == 2:
+                if createType == 1 or createType == 2:
                     piece = slea.readByte()
                     itemId = (createType == 1) ? (4080000 + piece) : 4080100
-                    if !chr.haveItem(itemId) || (c.getPlayer().getMapId() >= 910000001 && c.getPlayer().getMapId() <= 910000022):
+                    if not chr.haveItem(itemId) or (c.getPlayer().getMapId() >= 910000001 and c.getPlayer().getMapId() <= 910000022):
                         return
                     game = MapleMiniGame(chr, itemId, desc, pass, createType)
                     game.setPieceType(piece)
@@ -112,7 +112,7 @@ class PlayerInteractionHandler:
                     game.update()
                 else:
                     shop = c.getPlayer().getInventory(MapleInventoryType.CASH).getItem(slea.readShort())
-                    if shop is None || shop.getQuantity() <= 0 || shop.getItemId() != slea.readInt() || c.getPlayer().getMapId() < 910000000 || c.getPlayer().getMapId() > 910000022:
+                    if shop is None or shop.getQuantity() <= 0 or shop.getItemId() != slea.readInt() or c.getPlayer().getMapId() < 910000000 or c.getPlayer().getMapId() > 910000022:
                         return
                     if createType == 4:
                         mps = MaplePlayerShop(chr, shop.getItemId(), desc)
@@ -134,29 +134,30 @@ class PlayerInteractionHandler:
             # case 13:
                 类型 = slea.readByte()
                 现金交易 = slea.readByte()
-                if 类型 == 11 && 现金交易 == 5:
+                if 类型 == 11 and 现金交易 == 5:
                     c.getPlayer().dropMessage(1, "请先放入一个不是现金物品的东西贩卖\r\n开启商店后管理商店放入现金物品！")
                     return
                 未知类型 = slea.readInt()
                 obid = slea.readInt()
                 otherChar = c.getPlayer().getMap().getCharacterById(obid)
                 ob = chr.getMap().getMapObject(obid, MapleMapObjectType.HIRED_MERCHANT)
-                if 现金交易 == 6 && 类型 == 4 && c.getPlayer().getTrade() is not None && c.getPlayer().getTrade().getPartner() is not None:
+                if 现金交易 == 6 and 类型 == 4 and c.getPlayer().getTrade() is not None and c.getPlayer().getTrade().getPartner() is not None:
                     MapleTrade.visit现金交易(chr, chr.getTrade().getPartner().getChr())
                     try:
-                        c.getPlayer().dropMessage(6, "玩家 " + otherChar.getName() + "  接受现金交易邀请!")
-                    catch (Exception ex) {}
+                        c.getPlayer().dropMessage(6, "玩家 " + otherChar.getName() + " 接受现金交易邀请!")
+                    except Exception as ex:
+                        pass
                     break
-                if 现金交易 == 6 && 类型 != 4:
+                if 现金交易 == 6 and 类型 != 4:
                     MapleTrade.start现金交易(chr)
                     MapleTrade.invite现金交易(chr, otherChar)
-                    c.getPlayer().dropMessage(6, "向玩家 " + otherChar.getName() + "  发送现金交易邀请!")
+                    c.getPlayer().dropMessage(6, "向玩家 " + otherChar.getName() + " 发送现金交易邀请!")
                     break
                 if chr.getMap() is None:
                     break
                 if ob is None:
                     ob = chr.getMap().getMapObject(obid, MapleMapObjectType.SHOP)
-                if isinstance(ob, IMaplePlayerShop) && chr.getPlayerShop() is None:
+                if isinstance(ob, IMaplePlayerShop) and chr.getPlayerShop() is None:
                     ips = ob
                     if isinstance(ob, HiredMerchant):
                         merchant = ips
@@ -166,7 +167,7 @@ class PlayerInteractionHandler:
                             merchant.removeAllVisitors(16, 0)
                             chr.setPlayerShop(ips)
                             c.getSession().write(PlayerShopPacket.getHiredMerch(chr, merchant, False))
-                        elif !merchant.isOpen() || !merchant.isAvailable():
+                        elif not merchant.isOpen() or not merchant.isAvailable():
                             chr.dropMessage(1, "主人正在整理商店物品\r\n请稍后再度光临！")
                         elif ips.getFreeSlot() == -1:
                             chr.dropMessage(1, "商店人数已经满了,请稍后再进入")
@@ -176,14 +177,14 @@ class PlayerInteractionHandler:
                             chr.setPlayerShop(ips)
                             merchant.addVisitor(chr)
                             c.getSession().write(PlayerShopPacket.getHiredMerch(chr, merchant, False))
-                    elif isinstance(ips, MaplePlayerShop) && (ips).isBanned(chr.getName()):
+                    elif isinstance(ips, MaplePlayerShop) and (ips).isBanned(chr.getName()):
                         chr.dropMessage(1, "你被这家商店加入黑名单了,所以不能进入.")
-                    elif ips.getFreeSlot() < 0 || ips.getVisitorSlot(chr) > -1 || !ips.isOpen() || !ips.isAvailable():
+                    elif ips.getFreeSlot() < 0 or ips.getVisitorSlot(chr) > -1 or not ips.isOpen() or not ips.isAvailable():
                         c.getSession().write(PlayerShopPacket.getMiniGameFull())
                     else:
-                        if slea.available() > 0 && slea.readByte() > 0:
+                        if slea.available() > 0 and slea.readByte() > 0:
                             pass2 = slea.readMapleAsciiString()
-                            if !pass2 == (ips.getPassword()):
+                            if not pass2 == (ips.getPassword()):
                                 c.getPlayer().dropMessage(1, "你输入的密码错误.请从新在试一次.")
                                 return
                         elif ips.getPassword() > 0:
@@ -198,7 +199,7 @@ class PlayerInteractionHandler:
                     break
                 break
             # case 4:
-                if chr.getTrade() is not None && chr.getTrade().getPartner() is not None:
+                if chr.getTrade() is not None and chr.getTrade().getPartner() is not None:
                     MapleTrade.visitTrade(chr, chr.getTrade().getPartner().getChr())
                     break
                 if chr.getMap() is not None:
@@ -206,7 +207,7 @@ class PlayerInteractionHandler:
                     ob2 = chr.getMap().getMapObject(obid2, MapleMapObjectType.HIRED_MERCHANT)
                     if ob2 is None:
                         ob2 = chr.getMap().getMapObject(obid2, MapleMapObjectType.SHOP)
-                    if isinstance(ob2, IMaplePlayerShop) && chr.getPlayerShop() is None:
+                    if isinstance(ob2, IMaplePlayerShop) and chr.getPlayerShop() is None:
                         ips2 = ob2
                         if isinstance(ob2, HiredMerchant):
                             merchant2 = ips2
@@ -215,7 +216,7 @@ class PlayerInteractionHandler:
                                 merchant2.removeAllVisitors(16, 0)
                                 chr.setPlayerShop(ips2)
                                 c.getSession().write(PlayerShopPacket.getHiredMerch(chr, merchant2, False))
-                            elif !merchant2.isOpen() || !merchant2.isAvailable():
+                            elif not merchant2.isOpen() or not merchant2.isAvailable():
                                 chr.dropMessage(1, "这个商店正在整理或者是没有再贩卖东西")
                             elif ips2.getFreeSlot() == -1:
                                 chr.dropMessage(1, "商店人数已经满了，请稍后在进入")
@@ -225,14 +226,14 @@ class PlayerInteractionHandler:
                                 chr.setPlayerShop(ips2)
                                 merchant2.addVisitor(chr)
                                 c.getSession().write(PlayerShopPacket.getHiredMerch(chr, merchant2, False))
-                        elif isinstance(ips2, MaplePlayerShop) && (ips2).isBanned(chr.getName()):
+                        elif isinstance(ips2, MaplePlayerShop) and (ips2).isBanned(chr.getName()):
                             chr.dropMessage(1, "你被这家商店加入黑名单了,所以不能进入.")
-                        elif ips2.getFreeSlot() < 0 || ips2.getVisitorSlot(chr) > -1 || !ips2.isOpen() || !ips2.isAvailable():
+                        elif ips2.getFreeSlot() < 0 or ips2.getVisitorSlot(chr) > -1 or not ips2.isOpen() or not ips2.isAvailable():
                             c.getSession().write(PlayerShopPacket.getMiniGameFull())
                         else:
-                            if slea.available() > 0 && slea.readByte() > 0:
+                            if slea.available() > 0 and slea.readByte() > 0:
                                 pass3 = slea.readMapleAsciiString()
-                                if !pass3 == (ips2.getPassword()):
+                                if not pass3 == (ips2.getPassword()):
                                     c.getPlayer().dropMessage(1, "你输入的密码错误.请从新在试一次")
                                     return
                             elif ips2.getPassword() > 0:
@@ -262,7 +263,7 @@ class PlayerInteractionHandler:
                 ips3 = chr.getPlayerShop()
                 if ips3 is None:
                     return
-                if !ips3.isAvailable() || (ips3.isOwner(chr) && ips3.getShopType() != 1) || (ips3.isOwner(chr) && ips3.getItems() == 0):
+                if not ips3.isAvailable() or (ips3.isOwner(chr) and ips3.getShopType() != 1) or (ips3.isOwner(chr) and ips3.getItems() == 0):
                     ips3.closeShop(True, ips3.isAvailable())
                 else:
                     ips3.removeVisitor(chr)
@@ -272,9 +273,9 @@ class PlayerInteractionHandler:
                 break
             # case 11:
                 shop2 = chr.getPlayerShop()
-                if shop2 is None || !shop2.isOwner(chr) || shop2.getShopType() >= 3:
+                if shop2 is None or not shop2.isOwner(chr) or shop2.getShopType() >= 3:
                     break
-                if !chr.getMap().allowPersonalShop():
+                if not chr.getMap().allowPersonalShop():
                     c.getSession().close(True)
                     break
                 if c.getChannelServer().isShutdown():
@@ -310,7 +311,7 @@ class PlayerInteractionHandler:
                         c.getPlayer().dropMessage(1, "这个物品是禁止雇佣贩卖的.")
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
-                if chr.getTrade() is not None && item is not None && ((quantity <= item.getQuantity() && quantity >= 0) || GameConstants.is飞镖道具(item.getItemId()) || GameConstants.is子弹道具(item.getItemId())):
+                if chr.getTrade() is not None and item is not None and ((quantity <= item.getQuantity() and quantity >= 0) or GameConstants.is飞镖道具(item.getItemId()) or GameConstants.is子弹道具(item.getItemId())):
                     chr.getTrade().setItems(c, item, targetSlot, quantity)
                     break
                 break
@@ -332,30 +333,30 @@ class PlayerInteractionHandler:
                 bundles = slea.readShort()
                 perBundle = slea.readShort()
                 price = slea.readInt()
-                if price <= 0 || bundles <= 0 || perBundle <= 0:
+                if price <= 0 or bundles <= 0 or perBundle <= 0:
                     return
                 shop3 = chr.getPlayerShop()
-                if shop3 is None || !shop3.isOwner(chr) || isinstance(shop3, MapleMiniGame):
+                if shop3 is None or not shop3.isOwner(chr) or isinstance(shop3, MapleMiniGame):
                     return
                 ivItem = chr.getInventory(type).getItem(slot)
                 ii2 = MapleItemInformationProvider.getInstance()
                 if ivItem is None:
                     break
                 check = bundles * perBundle
-                if check > 32767 || check <= 0:
+                if check > 32767 or check <= 0:
                     return
                 bundles_perbundle = (short)(bundles * perBundle)
                 if ivItem.getQuantity() >= bundles_perbundle:
                     flag = ivItem.getFlag()
-                    if ItemFlag.UNTRADEABLE.check(flag) || ItemFlag.LOCK.check(flag):
+                    if ItemFlag.UNTRADEABLE.check(flag) or ItemFlag.LOCK.check(flag):
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
-                    if (ii2.isDropRestricted(ivItem.getItemId()) || ii2.isAccountShared(ivItem.getItemId())) && !ItemFlag.KARMA_EQ.check(flag) && !ItemFlag.KARMA_USE.check(flag):
+                    if (ii2.isDropRestricted(ivItem.getItemId()) or ii2.isAccountShared(ivItem.getItemId())) and not ItemFlag.KARMA_EQ.check(flag) and not ItemFlag.KARMA_USE.check(flag):
                         c.getSession().write(MaplePacketCreator.enableActions())
                         return
-                    if bundles_perbundle >= 50 && GameConstants.isUpgradeScroll(ivItem.getItemId()):
+                    if bundles_perbundle >= 50 and GameConstants.isUpgradeScroll(ivItem.getItemId()):
                         c.setMonitored(True)
-                    if GameConstants.is飞镖道具(ivItem.getItemId()) || GameConstants.is子弹道具(ivItem.getItemId()):
+                    if GameConstants.is飞镖道具(ivItem.getItemId()) or GameConstants.is子弹道具(ivItem.getItemId()):
                         MapleInventoryManipulator.removeFromSlot(c, type, slot, ivItem.getQuantity(), True)
                         sellItem = ivItem.copy()
                         shop3.addItem(MaplePlayerShopItem(sellItem, 1, price, sellItem.getFlag()))
@@ -375,7 +376,7 @@ class PlayerInteractionHandler:
                 item2 = slea.readByte()
                 quantity2 = slea.readShort()
                 shop4 = chr.getPlayerShop()
-                if shop4 is None || shop4.isOwner(chr) || isinstance(shop4, MapleMiniGame) || item2 >= shop4.getItems():
+                if shop4 is None or shop4.isOwner(chr) or isinstance(shop4, MapleMiniGame) or item2 >= shop4.getItems():
                     return
                 tobuy = shop4.getItems().get(item2)
                 if tobuy is None:
@@ -383,11 +384,11 @@ class PlayerInteractionHandler:
                 check2 = tobuy.bundles * quantity2
                 check3 = tobuy.price * quantity2
                 check4 = tobuy.item.getQuantity() * quantity2
-                if check2 <= 0 || check3 > 2147483647 || check3 <= 0 || check4 > 32767 || check4 < 0:
+                if check2 <= 0 or check3 > 2147483647 or check3 <= 0 or check4 > 32767 or check4 < 0:
                     return
-                if tobuy.bundles < quantity2 || (tobuy.bundles % quantity2 != 0 && GameConstants.isEquip(tobuy.item.getItemId())) || chr.getMeso() - check3 < 0 || chr.getMeso() - check3 > 2147483647 || shop4.getMeso() + check3 < 0 || shop4.getMeso() + check3 > 2147483647:
+                if tobuy.bundles < quantity2 or (tobuy.bundles % quantity2 != 0 and GameConstants.isEquip(tobuy.item.getItemId())) or chr.getMeso() - check3 < 0 or chr.getMeso() - check3 > 2147483647 or shop4.getMeso() + check3 < 0 or shop4.getMeso() + check3 > 2147483647:
                     return
-                if (quantity2 < 50 || tobuy.item.getItemId() == 2340000) {}
+                if (quantity2 < 50 or tobuy.item.getItemId() == 2340000) {}
                 shop4.buy(c, item2, quantity2)
                 shop4.broadcastToVisitors(PlayerShopPacket.shopItemUpdate(shop4))
                 break
@@ -395,16 +396,16 @@ class PlayerInteractionHandler:
             # case 36:
                 slot2 = slea.readShort()
                 shop5 = chr.getPlayerShop()
-                if shop5 is None || !shop5.isOwner(chr) || isinstance(shop5, MapleMiniGame) || shop5.getItems() <= 0 || shop5.getItems() <= slot2 || slot2 < 0:
+                if shop5 is None or not shop5.isOwner(chr) or isinstance(shop5, MapleMiniGame) or shop5.getItems() <= 0 or shop5.getItems() <= slot2 or slot2 < 0:
                     return
                 item3 = shop5.getItems().get(slot2)
-                if item3 is not None && item3.bundles > 0:
+                if item3 is not None and item3.bundles > 0:
                     item_get = item3.item.copy()
                     check2 = item3.bundles * item3.item.getQuantity()
-                    if check2 <= 0 || check2 > 32767:
+                    if check2 <= 0 or check2 > 32767:
                         return
                     item_get.setQuantity(check2)
-                    if item_get.getQuantity() >= 50 && GameConstants.isUpgradeScroll(item3.item.getItemId()):
+                    if item_get.getQuantity() >= 50 and GameConstants.isUpgradeScroll(item3.item.getItemId()):
                         c.setMonitored(True)
                     if MapleInventoryManipulator.checkSpace(c, item_get.getItemId(), item_get.getQuantity(), item_get.getOwner()):
                         MapleInventoryManipulator.addFromDrop(c, item_get, False)
@@ -414,14 +415,14 @@ class PlayerInteractionHandler:
                 break
             # case 37:
                 shop2 = chr.getPlayerShop()
-                if shop2 is not None && isinstance(shop2, HiredMerchant) && shop2.isOwner(chr):
+                if shop2 is not None and isinstance(shop2, HiredMerchant) and shop2.isOwner(chr):
                     shop2.setOpen(True)
                     chr.setPlayerShop(None)
                     break
                 break
             # case 38:
                 imps = chr.getPlayerShop()
-                if imps is None || !imps.isOwner(chr) || isinstance(imps, MapleMiniGame):
+                if imps is None or not imps.isOwner(chr) or isinstance(imps, MapleMiniGame):
                     c.sendPacket(MaplePacketCreator.enableActions())
                     break
                 for j in range(imps.getItems()):
@@ -436,7 +437,7 @@ class PlayerInteractionHandler:
                 break
             # case 39:
                 merchant4 = chr.getPlayerShop()
-                if merchant4 is not None && merchant4.getShopType() == 1 && merchant4.isOwner(chr) && merchant4.isAvailable():
+                if merchant4 is not None and merchant4.getShopType() == 1 and merchant4.isOwner(chr) and merchant4.isAvailable():
                     merchant4.removeAllVisitors(-1, -1)
                     merchant4.closeShop(True, True)
                     chr.setPlayerShop(None)
@@ -445,31 +446,31 @@ class PlayerInteractionHandler:
                 break
             # case 44:
                 merchant4 = chr.getPlayerShop()
-                if merchant4 is not None && merchant4.getShopType() == 1 && merchant4.isOwner(chr):
+                if merchant4 is not None and merchant4.getShopType() == 1 and merchant4.isOwner(chr):
                     (merchant4).sendVisitor(c)
                     break
                 break
             # case 45:
                 merchant4 = chr.getPlayerShop()
-                if merchant4 is not None && merchant4.getShopType() == 1 && merchant4.isOwner(chr):
+                if merchant4 is not None and merchant4.getShopType() == 1 and merchant4.isOwner(chr):
                     (merchant4).sendBlackList(c)
                     break
                 break
             # case 46:
                 merchant4 = chr.getPlayerShop()
-                if merchant4 is not None && merchant4.getShopType() == 1 && merchant4.isOwner(chr):
+                if merchant4 is not None and merchant4.getShopType() == 1 and merchant4.isOwner(chr):
                     (merchant4).addBlackList(slea.readMapleAsciiString())
                     break
                 break
             # case 47:
                 merchant4 = chr.getPlayerShop()
-                if merchant4 is not None && merchant4.getShopType() == 1 && merchant4.isOwner(chr):
+                if merchant4 is not None and merchant4.getShopType() == 1 and merchant4.isOwner(chr):
                     (merchant4).removeBlackList(slea.readMapleAsciiString())
                     break
                 break
             # case 50:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -482,29 +483,29 @@ class PlayerInteractionHandler:
                 break
             # case 59:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
-                if !(ips3).isOpen():
+                if not (ips3).isOpen():
                     break
                 ips3.removeAllVisitors(3, 1)
                 break
             # case 57:
             # case 58:
                 ips3 = chr.getPlayerShop()
-                if ips3 is not None && isinstance(ips3, MapleMiniGame):
+                if ips3 is not None and isinstance(ips3, MapleMiniGame):
                     game2 = ips3
-                    if !game2.isOwner(chr) && game2.isOpen():
+                    if not game2.isOwner(chr) and game2.isOpen():
                         game2.setReady(game2.getVisitorSlot(chr))
                         game2.broadcastToVisitors(PlayerShopPacket.getMiniGameReady(game2.isReady(game2.getVisitorSlot(chr))))
                     break
                 break
             # case 60:
                 ips3 = chr.getPlayerShop()
-                if ips3 is not None && isinstance(ips3, MapleMiniGame):
+                if ips3 is not None and isinstance(ips3, MapleMiniGame):
                     game2 = ips3
-                    if game2.isOwner(chr) && game2.isOpen():
+                    if game2.isOwner(chr) and game2.isOpen():
                         for k in range(1, ips3.getSize()):
-                            if !game2.isReady(k):
+                            if not game2.isReady(k):
                                 return
                         game2.setGameType()
                         game2.shuffleList()
@@ -518,7 +519,7 @@ class PlayerInteractionHandler:
                 break
             # case 48:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -531,12 +532,12 @@ class PlayerInteractionHandler:
                 break
             # case 49:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
                     break
-                if game2.getRequestedTie() > -1 && game2.getRequestedTie() != game2.getVisitorSlot(chr):
+                if game2.getRequestedTie() > -1 and game2.getRequestedTie() != game2.getVisitorSlot(chr):
                     if slea.readByte() > 0:
                         game2.broadcastToVisitors(PlayerShopPacket.getMiniGameResult(game2, 1, game2.getRequestedTie()))
                         game2.nextLoser()
@@ -549,7 +550,7 @@ class PlayerInteractionHandler:
                 break
             # case 53:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -562,7 +563,7 @@ class PlayerInteractionHandler:
                 break
             # case 54:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -576,7 +577,7 @@ class PlayerInteractionHandler:
                 break
             # case 62:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -586,7 +587,7 @@ class PlayerInteractionHandler:
                 break
             # case 63:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -595,7 +596,7 @@ class PlayerInteractionHandler:
                 break
             # case 67:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -614,7 +615,7 @@ class PlayerInteractionHandler:
                         game2.getMCOwner().getClient().getSession().write(PlayerShopPacket.getMatchCardSelect(turn, slot3, fs, turn))
                     game2.setTurn(0)
                     return
-                if fs > 0 && game2.getCardId(fs + 1) == game2.getCardId(slot3 + 1):
+                if fs > 0 and game2.getCardId(fs + 1) == game2.getCardId(slot3 + 1):
                     game2.broadcastToVisitors(PlayerShopPacket.getMatchCardSelect(turn, slot3, fs, game2.isOwner(chr) ? 2 : 3))
                     game2.setPoints(game2.getVisitorSlot(chr))
                 else:
@@ -625,7 +626,7 @@ class PlayerInteractionHandler:
                 break
             # case 55:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():
@@ -638,7 +639,7 @@ class PlayerInteractionHandler:
                 break
             # case 56:
                 ips3 = chr.getPlayerShop()
-                if ips3 is None || !(isinstance(ips3, MapleMiniGame)):
+                if ips3 is None or not (isinstance(ips3, MapleMiniGame)):
                     break
                 game2 = ips3
                 if game2.isOpen():

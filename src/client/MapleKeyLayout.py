@@ -48,7 +48,7 @@ class MapleKeyLayout:
                 mplew.writeInt(0)
 
     def saveKeys(self, charid: int) -> None:
-        if !self.changed || self.keymap == 0:
+        if not self.changed or self.keymap == 0:
             return
         con = DatabaseConnection.getConnection()
         ps = None
@@ -64,7 +64,7 @@ class MapleKeyLayout:
                 if key == keybinding.getKey():
                     find = True
                     break
-            if !find:
+            if not find:
                 ps2 = con.prepareStatement("DELETE FROM keymap WHERE `characterid` = ? AND `key` = ?")
                 ps2.setInt(1, charid)
                 ps2.setInt(2, key)

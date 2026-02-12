@@ -129,7 +129,7 @@ class AbstractPlayerInteraction:
 
     def warp_map_portal(self, map: int, portal: int) -> None:
         mapz = self.getWarpMap(map)
-        if portal != 0 && map == self.c.getPlayer().getMapId():
+        if portal != 0 and map == self.c.getPlayer().getMapId():
             self.c.getPlayer().changeMap(mapz, mapz.getPortal(portal))
         else:
             self.c.getPlayer().changeMap(mapz, mapz.getPortal(portal))
@@ -140,7 +140,7 @@ class AbstractPlayerInteraction:
 
     def warpS_map_portal(self, map: int, portal: str) -> None:
         mapz = self.getWarpMap(map)
-        if map == 109060000 || map == 109060002 || map == 109060004:
+        if map == 109060000 or map == 109060002 or map == 109060004:
             portal = mapz.getSnowballPortal()
         self.c.getPlayer().changeMap(mapz, mapz.getPortal(portal))
 
@@ -166,7 +166,7 @@ class AbstractPlayerInteraction:
             for chr in chan.getPlayerStorage().getAllCharacters():
                 if chr is None:
                     continue
-                if self.getC().getChannel() != chr.getClient().getChannel() || chr.getMapId() != MapID:
+                if self.getC().getChannel() != chr.getClient().getChannel() or chr.getMapId() != MapID:
                     continue
                 self.warp(MapID2)
 
@@ -175,7 +175,7 @@ class AbstractPlayerInteraction:
             for chr in chan.getPlayerStorage().getAllCharacters():
                 if chr is None:
                     continue
-                if self.getC().getChannel() != chr.getClient().getChannel() || chr.getMapId() != self.getMapId():
+                if self.getC().getChannel() != chr.getClient().getChannel() or chr.getMapId() != self.getMapId():
                     continue
                 self.warp(MapID)
 
@@ -191,7 +191,7 @@ class AbstractPlayerInteraction:
     def spawnMobLevel_mobId_quantity_level_pos(self, mobId: int, quantity: int, level: int, pos: Any) -> None:
         for i in range(quantity):
             mob = MapleLifeFactory.getMonster(mobId)
-            if mob is None || !mob.getStats().isChangeable():
+            if mob is None or not mob.getStats().isChangeable():
                 if self.c.getPlayer().isAdmin():
                     self.c.getPlayer().dropMessage(6, "[系统提示] spawnMobLevel召唤怪物出错，ID为: " + mobId + " 怪物不存在或者该怪物无法使用这个函数来改变怪物的属性！")
             else:
@@ -507,9 +507,9 @@ class AbstractPlayerInteraction:
         if quantity >= 0:
             ii = MapleItemInformationProvider.getInstance()
             type = GameConstants.getInventoryType(id)
-            if !MapleInventoryManipulator.checkSpace(cg, id, quantity, ""):
+            if not MapleInventoryManipulator.checkSpace(cg, id, quantity, ""):
                 return
-            if type == (MapleInventoryType.EQUIP) && !GameConstants.is飞镖道具(id) && !GameConstants.is子弹道具(id):
+            if type == (MapleInventoryType.EQUIP) and not GameConstants.is飞镖道具(id) and not GameConstants.is子弹道具(id):
                 item = (Equip)(randomStats ? ii.randomizeStats(ii.getEquipById(id)) : ii.getEquipById(id))
                 if period > 0:
                     item.setExpiration(int(time.time() * 1000) + period * 60 * 60 * 1000)
@@ -518,7 +518,7 @@ class AbstractPlayerInteraction:
                 if owner is not None:
                     item.setOwner(owner)
                 name = ii.getName(id)
-                if id / 10000 == 114 && name is not None && name > 0:
+                if id / 10000 == 114 and name is not None and name > 0:
                     msg = "你已获得称号 <" + name + ">"
                     cg.getPlayer().dropMessage(5, msg)
                     cg.getPlayer().dropMessage(5, msg)
@@ -541,12 +541,12 @@ class AbstractPlayerInteraction:
     def gainItemS(self, id: int, str: int, dex: int, luk: int, Int: int, hp: int, mp: int, watk: int, matk: int, wdef: int, mdef: int, hb: int, mz: int, ty: int, yd: int, cg: Any, time: int) -> None:
         ii = MapleItemInformationProvider.getInstance()
         type = GameConstants.getInventoryType(id)
-        if !MapleInventoryManipulator.checkSpace(cg, id, 1, ""):
+        if not MapleInventoryManipulator.checkSpace(cg, id, 1, ""):
             return
-        if type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(id) && !GameConstants.isBullet(id):
+        if type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(id) and not GameConstants.isBullet(id):
             item = ii.getEquipById(id)
             name = ii.getName(id)
-            if id / 10000 == 114 && name is not None && name > 0:
+            if id / 10000 == 114 and name is not None and name > 0:
                 msg = "你已获得称号 <" + name + ">"
                 cg.getPlayer().dropMessage(5, msg)
                 cg.getPlayer().dropMessage(5, msg)
@@ -597,12 +597,12 @@ class AbstractPlayerInteraction:
     def translated_给予道具_id_str_dex_luk_Int_hp_mp_watk_matk_wdef_mdef_hb_mz_ty_yd_cg_time_ksjcs_ysjcs_jcz_suo(self, id: int, str: int, dex: int, luk: int, Int: int, hp: int, mp: int, watk: int, matk: int, wdef: int, mdef: int, hb: int, mz: int, ty: int, yd: int, cg: Any, time: int, ksjcs: int, ysjcs: int, jcz: int, suo: int) -> None:
         ii = MapleItemInformationProvider.getInstance()
         type = GameConstants.getInventoryType(id)
-        if !MapleInventoryManipulator.checkSpace(cg, id, 1, ""):
+        if not MapleInventoryManipulator.checkSpace(cg, id, 1, ""):
             return
-        if type == (MapleInventoryType.EQUIP) && !GameConstants.is飞镖道具(id) && !GameConstants.is子弹道具(id):
+        if type == (MapleInventoryType.EQUIP) and not GameConstants.is飞镖道具(id) and not GameConstants.is子弹道具(id):
             item = ii.getEquipById(id)
             name = ii.getName(id)
-            if id / 10000 == 114 && name is not None && name > 0:
+            if id / 10000 == 114 and name is not None and name > 0:
                 msg = "你已获得称号 <" + name + ">"
                 cg.getPlayer().dropMessage(5, msg)
                 cg.getPlayer().dropMessage(5, msg)
@@ -654,11 +654,11 @@ class AbstractPlayerInteraction:
         equip = self.getPlayer().getInventory(MapleInventoryType.EQUIP)
         fromEquip = equip.getItem(fromSlot)
         toEquip = equip.getItem(toSlot)
-        if fromEquip is None || toEquip is None:
+        if fromEquip is None or toEquip is None:
             return False
         isCash1 = ii.isCash(fromEquip.getItemId())
         isCash2 = ii.isCash(toEquip.getItemId())
-        if !isCash1 || !isCash2:
+        if not isCash1 or not isCash2:
             return False
         if fromEquip.getStr() > 0:
             toEquip.setStr(fromEquip.getStr())
@@ -705,14 +705,14 @@ class AbstractPlayerInteraction:
         World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(type, message).encode("utf-8"))
 
     def givePartyExp_PQ(self, maxLevel: int, mod: float) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             amount = Math.round(GameConstants.getExpNeededForLevel((self.getPlayer().getLevel() > maxLevel) ? (maxLevel + self.getPlayer().getLevel() / 10) : self.getPlayer().getLevel()) / (min(self.getPlayer().getLevel(), maxLevel) / 10.0) / mod)
             self.gainExp(amount)
             return
         cMap = self.getPlayer().getMapId()
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && (curChar.getMapId() == cMap || curChar.getEventInstance() == self.getPlayer().getEventInstance()):
+            if curChar is not None and (curChar.getMapId() == cMap or curChar.getEventInstance() == self.getPlayer().getEventInstance()):
                 amount2 = Math.round(GameConstants.getExpNeededForLevel((curChar.getLevel() > maxLevel) ? (maxLevel + curChar.getLevel() / 10) : curChar.getLevel()) / (min(curChar.getLevel(), maxLevel) / 10.0) / mod)
                 curChar.gainExp(amount2, True, True, True)
 
@@ -761,7 +761,7 @@ class AbstractPlayerInteraction:
                     continue
 
     def isLeader(self) -> bool:
-        return self.getParty() is not None && self.getParty().getLeader().getId() == self.c.getPlayer().getId()
+        return self.getParty() is not None and self.getParty().getLeader().getId() == self.c.getPlayer().getId()
 
     def isParty(self) -> bool:
         return self.getParty() is not None
@@ -784,46 +784,46 @@ class AbstractPlayerInteraction:
         return True
 
     def resetPartyBossLog(self, bosslog: str) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.getPlayer().resetBossLog(bosslog)
             return
         cMap = self.getPlayer().getMapId()
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && (curChar.getMapId() == cMap || curChar.getEventInstance() == self.getPlayer().getEventInstance()):
+            if curChar is not None and (curChar.getMapId() == cMap or curChar.getEventInstance() == self.getPlayer().getEventInstance()):
                 curChar.resetBossLog(bosslog)
 
     def warpParty(self, mapId: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.warp(mapId, 0)
             return
         target = self.getMap(mapId)
         cMap = self.getPlayer().getMapId()
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && (curChar.getMapId() == cMap || curChar.getEventInstance() == self.getPlayer().getEventInstance()):
+            if curChar is not None and (curChar.getMapId() == cMap or curChar.getEventInstance() == self.getPlayer().getEventInstance()):
                 curChar.changeMap(target, target.getPortal(0))
 
     def warpParty_mapId_portal(self, mapId: int, portal: str) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.warp(mapId, portal)
             return
         target = self.getMap(mapId)
         cMap = self.getPlayer().getMapId()
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && (curChar.getMapId() == cMap || curChar.getEventInstance() == self.getPlayer().getEventInstance()):
+            if curChar is not None and (curChar.getMapId() == cMap or curChar.getEventInstance() == self.getPlayer().getEventInstance()):
                 curChar.changeMap(target, target.getPortal(portal))
 
     def warpParty_Instanced(self, mapId: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.warp_Instanced(mapId)
             return
         target = self.getMap_Instanced(mapId)
         cMap = self.getPlayer().getMapId()
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && (curChar.getMapId() == cMap || curChar.getEventInstance() == self.getPlayer().getEventInstance()):
+            if curChar is not None and (curChar.getMapId() == cMap or curChar.getEventInstance() == self.getPlayer().getEventInstance()):
                 curChar.changeMap(target, target.getPortal(0))
 
     def gainDY(self, gain: int) -> None:
@@ -858,7 +858,7 @@ class AbstractPlayerInteraction:
                 chr.gainExp(amount, True, True, True)
 
     def translated_给予组队物品队长双倍(self, id: int, quantity: int, removeAll: bool) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainItem(id, (short)(removeAll ? (-self.getPlayer().itemQuantity(id)) : quantity))
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -871,7 +871,7 @@ class AbstractPlayerInteraction:
                     self.gainItem(id, (short)(removeAll ? (-curChar.itemQuantity(id)) : quantity), False, 0, 0, "", curChar.getClient(), 0)
 
     def givePartyItems_id_quantity_removeAll(self, id: int, quantity: int, removeAll: bool) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainItem(id, (short)(removeAll ? (-self.getPlayer().itemQuantity(id)) : quantity))
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -884,7 +884,7 @@ class AbstractPlayerInteraction:
             chr.gainExp(amount, True, True, True)
 
     def translated_给组队经验(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainExp(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -897,7 +897,7 @@ class AbstractPlayerInteraction:
             chr.modifyCSPoints(1, amount, True)
 
     def translated_给组队抵用卷(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainDY(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -906,7 +906,7 @@ class AbstractPlayerInteraction:
                 curChar.modifyCSPoints(2, amount, True)
 
     def translated_给组队金币(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainMeso(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -915,7 +915,7 @@ class AbstractPlayerInteraction:
                 curChar.gainMeso(amount, True)
 
     def translated_给组队点卷(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.gainNX(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -924,23 +924,23 @@ class AbstractPlayerInteraction:
                 curChar.modifyCSPoints(1, amount, True)
 
     def givePartyFb(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             if self.getPlayer().getmrfbrws() > self.getFBRW():
                 self.gainFBRW(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getMap().getCharacterById(chr.getId())
-            if curChar is not None && curChar.getmrfbrws() > curChar.getFBRW():
+            if curChar is not None and curChar.getmrfbrws() > curChar.getFBRW():
                 curChar.gainFBRW(amount)
 
     def givePartyFba(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             if self.getPlayer().getmrfbrwas() > self.getFBRWA():
                 self.gainFBRWA(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getMap().getCharacterById(chr.getId())
-            if curChar is not None && curChar.getmrfbrwas() > curChar.getFBRWA():
+            if curChar is not None and curChar.getmrfbrwas() > curChar.getFBRWA():
                 curChar.gainFBRWA(amount)
 
     def endPartyQuest(self, amount: int, party: list) -> None:
@@ -948,7 +948,7 @@ class AbstractPlayerInteraction:
             chr.endPartyQuest(amount)
 
     def endPartyQuest_amount(self, amount: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.getPlayer().endPartyQuest(amount)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -1080,7 +1080,7 @@ class AbstractPlayerInteraction:
 
     def getSavedLocation(self, loc: str) -> int:
         ret = self.c.getPlayer().getSavedLocation(SavedLocationType.fromString(loc))
-        if ret is None || ret == -1:
+        if ret is None or ret == -1:
             return 100000000
         return ret
 
@@ -1094,12 +1094,12 @@ class AbstractPlayerInteraction:
         self.c.getPlayer().clearSavedLocation(SavedLocationType.fromString(loc))
 
     def summonMsg(self, msg: str) -> None:
-        if !self.c.getPlayer().hasSummon():
+        if not self.c.getPlayer().hasSummon():
             self.playerSummonHint(True)
         self.c.getSession().write(UIPacket.summonMessage(msg))
 
     def summonMsg_type(self, type: int) -> None:
-        if !self.c.getPlayer().hasSummon():
+        if not self.c.getPlayer().hasSummon():
             self.playerSummonHint(True)
         self.c.getSession().write(UIPacket.summonMessage(type))
 
@@ -1151,7 +1151,7 @@ class AbstractPlayerInteraction:
         return MapleItemInformationProvider.getInstance().getName(id)
 
     def gainPet(self, id: int, name: str, level: int, closeness: int, fullness: int, period: int) -> None:
-        if id > 5010000 || id < 5000000:
+        if id > 5010000 or id < 5000000:
             id = 5000000
         if level > 30:
             level = 30
@@ -1189,7 +1189,7 @@ class AbstractPlayerInteraction:
         if em is None:
             return None
         for eim in em.getInstances():
-            if eim.isDisconnected(self.c.getPlayer()) && eim.getPlayerCount() > 0:
+            if eim.isDisconnected(self.c.getPlayer()) and eim.getPlayerCount() > 0:
                 return eim
         return None
 
@@ -1340,10 +1340,10 @@ class AbstractPlayerInteraction:
         self.c.getPlayer().setvip(s)
 
     def beibao(self, A: int) -> bool:
-        return (self.c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > -1 && A == 1) || (self.c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() > -1 && A == 2) || (self.c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > -1 && A == 3) || (self.c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() > -1 && A == 4) || (self.c.getPlayer().getInventory(MapleInventoryType.CASH).getNextFreeSlot() > -1 && A == 5)
+        return (self.c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > -1 and A == 1) or (self.c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() > -1 and A == 2) or (self.c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > -1 and A == 3) or (self.c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() > -1 and A == 4) or (self.c.getPlayer().getInventory(MapleInventoryType.CASH).getNextFreeSlot() > -1 and A == 5)
 
     def translated_记录组队bosslog(self, bossid: int) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.getPlayer().setbosslog(bossid)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -1352,7 +1352,7 @@ class AbstractPlayerInteraction:
                 curChar.setbosslog(bossid)
 
     def beibao_A_kw(self, A: int, kw: int) -> bool:
-        return (self.c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > kw && A == 1) || (self.c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() > kw && A == 2) || (self.c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > kw && A == 3) || (self.c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() > kw && A == 4) || (self.c.getPlayer().getInventory(MapleInventoryType.CASH).getNextFreeSlot() > kw && A == 5)
+        return (self.c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() > kw and A == 1) or (self.c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() > kw and A == 2) or (self.c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() > kw and A == 3) or (self.c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() > kw and A == 4) or (self.c.getPlayer().getInventory(MapleInventoryType.CASH).getNextFreeSlot() > kw and A == 5)
 
     def getFishingJF(self) -> int:
         return self.c.getPlayer().getFishingJF(1)
@@ -1382,7 +1382,7 @@ class AbstractPlayerInteraction:
         self.getPlayer().resetBossLog(bossid)
 
     def givePartyBossLog(self, bossid: str) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() == 1:
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() == 1:
             self.setBossLog(bossid)
             return
         for chr in self.getPlayer().getParty().getMembers():
@@ -1397,7 +1397,7 @@ class AbstractPlayerInteraction:
         self.getPlayer().setOneTimeLog(bossid)
 
     def resetAp(self) -> None:
-        beginner = self.getPlayer().getJob() == 0 || self.getPlayer().getJob() == 1000 || self.getPlayer().getJob() == 2001
+        beginner = self.getPlayer().getJob() == 0 or self.getPlayer().getJob() == 1000 or self.getPlayer().getJob() == 2001
         self.getPlayer().resetStatsByJob(beginner)
 
     def displayGuide(self, guide: int) -> None:
@@ -1422,11 +1422,11 @@ class AbstractPlayerInteraction:
             return 0
         if self.getPlayer().getParty().getMembers() != 2:
             return 1
-        if self.getPlayer().getGender() == 0 && !self.getPlayer().haveItem(1050121) && !self.getPlayer().haveItem(1050122) && !self.getPlayer().haveItem(1050113):
+        if self.getPlayer().getGender() == 0 and not self.getPlayer().haveItem(1050121) and not self.getPlayer().haveItem(1050122) and not self.getPlayer().haveItem(1050113):
             return 5
-        if self.getPlayer().getGender() == 1 && !self.getPlayer().haveItem(1051129) && !self.getPlayer().haveItem(1051130) && !self.getPlayer().haveItem(1051114):
+        if self.getPlayer().getGender() == 1 and not self.getPlayer().haveItem(1051129) and not self.getPlayer().haveItem(1051130) and not self.getPlayer().haveItem(1051114):
             return 5
-        if !self.getPlayer().haveItem(1112001):
+        if not self.getPlayer().haveItem(1112001):
             return 6
         for chr in self.getPlayer().getParty().getMembers():
             if chr.getId() == self.getPlayer().getId():
@@ -1438,11 +1438,11 @@ class AbstractPlayerInteraction:
                 return 3
             if curChar.getGender() == self.getPlayer().getGender():
                 return 4
-            if curChar.getGender() == 0 && !curChar.haveItem(1050121) && !curChar.haveItem(1050122) && !curChar.haveItem(1050113):
+            if curChar.getGender() == 0 and not curChar.haveItem(1050121) and not curChar.haveItem(1050122) and not curChar.haveItem(1050113):
                 return 5
-            if curChar.getGender() == 1 && !curChar.haveItem(1051129) && !curChar.haveItem(1051130) && !curChar.haveItem(1051114):
+            if curChar.getGender() == 1 and not curChar.haveItem(1051129) and not curChar.haveItem(1051130) and not curChar.haveItem(1051114):
                 return 5
-            if !curChar.haveItem(1112001):
+            if not curChar.haveItem(1112001):
                 return 6
         return 9
 
@@ -1483,15 +1483,16 @@ class AbstractPlayerInteraction:
             chr.getClient().getSession().write(MaplePacketCreator.enableActions())
 
     def mapChangeTimer(self, map: int, nextmap: int, time: int, notice: bool) -> None:
+        def _task_1():
+            if current is not None:
+                for chrs in current:
+                    chrs.changeMap(nextmap, 0)
+
         current = self.c.getChannelServer().getMapFactory().getMap(map).getCharacters()
         self.c.getChannelServer().getMapFactory().getMap(map).broadcastMessage(MaplePacketCreator.getClock(time))
         if notice:
             self.c.getChannelServer().getMapFactory().getMap(map).startMapEffect("当计时器结束时，您将被移出地图。", 5120041)
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                if current is not None:
-                    for chrs in current:
-                        chrs.changeMap(nextmap, 0)
+        Timer.EventTimer.getInstance().schedule(_task_1, time * 1000)
 
     def run(self) -> None:
         if current is not None:

@@ -29,7 +29,10 @@ class LoginWorker:
 
     @staticmethod
     def registerClient(c: Any) -> None:
-        if LoginServer.isAdminOnly() && !c.isGm():
+        def _task_1():
+            pass
+
+        if LoginServer.isAdminOnly() and not c.isGm():
             c.getSession().write(MaplePacketCreator.serverNotice(1, "管管已设置仅管理员登录。\r\n我们目前正在修复几个问题，\r\n请耐心等待"))
             c.getSession().write(LoginPacket.getLoginFailed(7))
             return
@@ -37,7 +40,7 @@ class LoginWorker:
             LoginWorker.lastUpdate = int(time.time() * 1000)
             load = ChannelServer.getChannelLoad()
             usersOn = 0
-            if load is None || load <= 0:
+            if load is None or load <= 0:
                 LoginWorker.lastUpdate = 0
                 c.getSession().write(LoginPacket.getLoginFailed(7))
                 return
@@ -54,8 +57,7 @@ class LoginWorker:
                 c.getSession().write(LoginPacket.getAuthSuccessRequest(c))
                 c.getSession().write(LoginPacket.getServerList(0, LoginServer.getServerName(), LoginServer.getLoad()))
                 c.getSession().write(LoginPacket.getEndOfServerList())
-            c.setIdleTask(Timer.PingTimer.getInstance().schedule(Runnable()
-                public void run()
+            c.setIdleTask(Timer.PingTimer.getInstance().schedule(_task_1, 6000000))
         elif c.getGender() == 10:
             c.getSession().write(LoginPacket.getGenderNeeded(c))
         else:

@@ -221,7 +221,7 @@ class MapScriptMethods:
                         c.getPlayer().getMap().startMapEffect("主，消灭海盗!", 5120020)
                         break
                 em = c.getChannelServer().getEventSM().getEventManager("Pirate")
-                if c.getPlayer().getMapId() == 925100500 && em is not None && em.getProperty("stage5") is not None:
+                if c.getPlayer().getMapId() == 925100500 and em is not None and em.getProperty("stage5") is not None:
                     mobId = Randomizer.nextBoolean() ? 9300119 : 9300119
                     st = int(em.getProperty("stage5"))
                     # switch (st):
@@ -253,32 +253,32 @@ class MapScriptMethods:
                 pos3 = None
                 spawnPer = 0
                 mobId2 = 0
-                if c.getPlayer().getMapId() >= 910320010 && c.getPlayer().getMapId() <= 910320029:
+                if c.getPlayer().getMapId() >= 910320010 and c.getPlayer().getMapId() <= 910320029:
                     pos1 = Point(121, 218)
                     pos2 = Point(396, 43)
                     pos3 = Point(-63, 43)
                     mobId2 = 9700020
                     spawnPer = 10
-                elif c.getPlayer().getMapId() >= 926010010 && c.getPlayer().getMapId() <= 926010029:
+                elif c.getPlayer().getMapId() >= 926010010 and c.getPlayer().getMapId() <= 926010029:
                     pos1 = Point(0, 88)
                     pos2 = Point(-326, -115)
                     pos3 = Point(361, -115)
                     mobId2 = 9700019
                     spawnPer = 10
-                elif c.getPlayer().getMapId() >= 926010030 && c.getPlayer().getMapId() <= 926010049:
+                elif c.getPlayer().getMapId() >= 926010030 and c.getPlayer().getMapId() <= 926010049:
                     pos1 = Point(0, 88)
                     pos2 = Point(-326, -115)
                     pos3 = Point(361, -115)
                     mobId2 = 9700019
                     spawnPer = 15
-                elif c.getPlayer().getMapId() >= 926010050 && c.getPlayer().getMapId() <= 926010069:
+                elif c.getPlayer().getMapId() >= 926010050 and c.getPlayer().getMapId() <= 926010069:
                     pos1 = Point(0, 88)
                     pos2 = Point(-326, -115)
                     pos3 = Point(361, -115)
                     mobId2 = 9700019
                     spawnPer = 20
                 else:
-                    if c.getPlayer().getMapId() < 926010070 || c.getPlayer().getMapId() > 926010089:
+                    if c.getPlayer().getMapId() < 926010070 or c.getPlayer().getMapId() > 926010089:
                         break
                     pos1 = Point(0, 88)
                     pos2 = Point(-326, -115)
@@ -292,7 +292,7 @@ class MapScriptMethods:
                 c.getPlayer().startMapTimeLimitTask(120, c.getPlayer().getMap().getReturnMap())
                 break
             # case shammos_Fenter:
-                if c.getPlayer().getMapId() >= 921120100 && c.getPlayer().getMapId() < 921120500:
+                if c.getPlayer().getMapId() >= 921120100 and c.getPlayer().getMapId() < 921120500:
                     shammos2 = MapleLifeFactory.getMonster(9300275)
                     if c.getPlayer().getEventInstance() is not None:
                         c.getPlayer().getEventInstance().registerMonster(shammos2)
@@ -337,7 +337,7 @@ class MapScriptMethods:
         data = ""
         # switch (scriptName):
             # case "103000804":
-                if (c.getPlayer().getParty() is None || c.getPlayer().getParty().getLeader().getId() == c.getPlayer().getId()) {}
+                if (c.getPlayer().getParty() is None or c.getPlayer().getParty().getLeader().getId() == c.getPlayer().getId()) {}
                 break
         # switch (onUserEnter.fromString(scriptName)):
             # case cygnusTest:
@@ -345,14 +345,14 @@ class MapScriptMethods:
                 showIntro2(c, "Effect/Direction.img/cygnusJobTutorial/Scene" + (c.getPlayer().getMapId() - 913040100))
                 break
             # case shammos_Enter:
-                if c.getPlayer().getEventInstance() is not None && c.getPlayer().getMapId() == 921120500:
+                if c.getPlayer().getEventInstance() is not None and c.getPlayer().getMapId() == 921120500:
                     NPCScriptManager.getInstance().dispose(c)
                     NPCScriptManager.getInstance().start(c, 2022006)
                     break
                 break
             # case start_itemTake:
                 em = c.getChannelServer().getEventSM().getEventManager("OrbisPQ")
-                if em is not None && em.getProperty("pre") == ("0"):
+                if em is not None and em.getProperty("pre") == ("0"):
                     NPCScriptManager.getInstance().dispose(c)
                     break
                 break
@@ -460,7 +460,7 @@ class MapScriptMethods:
                         if c.getPlayer().getMapId() == i:
                             m = mq
                             break
-                if m is not None && c.getPlayer().getLevel() >= m.level && c.getPlayer().getQuestStatus(m.questid) != 2:
+                if m is not None and c.getPlayer().getLevel() >= m.level and c.getPlayer().getQuestStatus(m.questid) != 2:
                     if c.getPlayer().getQuestStatus(m.lquestid) != 1:
                         MapleQuest.getInstance(m.lquestid).forceStart(c.getPlayer(), 0, "0")
                     if c.getPlayer().getQuestStatus(m.questid) != 1:
@@ -480,13 +480,14 @@ class MapScriptMethods:
                     for k in range(m.len(maps)):
                         changed = False
                         try:
-                            if c.getPlayer().getMapId() == m.maps[k] && quest[k + 6:k + 7] == ("0"):
+                            if c.getPlayer().getMapId() == m.maps[k] and quest[k + 6:k + 7] == ("0"):
                                 sb2.append("1")
                                 changed = True
                                 changedd = True
-                            if !changed:
+                            if not changed:
                                 sb2.append(quest[k + 6:k + 7])
-                        catch (Exception ex) {}
+                        except Exception as ex:
+                            pass
                     if changedd:
                         number += 1
                         c.getPlayer().updateInfoQuest(m.questid - 2005, sb2)
@@ -578,13 +579,13 @@ class MapScriptMethods:
                     break
                 break
             # case rien:
-                if c.getPlayer().getQuestStatus(21101) == 2 && c.getPlayer().getInfoQuest(21019) == ("miss=o;arr=o;helper=clear"):
+                if c.getPlayer().getQuestStatus(21101) == 2 and c.getPlayer().getInfoQuest(21019) == ("miss=o;arr=o;helper=clear"):
                     c.getPlayer().updateInfoQuest(21019, "miss=o;arr=o;ck=1;helper=clear")
                 c.getSession().write(UIPacket.IntroDisableUI(False))
                 c.getSession().write(UIPacket.IntroLock(False))
                 break
             # case check_count:
-                if c.getPlayer().getMapId() == 950101010 && (!c.getPlayer().haveItem(4001433, 20) || c.getPlayer().getLevel() < 50):
+                if c.getPlayer().getMapId() == 950101010 and (not c.getPlayer().haveItem(4001433, 20) or c.getPlayer().getLevel() < 50):
                     mapp = c.getChannelServer().getMapFactory().getMap(950101100)
                     c.getPlayer().changeMap(mapp, mapp.getPortal(0))
                     break
@@ -601,34 +602,34 @@ class MapScriptMethods:
     def getTiming(self, ids: int) -> int:
         if ids <= 5:
             return 5
-        if ids >= 7 && ids <= 11:
+        if ids >= 7 and ids <= 11:
             return 6
-        if ids >= 13 && ids <= 17:
+        if ids >= 13 and ids <= 17:
             return 7
-        if ids >= 19 && ids <= 23:
+        if ids >= 19 and ids <= 23:
             return 8
-        if ids >= 25 && ids <= 29:
+        if ids >= 25 and ids <= 29:
             return 9
-        if ids >= 31 && ids <= 35:
+        if ids >= 31 and ids <= 35:
             return 10
-        if ids >= 37 && ids <= 38:
+        if ids >= 37 and ids <= 38:
             return 15
         return 0
 
     def getDojoStageDec(self, ids: int) -> int:
         if ids <= 5:
             return 0
-        if ids >= 7 && ids <= 11:
+        if ids >= 7 and ids <= 11:
             return 1
-        if ids >= 13 && ids <= 17:
+        if ids >= 13 and ids <= 17:
             return 2
-        if ids >= 19 && ids <= 23:
+        if ids >= 19 and ids <= 23:
             return 3
-        if ids >= 25 && ids <= 29:
+        if ids >= 25 and ids <= 29:
             return 4
-        if ids >= 31 && ids <= 35:
+        if ids >= 31 and ids <= 35:
             return 5
-        if ids >= 37 && ids <= 38:
+        if ids >= 37 and ids <= 38:
             return 6
         return 0
 
@@ -654,7 +655,7 @@ class MapScriptMethods:
     def handlePinkBeanStart(self, c: Any) -> None:
         map = c.getPlayer().getMap()
         map.resetFully()
-        if !map.containsNPC(2141000):
+        if not map.containsNPC(2141000):
             map.spawnNpc(2141000, Point(-190, -42))
 
     def reloadWitchTower(self, c: Any) -> None:

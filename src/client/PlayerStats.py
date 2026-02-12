@@ -134,9 +134,9 @@ class PlayerStats:
         self.hp = thp
         chra = self.chr.get()
         if chra is not None:
-            if !silent:
+            if not silent:
                 chra.updatePartyMemberHP()
-            if oldHp > self.hp && !chra.isAlive():
+            if oldHp > self.hp and not chra.isAlive():
                 chra.playerDead()
         return self.hp != oldHp
 
@@ -243,9 +243,9 @@ class PlayerStats:
         added_sharpeye_dmg = 0
         self.magic = self.localint_
         self.watk = 0
-        if chra.getJob() == 500 || (chra.getJob() >= 520 && chra.getJob() <= 522):
+        if chra.getJob() == 500 or (chra.getJob() >= 520 and chra.getJob() <= 522):
             self.watk = 20
-        elif chra.getJob() == 400 || (chra.getJob() >= 410 && chra.getJob() <= 412) || (chra.getJob() >= 1400 && chra.getJob() <= 1412):
+        elif chra.getJob() == 400 or (chra.getJob() >= 410 and chra.getJob() <= 412) or (chra.getJob() >= 1400 and chra.getJob() <= 1412):
             self.watk = 30
         self.dam_r = 1.0
         self.bossdam_r = 1.0
@@ -272,7 +272,7 @@ class PlayerStats:
         self.hasPartyBonus = False
         self.hasVac = False
         self.hasClone = False
-        canEquipLevel = chra.getLevel() >= 120 && !GameConstants.isKOC(chra.getJob())
+        canEquipLevel = chra.getLevel() >= 120 and not GameConstants.isKOC(chra.getJob())
         self.equipmentBonusExp = 0
         self.RecoveryUP = 0
         self.dropMod = 1
@@ -292,7 +292,7 @@ class PlayerStats:
         self.canFishVIP = False
         for item in chra.getInventory(MapleInventoryType.EQUIPPED):
             equip = item
-            if equip.getPosition() == -11 && GameConstants.isMagicWeapon(equip.getItemId()):
+            if equip.getPosition() == -11 and GameConstants.isMagicWeapon(equip.getItemId()):
                 eqstat = MapleItemInformationProvider.getInstance().getEquipStats(equip.getItemId())
                 self.element_fire = eqstat.get("incRMAF")
                 self.element_ice = eqstat.get("incRMAI")
@@ -357,50 +357,50 @@ class PlayerStats:
         day = Calendar.getInstance().get(7)
         hour = Calendar.getInstance().get(11)
         for item2 in chra.getInventory(MapleInventoryType.CASH):
-            if self.expMod < 3 && (item2.getItemId() == 5211060 || item2.getItemId() == 5211050 || item2.getItemId() == 5211051 || item2.getItemId() == 5211052 || item2.getItemId() == 5211053 || item2.getItemId() == 5211054):
+            if self.expMod < 3 and (item2.getItemId() == 5211060 or item2.getItemId() == 5211050 or item2.getItemId() == 5211051 or item2.getItemId() == 5211052 or item2.getItemId() == 5211053 or item2.getItemId() == 5211054):
                 self.expMod = 3
-            elif self.expMod == 1 && (item2.getItemId() == 5210001 || item2.getItemId() == 5210004 || item2.getItemId() == 5211061 || item2.getItemId() == 5211000 || item2.getItemId() == 5211001 || item2.getItemId() == 5211002 || item2.getItemId() == 5211003 || item2.getItemId() == 5211046 || item2.getItemId() == 5211047 || item2.getItemId() == 5211048 || item2.getItemId() == 5211049):
+            elif self.expMod == 1 and (item2.getItemId() == 5210001 or item2.getItemId() == 5210004 or item2.getItemId() == 5211061 or item2.getItemId() == 5211000 or item2.getItemId() == 5211001 or item2.getItemId() == 5211002 or item2.getItemId() == 5211003 or item2.getItemId() == 5211046 or item2.getItemId() == 5211047 or item2.getItemId() == 5211048 or item2.getItemId() == 5211049):
                 self.expMod = 2
-            elif self.expMod == 1 && (item2.getItemId() == 5210005 || item2.getItemId() == 5210000):
-                if day >= 2 && day <= 6:
-                    if hour >= 18 || hour < 6:
+            elif self.expMod == 1 and (item2.getItemId() == 5210005 or item2.getItemId() == 5210000):
+                if day >= 2 and day <= 6:
+                    if hour >= 18 or hour < 6:
                         self.expMod = 2
-                elif day == 1 || day == 7:
+                elif day == 1 or day == 7:
                     self.expMod = 2
-            elif self.expMod == 1 && (item2.getItemId() == 5210003 || item2.getItemId() == 5210002):
-                if day >= 2 && day <= 6:
-                    if hour < 18 && hour >= 6:
+            elif self.expMod == 1 and (item2.getItemId() == 5210003 or item2.getItemId() == 5210002):
+                if day >= 2 and day <= 6:
+                    if hour < 18 and hour >= 6:
                         self.expMod = 2
-                elif day == 1 || day == 7:
+                elif day == 1 or day == 7:
                     self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210006 && (hour >= 22 || hour <= 2):
+            elif self.expMod == 1 and item2.getItemId() == 5210006 and (hour >= 22 or hour <= 2):
                 self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210007 && hour >= 2 && hour <= 6:
+            elif self.expMod == 1 and item2.getItemId() == 5210007 and hour >= 2 and hour <= 6:
                 self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210008 && hour >= 6 && hour <= 10:
+            elif self.expMod == 1 and item2.getItemId() == 5210008 and hour >= 6 and hour <= 10:
                 self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210009 && hour >= 10 && hour <= 14:
+            elif self.expMod == 1 and item2.getItemId() == 5210009 and hour >= 10 and hour <= 14:
                 self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210010 && hour >= 14 && hour <= 18:
+            elif self.expMod == 1 and item2.getItemId() == 5210010 and hour >= 14 and hour <= 18:
                 self.expMod = 2
-            elif self.expMod == 1 && item2.getItemId() == 5210011 && hour >= 18 && hour <= 22:
+            elif self.expMod == 1 and item2.getItemId() == 5210011 and hour >= 18 and hour <= 22:
                 self.expMod = 2
             if self.dropMod == 1:
-                if item2.getItemId() == 5360009 || item2.getItemId() == 5360010 || item2.getItemId() == 5360011 || item2.getItemId() == 5360012 || item2.getItemId() == 5360013 || item2.getItemId() == 5360014 || item2.getItemId() == 5360017 || item2.getItemId() == 5360050 || item2.getItemId() == 5360053 || item2.getItemId() == 5360042 || item2.getItemId() == 5360052 || item2.getItemId() == 5360016 || item2.getItemId() == 5360015:
+                if item2.getItemId() == 5360009 or item2.getItemId() == 5360010 or item2.getItemId() == 5360011 or item2.getItemId() == 5360012 or item2.getItemId() == 5360013 or item2.getItemId() == 5360014 or item2.getItemId() == 5360017 or item2.getItemId() == 5360050 or item2.getItemId() == 5360053 or item2.getItemId() == 5360042 or item2.getItemId() == 5360052 or item2.getItemId() == 5360016 or item2.getItemId() == 5360015:
                     self.dropMod = 2
-                elif item2.getItemId() == 5360000 && hour >= 0 && hour <= 6:
+                elif item2.getItemId() == 5360000 and hour >= 0 and hour <= 6:
                     self.dropMod = 2
-                elif item2.getItemId() == 5360001 && hour >= 6 && hour <= 12:
+                elif item2.getItemId() == 5360001 and hour >= 6 and hour <= 12:
                     self.dropMod = 2
-                elif item2.getItemId() == 5360002 && hour >= 12 && hour <= 18:
+                elif item2.getItemId() == 5360002 and hour >= 12 and hour <= 18:
                     self.dropMod = 2
-                elif item2.getItemId() == 5360003 && hour >= 18 && hour <= 24:
+                elif item2.getItemId() == 5360003 and hour >= 18 and hour <= 24:
                     self.dropMod = 2
             if item2.getItemId() == 5650000:
                 self.hasPartyBonus = True
             elif item2.getItemId() == 5590001:
                 self.levelBonus = 10
-            elif self.levelBonus == 0 && item2.getItemId() == 5590000:
+            elif self.levelBonus == 0 and item2.getItemId() == 5590000:
                 self.levelBonus = 5
             else:
                 if item2.getItemId() != 5340001:
@@ -658,7 +658,7 @@ class PlayerStats:
         else:
             chra.enforceMaxHpMp()
         self.localmaxbasedamage = self.calculateMaxBaseDamage(self.watk, self.magic - self.localint_)
-        if oldmaxhp != 0 && oldmaxhp != self.localmaxhp:
+        if oldmaxhp != 0 and oldmaxhp != self.localmaxhp:
             chra.updatePartyMemberHP()
         self.lock.lock()
         try:
@@ -677,15 +677,15 @@ class PlayerStats:
                 i = eq.getEquipLevels() - lvlz
                 while i > 0:
                     inc = ii.getEquipIncrements(eq.getItemId())
-                    if inc is not None && (lvlz + i in inc):
+                    if inc is not None and (lvlz + i in inc):
                         eq = ii.levelUpEquip(eq, inc.get(lvlz + i))
                     if GameConstants.getStatFromWeapon(eq.getItemId()) is None:
                         ins = ii.getEquipSkills(eq.getItemId())
-                        if ins is not None && (lvlz + i in ins):
+                        if ins is not None and (lvlz + i in ins):
                             for z in ins.get(lvlz + i):
                                 if random.random() < 0.1:
                                     skil = SkillFactory.getSkill(z)
-                                    if skil is None || !skil.canBeLearnedBy(chr.getJob()) || chr.getSkillLevel(skil) >= chr.getMasterLevel(skil):
+                                    if skil is None or not skil.canBeLearnedBy(chr.getJob()) or chr.getSkillLevel(skil) >= chr.getMasterLevel(skil):
                                         continue
                                     chr.changeSkillLevel(skil, (byte)(chr.getSkillLevel(skil) + 1), chr.getMasterLevel(skil))
                 changed = True
@@ -730,7 +730,7 @@ class PlayerStats:
                 break
             # case KATARA:
             # case DAGGER:
-                skil = ((player.getJob() >= 430 && player.getJob() <= 434) ? 4300000 : 4200000)
+                skil = ((player.getJob() >= 430 and player.getJob() <= 434) ? 4300000 : 4200000)
                 break
             # case CROSSBOW:
                 skil = 3200000
@@ -890,7 +890,7 @@ class PlayerStats:
                 # case CLAW:
                 # case KATARA:
                 # case DAGGER:
-                    if (job >= 400 && job <= 434) || (job >= 1400 && job <= 1412):
+                    if (job >= 400 and job <= 434) or (job >= 1400 and job <= 1412):
                         mainstat = self.localluk
                         secondarystat = self.localdex + self.localstr
                         break
@@ -906,7 +906,7 @@ class PlayerStats:
                     secondarystat = self.localstr
                     break
                 # case NOT_A_WEAPON:
-                    if (job >= 500 && job <= 522) || (job >= 1500 && job <= 1512) || (job >= 3500 && job <= 3512):
+                    if (job >= 500 and job <= 522) or (job >= 1500 and job <= 1512) or (job >= 3500 and job <= 3512):
                         mainstat = self.localstr
                         secondarystat = self.localdex
                         break
@@ -914,7 +914,7 @@ class PlayerStats:
                     secondarystat = 0
                     break
                 # default:
-                    if (job >= 200 && job <= 232) || (job >= 1200 && job <= 1211 && (weapon == MapleWeaponType.WAND || weapon == MapleWeaponType.STAFF)):
+                    if (job >= 200 and job <= 232) or (job >= 1200 and job <= 1211 and (weapon == MapleWeaponType.WAND or weapon == MapleWeaponType.STAFF)):
                         mainstat = self.localint_
                         secondarystat = self.localluk
                         watk = matk
@@ -1008,7 +1008,7 @@ class PlayerStats:
         if weapon is not None:
             limitBreak = ii.getLimitBreak(weapon.getItemId())
             subweapon = chra.getInventory(MapleInventoryType.EQUIPPED).getItem((short)(-10))
-            if subweapon is not None && GameConstants.is物理武器(subweapon.getItemId()):
+            if subweapon is not None and GameConstants.is物理武器(subweapon.getItemId()):
                 subWeaponLB = ii.getLimitBreak(subweapon.getItemId())
                 if subWeaponLB > limitBreak:
                     limitBreak = subWeaponLB

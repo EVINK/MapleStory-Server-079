@@ -62,7 +62,7 @@ class CashItemFactory:
         for field in self.data.getData("Commodity.img").getChildren():
             SN = MapleDataTool.getIntConvert("SN", field, 0)
             itemId = MapleDataTool.getIntConvert("ItemId", field, 0)
-            stats = CashItemInfo(MapleDataTool.getIntConvert("ItemId", field, 0), MapleDataTool.getIntConvert("Count", field, 1), MapleDataTool.getIntConvert("Price", field, 0), SN, MapleDataTool.getIntConvert("Period", field, 0), MapleDataTool.getIntConvert("Gender", field, 2), MapleDataTool.getIntConvert("OnSale", field, 0) > 0 && MapleDataTool.getIntConvert("Price", field, 0) > 0)
+            stats = CashItemInfo(MapleDataTool.getIntConvert("ItemId", field, 0), MapleDataTool.getIntConvert("Count", field, 1), MapleDataTool.getIntConvert("Price", field, 0), SN, MapleDataTool.getIntConvert("Period", field, 0), MapleDataTool.getIntConvert("Gender", field, 2), MapleDataTool.getIntConvert("OnSale", field, 0) > 0 and MapleDataTool.getIntConvert("Price", field, 0) > 0)
             if SN > 0:
                 self.itemStats.put(SN, stats)
                 self.idLookup.put(itemId, SN)
@@ -92,9 +92,9 @@ class CashItemFactory:
     def getItem(self, sn: int) -> Any:
         stats = self.itemStats.get(sn)
         final CashItemInfo.CashModInfo z = self.getModInfo(sn)
-        if z is not None && z.showUp:
+        if z is not None and z.showUp:
             return z.toCItem(stats)
-        if stats is None || !stats.onSale():
+        if stats is None or not stats.onSale():
             return None
         return stats
 
@@ -103,7 +103,7 @@ class CashItemFactory:
             return self.itemPackage.get(itemId)
         packageItems = []
         b = self.data.getData("CashPackage.img")
-        if b is None || b.getChildByPath(itemId + "/SN") is None:
+        if b is None or b.getChildByPath(itemId + "/SN") is None:
             return None
         for d in b.getChildByPath(itemId + "/SN").getChildren():
             packageItems.add(self.itemStats.get(MapleDataTool.getIntConvert(d)))
@@ -114,7 +114,7 @@ class CashItemFactory:
         return self.itemMods.get(sn)
 
     def getAllModInfo(self) -> list:
-        if !self.initialized:
+        if not self.initialized:
             self.initialize()
         return self.itemMods.values()
 

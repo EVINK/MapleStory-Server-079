@@ -41,7 +41,7 @@ class AbstractScriptManager:
                 engine = c.getScriptEngine(path)
             if engine is None:
                 scriptFile = File(path)
-                if !scriptFile.exists():
+                if not scriptFile.exists():
                     return None
                 engine = AbstractScriptManager.sem.getEngineByName("javascript")
                 if c is not None:
@@ -49,7 +49,7 @@ class AbstractScriptManager:
                 fr = FileInputStream(scriptFile)
                 bf = BufferedReader(InputStreamReader(fr, EncodingDetect.getJavaEncode(scriptFile)))
                 engine.eval(bf)
-            elif c is not None && npc:
+            elif c is not None and npc:
                 NPCScriptManager.getInstance().dispose(c)
                 c.getSession().write(MaplePacketCreator.enableActions())
             return engine

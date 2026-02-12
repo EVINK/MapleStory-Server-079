@@ -67,7 +67,7 @@ class CashShop:
     def checkExpire(self, c: Any) -> None:
         toberemove = []
         for item in self.inventory:
-            if item is not None && !GameConstants.isPet(item.getItemId()) && item.getExpiration() > 0 && item.getExpiration() < int(time.time() * 1000):
+            if item is not None and not GameConstants.isPet(item.getItemId()) and item.getExpiration() > 0 and item.getExpiration() < int(time.time() * 1000):
                 toberemove.add(item)
         if toberemove > 0:
             for item in toberemove:
@@ -88,7 +88,7 @@ class CashShop:
         if uniqueid <= 0:
             uniqueid = MapleInventoryIdentifier.getInstance()
         period = cItem.getPeriod()
-        if period <= 0 || GameConstants.isPet(cItem.getId()):
+        if period <= 0 or GameConstants.isPet(cItem.getId()):
             period = 45
         ret = None
         if GameConstants.getInventoryType(cItem.getId()) == MapleInventoryType.EQUIP:
@@ -96,7 +96,7 @@ class CashShop:
             eq.setUniqueId(uniqueid)
             eq.setExpiration(int(time.time() * 1000) + period * 24 * 60 * 60 * 1000)
             eq.setGiftFrom(gift)
-            if GameConstants.isEffectRing(cItem.getId()) && uniqueid > 0:
+            if GameConstants.isEffectRing(cItem.getId()) and uniqueid > 0:
                 ring = MapleRing.loadFromDb(uniqueid)
                 if ring is not None:
                     eq.setRing(ring)
@@ -127,16 +127,16 @@ class CashShop:
         period = cItem.getPeriod()
         if GameConstants.isPet(cItem.getId()):
             period = 90
-        elif cItem.getId() < 5210000 || cItem.getId() > 5360099 || cItem.getId() == 5220007 || cItem.getId() == 5220008:
+        elif cItem.getId() < 5210000 or cItem.getId() > 5360099 or cItem.getId() == 5220007 or cItem.getId() == 5220008:
             period = 0
         ret = None
         if GameConstants.getInventoryType(cItem.getId()) == MapleInventoryType.EQUIP:
             eq = MapleItemInformationProvider.getInstance().getEquipById(cItem.getId())
             eq.setUniqueId(uniqueid)
-            if GameConstants.isPet(cItem.getId()) || period > 0:
+            if GameConstants.isPet(cItem.getId()) or period > 0:
                 eq.setExpiration(int(time.time() * 1000) + period * 24 * 60 * 60 * 1000)
             eq.setGiftFrom(gift)
-            if GameConstants.isEffectRing(cItem.getId()) && uniqueid > 0:
+            if GameConstants.isEffectRing(cItem.getId()) and uniqueid > 0:
                 ring = MapleRing.loadFromDb(uniqueid)
                 if ring is not None:
                     eq.setRing(ring)
@@ -145,7 +145,7 @@ class CashShop:
             item = Item(cItem.getId(), 0, cItem.getCount(), 0, uniqueid)
             if period > 0:
                 item.setExpiration(int(time.time() * 1000) + period * 24 * 60 * 60 * 1000)
-            if cItem.getId() == 5211047 || cItem.getId() == 5360014:
+            if cItem.getId() == 5211047 or cItem.getId() == 5360014:
                 item.setExpiration(int(time.time() * 1000) + 10800000)
             item.setGiftFrom(gift)
             if GameConstants.isPet(cItem.getId()):
@@ -190,7 +190,7 @@ class CashShop:
                 gifts.add(new Pair<IItem, String>(item, rs.getString("message")))
                 self.uniqueids.add(item.getUniqueId())
                 packages = CashItemFactory.getInstance().getPackageItems(cItem.getId())
-                if packages is not None && packages > 0:
+                if packages is not None and packages > 0:
                     for packageItem in packages:
                         self.addToInventory(self.toItem(packageItem, rs.getString("from")))
                 else:
@@ -228,7 +228,7 @@ class CashShop:
             eq = MapleItemInformationProvider.getInstance().getEquipById(cItem.getId())
             eq.setUniqueId(uniqueid)
             eq.setGiftFrom(gift)
-            if GameConstants.isEffectRing(cItem.getId()) && uniqueid > 0:
+            if GameConstants.isEffectRing(cItem.getId()) and uniqueid > 0:
                 ring = MapleRing.loadFromDb(uniqueid)
                 if ring is not None:
                     eq.setRing(ring)

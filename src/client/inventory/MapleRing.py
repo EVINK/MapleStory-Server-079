@@ -120,7 +120,7 @@ class MapleRing:
             ps = con.prepareStatement("SELECT * FROM rings WHERE partnerChrId = ?")
             ps.setInt(1, player.getId())
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 ps.close()
                 rs.close()
                 return
@@ -161,7 +161,7 @@ class MapleRing:
         self.partnerName = partnerName
 
     def equals(self, o: Any) -> bool:
-        return isinstance(o, MapleRing) && (o).getRingId() == self.getRingId()
+        return isinstance(o, MapleRing) and (o).getRingId() == self.getRingId()
 
     def hashCode(self) -> int:
         hash = 5

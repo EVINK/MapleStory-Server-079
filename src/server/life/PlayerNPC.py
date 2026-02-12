@@ -102,7 +102,7 @@ class PlayerNPC(MapleNPC):
             cserv.removePlayerNPC(this)
 
     def update(self, chr: Any) -> None:
-        if chr is None || self.charId != chr.getId():
+        if chr is None or self.charId != chr.getId():
             return
         self.setName(chr.getName())
         self.setHair(chr.getHair())
@@ -212,7 +212,7 @@ class PlayerNPC(MapleNPC):
 
     def setPets(self, p: list) -> None:
         for i in range(3):
-            if p is not None && p > i && p.get(i) is not None:
+            if p is not None and p > i and p.get(i) is not None:
                 self.pets[i] = p.get(i).getPetItemId()
             else:
                 self.pets[i] = 0

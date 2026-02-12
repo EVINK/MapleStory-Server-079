@@ -74,12 +74,14 @@ class DatabaseConnection:
             if stmt is not None:
                 try:
                     stmt.close()
-                catch (SQLException ex2) {}
+                except SQLException as ex2:
+                    pass
                 finally:
                     if rs is not None:
                         try:
                             rs.close()
-                        catch (SQLException ex3) {}
+                        except SQLException as ex3:
+                            pass
             return n
         finally:
             if stmt is not None:
@@ -89,15 +91,17 @@ class DatabaseConnection:
                     if rs is not None:
                         try:
                             rs.close()
-                        catch (SQLException ex5) {}
+                        except SQLException as ex5:
+                            pass
                 finally:
                     if rs is not None:
                         try:
                             rs.close()
-                        catch (SQLException ex6) {}
+                        except SQLException as ex6:
+                            pass
 
     def connectToDB(self) -> Any:
-        if !DatabaseConnection.propsInited:
+        if not DatabaseConnection.propsInited:
             try:
                 path = os.environ.get("server_property_db_path")
                 # System.out.println("load db pro"+path);
@@ -120,7 +124,7 @@ class DatabaseConnection:
             print("[DB信息] 找不到JDBC驱动程序。")
         try:
             con = DriverManager.getConnection(DatabaseConnection.dbUrl, DatabaseConnection.dbUser, DatabaseConnection.dbPass)
-            if !DatabaseConnection.propsInited:
+            if not DatabaseConnection.propsInited:
                 timeout = getWaitTimeout(con)
                 if timeout == -1:
                     print("[DB信息] 无法读取 Wait_Timeout, using " + DatabaseConnection.connectionTimeOut + " instead.")
@@ -154,7 +158,8 @@ class DatabaseConnection:
             print("[DB信息] 连接 " + self.id + " 已经超时.重新连接...")
             try:
                 self.connection.close()
-            catch (SQLException ex) {}
+            except SQLException as ex:
+                pass
             self.connection = connectToDB()
         self.lastAccessTime = int(time.time() * 1000)
         return self.connection
@@ -163,7 +168,7 @@ class DatabaseConnection:
         if self.lastAccessTime == 0:
             return False
         try:
-            return int(time.time() * 1000) - self.lastAccessTime >= DatabaseConnection.connectionTimeOut || self.connection.isClosed()
+            return int(time.time() * 1000) - self.lastAccessTime >= DatabaseConnection.connectionTimeOut or self.connection.isClosed()
         except Exception as ex:
             return True
 
@@ -176,8 +181,8 @@ class DatabaseConnection:
                 DatabaseConnection.lock.lock()
                 try:
                     Label_0058:
-                        if !self.expiredConnection():
-                            if !self.connection.isValid(10):
+                        if not self.expiredConnection():
+                            if not self.connection.isValid(10):
                                 Label_0058 = None
                         try:
                             self.connection.close()
@@ -213,7 +218,8 @@ class ConWrapper:
             print("[DB信息] 连接 " + self.id + " 已经超时.重新连接...")
             try:
                 self.connection.close()
-            catch (SQLException ex) {}
+            except SQLException as ex:
+                pass
             self.connection = connectToDB()
         self.lastAccessTime = int(time.time() * 1000)
         return self.connection
@@ -222,7 +228,7 @@ class ConWrapper:
         if self.lastAccessTime == 0:
             return False
         try:
-            return int(time.time() * 1000) - self.lastAccessTime >= DatabaseConnection.connectionTimeOut || self.connection.isClosed()
+            return int(time.time() * 1000) - self.lastAccessTime >= DatabaseConnection.connectionTimeOut or self.connection.isClosed()
         except Exception as ex:
             return True
 
@@ -235,8 +241,8 @@ class ConWrapper:
                 DatabaseConnection.lock.lock()
                 try:
                     Label_0058:
-                        if !self.expiredConnection():
-                            if !self.connection.isValid(10):
+                        if not self.expiredConnection():
+                            if not self.connection.isValid(10):
                                 Label_0058 = None
                         try:
                             self.connection.close()

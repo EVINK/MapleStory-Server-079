@@ -122,7 +122,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
             ps.setInt(1, charid)
             ps.setInt(2, accountid)
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 ps.close()
                 rs.close()
                 return None
@@ -313,7 +313,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def sendSimple(self, text: str) -> None:
         if self.lastMsg > -1:
             return
-        if !("#L" in text):
+        if not ("#L" in text):
             self.sendNext(text)
             return
         self.c.getSession().write(MaplePacketCreator.getNPCTalk(self.npc, 4, text, "", 0))
@@ -322,7 +322,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def sendSimple_text_speaker(self, text: str, speaker: int) -> None:
         if self.lastMsg > -1:
             return
-        if !("#L" in text):
+        if not ("#L" in text):
             self.sendNext(text)
             return
         self.getClient().getSession().write(MaplePacketCreator.getNPCTalk(self.npc, 4, text, "", speaker))
@@ -331,7 +331,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def sendSimpleS(self, text: str, type: int) -> None:
         if self.lastMsg > -1:
             return
-        if !("#L" in text):
+        if not ("#L" in text):
             self.sendNextS(text, type)
             return
         self.c.getSession().write(MaplePacketCreator.getNPCTalk(self.npc, 4, text, "", type))
@@ -389,7 +389,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         self.getPlayer().equipChanged()
 
     def setRandomAvatar(self, ticket: int, args_all: list) -> int:
-        if !self.haveItem(ticket):
+        if not self.haveItem(ticket):
             return -1
         self.gainItem(ticket, (short)(-1))
         args = args_all[Randomizer.nextInt(len(args_all))]
@@ -406,7 +406,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         return 1
 
     def setAvatar(self, ticket: int, args: int) -> int:
-        if !self.haveItem(ticket):
+        if not self.haveItem(ticket):
             return -1
         self.gainItem(ticket, (short)(-1))
         if args < 100:
@@ -433,7 +433,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def gainGachaponItem_id_quantity_msg(self, id: int, quantity: int, msg: str) -> int:
         try:
-            if !MapleItemInformationProvider.getInstance().itemExists(id):
+            if not MapleItemInformationProvider.getInstance().itemExists(id):
                 return -1
             item = MapleInventoryManipulator.addbyId_Gachapon(self.c, id, quantity)
             if item is None:
@@ -448,7 +448,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def gainGachaponItem_id_quantity_msg_概率(self, id: int, quantity: int, msg: str, 概率: int) -> int:
         try:
-            if !MapleItemInformationProvider.getInstance().itemExists(id):
+            if not MapleItemInformationProvider.getInstance().itemExists(id):
                 return -1
             item = MapleInventoryManipulator.addbyId_Gachapon(self.c, id, quantity)
             if item is None:
@@ -527,7 +527,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def hasSkill(self, skillid: int) -> bool:
         theSkill = SkillFactory.getSkill(skillid)
-        return theSkill is not None && self.c.getPlayer().getSkillLevel(theSkill) > 0
+        return theSkill is not None and self.c.getPlayer().getSkillLevel(theSkill) > 0
 
     def showEffect(self, broadcast: bool, effect: str) -> None:
         if broadcast:
@@ -575,7 +575,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         target = self.getMap(mapId)
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.c.getChannelServer().getPlayerStorage().getCharacterByName(chr.getName())
-            if (curChar.getEventInstance() is None && self.getPlayer().getEventInstance() is None) || curChar.getEventInstance() == self.getPlayer().getEventInstance():
+            if (curChar.getEventInstance() is None and self.getPlayer().getEventInstance() is None) or curChar.getEventInstance() == self.getPlayer().getEventInstance():
                 curChar.changeMap(target, target.getPortal(0))
                 curChar.gainExp(exp, True, False, True)
 
@@ -583,7 +583,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         target = self.getMap(mapId)
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.c.getChannelServer().getPlayerStorage().getCharacterByName(chr.getName())
-            if (curChar.getEventInstance() is None && self.getPlayer().getEventInstance() is None) || curChar.getEventInstance() == self.getPlayer().getEventInstance():
+            if (curChar.getEventInstance() is None and self.getPlayer().getEventInstance() is None) or curChar.getEventInstance() == self.getPlayer().getEventInstance():
                 curChar.changeMap(target, target.getPortal(0))
                 curChar.gainExp(exp, True, False, True)
                 curChar.gainMeso(meso, True)
@@ -634,14 +634,14 @@ class NPCConversationManager(AbstractPlayerInteraction):
         squad = self.c.getChannelServer().getMapleSquad(type)
         if squad is None:
             return -1
-        if squad.getLeader() is not None && squad.getLeader().getId() == self.c.getPlayer().getId():
+        if squad.getLeader() is not None and squad.getLeader().getId() == self.c.getPlayer().getId():
             return 1
         return 0
 
     def reAdd(self, eim: str, squad: str) -> bool:
         eimz = self.getDisconnected(eim)
         squadz = self.getSquad(squad)
-        if eimz is not None && squadz is not None:
+        if eimz is not None and squadz is not None:
             squadz.reAddMember(self.getPlayer())
             eimz.registerPlayer(self.getPlayer())
             return True
@@ -684,7 +684,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def disbandGuild(self) -> None:
         gid = self.c.getPlayer().getGuildId()
-        if gid <= 0 || self.c.getPlayer().getGuildRank() != 1:
+        if gid <= 0 or self.c.getPlayer().getGuildRank() != 1:
             return
         World.Guild.disbandGuild(gid)
 
@@ -811,7 +811,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
             ps = con.prepareStatement("SELECT * FROM hiredmerchants WHERE merchantid = ?")
             ps.setInt(1, self.getPlayer().getId())
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
             else:
@@ -838,7 +838,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
             ps = con.prepareStatement("SELECT * FROM hiredmerchants WHERE merchantid = ?")
             ps.setInt(1, self.getPlayer().getId())
             rs = ps.executeQuery()
-            if !rs.next():
+            if not rs.next():
                 rs.close()
                 ps.close()
             else:
@@ -948,7 +948,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         return new Pair<String, Map<Integer, String>>("", {})
 
     def getSR(self, ma: Any, sel: int) -> bool:
-        if ma.getRight().get(sel) is None || ma.getRight().get(sel) <= 0:
+        if ma.getRight().get(sel) is None or ma.getRight().get(sel) <= 0:
             self.dispose()
             return False
         self.sendOk(ma.getRight().get(sel))
@@ -972,7 +972,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def addFromDrop(self, statsSel: Any) -> bool:
         if isinstance(statsSel, IItem):
             it = statsSel
-            return MapleInventoryManipulator.checkSpace(self.getClient(), it.getItemId(), it.getQuantity(), it.getOwner()) && MapleInventoryManipulator.addFromDrop(self.getClient(), it, False)
+            return MapleInventoryManipulator.checkSpace(self.getClient(), it.getItemId(), it.getQuantity(), it.getOwner()) and MapleInventoryManipulator.addFromDrop(self.getClient(), it, False)
         return False
 
     def replaceItem(self, slot: int, invType: int, statsSel: Any, offset: int, type: str) -> bool:
@@ -983,7 +983,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         if inv is None:
             return False
         item = self.getPlayer().getInventory(inv).getItem(slot)
-        if item is None || isinstance(statsSel, IItem):
+        if item is None or isinstance(statsSel, IItem):
             item = statsSel
         if offset > 0:
             if inv != MapleInventoryType.EQUIP:
@@ -1051,7 +1051,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def buffGuild(self, buff: int, duration: int, msg: str) -> None:
         ii = MapleItemInformationProvider.getInstance()
-        if ii.getItemEffect(buff) is not None && self.getPlayer().getGuildId() > 0:
+        if ii.getItemEffect(buff) is not None and self.getPlayer().getGuildId() > 0:
             mse = ii.getItemEffect(buff)
             for cserv in ChannelServer.getAllInstances():
                 for chr in cserv.getPlayerStorage().getAllCharacters():
@@ -1062,7 +1062,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def createAlliance(self, alliancename: str) -> bool:
         pt = self.c.getPlayer().getParty()
         otherChar = self.c.getChannelServer().getPlayerStorage().getCharacterById(pt.getMemberByIndex(1).getId())
-        if otherChar is None || otherChar.getId() == self.c.getPlayer().getId():
+        if otherChar is None or otherChar.getId() == self.c.getPlayer().getId():
             return False
         try:
             return World.Alliance.createAlliance(alliancename, self.c.getPlayer().getId(), otherChar.getId(), self.c.getPlayer().getGuildId(), otherChar.getGuildId())
@@ -1073,7 +1073,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def addCapacityToAlliance(self) -> bool:
         try:
             gs = World.Guild.getGuild(self.c.getPlayer().getGuildId())
-            if gs is not None && self.c.getPlayer().getGuildRank() == 1 && self.c.getPlayer().getAllianceRank() == 1 && World.Alliance.getAllianceLeader(gs.getAllianceId()) == self.c.getPlayer().getId() && World.Alliance.changeAllianceCapacity(gs.getAllianceId()):
+            if gs is not None and self.c.getPlayer().getGuildRank() == 1 and self.c.getPlayer().getAllianceRank() == 1 and World.Alliance.getAllianceLeader(gs.getAllianceId()) == self.c.getPlayer().getId() and World.Alliance.changeAllianceCapacity(gs.getAllianceId()):
                 self.gainMeso(-MapleGuildAlliance.CHANGE_CAPACITY_COST)
                 return True
         except Exception as re:
@@ -1083,7 +1083,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def disbandAlliance(self) -> bool:
         try:
             gs = World.Guild.getGuild(self.c.getPlayer().getGuildId())
-            if gs is not None && self.c.getPlayer().getGuildRank() == 1 && self.c.getPlayer().getAllianceRank() == 1 && World.Alliance.getAllianceLeader(gs.getAllianceId()) == self.c.getPlayer().getId() && World.Alliance.disbandAlliance(gs.getAllianceId()):
+            if gs is not None and self.c.getPlayer().getGuildRank() == 1 and self.c.getPlayer().getAllianceRank() == 1 and World.Alliance.getAllianceLeader(gs.getAllianceId()) == self.c.getPlayer().getId() and World.Alliance.disbandAlliance(gs.getAllianceId()):
                 return True
         except Exception as re:
             re.printStackTrace()
@@ -1105,7 +1105,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def dropItem(self, slot: int, invType: int, quantity: int) -> bool:
         inv = MapleInventoryType.getByType(invType)
-        return inv is not None && MapleInventoryManipulator.drop(self.c, inv, slot, quantity, True)
+        return inv is not None and MapleInventoryManipulator.drop(self.c, inv, slot, quantity, True)
 
     def getAllPotentialInfo(self) -> list:
         return [].getAllPotentialInfo().keys())
@@ -1136,40 +1136,42 @@ class NPCConversationManager(AbstractPlayerInteraction):
         (ch).getQuestNAdd(MapleQuest.getInstance(questid)).setCustomData(data)
 
     def doWeddingEffect2(self, ch: Any) -> None:
+        def _task_1():
+            if chr is None or NPCConversationManager.self.getPlayer() is None:
+                NPCConversationManager.self.warpMap(680000500, 0)
+            else:
+                NPCConversationManager.self.getMap().broadcastMessage(MaplePacketCreator.yellowChat(chr.getName() + ", 你愿意嫁给 " + NPCConversationManager.self.getPlayer().getName() + " 吗？无论他将来是富有还是贫穷、或无论他将来身体健康或不适，你都愿意和他永远在一起吗?"))
+
+        def _task_2():
+            if chr is None or NPCConversationManager.self.getPlayer() is None:
+                if NPCConversationManager.self.getPlayer() is not None:
+                    NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160001, "3")
+                    NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160002, "0")
+                elif chr is not None:
+                    NPCConversationManager.self.setQuestRecord(chr, 160001, "3")
+                    NPCConversationManager.self.setQuestRecord(chr, 160002, "0")
+                NPCConversationManager.self.warpMap(680000500, 0)
+            else:
+                NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160001, "2")
+                NPCConversationManager.self.setQuestRecord(chr, 160001, "2")
+                NPCConversationManager.self.sendNPCText("好，我以圣灵、圣父、圣子的名义宣布：" + NPCConversationManager.self.getPlayer().getName() + " 和 " + chr.getName() + ", 结为夫妻。 希望你们在!" + chr.getClient().getChannelServer().getServerName() + " 游戏中玩的愉快!", 9201002)
+                NPCConversationManager.self.getMap().startExtendedMapEffect("You may now kiss the bride, " + NPCConversationManager.self.getPlayer().getName() + "not ", 5120006)
+                if chr.getGuildId() > 0:
+                    World.Guild.guildPacket(chr.getGuildId(), MaplePacketCreator.sendMarriage(False, chr.getName()))
+                if chr.getFamilyId() > 0:
+                    World.Family.familyPacket(chr.getFamilyId(), MaplePacketCreator.sendMarriage(True, chr.getName()), chr.getId())
+                if NPCConversationManager.self.getPlayer().getGuildId() > 0:
+                    World.Guild.guildPacket(NPCConversationManager.self.getPlayer().getGuildId(), MaplePacketCreator.sendMarriage(False, NPCConversationManager.self.getPlayer().getName()))
+                if NPCConversationManager.self.getPlayer().getFamilyId() > 0:
+                    World.Family.familyPacket(NPCConversationManager.self.getPlayer().getFamilyId(), MaplePacketCreator.sendMarriage(True, chr.getName()), NPCConversationManager.self.getPlayer().getId())
+
         chr = ch
         self.getMap().broadcastMessage(MaplePacketCreator.yellowChat(self.getPlayer().getName() + ", 你愿意娶 " + chr.getName() + " 为妻吗？无论她将来是富有还是贫穷、或无论她将来身体健康或不适，你都愿意和她永远在一起吗？"))
-        Timer.CloneTimer.getInstance().schedule(Runnable()
-            public void run()
-                if chr is None || NPCConversationManager.self.getPlayer() is None:
-                    NPCConversationManager.self.warpMap(680000500, 0)
-                else:
-                    NPCConversationManager.self.getMap().broadcastMessage(MaplePacketCreator.yellowChat(chr.getName() + ", 你愿意嫁给 " + NPCConversationManager.self.getPlayer().getName() + " 吗？无论他将来是富有还是贫穷、或无论他将来身体健康或不适，你都愿意和他永远在一起吗?"))
-        Timer.CloneTimer.getInstance().schedule(Runnable()
-            public void run()
-                if chr is None || NPCConversationManager.self.getPlayer() is None:
-                    if NPCConversationManager.self.getPlayer() is not None:
-                        NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160001, "3")
-                        NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160002, "0")
-                    elif chr is not None:
-                        NPCConversationManager.self.setQuestRecord(chr, 160001, "3")
-                        NPCConversationManager.self.setQuestRecord(chr, 160002, "0")
-                    NPCConversationManager.self.warpMap(680000500, 0)
-                else:
-                    NPCConversationManager.self.setQuestRecord(NPCConversationManager.self.getPlayer(), 160001, "2")
-                    NPCConversationManager.self.setQuestRecord(chr, 160001, "2")
-                    NPCConversationManager.self.sendNPCText("好，我以圣灵、圣父、圣子的名义宣布：" + NPCConversationManager.self.getPlayer().getName() + " 和 " + chr.getName() + ", 结为夫妻。 希望你们在!" + chr.getClient().getChannelServer().getServerName() + " 游戏中玩的愉快!", 9201002)
-                    NPCConversationManager.self.getMap().startExtendedMapEffect("You may now kiss the bride, " + NPCConversationManager.self.getPlayer().getName() + "!", 5120006)
-                    if chr.getGuildId() > 0:
-                        World.Guild.guildPacket(chr.getGuildId(), MaplePacketCreator.sendMarriage(False, chr.getName()))
-                    if chr.getFamilyId() > 0:
-                        World.Family.familyPacket(chr.getFamilyId(), MaplePacketCreator.sendMarriage(True, chr.getName()), chr.getId())
-                    if NPCConversationManager.self.getPlayer().getGuildId() > 0:
-                        World.Guild.guildPacket(NPCConversationManager.self.getPlayer().getGuildId(), MaplePacketCreator.sendMarriage(False, NPCConversationManager.self.getPlayer().getName()))
-                    if NPCConversationManager.self.getPlayer().getFamilyId() > 0:
-                        World.Family.familyPacket(NPCConversationManager.self.getPlayer().getFamilyId(), MaplePacketCreator.sendMarriage(True, chr.getName()), NPCConversationManager.self.getPlayer().getId())
+        Timer.CloneTimer.getInstance().schedule(_task_1, 10000)
+        Timer.CloneTimer.getInstance().schedule(_task_2, 20000)
 
     def run(self) -> None:
-        if chr is None || NPCConversationManager.self.getPlayer() is None:
+        if chr is None or NPCConversationManager.self.getPlayer() is None:
             NPCConversationManager.self.warpMap(680000500, 0)
         else:
             NPCConversationManager.self.getMap().broadcastMessage(MaplePacketCreator.yellowChat(chr.getName() + ", 你愿意嫁给 " + NPCConversationManager.self.getPlayer().getName() + " 吗？无论他将来是富有还是贫穷、或无论他将来身体健康或不适，你都愿意和他永远在一起吗?"))
@@ -1214,7 +1216,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def xlkc(self, days: int) -> None:
         marr = self.getPlayer().getQuestNoAdd(MapleQuest.getInstance(122700))
-        if marr is not None && marr.getCustomData() is not None && int(marr.getCustomData()) >= int(time.time() * 1000):
+        if marr is not None and marr.getCustomData() is not None and int(marr.getCustomData()) >= int(time.time() * 1000):
             self.getPlayer().dropMessage(1, "项链扩充失败，您已经进行过项链扩充。")
         else:
             customData = str(int(time.time() * 1000) + days * 24 * 60 * 60 * 1000)
@@ -1224,10 +1226,10 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def checkDrop(self, mobId: int) -> str:
         rate = self.getClient().getChannelServer().getDropRate()
         mob = MapleLifeFactory.getMonster(mobId)
-        if MapleLifeFactory.getMonster(mobId) is not None && mob.getStats().isBoss():
+        if MapleLifeFactory.getMonster(mobId) is not None and mob.getStats().isBoss():
             rate = self.getClient().getChannelServer().getBossDropRate()
         ranks = MapleMonsterInformationProvider.getInstance().retrieveDrop(mobId)
-        if ranks is not None && ranks > 0:
+        if ranks is not None and ranks > 0:
             num = 0
             itemId = 0
             ch = 0
@@ -1235,7 +1237,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
             name = ""
             for i in range(ranks):
                 de = ranks.get(i)
-                if de.chance > 0 && (de.questid <= 0 || (de.questid > 0 && MapleQuest.getInstance(de.questid).getName() > 0)):
+                if de.chance > 0 and (de.questid <= 0 or (de.questid > 0 and MapleQuest.getInstance(de.questid).getName() > 0)):
                     itemId = de.itemId
                     if ii.itemExists(itemId):
                         if num == 0:
@@ -1246,7 +1248,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                             itemId = 4031041
                             namez = de.Minimum * self.getClient().getChannelServer().getMesoRate() + " - " + de.Maximum * self.getClient().getChannelServer().getMesoRate() + " 的金币"
                         ch = de.chance * rate
-                        name.append(num + 1).append(") #v").append(itemId).append("#").append(namez).append(" - ").append(((ch >= 999999) ? 1000000 : ch) / 10000.0).append("%的爆率. ").append((de.questid > 0 && MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
+                        name.append(num + 1).append(") #v").append(itemId).append("#").append(namez).append(" - ").append(((ch >= 999999) ? 1000000 : ch) / 10000.0).append("%的爆率. ").append((de.questid > 0 and MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
                         num += 1
             if name > 0:
                 return name
@@ -1271,9 +1273,9 @@ class NPCConversationManager(AbstractPlayerInteraction):
         ii = MapleItemInformationProvider.getInstance()
         name = ""
         if ret > 0:
-            name.append("    当前物品 #e#b#v").append(itemid).append("##z").append(itemid).append("##k#n 的掉落为：#e\r\n")
+            name.append(" 当前物品 #e#b#v").append(itemid).append("##z").append(itemid).append("##k#n 的掉落为：#e\r\n")
             for i in range(ret):
-                name.append("    #o").append(ret.get(i)).append("#\r\n")
+                name.append(" #o").append(ret.get(i)).append("#\r\n")
         if name > 0:
             return name
         return "没有找到这个物品的爆率数据。"
@@ -1283,25 +1285,25 @@ class NPCConversationManager(AbstractPlayerInteraction):
         mapid = self.c.getPlayer().getMap().getId()
         cashServerRate = getClient().getChannelServer().getCashRate()
         globalServerRate = 1
-        if ranks is not None && ranks > 0:
+        if ranks is not None and ranks > 0:
             num = 0
             name = ""
             for i in range(ranks):
                 de = ranks.get(i)
-                if de.continent < 0 || (de.continent < 10 && mapid / 100000000 == de.continent) || (de.continent < 100 && mapid / 10000000 == de.continent) || (de.continent < 1000 && mapid / 1000000 == de.continent):
+                if de.continent < 0 or (de.continent < 10 and mapid / 100000000 == de.continent) or (de.continent < 100 and mapid / 10000000 == de.continent) or (de.continent < 1000 and mapid / 1000000 == de.continent):
                     itemId = de.itemId
                     if num == 0:
                         name.append("当前地图 #r").append(mapid).append("#k - #m").append(mapid).append("# 的全局爆率为:")
                         name.append("\r\n--------------------------------------\r\n")
                     names = "#z" + itemId + "#"
-                    if itemId == 0 && cashServerRate != 0:
+                    if itemId == 0 and cashServerRate != 0:
                         itemId = 4031041
                         names = (de.Minimum * cashServerRate) + " - " + (de.Maximum * cashServerRate) + " 的抵用卷"
                     chance = de.chance * globalServerRate
                     if getPlayer().isAdmin():
-                        name.append(num + 1).append(") #v").append(itemId).append("#").append(names).append(" - ").append(Integer.valueOf((chance >= 999999) ? 1000000 : chance) / 10000.0).append("%的爆率. ").append((de.questid > 0 && MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
+                        name.append(num + 1).append(") #v").append(itemId).append("#").append(names).append(" - ").append(Integer.valueOf((chance >= 999999) ? 1000000 : chance) / 10000.0).append("%的爆率. ").append((de.questid > 0 and MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
                     else:
-                        name.append(num + 1).append(") #v").append(itemId).append("#").append(names).append((de.questid > 0 && MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
+                        name.append(num + 1).append(") #v").append(itemId).append("#").append(names).append((de.questid > 0 and MapleQuest.getInstance(de.questid).getName() > 0) ? ("需要接受任务: " + MapleQuest.getInstance(de.questid).getName()) : "").append("\r\n")
                     num += 1
             if name > 0:
             return name
@@ -1415,24 +1417,26 @@ class NPCConversationManager(AbstractPlayerInteraction):
         self.c.sendPacket(MaplePacketCreator.stopClock())
 
     def warpBack(self, mid: int, retmap: int, time: int) -> None:
+        def _task_1():
+            warpMap = NPCConversationManager.self.c.getChannelServer().getMapFactory().getMap(retmap)
+            if NPCConversationManager.self.c.getPlayer() is not None:
+                NPCConversationManager.self.c.sendPacket(MaplePacketCreator.stopClock())
+                NPCConversationManager.self.c.getPlayer().changeMap(warpMap, warpMap.getPortal(0))
+                NPCConversationManager.self.c.getPlayer().dropMessage(6, "到达目的地ヘ!")
+
         warpMap = self.c.getChannelServer().getMapFactory().getMap(mid)
         self.c.getPlayer().changeMap(warpMap, warpMap.getPortal(0))
         self.c.sendPacket(MaplePacketCreator.getClock(time))
-        Timer.EventTimer.getInstance().schedule(Runnable()
-            public void run()
-                warpMap = NPCConversationManager.self.c.getChannelServer().getMapFactory().getMap(retmap)
-                if NPCConversationManager.self.c.getPlayer() is not None:
-                    NPCConversationManager.self.c.sendPacket(MaplePacketCreator.stopClock())
-                    NPCConversationManager.self.c.getPlayer().changeMap(warpMap, warpMap.getPortal(0))
-                    NPCConversationManager.self.c.getPlayer().dropMessage(6, "到达目的地ヘ!")
+        Timer.EventTimer.getInstance().schedule(_task_1, 1000 * time)
 
     def warpMapWithClock(self, mid: int, seconds: int) -> None:
+        def _task_1():
+            if NPCConversationManager.self.c.getPlayer() is not None:
+                for chr in NPCConversationManager.self.c.getPlayer().getMap().getCharactersThreadsafe():
+                    chr.changeMap(mid)
+
         self.c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.getClock(seconds))
-        Timer.MapTimer.getInstance().schedule(Runnable()
-            public void run()
-                if NPCConversationManager.self.c.getPlayer() is not None:
-                    for chr in NPCConversationManager.self.c.getPlayer().getMap().getCharactersThreadsafe():
-                        chr.changeMap(mid)
+        Timer.MapTimer.getInstance().schedule(_task_1, seconds * 1000)
 
     def showlvl(self) -> None:
         self.c.sendPacket(MaplePacketCreator.showlevelRanks(self.npc, MapleGuildRanking.getInstance().getLevelRank()))
@@ -1446,9 +1450,9 @@ class NPCConversationManager(AbstractPlayerInteraction):
     def translated_给全服发点卷(self, 数量: int, 类型: int) -> int:
         count = 0
         try:
-            if 数量 <= 0 || 类型 <= 0:
+            if 数量 <= 0 or 类型 <= 0:
                 return 0
-            if 类型 == 1 || 类型 == 2:
+            if 类型 == 1 or 类型 == 2:
                 for cserv1 in ChannelServer.getAllInstances():
                     for mch in cserv1.getPlayerStorage().getAllCharacters():
                         mch.modifyCSPoints(类型, 数量)
@@ -1476,9 +1480,9 @@ class NPCConversationManager(AbstractPlayerInteraction):
         count = 0
         mapId = self.c.getPlayer().getMapId()
         try:
-            if 数量 <= 0 || 类型 <= 0:
+            if 数量 <= 0 or 类型 <= 0:
                 return 0
-            if 类型 == 1 || 类型 == 2:
+            if 类型 == 1 or 类型 == 2:
                 for cserv1 in ChannelServer.getAllInstances():
                     for mch in cserv1.getPlayerStorage().getAllCharacters():
                         if mch.getMapId() != mapId:
@@ -1512,9 +1516,9 @@ class NPCConversationManager(AbstractPlayerInteraction):
         count = 0
         chlId = self.c.getPlayer().getMap().getChannel()
         try:
-            if 数量 <= 0 || 类型 <= 0:
+            if 数量 <= 0 or 类型 <= 0:
                 return 0
-            if 类型 == 1 || 类型 == 2:
+            if 类型 == 1 or 类型 == 2:
                 for cserv1 in ChannelServer.getAllInstances():
                     if cserv1.getChannel() != chlId:
                         continue
@@ -1552,31 +1556,31 @@ class NPCConversationManager(AbstractPlayerInteraction):
             for cserv1 in ChannelServer.getAllInstances():
                 for mch in cserv1.getPlayerStorage().getAllCharacters():
                     if 数量 >= 0:
-                        if !MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
+                        if not MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
                             return 0
-                        if (type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(物品ID) && !GameConstants.isBullet(物品ID)) || (type == (MapleInventoryType.CASH) && 物品ID >= 5000000 && 物品ID <= 5000100):
+                        if (type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(物品ID) and not GameConstants.isBullet(物品ID)) or (type == (MapleInventoryType.CASH) and 物品ID >= 5000000 and 物品ID <= 5000100):
                             item = ii.getEquipById(物品ID)
                             if ii.isCash(物品ID):
                                 item.setUniqueId(1)
-                            if 力量 > 0 && 力量 <= 32767:
+                            if 力量 > 0 and 力量 <= 32767:
                                 item.setStr(力量)
-                            if 敏捷 > 0 && 敏捷 <= 32767:
+                            if 敏捷 > 0 and 敏捷 <= 32767:
                                 item.setDex(敏捷)
-                            if 智力 > 0 && 智力 <= 32767:
+                            if 智力 > 0 and 智力 <= 32767:
                                 item.setInt(智力)
-                            if 运气 > 0 && 运气 <= 32767:
+                            if 运气 > 0 and 运气 <= 32767:
                                 item.setLuk(运气)
-                            if 攻击力 > 0 && 攻击力 <= 32767:
+                            if 攻击力 > 0 and 攻击力 <= 32767:
                                 item.setWatk(攻击力)
-                            if 魔法力 > 0 && 魔法力 <= 32767:
+                            if 魔法力 > 0 and 魔法力 <= 32767:
                                 item.setMatk(魔法力)
-                            if 物理防御 > 0 && 物理防御 <= 32767:
+                            if 物理防御 > 0 and 物理防御 <= 32767:
                                 item.setWdef(物理防御)
-                            if 魔法防御 > 0 && 魔法防御 <= 32767:
+                            if 魔法防御 > 0 and 魔法防御 <= 32767:
                                 item.setMdef(魔法防御)
-                            if HP > 0 && HP <= 30000:
+                            if HP > 0 and HP <= 30000:
                                 item.setHp(HP)
-                            if MP > 0 && MP <= 30000:
+                            if MP > 0 and MP <= 30000:
                                 item.setMp(MP)
                             if "可以交易" == (是否可以交易):
                                 flag = item.getFlag()
@@ -1592,7 +1596,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                             if 制作人名字 is not None:
                                 item.setOwner(制作人名字)
                             name = ii.getName(物品ID)
-                            if 物品ID / 10000 == 114 && name is not None && name > 0:
+                            if 物品ID / 10000 == 114 and name is not None and name > 0:
                                 msg = "你已获得称号 <" + name + ">"
                                 mch.getClient().getPlayer().dropMessage(5, msg)
                             MapleInventoryManipulator.addbyItem(mch.getClient(), item.copy())
@@ -1617,31 +1621,31 @@ class NPCConversationManager(AbstractPlayerInteraction):
                     if mch.getMapId() != mapId:
                         continue
                     if 数量 >= 0:
-                        if !MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
+                        if not MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
                             return 0
-                        if (type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(物品ID) && !GameConstants.isBullet(物品ID)) || (type == (MapleInventoryType.CASH) && 物品ID >= 5000000 && 物品ID <= 5000100):
+                        if (type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(物品ID) and not GameConstants.isBullet(物品ID)) or (type == (MapleInventoryType.CASH) and 物品ID >= 5000000 and 物品ID <= 5000100):
                             item = ii.getEquipById(物品ID)
                             if ii.isCash(物品ID):
                                 item.setUniqueId(1)
-                            if 力量 > 0 && 力量 <= 32767:
+                            if 力量 > 0 and 力量 <= 32767:
                                 item.setStr(力量)
-                            if 敏捷 > 0 && 敏捷 <= 32767:
+                            if 敏捷 > 0 and 敏捷 <= 32767:
                                 item.setDex(敏捷)
-                            if 智力 > 0 && 智力 <= 32767:
+                            if 智力 > 0 and 智力 <= 32767:
                                 item.setInt(智力)
-                            if 运气 > 0 && 运气 <= 32767:
+                            if 运气 > 0 and 运气 <= 32767:
                                 item.setLuk(运气)
-                            if 攻击力 > 0 && 攻击力 <= 32767:
+                            if 攻击力 > 0 and 攻击力 <= 32767:
                                 item.setWatk(攻击力)
-                            if 魔法力 > 0 && 魔法力 <= 32767:
+                            if 魔法力 > 0 and 魔法力 <= 32767:
                                 item.setMatk(魔法力)
-                            if 物理防御 > 0 && 物理防御 <= 32767:
+                            if 物理防御 > 0 and 物理防御 <= 32767:
                                 item.setWdef(物理防御)
-                            if 魔法防御 > 0 && 魔法防御 <= 32767:
+                            if 魔法防御 > 0 and 魔法防御 <= 32767:
                                 item.setMdef(魔法防御)
-                            if HP > 0 && HP <= 30000:
+                            if HP > 0 and HP <= 30000:
                                 item.setHp(HP)
-                            if MP > 0 && MP <= 30000:
+                            if MP > 0 and MP <= 30000:
                                 item.setMp(MP)
                             if "可以交易" == (是否可以交易):
                                 flag = item.getFlag()
@@ -1657,7 +1661,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                             if 制作人名字 is not None:
                                 item.setOwner(制作人名字)
                             name = ii.getName(物品ID)
-                            if 物品ID / 10000 == 114 && name is not None && name > 0:
+                            if 物品ID / 10000 == 114 and name is not None and name > 0:
                                 msg = "你已获得称号 <" + name + ">"
                                 mch.getClient().getPlayer().dropMessage(5, msg)
                             MapleInventoryManipulator.addbyItem(mch.getClient(), item.copy())
@@ -1682,31 +1686,31 @@ class NPCConversationManager(AbstractPlayerInteraction):
                     continue
                 for mch in cserv1.getPlayerStorage().getAllCharacters():
                     if 数量 >= 0:
-                        if !MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
+                        if not MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
                             return 0
-                        if (type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(物品ID) && !GameConstants.isBullet(物品ID)) || (type == (MapleInventoryType.CASH) && 物品ID >= 5000000 && 物品ID <= 5000100):
+                        if (type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(物品ID) and not GameConstants.isBullet(物品ID)) or (type == (MapleInventoryType.CASH) and 物品ID >= 5000000 and 物品ID <= 5000100):
                             item = ii.getEquipById(物品ID)
                             if ii.isCash(物品ID):
                                 item.setUniqueId(1)
-                            if 力量 > 0 && 力量 <= 32767:
+                            if 力量 > 0 and 力量 <= 32767:
                                 item.setStr(力量)
-                            if 敏捷 > 0 && 敏捷 <= 32767:
+                            if 敏捷 > 0 and 敏捷 <= 32767:
                                 item.setDex(敏捷)
-                            if 智力 > 0 && 智力 <= 32767:
+                            if 智力 > 0 and 智力 <= 32767:
                                 item.setInt(智力)
-                            if 运气 > 0 && 运气 <= 32767:
+                            if 运气 > 0 and 运气 <= 32767:
                                 item.setLuk(运气)
-                            if 攻击力 > 0 && 攻击力 <= 32767:
+                            if 攻击力 > 0 and 攻击力 <= 32767:
                                 item.setWatk(攻击力)
-                            if 魔法力 > 0 && 魔法力 <= 32767:
+                            if 魔法力 > 0 and 魔法力 <= 32767:
                                 item.setMatk(魔法力)
-                            if 物理防御 > 0 && 物理防御 <= 32767:
+                            if 物理防御 > 0 and 物理防御 <= 32767:
                                 item.setWdef(物理防御)
-                            if 魔法防御 > 0 && 魔法防御 <= 32767:
+                            if 魔法防御 > 0 and 魔法防御 <= 32767:
                                 item.setMdef(魔法防御)
-                            if HP > 0 && HP <= 30000:
+                            if HP > 0 and HP <= 30000:
                                 item.setHp(HP)
-                            if MP > 0 && MP <= 30000:
+                            if MP > 0 and MP <= 30000:
                                 item.setMp(MP)
                             if "可以交易" == (是否可以交易):
                                 flag = item.getFlag()
@@ -1722,7 +1726,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                             if 制作人名字 is not None:
                                 item.setOwner(制作人名字)
                             name = ii.getName(物品ID)
-                            if 物品ID / 10000 == 114 && name is not None && name > 0:
+                            if 物品ID / 10000 == 114 and name is not None and name > 0:
                                 msg = "你已获得称号 <" + name + ">"
                                 mch.getClient().getPlayer().dropMessage(5, msg)
                             MapleInventoryManipulator.addbyItem(mch.getClient(), item.copy())
@@ -1802,11 +1806,11 @@ class NPCConversationManager(AbstractPlayerInteraction):
             tomap = self.getMapFactory().getMap(destMapId)
             frommap = self.getMapFactory().getMap(myMapId)
             list = frommap.getCharactersThreadsafe()
-            if tomap is not None && frommap is not None && list is not None && frommap.getCharactersSize() > 0:
+            if tomap is not None and frommap is not None and list is not None and frommap.getCharactersSize() > 0:
                 for mmo in list:
                     chr = mmo
                     if chr.getId() == myId:
-                        if !includeSelf:
+                        if not includeSelf:
                             continue
                         chr.changeMap(tomap, tomap.getPortal(0))
                         count += 1
@@ -1824,12 +1828,12 @@ class NPCConversationManager(AbstractPlayerInteraction):
         try:
             frommap = self.getMapFactory().getMap(myMapId)
             list = frommap.getCharactersThreadsafe()
-            if frommap is not None && list is not None && frommap.getCharactersSize() > 0:
+            if frommap is not None and list is not None and frommap.getCharactersSize() > 0:
                 for mmo in list:
                     if mmo is not None:
                         chr = mmo
                         if chr.getId() == myId:
-                            if !includeSelf:
+                            if not includeSelf:
                                 continue
                             chr.setHp(0)
                             chr.updateSingleStat(MapleStat.HP, 0)
@@ -1849,12 +1853,12 @@ class NPCConversationManager(AbstractPlayerInteraction):
         try:
             frommap = self.getMapFactory().getMap(myMapId)
             list = frommap.getCharactersThreadsafe()
-            if frommap is not None && list is not None && frommap.getCharactersSize() > 0:
+            if frommap is not None and list is not None and frommap.getCharactersSize() > 0:
                 for mmo in list:
                     if mmo is not None:
                         chr = mmo
                         if chr.getId() == myId:
-                            if !includeSelf:
+                            if not includeSelf:
                                 continue
                             chr.getStat().setHp(chr.getStat().getMaxHp())
                             chr.updateSingleStat(MapleStat.HP, chr.getStat().getMaxHp())
@@ -1888,36 +1892,36 @@ class NPCConversationManager(AbstractPlayerInteraction):
             type = GameConstants.getInventoryType(物品ID)
             frommap = self.getMapFactory().getMap(地图ID)
             list = frommap.getCharactersThreadsafe()
-            if list is not None && frommap.getCharactersSize() > 0:
+            if list is not None and frommap.getCharactersSize() > 0:
                 for mmo in list:
                     if mmo is not None:
                         chr = mmo
                         if 数量 >= 0:
-                            if !MapleInventoryManipulator.checkSpace(chr.getClient(), 物品ID, 数量, ""):
+                            if not MapleInventoryManipulator.checkSpace(chr.getClient(), 物品ID, 数量, ""):
                                 return 0
-                            if (type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(物品ID) && !GameConstants.isBullet(物品ID)) || (type == (MapleInventoryType.CASH) && 物品ID >= 5000000 && 物品ID <= 5000100):
+                            if (type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(物品ID) and not GameConstants.isBullet(物品ID)) or (type == (MapleInventoryType.CASH) and 物品ID >= 5000000 and 物品ID <= 5000100):
                                 item = ii.getEquipById(物品ID)
                                 if ii.isCash(物品ID):
                                     item.setUniqueId(1)
-                                if 力量 > 0 && 力量 <= 32767:
+                                if 力量 > 0 and 力量 <= 32767:
                                     item.setStr(力量)
-                                if 敏捷 > 0 && 敏捷 <= 32767:
+                                if 敏捷 > 0 and 敏捷 <= 32767:
                                     item.setDex(敏捷)
-                                if 智力 > 0 && 智力 <= 32767:
+                                if 智力 > 0 and 智力 <= 32767:
                                     item.setInt(智力)
-                                if 运气 > 0 && 运气 <= 32767:
+                                if 运气 > 0 and 运气 <= 32767:
                                     item.setLuk(运气)
-                                if 攻击力 > 0 && 攻击力 <= 32767:
+                                if 攻击力 > 0 and 攻击力 <= 32767:
                                     item.setWatk(攻击力)
-                                if 魔法力 > 0 && 魔法力 <= 32767:
+                                if 魔法力 > 0 and 魔法力 <= 32767:
                                     item.setMatk(魔法力)
-                                if 物理防御 > 0 && 物理防御 <= 32767:
+                                if 物理防御 > 0 and 物理防御 <= 32767:
                                     item.setWdef(物理防御)
-                                if 魔法防御 > 0 && 魔法防御 <= 32767:
+                                if 魔法防御 > 0 and 魔法防御 <= 32767:
                                     item.setMdef(魔法防御)
-                                if HP > 0 && HP <= 30000:
+                                if HP > 0 and HP <= 30000:
                                     item.setHp(HP)
-                                if MP > 0 && MP <= 30000:
+                                if MP > 0 and MP <= 30000:
                                     item.setMp(MP)
                                 if "可以交易" == (是否可以交易):
                                     flag = item.getFlag()
@@ -1933,7 +1937,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                                 if 制作人名字 is not None:
                                     item.setOwner(制作人名字)
                                 name = ii.getName(物品ID)
-                                if 物品ID / 10000 == 114 && name is not None && name > 0:
+                                if 物品ID / 10000 == 114 and name is not None and name > 0:
                                     msg = "你已获得称号 <" + name + ">"
                                     chr.dropMessage(5, msg)
                                 MapleInventoryManipulator.addbyItem(chr.getClient(), item.copy())
@@ -1956,12 +1960,12 @@ class NPCConversationManager(AbstractPlayerInteraction):
         if 地图ID < 1:
             地图ID = self.c.getPlayer().getMapId()
         try:
-            if 数量 <= 0 || 类型 <= 0:
+            if 数量 <= 0 or 类型 <= 0:
                 return 0
             frommap = self.getMapFactory().getMap(地图ID)
             list = frommap.getCharactersThreadsafe()
-            if list is not None && frommap.getCharactersSize() > 0:
-                if 类型 == 1 || 类型 == 2:
+            if list is not None and frommap.getCharactersSize() > 0:
+                if 类型 == 1 or 类型 == 2:
                     for mmo in list:
                         if mmo is not None:
                             chr = mmo
@@ -2007,7 +2011,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
         if self.c.getPlayer().getMap().getPermanentWeather() > 0:
             self.c.getPlayer().getMap().setPermanentWeather(0)
             self.c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.removeMapEffect())
-        elif !MapleItemInformationProvider.getInstance().itemExists(天气ID) || 天气ID / 10000 != 512:
+        elif not MapleItemInformationProvider.getInstance().itemExists(天气ID) or 天气ID / 10000 != 512:
             self.c.getPlayer().dropMessage(5, "无效的天气ID。")
         else:
             self.c.getPlayer().getMap().setPermanentWeather(天气ID)
@@ -2237,15 +2241,15 @@ class NPCConversationManager(AbstractPlayerInteraction):
         ret = ""
         for cs in ChannelServer.getAllInstances():
             for chr in cs.getPlayerStorage().getAllCharacters():
-                if !chr.isGM():
-                    ret = ret + "#b#L" + chr.getId() + "#[跟踪] 玩家名:  #r" + chr.getName() + " #k#l \r\n"
+                if not chr.isGM():
+                    ret = ret + "#b#L" + chr.getId() + "#[跟踪] 玩家名: #r" + chr.getName() + " #k#l \r\n"
         return ret
 
     def GetPlayer(self, cid: int) -> Any:
         ret = None
         for cs in ChannelServer.getAllInstances():
             for chr in cs.getPlayerStorage().getAllCharacters():
-                if !chr.isGM() && chr.getId() == cid:
+                if not chr.isGM() and chr.getId() == cid:
                     ret = chr
         return ret
 
@@ -2400,7 +2404,8 @@ class NPCConversationManager(AbstractPlayerInteraction):
                 MapleInventoryManipulator.removeById(self.getC(), type, re.getInt("itemid"), re.getInt("quantity"), True, True)
             re.close()
             ps.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def translated_全服漂浮喇叭(self, msg: str, itemId: int) -> None:
         ret = 0
@@ -2434,11 +2439,14 @@ class NPCConversationManager(AbstractPlayerInteraction):
                     mch.getClient().getSession().write(MaplePacketCreator.sendHint("#b===========全民冒险岛==========#k\r\n==============================#r\r\n#b========全民夺宝活动开始=======#k\r\n==============================#r\r\n#b===========随机抽取中==========#k\r\n◆正在随机抽选中奖的幸运玩家◆\r\n#b===========幸运玩家===========#r\r\n" + mch.全民夺宝2(A), 200, 200))
                     if ii == 20:
                         mch.getClient().getSession().write(MaplePacketCreator.sendHint("#e#r★★★★★全民夺宝★★★★★\r\n中奖玩家：" + mch.全民夺宝2(A), 200, 200))
-                        mch.startMapEffect("★恭喜玩家:" + mch.全民夺宝2(A) + " 赢得了 [全民夺宝] !!★", 5120025)
+                        mch.startMapEffect("★恭喜玩家:" + mch.全民夺宝2(A) + " 赢得了 [全民夺宝] not not ★", 5120025)
                         self.c.getSession().write(MaplePacketCreator.enableActions())
 
     def translated_谁是卧底(self) -> None:
-        if self.getPlayer().getParty() is None || self.getPlayer().getParty().getMembers() < 6:
+        def _task_1():
+            pass
+
+        if self.getPlayer().getParty() is None or self.getPlayer().getParty().getMembers() < 6:
             return
         cMap = self.getPlayer().getMapId()
         随机给予卧底值 = Randomizer.nextInt(6)
@@ -2447,14 +2455,13 @@ class NPCConversationManager(AbstractPlayerInteraction):
         确定人数 = 0
         for chr in self.getPlayer().getParty().getMembers():
             curChar = self.getChannelServer().getPlayerStorage().getCharacterById(chr.getId())
-            if curChar is not None && curChar.getMapId() == cMap:
+            if curChar is not None and curChar.getMapId() == cMap:
                 确定人数 += 1
                 if (随机给予卧底值 == 随机给予卧底值2) {}
                 if 人数 != 确定人数:
                     continue
                 final Timer.MapTimer tMan = Timer.MapTimer.getInstance()
-                tMan.schedule(Runnable()
-                    public void run()
+                tMan.schedule(_task_1, 60000)
 
     def translated_家族排行榜(self) -> None:
         MapleGuild.displayGuildRanks(self.getClient(), self.npc)
@@ -2549,7 +2556,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                 canHair.add(hair)
             else:
                 cantHair.add(hair)
-        if cantHair > 0 && self.c.getPlayer().isAdmin():
+        if cantHair > 0 and self.c.getPlayer().isAdmin():
             sb = ""
             sb.append(cantHair).append("个发型客户端不支持显示，已经被清除：")
             for i in range(cantHair):
@@ -2570,7 +2577,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
                 canFace.add(face)
             else:
                 cantFace.add(face)
-        if cantFace > 0 && self.c.getPlayer().isAdmin():
+        if cantFace > 0 and self.c.getPlayer().isAdmin():
             sb = ""
             sb.append(cantFace).append("个脸型客户端不支持显示，已经被清除：")
             for i in range(cantFace):

@@ -46,7 +46,7 @@ class MapleMount:
 
 
     def saveMount(self, charid: int) -> None:
-        if !self.changed:
+        if not self.changed:
             return
         con = DatabaseConnection.getConnection()
         ps = con.prepareStatement("UPDATE mountdata set `Level` = ?, `Exp` = ?, `Fatigue` = ? WHERE characterid = ?")
@@ -94,12 +94,12 @@ class MapleMount:
         self.changed = True
         self.fatigue += 1
         self.fatigue = 0
-        if self.fatigue > 100 && self.owner.get() is not None:
+        if self.fatigue > 100 and self.owner.get() is not None:
             self.owner.get().cancelEffectFromBuffStat(MapleBuffStat.骑兽技能)
         self.update()
 
     def canTire(self, now: int) -> bool:
-        return self.lastFatigue > 0 && self.lastFatigue + 30000 < now
+        return self.lastFatigue > 0 and self.lastFatigue + 30000 < now
 
     def startSchedule(self) -> None:
         self.lastFatigue = int(time.time() * 1000)
@@ -109,11 +109,11 @@ class MapleMount:
 
     def increaseExp(self) -> None:
         e = None
-        if self.level >= 1 && self.level <= 7:
+        if self.level >= 1 and self.level <= 7:
             e = Randomizer.nextInt(10) + 15
-        elif self.level >= 8 && self.level <= 15:
+        elif self.level >= 8 and self.level <= 15:
             e = Randomizer.nextInt(13) + 7
-        elif self.level >= 16 && self.level <= 24:
+        elif self.level >= 16 and self.level <= 24:
             e = Randomizer.nextInt(23) + 9
         else:
             e = Randomizer.nextInt(28) + 12

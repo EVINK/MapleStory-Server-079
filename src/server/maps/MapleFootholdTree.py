@@ -50,7 +50,7 @@ class MapleFootholdTree:
                 self.maxDropX = f.getX2()
             if f.getX2() < self.minDropX:
                 self.minDropX = f.getX2()
-        if self.depth == MapleFootholdTree.maxDepth || (f.getX1() >= self.p1.x && f.getX2() <= self.p2.x && f.getY1() >= self.p1.y && f.getY2() <= self.p2.y):
+        if self.depth == MapleFootholdTree.maxDepth or (f.getX1() >= self.p1.x and f.getX2() <= self.p2.x and f.getY1() >= self.p1.y and f.getY2() <= self.p2.y):
             self.footholds.add(f)
         else:
             if self.nw is None:
@@ -58,11 +58,11 @@ class MapleFootholdTree:
                 self.ne = MapleFootholdTree(Point(self.center.x, self.p1.y), Point(self.p2.x, self.center.y), self.depth + 1)
                 self.sw = MapleFootholdTree(Point(self.p1.x, self.center.y), Point(self.center.x, self.p2.y), self.depth + 1)
                 self.se = MapleFootholdTree(self.center, self.p2, self.depth + 1)
-            if f.getX2() <= self.center.x && f.getY2() <= self.center.y:
+            if f.getX2() <= self.center.x and f.getY2() <= self.center.y:
                 self.nw.insert(f)
-            elif f.getX1() > self.center.x && f.getY2() <= self.center.y:
+            elif f.getX1() > self.center.x and f.getY2() <= self.center.y:
                 self.ne.insert(f)
-            elif f.getX2() <= self.center.x && f.getY1() > self.center.y:
+            elif f.getX2() <= self.center.x and f.getY1() > self.center.y:
                 self.sw.insert(f)
             else:
                 self.se.insert(f)
@@ -73,11 +73,11 @@ class MapleFootholdTree:
     def getRelevants_p_list(self, p: Any, list: list) -> list:
         list.addAll(self.footholds)
         if self.nw is not None:
-            if p.x <= self.center.x && p.y <= self.center.y:
+            if p.x <= self.center.x and p.y <= self.center.y:
                 self.nw.getRelevants(p, list)
-            elif p.x > self.center.x && p.y <= self.center.y:
+            elif p.x > self.center.x and p.y <= self.center.y:
                 self.ne.getRelevants(p, list)
-            elif p.x <= self.center.x && p.y > self.center.y:
+            elif p.x <= self.center.x and p.y > self.center.y:
                 self.sw.getRelevants(p, list)
             else:
                 self.se.getRelevants(p, list)
@@ -85,22 +85,22 @@ class MapleFootholdTree:
 
     def findWallR(self, p1: Any, p2: Any) -> Any:
         for f in self.footholds:
-            if f.isWall() && f.getX1() >= p1.x && f.getX1() <= p2.x && f.getY1() >= p1.y && f.getY2() <= p1.y:
+            if f.isWall() and f.getX1() >= p1.x and f.getX1() <= p2.x and f.getY1() >= p1.y and f.getY2() <= p1.y:
                 return f
         if self.nw is not None:
-            if p1.x <= self.center.x && p1.y <= self.center.y:
+            if p1.x <= self.center.x and p1.y <= self.center.y:
                 ret = self.nw.findWallR(p1, p2)
                 if ret is not None:
                     return ret
-            if (p1.x > self.center.x || p2.x > self.center.x) && p1.y <= self.center.y:
+            if (p1.x > self.center.x or p2.x > self.center.x) and p1.y <= self.center.y:
                 ret = self.ne.findWallR(p1, p2)
                 if ret is not None:
                     return ret
-            if p1.x <= self.center.x && p1.y > self.center.y:
+            if p1.x <= self.center.x and p1.y > self.center.y:
                 ret = self.sw.findWallR(p1, p2)
                 if ret is not None:
                     return ret
-            if (p1.x > self.center.x || p2.x > self.center.x) && p1.y > self.center.y:
+            if (p1.x > self.center.x or p2.x > self.center.x) and p1.y > self.center.y:
                 ret = self.se.findWallR(p1, p2)
                 if ret is not None:
                     return ret
@@ -114,12 +114,12 @@ class MapleFootholdTree:
     def checkRelevantFH(self, fromx: int, fromy: int, tox: int, toy: int) -> bool:
         fhdata = None
         for fh in self.footholds:
-            if fh.getX1() <= fromx && fh.getX2() >= fromx && fh.getY1() <= fromy && fh.getY2() >= fromy:
+            if fh.getX1() <= fromx and fh.getX2() >= fromx and fh.getY1() <= fromy and fh.getY2() >= fromy:
                 fhdata = fh
                 break
         for fh2 in self.footholds:
-            if fh2.getX1() <= tox && fh2.getX2() >= tox && fh2.getY1() <= toy && fh2.getY2() >= toy:
-                if fhdata.getId() != fh2.getId() && fh2.getId() != fhdata.getNext() && fh2.getId() != fhdata.getPrev():
+            if fh2.getX1() <= tox and fh2.getX2() >= tox and fh2.getY1() <= toy and fh2.getY2() >= toy:
+                if fhdata.getId() != fh2.getId() and fh2.getId() != fhdata.getNext() and fh2.getId() != fhdata.getPrev():
                     print("Couldn't find the correct pos for next/prev")
                     return False
                 return True
@@ -129,13 +129,13 @@ class MapleFootholdTree:
         relevants = self.getRelevants(p)
         xMatches = []
         for fh in relevants:
-            if fh.getX1() <= p.x && fh.getX2() >= p.x:
+            if fh.getX1() <= p.x and fh.getX2() >= p.x:
                 if fh.getX1() == fh.getX2():
                     continue
                 xMatches.add(fh)
         Collections.sort(xMatches)
         for fh in xMatches:
-            if !fh.isWall() && fh.getY1() != fh.getY2():
+            if not fh.isWall() and fh.getY1() != fh.getY2():
                 s1 = abs(fh.getY2() - fh.getY1())
                 s2 = abs(fh.getX2() - fh.getX1())
                 s3 = abs(p.x - fh.getX1())
@@ -151,7 +151,7 @@ class MapleFootholdTree:
                     return fh
                 continue
             else:
-                if !fh.isWall() && fh.getY1() >= p.y:
+                if not fh.isWall() and fh.getY1() >= p.y:
                     return fh
                 continue
         return None

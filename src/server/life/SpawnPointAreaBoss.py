@@ -49,7 +49,7 @@ class SpawnPointAreaBoss(Spawns):
         return -1
 
     def shouldSpawn(self) -> bool:
-        return self.mobTime >= 0 && !self.spawned.get() && self.nextPossibleSpawn <= int(time.time() * 1000)
+        return self.mobTime >= 0 and not self.spawned.get() and self.nextPossibleSpawn <= int(time.time() * 1000)
 
     def getPosition(self) -> Any:
         rand = Randomizer.nextInt(3)

@@ -40,10 +40,10 @@ class PetHandler:
 
 
     def PickExceptionList(self, slea: Any, c: Any, chr: Any) -> None:
-        if chr is None || chr.getMap() is None:
+        if chr is None or chr.getMap() is None:
             return
         itemid = slea.readInt()
-        if !chr.haveItem(itemid):
+        if not chr.haveItem(itemid):
             c.getSession().write(MaplePacketCreator.enableActions())
 
     def SpawnPet(self, slea: Any, c: Any, chr: Any) -> None:
@@ -53,10 +53,10 @@ class PetHandler:
     def Pet_AutoPotion(self, slea: Any, c: Any, chr: Any) -> None:
         slea.skip(13)
         slot = slea.readByte()
-        if chr is None || !chr.isAlive() || chr.getMapId() == 749040100 || chr.getMap() is None || chr.hasDisease(MapleDisease.POTION):
+        if chr is None or not chr.isAlive() or chr.getMapId() == 749040100 or chr.getMap() is None or chr.hasDisease(MapleDisease.POTION):
             return
         toUse = chr.getInventory(MapleInventoryType.USE).getItem(slot)
-        if toUse is None || toUse.getQuantity() < 1:
+        if toUse is None or toUse.getQuantity() < 1:
             c.getSession().write(MaplePacketCreator.enableActions())
             return
         time = int(time.time() * 1000)
@@ -64,7 +64,7 @@ class PetHandler:
             chr.dropMessage(5, "你可能不使用这个项目.")
             c.getSession().write(MaplePacketCreator.enableActions())
             return
-        if !FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) || chr.getMapId() == 610030600:
+        if not FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()) or chr.getMapId() == 610030600:
             if MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyTo(chr):
                 MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, 1, False)
                 if chr.getMap().getConsumeItemCoolTime() > 0:
@@ -73,7 +73,7 @@ class PetHandler:
             c.getSession().write(MaplePacketCreator.enableActions())
 
     def PetChat(self, petid: int, command: int, text: str, chr: Any) -> None:
-        if chr is None || chr.getMap() is None || chr.getPetIndex(petid) < 0:
+        if chr is None or chr.getMap() is None or chr.getPetIndex(petid) < 0:
             return
         chr.getMap().broadcastMessage(chr, PetPacket.petChat(chr.getId(), command, text, chr.getPetIndex(petid)), True)
 
@@ -108,7 +108,7 @@ class PetHandler:
         if chr is None:
             return
         for pets in chr.getPets():
-            if pets.getSummoned() && pets.getFullness() < previousFullness:
+            if pets.getSummoned() and pets.getFullness() < previousFullness:
                 previousFullness = pets.getFullness()
                 pet = pets
         if pet is None:
@@ -125,7 +125,7 @@ class PetHandler:
                 newFullness = 100
             pet.setFullness(newFullness)
             index = chr.getPetIndex(pet)
-            if gainCloseness && pet.getCloseness() < 30000:
+            if gainCloseness and pet.getCloseness() < 30000:
                 newCloseness = pet.getCloseness() + 1
                 if newCloseness > 30000:
                     newCloseness = 30000
@@ -153,15 +153,15 @@ class PetHandler:
         petId = slea.readInt()
         slea.skip(8)
         res = MovementParse.parseMovement(slea, 3)
-        if res is not None && chr is not None && res != 0:
+        if res is not None and chr is not None and res != 0:
             slot = chr.getPetIndex(petId)
             if slot == -1:
                 return
             chr.getPet(slot).updatePosition(res)
             chr.getMap().broadcastMessage(chr, PetPacket.movePet(chr.getId(), petId, slot, res), False)
-            if chr.getPlayerShop() is not None || chr.getConversation() > 0 || chr.getTrade() is not None:
+            if chr.getPlayerShop() is not None or chr.getConversation() > 0 or chr.getTrade() is not None:
                 return
-            if chr.getStat().hasVac && (chr.getStat().hasMeso || chr.getStat().hasItem):
+            if chr.getStat().hasVac and (chr.getStat().hasMeso or chr.getStat().hasItem):
                 objects = chr.getMap().getAllItems()
                 for mapitem in objects:
                     lock = mapitem.getLock()
@@ -169,14 +169,14 @@ class PetHandler:
                     try:
                         if mapitem.isPickedUp():
                             continue
-                        if mapitem.getOwner() != chr.getId() && mapitem.isPlayerDrop():
+                        if mapitem.getOwner() != chr.getId() and mapitem.isPlayerDrop():
                             continue
-                        if mapitem.getOwner() != chr.getId() && ((!mapitem.isPlayerDrop() && mapitem.getDropType() == 0) || (mapitem.isPlayerDrop() && chr.getMap().getEverlast())):
+                        if mapitem.getOwner() != chr.getId() and ((not mapitem.isPlayerDrop() and mapitem.getDropType() == 0) or (mapitem.isPlayerDrop() and chr.getMap().getEverlast())):
                             continue
-                        if !mapitem.isPlayerDrop() && mapitem.getDropType() == 1 && mapitem.getOwner() != chr.getId() && (chr.getParty() is None || chr.getParty().getMemberById(mapitem.getOwner()) is None):
+                        if not mapitem.isPlayerDrop() and mapitem.getDropType() == 1 and mapitem.getOwner() != chr.getId() and (chr.getParty() is None or chr.getParty().getMemberById(mapitem.getOwner()) is None):
                             continue
-                        if mapitem.getMeso() > 0 && chr.getStat().hasMeso:
-                            if chr.getParty() is not None && mapitem.getOwner() != chr.getId():
+                        if mapitem.getMeso() > 0 and chr.getStat().hasMeso:
+                            if chr.getParty() is not None and mapitem.getOwner() != chr.getId():
                                 toGive = []
                                 for mem in chr.getParty().getMembers():
                                     m = chr.getMap().getCharacterById(mem.getId())
@@ -188,16 +188,16 @@ class PetHandler:
                                 chr.gainMeso(mapitem.getMeso(), True, True)
                             InventoryHandler.removeItem_Pet(chr, mapitem, slot)
                         else:
-                            if !chr.getStat().hasItem || !MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItem().getItemId()):
+                            if not chr.getStat().hasItem or not MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItem().getItemId()):
                                 continue
                             if InventoryHandler.useItem(chr.getClient(), mapitem.getItemId()):
                                 InventoryHandler.removeItem_Pet(chr, mapitem, slot)
                             else:
-                                if !MapleInventoryManipulator.checkSpace(chr.getClient(), mapitem.getItem().getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()):
+                                if not MapleInventoryManipulator.checkSpace(chr.getClient(), mapitem.getItem().getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()):
                                     continue
-                                if mapitem.getItem().getQuantity() >= 50 && GameConstants.isUpgradeScroll(mapitem.getItem().getItemId()):
+                                if mapitem.getItem().getQuantity() >= 50 and GameConstants.isUpgradeScroll(mapitem.getItem().getItemId()):
                                     chr.getClient().setMonitored(True)
-                                if !MapleInventoryManipulator.addFromDrop(chr.getClient(), mapitem.getItem(), True, mapitem.getDropper() instanceof MapleMonster):
+                                if not MapleInventoryManipulator.addFromDrop(chr.getClient(), mapitem.getItem(), True, mapitem.getDropper() instanceof MapleMonster):
                                     continue
                                 InventoryHandler.removeItem_Pet(chr, mapitem, slot)
                     finally:

@@ -145,7 +145,7 @@ class Forum_Reply:
             elif getReplyById(rid) is not None:
                 Forum_Reply.allReply.remove(getReplyById(rid))
                 isExist = True
-            if !isExist:
+            if not isExist:
                 return isExist
             query = ""
             if isAll:
@@ -154,7 +154,7 @@ class Forum_Reply:
                 query.append("DELETE FROM forum_reply WHERE tid = ? AND rid = ?")
             ps = con.prepareStatement(query)
             ps.setInt(1, tid)
-            if !isAll:
+            if not isAll:
                 ps.setInt(2, rid)
             ps.executeUpdate()
             ps.close()

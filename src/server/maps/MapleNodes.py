@@ -92,7 +92,7 @@ class MapleNodes:
         ret = -1
         for i in mni.edge:
             if self.nodes.get(i) is None:
-                if ret != -1 && self.mapid / 100 == 9211204:
+                if ret != -1 and self.mapid / 100 == 9211204:
                     if self.firstHighest:
                         self.firstHighest = False
                         ret = max(ret, i)
@@ -103,12 +103,12 @@ class MapleNodes:
         return ret
 
     def sortNodes(self) -> None:
-        if self.nodes <= 0 || self.nodeStart < 0:
+        if self.nodes <= 0 or self.nodeStart < 0:
             return
         unsortedNodes = {}
         nodeSize = unsortedNodes
         self.nodes.clear()
-        for (int nextNode = self.getNextNode(unsortedNodes.get(self.nodeStart)); self.nodes != nodeSize && nextNode >= 0; nextNode = self.getNextNode(unsortedNodes.get(nextNode))) {}
+        for (int nextNode = self.getNextNode(unsortedNodes.get(self.nodeStart)); self.nodes != nodeSize and nextNode >= 0; nextNode = self.getNextNode(unsortedNodes.get(nextNode))) {}
 
     def addMapleArea(self, rec: Any) -> None:
         self.areas.add(rec)

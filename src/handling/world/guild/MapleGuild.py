@@ -77,7 +77,7 @@ class MapleGuild:
             ps = con.prepareStatement("SELECT * FROM guilds WHERE guildid = ?")
             ps.setInt(1, guildid)
             rs = ps.executeQuery()
-            if !rs.first():
+            if not rs.first():
                 rs.close()
                 ps.close()
                 self.id = -1
@@ -104,8 +104,8 @@ class MapleGuild:
             ps = con.prepareStatement("SELECT id, name, level, job, guildrank, alliancerank FROM characters WHERE guildid = ? ORDER BY guildrank ASC, name ASC")
             ps.setInt(1, guildid)
             rs = ps.executeQuery()
-            if !rs.first():
-                print("No members in guild " + self.id + ".  Impossible... guild is disbanding")
+            if not rs.first():
+                print("No members in guild " + self.id + ". Impossible... guild is disbanding")
                 rs.close()
                 ps.close()
                 self.proper = False
@@ -117,8 +117,8 @@ class MapleGuild:
                 self.members.add(MapleGuildCharacter(rs.getInt("id"), rs.getShort("level"), rs.getString("name"), (byte)(-1), rs.getInt("job"), rs.getByte("guildrank"), guildid, rs.getByte("alliancerank"), False))
             rs.close()
             ps.close()
-            if !leaderCheck:
-                print("Leader " + self.leader + " isn't in guild " + self.id + ".  Impossible... guild is disbanding.")
+            if not leaderCheck:
+                print("Leader " + self.leader + " isn't in guild " + self.id + ". Impossible... guild is disbanding.")
                 self.proper = False
                 return
             ps = con.prepareStatement("SELECT * FROM bbs_threads WHERE guildid = ? ORDER BY localthreadid DESC")
@@ -152,7 +152,8 @@ class MapleGuild:
             c.getSession().write(MaplePacketCreator.showGuildRanks(npcid, rs))
             ps.close()
             rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def meso(self, c: Any, npcid: int) -> None:
         try:
@@ -162,7 +163,8 @@ class MapleGuild:
             c.getSession().write(MaplePacketCreator.showMesoRanks(npcid, rs))
             ps.close()
             rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def translated_战斗力排行(self, c: Any, npcid: int) -> None:
         try:
@@ -208,7 +210,8 @@ class MapleGuild:
             c.getSession().write(MaplePacketCreator.showLevelRanks(npcid, rs))
             ps.close()
             rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def translated_豆豆排行(self, c: Any, npcid: int) -> None:
         try:
@@ -230,7 +233,8 @@ class MapleGuild:
             c.getSession().write(MaplePacketCreator.showVipRanks(npcid, rs))
             ps.close()
             rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def MapleMSpvpdeaths(self, c: Any, npcid: int) -> None:
         try:
@@ -246,7 +250,7 @@ class MapleGuild:
     def MapleMSpvpkills(self, c: Any, npcid: int) -> None:
         try:
             con = DatabaseConnection.getConnection()
-            ps = con.prepareStatement("SELECT `name`, `pvpkills`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpkills` WHERE gm < 1  DESC LIMIT 100")
+            ps = con.prepareStatement("SELECT `name`, `pvpkills`, `str`, `dex`, `int`, `luk` FROM characters ORDER BY `pvpkills` WHERE gm < 1 DESC LIMIT 100")
             rs = ps.executeQuery()
             c.getSession().write(MaplePacketCreator.MapleMSpvpkills(npcid, rs))
             ps.close()
@@ -262,7 +266,8 @@ class MapleGuild:
             c.getSession().write(MaplePacketCreator.showRQRanks(npcid, rs))
             ps.close()
             rs.close()
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def loadAll(self) -> list:
         ret = []
@@ -355,7 +360,7 @@ class MapleGuild:
     def writeToDB(self, bDisband: bool) -> None:
         try:
             con = DatabaseConnection.getConnection()
-            if !bDisband:
+            if not bDisband:
                 buf = ""
                 for i in range(1, 6):
                     buf.append("rank").append(i).append("title = ?, ")
@@ -396,7 +401,7 @@ class MapleGuild:
                     ps.setInt(7, bb.localthreadID)
                     ps.executeUpdate()
                     rs = ps.getGeneratedKeys()
-                    if !rs.next():
+                    if not rs.next():
                         rs.close()
                     else:
                         pse = con.prepareStatement("INSERT INTO bbs_replies (`threadid`, `postercid`, `timestamp`, `content`, `guildid`) VALUES (?, ?, ?, ?, ?)")
@@ -518,7 +523,7 @@ class MapleGuild:
                     else:
                         setOfflineGuildStatus(0, 5, 5, mgc.getId())
                 else:
-                    if !mgc.isOnline() || mgc.getId() == exceptionId:
+                    if not mgc.isOnline() or mgc.getId() == exceptionId:
                         continue
                     if bcop == BCOp.EMBELMCHANGE:
                         World.Guild.changeEmblem(self.id, mgc.getId(), MapleGuildSummary(this))
@@ -528,13 +533,13 @@ class MapleGuild:
             self.rL.unlock()
 
     def buildNotifications(self) -> None:
-        if !self.bDirty:
+        if not self.bDirty:
             return
         mem = []
         for mgc in self.members:
-            if !mgc.isOnline():
+            if not mgc.isOnline():
                 continue
-            if (mgc.getId( in mem)) || mgc.getGuildId() != self.id:
+            if (mgc.getId( in mem)) or mgc.getGuildId() != self.id:
                 self.members.remove(mgc)
             else:
                 mem.add(mgc.getId())
@@ -543,7 +548,7 @@ class MapleGuild:
     def setOnline(self, cid: int, online: bool, channel: int) -> None:
         bBroadcast = True
         for mgc in self.members:
-            if mgc.getGuildId() == self.id && mgc.getId() == cid:
+            if mgc.getGuildId() == self.id and mgc.getId() == cid:
                 if mgc.isOnline() == online:
                     bBroadcast = False
                 mgc.setOnline(online)
@@ -593,7 +598,7 @@ class MapleGuild:
                 return 0
             i = self.members - 1
             while i >= 0:
-                if self.members.get(i).getGuildRank() < 5 || self.members.get(i).getName().compareTo(mgc.getName()) < 0:
+                if self.members.get(i).getGuildRank() < 5 or self.members.get(i).getName().compareTo(mgc.getName()) < 0:
                     self.members.add(i + 1, mgc)
                     self.bDirty = True
                     break
@@ -625,7 +630,7 @@ class MapleGuild:
         self.wL.lock()
         try:
             for mgc in self.members:
-                if mgc.getId() == cid && initiator.getGuildRank() < mgc.getGuildRank():
+                if mgc.getId() == cid and initiator.getGuildRank() < mgc.getGuildRank():
                     self.broadcast(MaplePacketCreator.memberLeft(mgc, True))
                     self.bDirty = True
                     self.gainGP(-50)
@@ -738,7 +743,7 @@ class MapleGuild:
         return None
 
     def increaseCapacity(self) -> bool:
-        if self.capacity >= 100 || self.capacity + 5 > 100:
+        if self.capacity >= 100 or self.capacity + 5 > 100:
             return False
         self.capacity += 5
         self.broadcast(MaplePacketCreator.guildCapacityChange(self.id, self.capacity))
@@ -799,12 +804,12 @@ class MapleGuild:
 
     def editBBSThread(self, localthreadid: int, title: str, text: str, icon: int, posterID: int, guildRank: int) -> None:
         thread = self.bbs.get(localthreadid)
-        if thread is not None && (thread.ownerID == posterID || guildRank <= 2):
+        if thread is not None and (thread.ownerID == posterID or guildRank <= 2):
             self.bbs.put(localthreadid, MapleBBSThread(localthreadid, title, text, int(time.time() * 1000), self.id, thread.ownerID, icon))
 
     def deleteBBSThread(self, localthreadid: int, posterID: int, guildRank: int) -> None:
         thread = self.bbs.get(localthreadid)
-        if thread is not None && (thread.ownerID == posterID || guildRank <= 2):
+        if thread is not None and (thread.ownerID == posterID or guildRank <= 2):
             self.bbs.remove(localthreadid)
 
     def addBBSReply(self, localthreadid: int, text: str, posterID: int) -> None:
@@ -816,7 +821,7 @@ class MapleGuild:
         thread = self.bbs.get(localthreadid)
         if thread is not None:
             final MapleBBSThread.MapleBBSReply reply = thread.replies.get(replyid)
-            if reply is not None && (reply.ownerID == posterID || guildRank <= 2):
+            if reply is not None and (reply.ownerID == posterID or guildRank <= 2):
                 thread.replies.remove(replyid)
 
     def getPrefix(self, chr: Any) -> int:

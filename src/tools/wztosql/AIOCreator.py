@@ -27,7 +27,7 @@ class AIOCreator:
         provider = MapleItemInformationProvider.getInstance()
         for iteminfo in provider.getAllItems2():
             id = iteminfo.getLeft()
-            if (id / 10000 >= 100 && id / 10000 <= 153) || id / 10000 == 190 || id / 10000 == 191:
+            if (id / 10000 >= 100 and id / 10000 <= 153) or id / 10000 == 190 or id / 10000 == 191:
                 Lists.ALL.add(id)
         createSQLQuery()
 
@@ -38,7 +38,7 @@ class AIOCreator:
             addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('" + id * 1000 + "', '9900002');")
         addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('190000', '9900002');")
         addLine(sb, "INSERT INTO `shops` (`shopid`, `npcid`) VALUES ('191000', '9900002');")
-        if !Lists.ALL == 0:
+        if not Lists.ALL == 0:
             for id2 in Lists.ALL:
                 addLine(sb, "INSERT INTO `shopitems` (`shopid`, `itemid`, `price`, `position`, `reqitem`, `reqitemq`, `rank`, `buyable`, `category`, `minLevel`, `expiration`) VALUES ('" + id2 / 10000 * 1000 + "', '" + id2 + "', '" + getPrice(id2) + "', '0', '0', '0', '0', '0', '0', '0', '0');")
         print("Success")

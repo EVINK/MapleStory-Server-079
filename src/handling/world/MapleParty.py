@@ -88,13 +88,13 @@ class MapleParty:
     def givePartyBuff(self, buffId: int, applyfrom: int, applyto: int) -> None:
         if (buffId in self.partyBuffs):
             if self.partyBuffs.get(buffId).__contains__(applyfrom):
-                if !self.partyBuffs.get(buffId).keys() == 0:
+                if not self.partyBuffs.get(buffId).keys() == 0:
                     for from in self.partyBuffs.get(buffId).keys():
                         if self.partyBuffs.get(buffId).get(from).__contains__(applyto):
                             self.partyBuffs.get(buffId).get(from).remove(self.partyBuffs.get(buffId).get(from).find(applyto))
                         if self.partyBuffs.get(buffId).get(from) == 0:
                             self.partyBuffs.get(buffId).remove(from)
-                if self.partyBuffs is not None && !self.partyBuffs.get(buffId).get(applyfrom).__contains__(applyto):
+                if self.partyBuffs is not None and not self.partyBuffs.get(buffId).get(applyfrom).__contains__(applyto):
                     self.partyBuffs.get(buffId).get(applyfrom).add(applyto)
             else:
                 applytos = []

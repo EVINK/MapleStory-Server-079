@@ -35,7 +35,7 @@ class MapleQuestStatus:
         self.quest = quest
         self.setStatus(status)
         self.completionTime = int(time.time() * 1000)
-        if status == 1 && !quest.getRelevantMobs() == 0:
+        if status == 1 and not quest.getRelevantMobs() == 0:
             self.registerMobs()
 
     # Static initializer
@@ -72,7 +72,7 @@ class MapleQuestStatus:
         return 0
 
     def mobKilled(self, id: int, skillID: int) -> bool:
-        if self.quest is not None && self.quest.getSkillID() > 0 && self.quest.getSkillID() != skillID:
+        if self.quest is not None and self.quest.getSkillID() > 0 and self.quest.getSkillID() != skillID:
             return False
         mob = self.killedMobs.get(id)
         if mob is None:
@@ -103,7 +103,7 @@ class MapleQuestStatus:
         self.killedMobs.put(id, count)
 
     def hasMobKills(self) -> bool:
-        return self.killedMobs is not None && self.killedMobs > 0
+        return self.killedMobs is not None and self.killedMobs > 0
 
     def getMobKills(self, id: int) -> int:
         mob = self.killedMobs.get(id)

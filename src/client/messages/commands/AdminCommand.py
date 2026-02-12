@@ -109,7 +109,7 @@ class AdminCommand:
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
-        c.getPlayer().setDebugMessage(!c.getPlayer().getDebugMessage())
+        c.getPlayer().setDebugMessage(not c.getPlayer().getDebugMessage())
         return 1
 
     @staticmethod
@@ -139,13 +139,13 @@ class AdminCommand:
             try:
                 if rs.next():
                     Systemban = (rs.getInt("banned") == 2)
-                    ACbanned = (rs.getInt("banned") == 1 || rs.getInt("banned") == 2)
+                    ACbanned = (rs.getInt("banned") == 1 or rs.getInt("banned") == 2)
                     reason = rs.getString("banreason")
                     mac = rs.getString("macs")
                     ip = rs.getString("Sessionip")
             ps.close()
         except SQLException as ex:
-        if reason is None || reason == "":
+        if reason is None or reason == "":
             reason = "?"
         if c.isBannedIP(ip):
             IPbanned = True
@@ -157,31 +157,32 @@ class AdminCommand:
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!BanStatus <產嘿> - 琩產琌砆玛の")
+        return "".append("not BanStatus <產嘿> - 琩產琌砆玛の")
 
     def execute(self, c: Any, splitted: list) -> int:
+        def _task_1():
+            if ShutdownTime.self.minutesLeft == 0:
+                ShutdownServer.getInstance().run()
+                ShutdownTime.t.start()
+                ShutdownTime.ts.cancel(False)
+                return
+            message = ""
+            message.append("[冒险岛公告] 服务器将在 ")
+            message.append(ShutdownTime.self.minutesLeft)
+            message.append("分钟后关闭. 请尽速关闭精灵商人 并下线.")
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, message).encode("utf-8"))
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage(message).encode("utf-8"))
+            for cs in ChannelServer.getAllInstances():
+                cs.setServerMessage("服务器将于 " + ShutdownTime.self.minutesLeft + " 分钟后开启")
+            ShutdownTime.self.minutesLeft -= 1
+
         if len(splitted) < 2:
             return 0
         self.minutesLeft = int(splitted[1])
         c.getPlayer().dropMessage(6, "服务器将在 " + self.minutesLeft + "分钟后关闭. 请尽速关闭精灵商人 并下线.")
-        if ShutdownTime.ts is None && (ShutdownTime.t is None || !ShutdownTime.t.isAlive()):
+        if ShutdownTime.ts is None and (ShutdownTime.t is None or not ShutdownTime.t.isAlive()):
             ShutdownTime.t = Thread(ShutdownServer.getInstance())
-            ShutdownTime.ts = Timer.EventTimer.getInstance().register(Runnable()
-                public void run()
-                    if ShutdownTime.self.minutesLeft == 0:
-                        ShutdownServer.getInstance().run()
-                        ShutdownTime.t.start()
-                        ShutdownTime.ts.cancel(False)
-                        return
-                    message = ""
-                    message.append("[冒险岛公告] 服务器将在 ")
-                    message.append(ShutdownTime.self.minutesLeft)
-                    message.append("分钟后关闭. 请尽速关闭精灵商人 并下线.")
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, message).encode("utf-8"))
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage(message).encode("utf-8"))
-                    for cs in ChannelServer.getAllInstances():
-                        cs.setServerMessage("服务器将于 " + ShutdownTime.self.minutesLeft + " 分钟后开启")
-                    ShutdownTime.self.minutesLeft -= 1
+            ShutdownTime.ts = Timer.EventTimer.getInstance().register(_task_1, 60000)
         else:
             c.getPlayer().dropMessage(6, "服务器关闭时间修改为 " + self.minutesLeft + "分钟后，请稍等服务器关闭")
         return 1
@@ -492,7 +493,7 @@ class Debug(CommandExecute):
 
 
     def execute(self, c: Any, splitted: list) -> int:
-        c.getPlayer().setDebugMessage(!c.getPlayer().getDebugMessage())
+        c.getPlayer().setDebugMessage(not c.getPlayer().getDebugMessage())
         return 1
 
 
@@ -530,13 +531,13 @@ class BanStatus(CommandExecute):
             try:
                 if rs.next():
                     Systemban = (rs.getInt("banned") == 2)
-                    ACbanned = (rs.getInt("banned") == 1 || rs.getInt("banned") == 2)
+                    ACbanned = (rs.getInt("banned") == 1 or rs.getInt("banned") == 2)
                     reason = rs.getString("banreason")
                     mac = rs.getString("macs")
                     ip = rs.getString("Sessionip")
             ps.close()
         except SQLException as ex:
-        if reason is None || reason == "":
+        if reason is None or reason == "":
             reason = "?"
         if c.isBannedIP(ip):
             IPbanned = True
@@ -548,7 +549,7 @@ class BanStatus(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!BanStatus <產嘿> - 琩產琌砆玛の")
+        return "".append("not BanStatus <產嘿> - 琩產琌砆玛の")
 
 
 # Inner class from Java (originally nested)
@@ -606,14 +607,14 @@ class Shutdown(CommandExecute):
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
         c.getPlayer().dropMessage(6, "关闭服务器...")
-        if Shutdown.t is None || !Shutdown.t.isAlive():
+        if Shutdown.t is None or not Shutdown.t.isAlive():
             (Shutdown.t = Thread(ShutdownServer.getInstance())).start()
         else:
             c.getPlayer().dropMessage(6, "已在执行中...")
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!shutdown - 关闭服务器")
+        return "".append("not shutdown - 关闭服务器")
 
 
 # Inner class from Java (originally nested)
@@ -633,28 +634,29 @@ class ShutdownTime(CommandExecute):
 
 
     def execute(self, c: Any, splitted: list) -> int:
+        def _task_1():
+            if ShutdownTime.self.minutesLeft == 0:
+                ShutdownServer.getInstance().run()
+                ShutdownTime.t.start()
+                ShutdownTime.ts.cancel(False)
+                return
+            message = ""
+            message.append("[冒险岛公告] 服务器将在 ")
+            message.append(ShutdownTime.self.minutesLeft)
+            message.append("分钟后关闭. 请尽速关闭精灵商人 并下线.")
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, message).encode("utf-8"))
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage(message).encode("utf-8"))
+            for cs in ChannelServer.getAllInstances():
+                cs.setServerMessage("服务器将于 " + ShutdownTime.self.minutesLeft + " 分钟后开启")
+            ShutdownTime.self.minutesLeft -= 1
+
         if len(splitted) < 2:
             return 0
         self.minutesLeft = int(splitted[1])
         c.getPlayer().dropMessage(6, "服务器将在 " + self.minutesLeft + "分钟后关闭. 请尽速关闭精灵商人 并下线.")
-        if ShutdownTime.ts is None && (ShutdownTime.t is None || !ShutdownTime.t.isAlive()):
+        if ShutdownTime.ts is None and (ShutdownTime.t is None or not ShutdownTime.t.isAlive()):
             ShutdownTime.t = Thread(ShutdownServer.getInstance())
-            ShutdownTime.ts = Timer.EventTimer.getInstance().register(Runnable()
-                public void run()
-                    if ShutdownTime.self.minutesLeft == 0:
-                        ShutdownServer.getInstance().run()
-                        ShutdownTime.t.start()
-                        ShutdownTime.ts.cancel(False)
-                        return
-                    message = ""
-                    message.append("[冒险岛公告] 服务器将在 ")
-                    message.append(ShutdownTime.self.minutesLeft)
-                    message.append("分钟后关闭. 请尽速关闭精灵商人 并下线.")
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, message).encode("utf-8"))
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage(message).encode("utf-8"))
-                    for cs in ChannelServer.getAllInstances():
-                        cs.setServerMessage("服务器将于 " + ShutdownTime.self.minutesLeft + " 分钟后开启")
-                    ShutdownTime.self.minutesLeft -= 1
+            ShutdownTime.ts = Timer.EventTimer.getInstance().register(_task_1, 60000)
         else:
             c.getPlayer().dropMessage(6, "服务器关闭时间修改为 " + self.minutesLeft + "分钟后，请稍等服务器关闭")
         return 1
@@ -676,7 +678,7 @@ class ShutdownTime(CommandExecute):
         ShutdownTime.self.minutesLeft -= 1
 
     def getMessage(self) -> str:
-        return "".append("!shutdowntime <秒数> - 关闭服务器")
+        return "".append("not shutdowntime <秒数> - 关闭服务器")
 
 
 # Inner class from Java (originally nested)
@@ -702,7 +704,7 @@ class SaveAll(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!saveall - 保存所有角色資料")
+        return "".append("not saveall - 保存所有角色資料")
 
 
 # Inner class from Java (originally nested)
@@ -721,7 +723,7 @@ class LowHP(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!lowhp - 血魔归ㄧ")
+        return "".append("not lowhp - 血魔归ㄧ")
 
 
 # Inner class from Java (originally nested)
@@ -741,7 +743,7 @@ class Heal(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!heal - 补满血魔")
+        return "".append("not heal - 补满血魔")
 
 
 # Inner class from Java (originally nested)
@@ -769,7 +771,7 @@ class UnbanIP(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!unbanip <玩家名称> - 解锁玩家")
+        return "".append("not unbanip <玩家名称> - 解锁玩家")
 
 
 # Inner class from Java (originally nested)
@@ -799,7 +801,7 @@ class TempBan(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!tempban <玩家名称> - 暂时锁定玩家")
+        return "".append("not tempban <玩家名称> - 暂时锁定玩家")
 
 
 # Inner class from Java (originally nested)
@@ -830,7 +832,7 @@ class Kill(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!kill <玩家名称1> <玩家名称2> ...  - 杀掉玩家")
+        return "".append("not kill <玩家名称1> <玩家名称2> ... - 杀掉玩家")
 
 
 # Inner class from Java (originally nested)
@@ -853,7 +855,7 @@ class Skill(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!skill <技能ID> [技能等級] [技能最大等級] ...  - 学习技能")
+        return "".append("not skill <技能ID> [技能等級] [技能最大等級] ... - 学习技能")
 
 
 # Inner class from Java (originally nested)
@@ -867,7 +869,7 @@ class Fame(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         player = c.getPlayer()
         if len(splitted) < 2:
-            c.getPlayer().dropMessage("!fame <角色名称> <名声> ...  - 名声")
+            c.getPlayer().dropMessage("not fame <角色名称> <名声> ... - 名声")
             return 0
         name = splitted[1]
         ch = World.Find.findChannel(name)
@@ -880,7 +882,7 @@ class Fame(CommandExecute):
         except NumberFormatException as nfe:
             c.getPlayer().dropMessage(6, "不合法的数字")
             return 0
-        if victim is not None && player.allowedToTarget(victim):
+        if victim is not None and player.allowedToTarget(victim):
             victim.addFame(fame)
             victim.updateSingleStat(MapleStat.FAME, victim.getFame())
         else:
@@ -888,7 +890,7 @@ class Fame(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fame <角色名称> <名声> ...  - 名声")
+        return "".append("not fame <角色名称> <名声> ... - 名声")
 
 
 # Inner class from Java (originally nested)
@@ -904,7 +906,7 @@ class autoreg(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!autoreg  - 自动注册开关")
+        return "".append("not autoreg - 自动注册开关")
 
 
 # Inner class from Java (originally nested)
@@ -927,7 +929,7 @@ class HealMap(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "!healmap  - 治愈地图上所有的人"
+        return "not healmap - 治愈地图上所有的人"
 
 
 # Inner class from Java (originally nested)
@@ -949,7 +951,7 @@ class GodMode(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!godmode  - 无敌开关")
+        return "".append("not godmode - 无敌开关")
 
 
 # Inner class from Java (originally nested)
@@ -977,7 +979,7 @@ class GiveSkill(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!giveskill <玩家名称> <技能ID> [技能等級] [技能最大等級] - 给予技能")
+        return "".append("not giveskill <玩家名称> <技能ID> [技能等級] [技能最大等級] - 给予技能")
 
 
 # Inner class from Java (originally nested)
@@ -994,7 +996,7 @@ class SP(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!sp [数量] - 增加SP")
+        return "".append("not sp [数量] - 增加SP")
 
 
 # Inner class from Java (originally nested)
@@ -1011,7 +1013,7 @@ class AP(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!ap [数量] - 增加AP")
+        return "".append("not ap [数量] - 增加AP")
 
 
 # Inner class from Java (originally nested)
@@ -1036,7 +1038,7 @@ class Shop(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!shop - 开启商店")
+        return "".append("not shop - 开启商店")
 
 
 # Inner class from Java (originally nested)
@@ -1052,6 +1054,16 @@ class 关键时刻(CommandExecute):
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
+        def _task_1():
+            for cserv in ChannelServer.getAllInstances():
+                for mch in cserv.getPlayerStorage().getAllCharacters():
+                    if not c.getPlayer().isGM():
+                        NPCScriptManager.getInstance().start(mch.getClient(), 9010010)
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "关键时刻已经开始了!not not ").encode("utf-8"))
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage("关键时刻已经开始了!not not ").encode("utf-8"))
+            关键时刻.ts.cancel(False)
+            关键时刻.ts = None
+
         if len(splitted) < 1:
             return 0
         if 关键时刻.ts is not None:
@@ -1063,16 +1075,7 @@ class 关键时刻(CommandExecute):
         except NumberFormatException as ex:
             return 0
         if minutesLeft > 0:
-            关键时刻.ts = Timer.EventTimer.getInstance().schedule(Runnable()
-                public void run()
-                    for cserv in ChannelServer.getAllInstances():
-                        for mch in cserv.getPlayerStorage().getAllCharacters():
-                            if !c.getPlayer().isGM():
-                                NPCScriptManager.getInstance().start(mch.getClient(), 9010010)
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "关键时刻已经开始了!!!").encode("utf-8"))
-                    World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage("关键时刻已经开始了!!!").encode("utf-8"))
-                    关键时刻.ts.cancel(False)
-                    关键时刻.ts = None
+            关键时刻.ts = Timer.EventTimer.getInstance().schedule(_task_1, minutesLeft * 60 * 1000)
             c.getPlayer().dropMessage(0, "关键时刻预定已完成")
         else:
             c.getPlayer().dropMessage(0, "设定的时间必须 > 0。")
@@ -1081,15 +1084,15 @@ class 关键时刻(CommandExecute):
     def run(self) -> None:
         for cserv in ChannelServer.getAllInstances():
             for mch in cserv.getPlayerStorage().getAllCharacters():
-                if !c.getPlayer().isGM():
+                if not c.getPlayer().isGM():
                     NPCScriptManager.getInstance().start(mch.getClient(), 9010010)
-        World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "关键时刻已经开始了!!!").encode("utf-8"))
-        World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage("关键时刻已经开始了!!!").encode("utf-8"))
+        World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "关键时刻已经开始了!not not ").encode("utf-8"))
+        World.Broadcast.broadcastMessage(MaplePacketCreator.serverMessage("关键时刻已经开始了!not not ").encode("utf-8"))
         关键时刻.ts.cancel(False)
         关键时刻.ts = None
 
     def getMessage(self) -> str:
-        return "".append("!关键时刻 <时间:分钟> - 关键时刻")
+        return "".append("not 关键时刻 <时间:分钟> - 关键时刻")
 
 
 # Inner class from Java (originally nested)
@@ -1117,7 +1120,7 @@ class GainMaplePoint(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!gainmaplepoint <數量> <玩家> - 取得枫叶点数")
+        return "".append("not gainmaplepoint <數量> <玩家> - 取得枫叶点数")
 
 
 # Inner class from Java (originally nested)
@@ -1143,7 +1146,7 @@ class GainPoint(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!gainpoint <數量> <玩家> - 取得Point")
+        return "".append("not gainpoint <數量> <玩家> - 取得Point")
 
 
 # Inner class from Java (originally nested)
@@ -1179,7 +1182,7 @@ class LevelUp(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!levelup - 等級上升")
+        return "".append("not levelup - 等級上升")
 
 
 # Inner class from Java (originally nested)
@@ -1193,7 +1196,7 @@ class UnlockInv(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         arrayMap = ArrayMap()
         add = False
-        if len(splitted) < 2 || splitted[1] == ("全部"):
+        if len(splitted) < 2 or splitted[1] == ("全部"):
             for type in MapleInventoryType.values():
                 for item in c.getPlayer().getInventory(type):
                     if ItemFlag.LOCK.check(item.getFlag()):
@@ -1306,7 +1309,7 @@ class UnlockInv(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "!unlockinv <全部/已装备道具/武器/消耗/装饰/其他/特殊> - 解锁道具"
+        return "not unlockinv <全部/已装备道具/武器/消耗/装饰/其他/特殊> - 解锁道具"
 
 
 # Inner class from Java (originally nested)
@@ -1330,7 +1333,7 @@ class Item(CommandExecute):
             pet = MaplePet.createPet(itemId, MapleInventoryIdentifier.getInstance())
             if pet is not None:
                 MapleInventoryManipulator.addById(c, itemId, 1, c.getPlayer().getName(), pet, 90, 0)
-        elif !ii.itemExists(itemId):
+        elif not ii.itemExists(itemId):
             c.getPlayer().dropMessage(5, itemId + " - 物品不存在")
         else:
             flag = 0
@@ -1347,7 +1350,7 @@ class Item(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!item <道具ID> - 取得道具")
+        return "".append("not item <道具ID> - 取得道具")
 
 
 # Inner class from Java (originally nested)
@@ -1369,7 +1372,7 @@ class serverMsg(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!servermsg 讯息 - 更改上方黃色公告")
+        return "".append("not servermsg 讯息 - 更改上方黃色公告")
 
 
 # Inner class from Java (originally nested)
@@ -1401,9 +1404,9 @@ class Letter(CommandExecute):
             chr = splitString[i]
             if chr == ' ':
                 chars.add(Integer.valueOf(-1))
-            elif chr >= 'A' && chr <= 'Z':
+            elif chr >= 'A' and chr <= 'Z':
                 chars.add(Integer.valueOf(chr))
-            elif chr >= '0' && chr <= '9':
+            elif chr >= '0' and chr <= '9':
                 chars.add(Integer.valueOf(chr + 200))
         w = 32
         dStart = (c.getPlayer().getPosition()).x - splitString / 2 * w
@@ -1417,7 +1420,7 @@ class Letter(CommandExecute):
                 c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), item, Point(dStart, (c.getPlayer().getPosition()).y), False, False)
                 dStart += w
                 continue
-            if integer >= 200 && integer <= 300:
+            if integer >= 200 and integer <= 300:
                 val = nstart + integer - 48 - 200
                 client.inventory.Item item = new client.inventory.Item(val, 0, 1)
                 c.getPlayer().getMap().spawnItemDrop(c.getPlayer(), c.getPlayer(), item, Point(dStart, (c.getPlayer().getPosition()).y), False, False)
@@ -1425,7 +1428,7 @@ class Letter(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return " !letter <color (green/red)> <word> - 送信"
+        return " not letter <color (green/red)> <word> - 送信"
 
 
 # Inner class from Java (originally nested)
@@ -1440,7 +1443,7 @@ class Marry(CommandExecute):
         if len(splitted) < 3:
         return 0
         itemId = int(splitted[2])
-        if !GameConstants.isEffectRing(itemId):
+        if not GameConstants.isEffectRing(itemId):
             c.getPlayer().dropMessage(6, "错误的戒指ID.")
         else:
             name = splitted[1]
@@ -1462,14 +1465,14 @@ class Marry(CommandExecute):
                             return 1
                         eq.setUniqueId(ringID[i])
                         MapleInventoryManipulator.addbyItem(chrz[i].getClient(), eq.copy())
-                        chrz[i].dropMessage(6, "成功与  " + chrz[(i == 0) ? 1 : 0].getName() + " 结婚")
+                        chrz[i].dropMessage(6, "成功与 " + chrz[(i == 0) ? 1 : 0].getName() + " 结婚")
                     MapleRing.addToDB(itemId, c.getPlayer(), fff.getName(), fff.getId(), ringID)
                 except SQLException as sQLException:
                     sQLException.printStackTrace()
         return 1
 
     def getMessage(self) -> str:
-        return "!marry <玩家名称> <戒指代码> - 结婚"
+        return "not marry <玩家名称> <戒指代码> - 结婚"
 
 
 # Inner class from Java (originally nested)
@@ -1481,7 +1484,7 @@ class ItemCheck(CommandExecute):
 
 
     def execute(self, c: Any, splitted: list) -> int:
-        if len(splitted) < 3 || splitted[1] is None || splitted[1] == ("") || splitted[2] is None || splitted[2] == (""):
+        if len(splitted) < 3 or splitted[1] is None or splitted[1] == ("") or splitted[2] is None or splitted[2] == (""):
             return 0
         item = int(splitted[2])
         name = splitted[1]
@@ -1498,7 +1501,7 @@ class ItemCheck(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!itemcheck <playername> <itemid> - 检查物品")
+        return "".append("not itemcheck <playername> <itemid> - 检查物品")
 
 
 # Inner class from Java (originally nested)
@@ -1517,7 +1520,7 @@ class MobVac(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!mobvac - 全图吸怪")
+        return "".append("not mobvac - 全图吸怪")
 
 
 # Inner class from Java (originally nested)
@@ -1535,7 +1538,7 @@ class Song(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!song - 播放音乐")
+        return "".append("not song - 播放音乐")
 
 
 # Inner class from Java (originally nested)
@@ -1553,7 +1556,7 @@ class 开启自动活动(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!开启自动活动 - 开启自动活动")
+        return "".append("not 开启自动活动 - 开启自动活动")
 
 
 # Inner class from Java (originally nested)
@@ -1572,20 +1575,21 @@ class 活动开始(CommandExecute):
 
 
     def execute(self, c: Any, splitted: list) -> int:
+        def _task_1():
+            if 活动开始.self.min == 0:
+                MapleEvent.onStartEvent(c.getPlayer())
+                活动开始.ts.cancel(False)
+                return
+            活动开始.self.min -= 1
+
         if c.getChannelServer().getEvent() == c.getPlayer().getMapId():
             MapleEvent.setEvent(c.getChannelServer(), False)
-            c.getPlayer().dropMessage(5, "已经关闭活动入口，可以使用 !活动开始 來启动。")
+            c.getPlayer().dropMessage(5, "已经关闭活动入口，可以使用 not 活动开始 來启动。")
             World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "頻道:" + c.getChannel() + "活动目前已经关闭大门口。").encode("utf-8"))
             c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.getClock(60))
-            活动开始.ts = Timer.EventTimer.getInstance().register(Runnable()
-                public void run()
-                    if 活动开始.self.min == 0:
-                        MapleEvent.onStartEvent(c.getPlayer())
-                        活动开始.ts.cancel(False)
-                        return
-                    活动开始.self.min -= 1
+            活动开始.ts = Timer.EventTimer.getInstance().register(_task_1, 60000)
             return 1
-        c.getPlayer().dropMessage(5, "您必须先使用 !选择活动 设定當前頻道的活动，并在当前頻道活动地图里使用。")
+        c.getPlayer().dropMessage(5, "您必须先使用 not 选择活动 设定當前頻道的活动，并在当前頻道活动地图里使用。")
         return 1
 
     def run(self) -> None:
@@ -1596,7 +1600,7 @@ class 活动开始(CommandExecute):
         活动开始.self.min -= 1
 
     def getMessage(self) -> str:
-        return "".append("!活动开始 - 活动开始")
+        return "".append("not 活动开始 - 活动开始")
 
 
 # Inner class from Java (originally nested)
@@ -1612,25 +1616,26 @@ class 关闭活动入口(CommandExecute):
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
+        def _task_1():
+            关闭活动入口.tt = True
+
         if c.getChannelServer().getEvent() == c.getPlayer().getMapId():
             MapleEvent.setEvent(c.getChannelServer(), False)
-            c.getPlayer().dropMessage(5, "已经关闭活动入口，可以使用 !活动开始 來启动。")
+            c.getPlayer().dropMessage(5, "已经关闭活动入口，可以使用 not 活动开始 來启动。")
             World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(6, "頻道:" + c.getChannel() + "活动目前已经关闭大门口。").encode("utf-8"))
             c.getPlayer().getMap().broadcastMessage(MaplePacketCreator.getClock(60))
-            Timer.EventTimer.getInstance().register(Runnable()
-                public void run()
-                    关闭活动入口.tt = True
+            Timer.EventTimer.getInstance().register(_task_1, 60000)
             if 关闭活动入口.tt:
                 MapleEvent.onStartEvent(c.getPlayer())
             return 1
-        c.getPlayer().dropMessage(5, "您必须先使用 !选择活动 设定当前頻道的活动，并在当前頻道活动地图里使用。")
+        c.getPlayer().dropMessage(5, "您必须先使用 not 选择活动 设定当前頻道的活动，并在当前頻道活动地图里使用。")
         return 1
 
     def run(self) -> None:
         关闭活动入口.tt = True
 
     def getMessage(self) -> str:
-        return "".append("!关闭活动入口 -关闭活动入口")
+        return "".append("not 关闭活动入口 -关闭活动入口")
 
 
 # Inner class from Java (originally nested)
@@ -1654,7 +1659,7 @@ class 选择活动(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!选择活动 - 选择活动")
+        return "".append("not 选择活动 - 选择活动")
 
 
 # Inner class from Java (originally nested)
@@ -1683,7 +1688,7 @@ class RemoveItem(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!removeitem <角色名称> <物品ID> - 移除玩家身上的道具")
+        return "".append("not removeitem <角色名称> <物品ID> - 移除玩家身上的道具")
 
 
 # Inner class from Java (originally nested)
@@ -1696,7 +1701,7 @@ class KillMap(CommandExecute):
 
     def execute(self, c: Any, splitted: list) -> int:
         for map in c.getPlayer().getMap().getCharactersThreadsafe():
-            if map is not None && !map.isGM():
+            if map is not None and not map.isGM():
                 map.getStat().setHp(0)
                 map.getStat().setMp(0)
                 map.updateSingleStat(MapleStat.HP, 0)
@@ -1704,7 +1709,7 @@ class KillMap(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!killmap - 杀掉所有玩家")
+        return "".append("not killmap - 杀掉所有玩家")
 
 
 # Inner class from Java (originally nested)
@@ -1726,7 +1731,7 @@ class SpeakMega(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!speakmega [玩家名称] <讯息> - 对某个玩家的頻道进行广播")
+        return "".append("not speakmega [玩家名称] <讯息> - 对某个玩家的頻道进行广播")
 
 
 # Inner class from Java (originally nested)
@@ -1751,7 +1756,7 @@ class Speak(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!speak <玩家名称> <讯息> - 对某个玩家发信息")
+        return "".append("not speak <玩家名称> <讯息> - 对某个玩家发信息")
 
 
 # Inner class from Java (originally nested)
@@ -1769,7 +1774,7 @@ class SpeakMap(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!speakmap <讯息> - 对目前地图进行发送信息")
+        return "".append("not speakmap <讯息> - 对目前地图进行发送信息")
 
 
 # Inner class from Java (originally nested)
@@ -1787,7 +1792,7 @@ class SpeakChannel(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!speakchannel <讯息> - 对目前频道进行发送信息")
+        return "".append("not speakchannel <讯息> - 对目前频道进行发送信息")
 
 
 # Inner class from Java (originally nested)
@@ -1806,7 +1811,7 @@ class SpeakWorld(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!speakchannel <讯息> - 对目前服务器进行传送信息")
+        return "".append("not speakchannel <讯息> - 对目前服务器进行传送信息")
 
 
 # Inner class from Java (originally nested)
@@ -1875,7 +1880,7 @@ class Disease(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "!disease <SEAL/DARKNESS/WEAKEN/STUN/CURSE/POISON/SLOW/SEDUCE/REVERSE/ZOMBIFY/POTION/SHADOW/BLIND/FREEZE> [角色名称] <状态等级> - 让人得到特殊状态"
+        return "not disease <SEAL/DARKNESS/WEAKEN/STUN/CURSE/POISON/SLOW/SEDUCE/REVERSE/ZOMBIFY/POTION/SHADOW/BLIND/FREEZE> [角色名称] <状态等级> - 让人得到特殊状态"
 
 
 # Inner class from Java (originally nested)
@@ -1895,7 +1900,7 @@ class SendAllNote(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!sendallnote <文字> 传送Note給目前頻道的所有人")
+        return "".append("not sendallnote <文字> 传送Note給目前頻道的所有人")
 
 
 # Inner class from Java (originally nested)
@@ -1925,7 +1930,7 @@ class giveMeso(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!gainmeso <名字> <数量> - 給玩家金币")
+        return "".append("not gainmeso <名字> <数量> - 給玩家金币")
 
 
 # Inner class from Java (originally nested)
@@ -1941,7 +1946,7 @@ class CloneMe(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!cloneme - 产生克隆体")
+        return "".append("not cloneme - 产生克隆体")
 
 
 # Inner class from Java (originally nested)
@@ -1958,7 +1963,7 @@ class DisposeClones(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!disposeclones - 摧毁克隆体")
+        return "".append("not disposeclones - 摧毁克隆体")
 
 
 # Inner class from Java (originally nested)
@@ -1985,7 +1990,7 @@ class Monitor(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!monitor <玩家> - 记录玩家资讯")
+        return "".append("not monitor <玩家> - 记录玩家资讯")
 
 
 # Inner class from Java (originally nested)
@@ -2003,7 +2008,7 @@ class PermWeather(CommandExecute):
             c.getPlayer().dropMessage(5, "地图天气已被禁用.")
         else:
             weather = CommandProcessorUtil.getOptionalIntArg(splitted, 1, 5120000)
-            if !MapleItemInformationProvider.getInstance().itemExists(weather) || weather / 10000 != 512:
+            if not MapleItemInformationProvider.getInstance().itemExists(weather) or weather / 10000 != 512:
                 c.getPlayer().dropMessage(5, "无效的ID.")
             else:
                 c.getPlayer().getMap().setPermanentWeather(weather)
@@ -2012,7 +2017,7 @@ class PermWeather(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!permweather - 设定天气")
+        return "".append("not permweather - 设定天气")
 
 
 # Inner class from Java (originally nested)
@@ -2042,60 +2047,60 @@ class CharInfo(CommandExecute):
             builder.append(MapleClient.getLogMessage(other, ""))
             builder.append(" 在 ").append(other.getPosition().x)
             builder.append(" /").append(other.getPosition().y)
-            builder.append(" || 血量 : ")
+            builder.append(" or 血量 : ")
             builder.append(other.getStat().getHp())
             builder.append(" /")
             builder.append(other.getStat().getCurrentMaxHp())
-            builder.append(" || 魔量 : ")
+            builder.append(" or 魔量 : ")
             builder.append(other.getStat().getMp())
             builder.append(" /")
             builder.append(other.getStat().getCurrentMaxMp())
-            builder.append(" || 物理攻擊力 : ")
+            builder.append(" or 物理攻擊力 : ")
             builder.append(other.getStat().getTotalWatk())
-            builder.append(" || 魔法攻擊力 : ")
+            builder.append(" or 魔法攻擊力 : ")
             builder.append(other.getStat().getTotalMagic())
-            builder.append(" || 最高攻擊 : ")
+            builder.append(" or 最高攻擊 : ")
             builder.append(other.getStat().getCurrentMaxBaseDamage())
-            builder.append(" || 攻擊%數 : ")
+            builder.append(" or 攻擊%數 : ")
             builder.append(other.getStat().dam_r)
-            builder.append(" || BOSS攻擊%數 : ")
+            builder.append(" or BOSS攻擊%數 : ")
             builder.append(other.getStat().bossdam_r)
-            builder.append(" || 力量 : ")
+            builder.append(" or 力量 : ")
             builder.append(other.getStat().getStr())
-            builder.append(" || 敏捷 : ")
+            builder.append(" or 敏捷 : ")
             builder.append(other.getStat().getDex())
-            builder.append(" || 智力 : ")
+            builder.append(" or 智力 : ")
             builder.append(other.getStat().getInt())
-            builder.append(" || 幸運 : ")
+            builder.append(" or 幸運 : ")
             builder.append(other.getStat().getLuk())
-            builder.append(" || 全部力量 : ")
+            builder.append(" or 全部力量 : ")
             builder.append(other.getStat().getTotalStr())
-            builder.append(" || 全部敏捷 : ")
+            builder.append(" or 全部敏捷 : ")
             builder.append(other.getStat().getTotalDex())
-            builder.append(" || 全部智力 : ")
+            builder.append(" or 全部智力 : ")
             builder.append(other.getStat().getTotalInt())
-            builder.append(" || 全部幸運 : ")
+            builder.append(" or 全部幸運 : ")
             builder.append(other.getStat().getTotalLuk())
-            builder.append(" || 經驗值 : ")
+            builder.append(" or 經驗值 : ")
             builder.append(other.getExp())
-            builder.append(" || 組隊狀態 : ")
+            builder.append(" or 組隊狀態 : ")
             builder.append(other.getParty() is not None)
-            builder.append(" || 交易狀態: ")
+            builder.append(" or 交易狀態: ")
             builder.append(other.getTrade() is not None)
-            builder.append(" || Latency: ")
+            builder.append(" or Latency: ")
             builder.append(other.getClient().getLatency())
-            builder.append(" || 最後PING: ")
+            builder.append(" or 最後PING: ")
             builder.append(other.getClient().getLastPing())
-            builder.append(" || 最後PONG: ")
+            builder.append(" or 最後PONG: ")
             builder.append(other.getClient().getLastPong())
-            builder.append(" || IP: ")
+            builder.append(" or IP: ")
             builder.append(other.getClient().getSessionIPAddress())
             other.getClient().DebugMessage(builder)
             c.getPlayer().dropMessage(6, builder)
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!charinfo <角色名称> - 查看角色状态")
+        return "".append("not charinfo <角色名称> - 查看角色状态")
 
 
 # Inner class from Java (originally nested)
@@ -2120,7 +2125,7 @@ class whoishere(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!whoishere - 查看目前地图上的玩家")
+        return "".append("not whoishere - 查看目前地图上的玩家")
 
 
 # Inner class from Java (originally nested)
@@ -2140,7 +2145,7 @@ class Cheaters(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!cheaters - 查看作弊角色")
+        return "".append("not cheaters - 查看作弊角色")
 
 
 # Inner class from Java (originally nested)
@@ -2156,7 +2161,7 @@ class Connected(CommandExecute):
         conStr = ""
         first = True
         for i in connected.keys():
-            if !first:
+            if not first:
                 conStr.append(", ")
             else:
                 first = False
@@ -2172,7 +2177,7 @@ class Connected(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!connected - 查看已连线的客戶端")
+        return "".append("not connected - 查看已连线的客戶端")
 
 
 # Inner class from Java (originally nested)
@@ -2190,7 +2195,7 @@ class ResetQuest(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!resetquest <任务ID> - 重置任务")
+        return "".append("not resetquest <任务ID> - 重置任务")
 
 
 # Inner class from Java (originally nested)
@@ -2208,7 +2213,7 @@ class StartQuest(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!startquest <任务ID> - 开始任务")
+        return "".append("not startquest <任务ID> - 开始任务")
 
 
 # Inner class from Java (originally nested)
@@ -2226,7 +2231,7 @@ class CompleteQuest(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!completequest <任务ID> - 完成任务")
+        return "".append("not completequest <任务ID> - 完成任务")
 
 
 # Inner class from Java (originally nested)
@@ -2244,7 +2249,7 @@ class FStartQuest(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fstartquest <任务ID> - 强制开始任务")
+        return "".append("not fstartquest <任务ID> - 强制开始任务")
 
 
 # Inner class from Java (originally nested)
@@ -2262,7 +2267,7 @@ class FCompleteQuest(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fcompletequest <任务ID> - 强制完成任务")
+        return "".append("not fcompletequest <任务ID> - 强制完成任务")
 
 
 # Inner class from Java (originally nested)
@@ -2278,7 +2283,7 @@ class FStartOther(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fstartother - 不知道啥")
+        return "".append("not fstartother - 不知道啥")
 
 
 # Inner class from Java (originally nested)
@@ -2294,7 +2299,7 @@ class FCompleteOther(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fcompleteother - 不知道啥")
+        return "".append("not fcompleteother - 不知道啥")
 
 
 # Inner class from Java (originally nested)
@@ -2311,7 +2316,7 @@ class NearestPortal(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!nearestportal - 不知道啥")
+        return "".append("not nearestportal - 不知道啥")
 
 
 # Inner class from Java (originally nested)
@@ -2327,7 +2332,7 @@ class SpawnDebug(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!spawndebug - debug怪物出生")
+        return "".append("not spawndebug - debug怪物出生")
 
 
 # Inner class from Java (originally nested)
@@ -2351,7 +2356,7 @@ class Threads(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!threads - 查看Threads资讯")
+        return "".append("not threads - 查看Threads资讯")
 
 
 # Inner class from Java (originally nested)
@@ -2374,7 +2379,7 @@ class ShowTrace(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!showtrace - show trace info")
+        return "".append("not showtrace - show trace info")
 
 
 # Inner class from Java (originally nested)
@@ -2393,7 +2398,7 @@ class FakeRelog(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!fakerelog - 假登出再登入")
+        return "".append("not fakerelog - 假登出再登入")
 
 
 # Inner class from Java (originally nested)
@@ -2409,13 +2414,13 @@ class ToggleOffense(CommandExecute):
             return 0
         try:
             co = CheatingOffense.valueOf(splitted[1])
-            co.setEnabled(!co.isEnabled())
+            co.setEnabled(not co.isEnabled())
         except IllegalArgumentException as iae:
             c.getPlayer().dropMessage(6, "Offense " + splitted[1] + " not found")
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!toggleoffense <Offense> - 开启或关闭CheatOffense")
+        return "".append("not toggleoffense <Offense> - 开启或关闭CheatOffense")
 
 
 # Inner class from Java (originally nested)
@@ -2431,7 +2436,7 @@ class toggleDrop(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!toggledrop - 开启或关闭掉落")
+        return "".append("not toggledrop - 开启或关闭掉落")
 
 
 # Inner class from Java (originally nested)
@@ -2448,7 +2453,7 @@ class ToggleMegaphone(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!togglemegaphone - 开启或者关闭广播")
+        return "".append("not togglemegaphone - 开启或者关闭广播")
 
 
 # Inner class from Java (originally nested)
@@ -2474,7 +2479,7 @@ class SpawnReactor(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!spawnreactor - 设立Reactor")
+        return "".append("not spawnreactor - 设立Reactor")
 
 
 # Inner class from Java (originally nested)
@@ -2492,7 +2497,7 @@ class HReactor(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!hitreactor - 触碰Reactor")
+        return "".append("not hitreactor - 触碰Reactor")
 
 
 # Inner class from Java (originally nested)
@@ -2517,7 +2522,7 @@ class DestroyReactor(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!drstroyreactor - 移除Reactor")
+        return "".append("not drstroyreactor - 移除Reactor")
 
 
 # Inner class from Java (originally nested)
@@ -2533,7 +2538,7 @@ class ResetReactors(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!resetreactors - 重置此地图所有的Reactor")
+        return "".append("not resetreactors - 重置此地图所有的Reactor")
 
 
 # Inner class from Java (originally nested)
@@ -2551,7 +2556,7 @@ class SetReactor(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!hitreactor - 触碰Reactor")
+        return "".append("not hitreactor - 触碰Reactor")
 
 
 # Inner class from Java (originally nested)
@@ -2578,7 +2583,7 @@ class RemoveDrops(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!removedrops - 移除地上的物品")
+        return "".append("not removedrops - 移除地上的物品")
 
 
 # Inner class from Java (originally nested)
@@ -2592,7 +2597,7 @@ class DropRate(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) > 1:
             rate = int(splitted[1])
-            if len(splitted) > 2 && splitted[2].lower() == "all".lower():
+            if len(splitted) > 2 and splitted[2].lower() == "all".lower():
                 for cserv in ChannelServer.getAllInstances():
                     cserv.setDropRate(rate)
             else:
@@ -2602,7 +2607,7 @@ class DropRate(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!droprate <倍率> - 更改掉落倍率")
+        return "".append("not droprate <倍率> - 更改掉落倍率")
 
 
 # Inner class from Java (originally nested)
@@ -2616,7 +2621,7 @@ class MesoRate(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         if len(splitted) > 1:
             rate = int(splitted[1])
-            if len(splitted) > 2 && splitted[2].lower() == "all".lower():
+            if len(splitted) > 2 and splitted[2].lower() == "all".lower():
                 for cserv in ChannelServer.getAllInstances():
                     cserv.setMesoRate(rate)
             else:
@@ -2626,7 +2631,7 @@ class MesoRate(CommandExecute):
         return 0
 
     def getMessage(self) -> str:
-        return "".append("!mesorate <倍率> - 更改金钱倍率")
+        return "".append("not mesorate <倍率> - 更改金钱倍率")
 
 
 # Inner class from Java (originally nested)
@@ -2680,12 +2685,12 @@ class DCAll(CommandExecute):
             # case 2:
                 show = "世界"
                 break
-        msg = "[GM 密语] GM " + c.getPlayer().getName() + "  DC 了 " + show + "玩家"
+        msg = "[GM 密语] GM " + c.getPlayer().getName() + " DC 了 " + show + "玩家"
         World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, msg).encode("utf-8"))
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!dcall [m|c|w] - 所有玩家断线")
+        return "".append("not dcall [m|c|w] - 所有玩家断线")
 
 
 # Inner class from Java (originally nested)
@@ -2759,23 +2764,23 @@ class GoTo(CommandExecute):
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
         if len(splitted) < 2:
-            c.getPlayer().dropMessage(6, "Syntax: !goto <mapname>")
+            c.getPlayer().dropMessage(6, "Syntax: not goto <mapname>")
         elif (splitted[1] in GoTo.gotomaps):
             target = c.getChannelServer().getMapFactory().getMap(GoTo.gotomaps.get(splitted[1]))
             targetPortal = target.getPortal(0)
             c.getPlayer().changeMap(target, targetPortal)
         elif splitted[1] == ("locations"):
-            c.getPlayer().dropMessage(6, "Use !goto <location>. Locations are as follows:")
+            c.getPlayer().dropMessage(6, "Use not goto <location>. Locations are as follows:")
             sb = ""
             for s in GoTo.gotomaps.keys():
                 sb.append(s).append(", ")
             c.getPlayer().dropMessage(6, sb[0:sb.__len__(] - 2))
         else:
-            c.getPlayer().dropMessage(6, "Invalid command 指令規則 - Use !goto <location>. For a list of locations, use !goto locations.")
+            c.getPlayer().dropMessage(6, "Invalid command 指令規則 - Use not goto <location>. For a list of locations, use not goto locations.")
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!goto <名称> - 到某个地图")
+        return "".append("not goto <名称> - 到某个地图")
 
 
 # Inner class from Java (originally nested)
@@ -2810,7 +2815,7 @@ class KillAll(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!killall [range] [mapid] - 杀掉所有怪物")
+        return "".append("not killall [range] [mapid] - 杀掉所有怪物")
 
 
 # Inner class from Java (originally nested)
@@ -2826,7 +2831,7 @@ class ResetMobs(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!resetmobs - 重置地图上所有怪物")
+        return "".append("not resetmobs - 重置地图上所有怪物")
 
 
 # Inner class from Java (originally nested)
@@ -2849,7 +2854,7 @@ class KillMonster(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!killmonster <mobid> - 杀掉地图上某个怪物")
+        return "".append("not killmonster <mobid> - 杀掉地图上某个怪物")
 
 
 # Inner class from Java (originally nested)
@@ -2871,7 +2876,7 @@ class KillMonsterByOID(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!killmonsterbyoid <moboid> - 杀掉地图上某个怪物")
+        return "".append("not killmonsterbyoid <moboid> - 杀掉地图上某个怪物")
 
 
 # Inner class from Java (originally nested)
@@ -2893,7 +2898,7 @@ class HitMonsterByOID(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!hitmonsterbyoid <moboid> <damage> - 碰撞地图上某個怪物")
+        return "".append("not hitmonsterbyoid <moboid> <damage> - 碰撞地图上某個怪物")
 
 
 # Inner class from Java (originally nested)
@@ -2910,7 +2915,7 @@ class NPC(CommandExecute):
             npcId = int(splitted[1])
         except NumberFormatException as ex:
         npc = MapleLifeFactory.getNPC(npcId)
-        if npc is not None && !npc.getName() == ("MISSINGNO"):
+        if npc is not None and not npc.getName() == ("MISSINGNO"):
             npc.setPosition(c.getPlayer().getPosition())
             npc.setCy(c.getPlayer().getPosition().y)
             npc.setRx0(c.getPlayer().getPosition().x + 50)
@@ -2924,7 +2929,7 @@ class NPC(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!npc <npcid> - 呼叫出NPC")
+        return "".append("not npc <npcid> - 呼叫出NPC")
 
 
 # Inner class from Java (originally nested)
@@ -2940,7 +2945,7 @@ class RemoveNPCs(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!removenpcs - 刪除所有NPC")
+        return "".append("not removenpcs - 刪除所有NPC")
 
 
 # Inner class from Java (originally nested)
@@ -2958,7 +2963,7 @@ class LookNPCs(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!looknpcs - 查看所有NPC")
+        return "".append("not looknpcs - 查看所有NPC")
 
 
 # Inner class from Java (originally nested)
@@ -2976,7 +2981,7 @@ class LookReactors(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!lookreactors - 查看所有反应堆")
+        return "".append("not lookreactors - 查看所有反应堆")
 
 
 # Inner class from Java (originally nested)
@@ -2993,7 +2998,7 @@ class LookPortals(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!反应堆 - 查看所有反应堆")
+        return "".append("not 反应堆 - 查看所有反应堆")
 
 
 # Inner class from Java (originally nested)
@@ -3020,7 +3025,7 @@ class MakePNPC(CommandExecute):
             else:
                 npcId = int(splitted[2])
                 npc_c = MapleLifeFactory.getNPC(npcId)
-                if npc_c is None || npc_c.getName() == ("MISSINGNO"):
+                if npc_c is None or npc_c.getName() == ("MISSINGNO"):
                     c.getPlayer().dropMessage(6, "NPC不存在")
                     return 1
                 npc = PlayerNPC(chhr, npcId, c.getPlayer().getMap(), c.getPlayer())
@@ -3031,7 +3036,7 @@ class MakePNPC(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!玩家npc <playername> <npcid> - 创造玩家NPC")
+        return "".append("not 玩家npc <playername> <npcid> - 创造玩家NPC")
 
 
 # Inner class from Java (originally nested)
@@ -3058,7 +3063,7 @@ class MakeOfflineP(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!离线npc <charname> <npcid> - 创造离线PNPC")
+        return "".append("not 离线npc <charname> <npcid> - 创造离线PNPC")
 
 
 # Inner class from Java (originally nested)
@@ -3077,13 +3082,13 @@ class DestroyPNPC(CommandExecute):
                 (npc).destroy(True)
                 c.getPlayer().dropMessage(6, "Done")
             else:
-                c.getPlayer().dropMessage(6, "!destroypnpc [objectid]")
+                c.getPlayer().dropMessage(6, "not destroypnpc [objectid]")
         except NumberFormatException as e:
             c.getPlayer().dropMessage(6, "NPC failed... : " + e.getMessage())
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!destroypnpc [objectid] - 刪除PNPC")
+        return "".append("not destroypnpc [objectid] - 刪除PNPC")
 
 
 # Inner class from Java (originally nested)
@@ -3100,7 +3105,7 @@ class MyPos(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!mypos - 我的位置")
+        return "".append("not mypos - 我的位置")
 
 
 # Inner class from Java (originally nested)
@@ -3117,7 +3122,7 @@ class ReloadDrops(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!重新载入掉宝 - 重新載入掉宝")
+        return "".append("not 重新载入掉宝 - 重新載入掉宝")
 
 
 # Inner class from Java (originally nested)
@@ -3133,7 +3138,7 @@ class ReloadPortals(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!reloadportals - 重新载入进入点")
+        return "".append("not reloadportals - 重新载入进入点")
 
 
 # Inner class from Java (originally nested)
@@ -3149,7 +3154,7 @@ class ReloadShops(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!重新载入商店 - 重新载入商店")
+        return "".append("not 重新载入商店 - 重新载入商店")
 
 
 # Inner class from Java (originally nested)
@@ -3179,7 +3184,7 @@ class ReloadQuests(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!重新载入任务 - 重新载入任务")
+        return "".append("not 重新载入任务 - 重新载入任务")
 
 
 # Inner class from Java (originally nested)
@@ -3193,7 +3198,7 @@ class 召唤永久的怪物(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         npcId = int(splitted[1])
         npc = MapleLifeFactory.getNPC(npcId)
-        if npc is not None && !npc.getName() == ("MISSINGNO"):
+        if npc is not None and not npc.getName() == ("MISSINGNO"):
             xpos = c.getPlayer().getPosition().x
             ypos = c.getPlayer().getPosition().y
             fh = c.getPlayer().getMap().getFootholds().findBelow(c.getPlayer().getPosition()).getId()
@@ -3230,7 +3235,7 @@ class 召唤永久的怪物(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!永久npc - 建立永久NPC")
+        return "".append("not 永久npc - 建立永久NPC")
 
 
 # Inner class from Java (originally nested)
@@ -3286,7 +3291,7 @@ class Spawn(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!spawn <怪物ID> <hp|exp|php||pexp = ?> - 召唤怪物")
+        return "".append("not spawn <怪物ID> <hp|exp|php or pexp = ?> - 召唤怪物")
 
 
 # Inner class from Java (originally nested)
@@ -3304,7 +3309,7 @@ class Clock(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!clock <time> 时钟")
+        return "".append("not clock <time> 时钟")
 
 
 # Inner class from Java (originally nested)
@@ -3326,7 +3331,7 @@ class WarpPlayersTo(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!WarpPlayersTo <maipid> 把所有玩家传送到某个地图")
+        return "".append("not WarpPlayersTo <maipid> 把所有玩家传送到某个地图")
 
 
 # Inner class from Java (originally nested)
@@ -3345,7 +3350,7 @@ class LOLCastle(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!lolcastle level (level = 1-5) - 不知道是啥")
+        return "".append("not lolcastle level (level = 1-5) - 不知道是啥")
 
 
 # Inner class from Java (originally nested)
@@ -3379,7 +3384,7 @@ class Map(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!map <mapid|charname> [portal] - 传送到某地图/人")
+        return "".append("not map <mapid|charname> [portal] - 传送到某地图/人")
 
 
 # Inner class from Java (originally nested)
@@ -3404,7 +3409,7 @@ class StartProfiling(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!startprofiling 开始记录JVM资讯")
+        return "".append("not startprofiling 开始记录JVM资讯")
 
 
 # Inner class from Java (originally nested)
@@ -3435,7 +3440,7 @@ class StopProfiling(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!stopprofiling <filename> - 取消记录JVM资讯并保存到档案")
+        return "".append("not stopprofiling <filename> - 取消记录JVM资讯并保存到档案")
 
 
 # Inner class from Java (originally nested)
@@ -3474,7 +3479,7 @@ class ReloadMap(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!reloadmap <maipid> - 重置某个地图")
+        return "".append("not reloadmap <maipid> - 重置某个地图")
 
 
 # Inner class from Java (originally nested)
@@ -3490,7 +3495,7 @@ class Respawn(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!respawn - 重新载入地图")
+        return "".append("not respawn - 重新载入地图")
 
 
 # Inner class from Java (originally nested)
@@ -3506,7 +3511,7 @@ class ResetMap(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!resetmap - 重置这个地图")
+        return "".append("not resetmap - 重置这个地图")
 
 
 # Inner class from Java (originally nested)
@@ -3534,7 +3539,7 @@ class Reloadall(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!Reloadall - 重置全服务器")
+        return "".append("not Reloadall - 重置全服务器")
 
 
 # Inner class from Java (originally nested)
@@ -3548,7 +3553,7 @@ class PNPC(CommandExecute):
     def execute(self, c: Any, splitted: list) -> int:
         npcId = int(splitted[1])
         npc = MapleLifeFactory.getNPC(npcId)
-        if npc is not None && !npc.getName() == ("MISSINGNO"):
+        if npc is not None and not npc.getName() == ("MISSINGNO"):
             xpos = c.getPlayer().getPosition().x
             ypos = c.getPlayer().getPosition().y
             fh = c.getPlayer().getMap().getFootholds().findBelow(c.getPlayer().getPosition()).getId()
@@ -3585,7 +3590,7 @@ class PNPC(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!永久npc - 建立永久NPC")
+        return "".append("not 永久npc - 建立永久NPC")
 
 
 # Inner class from Java (originally nested)
@@ -3654,7 +3659,7 @@ class copyInv(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!copyinv 玩家名称 装备栏位(0 = 装备中 1=装备栏 2=消耗栏 3=其他栏 4=装饰栏 5=点数栏)(预设装备栏) - 复制玩家道具")
+        return "".append("not copyinv 玩家名称 装备栏位(0 = 装备中 1=装备栏 2=消耗栏 3=其他栏 4=装饰栏 5=点数栏)(预设装备栏) - 复制玩家道具")
 
 
 # Inner class from Java (originally nested)
@@ -3694,7 +3699,7 @@ class RemoveItemOff(CommandExecute):
             return 0
 
     def getMessage(self) -> str:
-        return "".append("!removeitem <物品ID> <角色名稱> - 移除玩家身上的道具")
+        return "".append("not removeitem <物品ID> <角色名稱> - 移除玩家身上的道具")
 
 
 # Inner class from Java (originally nested)
@@ -3742,7 +3747,7 @@ class CashEveryone(CommandExecute):
                     type = 2
                     break
                 # default:
-                    c.getPlayer().dropMessage(6, "用法: !给所有人点卷 [点卷类型1-2] [点卷数量][1是点卷.2是抵用卷]")
+                    c.getPlayer().dropMessage(6, "用法: not 给所有人点卷 [点卷类型1-2] [点卷数量][1是点卷.2是抵用卷]")
                     return 0
             if quantity > 10000:
                 quantity = 10000
@@ -3757,7 +3762,7 @@ class CashEveryone(CommandExecute):
                     mch2.startMapEffect("管理员发放" + quantity + show + "点卷给在线的所有玩家！祝您的开心玩的快乐", 5121009)
             c.getPlayer().dropMessage(6, "命令使用成功，当前共有: " + ret + " 个玩家获得: " + quantity + " 点的" + ((type == 1) ? "点券 " : " 抵用券 ") + " 总计: " + ret * quantity)
         else:
-            c.getPlayer().dropMessage(6, "用法: !给所有人点卷 [点卷类型1-2] [点卷数量][1是点卷.2是抵用卷]")
+            c.getPlayer().dropMessage(6, "用法: not 给所有人点卷 [点卷类型1-2] [点卷数量][1是点卷.2是抵用卷]")
         return 1
 
 
@@ -3840,9 +3845,9 @@ class setRate(CommandExecute):
                 rate = splitted[1]
                 World.scheduleRateDelay(rate, time)
             else:
-                mc.dropMessage("使用方法: !倍率设置 <exp经验|drop爆率|meso金币|bossboss爆率|pet> <类> <秒> <分> <时>")
+                mc.dropMessage("使用方法: not 倍率设置 <exp经验|drop爆率|meso金币|bossboss爆率|pet> <类> <秒> <分> <时>")
         else:
-            mc.dropMessage("使用方法: !倍率设置 <exp经验|drop爆率|meso金币|bossboss爆率|pet> <类> <秒> <分> <时>")
+            mc.dropMessage("使用方法: not 倍率设置 <exp经验|drop爆率|meso金币|bossboss爆率|pet> <类> <秒> <分> <时>")
         return 1
 
 
@@ -3864,7 +3869,7 @@ class WarpAllHere(CommandExecute):
         return 1
 
     def getMessage(self) -> str:
-        return "".append("!WarpAllHere 把所有玩家传送到这里")
+        return "".append("not WarpAllHere 把所有玩家传送到这里")
 
 
 # Inner class from Java (originally nested)
@@ -3901,7 +3906,7 @@ class Drop(CommandExecute):
         ii = MapleItemInformationProvider.getInstance()
         if GameConstants.isPet(itemId):
             c.getPlayer().dropMessage(5, "宠物请到购物商城购买.")
-        elif !ii.itemExists(itemId):
+        elif not ii.itemExists(itemId):
             c.getPlayer().dropMessage(5, itemId + " - 物品不存在")
         else:
             toDrop = None
@@ -4052,7 +4057,7 @@ class register(CommandExecute):
             password = splitted[2]
         except Exception as ex3:
             ex3.printStackTrace()
-        if acc is None || password is None:
+        if acc is None or password is None:
             c.getPlayer().dropMessage("账号或密码异常")
             return 0
         ACCexist = AutoRegister.getAccountExists(acc)
@@ -4159,7 +4164,7 @@ class 检测复制(CommandExecute):
         final java.util.Map<Integer, CopyItemInfo> checkItems = {}
         for cserv in ChannelServer.getAllInstances():
             for player in cserv.getPlayerStorage().getAllCharacters():
-                if player is not None && player.getMap() is not None:
+                if player is not None and player.getMap() is not None:
                     equip = player.getInventory(MapleInventoryType.EQUIP)
                     for item in equip.list():
                         if item.getEquipOnlyId() > 0:

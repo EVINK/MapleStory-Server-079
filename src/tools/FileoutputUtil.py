@@ -51,44 +51,48 @@ class FileoutputUtil:
         out = None
         try:
             outputFile = File(file)
-            if outputFile.exists() && outputFile.isFile() && outputFile >= 10240000:
+            if outputFile.exists() and outputFile.isFile() and outputFile >= 10240000:
                 outputFile.renameTo(File(file[0:file.__len__(] - 4) + "_" + FileoutputUtil.sdfT.format(Calendar.getInstance().getTime()) + file[file.__len__(:] - 4, file)))
                 outputFile = File(file)
             if outputFile.getParentFile() is not None:
                 outputFile.getParentFile().mkdirs()
             out = FileOutputStream(file, True)
-            if !(msg in out) || !notExists:
+            if not (msg in out) or not notExists:
                 osw = OutputStreamWriter(out, "UTF-8")
                 osw.write(msg)
                 osw.flush()
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         finally:
             try:
                 if out is not None:
                     out.close()
-            catch (IOException ex2) {}
+            except IOException as ex2:
+                pass
 
     def packetLog(self, file: str, msg: str) -> None:
         notExists = False
         out = None
         try:
             outputFile = File(file)
-            if outputFile.exists() && outputFile.isFile() && outputFile >= 1024000:
+            if outputFile.exists() and outputFile.isFile() and outputFile >= 1024000:
                 outputFile.renameTo(File(file[0:file.__len__(] - 4) + "_" + FileoutputUtil.sdfT.format(Calendar.getInstance().getTime()) + file[file.__len__(:] - 4, file)))
                 outputFile = File(file)
             if outputFile.getParentFile() is not None:
                 outputFile.getParentFile().mkdirs()
             out = FileOutputStream(file, True)
-            if !(msg in out) || !notExists:
+            if not (msg in out) or not notExists:
                 osw = OutputStreamWriter(out, "UTF-8")
                 osw.write(msg)
                 osw.flush()
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         finally:
             try:
                 if out is not None:
                     out.close()
-            catch (IOException ex2) {}
+            except IOException as ex2:
+                pass
 
     def log(self, file: str, msg: str) -> None:
         out = None
@@ -96,12 +100,14 @@ class FileoutputUtil:
             out = FileOutputStream(file, True)
             out.write(("\r\n------------------------ " + CurrentReadable_Time() + " ------------------------\r\n").encode("utf-8"))
             out.write(msg.encode("utf-8"))
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         finally:
             try:
                 if out is not None:
                     out.close()
-            catch (IOException ex2) {}
+            except IOException as ex2:
+                pass
 
     def outputFileError(self, file: str, t: Any) -> None:
         out = None
@@ -109,12 +115,14 @@ class FileoutputUtil:
             out = FileOutputStream(file, True)
             out.write(("\r\n------------------------ " + CurrentReadable_Time() + " ------------------------\r\n").encode("utf-8"))
             out.write(getString(t).encode("utf-8"))
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         finally:
             try:
                 if out is not None:
                     out.close()
-            catch (IOException ex2) {}
+            except IOException as ex2:
+                pass
 
     def CurrentReadable_Date(self) -> str:
         return FileoutputUtil.sdf_.format(Calendar.getInstance().getTime())
@@ -137,7 +145,8 @@ class FileoutputUtil:
                     pw.close()
                 if sw is not None:
                     sw.close()
-            catch (IOException ex) {}
+            except IOException as ex:
+                pass
         return retValue
 
     def NowTime(self) -> str:
@@ -154,10 +163,12 @@ class FileoutputUtil:
             out.write(("[" + CurrentReadable_Time() + "] ").encode("utf-8"))
             out.write(msg.encode("utf-8"))
             out.write("\r\n".encode("utf-8"))
-        catch (IOException ex) {}
+        except IOException as ex:
+            pass
         finally:
             try:
                 if out is not None:
                     out.close()
-            catch (IOException ex2) {}
+            except IOException as ex2:
+                pass
 

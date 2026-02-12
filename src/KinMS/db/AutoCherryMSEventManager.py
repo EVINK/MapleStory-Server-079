@@ -38,11 +38,6 @@ class AutoCherryMSEventManager(Runnable):
             cls._instance = cls()
         return cls._instance
 
-    def getInstance_cserv_mapFactory(self, cserv: Any, mapFactory: Any) -> Any:
-        if AutoCherryMSEventManager.instance is None:
-            AutoCherryMSEventManager.instance = AutoCherryMSEventManager(cserv, mapFactory)
-        return AutoCherryMSEventManager.instance
-
     def getChannelServer(self) -> Any:
         return self.cserv
 

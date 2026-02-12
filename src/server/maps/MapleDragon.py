@@ -22,7 +22,7 @@ class MapleDragon(AbstractAnimatedMapleMapObject):
         self.jobid = None
         self.owner = owner.getId()
         self.jobid = owner.getJob()
-        if self.jobid < 2200 || self.jobid > 2218:
+        if self.jobid < 2200 or self.jobid > 2218:
             raise RuntimeError("Trying to create a dragon for a non-Evan")
         self.setPosition(owner.getPosition())
         self.setStance(4)

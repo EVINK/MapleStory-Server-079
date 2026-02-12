@@ -32,7 +32,7 @@ class XMLWZFile(MapleDataProvider):
     def fillMapleDataEntitys(self, lroot: Any, wzdir: Any) -> None:
         for file in lroot.listFiles():
             fileName = file.getName()
-            if file.isDirectory() && !fileName.endswith(".img"):
+            if file.isDirectory() and not fileName.endswith(".img"):
                 newDir = WZDirectoryEntry(fileName, 0, 0, wzdir)
                 wzdir.addDirectory(newDir)
                 self.fillMapleDataEntitys(file, newDir)

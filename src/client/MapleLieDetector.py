@@ -35,7 +35,22 @@ class MapleLieDetector:
 
 
     def startLieDetector(self, tester: str, isItem: bool, anotherAttempt: bool) -> bool:
-        if !anotherAttempt && (self.chr.isClone() || (isPassed() && isItem) || inProgress() || self.attempt == 3):
+        def _task_1():
+            if not MapleLieDetector.self.isPassed() and MapleLieDetector.self.chr is not None:
+            if MapleLieDetector.self.attempt >= 3:
+                search_chr = MapleLieDetector.self.chr.getMap().getCharacterByName(tester)
+                if search_chr is not None and search_chr.getId() != MapleLieDetector.self.chr.getId():
+                    search_chr.dropMessage(5, MapleLieDetector.self.chr.getName() + " 没用通过测谎仪的检测，恭喜你获得7000的金币.")
+                    search_chr.gainMeso(7000, True)
+                MapleLieDetector.self.end()
+                MapleLieDetector.self.chr.getClient().getSession().write(MaplePacketCreator.LieDetectorResponse(8, 4))
+                map = MapleLieDetector.self.chr.getClient().getChannelServer().getMapFactory().getMap(180000001)
+                MapleLieDetector.self.chr.getQuestNAdd(MapleQuest.getInstance(123456)).setCustomData(str(1800))
+                MapleLieDetector.self.chr.changeMap(map, map.getPortal(0))
+            else:
+                MapleLieDetector.self.startLieDetector(tester, isItem, True)
+
+        if not anotherAttempt and (self.chr.isClone() or (isPassed() and isItem) or inProgress() or self.attempt == 3):
         return False
         captcha = LieDetectorScript.getImageBytes()
         if captcha is None:
@@ -47,28 +62,14 @@ class MapleLieDetector:
         self.type = (byte)(isItem ? 0 : 1)
         self.attempt += 1
         self.chr.getClient().getSession().write(MaplePacketCreator.sendLieDetector(image, self.attempt))
-        Timer.EtcTimer.getInstance().schedule(Runnable()
-            public void run()
-                if !MapleLieDetector.self.isPassed() && MapleLieDetector.self.chr is not None:
-                if MapleLieDetector.self.attempt >= 3:
-                    search_chr = MapleLieDetector.self.chr.getMap().getCharacterByName(tester)
-                    if search_chr is not None && search_chr.getId() != MapleLieDetector.self.chr.getId():
-                        search_chr.dropMessage(5, MapleLieDetector.self.chr.getName() + " 没用通过测谎仪的检测，恭喜你获得7000的金币.")
-                        search_chr.gainMeso(7000, True)
-                    MapleLieDetector.self.end()
-                    MapleLieDetector.self.chr.getClient().getSession().write(MaplePacketCreator.LieDetectorResponse(8, 4))
-                    map = MapleLieDetector.self.chr.getClient().getChannelServer().getMapFactory().getMap(180000001)
-                    MapleLieDetector.self.chr.getQuestNAdd(MapleQuest.getInstance(123456)).setCustomData(str(1800))
-                    MapleLieDetector.self.chr.changeMap(map, map.getPortal(0))
-                else:
-                    MapleLieDetector.self.startLieDetector(tester, isItem, True)
+        Timer.EtcTimer.getInstance().schedule(_task_1,60000)
         return True
 
     def run(self) -> None:
-        if !MapleLieDetector.self.isPassed() && MapleLieDetector.self.chr is not None:
+        if not MapleLieDetector.self.isPassed() and MapleLieDetector.self.chr is not None:
         if MapleLieDetector.self.attempt >= 3:
             search_chr = MapleLieDetector.self.chr.getMap().getCharacterByName(tester)
-            if search_chr is not None && search_chr.getId() != MapleLieDetector.self.chr.getId():
+            if search_chr is not None and search_chr.getId() != MapleLieDetector.self.chr.getId():
                 search_chr.dropMessage(5, MapleLieDetector.self.chr.getName() + " 没用通过测谎仪的检测，恭喜你获得7000的金币.")
                 search_chr.gainMeso(7000, True)
             MapleLieDetector.self.end()

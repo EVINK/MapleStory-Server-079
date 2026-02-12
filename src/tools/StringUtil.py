@@ -77,13 +77,13 @@ class StringUtil:
             sb.append(" day").append((elapsedDays > 1) ? "s" : "").append(mins ? ", " : ".")
             if mins:
                 secs = elapsedMins > 0
-                if !secs:
+                if not secs:
                     sb.append("and ")
                 sb.append(elapsedHours)
                 sb.append(" hour").append((elapsedHours > 1) ? "s" : "").append(secs ? ", " : ".")
                 if secs:
                     millis = elapsedSecs > 0
-                    if !millis:
+                    if not millis:
                         sb.append("and ")
                     sb.append(elapsedMins)
                     sb.append(" minute").append((elapsedMins > 1) ? "s" : "").append(millis ? ", " : ".")
@@ -97,7 +97,7 @@ class StringUtil:
             sb.append(" hour").append((elapsedHours > 1) ? "s" : "").append(mins ? ", " : ".")
             if mins:
                 secs = elapsedSecs > 0
-                if !secs:
+                if not secs:
                     sb.append("and ")
                 sb.append(elapsedMins)
                 sb.append(" minute").append((elapsedMins > 1) ? "s" : "").append(secs ? ", " : ".")

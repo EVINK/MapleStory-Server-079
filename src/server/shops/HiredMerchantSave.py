@@ -49,7 +49,7 @@ class HiredMerchantSave:
 
     def run(self) -> None:
         try:
-            while !self.Queue == 0:
+            while not self.Queue == 0:
                 next = self.Queue.take()
                 Start = int(time.time() * 1000)
                 next.closeShop(True, False)
@@ -109,7 +109,7 @@ class HiredMerchantSaveRunnable(Runnable):
 
     def run(self) -> None:
         try:
-            while !self.Queue == 0:
+            while not self.Queue == 0:
                 next = self.Queue.take()
                 Start = int(time.time() * 1000)
                 next.closeShop(True, False)

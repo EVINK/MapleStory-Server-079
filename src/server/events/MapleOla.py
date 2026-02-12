@@ -41,17 +41,18 @@ class MapleOla(MapleEvent):
             chr.getClient().getSession().write(MaplePacketCreator.getClock((int)(self.getTimeLeft() / 1000)))
 
     def startEvent(self) -> None:
+        def _task_1():
+            for i in range(MapleOla.self.len(mapid)):
+                for chr in MapleOla.self.getMap(i).getCharactersThreadsafe():
+                    MapleOla.self.warpBack(chr)
+                MapleOla.self.unreset()
+
         self.unreset()
         super.reset()
         self.broadcast(MaplePacketCreator.getClock(600))
         self.timeStarted = int(time.time() * 1000)
         final Timer.EventTimer instance = Timer.EventTimer.getInstance()
-        r = Runnable()
-            public void run()
-                for i in range(MapleOla.self.len(mapid)):
-                    for chr in MapleOla.self.getMap(i).getCharactersThreadsafe():
-                        MapleOla.self.warpBack(chr)
-                    MapleOla.self.unreset()
+        r = _task_1
         self.getClass()
         self.olaSchedule = instance.schedule(r, 600000)
         self.broadcast(MaplePacketCreator.serverNotice(0, "门已打开。按箭头↑键进入入口."))

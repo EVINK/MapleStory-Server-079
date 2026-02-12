@@ -48,10 +48,10 @@ class MapleFoothold:
         return 0
 
     def equals(self, o: Any) -> bool:
-        if !(isinstance(o, MapleFoothold)):
+        if not (isinstance(o, MapleFoothold)):
             return False
         oth = o
-        return oth.getY1() == self.p1.y && oth.getY2() == self.p2.y && oth.getX1() == self.p1.x && oth.getX2() == self.p2.x && self.id == oth.getId()
+        return oth.getY1() == self.p1.y and oth.getY2() == self.p2.y and oth.getX1() == self.p1.x and oth.getX2() == self.p2.x and self.id == oth.getId()
 
     def getId(self) -> int:
         return self.id

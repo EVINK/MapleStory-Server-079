@@ -43,7 +43,7 @@ class BuddyListHandler:
         ps.setString(1, name)
         rs = ps.executeQuery()
         ret = None
-        if rs.next() && rs.getInt("gm") == 0:
+        if rs.next() and rs.getInt("gm") == 0:
             ret = CharacterIdNameBuddyCapacity(rs.getInt("id"), rs.getString("name"), rs.getInt("level"), rs.getInt("job"), group, rs.getInt("buddyCapacity"))
         rs.close()
         ps.close()
@@ -57,11 +57,11 @@ class BuddyListHandler:
                 addName = slea.readMapleAsciiString()
                 groupName = slea.readMapleAsciiString()
                 ble = buddylist.get(addName)
-                if addName > 13 || groupName > 16:
+                if addName > 13 or groupName > 16:
                     return
-                if ble is not None && (ble.getGroup() == (groupName) || !ble.isVisible()):
+                if ble is not None and (ble.getGroup() == (groupName) or not ble.isVisible()):
                     c.getSession().write(MaplePacketCreator.buddylistMessage(11))
-                elif ble is not None && ble.isVisible():
+                elif ble is not None and ble.isVisible():
                     ble.setGroup(groupName)
                     c.getSession().write(MaplePacketCreator.updateBuddylist(buddylist.getBuddies()))
                     c.getSession().write(MaplePacketCreator.buddylistMessage(13))
@@ -74,7 +74,7 @@ class BuddyListHandler:
                         otherChar = None
                         if channel > 0:
                             otherChar = ChannelServer.getInstance(channel).getPlayerStorage().getCharacterByName(addName)
-                            if !otherChar.isGM() || c.getPlayer().isGM():
+                            if not otherChar.isGM() or c.getPlayer().isGM():
                                 charWithId = CharacterIdNameBuddyCapacity(otherChar.getId(), otherChar.getName(), otherChar.getLevel(), otherChar.getJob(), groupName, otherChar.getBuddylist().getCapacity())
                         else:
                             charWithId = getCharacterIdAndNameFromDatabase(addName, groupName)
@@ -87,7 +87,7 @@ class BuddyListHandler:
                                 ps = con.prepareStatement("SELECT COUNT(*) as buddyCount FROM buddies WHERE characterid = ? AND pending = 0")
                                 ps.setInt(1, charWithId.getId())
                                 rs = ps.executeQuery()
-                                if !rs.next():
+                                if not rs.next():
                                     ps.close()
                                     rs.close()
                                     raise RuntimeError("Result set expected")
@@ -109,10 +109,10 @@ class BuddyListHandler:
                             else:
                                 displayChannel = -1
                                 otherCid = charWithId.getId()
-                                if buddyAddResult == BuddyList.BuddyAddResult.ALREADY_ON_LIST && channel > 0:
+                                if buddyAddResult == BuddyList.BuddyAddResult.ALREADY_ON_LIST and channel > 0:
                                     displayChannel = channel
                                     notifyRemoteChannel(c, channel, otherCid, groupName, BuddyList.BuddyOperation.ADDED)
-                                elif buddyAddResult != BuddyList.BuddyAddResult.ALREADY_ON_LIST && channel > 0:
+                                elif buddyAddResult != BuddyList.BuddyAddResult.ALREADY_ON_LIST and channel > 0:
                                     con2 = DatabaseConnection.getConnection()
                                     ps2 = con2.prepareStatement("INSERT INTO buddies (`characterid`, `buddyid`, `groupname`, `pending`) VALUES (?, ?, ?, 1)")
                                     ps2.setInt(1, charWithId.getId())
@@ -130,7 +130,7 @@ class BuddyListHandler:
                 break
             # case 2:
                 otherCid2 = slea.readInt()
-                if !buddylist.isFull():
+                if not buddylist.isFull():
                     try:
                         channel = World.Find.findChannel(otherCid2)
                         otherName = None
@@ -165,7 +165,7 @@ class BuddyListHandler:
             # case 3:
                 otherCid2 = slea.readInt()
                 blz = buddylist.get(otherCid2)
-                if blz is not None && blz.isVisible():
+                if blz is not None and blz.isVisible():
                     notifyRemoteChannel(c, World.Find.findChannel(otherCid2), otherCid2, blz.getGroup(), BuddyList.BuddyOperation.DELETED)
                 buddylist.remove(otherCid2)
                 c.getSession().write(MaplePacketCreator.updateBuddylist(c.getPlayer().getBuddylist().getBuddies()))

@@ -55,7 +55,7 @@ class DamageParse:
 
     @staticmethod
     def applyAttack(attack: Any, theSkill: Any, player: Any, attackCount: int, maxDamagePerMonster: float, effect: Any, attack_type: Any) -> None:
-        if !player.isAlive():
+        if not player.isAlive():
             player.getCheatTracker().registerOffense(CheatingOffense.人物死亡攻击)
             return
         if attack.real:
@@ -73,7 +73,7 @@ class DamageParse:
             if GameConstants.isPyramidSkill(attack.skill):
                 if player.getMapId() / 1000000 != 926:
                 return
-                if player.getPyramidSubway() is None || !player.getPyramidSubway().onSkillUse(player):
+                if player.getPyramidSubway() is None or not player.getPyramidSubway().onSkillUse(player):
                 return
         totDamage = 0
         map = player.getMap()
@@ -110,14 +110,14 @@ class DamageParse:
         hpMob = 0
         stats = player.getStat()
         ShdowPartnerAttackPercentage = 0
-        if attack_type == AttackType.RANGED_WITH_SHADOWPARTNER || attack_type == AttackType.NON_RANGED_WITH_MIRROR:
+        if attack_type == AttackType.RANGED_WITH_SHADOWPARTNER or attack_type == AttackType.NON_RANGED_WITH_MIRROR:
             shadowPartnerEffect = None
             if attack_type == AttackType.NON_RANGED_WITH_MIRROR:
                 shadowPartnerEffect = player.getStatForBuff(MapleBuffStat.MIRROR_IMAGE)
             else:
                 shadowPartnerEffect = player.getStatForBuff(MapleBuffStat.影分身)
             if shadowPartnerEffect is not None:
-            if attack.skill != 0 && attack_type != AttackType.NON_RANGED_WITH_MIRROR:
+            if attack.skill != 0 and attack_type != AttackType.NON_RANGED_WITH_MIRROR:
                 ShdowPartnerAttackPercentage = shadowPartnerEffect.getY()
             else:
                 ShdowPartnerAttackPercentage = shadowPartnerEffect.getX()
@@ -139,23 +139,23 @@ class DamageParse:
                             eachd = Integer.valueOf((attack.skill != 0) ? 0 : fixeddmg)
                         else:
                             eachd = Integer.valueOf(fixeddmg)
-                    elif !monsterstats.getOnlyNoramlAttack():
-                        if !player.isGM():
+                    elif not monsterstats.getOnlyNoramlAttack():
+                        if not player.isGM():
                     if player is None:
                     return
                     totDamageToOneMonster += eachd
-                    if monster.getId() == 9300021 && player.getPyramidSubway() is not None:
+                    if monster.getId() == 9300021 and player.getPyramidSubway() is not None:
                     player.getPyramidSubway().onMiss(player)
                 totDamage += totDamageToOneMonster
                 player.checkMonsterAggro(monster)
-                if attack.skill == 2301002 && !monsterstats.getUndead():
+                if attack.skill == 2301002 and not monsterstats.getUndead():
                     player.ban("修改WZ", True, True, False)
                     FileoutputUtil.logToFile_chr(player, FileoutputUtil.ban_log, "使用群体治愈伤害怪物 " + monster.getId())
                     World.Broadcast.broadcastGMMessage(MaplePacketCreator.serverNotice(6, "[封号系统] " + player.getName() + " 该玩家攻击异常被系统自动封号处理。").encode("utf-8"))
                     return
                 Position_range = player.getPosition().distanceSq(monster.getPosition())
                 Count_range = 7000000.0
-                if Position_range > Count_range && (player.getJob() != 2000 || player.getJob() != 2100 || player.getJob() != 2111 || player.getJob() != 2112):
+                if Position_range > Count_range and (player.getJob() != 2000 or player.getJob() != 2100 or player.getJob() != 2111 or player.getJob() != 2112):
                     player.getCheatTracker().registerOffense(CheatingOffense.攻击范围过大, " 技能 " + attack.skill + " 范围 : " + Position_range + "正常范围 " + Count_range)
                     return
                 if player.getBuffedValue(MapleBuffStat.敛财术) is not None:
@@ -170,22 +170,22 @@ class DamageParse:
                     handlePickPocket(player, monster, oned)
                     break
                 ds = player.getStatForBuff(MapleBuffStat.隐身术)
-                if (ds is not None && !player.isGM() && (
-                ds.getSourceId() == 4221007 || !ds.makeChanceResult() || ds.getSourceId() == 0))
+                if (ds is not None and not player.isGM() and (
+                ds.getSourceId() == 4221007 or not ds.makeChanceResult() or ds.getSourceId() == 0))
                 player.cancelEffectFromBuffStat(MapleBuffStat.隐身术)
                 if totDamageToOneMonster > 0:
                     remainingHP = None
                     skills = None
-                    if attack.skill != 1221011 && attack.skill != 3221007:
+                    if attack.skill != 1221011 and attack.skill != 3221007:
                         monster.damage(player, totDamageToOneMonster, True, attack.skill)
                     else:
                         monster.damage(player, monster.getStats().isBoss() ? totDamageToOneMonster : monster.getHp(), True, attack.skill)
                     if monster.isBuffed(MonsterStatus.反射物理伤害):
                     player.addHP(-(3000 + Randomizer.nextInt(1500)))
-                    if (stats.hpRecoverProp > 0 &&
+                    if (stats.hpRecoverProp > 0 and
                     Randomizer.nextInt(100) <= stats.hpRecoverProp)
                     player.healHP(stats.hpRecover)
-                    if (stats.mpRecoverProp > 0 &&
+                    if (stats.mpRecoverProp > 0 and
                     Randomizer.nextInt(100) <= stats.mpRecoverProp)
                     player.healMP(stats.mpRecover)
                     if player.getBuffedValue(MapleBuffStat.连环吸血) is not None:
@@ -230,7 +230,7 @@ class DamageParse:
                             skill = SkillFactory.getSkill(i)
                             if player.getSkillLevel(skill) > 0:
                                 venomEffect = skill.getEffect(player.getSkillLevel(skill))
-                                if !venomEffect.makeChanceResult():
+                                if not venomEffect.makeChanceResult():
                                 break
                                 monster.applyStatus(player, MonsterStatusEffect(MonsterStatus.中毒, Integer.valueOf(1), i, None, False), True, venomEffect.getDuration(), True)
                                 break
@@ -253,20 +253,20 @@ class DamageParse:
                         # case 21120006:
                         # case 21120009:
                         # case 21120010:
-                        if player.getBuffedValue(MapleBuffStat.属性攻击) is not None && !monster.getStats().isBoss():
+                        if player.getBuffedValue(MapleBuffStat.属性攻击) is not None and not monster.getStats().isBoss():
                             eff = player.getStatForBuff(MapleBuffStat.属性攻击)
-                            if eff is not None && eff.getSourceId() == 21111005:
+                            if eff is not None and eff.getSourceId() == 21111005:
                             monster.applyStatus(player, MonsterStatusEffect(MonsterStatus.速度, Integer.valueOf(eff.getX()), eff.getSourceId(), None, False), False, (eff.getY() * 1000), False)
-                        if player.getBuffedValue(MapleBuffStat.战神抗压) is not None && !monster.getStats().isBoss():
+                        if player.getBuffedValue(MapleBuffStat.战神抗压) is not None and not monster.getStats().isBoss():
                             eff = player.getStatForBuff(MapleBuffStat.战神抗压)
-                            if eff is not None && eff.makeChanceResult() && !monster.isBuffed(MonsterStatus.NEUTRALISE):
+                            if eff is not None and eff.makeChanceResult() and not monster.isBuffed(MonsterStatus.NEUTRALISE):
                             monster.applyStatus(player, MonsterStatusEffect(MonsterStatus.NEUTRALISE, Integer.valueOf(1), eff.getSourceId(), None, False), False, (eff.getX() * 1000), False)
                         break
                     if totDamageToOneMonster > 0:
                         weapon_ = player.getInventory(MapleInventoryType.EQUIPPED).getItem((short)-11)
                         if weapon_ is not None:
                             stat = GameConstants.getStatFromWeapon(weapon_.getItemId())
-                            if stat is not None && Randomizer.nextInt(100) < GameConstants.getStatChance():
+                            if stat is not None and Randomizer.nextInt(100) < GameConstants.getStatChance():
                                 monsterStatusEffect = MonsterStatusEffect(stat, Integer.valueOf(GameConstants.getXForStat(stat)), GameConstants.getSkillForStat(stat), None, False)
                                 monster.applyStatus(player, monsterStatusEffect, False, 10000, False, False)
                         if player.getBuffedValue(MapleBuffStat.刺眼箭) is not None:
@@ -296,7 +296,7 @@ class DamageParse:
                                 skill = SkillFactory.getSkill(bing)
                                 monsterStatusEffect = MonsterStatusEffect(MonsterStatus.冻结, Integer.valueOf(1), bing, None, False)
                                 monster.applyStatus(player, monsterStatusEffect, False, (skill.getEffect(player.getSkillLevel(skill)).getY() * 2000), False)
-                    if (effect is not None && effect.getMonsterStati() > 0 &&
+                    if (effect is not None and effect.getMonsterStati() > 0 and
                     effect.makeChanceResult())
                     for (Map.Entry<MonsterStatus, Integer> z : (Iterable<Map.Entry<MonsterStatus, Integer>>)effect.getMonsterStati().items())
                     monster.applyStatus(player, MonsterStatusEffect(z.getKey(), z.getValue(), theSkill.getId(), None, False), effect.isPoison(), effect.getDuration(), False)
@@ -307,9 +307,9 @@ class DamageParse:
         buff = player.getBuffedValue(MapleBuffStat.金币_率)
         if buff is not None:
         (player.getStat()).mesoBuff *= buff / 100.0
-        if attack.skill == 4331003 && totDamageToOneMonster < hpMob:
+        if attack.skill == 4331003 and totDamageToOneMonster < hpMob:
         return
-        if attack.skill != 0 && (attack.targets > 0 || (attack.skill != 4331003 && attack.skill != 4341002)) && attack.skill != 21101003 && attack.skill != 5110001 && attack.skill != 15100004 && attack.skill != 11101002 && attack.skill != 13101002:
+        if attack.skill != 0 and (attack.targets > 0 or (attack.skill != 4331003 and attack.skill != 4341002)) and attack.skill != 21101003 and attack.skill != 5110001 and attack.skill != 15100004 and attack.skill != 11101002 and attack.skill != 13101002:
         effect.applyTo(player, attack.position)
         if totDamage > 1:
             tracker = player.getCheatTracker()
@@ -318,7 +318,7 @@ class DamageParse:
             tracker.registerOffense(CheatingOffense.人物无敌, Integer.toString(tracker.getAttacksWithoutHit()))
 
     def applyAttackMagic(self, attack: Any, theSkill: Any, player: Any, effect: Any) -> None:
-        if !player.isAlive():
+        if not player.isAlive():
             player.getCheatTracker().registerOffense(CheatingOffense.人物死亡攻击)
             return
         if effect is None:
@@ -332,12 +332,12 @@ class DamageParse:
         if GameConstants.isPyramidSkill(attack.skill):
             if player.getMapId() / 1000000 != 926:
                 return
-            if player.getPyramidSubway() is None || !player.getPyramidSubway().onSkillUse(player):
+            if player.getPyramidSubway() is None or not player.getPyramidSubway().onSkillUse(player):
                 return
         stats = player.getStat()
         element = (player.getBuffedValue(MapleBuffStat.自然力重置) is not None) ? Element.NEUTRAL : theSkill.getElement()
         maxDamagePerHit = None
-        if attack.skill == 1000 || attack.skill == 10001000 || attack.skill == 20001000 || attack.skill == 20011000 || attack.skill == 30001000:
+        if attack.skill == 1000 or attack.skill == 10001000 or attack.skill == 20001000 or attack.skill == 20011000 or attack.skill == 30001000:
             maxDamagePerHit = 40
         elif GameConstants.isPyramidSkill(attack.skill):
             maxDamagePerHit = 1
@@ -360,7 +360,7 @@ class DamageParse:
         for oned in attack.allDamage:
             monster = map.getMonsterByOid(oned.objectid)
             if monster is not None:
-                Tempest = monster.getStatusSourceID(MonsterStatus.冻结) == 21120006 && !monster.getStats().isBoss()
+                Tempest = monster.getStatusSourceID(MonsterStatus.冻结) == 21120006 and not monster.getStats().isBoss()
                 totDamageToOneMonster = 0
                 monsterstats = monster.getStats()
                 fixeddmg = monsterstats.getFixedDamage()
@@ -372,32 +372,32 @@ class DamageParse:
                         eachd = (monsterstats.getOnlyNoramlAttack() ? 0 : fixeddmg)
                     elif monsterstats.getOnlyNoramlAttack():
                         eachd = 0
-                    elif !player.isGM():
+                    elif not player.isGM():
                         if Tempest:  # Buffed with Tempest
                             # In special case such as Chain lightning, the damage will be reduced from the maxMP.
                             if eachd > monster.getMobMaxHp():
                                 eachd = min(monster.getMobMaxHp(), Integer.MAX_VALUE)
                                 player.getCheatTracker().registerOffense(CheatingOffense.魔法伤害过高)
-                        elif !monster.isBuffed(MonsterStatus.免疫伤害) && !monster.isBuffed(MonsterStatus.免疫魔法攻击) && !monster.isBuffed(MonsterStatus.反射物理伤害):
+                        elif not monster.isBuffed(MonsterStatus.免疫伤害) and not monster.isBuffed(MonsterStatus.免疫魔法攻击) and not monster.isBuffed(MonsterStatus.反射物理伤害):
                             if eachd > maxDamagePerHit:
                                 player.getCheatTracker().registerOffense(CheatingOffense.魔法伤害过高)
                                 if eachd > MaxDamagePerHit * 2:
                                     # System.out.println("EXCEED!!! Client damage : " + eachd + " Server : " + MaxDamagePerHit);
                                     eachd = (int) (MaxDamagePerHit * 2)  # Convert to server calculated damage
-                                    FileoutputUtil.logToFile_chr(player, FileoutputUtil.fixdam_ph, " 技能 " + attack.skill + " 怪物 " + monster.getId() + " 预计伤害:" + MaxDamagePerHit + "  实际" + eachd)
+                                    FileoutputUtil.logToFile_chr(player, FileoutputUtil.fixdam_ph, " 技能 " + attack.skill + " 怪物 " + monster.getId() + " 预计伤害:" + MaxDamagePerHit + " 实际" + eachd)
                                     player.getCheatTracker().registerOffense(CheatingOffense.魔法伤害过高2)
                         elif eachd > maxDamagePerHit * 2:
-                            FileoutputUtil.logToFile_chr(player, FileoutputUtil.fixdam_ph, " 技能 " + attack.skill + " 怪物 " + monster.getId() + " 预计伤害:" + MaxDamagePerHit + "  实际" + eachd)
+                            FileoutputUtil.logToFile_chr(player, FileoutputUtil.fixdam_ph, " 技能 " + attack.skill + " 怪物 " + monster.getId() + " 预计伤害:" + MaxDamagePerHit + " 实际" + eachd)
                             eachd = (int) (maxDamagePerHit)
                     totDamageToOneMonster += eachd
                 totDamage += totDamageToOneMonster
                 player.checkMonsterAggro(monster)
                 Position_range = player.getPosition().distanceSq(monster.getPosition())
                 Count_range = 7000000.0
-                if Position_range > Count_range && (player.getJob() != 2000 || player.getJob() != 2100 || player.getJob() != 2111 || player.getJob() != 2112):
+                if Position_range > Count_range and (player.getJob() != 2000 or player.getJob() != 2100 or player.getJob() != 2111 or player.getJob() != 2112):
                     player.getCheatTracker().registerOffense(CheatingOffense.攻击范围过大, " 技能 " + attack.skill + " 范围 : " + Position_range + "正常范围 " + Count_range)
                     return
-                if attack.skill == 2301002 && !monsterstats.getUndead():
+                if attack.skill == 2301002 and not monsterstats.getUndead():
                     player.getCheatTracker().registerOffense(CheatingOffense.治愈术攻击非不死系怪物)
                     return
                 if totDamageToOneMonster <= 0:
@@ -412,7 +412,7 @@ class DamageParse:
                     # case 2121003:
                         monster.setTempEffectiveness(Element.ICE, theSkill.getEffect(player.getSkillLevel(theSkill)).getDuration())
                         break
-                if effect is not None && effect.getMonsterStati() > 0 && effect.makeChanceResult():
+                if effect is not None and effect.getMonsterStati() > 0 and effect.makeChanceResult():
                     for (final Map.Entry<MonsterStatus, Integer> z : effect.getMonsterStati().items())
                         monster.applyStatus(player, MonsterStatusEffect(z.getKey(), z.getValue(), theSkill.getId(), None, False), effect.isPoison(), effect.getDuration(), False)
                 if eaterLevel <= 0:
@@ -439,7 +439,7 @@ class DamageParse:
         dLevel = max(mobstats.getLevel() - chr.getLevel(), 0)
         Accuracy = (int)(math.floor(stats.getTotalInt() / 10.0) + math.floor(stats.getTotalLuk() / 10.0))
         MinAccuracy = mobstats.getEva() * (dLevel * 2 + 51) / 120
-        if MinAccuracy > Accuracy && skill.getId() != 1000 && skill.getId() != 10001000 && skill.getId() != 20001000 && skill.getId() != 20011000 && skill.getId() != 30001000 && !GameConstants.isPyramidSkill(skill.getId()):
+        if MinAccuracy > Accuracy and skill.getId() != 1000 and skill.getId() != 10001000 and skill.getId() != 20001000 and skill.getId() != 20011000 and skill.getId() != 30001000 and not GameConstants.isPyramidSkill(skill.getId()):
             return 0.0
         elemMaxDamagePerMob = 0.0
         # switch (monster.getEffectiveness(elem)):
@@ -615,17 +615,17 @@ class DamageParse:
         d = (short)((moblevel > player.getLevel()) ? ((short)(moblevel - player.getLevel())) : 0)
         elementalMaxDamagePerMonster = elementalMaxDamagePerMonster * (1.0 - 0.01 * d) - monster.getStats().getPhysicalDefense() * 0.5
         elementalMaxDamagePerMonster += elementalMaxDamagePerMonster / 100.0 * CriticalDamagePercent
-        if theSkill is not None && theSkill.isChargeSkill() && player.getKeyDownSkill_Time() == 0:
+        if theSkill is not None and theSkill.isChargeSkill() and player.getKeyDownSkill_Time() == 0:
             return 0.0
         homing = player.getStatForBuff(MapleBuffStat.导航辅助)
-        if homing is not None && player.getLinkMid() == monster.getObjectId() && homing.getSourceId() == 5220011:
+        if homing is not None and player.getLinkMid() == monster.getObjectId() and homing.getSourceId() == 5220011:
             elementalMaxDamagePerMonster += elementalMaxDamagePerMonster * homing.getX()
         stat = player.getStat()
         elementalMaxDamagePerMonster += elementalMaxDamagePerMonster * (monster.getStats().isBoss() ? stat.bossdam_r : stat.dam_r) / 100.0
         if player.getDebugMessage():
             player.dropMessage("[伤害计算] 属性伤害:" + elementalMaxDamagePerMonster)
         if elementalMaxDamagePerMonster > 199999.0:
-            if !defined:
+            if not defined:
                 elementalMaxDamagePerMonster = 199999.0
         elif elementalMaxDamagePerMonster < 0.0:
             elementalMaxDamagePerMonster = 1.0
@@ -644,8 +644,8 @@ class DamageParse:
 
     def Modify_AttackCrit(self, attack: Any, chr: Any, type: int) -> Any:
         CriticalRate = chr.getStat().passive_sharpeye_rate()
-        shadow = (type == 2 && chr.getBuffedValue(MapleBuffStat.影分身) is not None) || (type == 1 && chr.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) is not None)
-        if attack.skill != 4211006 && attack.skill != 3211003 && attack.skill != 4111004 && (CriticalRate > 0 || attack.skill == 4221001 || attack.skill == 3221007):
+        shadow = (type == 2 and chr.getBuffedValue(MapleBuffStat.影分身) is not None) or (type == 1 and chr.getBuffedValue(MapleBuffStat.MIRROR_IMAGE) is not None)
+        if attack.skill != 4211006 and attack.skill != 3211003 and attack.skill != 4111004 and (CriticalRate > 0 or attack.skill == 4221001 or attack.skill == 3221007):
             for p in attack.allDamage:
                 if p.attack is not None:
                     hit = 0
@@ -653,12 +653,12 @@ class DamageParse:
                     eachd_copy = new ArrayList<Pair<Integer, Boolean>>(p.attack)
                     for eachd in p.attack:
                         hit += 1
-                        if !eachd.right:
+                        if not eachd.right:
                             if attack.skill == 4221001:
-                                eachd.right = (hit == 4 && Randomizer.nextInt(100) < 90)
-                            elif attack.skill == 3221007 || eachd.left > 199999:
+                                eachd.right = (hit == 4 and Randomizer.nextInt(100) < 90)
+                            elif attack.skill == 3221007 or eachd.left > 199999:
                                 eachd.right = True
-                            elif shadow && hit > mid_att:
+                            elif shadow and hit > mid_att:
                                 eachd.right = eachd_copy.get(hit - 1 - mid_att).right
                             else:
                                 eachd.right = (Randomizer.nextInt(100) < CriticalRate)
@@ -707,7 +707,7 @@ class DamageParse:
                 show = False
                 baoji = False
                 pogong = False
-                if chr.getStat().getTotalMagic() >= 1999 && damage > 1:
+                if chr.getStat().getTotalMagic() >= 1999 and damage > 1:
                     skill = SkillFactory.getSkill(ret.skill)
                     matk = skill.getEffect(chr.getSkillLevel(skill)).getMatk()
                     if Randomizer.nextInt(100) < chr.getStat().passive_sharpeye_rate():
@@ -803,10 +803,10 @@ class DamageParse:
                 maxdamage = 199999 + chr.getVip() * 10000
                 show = False
                 pogong = False
-                if chr.getStat().getTotalWatk() > 1999 && damage > 1:
+                if chr.getStat().getTotalWatk() > 1999 and damage > 1:
                     damage = (int)(damage / 1999.0 * chr.getStat().getTotalWatk())
                     show = True
-                if ret.skill == 1221011 || ret.skill == 3221007:
+                if ret.skill == 1221011 or ret.skill == 3221007:
                     damage = 199999
                 damage = calcMonsterDecreaseDamage(damage, monster, chr, True)
                 if show:
@@ -865,7 +865,7 @@ class DamageParse:
                 show = False
                 baoji = False
                 pogong = False
-                if damage > 1 && (ret.skill == 4121007 || ret.skill == 4001344 || ret.skill == 14001004 || ret.skill == 14111005):
+                if damage > 1 and (ret.skill == 4121007 or ret.skill == 4001344 or ret.skill == 14001004 or ret.skill == 14111005):
                     skill = SkillFactory.getSkill(ret.skill)
                     watk = skill.getEffect(chr.getSkillLevel(skill)).getDamage()
                     if Randomizer.nextInt(100) < chr.getStat().passive_sharpeye_rate():
@@ -892,10 +892,10 @@ class DamageParse:
                             damage = 1
                         damage *= (monster.getStats().isBoss() ? chr.getStat().bossdam_r : chr.getStat().dam_r)
                     show = True
-                elif chr.getStat().getTotalWatk() > 1999 && damage > 1:
+                elif chr.getStat().getTotalWatk() > 1999 and damage > 1:
                     damage = (int)(damage / 1999.0 * chr.getStat().getTotalWatk())
                     show = True
-                if ret.skill == 1221011 || ret.skill == 3221007:
+                if ret.skill == 1221011 or ret.skill == 3221007:
                     damage = 199999
                 damage = calcMonsterDecreaseDamage(damage, monster, chr, True)
                 if show:
@@ -948,7 +948,7 @@ class DamageParse:
         reason = "None"
         last = attackCount
         mirror_fix = False
-        if player.getJob() >= 411 && player.getJob() <= 412:
+        if player.getJob() >= 411 and player.getJob() <= 412:
             mirror_fix = True
         if mirror_fix:
             last *= 2
@@ -969,10 +969,10 @@ class DamageParse:
         tempDamage = 0
         for item in chr.getInventory(MapleInventoryType.EQUIPPED):
             ak = 0
-            if item is not None && isinstance(item, Equip):
+            if item is not None and isinstance(item, Equip):
                 ak = MapleItemInformationProvider.getInstance().getTotalStat(item)
             tempDamage += ak * 10
-        if ret.skill != 14101006 && damage >= 199999:
+        if ret.skill != 14101006 and damage >= 199999:
             tempDamage += (chr.getStat().getInt() + chr.getStat().getStr() + chr.getStat().getDex() + chr.getStat().getLuk()) * 5
             damage = (tempDamage + 199999) * randomNum / 100
             if damage < 199999:
@@ -1092,6 +1092,6 @@ class DamageParse:
                     damage *= 1
                     jianshang = True
                     break
-        if (!jianshang || show) {}
+        if (not jianshang or show) {}
         return damage
 

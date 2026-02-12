@@ -378,19 +378,19 @@ class RoyMS(JFrame):
         jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel3Layout.createSequentialGroup().addContainerGap().addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING).addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(self.jTextField24, -2, -1, -2).addComponent(self.jTextField25, -2, -1, -2).addComponent(self.jTextField26, -2, -1, -2).addComponent(self.jButton18)).addComponent(self.checkbox1, -2, -1, -2)).addGap(18, 18, 18).addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(self.jButton20).addComponent(self.jButton21)).addContainerGap(105, 32767)))
         self.jTabbedPane2.addTab("账号服务", self.jPanel3)
         self.jLabel3.setFont(Font("宋体", 1, 12))
-        self.jLabel3.setText("   本程序来自互联网 仅供学习测试 禁止商业用途 否则本人不承担任何后果")
+        self.jLabel3.setText(" 本程序来自互联网 仅供学习测试 禁止商业用途 否则本人不承担任何后果")
         self.jTabbedPane1.addTab("公告申明", self.jLabel3)
         self.jLabel4.setFont(Font("宋体", 1, 12))
-        self.jLabel4.setText("       版本号：V079_MAX正式版 ")
+        self.jLabel4.setText(" 版本号：V079_MAX正式版 ")
         self.jTabbedPane1.addTab("版权说明", self.jLabel4)
         self.jLabel5.setFont(Font("宋体", 1, 12))
-        self.jLabel5.setText("      修复大量BUG 修复全任务 全副本 全BOSS 全剧情完美 全职业完美 ")
+        self.jLabel5.setText(" 修复大量BUG 修复全任务 全副本 全BOSS 全剧情完美 全职业完美 ")
         self.jTabbedPane1.addTab("更新内容A", self.jLabel5)
         self.jLabel6.setFont(Font("宋体", 1, 12))
-        self.jLabel6.setText("      修复卡号    修复双登    修复复制     修复假死    修复掉线")
+        self.jLabel6.setText(" 修复卡号 修复双登 修复复制 修复假死 修复掉线")
         self.jTabbedPane1.addTab("更新内容B", self.jLabel6)
         self.jLabel7.setFont(Font("宋体", 1, 12))
-        self.jLabel7.setText("      修复多线程   修复炸线   增加全新的外挂检测   增加大量函数")
+        self.jLabel7.setText(" 修复多线程 修复炸线 增加全新的外挂检测 增加大量函数")
         self.jTabbedPane1.addTab("更新内容C", self.jLabel7)
         self.jTabbedPane2.addTab("关于我们", self.jTabbedPane1)
         layout = GroupLayout(self.getContentPane())
@@ -539,7 +539,7 @@ class RoyMS(JFrame):
 
     def checkbox1MouseClicked(self, evt: Any) -> None:
         status = self.checkbox1.getState()
-        if !(ServerConstants.Super_password = status):
+        if not (ServerConstants.Super_password = status):
             ServerConstants.superpw = ""
         else:
             ServerConstants.superpw = self.jTextField26.getText()
@@ -565,7 +565,7 @@ class RoyMS(JFrame):
 
     def translated_不可以万能登录(self) -> None:
         account = self.jTextField24.getText()
-        if !AutoRegister.getAccountExists(account):
+        if not AutoRegister.getAccountExists(account):
             JOptionPane.showMessageDialog(None, "账号不存在")
             return
         try:
@@ -582,7 +582,7 @@ class RoyMS(JFrame):
 
     def translated_可以万能登录(self) -> None:
         account = self.jTextField24.getText()
-        if !AutoRegister.getAccountExists(account):
+        if not AutoRegister.getAccountExists(account):
             JOptionPane.showMessageDialog(None, "账号不存在")
             return
         try:
@@ -603,7 +603,7 @@ class RoyMS(JFrame):
         if password > 12:
             JOptionPane.showMessageDialog(None, "密码过长")
             return
-        if !AutoRegister.getAccountExists(account):
+        if not AutoRegister.getAccountExists(account):
             JOptionPane.showMessageDialog(None, "账号不存在")
             return
         try:
@@ -618,21 +618,22 @@ class RoyMS(JFrame):
         self.printChatLog("更改账号: " + account + "的密码为 " + password)
 
     def restart(self) -> None:
+        def _task_1():
+            if RoyMS.self.minutesLeft == 0:
+                ShutdownServer.getInstance()
+                RoyMS.t.start()
+                RoyMS.ts.cancel(False)
+                return
+            World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(0, "服务器將在 " + RoyMS.self.minutesLeft + "分钟后关闭. 请尽快关闭雇佣商人安全下线.").encode("utf-8"))
+            print("服务器將在 " + RoyMS.self.minutesLeft + "分钟后关闭.")
+            RoyMS.self.minutesLeft -= 1
+
         try:
             out = "关闭服务器倒数时间"
             self.minutesLeft = int(self.jTextField22.getText())
-            if RoyMS.ts is None && (RoyMS.t is None || !RoyMS.t.isAlive()):
+            if RoyMS.ts is None and (RoyMS.t is None or not RoyMS.t.isAlive()):
                 RoyMS.t = Thread(ShutdownServer.getInstance())
-                RoyMS.ts = Timer.EventTimer.getInstance().register(Runnable()
-                    public void run()
-                        if RoyMS.self.minutesLeft == 0:
-                            ShutdownServer.getInstance()
-                            RoyMS.t.start()
-                            RoyMS.ts.cancel(False)
-                            return
-                        World.Broadcast.broadcastMessage(MaplePacketCreator.serverNotice(0, "服务器將在 " + RoyMS.self.minutesLeft + "分钟后关闭. 请尽快关闭雇佣商人安全下线.").encode("utf-8"))
-                        print("服务器將在 " + RoyMS.self.minutesLeft + "分钟后关闭.")
-                        RoyMS.self.minutesLeft -= 1
+                RoyMS.ts = Timer.EventTimer.getInstance().register(_task_1, 60000)
             self.jTextField22.setText("关闭服务器倒数时间")
             self.printChatLog(out)
         except Exception as e:
@@ -660,11 +661,11 @@ class RoyMS(JFrame):
                 类型 = 0
             else:
                 类型 = int(self.jTextField21.getText())
-            if 数量 <= 0 || 类型 <= 0:
+            if 数量 <= 0 or 类型 <= 0:
                 return
             输出 = ""
             ret = 0
-            if 类型 == 1 || 类型 == 2:
+            if 类型 == 1 or 类型 == 2:
                 for cserv1 in ChannelServer.getAllInstances():
                     for mch in cserv1.getPlayerStorage().getAllCharacters():
                         mch.modifyCSPoints(类型, 数量)
@@ -696,7 +697,7 @@ class RoyMS(JFrame):
                 类型A = "金币"
             elif 类型 == 4:
                 类型A = "经验"
-            输出 = "一个发放[" + 数量 * ret + "]." + 类型A + "!一共发放给了" + ret + "人！"
+            输出 = "一个发放[" + 数量 * ret + "]." + 类型A + "not 一共发放给了" + ret + "人！"
             self.jTextField20.setText("输入数量")
             self.jTextField21.setText("1点卷/2抵用/3金币/4经验")
             self.printChatLog(输出)
@@ -794,31 +795,31 @@ class RoyMS(JFrame):
                 for mch in cserv1.getPlayerStorage().getAllCharacters():
                     if mch.getName() == (名字):
                         if 数量 >= 0:
-                            if !MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
+                            if not MapleInventoryManipulator.checkSpace(mch.getClient(), 物品ID, 数量, ""):
                                 return
-                            if (type == (MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(物品ID) && !GameConstants.isBullet(物品ID)) || (type == (MapleInventoryType.CASH) && 物品ID >= 5000000 && 物品ID <= 5000100):
+                            if (type == (MapleInventoryType.EQUIP) and not GameConstants.isThrowingStar(物品ID) and not GameConstants.isBullet(物品ID)) or (type == (MapleInventoryType.CASH) and 物品ID >= 5000000 and 物品ID <= 5000100):
                                 item = ii.getEquipById(物品ID)
                                 if ii.isCash(物品ID):
                                     item.setUniqueId(1)
-                                if 力量 > 0 && 力量 <= 32767:
+                                if 力量 > 0 and 力量 <= 32767:
                                     item.setStr(力量)
-                                if 敏捷 > 0 && 敏捷 <= 32767:
+                                if 敏捷 > 0 and 敏捷 <= 32767:
                                     item.setDex(敏捷)
-                                if 智力 > 0 && 智力 <= 32767:
+                                if 智力 > 0 and 智力 <= 32767:
                                     item.setInt(智力)
-                                if 运气 > 0 && 运气 <= 32767:
+                                if 运气 > 0 and 运气 <= 32767:
                                     item.setLuk(运气)
-                                if 攻击力 > 0 && 攻击力 <= 32767:
+                                if 攻击力 > 0 and 攻击力 <= 32767:
                                     item.setWatk(攻击力)
-                                if 魔法力 > 0 && 魔法力 <= 32767:
+                                if 魔法力 > 0 and 魔法力 <= 32767:
                                     item.setMatk(魔法力)
-                                if 物理防御 > 0 && 物理防御 <= 32767:
+                                if 物理防御 > 0 and 物理防御 <= 32767:
                                     item.setWdef(物理防御)
-                                if 魔法防御 > 0 && 魔法防御 <= 32767:
+                                if 魔法防御 > 0 and 魔法防御 <= 32767:
                                     item.setMdef(魔法防御)
-                                if HP > 0 && HP <= 30000:
+                                if HP > 0 and HP <= 30000:
                                     item.setHp(HP)
-                                if MP > 0 && MP <= 30000:
+                                if MP > 0 and MP <= 30000:
                                     item.setMp(MP)
                                 if "可以交易" == (是否可以交易):
                                     flag = item.getFlag()
@@ -834,7 +835,7 @@ class RoyMS(JFrame):
                                 if 制作人名字 is not None:
                                     item.setOwner(制作人名字)
                                 name = ii.getName(物品ID)
-                                if 物品ID / 10000 == 114 && name is not None && name > 0:
+                                if 物品ID / 10000 == 114 and name is not None and name > 0:
                                     msg = "你已获得称号 <" + name + ">"
                                     mch.getClient().getPlayer().dropMessage(5, msg)
                                     mch.getClient().getPlayer().dropMessage(5, msg)
@@ -890,7 +891,8 @@ class RoyMS(JFrame):
                 ps.executeUpdate()
             self.printChatLog("解除卡账号" + self.jTextField23.getText())
             self.jTextField23.setText("")
-        catch (SQLException ex) {}
+        except SQLException as ex:
+            pass
 
     def sendNotice(self, type: int) -> None:
         try:
@@ -902,19 +904,23 @@ class RoyMS(JFrame):
                     for chr in cserv.getPlayerStorage().getAllCharacters():
                         try:
                             ChannelServer.forceRemovePlayerByCharName(str)
-                            if chr.getName() == (str) && chr.getMapId() != 0:
+                            if chr.getName() == (str) and chr.getMapId() != 0:
                                 chr.getClient().getSession().close(True)
                                 chr.getClient().disconnect(True, False)
                                 输出 = "[解卡系统] 成功断开" + str + "玩家！"
                             else:
                                 输出 = "[解卡系统] 玩家名字输入错误或者该玩家没有在线！"
-                        catch (Exception ex) {}
+                        except Exception as ex:
+                            pass
             self.jTextField1.setText("")
             self.printChatLog(输出)
         except Exception as e:
             JOptionPane.showMessageDialog(None, "错误!\r\n" + e)
 
     def main(self, args: list) -> None:
+        def _task_1():
+            RoyMS().setVisible(True)
+
         try:
             for (final UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
                 if "Nimbus" == (info.getName()):
@@ -928,7 +934,5 @@ class RoyMS(JFrame):
             Logger.getLogger(RoyMS.class.getName()).log(Level.SEVERE, None, ex3)
         except UnsupportedLookAndFeelException as ex4:
             Logger.getLogger(RoyMS.class.getName()).log(Level.SEVERE, None, ex4)
-        EventQueue.invokeLater(Runnable()
-            public void run()
-                RoyMS().setVisible(True)
+        EventQueue.invokeLater(_task_1)
 

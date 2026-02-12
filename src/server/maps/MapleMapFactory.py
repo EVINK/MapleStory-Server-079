@@ -154,7 +154,7 @@ class MapleMapFactory:
                     msg = MapleDataTool.getString(mapData.getChildByPath("info/timeMob/message"), None)
                 for life in mapData.getChildByPath("life"):
                     type = MapleDataTool.getString(life.getChildByPath("type"))
-                    if npcs || !type == ("n"):
+                    if npcs or not type == ("n"):
                         myLife = self.loadLife(life, MapleDataTool.getString(life.getChildByPath("id")), type, mapid)
                         if myLife is None:
                             continue
@@ -181,7 +181,7 @@ class MapleMapFactory:
                 map.setCreateMobInterval(MapleDataTool.getInt(mapData.getChildByPath("info/createMobInterval"), 9000))
                 map.loadMonsterRate(True)
                 map.setNodes(self.loadNodes(mapid, mapData))
-                if reactors && mapData.getChildByPath("reactor") is not None:
+                if reactors and mapData.getChildByPath("reactor") is not None:
                     for reactor in mapData.getChildByPath("reactor"):
                         id = MapleDataTool.getString(reactor.getChildByPath("id"))
                         if id is not None:
@@ -295,7 +295,7 @@ class MapleMapFactory:
             msg = MapleDataTool.getString(mapData.getChildByPath("info/timeMob/message"), None)
         for life in mapData.getChildByPath("life"):
             type = MapleDataTool.getString(life.getChildByPath("type"))
-            if npcs || !type == ("n"):
+            if npcs or not type == ("n"):
                 myLife = self.loadLife(life, MapleDataTool.getString(life.getChildByPath("id")), type, mapid)
                 if myLife is None:
                     continue
@@ -308,7 +308,7 @@ class MapleMapFactory:
         map.setCreateMobInterval(MapleDataTool.getInt(mapData.getChildByPath("info/createMobInterval"), 9000))
         map.loadMonsterRate(True)
         map.setNodes(self.loadNodes(mapid, mapData))
-        if reactors && mapData.getChildByPath("reactor") is not None:
+        if reactors and mapData.getChildByPath("reactor") is not None:
             for reactor in mapData.getChildByPath("reactor"):
                 id = MapleDataTool.getString(reactor.getChildByPath("id"))
                 if id is not None:
@@ -381,7 +381,7 @@ class MapleMapFactory:
         myLife.setRx0(MapleDataTool.getInt(life.getChildByPath("rx0")))
         myLife.setRx1(MapleDataTool.getInt(life.getChildByPath("rx1")))
         myLife.setPosition(Point(MapleDataTool.getInt(life.getChildByPath("x")), MapleDataTool.getInt(life.getChildByPath("y"))))
-        if MapleDataTool.getInt("hide", life, 0) == 1 && isinstance(myLife, MapleNPC):
+        if MapleDataTool.getInt("hide", life, 0) == 1 and isinstance(myLife, MapleNPC):
             myLife.setHide(True)
         return myLife
 
@@ -409,35 +409,35 @@ class MapleMapFactory:
         builder = ""
         if mapid < 100000000:
             builder.append("maple")
-        elif (mapid >= 100000000 && mapid < 200000000) || mapid / 100000 == 5540:
+        elif (mapid >= 100000000 and mapid < 200000000) or mapid / 100000 == 5540:
             builder.append("victoria")
-        elif mapid >= 200000000 && mapid < 300000000:
+        elif mapid >= 200000000 and mapid < 300000000:
             builder.append("ossyria")
-        elif mapid >= 300000000 && mapid < 400000000:
+        elif mapid >= 300000000 and mapid < 400000000:
             builder.append("elin")
-        elif mapid >= 500000000 && mapid < 510000000:
+        elif mapid >= 500000000 and mapid < 510000000:
             builder.append("thai")
-        elif mapid >= 540000000 && mapid < 600000000:
+        elif mapid >= 540000000 and mapid < 600000000:
             builder.append("SG")
-        elif mapid >= 600000000 && mapid < 620000000:
+        elif mapid >= 600000000 and mapid < 620000000:
             builder.append("MasteriaGL")
-        elif (mapid >= 670000000 && mapid < 677000000) || (mapid >= 678000000 && mapid < 682000000):
+        elif (mapid >= 670000000 and mapid < 677000000) or (mapid >= 678000000 and mapid < 682000000):
             builder.append("global")
-        elif mapid >= 677000000 && mapid < 678000000:
+        elif mapid >= 677000000 and mapid < 678000000:
             builder.append("Episode1GL")
-        elif mapid >= 682000000 && mapid < 683000000:
+        elif mapid >= 682000000 and mapid < 683000000:
             builder.append("HalloweenGL")
-        elif mapid >= 683000000 && mapid < 684000000:
+        elif mapid >= 683000000 and mapid < 684000000:
             builder.append("event")
-        elif mapid >= 684000000 && mapid < 685000000:
+        elif mapid >= 684000000 and mapid < 685000000:
             builder.append("event_5th")
-        elif mapid >= 700000000 && mapid < 700000300:
+        elif mapid >= 700000000 and mapid < 700000300:
             builder.append("wedding")
-        elif mapid >= 701000000 && mapid < 701020000:
+        elif mapid >= 701000000 and mapid < 701020000:
             builder.append("china")
-        elif mapid >= 800000000 && mapid < 900000000:
+        elif mapid >= 800000000 and mapid < 900000000:
             builder.append("jp")
-        elif mapid >= 700000000 && mapid < 782000002:
+        elif mapid >= 700000000 and mapid < 782000002:
             builder.append("chinese")
         else:
             builder.append("etc")
@@ -607,15 +607,16 @@ class MapleMapFactory:
                                     edges.add(MapleDataTool.getInt(edge, -1))
                             final MapleNodes.MapleNodeInfo mni = new MapleNodes.MapleNodeInfo(int(node.getName()), MapleDataTool.getIntConvert("key", node, 0), MapleDataTool.getIntConvert("x", node, 0), MapleDataTool.getIntConvert("y", node, 0), MapleDataTool.getIntConvert("attr", node, 0), edges)
                             nodeInfo.addNode(mni)
-                    catch (NumberFormatException ex) {}
+                    except NumberFormatException as ex:
+                        pass
                 nodeInfo.sortNodes()
             for i in range(1, = 7):
-                if mapData.getChildByPath(str(i)) is not None && mapData.getChildByPath(i + "/obj") is not None:
+                if mapData.getChildByPath(str(i)) is not None and mapData.getChildByPath(i + "/obj") is not None:
                     for node2 in mapData.getChildByPath(i + "/obj"):
                         sn_count = MapleDataTool.getIntConvert("SN_count", node2, 0)
                         name = MapleDataTool.getString("name", node2, "")
                         speed = MapleDataTool.getIntConvert("speed", node2, 0)
-                        if sn_count > 0 && speed > 0:
+                        if sn_count > 0 and speed > 0:
                             if name == (""):
                                 continue
                             SN = []

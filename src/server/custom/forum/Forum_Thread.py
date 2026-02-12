@@ -173,7 +173,7 @@ class Forum_Thread:
                 Forum_Thread.allThread.remove(getThreadById(sid, tid))
                 Forum_Reply.deleteReply(tid, 0, True)
                 isExist = True
-            if !isExist:
+            if not isExist:
                 return isExist
             query = ""
             if isAll:
@@ -182,7 +182,7 @@ class Forum_Thread:
                 query.append("DELETE FROM forum_thread WHERE sid = ? AND tid = ?")
             ps = con.prepareStatement(query)
             ps.setInt(1, sid)
-            if !isAll:
+            if not isAll:
                 ps.setInt(2, tid)
             ps.executeUpdate()
             ps.close()

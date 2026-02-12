@@ -74,12 +74,12 @@ class MapleQuest:
     def loadQuest(self, ret: Any, id: int) -> bool:
         basedata1 = MapleQuest.requirements.getChildByPath(str(id))
         basedata2 = MapleQuest.actions.getChildByPath(str(id))
-        if basedata1 is None || basedata2 is None:
+        if basedata1 is None or basedata2 is None:
             return False
         startReqData = basedata1.getChildByPath("0")
         if startReqData is not None:
             startC = startReqData.getChildren()
-            if startC is not None && startC > 0:
+            if startC is not None and startC > 0:
                 for startReq in startC:
                     type = MapleQuestRequirementType.getByWZName(startReq.getName())
                     if type == (MapleQuestRequirementType.interval):
@@ -92,7 +92,7 @@ class MapleQuest:
         completeReqData = basedata1.getChildByPath("1")
         if completeReqData is not None:
             completeC = completeReqData.getChildren()
-            if completeC is not None && completeC > 0:
+            if completeC is not None and completeC > 0:
                 for completeReq in completeC:
                     req = MapleQuestRequirement(ret, MapleQuestRequirementType.getByWZName(completeReq.getName()), completeReq)
                     if req.getType() == (MapleQuestRequirementType.mob):
@@ -155,10 +155,10 @@ class MapleQuest:
         return self.name
 
     def canStart(self, c: Any, npcid: int) -> bool:
-        if c.getQuest(this).getStatus() != 0 && (c.getQuest(this).getStatus() != 2 || !self.repeatable):
+        if c.getQuest(this).getStatus() != 0 and (c.getQuest(this).getStatus() != 2 or not self.repeatable):
             return False
         for r in self.startReqs:
-            if !r.check(c, npcid):
+            if not r.check(c, npcid):
                 return False
         return True
 
@@ -166,7 +166,7 @@ class MapleQuest:
         if c.getQuest(this).getStatus() != 1:
             return False
         for r in self.completeReqs:
-            if !r.check(c, npcid):
+            if not r.check(c, npcid):
                 return False
         return True
 
@@ -176,13 +176,13 @@ class MapleQuest:
                 break
 
     def start(self, c: Any, npc: int) -> None:
-        if (self.autoStart || self.checkNPCOnMap(c, npc)) && self.canStart(c, npc):
+        if (self.autoStart or self.checkNPCOnMap(c, npc)) and self.canStart(c, npc):
             for a in self.startActs:
-                if !a.checkEnd(c, None):
+                if not a.checkEnd(c, None):
                     return
             for a in self.startActs:
                 a.runStart(c, None)
-            if !self.customend:
+            if not self.customend:
                 self.forceStart(c, npc, None)
             else:
                 NPCScriptManager.getInstance().endQuest(c.getClient(), npc, self.getId(), True)
@@ -191,10 +191,10 @@ class MapleQuest:
         self.complete(c, npc, None)
 
     def complete_c_npc_selection(self, c: Any, npc: int, selection: int) -> None:
-        if (self.autoPreComplete || self.checkNPCOnMap(c, npc)) && self.canComplete(c, npc):
+        if (self.autoPreComplete or self.checkNPCOnMap(c, npc)) and self.canComplete(c, npc):
             if npc != 9010000:
                 for a in self.completeActs:
-                    if !a.checkEnd(c, selection):
+                    if not a.checkEnd(c, selection):
                         return
                 self.forceComplete(c, npc)
                 for a in self.completeActs:
@@ -204,7 +204,7 @@ class MapleQuest:
         else:
             if npc != 9010000:
                 for a in self.completeActs:
-                    if !a.checkEnd(c, selection):
+                    if not a.checkEnd(c, selection):
                         return
                 self.forceComplete(c, npc)
                 for a in self.completeActs:
@@ -242,7 +242,7 @@ class MapleQuest:
         return self.relevantMobs
 
     def checkNPCOnMap(self, player: Any, npcid: int) -> bool:
-        return (GameConstants.isEvan(player.getJob()) && npcid == 1013000) || (player.getMap() is not None && player.getMap().containsNPC(npcid))
+        return (GameConstants.isEvan(player.getJob()) and npcid == 1013000) or (player.getMap() is not None and player.getMap().containsNPC(npcid))
 
     def getMedalItem(self) -> int:
         return self.viewMedalItem
