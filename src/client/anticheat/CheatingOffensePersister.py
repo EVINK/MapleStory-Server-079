@@ -28,7 +28,7 @@ class CheatingOffensePersister:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def persistEntry(self, coe: Any) -> None:
         """方法 persistEntry"""
@@ -53,7 +53,7 @@ class PersistingTask(Runnable):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def persistEntry(self, coe: Any) -> None:
         """方法 persistEntry"""

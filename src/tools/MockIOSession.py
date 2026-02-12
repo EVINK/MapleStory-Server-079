@@ -21,31 +21,31 @@ class MockIOSession(DummySession):
 
     def getConfig(self) -> Any:
         """方法 getConfig"""
-        raise NotImplementedError("方法 getConfig 尚未实现")
+        return getattr(self, 'config', None)
 
     def getFilterChain(self) -> Any:
         """方法 getFilterChain"""
-        raise NotImplementedError("方法 getFilterChain 尚未实现")
+        return getattr(self, 'filter_chain', None)
 
     def getHandler(self) -> Any:
         """方法 getHandler"""
-        raise NotImplementedError("方法 getHandler 尚未实现")
+        return getattr(self, 'handler', None)
 
     def getLocalAddress(self) -> Any:
         """方法 getLocalAddress"""
-        raise NotImplementedError("方法 getLocalAddress 尚未实现")
+        return getattr(self, 'local_address', None)
 
     def getRemoteAddress(self) -> Any:
         """方法 getRemoteAddress"""
-        raise NotImplementedError("方法 getRemoteAddress 尚未实现")
+        return getattr(self, 'remote_address', None)
 
     def getService(self) -> Any:
         """方法 getService"""
-        raise NotImplementedError("方法 getService 尚未实现")
+        return getattr(self, 'service', None)
 
     def getServiceAddress(self) -> Any:
         """方法 getServiceAddress"""
-        raise NotImplementedError("方法 getServiceAddress 尚未实现")
+        return getattr(self, 'service_address', None)
 
     def close0(self) -> None:
         """方法 close0"""

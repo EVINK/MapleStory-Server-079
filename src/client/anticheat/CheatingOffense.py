@@ -48,11 +48,11 @@ class CheatingOffense(Enum):
 
     def getPoints(self) -> int:
         """方法 getPoints"""
-        return 0
+        return getattr(self, 'points', 0)
 
     def getValidityDuration(self) -> int:
         """方法 getValidityDuration"""
-        return 0
+        return getattr(self, 'validity_duration', 0)
 
     def shouldAutoban(self, count: int) -> bool:
         """方法 shouldAutoban"""
@@ -60,13 +60,14 @@ class CheatingOffense(Enum):
 
     def getBanType(self) -> int:
         """方法 getBanType"""
-        return 0
+        return getattr(self, 'ban_type', 0)
 
     def setEnabled(self, enabled: bool) -> None:
         """方法 setEnabled"""
-        pass
+        self.enabled = enabled
+        return None
 
     def isEnabled(self) -> bool:
         """方法 isEnabled"""
-        return False
+        return bool(getattr(self, 'enabled', False))
 

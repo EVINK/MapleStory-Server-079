@@ -53,31 +53,32 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
 
     def getOwner(self) -> Any:
         """方法 getOwner"""
-        raise NotImplementedError("方法 getOwner 尚未实现")
+        return getattr(self, 'owner', None)
 
     def getFh(self) -> int:
         """方法 getFh"""
-        return 0
+        return getattr(self, 'fh', 0)
 
     def setFh(self, fh: int) -> None:
         """方法 setFh"""
-        pass
+        self.fh = fh
+        return None
 
     def getOwnerId(self) -> int:
         """方法 getOwnerId"""
-        return 0
+        return getattr(self, 'owner_id', 0)
 
     def getOwnerLevel(self) -> int:
         """方法 getOwnerLevel"""
-        return 0
+        return getattr(self, 'owner_level', 0)
 
     def getSkill(self) -> int:
         """方法 getSkill"""
-        return 0
+        return getattr(self, 'skill', 0)
 
     def getHP(self) -> int:
         """方法 getHP"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def addHP(self, delta: int) -> None:
         """方法 addHP"""
@@ -85,39 +86,39 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
 
     def getMovementType(self) -> Any:
         """方法 getMovementType"""
-        raise NotImplementedError("方法 getMovementType 尚未实现")
+        return getattr(self, 'movement_type', None)
 
     def is替身术(self) -> bool:
         """方法 is替身术"""
-        return False
+        return bool(getattr(self, '替身术', False))
 
     def isGaviota(self) -> bool:
         """方法 isGaviota"""
-        return False
+        return bool(getattr(self, 'gaviota', False))
 
     def isBeholder(self) -> bool:
         """方法 isBeholder"""
-        return False
+        return bool(getattr(self, 'beholder', False))
 
     def isMultiSummon(self) -> bool:
         """方法 isMultiSummon"""
-        return False
+        return bool(getattr(self, 'multi_summon', False))
 
     def isSummon(self) -> bool:
         """方法 isSummon"""
-        return False
+        return bool(getattr(self, 'summon', False))
 
     def getSkillLevel(self) -> int:
         """方法 getSkillLevel"""
-        return 0
+        return getattr(self, 'skill_level', 0)
 
     def getSummonType(self) -> int:
         """方法 getSummonType"""
-        return 0
+        return getattr(self, 'summon_type', 0)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def CheckSummonAttackFrequency(self, chr: Any, tickcount: int) -> None:
         """方法 CheckSummonAttackFrequency"""
@@ -125,9 +126,10 @@ class MapleSummon(AbstractAnimatedMapleMapObject):
 
     def isChangedMap(self) -> bool:
         """方法 isChangedMap"""
-        return False
+        return bool(getattr(self, 'changed_map', False))
 
     def setChangedMap(self, cm: bool) -> None:
         """方法 setChangedMap"""
-        pass
+        self.changed_map = cm
+        return None
 

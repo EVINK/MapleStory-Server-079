@@ -227,21 +227,21 @@ class MTSCSPacket:
 
     def getMTSConfirmSell(self) -> Any:
         """方法 getMTSConfirmSell"""
-        raise NotImplementedError("方法 getMTSConfirmSell 尚未实现")
+        return getattr(self, 'mts_confirm_sell', None)
 
     def getMTSFailSell(self) -> Any:
         """方法 getMTSFailSell"""
-        raise NotImplementedError("方法 getMTSFailSell 尚未实现")
+        return getattr(self, 'mts_fail_sell', None)
 
     def getMTSConfirmBuy(self) -> Any:
         """方法 getMTSConfirmBuy"""
-        raise NotImplementedError("方法 getMTSConfirmBuy 尚未实现")
+        return getattr(self, 'mts_confirm_buy', None)
 
     def getMTSFailBuy(self) -> Any:
         """方法 getMTSFailBuy"""
-        raise NotImplementedError("方法 getMTSFailBuy 尚未实现")
+        return getattr(self, 'mts_fail_buy', None)
 
     def getMTSConfirmCancel(self) -> Any:
         """方法 getMTSConfirmCancel"""
-        raise NotImplementedError("方法 getMTSConfirmCancel 尚未实现")
+        return getattr(self, 'mts_confirm_cancel', None)
 

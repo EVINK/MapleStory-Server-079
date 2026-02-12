@@ -48,11 +48,12 @@ class HiredMerchant(AbstractPlayerStore):
 
     def getShopType(self) -> int:
         """方法 getShopType"""
-        return 0
+        return getattr(self, 'shop_type', 0)
 
     def setStoreid(self, storeid: int) -> None:
         """方法 setStoreid"""
-        pass
+        self.storeid = storeid
+        return None
 
     def searchItem(self, itemSearch: int) -> list:
         """方法 searchItem"""
@@ -68,15 +69,15 @@ class HiredMerchant(AbstractPlayerStore):
 
     def getTimeLeft(self) -> int:
         """方法 getTimeLeft"""
-        return 0
+        return getattr(self, 'time_left', 0)
 
     def getStoreId(self) -> int:
         """方法 getStoreId"""
-        return 0
+        return getattr(self, 'store_id', 0)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def sendDestroyData(self, client: Any) -> None:
         """方法 sendDestroyData"""
@@ -108,5 +109,5 @@ class HiredMerchant(AbstractPlayerStore):
 
     def getMapId(self) -> int:
         """方法 getMapId"""
-        return 0
+        return getattr(self, 'map_id', 0)
 

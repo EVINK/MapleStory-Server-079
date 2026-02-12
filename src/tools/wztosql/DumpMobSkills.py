@@ -42,7 +42,7 @@ class DumpMobSkills:
 
     def isHadError(self) -> bool:
         """方法 isHadError"""
-        return False
+        return bool(getattr(self, 'had_error', False))
 
     def dumpMobSkills(self) -> None:
         """方法 dumpMobSkills"""

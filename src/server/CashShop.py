@@ -49,11 +49,11 @@ class CashShop:
 
     def getItemsSize(self) -> int:
         """方法 getItemsSize"""
-        return 0
+        return getattr(self, 'items_size', 0)
 
     def getInventory(self) -> list:
         """方法 getInventory"""
-        return []
+        return getattr(self, 'inventory', [])
 
     def findByCashId(self, cashId: int) -> Any:
         """方法 findByCashId"""

@@ -47,11 +47,12 @@ class MaplePvpStats:
 
     def getWatk(self) -> int:
         """方法 getWatk"""
-        return 0
+        return getattr(self, 'watk', 0)
 
     def setWatk(self, gain: int) -> None:
         """方法 setWatk"""
-        pass
+        self.watk = gain
+        return None
 
     def gainWatk(self, gain: int) -> None:
         """方法 gainWatk"""
@@ -59,11 +60,12 @@ class MaplePvpStats:
 
     def getMatk(self) -> int:
         """方法 getMatk"""
-        return 0
+        return getattr(self, 'matk', 0)
 
     def setMatk(self, gain: int) -> None:
         """方法 setMatk"""
-        pass
+        self.matk = gain
+        return None
 
     def gainMatk(self, gain: int) -> None:
         """方法 gainMatk"""
@@ -71,11 +73,12 @@ class MaplePvpStats:
 
     def getWdef(self) -> int:
         """方法 getWdef"""
-        return 0
+        return getattr(self, 'wdef', 0)
 
     def setWdef(self, gain: int) -> None:
         """方法 setWdef"""
-        pass
+        self.wdef = gain
+        return None
 
     def gainWdef(self, gain: int) -> None:
         """方法 gainWdef"""
@@ -83,11 +86,12 @@ class MaplePvpStats:
 
     def getMdef(self) -> int:
         """方法 getMdef"""
-        return 0
+        return getattr(self, 'mdef', 0)
 
     def setMdef(self, gain: int) -> None:
         """方法 setMdef"""
-        pass
+        self.mdef = gain
+        return None
 
     def gainMdef(self, gain: int) -> None:
         """方法 gainMdef"""
@@ -95,11 +99,12 @@ class MaplePvpStats:
 
     def getAcc(self) -> int:
         """方法 getAcc"""
-        return 0
+        return getattr(self, 'acc', 0)
 
     def setAcc(self, gain: int) -> None:
         """方法 setAcc"""
-        pass
+        self.acc = gain
+        return None
 
     def gainAcc(self, gain: int) -> None:
         """方法 gainAcc"""
@@ -107,11 +112,12 @@ class MaplePvpStats:
 
     def getAvoid(self) -> int:
         """方法 getAvoid"""
-        return 0
+        return getattr(self, 'avoid', 0)
 
     def setAvoid(self, gain: int) -> None:
         """方法 setAvoid"""
-        pass
+        self.avoid = gain
+        return None
 
     def gainAvoid(self, gain: int) -> None:
         """方法 gainAvoid"""
@@ -119,11 +125,12 @@ class MaplePvpStats:
 
     def getWdefRate(self) -> int:
         """方法 getWdefRate"""
-        return 0
+        return getattr(self, 'wdef_rate', 0)
 
     def setWdefRate(self, gain: int) -> None:
         """方法 setWdefRate"""
-        pass
+        self.wdef_rate = gain
+        return None
 
     def gainWdefRate(self, gain: int) -> None:
         """方法 gainWdefRate"""
@@ -131,11 +138,12 @@ class MaplePvpStats:
 
     def getMdefRate(self) -> int:
         """方法 getMdefRate"""
-        return 0
+        return getattr(self, 'mdef_rate', 0)
 
     def setMdefRate(self, gain: int) -> None:
         """方法 setMdefRate"""
-        pass
+        self.mdef_rate = gain
+        return None
 
     def gainMdefRate(self, gain: int) -> None:
         """方法 gainMdefRate"""
@@ -143,11 +151,12 @@ class MaplePvpStats:
 
     def getIgnoreDef(self) -> int:
         """方法 getIgnoreDef"""
-        return 0
+        return getattr(self, 'ignore_def', 0)
 
     def setIgnoreDef(self, gain: int) -> None:
         """方法 setIgnoreDef"""
-        pass
+        self.ignore_def = gain
+        return None
 
     def gainIgnoreDef(self, gain: int) -> None:
         """方法 gainIgnoreDef"""
@@ -155,11 +164,12 @@ class MaplePvpStats:
 
     def getDamageRate(self) -> int:
         """方法 getDamageRate"""
-        return 0
+        return getattr(self, 'damage_rate', 0)
 
     def setDamageRate(self, gain: int) -> None:
         """方法 setDamageRate"""
-        pass
+        self.damage_rate = gain
+        return None
 
     def gainDamageRate(self, gain: int) -> None:
         """方法 gainDamageRate"""
@@ -167,11 +177,12 @@ class MaplePvpStats:
 
     def getIgnoreDamage(self) -> int:
         """方法 getIgnoreDamage"""
-        return 0
+        return getattr(self, 'ignore_damage', 0)
 
     def setIgnoreDamage(self, gain: int) -> None:
         """方法 setIgnoreDamage"""
-        pass
+        self.ignore_damage = gain
+        return None
 
     def gainIgnoreDamage(self, gain: int) -> None:
         """方法 gainIgnoreDamage"""

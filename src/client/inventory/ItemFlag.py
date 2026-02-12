@@ -23,7 +23,7 @@ class ItemFlag(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def check(self, flag: int) -> bool:
         """方法 check"""

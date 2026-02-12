@@ -36,75 +36,84 @@ class Forum_Thread:
 
     def getThreadId(self) -> int:
         """方法 getThreadId"""
-        return 0
+        return getattr(self, 'thread_id', 0)
 
     def setThreadId(self, threadId: int) -> None:
         """方法 setThreadId"""
-        pass
+        self.thread_id = threadId
+        return None
 
     def getSectionId(self) -> int:
         """方法 getSectionId"""
-        return 0
+        return getattr(self, 'section_id', 0)
 
     def setSectionId(self, sectionId: int) -> None:
         """方法 setSectionId"""
-        pass
+        self.section_id = sectionId
+        return None
 
     def getThreadName(self) -> str:
         """方法 getThreadName"""
-        return ""
+        return getattr(self, 'thread_name', "")
 
     def setThreadName(self, threadName: str) -> None:
         """方法 setThreadName"""
-        pass
+        self.thread_name = threadName
+        return None
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def setCharacterId(self, characterId: int) -> None:
         """方法 setCharacterId"""
-        pass
+        self.character_id = characterId
+        return None
 
     def getCharacterName(self) -> str:
         """方法 getCharacterName"""
-        return ""
+        return getattr(self, 'character_name', "")
 
     def setCharacterName(self, characterName: str) -> None:
         """方法 setCharacterName"""
-        pass
+        self.character_name = characterName
+        return None
 
     def getReleaseTime(self) -> str:
         """方法 getReleaseTime"""
-        return ""
+        return getattr(self, 'release_time', "")
 
     def setReleaseTime(self, releaseTime: str) -> None:
         """方法 setReleaseTime"""
-        pass
+        self.release_time = releaseTime
+        return None
 
     def getUp(self) -> int:
         """方法 getUp"""
-        return 0
+        return getattr(self, 'up', 0)
 
     def setUp(self, up: int) -> None:
         """方法 setUp"""
-        pass
+        self.up = up
+        return None
 
     def getDown(self) -> int:
         """方法 getDown"""
-        return 0
+        return getattr(self, 'down', 0)
 
     def setDown(self, down: int) -> None:
         """方法 setDown"""
-        pass
+        self.down = down
+        return None
 
     def getAllThread(self) -> list:
         """方法 getAllThread"""
-        return []
+        return getattr(self, 'all_thread', [])
 
     def setAllThread(self, allThread: list) -> None:
         """方法 setAllThread"""
-        pass
+        self.all_thread = allThread
+        return None
 
     def getCurrentAllThread(self, sid: int) -> list:
         """方法 getCurrentAllThread"""

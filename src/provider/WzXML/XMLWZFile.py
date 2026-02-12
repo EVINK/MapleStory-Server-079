@@ -36,5 +36,5 @@ class XMLWZFile(MapleDataProvider):
 
     def getRoot(self) -> Any:
         """方法 getRoot"""
-        raise NotImplementedError("方法 getRoot 尚未实现")
+        return getattr(self, 'root', None)
 

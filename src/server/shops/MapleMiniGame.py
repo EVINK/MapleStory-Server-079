@@ -38,19 +38,21 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setFirstSlot(self, type: int) -> None:
         """方法 setFirstSlot"""
-        pass
+        self.first_slot = type
+        return None
 
     def getFirstSlot(self) -> int:
         """方法 getFirstSlot"""
-        return 0
+        return getattr(self, 'first_slot', 0)
 
     def setPoints(self, slot: int) -> None:
         """方法 setPoints"""
-        pass
+        self.points = slot
+        return None
 
     def getPoints(self) -> int:
         """方法 getPoints"""
-        return 0
+        return getattr(self, 'points', 0)
 
     def checkWin(self) -> None:
         """方法 checkWin"""
@@ -62,11 +64,12 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setPieceType(self, type: int) -> None:
         """方法 setPieceType"""
-        pass
+        self.piece_type = type
+        return None
 
     def getPieceType(self) -> int:
         """方法 getPieceType"""
-        return 0
+        return getattr(self, 'piece_type', 0)
 
     def setGameType(self) -> None:
         """方法 setGameType"""
@@ -82,15 +85,16 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def getMatchesToWin(self) -> int:
         """方法 getMatchesToWin"""
-        return 0
+        return getattr(self, 'matches_to_win', 0)
 
     def setLoser(self, type: int) -> None:
         """方法 setLoser"""
-        pass
+        self.loser = type
+        return None
 
     def getLoser(self) -> int:
         """方法 getLoser"""
-        return 0
+        return getattr(self, 'loser', 0)
 
     def send(self, c: Any) -> None:
         """方法 send"""
@@ -98,7 +102,8 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setReady(self, slot: int) -> None:
         """方法 setReady"""
-        pass
+        self.ready = slot
+        return None
 
     def isReady(self, slot: int) -> bool:
         """方法 isReady"""
@@ -106,7 +111,8 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setPiece(self, move1: int, move2: int, type: int, chr: Any) -> None:
         """方法 setPiece"""
-        pass
+        self.piece = move1
+        return None
 
     def nextLoser(self) -> None:
         """方法 nextLoser"""
@@ -122,7 +128,8 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setExitAfter(self, player: Any) -> None:
         """方法 setExitAfter"""
-        pass
+        self.exit_after = player
+        return None
 
     def checkExitAfterGame(self) -> None:
         """方法 checkExitAfterGame"""
@@ -138,7 +145,7 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def getShopType(self) -> int:
         """方法 getShopType"""
-        return 0
+        return getattr(self, 'shop_type', 0)
 
     def getWins(self, chr: Any) -> int:
         """方法 getWins"""
@@ -154,7 +161,8 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def setPoints(self, i: int, type: int) -> None:
         """方法 setPoints"""
-        pass
+        self.points = i
+        return None
 
     def getData(self, chr: Any) -> str:
         """方法 getData"""
@@ -162,27 +170,30 @@ class MapleMiniGame(AbstractPlayerStore):
 
     def getRequestedTie(self) -> int:
         """方法 getRequestedTie"""
-        return 0
+        return getattr(self, 'requested_tie', 0)
 
     def setRequestedTie(self, t: int) -> None:
         """方法 setRequestedTie"""
-        pass
+        self.requested_tie = t
+        return None
 
     def getRequestedREDO(self) -> int:
         """方法 getRequestedREDO"""
-        return 0
+        return getattr(self, 'requested_redo', 0)
 
     def setRequestedREDO(self, t: int) -> None:
         """方法 setRequestedREDO"""
-        pass
+        self.requested_redo = t
+        return None
 
     def getTurn(self) -> int:
         """方法 getTurn"""
-        return 0
+        return getattr(self, 'turn', 0)
 
     def setTurn(self, t: int) -> None:
         """方法 setTurn"""
-        pass
+        self.turn = t
+        return None
 
     def closeShop(self, s: bool, z: bool) -> None:
         """方法 closeShop"""

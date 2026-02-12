@@ -78,27 +78,27 @@ class AbstractPlayerInteraction(ABC):
 
     def getClient(self) -> Any:
         """方法 getClient"""
-        raise NotImplementedError("方法 getClient 尚未实现")
+        return getattr(self, 'client', None)
 
     def getC(self) -> Any:
         """方法 getC"""
-        raise NotImplementedError("方法 getC 尚未实现")
+        return getattr(self, 'c', None)
 
     def getChar(self) -> Any:
         """方法 getChar"""
-        raise NotImplementedError("方法 getChar 尚未实现")
+        return getattr(self, 'char', None)
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getPlayer(self) -> Any:
         """方法 getPlayer"""
-        raise NotImplementedError("方法 getPlayer 尚未实现")
+        return getattr(self, 'player', None)
 
     def getMap(self) -> Any:
         """方法 getMap"""
-        raise NotImplementedError("方法 getMap 尚未实现")
+        return getattr(self, 'map', None)
 
     def getEventManager(self, event: str) -> Any:
         """方法 getEventManager"""
@@ -106,7 +106,7 @@ class AbstractPlayerInteraction(ABC):
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def forceRemovePlayerByCharName(self, name: str) -> None:
         """方法 forceRemovePlayerByCharName"""
@@ -262,7 +262,8 @@ class AbstractPlayerInteraction(ABC):
 
     def setPlayerStat(self, type: str, x: int) -> None:
         """方法 setPlayerStat"""
-        pass
+        self.player_stat = type
+        return None
 
     def getPlayerStat(self, type: str) -> int:
         """方法 getPlayerStat"""
@@ -270,7 +271,7 @@ class AbstractPlayerInteraction(ABC):
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def haveItem(self, itemid: int) -> bool:
         """方法 haveItem"""

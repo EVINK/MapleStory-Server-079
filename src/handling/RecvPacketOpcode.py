@@ -179,11 +179,12 @@ class RecvPacketOpcode(Enum):
 
     def setValue(self, code: int) -> None:
         """方法 setValue"""
-        pass
+        self.value = code
+        return None
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def NeedsChecking(self) -> bool:
         """方法 NeedsChecking"""
@@ -191,7 +192,7 @@ class RecvPacketOpcode(Enum):
 
     def getDefaultProperties(self) -> Any:
         """方法 getDefaultProperties"""
-        raise NotImplementedError("方法 getDefaultProperties 尚未实现")
+        return getattr(self, 'default_properties', None)
 
     def reloadValues(self) -> None:
         """方法 reloadValues"""

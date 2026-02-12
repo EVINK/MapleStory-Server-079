@@ -41,7 +41,7 @@ class CashItemFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -57,7 +57,7 @@ class CashItemFactory:
 
     def getBestItems(self) -> list:
         """方法 getBestItems"""
-        return []
+        return getattr(self, 'best_items', [])
 
     def getSnFromId(self, itemId: int) -> int:
         """方法 getSnFromId"""

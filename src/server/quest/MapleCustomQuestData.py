@@ -37,15 +37,15 @@ class MapleCustomQuestData(MapleData):
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getChildren(self) -> list:
         """方法 getChildren"""
-        return []
+        return getattr(self, 'children', [])
 
     def getChildByPath(self, name: str) -> Any:
         """方法 getChildByPath"""
@@ -53,7 +53,7 @@ class MapleCustomQuestData(MapleData):
 
     def getData(self) -> Any:
         """方法 getData"""
-        raise NotImplementedError("方法 getData 尚未实现")
+        return getattr(self, 'data', None)
 
     def iterator(self) -> iter:
         """方法 iterator"""
@@ -61,5 +61,5 @@ class MapleCustomQuestData(MapleData):
 
     def getParent(self) -> Any:
         """方法 getParent"""
-        raise NotImplementedError("方法 getParent 尚未实现")
+        return getattr(self, 'parent', None)
 

@@ -37,7 +37,8 @@ class ServerProperties:
 
     def setProperty(self, prop: str, newInf: str) -> None:
         """方法 setProperty"""
-        pass
+        self.property = prop
+        return None
 
     def getProperty(self, s: str, def: str) -> str:
         """方法 getProperty"""

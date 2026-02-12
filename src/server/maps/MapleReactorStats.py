@@ -32,27 +32,30 @@ class MapleReactorStats:
 
     def setFacingDirection(self, facingDirection: int) -> None:
         """方法 setFacingDirection"""
-        pass
+        self.facing_direction = facingDirection
+        return None
 
     def getFacingDirection(self) -> int:
         """方法 getFacingDirection"""
-        return 0
+        return getattr(self, 'facing_direction', 0)
 
     def setTL(self, tl: Any) -> None:
         """方法 setTL"""
-        pass
+        self.tl = tl
+        return None
 
     def setBR(self, br: Any) -> None:
         """方法 setBR"""
-        pass
+        self.br = br
+        return None
 
     def getTL(self) -> Any:
         """方法 getTL"""
-        raise NotImplementedError("方法 getTL 尚未实现")
+        return getattr(self, 'tl', None)
 
     def getBR(self) -> Any:
         """方法 getBR"""
-        raise NotImplementedError("方法 getBR 尚未实现")
+        return getattr(self, 'br', None)
 
     def addState(self, state: int, type: int, reactItem: Any, nextState: int, timeOut: int, canTouch: int) -> None:
         """方法 addState"""
@@ -80,19 +83,19 @@ class MapleReactorStats:
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getNextState(self) -> int:
         """方法 getNextState"""
-        return 0
+        return getattr(self, 'next_state', 0)
 
     def getReactItem(self) -> Any:
         """方法 getReactItem"""
-        raise NotImplementedError("方法 getReactItem 尚未实现")
+        return getattr(self, 'react_item', None)
 
     def getTimeOut(self) -> int:
         """方法 getTimeOut"""
-        return 0
+        return getattr(self, 'time_out', 0)
 
     def canTouch(self) -> int:
         """方法 canTouch"""
@@ -119,27 +122,30 @@ class StateData:
 
     def setFacingDirection(self, facingDirection: int) -> None:
         """方法 setFacingDirection"""
-        pass
+        self.facing_direction = facingDirection
+        return None
 
     def getFacingDirection(self) -> int:
         """方法 getFacingDirection"""
-        return 0
+        return getattr(self, 'facing_direction', 0)
 
     def setTL(self, tl: Any) -> None:
         """方法 setTL"""
-        pass
+        self.tl = tl
+        return None
 
     def setBR(self, br: Any) -> None:
         """方法 setBR"""
-        pass
+        self.br = br
+        return None
 
     def getTL(self) -> Any:
         """方法 getTL"""
-        raise NotImplementedError("方法 getTL 尚未实现")
+        return getattr(self, 'tl', None)
 
     def getBR(self) -> Any:
         """方法 getBR"""
-        raise NotImplementedError("方法 getBR 尚未实现")
+        return getattr(self, 'br', None)
 
     def addState(self, state: int, type: int, reactItem: Any, nextState: int, timeOut: int, canTouch: int) -> None:
         """方法 addState"""
@@ -167,19 +173,19 @@ class StateData:
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getNextState(self) -> int:
         """方法 getNextState"""
-        return 0
+        return getattr(self, 'next_state', 0)
 
     def getReactItem(self) -> Any:
         """方法 getReactItem"""
-        raise NotImplementedError("方法 getReactItem 尚未实现")
+        return getattr(self, 'react_item', None)
 
     def getTimeOut(self) -> int:
         """方法 getTimeOut"""
-        return 0
+        return getattr(self, 'time_out', 0)
 
     def canTouch(self) -> int:
         """方法 canTouch"""

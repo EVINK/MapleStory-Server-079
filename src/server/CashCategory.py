@@ -22,27 +22,27 @@ class CashCategory:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getParentDirectory(self) -> int:
         """方法 getParentDirectory"""
-        return 0
+        return getattr(self, 'parent_directory', 0)
 
     def getFlag(self) -> int:
         """方法 getFlag"""
-        return 0
+        return getattr(self, 'flag', 0)
 
     def getSold(self) -> int:
         """方法 getSold"""
-        return 0
+        return getattr(self, 'sold', 0)
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
 
 class CSFlag(Enum):
@@ -58,5 +58,5 @@ class CSFlag(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 

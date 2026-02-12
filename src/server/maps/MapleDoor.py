@@ -37,15 +37,15 @@ class MapleDoor(AbstractMapleMapObject):
 
     def getSkill(self) -> int:
         """方法 getSkill"""
-        return 0
+        return getattr(self, 'skill', 0)
 
     def getOwnerId(self) -> int:
         """方法 getOwnerId"""
-        return 0
+        return getattr(self, 'owner_id', 0)
 
     def getFreePortal(self) -> Any:
         """方法 getFreePortal"""
-        raise NotImplementedError("方法 getFreePortal 尚未实现")
+        return getattr(self, 'free_portal', None)
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -65,25 +65,25 @@ class MapleDoor(AbstractMapleMapObject):
 
     def getOwner(self) -> Any:
         """方法 getOwner"""
-        raise NotImplementedError("方法 getOwner 尚未实现")
+        return getattr(self, 'owner', None)
 
     def getTown(self) -> Any:
         """方法 getTown"""
-        raise NotImplementedError("方法 getTown 尚未实现")
+        return getattr(self, 'town', None)
 
     def getTownPortal(self) -> Any:
         """方法 getTownPortal"""
-        raise NotImplementedError("方法 getTownPortal 尚未实现")
+        return getattr(self, 'town_portal', None)
 
     def getTarget(self) -> Any:
         """方法 getTarget"""
-        raise NotImplementedError("方法 getTarget 尚未实现")
+        return getattr(self, 'target', None)
 
     def getTargetPosition(self) -> Any:
         """方法 getTargetPosition"""
-        raise NotImplementedError("方法 getTargetPosition 尚未实现")
+        return getattr(self, 'target_position', None)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 

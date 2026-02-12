@@ -34,59 +34,66 @@ class Forum_Reply:
 
     def getReplyId(self) -> int:
         """方法 getReplyId"""
-        return 0
+        return getattr(self, 'reply_id', 0)
 
     def setReplyId(self, replyId: int) -> None:
         """方法 setReplyId"""
-        pass
+        self.reply_id = replyId
+        return None
 
     def getThreadId(self) -> int:
         """方法 getThreadId"""
-        return 0
+        return getattr(self, 'thread_id', 0)
 
     def setThreadId(self, threadId: int) -> None:
         """方法 setThreadId"""
-        pass
+        self.thread_id = threadId
+        return None
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def setCharacterId(self, characterId: int) -> None:
         """方法 setCharacterId"""
-        pass
+        self.character_id = characterId
+        return None
 
     def getCharacterName(self) -> str:
         """方法 getCharacterName"""
-        return ""
+        return getattr(self, 'character_name', "")
 
     def setCharacterName(self, characterName: str) -> None:
         """方法 setCharacterName"""
-        pass
+        self.character_name = characterName
+        return None
 
     def getReleaseTime(self) -> str:
         """方法 getReleaseTime"""
-        return ""
+        return getattr(self, 'release_time', "")
 
     def setReleaseTime(self, releaseTime: str) -> None:
         """方法 setReleaseTime"""
-        pass
+        self.release_time = releaseTime
+        return None
 
     def getNews(self) -> str:
         """方法 getNews"""
-        return ""
+        return getattr(self, 'news', "")
 
     def setNews(self, news: str) -> None:
         """方法 setNews"""
-        pass
+        self.news = news
+        return None
 
     def getAllReply(self) -> list:
         """方法 getAllReply"""
-        return []
+        return getattr(self, 'all_reply', [])
 
     def setAllReply(self, allReply: list) -> None:
         """方法 setAllReply"""
-        pass
+        self.all_reply = allReply
+        return None
 
     def getCurrentAllReply(self, tid: int) -> list:
         """方法 getCurrentAllReply"""

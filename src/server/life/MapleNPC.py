@@ -27,7 +27,7 @@ class MapleNPC(AbstractLoadedMapleLife):
 
     def hasShop(self) -> bool:
         """方法 hasShop"""
-        return False
+        return bool(getattr(self, 'shop', False))
 
     def sendShop(self, c: Any) -> None:
         """方法 sendShop"""
@@ -43,21 +43,23 @@ class MapleNPC(AbstractLoadedMapleLife):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setName(self, n: str) -> None:
         """方法 setName"""
-        pass
+        self.name = n
+        return None
 
     def isCustom(self) -> bool:
         """方法 isCustom"""
-        return False
+        return bool(getattr(self, 'custom', False))
 
     def setCustom(self, custom: bool) -> None:
         """方法 setCustom"""
-        pass
+        self.custom = custom
+        return None
 

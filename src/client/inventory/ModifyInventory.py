@@ -28,27 +28,27 @@ class ModifyInventory:
 
     def getMode(self) -> int:
         """方法 getMode"""
-        return 0
+        return getattr(self, 'mode', 0)
 
     def getInventoryType(self) -> int:
         """方法 getInventoryType"""
-        return 0
+        return getattr(self, 'inventory_type', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def getOldPosition(self) -> int:
         """方法 getOldPosition"""
-        return 0
+        return getattr(self, 'old_position', 0)
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def clear(self) -> None:
         """方法 clear"""
@@ -75,27 +75,27 @@ class Types:
 
     def getMode(self) -> int:
         """方法 getMode"""
-        return 0
+        return getattr(self, 'mode', 0)
 
     def getInventoryType(self) -> int:
         """方法 getInventoryType"""
-        return 0
+        return getattr(self, 'inventory_type', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def getOldPosition(self) -> int:
         """方法 getOldPosition"""
-        return 0
+        return getattr(self, 'old_position', 0)
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def clear(self) -> None:
         """方法 clear"""

@@ -19,13 +19,13 @@ class BanishInfo:
 
     def getMap(self) -> int:
         """方法 getMap"""
-        return 0
+        return getattr(self, 'map', 0)
 
     def getPortal(self) -> str:
         """方法 getPortal"""
-        return ""
+        return getattr(self, 'portal', "")
 
     def getMsg(self) -> str:
         """方法 getMsg"""
-        return ""
+        return getattr(self, 'msg', "")
 

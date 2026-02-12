@@ -38,19 +38,19 @@ class MapleMist(AbstractMapleMapObject):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def getSourceSkill(self) -> Any:
         """方法 getSourceSkill"""
-        raise NotImplementedError("方法 getSourceSkill 尚未实现")
+        return getattr(self, 'source_skill', None)
 
     def isMobMist(self) -> bool:
         """方法 isMobMist"""
-        return False
+        return bool(getattr(self, 'mob_mist', False))
 
     def isPoisonMist(self) -> int:
         """方法 isPoisonMist"""
@@ -58,31 +58,32 @@ class MapleMist(AbstractMapleMapObject):
 
     def getSkillDelay(self) -> int:
         """方法 getSkillDelay"""
-        return 0
+        return getattr(self, 'skill_delay', 0)
 
     def getSkillLevel(self) -> int:
         """方法 getSkillLevel"""
-        return 0
+        return getattr(self, 'skill_level', 0)
 
     def getOwnerId(self) -> int:
         """方法 getOwnerId"""
-        return 0
+        return getattr(self, 'owner_id', 0)
 
     def getMobSkill(self) -> Any:
         """方法 getMobSkill"""
-        raise NotImplementedError("方法 getMobSkill 尚未实现")
+        return getattr(self, 'mob_skill', None)
 
     def getBox(self) -> Any:
         """方法 getBox"""
-        raise NotImplementedError("方法 getBox 尚未实现")
+        return getattr(self, 'box', None)
 
     def getSource(self) -> Any:
         """方法 getSource"""
-        raise NotImplementedError("方法 getSource 尚未实现")
+        return getattr(self, 'source', None)
 
     def setPosition(self, position: Any) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 
     def fakeSpawnData(self, level: int) -> Any:
         """方法 fakeSpawnData"""

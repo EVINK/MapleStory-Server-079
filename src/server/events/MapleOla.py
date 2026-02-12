@@ -50,11 +50,11 @@ class MapleOla(MapleEvent):
 
     def isTimerStarted(self) -> bool:
         """方法 isTimerStarted"""
-        return False
+        return bool(getattr(self, 'timer_started', False))
 
     def getTime(self) -> int:
         """方法 getTime"""
-        return 0
+        return getattr(self, 'time', 0)
 
     def resetSchedule(self) -> None:
         """方法 resetSchedule"""
@@ -70,7 +70,7 @@ class MapleOla(MapleEvent):
 
     def getTimeLeft(self) -> int:
         """方法 getTimeLeft"""
-        return 0
+        return getattr(self, 'time_left', 0)
 
     def isCharCorrect(self, portalName: str, mapid: int) -> bool:
         """方法 isCharCorrect"""

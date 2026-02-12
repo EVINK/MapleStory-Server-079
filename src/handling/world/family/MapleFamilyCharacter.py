@@ -38,95 +38,105 @@ class MapleFamilyCharacter:
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def setLevel(self, l: int) -> None:
         """方法 setLevel"""
-        pass
+        self.level = l
+        return None
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setChannel(self, ch: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = ch
+        return None
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def getJobId(self) -> int:
         """方法 getJobId"""
-        return 0
+        return getattr(self, 'job_id', 0)
 
     def setJobId(self, job: int) -> None:
         """方法 setJobId"""
-        pass
+        self.job_id = job
+        return None
 
     def getCurrentRep(self) -> int:
         """方法 getCurrentRep"""
-        return 0
+        return getattr(self, 'current_rep', 0)
 
     def setCurrentRep(self, cr: int) -> None:
         """方法 setCurrentRep"""
-        pass
+        self.current_rep = cr
+        return None
 
     def getTotalRep(self) -> int:
         """方法 getTotalRep"""
-        return 0
+        return getattr(self, 'total_rep', 0)
 
     def setTotalRep(self, tr: int) -> None:
         """方法 setTotalRep"""
-        pass
+        self.total_rep = tr
+        return None
 
     def getJunior1(self) -> int:
         """方法 getJunior1"""
-        return 0
+        return getattr(self, 'junior1', 0)
 
     def getJunior2(self) -> int:
         """方法 getJunior2"""
-        return 0
+        return getattr(self, 'junior2', 0)
 
     def setJunior1(self, trs: int) -> None:
         """方法 setJunior1"""
-        pass
+        self.junior1 = trs
+        return None
 
     def setJunior2(self, trs: int) -> None:
         """方法 setJunior2"""
-        pass
+        self.junior2 = trs
+        return None
 
     def getSeniorId(self) -> int:
         """方法 getSeniorId"""
-        return 0
+        return getattr(self, 'senior_id', 0)
 
     def setSeniorId(self, si: int) -> None:
         """方法 setSeniorId"""
-        pass
+        self.senior_id = si
+        return None
 
     def getFamilyId(self) -> int:
         """方法 getFamilyId"""
-        return 0
+        return getattr(self, 'family_id', 0)
 
     def setFamilyId(self, fi: int) -> None:
         """方法 setFamilyId"""
-        pass
+        self.family_id = fi
+        return None
 
     def isOnline(self) -> bool:
         """方法 isOnline"""
-        return False
+        return bool(getattr(self, 'online', False))
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def equals(self, other: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is other or getattr(self, '__eq__', lambda o: False)(other)
 
     def setOnline(self, f: bool) -> None:
         """方法 setOnline"""
-        pass
+        self.online = f
+        return None
 
     def getAllJuniors(self, fam: Any) -> list:
         """方法 getAllJuniors"""
@@ -138,7 +148,7 @@ class MapleFamilyCharacter:
 
     def getPedigree(self) -> list:
         """方法 getPedigree"""
-        return []
+        return getattr(self, 'pedigree', [])
 
     def resetPedigree(self, fam: Any) -> None:
         """方法 resetPedigree"""
@@ -146,7 +156,7 @@ class MapleFamilyCharacter:
 
     def getDescendants(self) -> int:
         """方法 getDescendants"""
-        return 0
+        return getattr(self, 'descendants', 0)
 
     def resetDescendants(self, fam: Any) -> int:
         """方法 resetDescendants"""
@@ -158,5 +168,5 @@ class MapleFamilyCharacter:
 
     def getNoJuniors(self) -> int:
         """方法 getNoJuniors"""
-        return 0
+        return getattr(self, 'no_juniors', 0)
 

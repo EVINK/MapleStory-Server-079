@@ -51,15 +51,16 @@ class MapleCoconut(MapleEvent):
 
     def getAllCoconuts(self) -> list:
         """方法 getAllCoconuts"""
-        return []
+        return getattr(self, 'all_coconuts', [])
 
     def setHittable(self, hittable: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = hittable
+        return None
 
     def getBombings(self) -> int:
         """方法 getBombings"""
-        return 0
+        return getattr(self, 'bombings', 0)
 
     def bombCoconut(self) -> None:
         """方法 bombCoconut"""
@@ -67,7 +68,7 @@ class MapleCoconut(MapleEvent):
 
     def getFalling(self) -> int:
         """方法 getFalling"""
-        return 0
+        return getattr(self, 'falling', 0)
 
     def fallCoconut(self) -> None:
         """方法 fallCoconut"""
@@ -75,7 +76,7 @@ class MapleCoconut(MapleEvent):
 
     def getStopped(self) -> int:
         """方法 getStopped"""
-        return 0
+        return getattr(self, 'stopped', 0)
 
     def stopCoconut(self) -> None:
         """方法 stopCoconut"""
@@ -83,15 +84,15 @@ class MapleCoconut(MapleEvent):
 
     def getCoconutScore(self) -> list:
         """方法 getCoconutScore"""
-        return []
+        return getattr(self, 'coconut_score', [])
 
     def getMapleScore(self) -> int:
         """方法 getMapleScore"""
-        return 0
+        return getattr(self, 'maple_score', 0)
 
     def getStoryScore(self) -> int:
         """方法 getStoryScore"""
-        return 0
+        return getattr(self, 'story_score', 0)
 
     def addMapleScore(self) -> None:
         """方法 addMapleScore"""
@@ -135,7 +136,7 @@ class MapleCoconut(MapleEvent):
 
     def getHits(self) -> int:
         """方法 getHits"""
-        return 0
+        return getattr(self, 'hits', 0)
 
     def resetHits(self) -> None:
         """方法 resetHits"""
@@ -143,23 +144,25 @@ class MapleCoconut(MapleEvent):
 
     def isHittable(self) -> bool:
         """方法 isHittable"""
-        return False
+        return bool(getattr(self, 'hittable', False))
 
     def setHittable(self, hittable: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = hittable
+        return None
 
     def isStopped(self) -> bool:
         """方法 isStopped"""
-        return False
+        return bool(getattr(self, 'stopped', False))
 
     def setStopped(self, stopped: bool) -> None:
         """方法 setStopped"""
-        pass
+        self.stopped = stopped
+        return None
 
     def getHitTime(self) -> int:
         """方法 getHitTime"""
-        return 0
+        return getattr(self, 'hit_time', 0)
 
 
 class MapleCoconuts:
@@ -197,15 +200,16 @@ class MapleCoconuts:
 
     def getAllCoconuts(self) -> list:
         """方法 getAllCoconuts"""
-        return []
+        return getattr(self, 'all_coconuts', [])
 
     def setHittable(self, hittable: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = hittable
+        return None
 
     def getBombings(self) -> int:
         """方法 getBombings"""
-        return 0
+        return getattr(self, 'bombings', 0)
 
     def bombCoconut(self) -> None:
         """方法 bombCoconut"""
@@ -213,7 +217,7 @@ class MapleCoconuts:
 
     def getFalling(self) -> int:
         """方法 getFalling"""
-        return 0
+        return getattr(self, 'falling', 0)
 
     def fallCoconut(self) -> None:
         """方法 fallCoconut"""
@@ -221,7 +225,7 @@ class MapleCoconuts:
 
     def getStopped(self) -> int:
         """方法 getStopped"""
-        return 0
+        return getattr(self, 'stopped', 0)
 
     def stopCoconut(self) -> None:
         """方法 stopCoconut"""
@@ -229,15 +233,15 @@ class MapleCoconuts:
 
     def getCoconutScore(self) -> list:
         """方法 getCoconutScore"""
-        return []
+        return getattr(self, 'coconut_score', [])
 
     def getMapleScore(self) -> int:
         """方法 getMapleScore"""
-        return 0
+        return getattr(self, 'maple_score', 0)
 
     def getStoryScore(self) -> int:
         """方法 getStoryScore"""
-        return 0
+        return getattr(self, 'story_score', 0)
 
     def addMapleScore(self) -> None:
         """方法 addMapleScore"""
@@ -281,7 +285,7 @@ class MapleCoconuts:
 
     def getHits(self) -> int:
         """方法 getHits"""
-        return 0
+        return getattr(self, 'hits', 0)
 
     def resetHits(self) -> None:
         """方法 resetHits"""
@@ -289,21 +293,23 @@ class MapleCoconuts:
 
     def isHittable(self) -> bool:
         """方法 isHittable"""
-        return False
+        return bool(getattr(self, 'hittable', False))
 
     def setHittable(self, hittable: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = hittable
+        return None
 
     def isStopped(self) -> bool:
         """方法 isStopped"""
-        return False
+        return bool(getattr(self, 'stopped', False))
 
     def setStopped(self, stopped: bool) -> None:
         """方法 setStopped"""
-        pass
+        self.stopped = stopped
+        return None
 
     def getHitTime(self) -> int:
         """方法 getHitTime"""
-        return 0
+        return getattr(self, 'hit_time', 0)
 

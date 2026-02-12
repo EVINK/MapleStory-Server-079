@@ -26,15 +26,17 @@ class MapleMapEffect:
 
     def setActive(self, active: bool) -> None:
         """方法 setActive"""
-        pass
+        self.active = active
+        return None
 
     def setJukebox(self, actie: bool) -> None:
         """方法 setJukebox"""
-        pass
+        self.jukebox = actie
+        return None
 
     def isJukebox(self) -> bool:
         """方法 isJukebox"""
-        return False
+        return bool(getattr(self, 'jukebox', False))
 
     def makeDestroyData(self) -> Any:
         """方法 makeDestroyData"""

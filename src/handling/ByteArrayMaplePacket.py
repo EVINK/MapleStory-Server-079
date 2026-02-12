@@ -23,15 +23,16 @@ class ByteArrayMaplePacket(MaplePacket):
 
     def getBytes(self) -> bytes:
         """方法 getBytes"""
-        return b""
+        return getattr(self, 'bytes', b"")
 
     def getOnSend(self) -> Any:
         """方法 getOnSend"""
-        raise NotImplementedError("方法 getOnSend 尚未实现")
+        return getattr(self, 'on_send', None)
 
     def setOnSend(self, onSend: Any) -> None:
         """方法 setOnSend"""
-        pass
+        self.on_send = onSend
+        return None
 
     def toString(self) -> str:
         """方法 toString"""

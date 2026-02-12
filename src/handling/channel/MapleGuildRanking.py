@@ -51,7 +51,7 @@ class MapleGuildRanking:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def RankingUpdate(self) -> None:
         """方法 RankingUpdate"""
@@ -63,15 +63,15 @@ class MapleGuildRanking:
 
     def getGuildRank(self) -> list:
         """方法 getGuildRank"""
-        return []
+        return getattr(self, 'guild_rank', [])
 
     def getLevelRank(self) -> list:
         """方法 getLevelRank"""
-        return []
+        return getattr(self, 'level_rank', [])
 
     def getMesoRank(self) -> list:
         """方法 getMesoRank"""
-        return []
+        return getattr(self, 'meso_rank', [])
 
     def reload(self) -> None:
         """方法 reload"""
@@ -95,75 +95,75 @@ class MapleGuildRanking:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getGP(self) -> int:
         """方法 getGP"""
-        return 0
+        return getattr(self, 'gp', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def getLogoBg(self) -> int:
         """方法 getLogoBg"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def getLogoBgColor(self) -> int:
         """方法 getLogoBgColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 
 
 class mesoRankingInfo:
@@ -198,7 +198,7 @@ class mesoRankingInfo:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def RankingUpdate(self) -> None:
         """方法 RankingUpdate"""
@@ -210,15 +210,15 @@ class mesoRankingInfo:
 
     def getGuildRank(self) -> list:
         """方法 getGuildRank"""
-        return []
+        return getattr(self, 'guild_rank', [])
 
     def getLevelRank(self) -> list:
         """方法 getLevelRank"""
-        return []
+        return getattr(self, 'level_rank', [])
 
     def getMesoRank(self) -> list:
         """方法 getMesoRank"""
-        return []
+        return getattr(self, 'meso_rank', [])
 
     def reload(self) -> None:
         """方法 reload"""
@@ -242,75 +242,75 @@ class mesoRankingInfo:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getGP(self) -> int:
         """方法 getGP"""
-        return 0
+        return getattr(self, 'gp', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def getLogoBg(self) -> int:
         """方法 getLogoBg"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def getLogoBgColor(self) -> int:
         """方法 getLogoBgColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 
 
 class levelRankingInfo:
@@ -345,7 +345,7 @@ class levelRankingInfo:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def RankingUpdate(self) -> None:
         """方法 RankingUpdate"""
@@ -357,15 +357,15 @@ class levelRankingInfo:
 
     def getGuildRank(self) -> list:
         """方法 getGuildRank"""
-        return []
+        return getattr(self, 'guild_rank', [])
 
     def getLevelRank(self) -> list:
         """方法 getLevelRank"""
-        return []
+        return getattr(self, 'level_rank', [])
 
     def getMesoRank(self) -> list:
         """方法 getMesoRank"""
-        return []
+        return getattr(self, 'meso_rank', [])
 
     def reload(self) -> None:
         """方法 reload"""
@@ -389,75 +389,75 @@ class levelRankingInfo:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getGP(self) -> int:
         """方法 getGP"""
-        return 0
+        return getattr(self, 'gp', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def getLogoBg(self) -> int:
         """方法 getLogoBg"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def getLogoBgColor(self) -> int:
         """方法 getLogoBgColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 
 
 class GuildRankingInfo:
@@ -492,7 +492,7 @@ class GuildRankingInfo:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def RankingUpdate(self) -> None:
         """方法 RankingUpdate"""
@@ -504,15 +504,15 @@ class GuildRankingInfo:
 
     def getGuildRank(self) -> list:
         """方法 getGuildRank"""
-        return []
+        return getattr(self, 'guild_rank', [])
 
     def getLevelRank(self) -> list:
         """方法 getLevelRank"""
-        return []
+        return getattr(self, 'level_rank', [])
 
     def getMesoRank(self) -> list:
         """方法 getMesoRank"""
-        return []
+        return getattr(self, 'meso_rank', [])
 
     def reload(self) -> None:
         """方法 reload"""
@@ -536,73 +536,73 @@ class GuildRankingInfo:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getGP(self) -> int:
         """方法 getGP"""
-        return 0
+        return getattr(self, 'gp', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def getLogoBg(self) -> int:
         """方法 getLogoBg"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def getLogoBgColor(self) -> int:
         """方法 getLogoBgColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 

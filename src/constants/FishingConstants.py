@@ -33,57 +33,58 @@ class FishingConstants:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getFishingItem(self) -> list:
         """方法 getFishingItem"""
-        return []
+        return getattr(self, 'fishing_item', [])
 
     def getFishingItemS(self) -> list:
         """方法 getFishingItemS"""
-        return []
+        return getattr(self, 'fishing_item_s', [])
 
     def getFishingItemSJ(self) -> int:
         """方法 getFishingItemSJ"""
-        return 0
+        return getattr(self, 'fishing_item_sj', 0)
 
     def getFishingItemSLS(self) -> int:
         """方法 getFishingItemSLS"""
-        return 0
+        return getattr(self, 'fishing_item_sls', 0)
 
     def getFishingItemSL(self) -> int:
         """方法 getFishingItemSL"""
-        return 0
+        return getattr(self, 'fishing_item_sl', 0)
 
     def getFishingVIPSJ(self) -> int:
         """方法 getFishingVIPSJ"""
-        return 0
+        return getattr(self, 'fishing_vipsj', 0)
 
     def getFishingSJ(self) -> int:
         """方法 getFishingSJ"""
-        return 0
+        return getattr(self, 'fishing_sj', 0)
 
     def getFishingMeso(self) -> int:
         """方法 getFishingMeso"""
-        return 0
+        return getattr(self, 'fishing_meso', 0)
 
     def getFishingMesoS(self) -> int:
         """方法 getFishingMesoS"""
-        return 0
+        return getattr(self, 'fishing_meso_s', 0)
 
     def getFishingExp(self) -> int:
         """方法 getFishingExp"""
-        return 0
+        return getattr(self, 'fishing_exp', 0)
 
     def getFishingExpS(self) -> int:
         """方法 getFishingExpS"""
-        return 0
+        return getattr(self, 'fishing_exp_s', 0)
 
     def isCANLOG(self) -> bool:
         """方法 isCANLOG"""
-        return False
+        return bool(getattr(self, 'canlog', False))
 
     def setCANLOG(self, CANLOG: bool) -> None:
         """方法 setCANLOG"""
-        pass
+        self.canlog = CANLOG
+        return None
 

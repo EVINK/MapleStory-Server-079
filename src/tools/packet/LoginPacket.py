@@ -34,7 +34,7 @@ class LoginPacket:
 
     def getPing(self) -> Any:
         """方法 getPing"""
-        raise NotImplementedError("方法 getPing 尚未实现")
+        return getattr(self, 'ping', None)
 
     def StrangeDATA(self) -> Any:
         """方法 StrangeDATA"""
@@ -74,7 +74,7 @@ class LoginPacket:
 
     def getEndOfServerList(self) -> Any:
         """方法 getEndOfServerList"""
-        raise NotImplementedError("方法 getEndOfServerList 尚未实现")
+        return getattr(self, 'end_of_server_list', None)
 
     def getServerStatus(self, status: int) -> Any:
         """方法 getServerStatus"""

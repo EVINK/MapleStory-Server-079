@@ -35,7 +35,7 @@ class MapleCarnivalParty:
 
     def getLeader(self) -> Any:
         """方法 getLeader"""
-        raise NotImplementedError("方法 getLeader 尚未实现")
+        return getattr(self, 'leader', None)
 
     def addCP(self, player: Any, ammount: int) -> None:
         """方法 addCP"""
@@ -43,11 +43,11 @@ class MapleCarnivalParty:
 
     def getTotalCP(self) -> int:
         """方法 getTotalCP"""
-        return 0
+        return getattr(self, 'total_cp', 0)
 
     def getAvailableCP(self) -> int:
         """方法 getAvailableCP"""
-        return 0
+        return getattr(self, 'available_cp', 0)
 
     def useCP(self, player: Any, ammount: int) -> None:
         """方法 useCP"""
@@ -55,11 +55,11 @@ class MapleCarnivalParty:
 
     def getMembers(self) -> list:
         """方法 getMembers"""
-        return []
+        return getattr(self, 'members', [])
 
     def getTeam(self) -> int:
         """方法 getTeam"""
-        return 0
+        return getattr(self, 'team', 0)
 
     def warp(self, map: Any, portalname: str) -> None:
         """方法 warp"""
@@ -79,11 +79,12 @@ class MapleCarnivalParty:
 
     def isWinner(self) -> bool:
         """方法 isWinner"""
-        return False
+        return bool(getattr(self, 'winner', False))
 
     def setWinner(self, status: bool) -> None:
         """方法 setWinner"""
-        pass
+        self.winner = status
+        return None
 
     def displayMatchResult(self) -> None:
         """方法 displayMatchResult"""

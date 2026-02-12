@@ -67,7 +67,7 @@ class MapleStorage:
 
     def getItems(self) -> list:
         """方法 getItems"""
-        return []
+        return getattr(self, 'items', [])
 
     def filterItems(self, type: Any) -> list:
         """方法 filterItems"""
@@ -95,7 +95,7 @@ class MapleStorage:
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def findById(self, itemId: int) -> Any:
         """方法 findById"""
@@ -103,7 +103,8 @@ class MapleStorage:
 
     def setMeso(self, meso: int) -> None:
         """方法 setMeso"""
-        pass
+        self.meso = meso
+        return None
 
     def sendMeso(self, c: Any) -> None:
         """方法 sendMeso"""
@@ -111,11 +112,11 @@ class MapleStorage:
 
     def isFull(self) -> bool:
         """方法 isFull"""
-        return False
+        return bool(getattr(self, 'full', False))
 
     def getSlots(self) -> int:
         """方法 getSlots"""
-        return 0
+        return getattr(self, 'slots', 0)
 
     def increaseSlots(self, gain: int) -> None:
         """方法 increaseSlots"""
@@ -123,7 +124,8 @@ class MapleStorage:
 
     def setSlots(self, set: int) -> None:
         """方法 setSlots"""
-        pass
+        self.slots = set
+        return None
 
     def close(self) -> None:
         """方法 close"""

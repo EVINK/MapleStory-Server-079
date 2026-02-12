@@ -22,9 +22,9 @@ class SummonAttackEntry:
 
     def getMonster(self) -> Any:
         """方法 getMonster"""
-        raise NotImplementedError("方法 getMonster 尚未实现")
+        return getattr(self, 'monster', None)
 
     def getDamage(self) -> int:
         """方法 getDamage"""
-        return 0
+        return getattr(self, 'damage', 0)
 

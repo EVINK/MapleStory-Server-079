@@ -38,7 +38,7 @@ class HiredMerchantSave:
 
     def getRunnable(self) -> Any:
         """方法 getRunnable"""
-        raise NotImplementedError("方法 getRunnable 尚未实现")
+        return getattr(self, 'runnable', None)
 
     def run(self) -> None:
         """方法 run"""
@@ -80,7 +80,7 @@ class TimingThread(Thread):
 
     def getRunnable(self) -> Any:
         """方法 getRunnable"""
-        raise NotImplementedError("方法 getRunnable 尚未实现")
+        return getattr(self, 'runnable', None)
 
     def run(self) -> None:
         """方法 run"""
@@ -122,7 +122,7 @@ class HiredMerchantSaveRunnable(Runnable):
 
     def getRunnable(self) -> Any:
         """方法 getRunnable"""
-        raise NotImplementedError("方法 getRunnable 尚未实现")
+        return getattr(self, 'runnable', None)
 
     def run(self) -> None:
         """方法 run"""

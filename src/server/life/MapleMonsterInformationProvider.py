@@ -31,11 +31,11 @@ class MapleMonsterInformationProvider:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getGlobalDrop(self) -> list:
         """方法 getGlobalDrop"""
-        return []
+        return getattr(self, 'global_drop', [])
 
     def retrieveGlobal(self) -> None:
         """方法 retrieveGlobal"""

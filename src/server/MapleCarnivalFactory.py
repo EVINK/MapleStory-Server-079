@@ -37,7 +37,7 @@ class MapleCarnivalFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -53,11 +53,11 @@ class MapleCarnivalFactory:
 
     def getSkill(self) -> Any:
         """方法 getSkill"""
-        raise NotImplementedError("方法 getSkill 尚未实现")
+        return getattr(self, 'skill', None)
 
     def getDisease(self) -> Any:
         """方法 getDisease"""
-        raise NotImplementedError("方法 getDisease 尚未实现")
+        return getattr(self, 'disease', None)
 
 
 class MCSkill:
@@ -78,7 +78,7 @@ class MCSkill:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -94,9 +94,9 @@ class MCSkill:
 
     def getSkill(self) -> Any:
         """方法 getSkill"""
-        raise NotImplementedError("方法 getSkill 尚未实现")
+        return getattr(self, 'skill', None)
 
     def getDisease(self) -> Any:
         """方法 getDisease"""
-        raise NotImplementedError("方法 getDisease 尚未实现")
+        return getattr(self, 'disease', None)
 

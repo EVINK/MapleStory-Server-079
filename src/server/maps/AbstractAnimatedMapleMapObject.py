@@ -19,17 +19,18 @@ class AbstractAnimatedMapleMapObject(AbstractMapleMapObject, AnimatedMapleMapObj
 
     def getStance(self) -> int:
         """方法 getStance"""
-        return 0
+        return getattr(self, 'stance', 0)
 
     def setStance(self, stance: int) -> None:
         """方法 setStance"""
-        pass
+        self.stance = stance
+        return None
 
     def isFacingLeft(self) -> bool:
         """方法 isFacingLeft"""
-        return False
+        return bool(getattr(self, 'facing_left', False))
 
     def getFacingDirection(self) -> int:
         """方法 getFacingDirection"""
-        return 0
+        return getattr(self, 'facing_direction', 0)
 

@@ -38,7 +38,7 @@ class CherryMSLotteryImpl(CherryMSLottery):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getInstance(self, cserv: Any, mapFactory: Any) -> Any:
         """方法 getInstance"""
@@ -46,15 +46,15 @@ class CherryMSLotteryImpl(CherryMSLottery):
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getMapleMapFactory(self) -> Any:
         """方法 getMapleMapFactory"""
-        raise NotImplementedError("方法 getMapleMapFactory 尚未实现")
+        return getattr(self, 'maple_map_factory', None)
 
     def getDatetimemm(self) -> int:
         """方法 getDatetimemm"""
-        return 0
+        return getattr(self, 'datetimemm', 0)
 
     def warp(self, map: int, c: Any) -> None:
         """方法 warp"""
@@ -66,27 +66,30 @@ class CherryMSLotteryImpl(CherryMSLottery):
 
     def getAllpeichu(self) -> int:
         """方法 getAllpeichu"""
-        return 0
+        return getattr(self, 'allpeichu', 0)
 
     def setAllpeichu(self, allpeichu: int) -> None:
         """方法 setAllpeichu"""
-        pass
+        self.allpeichu = allpeichu
+        return None
 
     def getAlltouzhu(self) -> int:
         """方法 getAlltouzhu"""
-        return 0
+        return getattr(self, 'alltouzhu', 0)
 
     def setAlltouzhu(self, alltouzhu: int) -> None:
         """方法 setAlltouzhu"""
-        pass
+        self.alltouzhu = alltouzhu
+        return None
 
     def getCharacters(self) -> list:
         """方法 getCharacters"""
-        return []
+        return getattr(self, 'characters', [])
 
     def setCharacters(self, characters: list) -> None:
         """方法 setCharacters"""
-        pass
+        self.characters = characters
+        return None
 
     def addChar(self, chr: Any) -> None:
         """方法 addChar"""
@@ -94,11 +97,12 @@ class CherryMSLotteryImpl(CherryMSLottery):
 
     def getZjNum(self) -> int:
         """方法 getZjNum"""
-        return 0
+        return getattr(self, 'zj_num', 0)
 
     def setZjNum(self, zjNum: int) -> None:
         """方法 setZjNum"""
-        pass
+        self.zj_num = zjNum
+        return None
 
     def doLottery(self) -> None:
         """方法 doLottery"""

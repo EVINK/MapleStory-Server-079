@@ -44,7 +44,7 @@ class MapleGuildAlliance:
 
     def getNoGuilds(self) -> int:
         """方法 getNoGuilds"""
-        return 0
+        return getattr(self, 'no_guilds', 0)
 
     def deleteAlliance(self) -> bool:
         """方法 deleteAlliance"""
@@ -72,7 +72,8 @@ class MapleGuildAlliance:
 
     def setRank(self, ranks: list) -> None:
         """方法 setRank"""
-        pass
+        self.rank = ranks
+        return None
 
     def getRank(self, rank: int) -> str:
         """方法 getRank"""
@@ -80,15 +81,16 @@ class MapleGuildAlliance:
 
     def getRanks(self) -> list:
         """方法 getRanks"""
-        return []
+        return getattr(self, 'ranks', [])
 
     def getNotice(self) -> str:
         """方法 getNotice"""
-        return ""
+        return getattr(self, 'notice', "")
 
     def setNotice(self, newNotice: str) -> None:
         """方法 setNotice"""
-        pass
+        self.notice = newNotice
+        return None
 
     def getGuildId(self, i: int) -> int:
         """方法 getGuildId"""
@@ -96,15 +98,15 @@ class MapleGuildAlliance:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getCapacity(self) -> int:
         """方法 getCapacity"""
-        return 0
+        return getattr(self, 'capacity', 0)
 
     def setCapacity(self) -> bool:
         """方法 setCapacity"""
@@ -120,7 +122,7 @@ class MapleGuildAlliance:
 
     def getLeaderId(self) -> int:
         """方法 getLeaderId"""
-        return 0
+        return getattr(self, 'leader_id', 0)
 
     def setLeaderId(self, c: int) -> bool:
         """方法 setLeaderId"""

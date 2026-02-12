@@ -97,7 +97,7 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -109,55 +109,61 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -185,23 +191,25 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -221,19 +229,21 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -249,15 +259,16 @@ class MapleMonster(AbstractLoadedMapleLife):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -337,7 +348,7 @@ class AttackingMapleCharacter:
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -349,55 +360,61 @@ class AttackingMapleCharacter:
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -425,23 +442,25 @@ class AttackingMapleCharacter:
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -461,19 +480,21 @@ class AttackingMapleCharacter:
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -489,15 +510,16 @@ class AttackingMapleCharacter:
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -577,7 +599,7 @@ class ExpMap:
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -589,55 +611,61 @@ class ExpMap:
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -665,23 +693,25 @@ class ExpMap:
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -701,19 +731,21 @@ class ExpMap:
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -729,15 +761,16 @@ class ExpMap:
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -817,7 +850,7 @@ class OnePartyAttacker:
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -829,55 +862,61 @@ class OnePartyAttacker:
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -905,23 +944,25 @@ class OnePartyAttacker:
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -941,19 +982,21 @@ class OnePartyAttacker:
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -969,15 +1012,16 @@ class OnePartyAttacker:
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -1058,7 +1102,7 @@ class PoisonTask(Runnable):
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -1070,55 +1114,61 @@ class PoisonTask(Runnable):
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -1146,23 +1196,25 @@ class PoisonTask(Runnable):
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -1182,19 +1234,21 @@ class PoisonTask(Runnable):
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -1210,15 +1264,16 @@ class PoisonTask(Runnable):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -1299,7 +1354,7 @@ class SingleAttackerEntry(AttackerEntry):
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -1311,55 +1366,61 @@ class SingleAttackerEntry(AttackerEntry):
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -1387,23 +1448,25 @@ class SingleAttackerEntry(AttackerEntry):
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -1423,19 +1486,21 @@ class SingleAttackerEntry(AttackerEntry):
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -1451,15 +1516,16 @@ class SingleAttackerEntry(AttackerEntry):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""
@@ -1540,7 +1606,7 @@ class PartyAttackerEntry(AttackerEntry):
 
     def getStats(self) -> Any:
         """方法 getStats"""
-        raise NotImplementedError("方法 getStats 尚未实现")
+        return getattr(self, 'stats', None)
 
     def disableDrops(self) -> None:
         """方法 disableDrops"""
@@ -1552,55 +1618,61 @@ class PartyAttackerEntry(AttackerEntry):
 
     def setSponge(self, mob: Any) -> None:
         """方法 setSponge"""
-        pass
+        self.sponge = mob
+        return None
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def getMobMaxHp(self) -> int:
         """方法 getMobMaxHp"""
-        return 0
+        return getattr(self, 'mob_max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def getMobMaxMp(self) -> int:
         """方法 getMobMaxMp"""
-        return 0
+        return getattr(self, 'mob_max_mp', 0)
 
     def getMobExp(self) -> int:
         """方法 getMobExp"""
-        return 0
+        return getattr(self, 'mob_exp', 0)
 
     def setOverrideStats(self, ostats: Any) -> None:
         """方法 setOverrideStats"""
-        pass
+        self.override_stats = ostats
+        return None
 
     def getSponge(self) -> Any:
         """方法 getSponge"""
-        raise NotImplementedError("方法 getSponge 尚未实现")
+        return getattr(self, 'sponge', None)
 
     def getVenomMulti(self) -> int:
         """方法 getVenomMulti"""
-        return 0
+        return getattr(self, 'venom_multi', 0)
 
     def setVenomMulti(self, venom_counter: int) -> None:
         """方法 setVenomMulti"""
-        pass
+        self.venom_multi = venom_counter
+        return None
 
     def damage(self, from: Any, damage: int, updateAttackTime: bool) -> None:
         """方法 damage"""
@@ -1628,23 +1700,25 @@ class PartyAttackerEntry(AttackerEntry):
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setCarnivalTeam(self, team: int) -> None:
         """方法 setCarnivalTeam"""
-        pass
+        self.carnival_team = team
+        return None
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getController(self) -> Any:
         """方法 getController"""
-        raise NotImplementedError("方法 getController 尚未实现")
+        return getattr(self, 'controller', None)
 
     def setController(self, controller: Any) -> None:
         """方法 setController"""
-        pass
+        self.controller = controller
+        return None
 
     def switchController(self, newController: Any, immediateAggro: bool) -> None:
         """方法 switchController"""
@@ -1664,19 +1738,21 @@ class PartyAttackerEntry(AttackerEntry):
 
     def isControllerHasAggro(self) -> bool:
         """方法 isControllerHasAggro"""
-        return False
+        return bool(getattr(self, 'controller_has_aggro', False))
 
     def setControllerHasAggro(self, controllerHasAggro: bool) -> None:
         """方法 setControllerHasAggro"""
-        pass
+        self.controller_has_aggro = controllerHasAggro
+        return None
 
     def isControllerKnowsAboutAggro(self) -> bool:
         """方法 isControllerKnowsAboutAggro"""
-        return False
+        return bool(getattr(self, 'controller_knows_about_aggro', False))
 
     def setControllerKnowsAboutAggro(self, controllerKnowsAboutAggro: bool) -> None:
         """方法 setControllerKnowsAboutAggro"""
-        pass
+        self.controller_knows_about_aggro = controllerKnowsAboutAggro
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -1692,15 +1768,16 @@ class PartyAttackerEntry(AttackerEntry):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getEventInstance(self) -> Any:
         """方法 getEventInstance"""
-        raise NotImplementedError("方法 getEventInstance 尚未实现")
+        return getattr(self, 'event_instance', None)
 
     def setEventInstance(self, eventInstance: Any) -> None:
         """方法 setEventInstance"""
-        pass
+        self.event_instance = eventInstance
+        return None
 
     def getStatusSourceID(self, status: Any) -> int:
         """方法 getStatusSourceID"""

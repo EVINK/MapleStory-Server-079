@@ -26,35 +26,39 @@ class JumpDownMovement(AbstractLifeMovement):
 
     def getPixelsPerSecond(self) -> Any:
         """方法 getPixelsPerSecond"""
-        raise NotImplementedError("方法 getPixelsPerSecond 尚未实现")
+        return getattr(self, 'pixels_per_second', None)
 
     def setPixelsPerSecond(self, wobble: Any) -> None:
         """方法 setPixelsPerSecond"""
-        pass
+        self.pixels_per_second = wobble
+        return None
 
     def getOffset(self) -> Any:
         """方法 getOffset"""
-        raise NotImplementedError("方法 getOffset 尚未实现")
+        return getattr(self, 'offset', None)
 
     def setOffset(self, wobble: Any) -> None:
         """方法 setOffset"""
-        pass
+        self.offset = wobble
+        return None
 
     def getUnk(self) -> int:
         """方法 getUnk"""
-        return 0
+        return getattr(self, 'unk', 0)
 
     def setUnk(self, unk: int) -> None:
         """方法 setUnk"""
-        pass
+        self.unk = unk
+        return None
 
     def getFH(self) -> int:
         """方法 getFH"""
-        return 0
+        return getattr(self, 'fh', 0)
 
     def setFH(self, fh: int) -> None:
         """方法 setFH"""
-        pass
+        self.fh = fh
+        return None
 
     def serialize(self, lew: Any) -> None:
         """方法 serialize"""

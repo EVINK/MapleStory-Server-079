@@ -142,7 +142,8 @@ class MapleServerHandler(IoHandlerAdapter, MapleServerHandlerMBean):
 
     def setInfo(self, p: Any, op: Any, ip: str, id: int, accName: str, chrName: str) -> None:
         """方法 setInfo"""
-        pass
+        self.info = p
+        return None
 
     def toString(self) -> str:
         """方法 toString"""
@@ -223,7 +224,8 @@ class LoggedPacket:
 
     def setInfo(self, p: Any, op: Any, ip: str, id: int, accName: str, chrName: str) -> None:
         """方法 setInfo"""
-        pass
+        self.info = p
+        return None
 
     def toString(self) -> str:
         """方法 toString"""

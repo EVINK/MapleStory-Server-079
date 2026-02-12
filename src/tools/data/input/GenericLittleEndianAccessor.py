@@ -57,7 +57,7 @@ class GenericLittleEndianAccessor(LittleEndianAccessor):
 
     def getBytesRead(self) -> int:
         """方法 getBytesRead"""
-        return 0
+        return getattr(self, 'bytes_read', 0)
 
     def readMapleAsciiString(self) -> str:
         """方法 readMapleAsciiString"""

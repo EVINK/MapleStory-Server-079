@@ -36,57 +36,58 @@ class MaplePartyCharacter:
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def isOnline(self) -> bool:
         """方法 isOnline"""
-        return False
+        return bool(getattr(self, 'online', False))
 
     def setOnline(self, online: bool) -> None:
         """方法 setOnline"""
-        pass
+        self.online = online
+        return None
 
     def getMapid(self) -> int:
         """方法 getMapid"""
-        return 0
+        return getattr(self, 'mapid', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getJobId(self) -> int:
         """方法 getJobId"""
-        return 0
+        return getattr(self, 'job_id', 0)
 
     def getDoorTown(self) -> int:
         """方法 getDoorTown"""
-        return 0
+        return getattr(self, 'door_town', 0)
 
     def getDoorTarget(self) -> int:
         """方法 getDoorTarget"""
-        return 0
+        return getattr(self, 'door_target', 0)
 
     def getDoorSkill(self) -> int:
         """方法 getDoorSkill"""
-        return 0
+        return getattr(self, 'door_skill', 0)
 
     def getDoorPosition(self) -> Any:
         """方法 getDoorPosition"""
-        raise NotImplementedError("方法 getDoorPosition 尚未实现")
+        return getattr(self, 'door_position', None)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 

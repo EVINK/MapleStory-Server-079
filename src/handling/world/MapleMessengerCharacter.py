@@ -24,29 +24,30 @@ class MapleMessengerCharacter:
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def isOnline(self) -> bool:
         """方法 isOnline"""
-        return False
+        return bool(getattr(self, 'online', False))
 
     def setOnline(self, online: bool) -> None:
         """方法 setOnline"""
-        pass
+        self.online = online
+        return None
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 

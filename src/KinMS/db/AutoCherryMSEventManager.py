@@ -33,7 +33,7 @@ class AutoCherryMSEventManager(Runnable):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getInstance(self, cserv: Any, mapFactory: Any) -> Any:
         """方法 getInstance"""
@@ -41,11 +41,11 @@ class AutoCherryMSEventManager(Runnable):
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getMapleMapFactory(self) -> Any:
         """方法 getMapleMapFactory"""
-        raise NotImplementedError("方法 getMapleMapFactory 尚未实现")
+        return getattr(self, 'maple_map_factory', None)
 
     def run(self) -> None:
         """方法 run"""

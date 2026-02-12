@@ -22,5 +22,5 @@ class SummonMovementType(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 

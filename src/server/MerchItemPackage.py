@@ -26,33 +26,37 @@ class MerchItemPackage:
 
     def setItems(self, items: list) -> None:
         """方法 setItems"""
-        pass
+        self.items = items
+        return None
 
     def getItems(self) -> list:
         """方法 getItems"""
-        return []
+        return getattr(self, 'items', [])
 
     def setSentTime(self, sentTime: int) -> None:
         """方法 setSentTime"""
-        pass
+        self.sent_time = sentTime
+        return None
 
     def getSentTime(self) -> int:
         """方法 getSentTime"""
-        return 0
+        return getattr(self, 'sent_time', 0)
 
     def getMesos(self) -> int:
         """方法 getMesos"""
-        return 0
+        return getattr(self, 'mesos', 0)
 
     def setMesos(self, set: int) -> None:
         """方法 setMesos"""
-        pass
+        self.mesos = set
+        return None
 
     def getPackageid(self) -> int:
         """方法 getPackageid"""
-        return 0
+        return getattr(self, 'packageid', 0)
 
     def setPackageid(self, packageid: int) -> None:
         """方法 setPackageid"""
-        pass
+        self.packageid = packageid
+        return None
 

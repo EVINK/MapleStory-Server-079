@@ -45,39 +45,43 @@ class MapleMount:
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getSkillId(self) -> int:
         """方法 getSkillId"""
-        return 0
+        return getattr(self, 'skill_id', 0)
 
     def getFatigue(self) -> int:
         """方法 getFatigue"""
-        return 0
+        return getattr(self, 'fatigue', 0)
 
     def getExp(self) -> int:
         """方法 getExp"""
-        return 0
+        return getattr(self, 'exp', 0)
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def setItemId(self, c: int) -> None:
         """方法 setItemId"""
-        pass
+        self.item_id = c
+        return None
 
     def setFatigue(self, amount: int) -> None:
         """方法 setFatigue"""
-        pass
+        self.fatigue = amount
+        return None
 
     def setExp(self, c: int) -> None:
         """方法 setExp"""
-        pass
+        self.exp = c
+        return None
 
     def setLevel(self, c: int) -> None:
         """方法 setLevel"""
-        pass
+        self.level = c
+        return None
 
     def increaseFatigue(self) -> None:
         """方法 increaseFatigue"""

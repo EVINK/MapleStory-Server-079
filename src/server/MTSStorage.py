@@ -57,7 +57,7 @@ class MTSStorage:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def load(self) -> None:
         """方法 load"""
@@ -121,35 +121,35 @@ class MTSStorage:
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getRealPrice(self) -> int:
         """方法 getRealPrice"""
-        return 0
+        return getattr(self, 'real_price', 0)
 
     def getTaxes(self) -> int:
         """方法 getTaxes"""
-        return 0
+        return getattr(self, 'taxes', 0)
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def getEndingDate(self) -> int:
         """方法 getEndingDate"""
-        return 0
+        return getattr(self, 'ending_date', 0)
 
     def getSeller(self) -> str:
         """方法 getSeller"""
-        return ""
+        return getattr(self, 'seller', "")
 
 
 class MTSItemInfo:
@@ -179,7 +179,7 @@ class MTSItemInfo:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def load(self) -> None:
         """方法 load"""
@@ -243,33 +243,33 @@ class MTSItemInfo:
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getRealPrice(self) -> int:
         """方法 getRealPrice"""
-        return 0
+        return getattr(self, 'real_price', 0)
 
     def getTaxes(self) -> int:
         """方法 getTaxes"""
-        return 0
+        return getattr(self, 'taxes', 0)
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def getEndingDate(self) -> int:
         """方法 getEndingDate"""
-        return 0
+        return getattr(self, 'ending_date', 0)
 
     def getSeller(self) -> str:
         """方法 getSeller"""
-        return ""
+        return getattr(self, 'seller', "")
 

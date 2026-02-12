@@ -40,11 +40,11 @@ class WZDirectoryEntry(WZEntry, MapleDataDirectoryEntry):
 
     def getSubdirectories(self) -> list:
         """方法 getSubdirectories"""
-        return []
+        return getattr(self, 'subdirectories', [])
 
     def getFiles(self) -> list:
         """方法 getFiles"""
-        return []
+        return getattr(self, 'files', [])
 
     def getEntry(self, name: str) -> Any:
         """方法 getEntry"""

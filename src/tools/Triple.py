@@ -25,15 +25,15 @@ class Triple:
 
     def getLeft(self) -> Any:
         """方法 getLeft"""
-        raise NotImplementedError("方法 getLeft 尚未实现")
+        return getattr(self, 'left', None)
 
     def getMid(self) -> Any:
         """方法 getMid"""
-        raise NotImplementedError("方法 getMid 尚未实现")
+        return getattr(self, 'mid', None)
 
     def getRight(self) -> Any:
         """方法 getRight"""
-        raise NotImplementedError("方法 getRight 尚未实现")
+        return getattr(self, 'right', None)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -41,9 +41,9 @@ class Triple:
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 

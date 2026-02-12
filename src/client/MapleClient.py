@@ -132,31 +132,32 @@ class MapleClient:
 
     def getReceiveCrypto(self) -> Any:
         """方法 getReceiveCrypto"""
-        raise NotImplementedError("方法 getReceiveCrypto 尚未实现")
+        return getattr(self, 'receive_crypto', None)
 
     def getSendCrypto(self) -> Any:
         """方法 getSendCrypto"""
-        raise NotImplementedError("方法 getSendCrypto 尚未实现")
+        return getattr(self, 'send_crypto', None)
 
     def getSession(self) -> Any:
         """方法 getSession"""
-        raise NotImplementedError("方法 getSession 尚未实现")
+        return getattr(self, 'session', None)
 
     def getTempIP(self) -> str:
         """方法 getTempIP"""
-        return ""
+        return getattr(self, 'temp_ip', "")
 
     def setTempIP(self, s: str) -> None:
         """方法 setTempIP"""
-        pass
+        self.temp_ip = s
+        return None
 
     def getLock(self) -> Any:
         """方法 getLock"""
-        raise NotImplementedError("方法 getLock 尚未实现")
+        return getattr(self, 'lock', None)
 
     def getNPCLock(self) -> Any:
         """方法 getNPCLock"""
-        raise NotImplementedError("方法 getNPCLock 尚未实现")
+        return getattr(self, 'npc_lock', None)
 
     def sendPacket(self, o: Any) -> None:
         """方法 sendPacket"""
@@ -164,11 +165,12 @@ class MapleClient:
 
     def getPlayer(self) -> Any:
         """方法 getPlayer"""
-        raise NotImplementedError("方法 getPlayer 尚未实现")
+        return getattr(self, 'player', None)
 
     def setPlayer(self, player: Any) -> None:
         """方法 setPlayer"""
-        pass
+        self.player = player
+        return None
 
     def createdChar(self, id: int) -> None:
         """方法 createdChar"""
@@ -192,7 +194,7 @@ class MapleClient:
 
     def isLoggedIn(self) -> bool:
         """方法 isLoggedIn"""
-        return False
+        return bool(getattr(self, 'logged_in', False))
 
     def getTempBanCalendar(self, rs: Any) -> Any:
         """方法 getTempBanCalendar"""
@@ -200,11 +202,11 @@ class MapleClient:
 
     def getTempBanCalendar(self) -> Any:
         """方法 getTempBanCalendar"""
-        raise NotImplementedError("方法 getTempBanCalendar 尚未实现")
+        return getattr(self, 'temp_ban_calendar', None)
 
     def getBanReason(self) -> int:
         """方法 getBanReason"""
-        return 0
+        return getattr(self, 'ban_reason', 0)
 
     def isBannedMac(self, mac: str) -> bool:
         """方法 isBannedMac"""
@@ -216,11 +218,11 @@ class MapleClient:
 
     def hasBannedIP(self) -> bool:
         """方法 hasBannedIP"""
-        return False
+        return bool(getattr(self, 'banned_ip', False))
 
     def hasBannedMac(self) -> bool:
         """方法 hasBannedMac"""
-        return False
+        return bool(getattr(self, 'banned_mac', False))
 
     def loadMacsIfNescessary(self) -> None:
         """方法 loadMacsIfNescessary"""
@@ -260,11 +262,12 @@ class MapleClient:
 
     def setAccID(self, id: int) -> None:
         """方法 setAccID"""
-        pass
+        self.acc_id = id
+        return None
 
     def getAccID(self) -> int:
         """方法 getAccID"""
-        return 0
+        return getattr(self, 'acc_id', 0)
 
     def updateLoginState(self, newstate: int) -> None:
         """方法 updateLoginState"""
@@ -284,7 +287,7 @@ class MapleClient:
 
     def getLoginState(self) -> int:
         """方法 getLoginState"""
-        return 0
+        return getattr(self, 'login_state', 0)
 
     def checkBirthDate(self, date: int) -> bool:
         """方法 checkBirthDate"""
@@ -375,31 +378,32 @@ class CharNameAndId:
 
     def getReceiveCrypto(self) -> Any:
         """方法 getReceiveCrypto"""
-        raise NotImplementedError("方法 getReceiveCrypto 尚未实现")
+        return getattr(self, 'receive_crypto', None)
 
     def getSendCrypto(self) -> Any:
         """方法 getSendCrypto"""
-        raise NotImplementedError("方法 getSendCrypto 尚未实现")
+        return getattr(self, 'send_crypto', None)
 
     def getSession(self) -> Any:
         """方法 getSession"""
-        raise NotImplementedError("方法 getSession 尚未实现")
+        return getattr(self, 'session', None)
 
     def getTempIP(self) -> str:
         """方法 getTempIP"""
-        return ""
+        return getattr(self, 'temp_ip', "")
 
     def setTempIP(self, s: str) -> None:
         """方法 setTempIP"""
-        pass
+        self.temp_ip = s
+        return None
 
     def getLock(self) -> Any:
         """方法 getLock"""
-        raise NotImplementedError("方法 getLock 尚未实现")
+        return getattr(self, 'lock', None)
 
     def getNPCLock(self) -> Any:
         """方法 getNPCLock"""
-        raise NotImplementedError("方法 getNPCLock 尚未实现")
+        return getattr(self, 'npc_lock', None)
 
     def sendPacket(self, o: Any) -> None:
         """方法 sendPacket"""
@@ -407,11 +411,12 @@ class CharNameAndId:
 
     def getPlayer(self) -> Any:
         """方法 getPlayer"""
-        raise NotImplementedError("方法 getPlayer 尚未实现")
+        return getattr(self, 'player', None)
 
     def setPlayer(self, player: Any) -> None:
         """方法 setPlayer"""
-        pass
+        self.player = player
+        return None
 
     def createdChar(self, id: int) -> None:
         """方法 createdChar"""
@@ -435,7 +440,7 @@ class CharNameAndId:
 
     def isLoggedIn(self) -> bool:
         """方法 isLoggedIn"""
-        return False
+        return bool(getattr(self, 'logged_in', False))
 
     def getTempBanCalendar(self, rs: Any) -> Any:
         """方法 getTempBanCalendar"""
@@ -443,11 +448,11 @@ class CharNameAndId:
 
     def getTempBanCalendar(self) -> Any:
         """方法 getTempBanCalendar"""
-        raise NotImplementedError("方法 getTempBanCalendar 尚未实现")
+        return getattr(self, 'temp_ban_calendar', None)
 
     def getBanReason(self) -> int:
         """方法 getBanReason"""
-        return 0
+        return getattr(self, 'ban_reason', 0)
 
     def isBannedMac(self, mac: str) -> bool:
         """方法 isBannedMac"""
@@ -459,11 +464,11 @@ class CharNameAndId:
 
     def hasBannedIP(self) -> bool:
         """方法 hasBannedIP"""
-        return False
+        return bool(getattr(self, 'banned_ip', False))
 
     def hasBannedMac(self) -> bool:
         """方法 hasBannedMac"""
-        return False
+        return bool(getattr(self, 'banned_mac', False))
 
     def loadMacsIfNescessary(self) -> None:
         """方法 loadMacsIfNescessary"""
@@ -503,11 +508,12 @@ class CharNameAndId:
 
     def setAccID(self, id: int) -> None:
         """方法 setAccID"""
-        pass
+        self.acc_id = id
+        return None
 
     def getAccID(self) -> int:
         """方法 getAccID"""
-        return 0
+        return getattr(self, 'acc_id', 0)
 
     def updateLoginState(self, newstate: int) -> None:
         """方法 updateLoginState"""
@@ -527,7 +533,7 @@ class CharNameAndId:
 
     def getLoginState(self) -> int:
         """方法 getLoginState"""
-        return 0
+        return getattr(self, 'login_state', 0)
 
     def checkBirthDate(self, date: int) -> bool:
         """方法 checkBirthDate"""

@@ -29,7 +29,7 @@ class RandomRewards:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def processRewards(self, returnArray: list, list: list) -> None:
         """方法 processRewards"""
@@ -37,17 +37,17 @@ class RandomRewards:
 
     def getGoldBoxReward(self) -> int:
         """方法 getGoldBoxReward"""
-        return 0
+        return getattr(self, 'gold_box_reward', 0)
 
     def getSilverBoxReward(self) -> int:
         """方法 getSilverBoxReward"""
-        return 0
+        return getattr(self, 'silver_box_reward', 0)
 
     def getFishingReward(self) -> int:
         """方法 getFishingReward"""
-        return 0
+        return getattr(self, 'fishing_reward', 0)
 
     def getEventReward(self) -> int:
         """方法 getEventReward"""
-        return 0
+        return getattr(self, 'event_reward', 0)
 

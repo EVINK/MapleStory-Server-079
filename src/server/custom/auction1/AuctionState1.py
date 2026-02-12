@@ -20,7 +20,7 @@ class AuctionState1(Enum):
 
     def getState1(self) -> int:
         """方法 getState1"""
-        return 0
+        return getattr(self, 'state1', 0)
 
     def getState1(self, state1: int) -> Any:
         """方法 getState1"""

@@ -26,7 +26,7 @@ class MobAttackInfoFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getMobAttackInfo(self, mob: Any, attack: int) -> Any:
         """方法 getMobAttackInfo"""

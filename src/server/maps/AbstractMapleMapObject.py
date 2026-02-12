@@ -21,21 +21,23 @@ class AbstractMapleMapObject(MapleMapObject, ABC):
 
     def getTruePosition(self) -> Any:
         """方法 getTruePosition"""
-        raise NotImplementedError("方法 getTruePosition 尚未实现")
+        return getattr(self, 'true_position', None)
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def setPosition(self, position: Any) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 
     def getObjectId(self) -> int:
         """方法 getObjectId"""
-        return 0
+        return getattr(self, 'object_id', 0)
 
     def setObjectId(self, id: int) -> None:
         """方法 setObjectId"""
-        pass
+        self.object_id = id
+        return None
 

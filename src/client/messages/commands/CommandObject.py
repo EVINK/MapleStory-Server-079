@@ -27,5 +27,5 @@ class CommandObject:
 
     def getReqGMLevel(self) -> int:
         """方法 getReqGMLevel"""
-        return 0
+        return getattr(self, 'req_gm_level', 0)
 

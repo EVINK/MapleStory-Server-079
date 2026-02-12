@@ -33,15 +33,15 @@ class MapleDisease(Enum):
 
     def isFirst(self) -> bool:
         """方法 isFirst"""
-        return False
+        return bool(getattr(self, 'first', False))
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def getRandom(self) -> Any:
         """方法 getRandom"""
-        raise NotImplementedError("方法 getRandom 尚未实现")
+        return getattr(self, 'random', None)
 
     def getBySkill(self, skill: int) -> Any:
         """方法 getBySkill"""

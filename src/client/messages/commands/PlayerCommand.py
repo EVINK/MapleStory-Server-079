@@ -64,7 +64,7 @@ class PlayerCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 帮助(help):
@@ -112,7 +112,7 @@ class 帮助(help):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 自由(zy):
@@ -160,7 +160,7 @@ class 自由(zy):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 怪物(Mob):
@@ -208,7 +208,7 @@ class 怪物(Mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 万能(wn):
@@ -256,7 +256,7 @@ class 万能(wn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 爆率(Mobdrop):
@@ -304,7 +304,7 @@ class 爆率(Mobdrop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ea(查看):
@@ -352,7 +352,7 @@ class ea(查看):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 解卡(查看):
@@ -400,7 +400,7 @@ class 解卡(查看):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 破攻(pg):
@@ -448,7 +448,7 @@ class 破攻(pg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 查看(CommandExecute):
@@ -496,7 +496,7 @@ class 查看(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class zy(CommandExecute):
@@ -544,7 +544,7 @@ class zy(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class wn(CommandExecute):
@@ -592,7 +592,7 @@ class wn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Mobdrop(CommandExecute):
@@ -640,7 +640,7 @@ class Mobdrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Mob(CommandExecute):
@@ -688,7 +688,7 @@ class Mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class CGM(CommandExecute):
@@ -736,7 +736,7 @@ class CGM(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class pg(CommandExecute):
@@ -784,7 +784,7 @@ class pg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class help(CommandExecute):
@@ -832,7 +832,7 @@ class help(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class abc(CommandExecute):
@@ -880,5 +880,5 @@ class abc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 

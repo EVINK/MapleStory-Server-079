@@ -22,9 +22,9 @@ class ByteBufferLittleEndianWriter(GenericLittleEndianWriter):
 
     def getFlippedBB(self) -> Any:
         """方法 getFlippedBB"""
-        raise NotImplementedError("方法 getFlippedBB 尚未实现")
+        return getattr(self, 'flipped_bb', None)
 
     def getByteBuffer(self) -> Any:
         """方法 getByteBuffer"""
-        raise NotImplementedError("方法 getByteBuffer 尚未实现")
+        return getattr(self, 'byte_buffer', None)
 

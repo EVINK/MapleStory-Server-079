@@ -47,13 +47,13 @@ class MonsterStatus(Enum):
 
     def isFirst(self) -> bool:
         """方法 isFirst"""
-        return False
+        return bool(getattr(self, 'first', False))
 
     def isEmpty(self) -> bool:
         """方法 isEmpty"""
-        return False
+        return bool(getattr(self, 'empty', False))
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 

@@ -36,7 +36,7 @@ class PredictCardFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -56,7 +56,7 @@ class PredictCardFactory:
 
     def getCardCommentSize(self) -> int:
         """方法 getCardCommentSize"""
-        return 0
+        return getattr(self, 'card_comment_size', 0)
 
 
 class PredictCard:
@@ -79,7 +79,7 @@ class PredictCard:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -99,7 +99,7 @@ class PredictCard:
 
     def getCardCommentSize(self) -> int:
         """方法 getCardCommentSize"""
-        return 0
+        return getattr(self, 'card_comment_size', 0)
 
 
 class PredictCardComment:
@@ -122,7 +122,7 @@ class PredictCardComment:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -142,5 +142,5 @@ class PredictCardComment:
 
     def getCardCommentSize(self) -> int:
         """方法 getCardCommentSize"""
-        return 0
+        return getattr(self, 'card_comment_size', 0)
 

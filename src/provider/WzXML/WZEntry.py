@@ -26,21 +26,21 @@ class WZEntry(MapleDataEntry):
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getSize(self) -> int:
         """方法 getSize"""
-        return 0
+        return getattr(self, 'size', 0)
 
     def getChecksum(self) -> int:
         """方法 getChecksum"""
-        return 0
+        return getattr(self, 'checksum', 0)
 
     def getOffset(self) -> int:
         """方法 getOffset"""
-        return 0
+        return getattr(self, 'offset', 0)
 
     def getParent(self) -> Any:
         """方法 getParent"""
-        raise NotImplementedError("方法 getParent 尚未实现")
+        return getattr(self, 'parent', None)
 

@@ -41,7 +41,7 @@ class AutobanManager(Runnable):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def autoban(self, c: Any, reason: str) -> None:
         """方法 autoban"""
@@ -61,7 +61,7 @@ class AutobanManager(Runnable):
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
 
 class ExpirationEntry:
@@ -86,7 +86,7 @@ class ExpirationEntry:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def autoban(self, c: Any, reason: str) -> None:
         """方法 autoban"""
@@ -106,5 +106,5 @@ class ExpirationEntry:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 

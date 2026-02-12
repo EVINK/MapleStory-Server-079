@@ -34,11 +34,12 @@ class MapleAESOFB:
 
     def setIv(self, iv: bytes) -> None:
         """方法 setIv"""
-        pass
+        self.iv = iv
+        return None
 
     def getIv(self) -> bytes:
         """方法 getIv"""
-        return b""
+        return getattr(self, 'iv', b"")
 
     def crypt(self, data: bytes) -> bytes:
         """方法 crypt"""

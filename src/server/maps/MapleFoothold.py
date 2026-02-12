@@ -25,23 +25,23 @@ class MapleFoothold:
 
     def isWall(self) -> bool:
         """方法 isWall"""
-        return False
+        return bool(getattr(self, 'wall', False))
 
     def getX1(self) -> int:
         """方法 getX1"""
-        return 0
+        return getattr(self, 'x1', 0)
 
     def getX2(self) -> int:
         """方法 getX2"""
-        return 0
+        return getattr(self, 'x2', 0)
 
     def getY1(self) -> int:
         """方法 getY1"""
-        return 0
+        return getattr(self, 'y1', 0)
 
     def getY2(self) -> int:
         """方法 getY2"""
-        return 0
+        return getattr(self, 'y2', 0)
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -49,25 +49,27 @@ class MapleFoothold:
 
     def equals(self, o: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is o or getattr(self, '__eq__', lambda o: False)(o)
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getNext(self) -> int:
         """方法 getNext"""
-        return 0
+        return getattr(self, 'next', 0)
 
     def setNext(self, next: int) -> None:
         """方法 setNext"""
-        pass
+        self.next = next
+        return None
 
     def getPrev(self) -> int:
         """方法 getPrev"""
-        return 0
+        return getattr(self, 'prev', 0)
 
     def setPrev(self, prev: int) -> None:
         """方法 setPrev"""
-        pass
+        self.prev = prev
+        return None
 

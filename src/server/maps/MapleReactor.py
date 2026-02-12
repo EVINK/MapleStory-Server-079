@@ -35,67 +35,72 @@ class MapleReactor(AbstractMapleMapObject):
 
     def getFacingDirection(self) -> int:
         """方法 getFacingDirection"""
-        return 0
+        return getattr(self, 'facing_direction', 0)
 
     def setTimerActive(self, active: bool) -> None:
         """方法 setTimerActive"""
-        pass
+        self.timer_active = active
+        return None
 
     def isTimerActive(self) -> bool:
         """方法 isTimerActive"""
-        return False
+        return bool(getattr(self, 'timer_active', False))
 
     def getReactorId(self) -> int:
         """方法 getReactorId"""
-        return 0
+        return getattr(self, 'reactor_id', 0)
 
     def setState(self, state: int) -> None:
         """方法 setState"""
-        pass
+        self.state = state
+        return None
 
     def getState(self) -> int:
         """方法 getState"""
-        return 0
+        return getattr(self, 'state', 0)
 
     def isAlive(self) -> bool:
         """方法 isAlive"""
-        return False
+        return bool(getattr(self, 'alive', False))
 
     def setAlive(self, alive: bool) -> None:
         """方法 setAlive"""
-        pass
+        self.alive = alive
+        return None
 
     def setDelay(self, delay: int) -> None:
         """方法 setDelay"""
-        pass
+        self.delay = delay
+        return None
 
     def getDelay(self) -> int:
         """方法 getDelay"""
-        return 0
+        return getattr(self, 'delay', 0)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getReactorType(self) -> int:
         """方法 getReactorType"""
-        return 0
+        return getattr(self, 'reactor_type', 0)
 
     def getTouch(self) -> int:
         """方法 getTouch"""
-        return 0
+        return getattr(self, 'touch', 0)
 
     def setMap(self, map: Any) -> None:
         """方法 setMap"""
-        pass
+        self.map = map
+        return None
 
     def getMap(self) -> Any:
         """方法 getMap"""
-        raise NotImplementedError("方法 getMap 尚未实现")
+        return getattr(self, 'map', None)
 
     def getReactItem(self) -> Any:
         """方法 getReactItem"""
-        raise NotImplementedError("方法 getReactItem 尚未实现")
+        return getattr(self, 'react_item', None)
 
     def sendDestroyData(self, client: Any) -> None:
         """方法 sendDestroyData"""
@@ -135,15 +140,16 @@ class MapleReactor(AbstractMapleMapObject):
 
     def getArea(self) -> Any:
         """方法 getArea"""
-        raise NotImplementedError("方法 getArea 尚未实现")
+        return getattr(self, 'area', None)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def toString(self) -> str:
         """方法 toString"""

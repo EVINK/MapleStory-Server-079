@@ -117,39 +117,45 @@ class MapleMap:
 
     def setSpawns(self, fm: bool) -> None:
         """方法 setSpawns"""
-        pass
+        self.spawns = fm
+        return None
 
     def getSpawns(self) -> bool:
         """方法 getSpawns"""
-        return False
+        return getattr(self, 'spawns', False)
 
     def setFixedMob(self, fm: int) -> None:
         """方法 setFixedMob"""
-        pass
+        self.fixed_mob = fm
+        return None
 
     def setForceMove(self, fm: int) -> None:
         """方法 setForceMove"""
-        pass
+        self.force_move = fm
+        return None
 
     def getForceMove(self) -> int:
         """方法 getForceMove"""
-        return 0
+        return getattr(self, 'force_move', 0)
 
     def setLevelLimit(self, fm: int) -> None:
         """方法 setLevelLimit"""
-        pass
+        self.level_limit = fm
+        return None
 
     def getLevelLimit(self) -> int:
         """方法 getLevelLimit"""
-        return 0
+        return getattr(self, 'level_limit', 0)
 
     def setReturnMapId(self, rmi: int) -> None:
         """方法 setReturnMapId"""
-        pass
+        self.return_map_id = rmi
+        return None
 
     def setSoaring(self, b: bool) -> None:
         """方法 setSoaring"""
-        pass
+        self.soaring = b
+        return None
 
     def canSoar(self) -> bool:
         """方法 canSoar"""
@@ -161,7 +167,8 @@ class MapleMap:
 
     def setDrops(self, b: bool) -> None:
         """方法 setDrops"""
-        pass
+        self.drops = b
+        return None
 
     def toggleGDrops(self) -> None:
         """方法 toggleGDrops"""
@@ -169,91 +176,102 @@ class MapleMap:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getReturnMap(self) -> Any:
         """方法 getReturnMap"""
-        raise NotImplementedError("方法 getReturnMap 尚未实现")
+        return getattr(self, 'return_map', None)
 
     def getReturnMapId(self) -> int:
         """方法 getReturnMapId"""
-        return 0
+        return getattr(self, 'return_map_id', 0)
 
     def getForcedReturnId(self) -> int:
         """方法 getForcedReturnId"""
-        return 0
+        return getattr(self, 'forced_return_id', 0)
 
     def getForcedReturnMap(self) -> Any:
         """方法 getForcedReturnMap"""
-        raise NotImplementedError("方法 getForcedReturnMap 尚未实现")
+        return getattr(self, 'forced_return_map', None)
 
     def setForcedReturnMap(self, map: int) -> None:
         """方法 setForcedReturnMap"""
-        pass
+        self.forced_return_map = map
+        return None
 
     def getRecoveryRate(self) -> float:
         """方法 getRecoveryRate"""
-        return 0
+        return getattr(self, 'recovery_rate', 0)
 
     def setRecoveryRate(self, recoveryRate: float) -> None:
         """方法 setRecoveryRate"""
-        pass
+        self.recovery_rate = recoveryRate
+        return None
 
     def getFieldLimit(self) -> int:
         """方法 getFieldLimit"""
-        return 0
+        return getattr(self, 'field_limit', 0)
 
     def setFieldLimit(self, fieldLimit: int) -> None:
         """方法 setFieldLimit"""
-        pass
+        self.field_limit = fieldLimit
+        return None
 
     def setCreateMobInterval(self, createMobInterval: int) -> None:
         """方法 setCreateMobInterval"""
-        pass
+        self.create_mob_interval = createMobInterval
+        return None
 
     def setTimeLimit(self, timeLimit: int) -> None:
         """方法 setTimeLimit"""
-        pass
+        self.time_limit = timeLimit
+        return None
 
     def setMapName(self, mapName: str) -> None:
         """方法 setMapName"""
-        pass
+        self.map_name = mapName
+        return None
 
     def getMapName(self) -> str:
         """方法 getMapName"""
-        return ""
+        return getattr(self, 'map_name', "")
 
     def getStreetName(self) -> str:
         """方法 getStreetName"""
-        return ""
+        return getattr(self, 'street_name', "")
 
     def setFirstUserEnter(self, onFirstUserEnter: str) -> None:
         """方法 setFirstUserEnter"""
-        pass
+        self.first_user_enter = onFirstUserEnter
+        return None
 
     def setUserEnter(self, onUserEnter: str) -> None:
         """方法 setUserEnter"""
-        pass
+        self.user_enter = onUserEnter
+        return None
 
     def setOnUserEnter(self, onUserEnter: str) -> None:
         """方法 setOnUserEnter"""
-        pass
+        self.on_user_enter = onUserEnter
+        return None
 
     def hasClock(self) -> bool:
         """方法 hasClock"""
-        return False
+        return bool(getattr(self, 'clock', False))
 
     def setClock(self, hasClock: bool) -> None:
         """方法 setClock"""
-        pass
+        self.clock = hasClock
+        return None
 
     def isTown(self) -> bool:
         """方法 isTown"""
-        return False
+        return bool(getattr(self, 'town', False))
 
     def setTown(self, town: bool) -> None:
         """方法 setTown"""
-        pass
+        self.town = town
+        return None
 
     def allowPersonalShop(self) -> bool:
         """方法 allowPersonalShop"""
@@ -261,47 +279,53 @@ class MapleMap:
 
     def setPersonalShop(self, personalShop: bool) -> None:
         """方法 setPersonalShop"""
-        pass
+        self.personal_shop = personalShop
+        return None
 
     def setStreetName(self, streetName: str) -> None:
         """方法 setStreetName"""
-        pass
+        self.street_name = streetName
+        return None
 
     def setEverlast(self, everlast: bool) -> None:
         """方法 setEverlast"""
-        pass
+        self.everlast = everlast
+        return None
 
     def getEverlast(self) -> bool:
         """方法 getEverlast"""
-        return False
+        return getattr(self, 'everlast', False)
 
     def getHPDec(self) -> int:
         """方法 getHPDec"""
-        return 0
+        return getattr(self, 'hp_dec', 0)
 
     def setHPDec(self, delta: int) -> None:
         """方法 setHPDec"""
-        pass
+        self.hp_dec = delta
+        return None
 
     def getHPDecInterval(self) -> int:
         """方法 getHPDecInterval"""
-        return 0
+        return getattr(self, 'hp_dec_interval', 0)
 
     def setHPDecInterval(self, delta: int) -> None:
         """方法 setHPDecInterval"""
-        pass
+        self.hp_dec_interval = delta
+        return None
 
     def getHPDecProtect(self) -> int:
         """方法 getHPDecProtect"""
-        return 0
+        return getattr(self, 'hp_dec_protect', 0)
 
     def setHPDecProtect(self, delta: int) -> None:
         """方法 setHPDecProtect"""
-        pass
+        self.hp_dec_protect = delta
+        return None
 
     def getCurrentPartyId(self) -> int:
         """方法 getCurrentPartyId"""
-        return 0
+        return getattr(self, 'current_party_id', 0)
 
     def addMapObject(self, mapobject: Any) -> None:
         """方法 addMapObject"""
@@ -358,39 +382,45 @@ class ActivateItemReactor(Runnable):
 
     def setSpawns(self, fm: bool) -> None:
         """方法 setSpawns"""
-        pass
+        self.spawns = fm
+        return None
 
     def getSpawns(self) -> bool:
         """方法 getSpawns"""
-        return False
+        return getattr(self, 'spawns', False)
 
     def setFixedMob(self, fm: int) -> None:
         """方法 setFixedMob"""
-        pass
+        self.fixed_mob = fm
+        return None
 
     def setForceMove(self, fm: int) -> None:
         """方法 setForceMove"""
-        pass
+        self.force_move = fm
+        return None
 
     def getForceMove(self) -> int:
         """方法 getForceMove"""
-        return 0
+        return getattr(self, 'force_move', 0)
 
     def setLevelLimit(self, fm: int) -> None:
         """方法 setLevelLimit"""
-        pass
+        self.level_limit = fm
+        return None
 
     def getLevelLimit(self) -> int:
         """方法 getLevelLimit"""
-        return 0
+        return getattr(self, 'level_limit', 0)
 
     def setReturnMapId(self, rmi: int) -> None:
         """方法 setReturnMapId"""
-        pass
+        self.return_map_id = rmi
+        return None
 
     def setSoaring(self, b: bool) -> None:
         """方法 setSoaring"""
-        pass
+        self.soaring = b
+        return None
 
     def canSoar(self) -> bool:
         """方法 canSoar"""
@@ -402,7 +432,8 @@ class ActivateItemReactor(Runnable):
 
     def setDrops(self, b: bool) -> None:
         """方法 setDrops"""
-        pass
+        self.drops = b
+        return None
 
     def toggleGDrops(self) -> None:
         """方法 toggleGDrops"""
@@ -410,91 +441,102 @@ class ActivateItemReactor(Runnable):
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getReturnMap(self) -> Any:
         """方法 getReturnMap"""
-        raise NotImplementedError("方法 getReturnMap 尚未实现")
+        return getattr(self, 'return_map', None)
 
     def getReturnMapId(self) -> int:
         """方法 getReturnMapId"""
-        return 0
+        return getattr(self, 'return_map_id', 0)
 
     def getForcedReturnId(self) -> int:
         """方法 getForcedReturnId"""
-        return 0
+        return getattr(self, 'forced_return_id', 0)
 
     def getForcedReturnMap(self) -> Any:
         """方法 getForcedReturnMap"""
-        raise NotImplementedError("方法 getForcedReturnMap 尚未实现")
+        return getattr(self, 'forced_return_map', None)
 
     def setForcedReturnMap(self, map: int) -> None:
         """方法 setForcedReturnMap"""
-        pass
+        self.forced_return_map = map
+        return None
 
     def getRecoveryRate(self) -> float:
         """方法 getRecoveryRate"""
-        return 0
+        return getattr(self, 'recovery_rate', 0)
 
     def setRecoveryRate(self, recoveryRate: float) -> None:
         """方法 setRecoveryRate"""
-        pass
+        self.recovery_rate = recoveryRate
+        return None
 
     def getFieldLimit(self) -> int:
         """方法 getFieldLimit"""
-        return 0
+        return getattr(self, 'field_limit', 0)
 
     def setFieldLimit(self, fieldLimit: int) -> None:
         """方法 setFieldLimit"""
-        pass
+        self.field_limit = fieldLimit
+        return None
 
     def setCreateMobInterval(self, createMobInterval: int) -> None:
         """方法 setCreateMobInterval"""
-        pass
+        self.create_mob_interval = createMobInterval
+        return None
 
     def setTimeLimit(self, timeLimit: int) -> None:
         """方法 setTimeLimit"""
-        pass
+        self.time_limit = timeLimit
+        return None
 
     def setMapName(self, mapName: str) -> None:
         """方法 setMapName"""
-        pass
+        self.map_name = mapName
+        return None
 
     def getMapName(self) -> str:
         """方法 getMapName"""
-        return ""
+        return getattr(self, 'map_name', "")
 
     def getStreetName(self) -> str:
         """方法 getStreetName"""
-        return ""
+        return getattr(self, 'street_name', "")
 
     def setFirstUserEnter(self, onFirstUserEnter: str) -> None:
         """方法 setFirstUserEnter"""
-        pass
+        self.first_user_enter = onFirstUserEnter
+        return None
 
     def setUserEnter(self, onUserEnter: str) -> None:
         """方法 setUserEnter"""
-        pass
+        self.user_enter = onUserEnter
+        return None
 
     def setOnUserEnter(self, onUserEnter: str) -> None:
         """方法 setOnUserEnter"""
-        pass
+        self.on_user_enter = onUserEnter
+        return None
 
     def hasClock(self) -> bool:
         """方法 hasClock"""
-        return False
+        return bool(getattr(self, 'clock', False))
 
     def setClock(self, hasClock: bool) -> None:
         """方法 setClock"""
-        pass
+        self.clock = hasClock
+        return None
 
     def isTown(self) -> bool:
         """方法 isTown"""
-        return False
+        return bool(getattr(self, 'town', False))
 
     def setTown(self, town: bool) -> None:
         """方法 setTown"""
-        pass
+        self.town = town
+        return None
 
     def allowPersonalShop(self) -> bool:
         """方法 allowPersonalShop"""
@@ -502,47 +544,53 @@ class ActivateItemReactor(Runnable):
 
     def setPersonalShop(self, personalShop: bool) -> None:
         """方法 setPersonalShop"""
-        pass
+        self.personal_shop = personalShop
+        return None
 
     def setStreetName(self, streetName: str) -> None:
         """方法 setStreetName"""
-        pass
+        self.street_name = streetName
+        return None
 
     def setEverlast(self, everlast: bool) -> None:
         """方法 setEverlast"""
-        pass
+        self.everlast = everlast
+        return None
 
     def getEverlast(self) -> bool:
         """方法 getEverlast"""
-        return False
+        return getattr(self, 'everlast', False)
 
     def getHPDec(self) -> int:
         """方法 getHPDec"""
-        return 0
+        return getattr(self, 'hp_dec', 0)
 
     def setHPDec(self, delta: int) -> None:
         """方法 setHPDec"""
-        pass
+        self.hp_dec = delta
+        return None
 
     def getHPDecInterval(self) -> int:
         """方法 getHPDecInterval"""
-        return 0
+        return getattr(self, 'hp_dec_interval', 0)
 
     def setHPDecInterval(self, delta: int) -> None:
         """方法 setHPDecInterval"""
-        pass
+        self.hp_dec_interval = delta
+        return None
 
     def getHPDecProtect(self) -> int:
         """方法 getHPDecProtect"""
-        return 0
+        return getattr(self, 'hp_dec_protect', 0)
 
     def setHPDecProtect(self, delta: int) -> None:
         """方法 setHPDecProtect"""
-        pass
+        self.hp_dec_protect = delta
+        return None
 
     def getCurrentPartyId(self) -> int:
         """方法 getCurrentPartyId"""
-        return 0
+        return getattr(self, 'current_party_id', 0)
 
     def addMapObject(self, mapobject: Any) -> None:
         """方法 addMapObject"""

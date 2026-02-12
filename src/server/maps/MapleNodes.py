@@ -57,11 +57,13 @@ class MapleNodes:
 
     def setNodeStart(self, ns: int) -> None:
         """方法 setNodeStart"""
-        pass
+        self.node_start = ns
+        return None
 
     def setNodeEnd(self, ns: int) -> None:
         """方法 setNodeEnd"""
-        pass
+        self.node_end = ns
+        return None
 
     def addNode(self, mni: Any) -> None:
         """方法 addNode"""
@@ -69,7 +71,7 @@ class MapleNodes:
 
     def getNodes(self) -> list:
         """方法 getNodes"""
-        return []
+        return getattr(self, 'nodes', [])
 
     def getNode(self, index: int) -> Any:
         """方法 getNode"""
@@ -89,7 +91,7 @@ class MapleNodes:
 
     def getAreas(self) -> list:
         """方法 getAreas"""
-        return []
+        return getattr(self, 'areas', [])
 
     def getArea(self, index: int) -> Any:
         """方法 getArea"""
@@ -101,11 +103,11 @@ class MapleNodes:
 
     def getPlatforms(self) -> list:
         """方法 getPlatforms"""
-        return []
+        return getattr(self, 'platforms', [])
 
     def getMonsterPoints(self) -> list:
         """方法 getMonsterPoints"""
-        return []
+        return getattr(self, 'monster_points', [])
 
     def addMonsterPoint(self, x: int, y: int, fh: int, cy: int, team: int) -> None:
         """方法 addMonsterPoint"""
@@ -117,7 +119,7 @@ class MapleNodes:
 
     def getMobsToSpawn(self) -> list:
         """方法 getMobsToSpawn"""
-        return []
+        return getattr(self, 'mobs_to_spawn', [])
 
     def addGuardianSpawn(self, guardian: Any, team: int) -> None:
         """方法 addGuardianSpawn"""
@@ -125,11 +127,11 @@ class MapleNodes:
 
     def getGuardians(self) -> list:
         """方法 getGuardians"""
-        return []
+        return getattr(self, 'guardians', [])
 
     def getSkillIds(self) -> list:
         """方法 getSkillIds"""
-        return []
+        return getattr(self, 'skill_ids', [])
 
     def addSkillId(self, z: int) -> None:
         """方法 addSkillId"""
@@ -177,11 +179,13 @@ class MapleNodeInfo:
 
     def setNodeStart(self, ns: int) -> None:
         """方法 setNodeStart"""
-        pass
+        self.node_start = ns
+        return None
 
     def setNodeEnd(self, ns: int) -> None:
         """方法 setNodeEnd"""
-        pass
+        self.node_end = ns
+        return None
 
     def addNode(self, mni: Any) -> None:
         """方法 addNode"""
@@ -189,7 +193,7 @@ class MapleNodeInfo:
 
     def getNodes(self) -> list:
         """方法 getNodes"""
-        return []
+        return getattr(self, 'nodes', [])
 
     def getNode(self, index: int) -> Any:
         """方法 getNode"""
@@ -209,7 +213,7 @@ class MapleNodeInfo:
 
     def getAreas(self) -> list:
         """方法 getAreas"""
-        return []
+        return getattr(self, 'areas', [])
 
     def getArea(self, index: int) -> Any:
         """方法 getArea"""
@@ -221,11 +225,11 @@ class MapleNodeInfo:
 
     def getPlatforms(self) -> list:
         """方法 getPlatforms"""
-        return []
+        return getattr(self, 'platforms', [])
 
     def getMonsterPoints(self) -> list:
         """方法 getMonsterPoints"""
-        return []
+        return getattr(self, 'monster_points', [])
 
     def addMonsterPoint(self, x: int, y: int, fh: int, cy: int, team: int) -> None:
         """方法 addMonsterPoint"""
@@ -237,7 +241,7 @@ class MapleNodeInfo:
 
     def getMobsToSpawn(self) -> list:
         """方法 getMobsToSpawn"""
-        return []
+        return getattr(self, 'mobs_to_spawn', [])
 
     def addGuardianSpawn(self, guardian: Any, team: int) -> None:
         """方法 addGuardianSpawn"""
@@ -245,11 +249,11 @@ class MapleNodeInfo:
 
     def getGuardians(self) -> list:
         """方法 getGuardians"""
-        return []
+        return getattr(self, 'guardians', [])
 
     def getSkillIds(self) -> list:
         """方法 getSkillIds"""
-        return []
+        return getattr(self, 'skill_ids', [])
 
     def addSkillId(self, z: int) -> None:
         """方法 addSkillId"""
@@ -297,11 +301,13 @@ class MaplePlatform:
 
     def setNodeStart(self, ns: int) -> None:
         """方法 setNodeStart"""
-        pass
+        self.node_start = ns
+        return None
 
     def setNodeEnd(self, ns: int) -> None:
         """方法 setNodeEnd"""
-        pass
+        self.node_end = ns
+        return None
 
     def addNode(self, mni: Any) -> None:
         """方法 addNode"""
@@ -309,7 +315,7 @@ class MaplePlatform:
 
     def getNodes(self) -> list:
         """方法 getNodes"""
-        return []
+        return getattr(self, 'nodes', [])
 
     def getNode(self, index: int) -> Any:
         """方法 getNode"""
@@ -329,7 +335,7 @@ class MaplePlatform:
 
     def getAreas(self) -> list:
         """方法 getAreas"""
-        return []
+        return getattr(self, 'areas', [])
 
     def getArea(self, index: int) -> Any:
         """方法 getArea"""
@@ -341,11 +347,11 @@ class MaplePlatform:
 
     def getPlatforms(self) -> list:
         """方法 getPlatforms"""
-        return []
+        return getattr(self, 'platforms', [])
 
     def getMonsterPoints(self) -> list:
         """方法 getMonsterPoints"""
-        return []
+        return getattr(self, 'monster_points', [])
 
     def addMonsterPoint(self, x: int, y: int, fh: int, cy: int, team: int) -> None:
         """方法 addMonsterPoint"""
@@ -357,7 +363,7 @@ class MaplePlatform:
 
     def getMobsToSpawn(self) -> list:
         """方法 getMobsToSpawn"""
-        return []
+        return getattr(self, 'mobs_to_spawn', [])
 
     def addGuardianSpawn(self, guardian: Any, team: int) -> None:
         """方法 addGuardianSpawn"""
@@ -365,11 +371,11 @@ class MaplePlatform:
 
     def getGuardians(self) -> list:
         """方法 getGuardians"""
-        return []
+        return getattr(self, 'guardians', [])
 
     def getSkillIds(self) -> list:
         """方法 getSkillIds"""
-        return []
+        return getattr(self, 'skill_ids', [])
 
     def addSkillId(self, z: int) -> None:
         """方法 addSkillId"""
@@ -417,11 +423,13 @@ class MonsterPoint:
 
     def setNodeStart(self, ns: int) -> None:
         """方法 setNodeStart"""
-        pass
+        self.node_start = ns
+        return None
 
     def setNodeEnd(self, ns: int) -> None:
         """方法 setNodeEnd"""
-        pass
+        self.node_end = ns
+        return None
 
     def addNode(self, mni: Any) -> None:
         """方法 addNode"""
@@ -429,7 +437,7 @@ class MonsterPoint:
 
     def getNodes(self) -> list:
         """方法 getNodes"""
-        return []
+        return getattr(self, 'nodes', [])
 
     def getNode(self, index: int) -> Any:
         """方法 getNode"""
@@ -449,7 +457,7 @@ class MonsterPoint:
 
     def getAreas(self) -> list:
         """方法 getAreas"""
-        return []
+        return getattr(self, 'areas', [])
 
     def getArea(self, index: int) -> Any:
         """方法 getArea"""
@@ -461,11 +469,11 @@ class MonsterPoint:
 
     def getPlatforms(self) -> list:
         """方法 getPlatforms"""
-        return []
+        return getattr(self, 'platforms', [])
 
     def getMonsterPoints(self) -> list:
         """方法 getMonsterPoints"""
-        return []
+        return getattr(self, 'monster_points', [])
 
     def addMonsterPoint(self, x: int, y: int, fh: int, cy: int, team: int) -> None:
         """方法 addMonsterPoint"""
@@ -477,7 +485,7 @@ class MonsterPoint:
 
     def getMobsToSpawn(self) -> list:
         """方法 getMobsToSpawn"""
-        return []
+        return getattr(self, 'mobs_to_spawn', [])
 
     def addGuardianSpawn(self, guardian: Any, team: int) -> None:
         """方法 addGuardianSpawn"""
@@ -485,11 +493,11 @@ class MonsterPoint:
 
     def getGuardians(self) -> list:
         """方法 getGuardians"""
-        return []
+        return getattr(self, 'guardians', [])
 
     def getSkillIds(self) -> list:
         """方法 getSkillIds"""
-        return []
+        return getattr(self, 'skill_ids', [])
 
     def addSkillId(self, z: int) -> None:
         """方法 addSkillId"""

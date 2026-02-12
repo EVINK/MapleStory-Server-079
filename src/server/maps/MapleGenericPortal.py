@@ -35,55 +35,61 @@ class MapleGenericPortal(MaplePortal):
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setId(self, id: int) -> None:
         """方法 setId"""
-        pass
+        self.id = id
+        return None
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def getTarget(self) -> str:
         """方法 getTarget"""
-        return ""
+        return getattr(self, 'target', "")
 
     def getTargetMapId(self) -> int:
         """方法 getTargetMapId"""
-        return 0
+        return getattr(self, 'target_map_id', 0)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getScriptName(self) -> str:
         """方法 getScriptName"""
-        return ""
+        return getattr(self, 'script_name', "")
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def setPosition(self, position: Any) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 
     def setTarget(self, target: str) -> None:
         """方法 setTarget"""
-        pass
+        self.target = target
+        return None
 
     def setTargetMapId(self, targetmapid: int) -> None:
         """方法 setTargetMapId"""
-        pass
+        self.target_map_id = targetmapid
+        return None
 
     def setScriptName(self, scriptName: str) -> None:
         """方法 setScriptName"""
-        pass
+        self.script_name = scriptName
+        return None
 
     def enterPortal(self, c: Any) -> None:
         """方法 enterPortal"""
@@ -91,9 +97,10 @@ class MapleGenericPortal(MaplePortal):
 
     def getPortalState(self) -> bool:
         """方法 getPortalState"""
-        return False
+        return getattr(self, 'portal_state', False)
 
     def setPortalState(self, ps: bool) -> None:
         """方法 setPortalState"""
-        pass
+        self.portal_state = ps
+        return None
 

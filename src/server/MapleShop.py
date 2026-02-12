@@ -69,9 +69,9 @@ class MapleShop:
 
     def getNpcId(self) -> int:
         """方法 getNpcId"""
-        return 0
+        return getattr(self, 'npc_id', 0)
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 

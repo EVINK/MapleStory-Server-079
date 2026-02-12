@@ -52,7 +52,7 @@ class MapleMessenger:
 
     def getLowestPosition(self) -> int:
         """方法 getLowestPosition"""
-        return 0
+        return getattr(self, 'lowest_position', 0)
 
     def getPositionByName(self, name: str) -> int:
         """方法 getPositionByName"""
@@ -60,21 +60,22 @@ class MapleMessenger:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setId(self, id: int) -> None:
         """方法 setId"""
-        pass
+        self.id = id
+        return None
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def getMembers(self) -> list:
         """方法 getMembers"""
-        return []
+        return getattr(self, 'members', [])
 

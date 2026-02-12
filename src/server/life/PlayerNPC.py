@@ -53,7 +53,8 @@ class PlayerNPC(MapleNPC):
 
     def setCoords(self, x: int, y: int, f: int, fh: int) -> None:
         """方法 setCoords"""
-        pass
+        self.coords = x
+        return None
 
     def addToServer(self) -> None:
         """方法 addToServer"""
@@ -81,47 +82,51 @@ class PlayerNPC(MapleNPC):
 
     def getEquips(self) -> dict:
         """方法 getEquips"""
-        return {}
+        return getattr(self, 'equips', {})
 
     def getSkin(self) -> int:
         """方法 getSkin"""
-        return 0
+        return getattr(self, 'skin', 0)
 
     def getGender(self) -> int:
         """方法 getGender"""
-        return 0
+        return getattr(self, 'gender', 0)
 
     def getFace(self) -> int:
         """方法 getFace"""
-        return 0
+        return getattr(self, 'face', 0)
 
     def getHair(self) -> int:
         """方法 getHair"""
-        return 0
+        return getattr(self, 'hair', 0)
 
     def getCharId(self) -> int:
         """方法 getCharId"""
-        return 0
+        return getattr(self, 'char_id', 0)
 
     def getMapId(self) -> int:
         """方法 getMapId"""
-        return 0
+        return getattr(self, 'map_id', 0)
 
     def setSkin(self, s: int) -> None:
         """方法 setSkin"""
-        pass
+        self.skin = s
+        return None
 
     def setFace(self, f: int) -> None:
         """方法 setFace"""
-        pass
+        self.face = f
+        return None
 
     def setHair(self, h: int) -> None:
         """方法 setHair"""
-        pass
+        self.hair = h
+        return None
 
     def setGender(self, g: int) -> None:
         """方法 setGender"""
-        pass
+        self.gender = g
+        return None
 
     def getPet(self, i: int) -> int:
         """方法 getPet"""
@@ -129,7 +134,8 @@ class PlayerNPC(MapleNPC):
 
     def setPets(self, p: list) -> None:
         """方法 setPets"""
-        pass
+        self.pets = p
+        return None
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -137,5 +143,5 @@ class PlayerNPC(MapleNPC):
 
     def getNPCFromWZ(self) -> Any:
         """方法 getNPCFromWZ"""
-        raise NotImplementedError("方法 getNPCFromWZ 尚未实现")
+        return getattr(self, 'npc_from_wz', None)
 

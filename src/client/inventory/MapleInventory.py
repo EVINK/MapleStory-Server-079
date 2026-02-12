@@ -36,11 +36,12 @@ class MapleInventory:
 
     def getSlotLimit(self) -> int:
         """方法 getSlotLimit"""
-        return 0
+        return getattr(self, 'slot_limit', 0)
 
     def setSlotLimit(self, slot: int) -> None:
         """方法 setSlotLimit"""
-        pass
+        self.slot_limit = slot
+        return None
 
     def findById(self, itemId: int) -> Any:
         """方法 findById"""
@@ -100,7 +101,7 @@ class MapleInventory:
 
     def isFull(self) -> bool:
         """方法 isFull"""
-        return False
+        return bool(getattr(self, 'full', False))
 
     def isFull(self, margin: int) -> bool:
         """方法 isFull"""
@@ -108,15 +109,15 @@ class MapleInventory:
 
     def getNextFreeSlot(self) -> int:
         """方法 getNextFreeSlot"""
-        return 0
+        return getattr(self, 'next_free_slot', 0)
 
     def getNumFreeSlot(self) -> int:
         """方法 getNumFreeSlot"""
-        return 0
+        return getattr(self, 'num_free_slot', 0)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def iterator(self) -> iter:
         """方法 iterator"""

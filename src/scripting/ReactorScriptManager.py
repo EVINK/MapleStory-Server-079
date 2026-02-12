@@ -35,7 +35,7 @@ class ReactorScriptManager(AbstractScriptManager):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def act(self, c: Any, reactor: Any) -> None:
         """方法 act"""

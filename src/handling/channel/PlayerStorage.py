@@ -45,7 +45,7 @@ class PlayerStorage:
 
     def getAllCharacters(self) -> list:
         """方法 getAllCharacters"""
-        return []
+        return getattr(self, 'all_characters', [])
 
     def registerPlayer(self, chr: Any) -> None:
         """方法 registerPlayer"""
@@ -81,11 +81,11 @@ class PlayerStorage:
 
     def getConnectedClients(self) -> int:
         """方法 getConnectedClients"""
-        return 0
+        return getattr(self, 'connected_clients', 0)
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def disconnectAll(self) -> None:
         """方法 disconnectAll"""
@@ -113,7 +113,7 @@ class PlayerStorage:
 
     def getAllCharactersThreadSafe(self) -> list:
         """方法 getAllCharactersThreadSafe"""
-        return []
+        return getattr(self, 'all_characters_thread_safe', [])
 
     def run(self) -> None:
         """方法 run"""
@@ -142,7 +142,7 @@ class PersistingTask(Runnable):
 
     def getAllCharacters(self) -> list:
         """方法 getAllCharacters"""
-        return []
+        return getattr(self, 'all_characters', [])
 
     def registerPlayer(self, chr: Any) -> None:
         """方法 registerPlayer"""
@@ -178,11 +178,11 @@ class PersistingTask(Runnable):
 
     def getConnectedClients(self) -> int:
         """方法 getConnectedClients"""
-        return 0
+        return getattr(self, 'connected_clients', 0)
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def disconnectAll(self) -> None:
         """方法 disconnectAll"""
@@ -210,7 +210,7 @@ class PersistingTask(Runnable):
 
     def getAllCharactersThreadSafe(self) -> list:
         """方法 getAllCharactersThreadSafe"""
-        return []
+        return getattr(self, 'all_characters_thread_safe', [])
 
     def run(self) -> None:
         """方法 run"""

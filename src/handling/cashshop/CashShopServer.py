@@ -31,15 +31,15 @@ class CashShopServer:
 
     def getIP(self) -> str:
         """方法 getIP"""
-        return ""
+        return getattr(self, 'ip', "")
 
     def getPlayerStorage(self) -> Any:
         """方法 getPlayerStorage"""
-        raise NotImplementedError("方法 getPlayerStorage 尚未实现")
+        return getattr(self, 'player_storage', None)
 
     def getPlayerStorageMTS(self) -> Any:
         """方法 getPlayerStorageMTS"""
-        raise NotImplementedError("方法 getPlayerStorageMTS 尚未实现")
+        return getattr(self, 'player_storage_mts', None)
 
     def shutdown(self) -> None:
         """方法 shutdown"""
@@ -47,5 +47,5 @@ class CashShopServer:
 
     def isShutdown(self) -> bool:
         """方法 isShutdown"""
-        return False
+        return bool(getattr(self, 'shutdown', False))
 

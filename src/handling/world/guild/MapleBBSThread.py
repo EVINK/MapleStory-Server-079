@@ -34,11 +34,11 @@ class MapleBBSThread:
 
     def getReplyCount(self) -> int:
         """方法 getReplyCount"""
-        return 0
+        return getattr(self, 'reply_count', 0)
 
     def isNotice(self) -> bool:
         """方法 isNotice"""
-        return False
+        return bool(getattr(self, 'notice', False))
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -69,11 +69,11 @@ class MapleBBSReply:
 
     def getReplyCount(self) -> int:
         """方法 getReplyCount"""
-        return 0
+        return getattr(self, 'reply_count', 0)
 
     def isNotice(self) -> bool:
         """方法 isNotice"""
-        return False
+        return bool(getattr(self, 'notice', False))
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -104,11 +104,11 @@ class ThreadComparator(Comparator):
 
     def getReplyCount(self) -> int:
         """方法 getReplyCount"""
-        return 0
+        return getattr(self, 'reply_count', 0)
 
     def isNotice(self) -> bool:
         """方法 isNotice"""
-        return False
+        return bool(getattr(self, 'notice', False))
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""

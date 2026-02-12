@@ -31,7 +31,7 @@ class LieDetectorScript:
 
     def getImageBytes(self) -> Any:
         """方法 getImageBytes"""
-        raise NotImplementedError("方法 getImageBytes 尚未实现")
+        return getattr(self, 'image_bytes', None)
 
     def getBytesFromFile(self, file: Any) -> bytes:
         """方法 getBytesFromFile"""

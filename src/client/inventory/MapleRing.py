@@ -64,43 +64,45 @@ class MapleRing:
 
     def getRingId(self) -> int:
         """方法 getRingId"""
-        return 0
+        return getattr(self, 'ring_id', 0)
 
     def getPartnerRingId(self) -> int:
         """方法 getPartnerRingId"""
-        return 0
+        return getattr(self, 'partner_ring_id', 0)
 
     def getPartnerChrId(self) -> int:
         """方法 getPartnerChrId"""
-        return 0
+        return getattr(self, 'partner_chr_id', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def isEquipped(self) -> bool:
         """方法 isEquipped"""
-        return False
+        return bool(getattr(self, 'equipped', False))
 
     def setEquipped(self, equipped: bool) -> None:
         """方法 setEquipped"""
-        pass
+        self.equipped = equipped
+        return None
 
     def getPartnerName(self) -> str:
         """方法 getPartnerName"""
-        return ""
+        return getattr(self, 'partner_name', "")
 
     def setPartnerName(self, partnerName: str) -> None:
         """方法 setPartnerName"""
-        pass
+        self.partner_name = partnerName
+        return None
 
     def equals(self, o: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is o or getattr(self, '__eq__', lambda o: False)(o)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -156,43 +158,45 @@ class RingComparator(Comparator):
 
     def getRingId(self) -> int:
         """方法 getRingId"""
-        return 0
+        return getattr(self, 'ring_id', 0)
 
     def getPartnerRingId(self) -> int:
         """方法 getPartnerRingId"""
-        return 0
+        return getattr(self, 'partner_ring_id', 0)
 
     def getPartnerChrId(self) -> int:
         """方法 getPartnerChrId"""
-        return 0
+        return getattr(self, 'partner_chr_id', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def isEquipped(self) -> bool:
         """方法 isEquipped"""
-        return False
+        return bool(getattr(self, 'equipped', False))
 
     def setEquipped(self, equipped: bool) -> None:
         """方法 setEquipped"""
-        pass
+        self.equipped = equipped
+        return None
 
     def getPartnerName(self) -> str:
         """方法 getPartnerName"""
-        return ""
+        return getattr(self, 'partner_name', "")
 
     def setPartnerName(self, partnerName: str) -> None:
         """方法 setPartnerName"""
-        pass
+        self.partner_name = partnerName
+        return None
 
     def equals(self, o: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is o or getattr(self, '__eq__', lambda o: False)(o)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""

@@ -28,15 +28,15 @@ class FileStoredPngMapleCanvas(MapleCanvas):
 
     def getHeight(self) -> int:
         """方法 getHeight"""
-        return 0
+        return getattr(self, 'height', 0)
 
     def getWidth(self) -> int:
         """方法 getWidth"""
-        return 0
+        return getattr(self, 'width', 0)
 
     def getImage(self) -> Any:
         """方法 getImage"""
-        raise NotImplementedError("方法 getImage 尚未实现")
+        return getattr(self, 'image', None)
 
     def loadImageIfNecessary(self) -> None:
         """方法 loadImageIfNecessary"""

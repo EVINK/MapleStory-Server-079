@@ -42,19 +42,19 @@ class MapleLieDetector:
 
     def getAttempt(self) -> int:
         """方法 getAttempt"""
-        return 0
+        return getattr(self, 'attempt', 0)
 
     def getLastType(self) -> int:
         """方法 getLastType"""
-        return 0
+        return getattr(self, 'last_type', 0)
 
     def getTester(self) -> str:
         """方法 getTester"""
-        return ""
+        return getattr(self, 'tester', "")
 
     def getAnswer(self) -> str:
         """方法 getAnswer"""
-        return ""
+        return getattr(self, 'answer', "")
 
     def inProgress(self) -> bool:
         """方法 inProgress"""
@@ -62,7 +62,7 @@ class MapleLieDetector:
 
     def isPassed(self) -> bool:
         """方法 isPassed"""
-        return False
+        return bool(getattr(self, 'passed', False))
 
     def end(self) -> None:
         """方法 end"""

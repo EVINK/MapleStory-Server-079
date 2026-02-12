@@ -129,23 +129,23 @@ class PlayerShopPacket:
 
     def getMiniGameRequestTie(self) -> Any:
         """方法 getMiniGameRequestTie"""
-        raise NotImplementedError("方法 getMiniGameRequestTie 尚未实现")
+        return getattr(self, 'mini_game_request_tie', None)
 
     def getMiniGameRequestREDO(self) -> Any:
         """方法 getMiniGameRequestREDO"""
-        raise NotImplementedError("方法 getMiniGameRequestREDO 尚未实现")
+        return getattr(self, 'mini_game_request_redo', None)
 
     def getMiniGameDenyTie(self) -> Any:
         """方法 getMiniGameDenyTie"""
-        raise NotImplementedError("方法 getMiniGameDenyTie 尚未实现")
+        return getattr(self, 'mini_game_deny_tie', None)
 
     def getMiniGameDenyREDO(self) -> Any:
         """方法 getMiniGameDenyREDO"""
-        raise NotImplementedError("方法 getMiniGameDenyREDO 尚未实现")
+        return getattr(self, 'mini_game_deny_redo', None)
 
     def getMiniGameFull(self) -> Any:
         """方法 getMiniGameFull"""
-        raise NotImplementedError("方法 getMiniGameFull 尚未实现")
+        return getattr(self, 'mini_game_full', None)
 
     def getMiniGameMoveOmok(self, move1: int, move2: int, move3: int) -> Any:
         """方法 getMiniGameMoveOmok"""

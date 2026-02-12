@@ -21,11 +21,11 @@ class MapleCodecFactory(ProtocolCodecFactory):
 
     def getEncoder(self) -> Any:
         """方法 getEncoder"""
-        raise NotImplementedError("方法 getEncoder 尚未实现")
+        return getattr(self, 'encoder', None)
 
     def getDecoder(self) -> Any:
         """方法 getDecoder"""
-        raise NotImplementedError("方法 getDecoder 尚未实现")
+        return getattr(self, 'decoder', None)
 
     def getEncoder(self, session: Any) -> Any:
         """方法 getEncoder"""

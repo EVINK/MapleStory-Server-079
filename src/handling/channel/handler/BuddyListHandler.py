@@ -51,7 +51,7 @@ class BuddyListHandler:
 
     def getBuddyCapacity(self) -> int:
         """方法 getBuddyCapacity"""
-        return 0
+        return getattr(self, 'buddy_capacity', 0)
 
 
 class CharacterIdNameBuddyCapacity(CharacterNameAndId):
@@ -83,5 +83,5 @@ class CharacterIdNameBuddyCapacity(CharacterNameAndId):
 
     def getBuddyCapacity(self) -> int:
         """方法 getBuddyCapacity"""
-        return 0
+        return getattr(self, 'buddy_capacity', 0)
 

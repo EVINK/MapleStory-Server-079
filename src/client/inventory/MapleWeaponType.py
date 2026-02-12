@@ -35,5 +35,5 @@ class MapleWeaponType(Enum):
 
     def getMaxDamageMultiplier(self) -> float:
         """方法 getMaxDamageMultiplier"""
-        return 0
+        return getattr(self, 'max_damage_multiplier', 0)
 

@@ -22,7 +22,7 @@ class PortalPlayerInteraction(AbstractPlayerInteraction):
 
     def getPortal(self) -> Any:
         """方法 getPortal"""
-        raise NotImplementedError("方法 getPortal 尚未实现")
+        return getattr(self, 'portal', None)
 
     def inFreeMarket(self) -> None:
         """方法 inFreeMarket"""

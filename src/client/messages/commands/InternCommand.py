@@ -32,7 +32,7 @@ class InternCommand:
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -76,7 +76,7 @@ class 跟踪(Warp):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -120,7 +120,7 @@ class 封号(Ban):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -164,7 +164,7 @@ class 隐身(Hide):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -208,7 +208,7 @@ class 解除隐身(UnHide):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -252,7 +252,7 @@ class 在线人数(online):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -296,7 +296,7 @@ class online(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -340,7 +340,7 @@ class Ban(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -384,7 +384,7 @@ class online1(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -428,7 +428,7 @@ class CnGM(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -472,7 +472,7 @@ class Hide(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -516,7 +516,7 @@ class UnHide(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -560,7 +560,7 @@ class Warp(CommandExecute):
 
     def getCommand(self) -> str:
         """方法 getCommand"""
-        return ""
+        return getattr(self, 'command', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""

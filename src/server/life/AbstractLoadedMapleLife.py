@@ -30,19 +30,21 @@ class AbstractLoadedMapleLife(AbstractAnimatedMapleMapObject, ABC):
 
     def getF(self) -> int:
         """方法 getF"""
-        return 0
+        return getattr(self, 'f', 0)
 
     def setF(self, f: int) -> None:
         """方法 setF"""
-        pass
+        self.f = f
+        return None
 
     def isHidden(self) -> bool:
         """方法 isHidden"""
-        return False
+        return bool(getattr(self, 'hidden', False))
 
     def setHide(self, hide: bool) -> None:
         """方法 setHide"""
-        pass
+        self.hide = hide
+        return None
 
     def originFh(self) -> int:
         """方法 originFh"""
@@ -50,53 +52,59 @@ class AbstractLoadedMapleLife(AbstractAnimatedMapleMapObject, ABC):
 
     def getFh(self) -> int:
         """方法 getFh"""
-        return 0
+        return getattr(self, 'fh', 0)
 
     def setFh(self, fh: int) -> None:
         """方法 setFh"""
-        pass
+        self.fh = fh
+        return None
 
     def getCy(self) -> int:
         """方法 getCy"""
-        return 0
+        return getattr(self, 'cy', 0)
 
     def setCy(self, cy: int) -> None:
         """方法 setCy"""
-        pass
+        self.cy = cy
+        return None
 
     def getRx0(self) -> int:
         """方法 getRx0"""
-        return 0
+        return getattr(self, 'rx0', 0)
 
     def setRx0(self, rx0: int) -> None:
         """方法 setRx0"""
-        pass
+        self.rx0 = rx0
+        return None
 
     def getRx1(self) -> int:
         """方法 getRx1"""
-        return 0
+        return getattr(self, 'rx1', 0)
 
     def setRx1(self, rx1: int) -> None:
         """方法 setRx1"""
-        pass
+        self.rx1 = rx1
+        return None
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getMTime(self) -> int:
         """方法 getMTime"""
-        return 0
+        return getattr(self, 'm_time', 0)
 
     def setMTime(self, mtime: int) -> None:
         """方法 setMTime"""
-        pass
+        self.m_time = mtime
+        return None
 
     def getCType(self) -> str:
         """方法 getCType"""
-        return ""
+        return getattr(self, 'c_type', "")
 
     def setCType(self, type: str) -> None:
         """方法 setCType"""
-        pass
+        self.c_type = type
+        return None
 

@@ -33,7 +33,7 @@ class BeanGame:
 
     def getBeanType(self) -> int:
         """方法 getBeanType"""
-        return 0
+        return getattr(self, 'bean_type', 0)
 
     def rand(self, lbound: int, ubound: int) -> int:
         """方法 rand"""
@@ -45,15 +45,15 @@ class BeanGame:
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getNumber(self) -> int:
         """方法 getNumber"""
-        return 0
+        return getattr(self, 'number', 0)
 
     def getPos(self) -> int:
         """方法 getPos"""
-        return 0
+        return getattr(self, 'pos', 0)
 
 
 class Beans:
@@ -74,7 +74,7 @@ class Beans:
 
     def getBeanType(self) -> int:
         """方法 getBeanType"""
-        return 0
+        return getattr(self, 'bean_type', 0)
 
     def rand(self, lbound: int, ubound: int) -> int:
         """方法 rand"""
@@ -86,13 +86,13 @@ class Beans:
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getNumber(self) -> int:
         """方法 getNumber"""
-        return 0
+        return getattr(self, 'number', 0)
 
     def getPos(self) -> int:
         """方法 getPos"""
-        return 0
+        return getattr(self, 'pos', 0)
 

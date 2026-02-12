@@ -32,11 +32,11 @@ class CashItemInfoA:
 
     def getSN(self) -> int:
         """方法 getSN"""
-        return 0
+        return getattr(self, 'sn', 0)
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def genderEquals(self, g: int) -> bool:
         """方法 genderEquals"""
@@ -44,23 +44,23 @@ class CashItemInfoA:
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getPeriod(self) -> int:
         """方法 getPeriod"""
-        return 0
+        return getattr(self, 'period', 0)
 
     def getGender(self) -> int:
         """方法 getGender"""
-        return 0
+        return getattr(self, 'gender', 0)
 
     def onSale(self) -> bool:
         """方法 onSale"""

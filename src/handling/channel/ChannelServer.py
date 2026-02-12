@@ -94,7 +94,7 @@ class ChannelServer:
 
     def getAllInstance(self) -> set:
         """方法 getAllInstance"""
-        raise NotImplementedError("方法 getAllInstance 尚未实现")
+        return getattr(self, 'all_instance', None)
 
     def newInstance(self, channel: int) -> Any:
         """方法 newInstance"""
@@ -106,7 +106,7 @@ class ChannelServer:
 
     def getAllInstances(self) -> list:
         """方法 getAllInstances"""
-        return []
+        return getattr(self, 'all_instances', [])
 
     def startChannel_Main(self) -> None:
         """方法 startChannel_Main"""
@@ -118,15 +118,15 @@ class ChannelServer:
 
     def getChannelServer(self) -> set:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getChannelCount(self) -> int:
         """方法 getChannelCount"""
-        return 0
+        return getattr(self, 'channel_count', 0)
 
     def getChannelLoad(self) -> dict:
         """方法 getChannelLoad"""
-        return {}
+        return getattr(self, 'channel_load', {})
 
     def forceRemovePlayerByCharName(self, Name: str) -> bool:
         """方法 forceRemovePlayerByCharName"""
@@ -154,11 +154,11 @@ class ChannelServer:
 
     def hasFinishedShutdown(self) -> bool:
         """方法 hasFinishedShutdown"""
-        return False
+        return bool(getattr(self, 'finished_shutdown', False))
 
     def getMapFactory(self) -> Any:
         """方法 getMapFactory"""
-        raise NotImplementedError("方法 getMapFactory 尚未实现")
+        return getattr(self, 'map_factory', None)
 
     def addPlayer(self, chr: Any) -> None:
         """方法 addPlayer"""
@@ -166,7 +166,7 @@ class ChannelServer:
 
     def getPlayerStorage(self) -> Any:
         """方法 getPlayerStorage"""
-        raise NotImplementedError("方法 getPlayerStorage 尚未实现")
+        return getattr(self, 'player_storage', None)
 
     def removePlayer(self, chr: Any) -> None:
         """方法 removePlayer"""
@@ -178,11 +178,12 @@ class ChannelServer:
 
     def getServerMessage(self) -> str:
         """方法 getServerMessage"""
-        return ""
+        return getattr(self, 'server_message', "")
 
     def setServerMessage(self, newMessage: str) -> None:
         """方法 setServerMessage"""
-        pass
+        self.server_message = newMessage
+        return None
 
     def broadcastPacket(self, data: Any) -> None:
         """方法 broadcastPacket"""
@@ -198,51 +199,54 @@ class ChannelServer:
 
     def getExpRate(self) -> int:
         """方法 getExpRate"""
-        return 0
+        return getattr(self, 'exp_rate', 0)
 
     def setExpRate(self, expRate: int) -> None:
         """方法 setExpRate"""
-        pass
+        self.exp_rate = expRate
+        return None
 
     def getCashRate(self) -> int:
         """方法 getCashRate"""
-        return 0
+        return getattr(self, 'cash_rate', 0)
 
     def setCashRate(self, cashRate: int) -> None:
         """方法 setCashRate"""
-        pass
+        self.cash_rate = cashRate
+        return None
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def setChannel(self, channel: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = channel
+        return None
 
     def getSocket(self) -> str:
         """方法 getSocket"""
-        return ""
+        return getattr(self, 'socket', "")
 
     def getIP(self) -> str:
         """方法 getIP"""
-        return ""
+        return getattr(self, 'ip', "")
 
     def getIPA(self) -> str:
         """方法 getIPA"""
-        return ""
+        return getattr(self, 'ipa', "")
 
     def isShutdown(self) -> bool:
         """方法 isShutdown"""
-        return False
+        return bool(getattr(self, 'shutdown', False))
 
     def getLoadedMaps(self) -> int:
         """方法 getLoadedMaps"""
-        return 0
+        return getattr(self, 'loaded_maps', 0)
 
     def getEventSM(self) -> Any:
         """方法 getEventSM"""
-        raise NotImplementedError("方法 getEventSM 尚未实现")
+        return getattr(self, 'event_sm', None)
 
     def reloadEvents(self) -> None:
         """方法 reloadEvents"""
@@ -250,45 +254,50 @@ class ChannelServer:
 
     def getBossDropRate(self) -> int:
         """方法 getBossDropRate"""
-        return 0
+        return getattr(self, 'boss_drop_rate', 0)
 
     def setBossDropRate(self, dropRate: int) -> None:
         """方法 setBossDropRate"""
-        pass
+        self.boss_drop_rate = dropRate
+        return None
 
     def getMesoRate(self) -> int:
         """方法 getMesoRate"""
-        return 0
+        return getattr(self, 'meso_rate', 0)
 
     def setMesoRate(self, mesoRate: int) -> None:
         """方法 setMesoRate"""
-        pass
+        self.meso_rate = mesoRate
+        return None
 
     def getDropRate(self) -> int:
         """方法 getDropRate"""
-        return 0
+        return getattr(self, 'drop_rate', 0)
 
     def setDropRate(self, dropRate: int) -> None:
         """方法 setDropRate"""
-        pass
+        self.drop_rate = dropRate
+        return None
 
     def getDoubleExp(self) -> int:
         """方法 getDoubleExp"""
-        return 0
+        return getattr(self, 'double_exp', 0)
 
     def setDoubleExp(self, doubleExp: int) -> None:
         """方法 setDoubleExp"""
-        pass
+        self.double_exp = doubleExp
+        return None
 
     def getDoubleMeso(self) -> int:
         """方法 getDoubleMeso"""
-        return 0
+        return getattr(self, 'double_meso', 0)
 
     def setDoubleMeso(self, doubleMeso: int) -> None:
         """方法 setDoubleMeso"""
-        pass
+        self.double_meso = doubleMeso
+        return None
 
     def getDoubleDrop(self) -> int:
         """方法 getDoubleDrop"""
-        return 0
+        return getattr(self, 'double_drop', 0)
 

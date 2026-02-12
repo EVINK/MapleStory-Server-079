@@ -44,7 +44,7 @@ class KoreanDateUtil:
 
     def isDST(self) -> bool:
         """方法 isDST"""
-        return False
+        return bool(getattr(self, 'dst', False))
 
     def getFileTimestamp(self, timeStampinMillis: int, roundToMinutes: bool) -> int:
         """方法 getFileTimestamp"""

@@ -54,7 +54,7 @@ class MapleSquad:
 
     def getBeginMap(self) -> Any:
         """方法 getBeginMap"""
-        raise NotImplementedError("方法 getBeginMap 尚未实现")
+        return getattr(self, 'begin_map', None)
 
     def clear(self) -> None:
         """方法 clear"""
@@ -66,7 +66,7 @@ class MapleSquad:
 
     def getTimeLeft(self) -> int:
         """方法 getTimeLeft"""
-        return 0
+        return getattr(self, 'time_left', 0)
 
     def scheduleRemoval(self) -> None:
         """方法 scheduleRemoval"""
@@ -78,23 +78,24 @@ class MapleSquad:
 
     def getLeaderName(self) -> str:
         """方法 getLeaderName"""
-        return ""
+        return getattr(self, 'leader_name', "")
 
     def getAllNextPlayer(self) -> list:
         """方法 getAllNextPlayer"""
-        return []
+        return getattr(self, 'all_next_player', [])
 
     def getNextPlayer(self) -> str:
         """方法 getNextPlayer"""
-        return ""
+        return getattr(self, 'next_player', "")
 
     def setNextPlayer(self, i: str) -> None:
         """方法 setNextPlayer"""
-        pass
+        self.next_player = i
+        return None
 
     def getLeader(self) -> Any:
         """方法 getLeader"""
-        raise NotImplementedError("方法 getLeader 尚未实现")
+        return getattr(self, 'leader', None)
 
     def containsMember(self, member: Any) -> bool:
         """方法 containsMember"""
@@ -102,15 +103,15 @@ class MapleSquad:
 
     def getMembers(self) -> list:
         """方法 getMembers"""
-        return []
+        return getattr(self, 'members', [])
 
     def getBannedMembers(self) -> list:
         """方法 getBannedMembers"""
-        return []
+        return getattr(self, 'banned_members', [])
 
     def getSquadSize(self) -> int:
         """方法 getSquadSize"""
-        return 0
+        return getattr(self, 'squad_size', 0)
 
     def isBanned(self, member: Any) -> bool:
         """方法 isBanned"""
@@ -142,15 +143,16 @@ class MapleSquad:
 
     def setStatus(self, status: int) -> None:
         """方法 setStatus"""
-        pass
+        self.status = status
+        return None
 
     def getStatus(self) -> int:
         """方法 getStatus"""
-        return 0
+        return getattr(self, 'status', 0)
 
     def getBannedMemberSize(self) -> int:
         """方法 getBannedMemberSize"""
-        return 0
+        return getattr(self, 'banned_member_size', 0)
 
     def getSquadMemberString(self, type: int) -> str:
         """方法 getSquadMemberString"""
@@ -158,11 +160,11 @@ class MapleSquad:
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getJobs(self) -> dict:
         """方法 getJobs"""
-        return {}
+        return getattr(self, 'jobs', {})
 
 
 class MapleSquadType(Enum):

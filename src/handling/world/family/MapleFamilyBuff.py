@@ -44,7 +44,7 @@ class MapleFamilyBuff:
 
     def getBuffEntry(self) -> list:
         """方法 getBuffEntry"""
-        return []
+        return getattr(self, 'buff_entry', [])
 
     def getBuffEntry(self, i: int) -> Any:
         """方法 getBuffEntry"""
@@ -52,11 +52,11 @@ class MapleFamilyBuff:
 
     def getEffectId(self) -> int:
         """方法 getEffectId"""
-        return 0
+        return getattr(self, 'effect_id', 0)
 
     def getEffects(self) -> list:
         """方法 getEffects"""
-        return []
+        return getattr(self, 'effects', [])
 
     def applyTo(self, chr: Any) -> None:
         """方法 applyTo"""
@@ -87,7 +87,7 @@ class MapleFamilyBuffEntry:
 
     def getBuffEntry(self) -> list:
         """方法 getBuffEntry"""
-        return []
+        return getattr(self, 'buff_entry', [])
 
     def getBuffEntry(self, i: int) -> Any:
         """方法 getBuffEntry"""
@@ -95,11 +95,11 @@ class MapleFamilyBuffEntry:
 
     def getEffectId(self) -> int:
         """方法 getEffectId"""
-        return 0
+        return getattr(self, 'effect_id', 0)
 
     def getEffects(self) -> list:
         """方法 getEffects"""
-        return []
+        return getattr(self, 'effects', [])
 
     def applyTo(self, chr: Any) -> None:
         """方法 applyTo"""

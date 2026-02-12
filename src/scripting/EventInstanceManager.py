@@ -99,7 +99,7 @@ class EventInstanceManager:
 
     def getInstanceId(self) -> int:
         """方法 getInstanceId"""
-        return 0
+        return getattr(self, 'instance_id', 0)
 
     def addInstanceId(self) -> None:
         """方法 addInstanceId"""
@@ -107,11 +107,11 @@ class EventInstanceManager:
 
     def isTimerStarted(self) -> bool:
         """方法 isTimerStarted"""
-        return False
+        return bool(getattr(self, 'timer_started', False))
 
     def getTimeLeft(self) -> int:
         """方法 getTimeLeft"""
-        return 0
+        return getattr(self, 'time_left', 0)
 
     def registerParty(self, party: Any, map: Any) -> None:
         """方法 registerParty"""
@@ -135,15 +135,15 @@ class EventInstanceManager:
 
     def getPlayers(self) -> list:
         """方法 getPlayers"""
-        return []
+        return getattr(self, 'players', [])
 
     def getDisconnected(self) -> list:
         """方法 getDisconnected"""
-        return []
+        return getattr(self, 'disconnected', [])
 
     def getPlayerCount(self) -> int:
         """方法 getPlayerCount"""
-        return 0
+        return getattr(self, 'player_count', 0)
 
     def registerMonster(self, mob: Any) -> None:
         """方法 registerMonster"""
@@ -187,11 +187,11 @@ class EventInstanceManager:
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getMobs(self) -> list:
         """方法 getMobs"""
-        return []
+        return getattr(self, 'mobs', [])
 
     def broadcastPlayerMsg(self, type: int, msg: str) -> None:
         """方法 broadcastPlayerMsg"""
@@ -211,7 +211,7 @@ class EventInstanceManager:
 
     def getMapFactory(self) -> Any:
         """方法 getMapFactory"""
-        raise NotImplementedError("方法 getMapFactory 尚未实现")
+        return getattr(self, 'map_factory', None)
 
     def getMapInstance(self, args: int) -> Any:
         """方法 getMapInstance"""
@@ -227,11 +227,12 @@ class EventInstanceManager:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setProperty(self, key: str, value: str) -> None:
         """方法 setProperty"""
-        pass
+        self.property = key
+        return None
 
     def setProperty(self, key: str, value: str, prev: bool) -> Any:
         """方法 setProperty"""
@@ -243,7 +244,7 @@ class EventInstanceManager:
 
     def getProperties(self) -> Any:
         """方法 getProperties"""
-        raise NotImplementedError("方法 getProperties 尚未实现")
+        return getattr(self, 'properties', None)
 
     def leftParty(self, chr: Any) -> None:
         """方法 leftParty"""

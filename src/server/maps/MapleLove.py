@@ -30,19 +30,20 @@ class MapleLove(AbstractMapleMapObject):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def getOwner(self) -> Any:
         """方法 getOwner"""
-        raise NotImplementedError("方法 getOwner 尚未实现")
+        return getattr(self, 'owner', None)
 
     def setPosition(self, position: Any) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 
     def sendDestroyData(self, client: Any) -> None:
         """方法 sendDestroyData"""

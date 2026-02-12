@@ -33,7 +33,7 @@ class EventScriptManager(AbstractScriptManager):
 
     def getNewInstanceMapId(self) -> int:
         """方法 getNewInstanceMapId"""
-        return 0
+        return getattr(self, 'new_instance_map_id', 0)
 
     def getEventManager(self, event: str) -> Any:
         """方法 getEventManager"""
@@ -64,7 +64,7 @@ class EventEntry:
 
     def getNewInstanceMapId(self) -> int:
         """方法 getNewInstanceMapId"""
-        return 0
+        return getattr(self, 'new_instance_map_id', 0)
 
     def getEventManager(self, event: str) -> Any:
         """方法 getEventManager"""

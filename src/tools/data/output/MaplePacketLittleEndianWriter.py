@@ -27,7 +27,7 @@ class MaplePacketLittleEndianWriter(GenericLittleEndianWriter):
 
     def getPacket(self) -> Any:
         """方法 getPacket"""
-        raise NotImplementedError("方法 getPacket 尚未实现")
+        return getattr(self, 'packet', None)
 
     def toString(self) -> str:
         """方法 toString"""

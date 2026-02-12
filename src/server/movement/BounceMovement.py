@@ -24,19 +24,21 @@ class BounceMovement(AbstractLifeMovement):
 
     def getUnk(self) -> int:
         """方法 getUnk"""
-        return 0
+        return getattr(self, 'unk', 0)
 
     def setUnk(self, unk: int) -> None:
         """方法 setUnk"""
-        pass
+        self.unk = unk
+        return None
 
     def getFH(self) -> int:
         """方法 getFH"""
-        return 0
+        return getattr(self, 'fh', 0)
 
     def setFH(self, fh: int) -> None:
         """方法 setFH"""
-        pass
+        self.fh = fh
+        return None
 
     def serialize(self, lew: Any) -> None:
         """方法 serialize"""

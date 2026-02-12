@@ -24,9 +24,9 @@ class MapleGuildResponse(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def getPacket(self) -> Any:
         """方法 getPacket"""
-        raise NotImplementedError("方法 getPacket 尚未实现")
+        return getattr(self, 'packet', None)
 

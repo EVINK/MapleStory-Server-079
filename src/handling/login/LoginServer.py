@@ -27,7 +27,7 @@ class LoginServer:
     @staticmethod
     def getInstance() -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def putLoginAuth(self, chrid: int, ip: str, tempIp: str, channel: int) -> None:
         """方法 putLoginAuth"""
@@ -67,59 +67,63 @@ class LoginServer:
 
     def getServerName(self) -> str:
         """方法 getServerName"""
-        return ""
+        return getattr(self, 'server_name', "")
 
     def getEventMessage(self) -> str:
         """方法 getEventMessage"""
-        return ""
+        return getattr(self, 'event_message', "")
 
     def getFlag(self) -> int:
         """方法 getFlag"""
-        return 0
+        return getattr(self, 'flag', 0)
 
     def getMaxCharacters(self) -> int:
         """方法 getMaxCharacters"""
-        return 0
+        return getattr(self, 'max_characters', 0)
 
     def getLoad(self) -> dict:
         """方法 getLoad"""
-        return {}
+        return getattr(self, 'load', {})
 
     def setLoad(self, load_: dict, usersOn_: int) -> None:
         """方法 setLoad"""
-        pass
+        self.load = load_
+        return None
 
     def setEventMessage(self, newMessage: str) -> None:
         """方法 setEventMessage"""
-        pass
+        self.event_message = newMessage
+        return None
 
     def setFlag(self, newflag: int) -> None:
         """方法 setFlag"""
-        pass
+        self.flag = newflag
+        return None
 
     def getUserLimit(self) -> int:
         """方法 getUserLimit"""
-        return 0
+        return getattr(self, 'user_limit', 0)
 
     def getUsersOn(self) -> int:
         """方法 getUsersOn"""
-        return 0
+        return getattr(self, 'users_on', 0)
 
     def setUserLimit(self, newLimit: int) -> None:
         """方法 setUserLimit"""
-        pass
+        self.user_limit = newLimit
+        return None
 
     def getNumberOfSessions(self) -> int:
         """方法 getNumberOfSessions"""
-        return 0
+        return getattr(self, 'number_of_sessions', 0)
 
     def isAdminOnly(self) -> bool:
         """方法 isAdminOnly"""
-        return False
+        return bool(getattr(self, 'admin_only', False))
 
     def isShutdown(self) -> bool:
         """方法 isShutdown"""
-        return False
+        return bool(getattr(self, 'shutdown', False))
 
     def setOn(self) -> None:
         """方法 setOn"""

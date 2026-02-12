@@ -45,7 +45,7 @@ class Eval:
 
     def getBigDecimal(self) -> Any:
         """方法 getBigDecimal"""
-        raise NotImplementedError("方法 getBigDecimal 尚未实现")
+        return getattr(self, 'big_decimal', None)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -119,7 +119,7 @@ class Tokeniser:
 
     def getBigDecimal(self) -> Any:
         """方法 getBigDecimal"""
-        raise NotImplementedError("方法 getBigDecimal 尚未实现")
+        return getattr(self, 'big_decimal', None)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -196,7 +196,7 @@ class Operation:
 
     def getBigDecimal(self) -> Any:
         """方法 getBigDecimal"""
-        raise NotImplementedError("方法 getBigDecimal 尚未实现")
+        return getattr(self, 'big_decimal', None)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -259,7 +259,7 @@ class Compiler:
 
     def getBigDecimal(self) -> Any:
         """方法 getBigDecimal"""
-        raise NotImplementedError("方法 getBigDecimal 尚未实现")
+        return getattr(self, 'big_decimal', None)
 
     def toString(self) -> str:
         """方法 toString"""

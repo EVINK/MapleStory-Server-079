@@ -37,7 +37,7 @@ class DatabaseConnection:
     @staticmethod
     def getConnection() -> Any:
         """方法 getConnection"""
-        raise NotImplementedError("方法 getConnection 尚未实现")
+        return getattr(self, 'connection', None)
 
     def getWaitTimeout(self, con: Any) -> int:
         """方法 getWaitTimeout"""
@@ -57,7 +57,7 @@ class DatabaseConnection:
 
     def getConnection(self) -> Any:
         """方法 getConnection"""
-        raise NotImplementedError("方法 getConnection 尚未实现")
+        return getattr(self, 'connection', None)
 
     def expiredConnection(self) -> bool:
         """方法 expiredConnection"""
@@ -84,7 +84,7 @@ class ConWrapper:
     @staticmethod
     def getConnection() -> Any:
         """方法 getConnection"""
-        raise NotImplementedError("方法 getConnection 尚未实现")
+        return getattr(self, 'connection', None)
 
     def getWaitTimeout(self, con: Any) -> int:
         """方法 getWaitTimeout"""
@@ -104,7 +104,7 @@ class ConWrapper:
 
     def getConnection(self) -> Any:
         """方法 getConnection"""
-        raise NotImplementedError("方法 getConnection 尚未实现")
+        return getattr(self, 'connection', None)
 
     def expiredConnection(self) -> bool:
         """方法 expiredConnection"""

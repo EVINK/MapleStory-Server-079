@@ -42,99 +42,110 @@ class Item(IItem):
 
     def setPosition(self, position: int) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 
     def setQuantity(self, quantity: int) -> None:
         """方法 setQuantity"""
-        pass
+        self.quantity = quantity
+        return None
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def getFlag(self) -> int:
         """方法 getFlag"""
-        return 0
+        return getattr(self, 'flag', 0)
 
     def getLocked(self) -> bool:
         """方法 getLocked"""
-        return False
+        return getattr(self, 'locked', False)
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getOwner(self) -> str:
         """方法 getOwner"""
-        return ""
+        return getattr(self, 'owner', "")
 
     def setOwner(self, owner: str) -> None:
         """方法 setOwner"""
-        pass
+        self.owner = owner
+        return None
 
     def setFlag(self, flag: int) -> None:
         """方法 setFlag"""
-        pass
+        self.flag = flag
+        return None
 
     def setLocked(self, flag: int) -> None:
         """方法 setLocked"""
-        pass
+        self.locked = flag
+        return None
 
     def getExpiration(self) -> int:
         """方法 getExpiration"""
-        return 0
+        return getattr(self, 'expiration', 0)
 
     def setExpiration(self, expire: int) -> None:
         """方法 setExpiration"""
-        pass
+        self.expiration = expire
+        return None
 
     def getGMLog(self) -> str:
         """方法 getGMLog"""
-        return ""
+        return getattr(self, 'gm_log', "")
 
     def setGMLog(self, GameMaster_log: str) -> None:
         """方法 setGMLog"""
-        pass
+        self.gm_log = GameMaster_log
+        return None
 
     def getUniqueId(self) -> int:
         """方法 getUniqueId"""
-        return 0
+        return getattr(self, 'unique_id', 0)
 
     def setUniqueId(self, id: int) -> None:
         """方法 setUniqueId"""
-        pass
+        self.unique_id = id
+        return None
 
     def getPet(self) -> Any:
         """方法 getPet"""
-        raise NotImplementedError("方法 getPet 尚未实现")
+        return getattr(self, 'pet', None)
 
     def setPet(self, pet: Any) -> None:
         """方法 setPet"""
-        pass
+        self.pet = pet
+        return None
 
     def setGiftFrom(self, gf: str) -> None:
         """方法 setGiftFrom"""
-        pass
+        self.gift_from = gf
+        return None
 
     def getGiftFrom(self) -> str:
         """方法 getGiftFrom"""
-        return ""
+        return getattr(self, 'gift_from', "")
 
     def setEquipLevel(self, gf: int) -> None:
         """方法 setEquipLevel"""
-        pass
+        self.equip_level = gf
+        return None
 
     def getEquipLevel(self) -> int:
         """方法 getEquipLevel"""
-        return 0
+        return getattr(self, 'equip_level', 0)
 
     def compareTo(self, other: Any) -> int:
         """方法 compareTo"""
@@ -142,7 +153,7 @@ class Item(IItem):
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -150,21 +161,23 @@ class Item(IItem):
 
     def getRing(self) -> Any:
         """方法 getRing"""
-        raise NotImplementedError("方法 getRing 尚未实现")
+        return getattr(self, 'ring', None)
 
     def setRing(self, ring: Any) -> None:
         """方法 setRing"""
-        pass
+        self.ring = ring
+        return None
 
     def hasSetOnlyId(self) -> bool:
         """方法 hasSetOnlyId"""
-        return False
+        return bool(getattr(self, 'set_only_id', False))
 
     def getEquipOnlyId(self) -> int:
         """方法 getEquipOnlyId"""
-        return 0
+        return getattr(self, 'equip_only_id', 0)
 
     def setEquipOnlyId(self, OnlyId: int) -> None:
         """方法 setEquipOnlyId"""
-        pass
+        self.equip_only_id = OnlyId
+        return None
 

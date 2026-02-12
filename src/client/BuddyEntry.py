@@ -39,15 +39,16 @@ class BuddyEntry:
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def setChannel(self, channel: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = channel
+        return None
 
     def isOnline(self) -> bool:
         """方法 isOnline"""
-        return False
+        return bool(getattr(self, 'online', False))
 
     def setOffline(self) -> None:
         """方法 setOffline"""
@@ -55,41 +56,43 @@ class BuddyEntry:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getJob(self) -> int:
         """方法 getJob"""
-        return 0
+        return getattr(self, 'job', 0)
 
     def setVisible(self, visible: bool) -> None:
         """方法 setVisible"""
-        pass
+        self.visible = visible
+        return None
 
     def isVisible(self) -> bool:
         """方法 isVisible"""
-        return False
+        return bool(getattr(self, 'visible', False))
 
     def getGroup(self) -> str:
         """方法 getGroup"""
-        return ""
+        return getattr(self, 'group', "")
 
     def setGroup(self, newGroup: str) -> None:
         """方法 setGroup"""
-        pass
+        self.group = newGroup
+        return None
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 

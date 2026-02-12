@@ -18,19 +18,20 @@ class CherryMScustomEventFactory:
     @staticmethod
     def isCANLOG() -> bool:
         """方法 isCANLOG"""
-        return False
+        return bool(getattr(self, 'canlog', False))
 
     def setCANLOG(self, CANLOG: bool) -> None:
         """方法 setCANLOG"""
-        pass
+        self.canlog = CANLOG
+        return None
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getCherryMSLottery(self) -> Any:
         """方法 getCherryMSLottery"""
-        raise NotImplementedError("方法 getCherryMSLottery 尚未实现")
+        return getattr(self, 'cherry_ms_lottery', None)
 
     def getCherryMSLottery(self, cserv: Any, mapFactory: Any) -> Any:
         """方法 getCherryMSLottery"""

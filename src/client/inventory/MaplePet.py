@@ -69,95 +69,105 @@ class MaplePet:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def getSummoned(self) -> bool:
         """方法 getSummoned"""
-        return False
+        return getattr(self, 'summoned', False)
 
     def getSummonedValue(self) -> int:
         """方法 getSummonedValue"""
-        return 0
+        return getattr(self, 'summoned_value', 0)
 
     def setSummoned(self, summoned: int) -> None:
         """方法 setSummoned"""
-        pass
+        self.summoned = summoned
+        return None
 
     def getInventoryPosition(self) -> int:
         """方法 getInventoryPosition"""
-        return 0
+        return getattr(self, 'inventory_position', 0)
 
     def setInventoryPosition(self, inventorypos: int) -> None:
         """方法 setInventoryPosition"""
-        pass
+        self.inventory_position = inventorypos
+        return None
 
     def getUniqueId(self) -> int:
         """方法 getUniqueId"""
-        return 0
+        return getattr(self, 'unique_id', 0)
 
     def getCloseness(self) -> int:
         """方法 getCloseness"""
-        return 0
+        return getattr(self, 'closeness', 0)
 
     def setCloseness(self, closeness: int) -> None:
         """方法 setCloseness"""
-        pass
+        self.closeness = closeness
+        return None
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def setLevel(self, level: int) -> None:
         """方法 setLevel"""
-        pass
+        self.level = level
+        return None
 
     def getFullness(self) -> int:
         """方法 getFullness"""
-        return 0
+        return getattr(self, 'fullness', 0)
 
     def setFullness(self, fullness: int) -> None:
         """方法 setFullness"""
-        pass
+        self.fullness = fullness
+        return None
 
     def getFlags(self) -> int:
         """方法 getFlags"""
-        return 0
+        return getattr(self, 'flags', 0)
 
     def setFlags(self, fffh: int) -> None:
         """方法 setFlags"""
-        pass
+        self.flags = fffh
+        return None
 
     def getFh(self) -> int:
         """方法 getFh"""
-        return 0
+        return getattr(self, 'fh', 0)
 
     def setFh(self, Fh: int) -> None:
         """方法 setFh"""
-        pass
+        self.fh = Fh
+        return None
 
     def getPos(self) -> Any:
         """方法 getPos"""
-        raise NotImplementedError("方法 getPos 尚未实现")
+        return getattr(self, 'pos', None)
 
     def setPos(self, pos: Any) -> None:
         """方法 setPos"""
-        pass
+        self.pos = pos
+        return None
 
     def getStance(self) -> int:
         """方法 getStance"""
-        return 0
+        return getattr(self, 'stance', 0)
 
     def setStance(self, stance: int) -> None:
         """方法 setStance"""
-        pass
+        self.stance = stance
+        return None
 
     def getPetItemId(self) -> int:
         """方法 getPetItemId"""
-        return 0
+        return getattr(self, 'pet_item_id', 0)
 
     def canConsume(self, itemId: int) -> bool:
         """方法 canConsume"""
@@ -169,15 +179,16 @@ class MaplePet:
 
     def getSecondsLeft(self) -> int:
         """方法 getSecondsLeft"""
-        return 0
+        return getattr(self, 'seconds_left', 0)
 
     def setSecondsLeft(self, sl: int) -> None:
         """方法 setSecondsLeft"""
-        pass
+        self.seconds_left = sl
+        return None
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def check(self, flag: int) -> bool:
         """方法 check"""
@@ -208,7 +219,7 @@ class PetFlag(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def check(self, flag: int) -> bool:
         """方法 check"""

@@ -30,11 +30,11 @@ class MapleEquipOnlyId:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getNextEquipOnlyId(self) -> int:
         """方法 getNextEquipOnlyId"""
-        return 0
+        return getattr(self, 'next_equip_only_id', 0)
 
     def initOnlyId(self) -> int:
         """方法 initOnlyId"""
@@ -56,11 +56,11 @@ class SingletonHolder:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getNextEquipOnlyId(self) -> int:
         """方法 getNextEquipOnlyId"""
-        return 0
+        return getattr(self, 'next_equip_only_id', 0)
 
     def initOnlyId(self) -> int:
         """方法 initOnlyId"""

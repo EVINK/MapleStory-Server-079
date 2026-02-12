@@ -28,7 +28,7 @@ class MobSkillFactory:
     @staticmethod
     def getInstance() -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getMobSkill(self, skillId: int, level: int) -> Any:
         """方法 getMobSkill"""
@@ -44,7 +44,7 @@ class SingletonHolder:
     @staticmethod
     def getInstance() -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getMobSkill(self, skillId: int, level: int) -> Any:
         """方法 getMobSkill"""

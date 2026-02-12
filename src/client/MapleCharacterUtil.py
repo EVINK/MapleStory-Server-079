@@ -67,7 +67,8 @@ class MapleCharacterUtil:
 
     def setNXCodeUsed(self, name: str, code: str) -> None:
         """方法 setNXCodeUsed"""
-        pass
+        self.nx_code_used = name
+        return None
 
     def sendNote(self, to: str, name: str, msg: str, fame: int) -> None:
         """方法 sendNote"""

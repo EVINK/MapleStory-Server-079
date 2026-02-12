@@ -30,27 +30,30 @@ class Forum_Section:
 
     def getAllSection(self) -> list:
         """方法 getAllSection"""
-        return []
+        return getattr(self, 'all_section', [])
 
     def setAllSection(self, allSection: list) -> None:
         """方法 setAllSection"""
-        pass
+        self.all_section = allSection
+        return None
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setId(self, id: int) -> None:
         """方法 setId"""
-        pass
+        self.id = id
+        return None
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def loadAllSection(self) -> list:
         """方法 loadAllSection"""

@@ -141,7 +141,7 @@ class MapleStatEffect:
 
     def isSoulStone(self) -> bool:
         """方法 isSoulStone"""
-        return False
+        return bool(getattr(self, 'soul_stone', False))
 
     def applyBuff(self, applyfrom: Any, newDuration: int) -> None:
         """方法 applyBuff"""
@@ -161,7 +161,8 @@ class MapleStatEffect:
 
     def setDuration(self, d: int) -> None:
         """方法 setDuration"""
-        pass
+        self.duration = d
+        return None
 
     def silentApplyBuff(self, chr: Any, starttime: int) -> None:
         """方法 silentApplyBuff"""
@@ -209,87 +210,89 @@ class MapleStatEffect:
 
     def setSourceId(self, newid: int) -> None:
         """方法 setSourceId"""
-        pass
+        self.source_id = newid
+        return None
 
     def isGmBuff(self) -> bool:
         """方法 isGmBuff"""
-        return False
+        return bool(getattr(self, 'gm_buff', False))
 
     def is能量获得(self) -> bool:
         """方法 is能量获得"""
-        return False
+        return bool(getattr(self, '能量获得', False))
 
     def isMonsterBuff(self) -> bool:
         """方法 isMonsterBuff"""
-        return False
+        return bool(getattr(self, 'monster_buff', False))
 
     def setPartyBuff(self, pb: bool) -> None:
         """方法 setPartyBuff"""
-        pass
+        self.party_buff = pb
+        return None
 
     def isPartyBuff(self) -> bool:
         """方法 isPartyBuff"""
-        return False
+        return bool(getattr(self, 'party_buff', False))
 
     def is群体治愈(self) -> bool:
         """方法 is群体治愈"""
-        return False
+        return bool(getattr(self, '群体治愈', False))
 
     def is复活术(self) -> bool:
         """方法 is复活术"""
-        return False
+        return bool(getattr(self, '复活术', False))
 
     def is伺机待发(self) -> bool:
         """方法 is伺机待发"""
-        return False
+        return bool(getattr(self, '伺机待发', False))
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def getMastery(self) -> int:
         """方法 getMastery"""
-        return 0
+        return getattr(self, 'mastery', 0)
 
     def getWatk(self) -> int:
         """方法 getWatk"""
-        return 0
+        return getattr(self, 'watk', 0)
 
     def getMatk(self) -> int:
         """方法 getMatk"""
-        return 0
+        return getattr(self, 'matk', 0)
 
     def getWdef(self) -> int:
         """方法 getWdef"""
-        return 0
+        return getattr(self, 'wdef', 0)
 
     def getMdef(self) -> int:
         """方法 getMdef"""
-        return 0
+        return getattr(self, 'mdef', 0)
 
     def getAcc(self) -> int:
         """方法 getAcc"""
-        return 0
+        return getattr(self, 'acc', 0)
 
     def getAvoid(self) -> int:
         """方法 getAvoid"""
-        return 0
+        return getattr(self, 'avoid', 0)
 
     def getHands(self) -> int:
         """方法 getHands"""
-        return 0
+        return getattr(self, 'hands', 0)
 
     def getSpeed(self) -> int:
         """方法 getSpeed"""
-        return 0
+        return getattr(self, 'speed', 0)
 
     def getJump(self) -> int:
         """方法 getJump"""
-        return 0
+        return getattr(self, 'jump', 0)
 
 
 class CancelEffectAction(Runnable):
@@ -385,7 +388,7 @@ class CancelEffectAction(Runnable):
 
     def isSoulStone(self) -> bool:
         """方法 isSoulStone"""
-        return False
+        return bool(getattr(self, 'soul_stone', False))
 
     def applyBuff(self, applyfrom: Any, newDuration: int) -> None:
         """方法 applyBuff"""
@@ -405,7 +408,8 @@ class CancelEffectAction(Runnable):
 
     def setDuration(self, d: int) -> None:
         """方法 setDuration"""
-        pass
+        self.duration = d
+        return None
 
     def silentApplyBuff(self, chr: Any, starttime: int) -> None:
         """方法 silentApplyBuff"""
@@ -453,85 +457,87 @@ class CancelEffectAction(Runnable):
 
     def setSourceId(self, newid: int) -> None:
         """方法 setSourceId"""
-        pass
+        self.source_id = newid
+        return None
 
     def isGmBuff(self) -> bool:
         """方法 isGmBuff"""
-        return False
+        return bool(getattr(self, 'gm_buff', False))
 
     def is能量获得(self) -> bool:
         """方法 is能量获得"""
-        return False
+        return bool(getattr(self, '能量获得', False))
 
     def isMonsterBuff(self) -> bool:
         """方法 isMonsterBuff"""
-        return False
+        return bool(getattr(self, 'monster_buff', False))
 
     def setPartyBuff(self, pb: bool) -> None:
         """方法 setPartyBuff"""
-        pass
+        self.party_buff = pb
+        return None
 
     def isPartyBuff(self) -> bool:
         """方法 isPartyBuff"""
-        return False
+        return bool(getattr(self, 'party_buff', False))
 
     def is群体治愈(self) -> bool:
         """方法 is群体治愈"""
-        return False
+        return bool(getattr(self, '群体治愈', False))
 
     def is复活术(self) -> bool:
         """方法 is复活术"""
-        return False
+        return bool(getattr(self, '复活术', False))
 
     def is伺机待发(self) -> bool:
         """方法 is伺机待发"""
-        return False
+        return bool(getattr(self, '伺机待发', False))
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def getMastery(self) -> int:
         """方法 getMastery"""
-        return 0
+        return getattr(self, 'mastery', 0)
 
     def getWatk(self) -> int:
         """方法 getWatk"""
-        return 0
+        return getattr(self, 'watk', 0)
 
     def getMatk(self) -> int:
         """方法 getMatk"""
-        return 0
+        return getattr(self, 'matk', 0)
 
     def getWdef(self) -> int:
         """方法 getWdef"""
-        return 0
+        return getattr(self, 'wdef', 0)
 
     def getMdef(self) -> int:
         """方法 getMdef"""
-        return 0
+        return getattr(self, 'mdef', 0)
 
     def getAcc(self) -> int:
         """方法 getAcc"""
-        return 0
+        return getattr(self, 'acc', 0)
 
     def getAvoid(self) -> int:
         """方法 getAvoid"""
-        return 0
+        return getattr(self, 'avoid', 0)
 
     def getHands(self) -> int:
         """方法 getHands"""
-        return 0
+        return getattr(self, 'hands', 0)
 
     def getSpeed(self) -> int:
         """方法 getSpeed"""
-        return 0
+        return getattr(self, 'speed', 0)
 
     def getJump(self) -> int:
         """方法 getJump"""
-        return 0
+        return getattr(self, 'jump', 0)
 

@@ -22,11 +22,11 @@ class CharacterIdChannelPair(Externalizable):
 
     def getCharacterId(self) -> int:
         """方法 getCharacterId"""
-        return 0
+        return getattr(self, 'character_id', 0)
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def readExternal(self, in: Any) -> None:
         """方法 readExternal"""

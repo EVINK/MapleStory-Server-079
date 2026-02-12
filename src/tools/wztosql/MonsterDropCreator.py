@@ -66,7 +66,7 @@ class MonsterDropCreator:
 
     def getDropsNotInMonsterBook(self) -> dict:
         """方法 getDropsNotInMonsterBook"""
-        return {}
+        return getattr(self, 'drops_not_in_monster_book', {})
 
     def getAllItems(self) -> None:
         """方法 getAllItems"""
@@ -78,7 +78,7 @@ class MonsterDropCreator:
 
     def getBoss(self) -> int:
         """方法 getBoss"""
-        return 0
+        return getattr(self, 'boss', 0)
 
     def rateItemDropLevel(self) -> int:
         """方法 rateItemDropLevel"""
@@ -86,7 +86,7 @@ class MonsterDropCreator:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
 
 class MobInfo:
@@ -133,7 +133,7 @@ class MobInfo:
 
     def getDropsNotInMonsterBook(self) -> dict:
         """方法 getDropsNotInMonsterBook"""
-        return {}
+        return getattr(self, 'drops_not_in_monster_book', {})
 
     def getAllItems(self) -> None:
         """方法 getAllItems"""
@@ -145,7 +145,7 @@ class MobInfo:
 
     def getBoss(self) -> int:
         """方法 getBoss"""
-        return 0
+        return getattr(self, 'boss', 0)
 
     def rateItemDropLevel(self) -> int:
         """方法 rateItemDropLevel"""
@@ -153,5 +153,5 @@ class MobInfo:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 

@@ -23,31 +23,34 @@ class ServerConstants:
     @staticmethod
     def setPACKET_ERROR(ERROR: str) -> None:
         """方法 setPACKET_ERROR"""
-        pass
+        self.packet_error = ERROR
+        return None
 
     def getPACKET_ERROR(self) -> str:
         """方法 getPACKET_ERROR"""
-        return ""
+        return getattr(self, 'packet_error', "")
 
     def setChannel(self, ERROR: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = ERROR
+        return None
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def setRemovePlayerFromMap(self, ERROR: int) -> None:
         """方法 setRemovePlayerFromMap"""
-        pass
+        self.remove_player_from_map = ERROR
+        return None
 
     def getRemovePlayerFromMap(self) -> int:
         """方法 getRemovePlayerFromMap"""
-        return 0
+        return getattr(self, 'remove_player_from_map', 0)
 
     def getAutoReg(self) -> bool:
         """方法 getAutoReg"""
-        return False
+        return getattr(self, 'auto_reg', False)
 
     def ChangeAutoReg(self) -> str:
         """方法 ChangeAutoReg"""
@@ -59,23 +62,23 @@ class ServerConstants:
 
     def getCommandPrefix(self) -> str:
         """方法 getCommandPrefix"""
-        return ""
+        return getattr(self, 'command_prefix', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getAscii(self) -> str:
         """方法 getAscii"""
-        return ""
+        return getattr(self, 'ascii', "")
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getByType(self, type: int) -> Any:
         """方法 getByType"""
@@ -97,11 +100,11 @@ class PlayerGMRank(Enum):
 
     def getCommandPrefix(self) -> str:
         """方法 getCommandPrefix"""
-        return ""
+        return getattr(self, 'command_prefix', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
 
 class CommandType(Enum):
@@ -116,7 +119,7 @@ class CommandType(Enum):
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
 
 class MapleType(Enum):
@@ -131,11 +134,11 @@ class MapleType(Enum):
 
     def getAscii(self) -> str:
         """方法 getAscii"""
-        return ""
+        return getattr(self, 'ascii', "")
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getByType(self, type: int) -> Any:
         """方法 getByType"""

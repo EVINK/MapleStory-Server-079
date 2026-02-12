@@ -23,9 +23,10 @@ class WZFileEntry(WZEntry, MapleDataFileEntry):
 
     def getOffset(self) -> int:
         """方法 getOffset"""
-        return 0
+        return getattr(self, 'offset', 0)
 
     def setOffset(self, offset: int) -> None:
         """方法 setOffset"""
-        pass
+        self.offset = offset
+        return None
 

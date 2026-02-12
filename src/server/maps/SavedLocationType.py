@@ -39,7 +39,7 @@ class SavedLocationType(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def fromString(self, Str: str) -> Any:
         """方法 fromString"""

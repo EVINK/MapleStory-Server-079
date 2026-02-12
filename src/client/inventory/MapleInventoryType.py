@@ -21,11 +21,11 @@ class MapleInventoryType(Enum):
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getBitfieldEncoding(self) -> int:
         """方法 getBitfieldEncoding"""
-        return 0
+        return getattr(self, 'bitfield_encoding', 0)
 
     def getByType(self, type: int) -> Any:
         """方法 getByType"""

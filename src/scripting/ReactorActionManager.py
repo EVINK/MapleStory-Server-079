@@ -58,11 +58,11 @@ class ReactorActionManager(AbstractPlayerInteraction):
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def getReactor(self) -> Any:
         """方法 getReactor"""
-        raise NotImplementedError("方法 getReactor 尚未实现")
+        return getattr(self, 'reactor', None)
 
     def spawnZakum(self) -> None:
         """方法 spawnZakum"""

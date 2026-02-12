@@ -120,7 +120,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def getwh(self) -> int:
         """方法 getwh"""
-        return 0
+        return getattr(self, 'wh', 0)
 
     def ms(self) -> str:
         """方法 ms"""
@@ -128,7 +128,7 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def getIv(self) -> Any:
         """方法 getIv"""
-        raise NotImplementedError("方法 getIv 尚未实现")
+        return getattr(self, 'iv', None)
 
     def serverName(self) -> str:
         """方法 serverName"""
@@ -136,15 +136,15 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def getNpc(self) -> int:
         """方法 getNpc"""
-        return 0
+        return getattr(self, 'npc', 0)
 
     def getQuest(self) -> int:
         """方法 getQuest"""
-        return 0
+        return getattr(self, 'quest', 0)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def safeDispose(self) -> None:
         """方法 safeDispose"""
@@ -256,23 +256,27 @@ class NPCConversationManager(AbstractPlayerInteraction):
 
     def setGetText(self, text: str) -> None:
         """方法 setGetText"""
-        pass
+        self.get_text = text
+        return None
 
     def getText(self) -> str:
         """方法 getText"""
-        return ""
+        return getattr(self, 'text', "")
 
     def setHair(self, hair: int) -> None:
         """方法 setHair"""
-        pass
+        self.hair = hair
+        return None
 
     def setFace(self, face: int) -> None:
         """方法 setFace"""
-        pass
+        self.face = face
+        return None
 
     def setSkin(self, color: int) -> None:
         """方法 setSkin"""
-        pass
+        self.skin = color
+        return None
 
     def setRandomAvatar(self, ticket: int, args_all: list) -> int:
         """方法 setRandomAvatar"""

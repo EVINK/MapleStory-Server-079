@@ -21,21 +21,21 @@ class CharacterNameAndId:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getGroup(self) -> str:
         """方法 getGroup"""
-        return ""
+        return getattr(self, 'group', "")
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def getJob(self) -> int:
         """方法 getJob"""
-        return 0
+        return getattr(self, 'job', 0)
 

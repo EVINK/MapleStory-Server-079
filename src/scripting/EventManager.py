@@ -76,11 +76,11 @@ class EventManager:
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def getInstance(self, name: str) -> Any:
         """方法 getInstance"""
@@ -88,7 +88,7 @@ class EventManager:
 
     def getInstances(self) -> list:
         """方法 getInstances"""
-        return []
+        return getattr(self, 'instances', [])
 
     def newInstance(self, name: str) -> Any:
         """方法 newInstance"""
@@ -100,11 +100,12 @@ class EventManager:
 
     def getIv(self) -> Any:
         """方法 getIv"""
-        raise NotImplementedError("方法 getIv 尚未实现")
+        return getattr(self, 'iv', None)
 
     def setProperty(self, key: str, value: str) -> None:
         """方法 setProperty"""
-        pass
+        self.property = key
+        return None
 
     def getProperty(self, key: str) -> str:
         """方法 getProperty"""
@@ -112,11 +113,11 @@ class EventManager:
 
     def getProperties(self) -> Any:
         """方法 getProperties"""
-        raise NotImplementedError("方法 getProperties 尚未实现")
+        return getattr(self, 'properties', None)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def startInstance(self) -> None:
         """方法 startInstance"""
@@ -176,7 +177,8 @@ class EventManager:
 
     def setAllPlayerBossLog(self, map: int, bosslog: str, type: int) -> None:
         """方法 setAllPlayerBossLog"""
-        pass
+        self.all_player_boss_log = map
+        return None
 
     def online(self) -> int:
         """方法 online"""
@@ -184,7 +186,7 @@ class EventManager:
 
     def getMapFactory(self) -> Any:
         """方法 getMapFactory"""
-        raise NotImplementedError("方法 getMapFactory 尚未实现")
+        return getattr(self, 'map_factory', None)
 
     def newMonsterStats(self) -> Any:
         """方法 newMonsterStats"""

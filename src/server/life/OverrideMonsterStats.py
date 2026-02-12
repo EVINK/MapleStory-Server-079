@@ -19,25 +19,28 @@ class OverrideMonsterStats:
 
     def getExp(self) -> int:
         """方法 getExp"""
-        return 0
+        return getattr(self, 'exp', 0)
 
     def setOExp(self, exp: int) -> None:
         """方法 setOExp"""
-        pass
+        self.o_exp = exp
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def setOHp(self, hp: int) -> None:
         """方法 setOHp"""
-        pass
+        self.o_hp = hp
+        return None
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def setOMp(self, mp: int) -> None:
         """方法 setOMp"""
-        pass
+        self.o_mp = mp
+        return None
 

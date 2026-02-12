@@ -112,11 +112,12 @@ class CheatTracker:
 
     def getAttacksWithoutHit(self) -> int:
         """方法 getAttacksWithoutHit"""
-        return 0
+        return getattr(self, 'attacks_without_hit', 0)
 
     def setAttacksWithoutHit(self, increase: bool) -> None:
         """方法 setAttacksWithoutHit"""
-        pass
+        self.attacks_without_hit = increase
+        return None
 
     def registerOffense(self, offense: Any) -> None:
         """方法 registerOffense"""
@@ -136,15 +137,15 @@ class CheatTracker:
 
     def getPoints(self) -> int:
         """方法 getPoints"""
-        return 0
+        return getattr(self, 'points', 0)
 
     def getOffenses(self) -> dict:
         """方法 getOffenses"""
-        return {}
+        return getattr(self, 'offenses', {})
 
     def getSummary(self) -> str:
         """方法 getSummary"""
-        return ""
+        return getattr(self, 'summary', "")
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -160,7 +161,7 @@ class CheatTracker:
 
     def getlastSaveTime(self) -> int:
         """方法 getlastSaveTime"""
-        return 0
+        return getattr(self, 'last_save_time', 0)
 
     def run(self) -> None:
         """方法 run"""
@@ -251,11 +252,12 @@ class InvalidationTask(Runnable):
 
     def getAttacksWithoutHit(self) -> int:
         """方法 getAttacksWithoutHit"""
-        return 0
+        return getattr(self, 'attacks_without_hit', 0)
 
     def setAttacksWithoutHit(self, increase: bool) -> None:
         """方法 setAttacksWithoutHit"""
-        pass
+        self.attacks_without_hit = increase
+        return None
 
     def registerOffense(self, offense: Any) -> None:
         """方法 registerOffense"""
@@ -275,15 +277,15 @@ class InvalidationTask(Runnable):
 
     def getPoints(self) -> int:
         """方法 getPoints"""
-        return 0
+        return getattr(self, 'points', 0)
 
     def getOffenses(self) -> dict:
         """方法 getOffenses"""
-        return {}
+        return getattr(self, 'offenses', {})
 
     def getSummary(self) -> str:
         """方法 getSummary"""
-        return ""
+        return getattr(self, 'summary', "")
 
     def compare(self, o1: Any, o2: Any) -> int:
         """方法 compare"""
@@ -299,7 +301,7 @@ class InvalidationTask(Runnable):
 
     def getlastSaveTime(self) -> int:
         """方法 getlastSaveTime"""
-        return 0
+        return getattr(self, 'last_save_time', 0)
 
     def run(self) -> None:
         """方法 run"""

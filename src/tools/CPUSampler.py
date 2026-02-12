@@ -34,11 +34,12 @@ class CPUSampler:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def setInterval(self, millis: int) -> None:
         """方法 setInterval"""
-        pass
+        self.interval = millis
+        return None
 
     def addIncluded(self, include: str) -> None:
         """方法 addIncluded"""
@@ -58,7 +59,7 @@ class CPUSampler:
 
     def getTopConsumers(self) -> Any:
         """方法 getTopConsumers"""
-        raise NotImplementedError("方法 getTopConsumers 尚未实现")
+        return getattr(self, 'top_consumers', None)
 
     def save(self, writer: Any, minInvocations: int, topMethods: int) -> None:
         """方法 save"""
@@ -74,15 +75,15 @@ class CPUSampler:
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def toString(self) -> str:
         """方法 toString"""
@@ -94,11 +95,11 @@ class CPUSampler:
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -106,7 +107,7 @@ class CPUSampler:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -122,11 +123,11 @@ class CPUSampler:
 
     def getTopConsumers(self) -> list:
         """方法 getTopConsumers"""
-        return []
+        return getattr(self, 'top_consumers', [])
 
     def getTotalInvocations(self) -> int:
         """方法 getTotalInvocations"""
-        return 0
+        return getattr(self, 'total_invocations', 0)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -170,11 +171,12 @@ class StackTrace:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def setInterval(self, millis: int) -> None:
         """方法 setInterval"""
-        pass
+        self.interval = millis
+        return None
 
     def addIncluded(self, include: str) -> None:
         """方法 addIncluded"""
@@ -194,7 +196,7 @@ class StackTrace:
 
     def getTopConsumers(self) -> Any:
         """方法 getTopConsumers"""
-        raise NotImplementedError("方法 getTopConsumers 尚未实现")
+        return getattr(self, 'top_consumers', None)
 
     def save(self, writer: Any, minInvocations: int, topMethods: int) -> None:
         """方法 save"""
@@ -210,15 +212,15 @@ class StackTrace:
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def toString(self) -> str:
         """方法 toString"""
@@ -230,11 +232,11 @@ class StackTrace:
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -242,7 +244,7 @@ class StackTrace:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -258,11 +260,11 @@ class StackTrace:
 
     def getTopConsumers(self) -> list:
         """方法 getTopConsumers"""
-        return []
+        return getattr(self, 'top_consumers', [])
 
     def getTotalInvocations(self) -> int:
         """方法 getTotalInvocations"""
-        return 0
+        return getattr(self, 'total_invocations', 0)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -307,11 +309,12 @@ class StacktraceWithCount:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def setInterval(self, millis: int) -> None:
         """方法 setInterval"""
-        pass
+        self.interval = millis
+        return None
 
     def addIncluded(self, include: str) -> None:
         """方法 addIncluded"""
@@ -331,7 +334,7 @@ class StacktraceWithCount:
 
     def getTopConsumers(self) -> Any:
         """方法 getTopConsumers"""
-        raise NotImplementedError("方法 getTopConsumers 尚未实现")
+        return getattr(self, 'top_consumers', None)
 
     def save(self, writer: Any, minInvocations: int, topMethods: int) -> None:
         """方法 save"""
@@ -347,15 +350,15 @@ class StacktraceWithCount:
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def toString(self) -> str:
         """方法 toString"""
@@ -367,11 +370,11 @@ class StacktraceWithCount:
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -379,7 +382,7 @@ class StacktraceWithCount:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -395,11 +398,11 @@ class StacktraceWithCount:
 
     def getTopConsumers(self) -> list:
         """方法 getTopConsumers"""
-        return []
+        return getattr(self, 'top_consumers', [])
 
     def getTotalInvocations(self) -> int:
         """方法 getTotalInvocations"""
-        return 0
+        return getattr(self, 'total_invocations', 0)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -443,11 +446,12 @@ class SampledStacktraces:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def setInterval(self, millis: int) -> None:
         """方法 setInterval"""
-        pass
+        self.interval = millis
+        return None
 
     def addIncluded(self, include: str) -> None:
         """方法 addIncluded"""
@@ -467,7 +471,7 @@ class SampledStacktraces:
 
     def getTopConsumers(self) -> Any:
         """方法 getTopConsumers"""
-        raise NotImplementedError("方法 getTopConsumers 尚未实现")
+        return getattr(self, 'top_consumers', None)
 
     def save(self, writer: Any, minInvocations: int, topMethods: int) -> None:
         """方法 save"""
@@ -483,15 +487,15 @@ class SampledStacktraces:
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def toString(self) -> str:
         """方法 toString"""
@@ -503,11 +507,11 @@ class SampledStacktraces:
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -515,7 +519,7 @@ class SampledStacktraces:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -531,11 +535,11 @@ class SampledStacktraces:
 
     def getTopConsumers(self) -> list:
         """方法 getTopConsumers"""
-        return []
+        return getattr(self, 'top_consumers', [])
 
     def getTotalInvocations(self) -> int:
         """方法 getTotalInvocations"""
-        return 0
+        return getattr(self, 'total_invocations', 0)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -580,11 +584,12 @@ class SamplerThread(Runnable):
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def setInterval(self, millis: int) -> None:
         """方法 setInterval"""
-        pass
+        self.interval = millis
+        return None
 
     def addIncluded(self, include: str) -> None:
         """方法 addIncluded"""
@@ -604,7 +609,7 @@ class SamplerThread(Runnable):
 
     def getTopConsumers(self) -> Any:
         """方法 getTopConsumers"""
-        raise NotImplementedError("方法 getTopConsumers 尚未实现")
+        return getattr(self, 'top_consumers', None)
 
     def save(self, writer: Any, minInvocations: int, topMethods: int) -> None:
         """方法 save"""
@@ -620,15 +625,15 @@ class SamplerThread(Runnable):
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def toString(self) -> str:
         """方法 toString"""
@@ -640,11 +645,11 @@ class SamplerThread(Runnable):
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getTrace(self) -> list:
         """方法 getTrace"""
-        return []
+        return getattr(self, 'trace', [])
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -652,7 +657,7 @@ class SamplerThread(Runnable):
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -668,11 +673,11 @@ class SamplerThread(Runnable):
 
     def getTopConsumers(self) -> list:
         """方法 getTopConsumers"""
-        return []
+        return getattr(self, 'top_consumers', [])
 
     def getTotalInvocations(self) -> int:
         """方法 getTotalInvocations"""
-        return 0
+        return getattr(self, 'total_invocations', 0)
 
     def toString(self) -> str:
         """方法 toString"""

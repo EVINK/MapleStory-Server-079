@@ -53,31 +53,33 @@ class MapleParty:
 
     def getMembers(self) -> list:
         """方法 getMembers"""
-        return []
+        return getattr(self, 'members', [])
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setId(self, id: int) -> None:
         """方法 setId"""
-        pass
+        self.id = id
+        return None
 
     def getLeader(self) -> Any:
         """方法 getLeader"""
-        raise NotImplementedError("方法 getLeader 尚未实现")
+        return getattr(self, 'leader', None)
 
     def setLeader(self, nLeader: Any) -> None:
         """方法 setLeader"""
-        pass
+        self.leader = nLeader
+        return None
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def equals(self, obj: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is obj or getattr(self, '__eq__', lambda o: False)(obj)
 
     def givePartyBuff(self, buffId: int, applyfrom: int, applyto: int) -> None:
         """方法 givePartyBuff"""

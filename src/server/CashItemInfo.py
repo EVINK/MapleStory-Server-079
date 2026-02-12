@@ -43,35 +43,35 @@ class CashItemInfo:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getOnSale(self) -> int:
         """方法 getOnSale"""
-        return 0
+        return getattr(self, 'on_sale', 0)
 
     def getExpire(self) -> int:
         """方法 getExpire"""
-        return 0
+        return getattr(self, 'expire', 0)
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getSN(self) -> int:
         """方法 getSN"""
-        return 0
+        return getattr(self, 'sn', 0)
 
     def getPeriod(self) -> int:
         """方法 getPeriod"""
-        return 0
+        return getattr(self, 'period', 0)
 
     def getGender(self) -> int:
         """方法 getGender"""
-        return 0
+        return getattr(self, 'gender', 0)
 
     def onSale(self) -> bool:
         """方法 onSale"""
@@ -122,35 +122,35 @@ class CashModInfo:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getOnSale(self) -> int:
         """方法 getOnSale"""
-        return 0
+        return getattr(self, 'on_sale', 0)
 
     def getExpire(self) -> int:
         """方法 getExpire"""
-        return 0
+        return getattr(self, 'expire', 0)
 
     def getCount(self) -> int:
         """方法 getCount"""
-        return 0
+        return getattr(self, 'count', 0)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getSN(self) -> int:
         """方法 getSN"""
-        return 0
+        return getattr(self, 'sn', 0)
 
     def getPeriod(self) -> int:
         """方法 getPeriod"""
-        return 0
+        return getattr(self, 'period', 0)
 
     def getGender(self) -> int:
         """方法 getGender"""
-        return 0
+        return getattr(self, 'gender', 0)
 
     def onSale(self) -> bool:
         """方法 onSale"""

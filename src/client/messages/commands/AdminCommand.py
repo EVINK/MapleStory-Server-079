@@ -113,7 +113,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -134,7 +134,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -146,7 +146,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -154,7 +154,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -162,7 +162,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -170,7 +170,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -178,7 +178,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -186,7 +186,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -194,7 +194,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -202,7 +202,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -210,7 +210,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -218,7 +218,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -226,7 +226,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -234,7 +234,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -242,7 +242,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -251,7 +251,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -260,7 +260,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -268,7 +268,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -281,7 +281,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -289,7 +289,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -297,7 +297,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -305,7 +305,7 @@ class AdminCommand:
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 开放地图(openmap):
@@ -331,7 +331,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -352,7 +352,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -364,7 +364,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -372,7 +372,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -380,7 +380,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -388,7 +388,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -396,7 +396,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -404,7 +404,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -412,7 +412,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -420,7 +420,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -428,7 +428,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -436,7 +436,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -444,7 +444,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -452,7 +452,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -460,7 +460,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -469,7 +469,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -478,7 +478,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -486,7 +486,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -499,7 +499,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -507,7 +507,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -515,7 +515,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -523,7 +523,7 @@ class 开放地图(openmap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 关闭地图(closemap):
@@ -549,7 +549,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -570,7 +570,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -582,7 +582,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -590,7 +590,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -598,7 +598,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -606,7 +606,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -614,7 +614,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -622,7 +622,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -630,7 +630,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -638,7 +638,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -646,7 +646,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -654,7 +654,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -662,7 +662,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -670,7 +670,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -678,7 +678,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -687,7 +687,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -696,7 +696,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -704,7 +704,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -717,7 +717,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -725,7 +725,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -733,7 +733,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -741,7 +741,7 @@ class 关闭地图(closemap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 注册(register):
@@ -767,7 +767,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -788,7 +788,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -800,7 +800,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -808,7 +808,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -816,7 +816,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -824,7 +824,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -832,7 +832,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -840,7 +840,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -848,7 +848,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -856,7 +856,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -864,7 +864,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -872,7 +872,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -880,7 +880,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -888,7 +888,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -896,7 +896,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -905,7 +905,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -914,7 +914,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -922,7 +922,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -935,7 +935,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -943,7 +943,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -951,7 +951,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -959,7 +959,7 @@ class 注册(register):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 满属性(maxstats):
@@ -985,7 +985,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1006,7 +1006,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1018,7 +1018,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1026,7 +1026,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1034,7 +1034,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1042,7 +1042,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1050,7 +1050,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1058,7 +1058,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1066,7 +1066,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1074,7 +1074,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1082,7 +1082,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1090,7 +1090,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1098,7 +1098,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1106,7 +1106,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1114,7 +1114,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1123,7 +1123,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1132,7 +1132,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1140,7 +1140,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1153,7 +1153,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1161,7 +1161,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1169,7 +1169,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1177,7 +1177,7 @@ class 满属性(maxstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 最小属性(Minimumstats):
@@ -1203,7 +1203,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1224,7 +1224,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1236,7 +1236,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1244,7 +1244,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1252,7 +1252,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1260,7 +1260,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1268,7 +1268,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1276,7 +1276,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1284,7 +1284,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1292,7 +1292,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1300,7 +1300,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1308,7 +1308,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1316,7 +1316,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1324,7 +1324,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1332,7 +1332,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1341,7 +1341,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1350,7 +1350,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1358,7 +1358,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1371,7 +1371,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1379,7 +1379,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1387,7 +1387,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1395,7 +1395,7 @@ class 最小属性(Minimumstats):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 满技能(maxSkills):
@@ -1421,7 +1421,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1442,7 +1442,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1454,7 +1454,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1462,7 +1462,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1470,7 +1470,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1478,7 +1478,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1486,7 +1486,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1494,7 +1494,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1502,7 +1502,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1510,7 +1510,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1518,7 +1518,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1526,7 +1526,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1534,7 +1534,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1542,7 +1542,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1550,7 +1550,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1559,7 +1559,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1568,7 +1568,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1576,7 +1576,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1589,7 +1589,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1597,7 +1597,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1605,7 +1605,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1613,7 +1613,7 @@ class 满技能(maxSkills):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 拉全部(WarpAllHere):
@@ -1639,7 +1639,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1660,7 +1660,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1672,7 +1672,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1680,7 +1680,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1688,7 +1688,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1696,7 +1696,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1704,7 +1704,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1712,7 +1712,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1720,7 +1720,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1728,7 +1728,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1736,7 +1736,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1744,7 +1744,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1752,7 +1752,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1760,7 +1760,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1768,7 +1768,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1777,7 +1777,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1786,7 +1786,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1794,7 +1794,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1807,7 +1807,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1815,7 +1815,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1823,7 +1823,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1831,7 +1831,7 @@ class 拉全部(WarpAllHere):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 给金币(mesoEveryone):
@@ -1857,7 +1857,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1878,7 +1878,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1890,7 +1890,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1898,7 +1898,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1906,7 +1906,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1914,7 +1914,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1922,7 +1922,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1930,7 +1930,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1938,7 +1938,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1946,7 +1946,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1954,7 +1954,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1962,7 +1962,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1970,7 +1970,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1978,7 +1978,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -1986,7 +1986,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -1995,7 +1995,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2004,7 +2004,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2012,7 +2012,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2025,7 +2025,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2033,7 +2033,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2041,7 +2041,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2049,7 +2049,7 @@ class 给金币(mesoEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 给经验(ExpEveryone):
@@ -2075,7 +2075,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2096,7 +2096,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2108,7 +2108,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2116,7 +2116,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2124,7 +2124,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2132,7 +2132,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2140,7 +2140,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2148,7 +2148,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2156,7 +2156,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2164,7 +2164,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2172,7 +2172,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2180,7 +2180,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2188,7 +2188,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2196,7 +2196,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2204,7 +2204,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2213,7 +2213,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2222,7 +2222,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2230,7 +2230,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2243,7 +2243,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2251,7 +2251,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2259,7 +2259,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2267,7 +2267,7 @@ class 给经验(ExpEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 给所有人点卷(CashEveryone):
@@ -2293,7 +2293,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2314,7 +2314,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2326,7 +2326,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2334,7 +2334,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2342,7 +2342,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2350,7 +2350,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2358,7 +2358,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2366,7 +2366,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2374,7 +2374,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2382,7 +2382,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2390,7 +2390,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2398,7 +2398,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2406,7 +2406,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2414,7 +2414,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2422,7 +2422,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2431,7 +2431,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2440,7 +2440,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2448,7 +2448,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2461,7 +2461,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2469,7 +2469,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2477,7 +2477,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2485,7 +2485,7 @@ class 给所有人点卷(CashEveryone):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 刷新地图(ReloadMap):
@@ -2511,7 +2511,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2532,7 +2532,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2544,7 +2544,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2552,7 +2552,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2560,7 +2560,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2568,7 +2568,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2576,7 +2576,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2584,7 +2584,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2592,7 +2592,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2600,7 +2600,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2608,7 +2608,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2616,7 +2616,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2624,7 +2624,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2632,7 +2632,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2640,7 +2640,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2649,7 +2649,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2658,7 +2658,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2666,7 +2666,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2679,7 +2679,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2687,7 +2687,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2695,7 +2695,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2703,7 +2703,7 @@ class 刷新地图(ReloadMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 祝福(buff):
@@ -2729,7 +2729,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2750,7 +2750,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2762,7 +2762,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2770,7 +2770,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2778,7 +2778,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2786,7 +2786,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2794,7 +2794,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2802,7 +2802,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2810,7 +2810,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2818,7 +2818,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2826,7 +2826,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2834,7 +2834,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2842,7 +2842,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2850,7 +2850,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2858,7 +2858,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2867,7 +2867,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2876,7 +2876,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2884,7 +2884,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -2897,7 +2897,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2905,7 +2905,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2913,7 +2913,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2921,7 +2921,7 @@ class 祝福(buff):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 倍率设置(setRate):
@@ -2947,7 +2947,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2968,7 +2968,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2980,7 +2980,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2988,7 +2988,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -2996,7 +2996,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3004,7 +3004,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3012,7 +3012,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3020,7 +3020,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3028,7 +3028,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3036,7 +3036,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3044,7 +3044,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3052,7 +3052,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3060,7 +3060,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3068,7 +3068,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3076,7 +3076,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3085,7 +3085,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3094,7 +3094,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3102,7 +3102,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3115,7 +3115,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3123,7 +3123,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3131,7 +3131,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3139,7 +3139,7 @@ class 倍率设置(setRate):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 地图代码(WhereAmI):
@@ -3165,7 +3165,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3186,7 +3186,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3198,7 +3198,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3206,7 +3206,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3214,7 +3214,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3222,7 +3222,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3230,7 +3230,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3238,7 +3238,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3246,7 +3246,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3254,7 +3254,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3262,7 +3262,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3270,7 +3270,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3278,7 +3278,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3286,7 +3286,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3294,7 +3294,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3303,7 +3303,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3312,7 +3312,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3320,7 +3320,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3333,7 +3333,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3341,7 +3341,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3349,7 +3349,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3357,7 +3357,7 @@ class 地图代码(WhereAmI):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 刷(Item):
@@ -3383,7 +3383,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3404,7 +3404,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3416,7 +3416,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3424,7 +3424,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3432,7 +3432,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3440,7 +3440,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3448,7 +3448,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3456,7 +3456,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3464,7 +3464,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3472,7 +3472,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3480,7 +3480,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3488,7 +3488,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3496,7 +3496,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3504,7 +3504,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3512,7 +3512,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3521,7 +3521,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3530,7 +3530,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3538,7 +3538,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3551,7 +3551,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3559,7 +3559,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3567,7 +3567,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3575,7 +3575,7 @@ class 刷(Item):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 丢(Drop):
@@ -3601,7 +3601,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3622,7 +3622,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3634,7 +3634,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3642,7 +3642,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3650,7 +3650,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3658,7 +3658,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3666,7 +3666,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3674,7 +3674,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3682,7 +3682,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3690,7 +3690,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3698,7 +3698,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3706,7 +3706,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3714,7 +3714,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3722,7 +3722,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3730,7 +3730,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3739,7 +3739,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3748,7 +3748,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3756,7 +3756,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3769,7 +3769,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3777,7 +3777,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3785,7 +3785,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3793,7 +3793,7 @@ class 丢(Drop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 全部复活(HealMap):
@@ -3819,7 +3819,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3840,7 +3840,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3852,7 +3852,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3860,7 +3860,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3868,7 +3868,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3876,7 +3876,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3884,7 +3884,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3892,7 +3892,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3900,7 +3900,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3908,7 +3908,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3916,7 +3916,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3924,7 +3924,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3932,7 +3932,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3940,7 +3940,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3948,7 +3948,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3957,7 +3957,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3966,7 +3966,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3974,7 +3974,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -3987,7 +3987,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -3995,7 +3995,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4003,7 +4003,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4011,7 +4011,7 @@ class 全部复活(HealMap):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 清怪(KillAll):
@@ -4037,7 +4037,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4058,7 +4058,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4070,7 +4070,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4078,7 +4078,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4086,7 +4086,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4094,7 +4094,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4102,7 +4102,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4110,7 +4110,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4118,7 +4118,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4126,7 +4126,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4134,7 +4134,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4142,7 +4142,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4150,7 +4150,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4158,7 +4158,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4166,7 +4166,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4175,7 +4175,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4184,7 +4184,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4192,7 +4192,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4205,7 +4205,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4213,7 +4213,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4221,7 +4221,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4229,7 +4229,7 @@ class 清怪(KillAll):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 设置人气(Fame):
@@ -4255,7 +4255,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4276,7 +4276,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4288,7 +4288,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4296,7 +4296,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4304,7 +4304,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4312,7 +4312,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4320,7 +4320,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4328,7 +4328,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4336,7 +4336,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4344,7 +4344,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4352,7 +4352,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4360,7 +4360,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4368,7 +4368,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4376,7 +4376,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4384,7 +4384,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4393,7 +4393,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4402,7 +4402,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4410,7 +4410,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4423,7 +4423,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4431,7 +4431,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4439,7 +4439,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4447,7 +4447,7 @@ class 设置人气(Fame):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 清除地板(cleardrops):
@@ -4473,7 +4473,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4494,7 +4494,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4506,7 +4506,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4514,7 +4514,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4522,7 +4522,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4530,7 +4530,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4538,7 +4538,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4546,7 +4546,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4554,7 +4554,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4562,7 +4562,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4570,7 +4570,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4578,7 +4578,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4586,7 +4586,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4594,7 +4594,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4602,7 +4602,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4611,7 +4611,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4620,7 +4620,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4628,7 +4628,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4641,7 +4641,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4649,7 +4649,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4657,7 +4657,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4665,7 +4665,7 @@ class 清除地板(cleardrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 召唤怪物(Spawn):
@@ -4691,7 +4691,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4712,7 +4712,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4724,7 +4724,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4732,7 +4732,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4740,7 +4740,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4748,7 +4748,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4756,7 +4756,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4764,7 +4764,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4772,7 +4772,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4780,7 +4780,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4788,7 +4788,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4796,7 +4796,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4804,7 +4804,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4812,7 +4812,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4820,7 +4820,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4829,7 +4829,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4838,7 +4838,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4846,7 +4846,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -4859,7 +4859,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4867,7 +4867,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4875,7 +4875,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4883,7 +4883,7 @@ class 召唤怪物(Spawn):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 计时器(Clock):
@@ -4909,7 +4909,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4930,7 +4930,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4942,7 +4942,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4950,7 +4950,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4958,7 +4958,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4966,7 +4966,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4974,7 +4974,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4982,7 +4982,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4990,7 +4990,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -4998,7 +4998,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5006,7 +5006,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5014,7 +5014,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5022,7 +5022,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5030,7 +5030,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5038,7 +5038,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5047,7 +5047,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5056,7 +5056,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5064,7 +5064,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5077,7 +5077,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5085,7 +5085,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5093,7 +5093,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5101,7 +5101,7 @@ class 计时器(Clock):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 自动注册(autoreg):
@@ -5127,7 +5127,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5148,7 +5148,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5160,7 +5160,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5168,7 +5168,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5176,7 +5176,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5184,7 +5184,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5192,7 +5192,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5200,7 +5200,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5208,7 +5208,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5216,7 +5216,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5224,7 +5224,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5232,7 +5232,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5240,7 +5240,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5248,7 +5248,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5256,7 +5256,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5265,7 +5265,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5274,7 +5274,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5282,7 +5282,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5295,7 +5295,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5303,7 +5303,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5311,7 +5311,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5319,7 +5319,7 @@ class 自动注册(autoreg):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 怪物代码(mob):
@@ -5345,7 +5345,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5366,7 +5366,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5378,7 +5378,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5386,7 +5386,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5394,7 +5394,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5402,7 +5402,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5410,7 +5410,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5418,7 +5418,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5426,7 +5426,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5434,7 +5434,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5442,7 +5442,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5450,7 +5450,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5458,7 +5458,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5466,7 +5466,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5474,7 +5474,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5483,7 +5483,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5492,7 +5492,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5500,7 +5500,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5513,7 +5513,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5521,7 +5521,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5529,7 +5529,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5537,7 +5537,7 @@ class 怪物代码(mob):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 封号状态(BanStatus):
@@ -5563,7 +5563,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5584,7 +5584,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5596,7 +5596,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5604,7 +5604,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5612,7 +5612,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5620,7 +5620,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5628,7 +5628,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5636,7 +5636,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5644,7 +5644,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5652,7 +5652,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5660,7 +5660,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5668,7 +5668,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5676,7 +5676,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5684,7 +5684,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5692,7 +5692,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5701,7 +5701,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5710,7 +5710,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5718,7 +5718,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5731,7 +5731,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5739,7 +5739,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5747,7 +5747,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5755,7 +5755,7 @@ class 封号状态(BanStatus):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 打开NPC(OpenNpc):
@@ -5781,7 +5781,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5802,7 +5802,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5814,7 +5814,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5822,7 +5822,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5830,7 +5830,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5838,7 +5838,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5846,7 +5846,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5854,7 +5854,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5862,7 +5862,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5870,7 +5870,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5878,7 +5878,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5886,7 +5886,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5894,7 +5894,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5902,7 +5902,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5910,7 +5910,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5919,7 +5919,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5928,7 +5928,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5936,7 +5936,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -5949,7 +5949,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5957,7 +5957,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5965,7 +5965,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -5973,7 +5973,7 @@ class 打开NPC(OpenNpc):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 打开商店(OpenShop):
@@ -5999,7 +5999,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6020,7 +6020,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6032,7 +6032,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6040,7 +6040,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6048,7 +6048,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6056,7 +6056,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6064,7 +6064,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6072,7 +6072,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6080,7 +6080,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6088,7 +6088,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6096,7 +6096,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6104,7 +6104,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6112,7 +6112,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6120,7 +6120,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6128,7 +6128,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6137,7 +6137,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6146,7 +6146,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6154,7 +6154,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6167,7 +6167,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6175,7 +6175,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6183,7 +6183,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6191,7 +6191,7 @@ class 打开商店(OpenShop):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Debug(CommandExecute):
@@ -6217,7 +6217,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6238,7 +6238,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6250,7 +6250,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6258,7 +6258,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6266,7 +6266,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6274,7 +6274,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6282,7 +6282,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6290,7 +6290,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6298,7 +6298,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6306,7 +6306,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6314,7 +6314,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6322,7 +6322,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6330,7 +6330,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6338,7 +6338,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6346,7 +6346,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6355,7 +6355,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6364,7 +6364,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6372,7 +6372,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6385,7 +6385,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6393,7 +6393,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6401,7 +6401,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6409,7 +6409,7 @@ class Debug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class BanStatus(CommandExecute):
@@ -6435,7 +6435,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6456,7 +6456,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6468,7 +6468,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6476,7 +6476,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6484,7 +6484,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6492,7 +6492,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6500,7 +6500,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6508,7 +6508,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6516,7 +6516,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6524,7 +6524,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6532,7 +6532,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6540,7 +6540,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6548,7 +6548,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6556,7 +6556,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6564,7 +6564,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6573,7 +6573,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6582,7 +6582,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6590,7 +6590,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6603,7 +6603,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6611,7 +6611,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6619,7 +6619,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6627,7 +6627,7 @@ class BanStatus(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class OpenNpc(CommandExecute):
@@ -6653,7 +6653,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6674,7 +6674,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6686,7 +6686,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6694,7 +6694,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6702,7 +6702,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6710,7 +6710,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6718,7 +6718,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6726,7 +6726,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6734,7 +6734,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6742,7 +6742,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6750,7 +6750,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6758,7 +6758,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6766,7 +6766,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6774,7 +6774,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6782,7 +6782,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6791,7 +6791,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6800,7 +6800,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6808,7 +6808,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -6821,7 +6821,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6829,7 +6829,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6837,7 +6837,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6845,7 +6845,7 @@ class OpenNpc(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class OpenShop(CommandExecute):
@@ -6871,7 +6871,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6892,7 +6892,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6904,7 +6904,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6912,7 +6912,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6920,7 +6920,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6928,7 +6928,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6936,7 +6936,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6944,7 +6944,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6952,7 +6952,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6960,7 +6960,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6968,7 +6968,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6976,7 +6976,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6984,7 +6984,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -6992,7 +6992,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7000,7 +7000,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7009,7 +7009,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7018,7 +7018,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7026,7 +7026,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7039,7 +7039,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7047,7 +7047,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7055,7 +7055,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7063,7 +7063,7 @@ class OpenShop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SavePlayerShops(CommandExecute):
@@ -7089,7 +7089,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7110,7 +7110,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7122,7 +7122,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7130,7 +7130,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7138,7 +7138,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7146,7 +7146,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7154,7 +7154,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7162,7 +7162,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7170,7 +7170,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7178,7 +7178,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7186,7 +7186,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7194,7 +7194,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7202,7 +7202,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7210,7 +7210,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7218,7 +7218,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7227,7 +7227,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7236,7 +7236,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7244,7 +7244,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7257,7 +7257,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7265,7 +7265,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7273,7 +7273,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7281,7 +7281,7 @@ class SavePlayerShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Shutdown(CommandExecute):
@@ -7307,7 +7307,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7328,7 +7328,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7340,7 +7340,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7348,7 +7348,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7356,7 +7356,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7364,7 +7364,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7372,7 +7372,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7380,7 +7380,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7388,7 +7388,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7396,7 +7396,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7404,7 +7404,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7412,7 +7412,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7420,7 +7420,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7428,7 +7428,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7436,7 +7436,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7445,7 +7445,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7454,7 +7454,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7462,7 +7462,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7475,7 +7475,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7483,7 +7483,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7491,7 +7491,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7499,7 +7499,7 @@ class Shutdown(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ShutdownTime(CommandExecute):
@@ -7525,7 +7525,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7546,7 +7546,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7558,7 +7558,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7566,7 +7566,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7574,7 +7574,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7582,7 +7582,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7590,7 +7590,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7598,7 +7598,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7606,7 +7606,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7614,7 +7614,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7622,7 +7622,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7630,7 +7630,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7638,7 +7638,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7646,7 +7646,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7654,7 +7654,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7663,7 +7663,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7672,7 +7672,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7680,7 +7680,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7693,7 +7693,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7701,7 +7701,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7709,7 +7709,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7717,7 +7717,7 @@ class ShutdownTime(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SaveAll(CommandExecute):
@@ -7743,7 +7743,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7764,7 +7764,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7776,7 +7776,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7784,7 +7784,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7792,7 +7792,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7800,7 +7800,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7808,7 +7808,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7816,7 +7816,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7824,7 +7824,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7832,7 +7832,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7840,7 +7840,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7848,7 +7848,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7856,7 +7856,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7864,7 +7864,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7872,7 +7872,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7881,7 +7881,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7890,7 +7890,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7898,7 +7898,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -7911,7 +7911,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7919,7 +7919,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7927,7 +7927,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7935,7 +7935,7 @@ class SaveAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LowHP(CommandExecute):
@@ -7961,7 +7961,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7982,7 +7982,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -7994,7 +7994,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8002,7 +8002,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8010,7 +8010,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8018,7 +8018,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8026,7 +8026,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8034,7 +8034,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8042,7 +8042,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8050,7 +8050,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8058,7 +8058,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8066,7 +8066,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8074,7 +8074,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8082,7 +8082,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8090,7 +8090,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8099,7 +8099,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8108,7 +8108,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8116,7 +8116,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8129,7 +8129,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8137,7 +8137,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8145,7 +8145,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8153,7 +8153,7 @@ class LowHP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Heal(CommandExecute):
@@ -8179,7 +8179,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8200,7 +8200,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8212,7 +8212,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8220,7 +8220,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8228,7 +8228,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8236,7 +8236,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8244,7 +8244,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8252,7 +8252,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8260,7 +8260,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8268,7 +8268,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8276,7 +8276,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8284,7 +8284,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8292,7 +8292,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8300,7 +8300,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8308,7 +8308,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8317,7 +8317,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8326,7 +8326,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8334,7 +8334,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8347,7 +8347,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8355,7 +8355,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8363,7 +8363,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8371,7 +8371,7 @@ class Heal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class UnbanIP(CommandExecute):
@@ -8397,7 +8397,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8418,7 +8418,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8430,7 +8430,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8438,7 +8438,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8446,7 +8446,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8454,7 +8454,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8462,7 +8462,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8470,7 +8470,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8478,7 +8478,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8486,7 +8486,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8494,7 +8494,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8502,7 +8502,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8510,7 +8510,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8518,7 +8518,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8526,7 +8526,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8535,7 +8535,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8544,7 +8544,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8552,7 +8552,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8565,7 +8565,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8573,7 +8573,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8581,7 +8581,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8589,7 +8589,7 @@ class UnbanIP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class TempBan(CommandExecute):
@@ -8615,7 +8615,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8636,7 +8636,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8648,7 +8648,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8656,7 +8656,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8664,7 +8664,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8672,7 +8672,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8680,7 +8680,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8688,7 +8688,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8696,7 +8696,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8704,7 +8704,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8712,7 +8712,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8720,7 +8720,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8728,7 +8728,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8736,7 +8736,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8744,7 +8744,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8753,7 +8753,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8762,7 +8762,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8770,7 +8770,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8783,7 +8783,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8791,7 +8791,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8799,7 +8799,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8807,7 +8807,7 @@ class TempBan(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Kill(CommandExecute):
@@ -8833,7 +8833,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8854,7 +8854,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8866,7 +8866,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8874,7 +8874,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8882,7 +8882,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8890,7 +8890,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8898,7 +8898,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8906,7 +8906,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8914,7 +8914,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8922,7 +8922,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8930,7 +8930,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8938,7 +8938,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8946,7 +8946,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8954,7 +8954,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8962,7 +8962,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8971,7 +8971,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -8980,7 +8980,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -8988,7 +8988,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9001,7 +9001,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9009,7 +9009,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9017,7 +9017,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9025,7 +9025,7 @@ class Kill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Skill(CommandExecute):
@@ -9051,7 +9051,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9072,7 +9072,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9084,7 +9084,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9092,7 +9092,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9100,7 +9100,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9108,7 +9108,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9116,7 +9116,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9124,7 +9124,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9132,7 +9132,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9140,7 +9140,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9148,7 +9148,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9156,7 +9156,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9164,7 +9164,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9172,7 +9172,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9180,7 +9180,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9189,7 +9189,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9198,7 +9198,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9206,7 +9206,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9219,7 +9219,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9227,7 +9227,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9235,7 +9235,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9243,7 +9243,7 @@ class Skill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Fame(CommandExecute):
@@ -9269,7 +9269,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9290,7 +9290,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9302,7 +9302,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9310,7 +9310,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9318,7 +9318,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9326,7 +9326,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9334,7 +9334,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9342,7 +9342,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9350,7 +9350,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9358,7 +9358,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9366,7 +9366,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9374,7 +9374,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9382,7 +9382,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9390,7 +9390,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9398,7 +9398,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9407,7 +9407,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9416,7 +9416,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9424,7 +9424,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9437,7 +9437,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9445,7 +9445,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9453,7 +9453,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9461,7 +9461,7 @@ class Fame(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class autoreg(CommandExecute):
@@ -9487,7 +9487,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9508,7 +9508,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9520,7 +9520,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9528,7 +9528,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9536,7 +9536,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9544,7 +9544,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9552,7 +9552,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9560,7 +9560,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9568,7 +9568,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9576,7 +9576,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9584,7 +9584,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9592,7 +9592,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9600,7 +9600,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9608,7 +9608,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9616,7 +9616,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9625,7 +9625,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9634,7 +9634,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9642,7 +9642,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9655,7 +9655,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9663,7 +9663,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9671,7 +9671,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9679,7 +9679,7 @@ class autoreg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class HealMap(CommandExecute):
@@ -9705,7 +9705,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9726,7 +9726,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9738,7 +9738,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9746,7 +9746,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9754,7 +9754,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9762,7 +9762,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9770,7 +9770,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9778,7 +9778,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9786,7 +9786,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9794,7 +9794,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9802,7 +9802,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9810,7 +9810,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9818,7 +9818,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9826,7 +9826,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9834,7 +9834,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9843,7 +9843,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9852,7 +9852,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9860,7 +9860,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -9873,7 +9873,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9881,7 +9881,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9889,7 +9889,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9897,7 +9897,7 @@ class HealMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GodMode(CommandExecute):
@@ -9923,7 +9923,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9944,7 +9944,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9956,7 +9956,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9964,7 +9964,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9972,7 +9972,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9980,7 +9980,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9988,7 +9988,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -9996,7 +9996,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10004,7 +10004,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10012,7 +10012,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10020,7 +10020,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10028,7 +10028,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10036,7 +10036,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10044,7 +10044,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10052,7 +10052,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10061,7 +10061,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10070,7 +10070,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10078,7 +10078,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10091,7 +10091,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10099,7 +10099,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10107,7 +10107,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10115,7 +10115,7 @@ class GodMode(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GiveSkill(CommandExecute):
@@ -10141,7 +10141,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10162,7 +10162,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10174,7 +10174,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10182,7 +10182,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10190,7 +10190,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10198,7 +10198,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10206,7 +10206,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10214,7 +10214,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10222,7 +10222,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10230,7 +10230,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10238,7 +10238,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10246,7 +10246,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10254,7 +10254,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10262,7 +10262,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10270,7 +10270,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10279,7 +10279,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10288,7 +10288,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10296,7 +10296,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10309,7 +10309,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10317,7 +10317,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10325,7 +10325,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10333,7 +10333,7 @@ class GiveSkill(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SP(CommandExecute):
@@ -10359,7 +10359,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10380,7 +10380,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10392,7 +10392,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10400,7 +10400,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10408,7 +10408,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10416,7 +10416,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10424,7 +10424,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10432,7 +10432,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10440,7 +10440,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10448,7 +10448,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10456,7 +10456,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10464,7 +10464,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10472,7 +10472,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10480,7 +10480,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10488,7 +10488,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10497,7 +10497,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10506,7 +10506,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10514,7 +10514,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10527,7 +10527,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10535,7 +10535,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10543,7 +10543,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10551,7 +10551,7 @@ class SP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class AP(CommandExecute):
@@ -10577,7 +10577,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10598,7 +10598,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10610,7 +10610,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10618,7 +10618,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10626,7 +10626,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10634,7 +10634,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10642,7 +10642,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10650,7 +10650,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10658,7 +10658,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10666,7 +10666,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10674,7 +10674,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10682,7 +10682,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10690,7 +10690,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10698,7 +10698,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10706,7 +10706,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10715,7 +10715,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10724,7 +10724,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10732,7 +10732,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10745,7 +10745,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10753,7 +10753,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10761,7 +10761,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10769,7 +10769,7 @@ class AP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Shop(CommandExecute):
@@ -10795,7 +10795,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10816,7 +10816,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10828,7 +10828,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10836,7 +10836,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10844,7 +10844,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10852,7 +10852,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10860,7 +10860,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10868,7 +10868,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10876,7 +10876,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10884,7 +10884,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10892,7 +10892,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10900,7 +10900,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10908,7 +10908,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10916,7 +10916,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10924,7 +10924,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10933,7 +10933,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10942,7 +10942,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10950,7 +10950,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -10963,7 +10963,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10971,7 +10971,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10979,7 +10979,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -10987,7 +10987,7 @@ class Shop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 关键时刻(CommandExecute):
@@ -11013,7 +11013,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11034,7 +11034,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11046,7 +11046,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11054,7 +11054,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11062,7 +11062,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11070,7 +11070,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11078,7 +11078,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11086,7 +11086,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11094,7 +11094,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11102,7 +11102,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11110,7 +11110,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11118,7 +11118,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11126,7 +11126,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11134,7 +11134,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11142,7 +11142,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11151,7 +11151,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11160,7 +11160,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11168,7 +11168,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11181,7 +11181,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11189,7 +11189,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11197,7 +11197,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11205,7 +11205,7 @@ class 关键时刻(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GainMaplePoint(CommandExecute):
@@ -11231,7 +11231,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11252,7 +11252,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11264,7 +11264,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11272,7 +11272,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11280,7 +11280,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11288,7 +11288,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11296,7 +11296,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11304,7 +11304,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11312,7 +11312,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11320,7 +11320,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11328,7 +11328,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11336,7 +11336,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11344,7 +11344,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11352,7 +11352,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11360,7 +11360,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11369,7 +11369,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11378,7 +11378,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11386,7 +11386,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11399,7 +11399,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11407,7 +11407,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11415,7 +11415,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11423,7 +11423,7 @@ class GainMaplePoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GainPoint(CommandExecute):
@@ -11449,7 +11449,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11470,7 +11470,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11482,7 +11482,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11490,7 +11490,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11498,7 +11498,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11506,7 +11506,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11514,7 +11514,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11522,7 +11522,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11530,7 +11530,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11538,7 +11538,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11546,7 +11546,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11554,7 +11554,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11562,7 +11562,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11570,7 +11570,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11578,7 +11578,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11587,7 +11587,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11596,7 +11596,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11604,7 +11604,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11617,7 +11617,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11625,7 +11625,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11633,7 +11633,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11641,7 +11641,7 @@ class GainPoint(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GainVP(GainPoint):
@@ -11667,7 +11667,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11688,7 +11688,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11700,7 +11700,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11708,7 +11708,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11716,7 +11716,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11724,7 +11724,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11732,7 +11732,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11740,7 +11740,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11748,7 +11748,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11756,7 +11756,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11764,7 +11764,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11772,7 +11772,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11780,7 +11780,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11788,7 +11788,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11796,7 +11796,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11805,7 +11805,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11814,7 +11814,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11822,7 +11822,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -11835,7 +11835,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11843,7 +11843,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11851,7 +11851,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11859,7 +11859,7 @@ class GainVP(GainPoint):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LevelUp(CommandExecute):
@@ -11885,7 +11885,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11906,7 +11906,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11918,7 +11918,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11926,7 +11926,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11934,7 +11934,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11942,7 +11942,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11950,7 +11950,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11958,7 +11958,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11966,7 +11966,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11974,7 +11974,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11982,7 +11982,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11990,7 +11990,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -11998,7 +11998,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12006,7 +12006,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12014,7 +12014,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12023,7 +12023,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12032,7 +12032,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12040,7 +12040,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12053,7 +12053,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12061,7 +12061,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12069,7 +12069,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12077,7 +12077,7 @@ class LevelUp(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class UnlockInv(CommandExecute):
@@ -12103,7 +12103,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12124,7 +12124,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12136,7 +12136,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12144,7 +12144,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12152,7 +12152,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12160,7 +12160,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12168,7 +12168,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12176,7 +12176,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12184,7 +12184,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12192,7 +12192,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12200,7 +12200,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12208,7 +12208,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12216,7 +12216,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12224,7 +12224,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12232,7 +12232,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12241,7 +12241,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12250,7 +12250,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12258,7 +12258,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12271,7 +12271,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12279,7 +12279,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12287,7 +12287,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12295,7 +12295,7 @@ class UnlockInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Item(CommandExecute):
@@ -12321,7 +12321,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12342,7 +12342,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12354,7 +12354,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12362,7 +12362,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12370,7 +12370,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12378,7 +12378,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12386,7 +12386,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12394,7 +12394,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12402,7 +12402,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12410,7 +12410,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12418,7 +12418,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12426,7 +12426,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12434,7 +12434,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12442,7 +12442,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12450,7 +12450,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12459,7 +12459,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12468,7 +12468,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12476,7 +12476,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12489,7 +12489,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12497,7 +12497,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12505,7 +12505,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12513,7 +12513,7 @@ class Item(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class serverMsg(CommandExecute):
@@ -12539,7 +12539,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12560,7 +12560,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12572,7 +12572,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12580,7 +12580,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12588,7 +12588,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12596,7 +12596,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12604,7 +12604,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12612,7 +12612,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12620,7 +12620,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12628,7 +12628,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12636,7 +12636,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12644,7 +12644,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12652,7 +12652,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12660,7 +12660,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12668,7 +12668,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12677,7 +12677,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12686,7 +12686,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12694,7 +12694,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12707,7 +12707,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12715,7 +12715,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12723,7 +12723,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12731,7 +12731,7 @@ class serverMsg(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Letter(CommandExecute):
@@ -12757,7 +12757,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12778,7 +12778,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12790,7 +12790,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12798,7 +12798,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12806,7 +12806,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12814,7 +12814,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12822,7 +12822,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12830,7 +12830,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12838,7 +12838,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12846,7 +12846,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12854,7 +12854,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12862,7 +12862,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12870,7 +12870,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12878,7 +12878,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12886,7 +12886,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12895,7 +12895,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12904,7 +12904,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12912,7 +12912,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -12925,7 +12925,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12933,7 +12933,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12941,7 +12941,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12949,7 +12949,7 @@ class Letter(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Marry(CommandExecute):
@@ -12975,7 +12975,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -12996,7 +12996,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13008,7 +13008,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13016,7 +13016,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13024,7 +13024,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13032,7 +13032,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13040,7 +13040,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13048,7 +13048,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13056,7 +13056,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13064,7 +13064,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13072,7 +13072,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13080,7 +13080,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13088,7 +13088,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13096,7 +13096,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13104,7 +13104,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13113,7 +13113,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13122,7 +13122,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13130,7 +13130,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13143,7 +13143,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13151,7 +13151,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13159,7 +13159,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13167,7 +13167,7 @@ class Marry(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ItemCheck(CommandExecute):
@@ -13193,7 +13193,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13214,7 +13214,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13226,7 +13226,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13234,7 +13234,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13242,7 +13242,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13250,7 +13250,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13258,7 +13258,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13266,7 +13266,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13274,7 +13274,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13282,7 +13282,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13290,7 +13290,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13298,7 +13298,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13306,7 +13306,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13314,7 +13314,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13322,7 +13322,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13331,7 +13331,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13340,7 +13340,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13348,7 +13348,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13361,7 +13361,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13369,7 +13369,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13377,7 +13377,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13385,7 +13385,7 @@ class ItemCheck(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class MobVac(CommandExecute):
@@ -13411,7 +13411,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13432,7 +13432,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13444,7 +13444,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13452,7 +13452,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13460,7 +13460,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13468,7 +13468,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13476,7 +13476,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13484,7 +13484,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13492,7 +13492,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13500,7 +13500,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13508,7 +13508,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13516,7 +13516,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13524,7 +13524,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13532,7 +13532,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13540,7 +13540,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13549,7 +13549,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13558,7 +13558,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13566,7 +13566,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13579,7 +13579,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13587,7 +13587,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13595,7 +13595,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13603,7 +13603,7 @@ class MobVac(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Song(CommandExecute):
@@ -13629,7 +13629,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13650,7 +13650,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13662,7 +13662,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13670,7 +13670,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13678,7 +13678,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13686,7 +13686,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13694,7 +13694,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13702,7 +13702,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13710,7 +13710,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13718,7 +13718,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13726,7 +13726,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13734,7 +13734,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13742,7 +13742,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13750,7 +13750,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13758,7 +13758,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13767,7 +13767,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13776,7 +13776,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13784,7 +13784,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13797,7 +13797,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13805,7 +13805,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13813,7 +13813,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13821,7 +13821,7 @@ class Song(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 开启自动活动(CommandExecute):
@@ -13847,7 +13847,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13868,7 +13868,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13880,7 +13880,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13888,7 +13888,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13896,7 +13896,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13904,7 +13904,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13912,7 +13912,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13920,7 +13920,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13928,7 +13928,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13936,7 +13936,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13944,7 +13944,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13952,7 +13952,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13960,7 +13960,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13968,7 +13968,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -13976,7 +13976,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13985,7 +13985,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -13994,7 +13994,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14002,7 +14002,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14015,7 +14015,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14023,7 +14023,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14031,7 +14031,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14039,7 +14039,7 @@ class 开启自动活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 活动开始(CommandExecute):
@@ -14065,7 +14065,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14086,7 +14086,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14098,7 +14098,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14106,7 +14106,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14114,7 +14114,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14122,7 +14122,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14130,7 +14130,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14138,7 +14138,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14146,7 +14146,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14154,7 +14154,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14162,7 +14162,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14170,7 +14170,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14178,7 +14178,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14186,7 +14186,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14194,7 +14194,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14203,7 +14203,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14212,7 +14212,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14220,7 +14220,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14233,7 +14233,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14241,7 +14241,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14249,7 +14249,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14257,7 +14257,7 @@ class 活动开始(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 关闭活动入口(CommandExecute):
@@ -14283,7 +14283,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14304,7 +14304,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14316,7 +14316,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14324,7 +14324,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14332,7 +14332,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14340,7 +14340,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14348,7 +14348,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14356,7 +14356,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14364,7 +14364,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14372,7 +14372,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14380,7 +14380,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14388,7 +14388,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14396,7 +14396,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14404,7 +14404,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14412,7 +14412,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14421,7 +14421,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14430,7 +14430,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14438,7 +14438,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14451,7 +14451,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14459,7 +14459,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14467,7 +14467,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14475,7 +14475,7 @@ class 关闭活动入口(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 选择活动(CommandExecute):
@@ -14501,7 +14501,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14522,7 +14522,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14534,7 +14534,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14542,7 +14542,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14550,7 +14550,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14558,7 +14558,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14566,7 +14566,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14574,7 +14574,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14582,7 +14582,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14590,7 +14590,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14598,7 +14598,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14606,7 +14606,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14614,7 +14614,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14622,7 +14622,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14630,7 +14630,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14639,7 +14639,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14648,7 +14648,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14656,7 +14656,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14669,7 +14669,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14677,7 +14677,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14685,7 +14685,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14693,7 +14693,7 @@ class 选择活动(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class RemoveItem(CommandExecute):
@@ -14719,7 +14719,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14740,7 +14740,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14752,7 +14752,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14760,7 +14760,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14768,7 +14768,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14776,7 +14776,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14784,7 +14784,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14792,7 +14792,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14800,7 +14800,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14808,7 +14808,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14816,7 +14816,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14824,7 +14824,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14832,7 +14832,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14840,7 +14840,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14848,7 +14848,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14857,7 +14857,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14866,7 +14866,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14874,7 +14874,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -14887,7 +14887,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14895,7 +14895,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14903,7 +14903,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14911,7 +14911,7 @@ class RemoveItem(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class KillMap(CommandExecute):
@@ -14937,7 +14937,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14958,7 +14958,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14970,7 +14970,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14978,7 +14978,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14986,7 +14986,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -14994,7 +14994,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15002,7 +15002,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15010,7 +15010,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15018,7 +15018,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15026,7 +15026,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15034,7 +15034,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15042,7 +15042,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15050,7 +15050,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15058,7 +15058,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15066,7 +15066,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15075,7 +15075,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15084,7 +15084,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15092,7 +15092,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15105,7 +15105,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15113,7 +15113,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15121,7 +15121,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15129,7 +15129,7 @@ class KillMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpeakMega(CommandExecute):
@@ -15155,7 +15155,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15176,7 +15176,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15188,7 +15188,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15196,7 +15196,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15204,7 +15204,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15212,7 +15212,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15220,7 +15220,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15228,7 +15228,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15236,7 +15236,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15244,7 +15244,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15252,7 +15252,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15260,7 +15260,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15268,7 +15268,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15276,7 +15276,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15284,7 +15284,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15293,7 +15293,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15302,7 +15302,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15310,7 +15310,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15323,7 +15323,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15331,7 +15331,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15339,7 +15339,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15347,7 +15347,7 @@ class SpeakMega(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Speak(CommandExecute):
@@ -15373,7 +15373,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15394,7 +15394,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15406,7 +15406,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15414,7 +15414,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15422,7 +15422,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15430,7 +15430,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15438,7 +15438,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15446,7 +15446,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15454,7 +15454,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15462,7 +15462,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15470,7 +15470,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15478,7 +15478,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15486,7 +15486,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15494,7 +15494,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15502,7 +15502,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15511,7 +15511,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15520,7 +15520,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15528,7 +15528,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15541,7 +15541,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15549,7 +15549,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15557,7 +15557,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15565,7 +15565,7 @@ class Speak(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpeakMap(CommandExecute):
@@ -15591,7 +15591,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15612,7 +15612,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15624,7 +15624,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15632,7 +15632,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15640,7 +15640,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15648,7 +15648,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15656,7 +15656,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15664,7 +15664,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15672,7 +15672,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15680,7 +15680,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15688,7 +15688,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15696,7 +15696,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15704,7 +15704,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15712,7 +15712,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15720,7 +15720,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15729,7 +15729,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15738,7 +15738,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15746,7 +15746,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15759,7 +15759,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15767,7 +15767,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15775,7 +15775,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15783,7 +15783,7 @@ class SpeakMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpeakChannel(CommandExecute):
@@ -15809,7 +15809,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15830,7 +15830,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15842,7 +15842,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15850,7 +15850,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15858,7 +15858,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15866,7 +15866,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15874,7 +15874,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15882,7 +15882,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15890,7 +15890,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15898,7 +15898,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15906,7 +15906,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15914,7 +15914,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15922,7 +15922,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15930,7 +15930,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15938,7 +15938,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15947,7 +15947,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15956,7 +15956,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15964,7 +15964,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -15977,7 +15977,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15985,7 +15985,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -15993,7 +15993,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16001,7 +16001,7 @@ class SpeakChannel(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpeakWorld(CommandExecute):
@@ -16027,7 +16027,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16048,7 +16048,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16060,7 +16060,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16068,7 +16068,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16076,7 +16076,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16084,7 +16084,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16092,7 +16092,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16100,7 +16100,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16108,7 +16108,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16116,7 +16116,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16124,7 +16124,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16132,7 +16132,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16140,7 +16140,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16148,7 +16148,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16156,7 +16156,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16165,7 +16165,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16174,7 +16174,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16182,7 +16182,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16195,7 +16195,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16203,7 +16203,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16211,7 +16211,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16219,7 +16219,7 @@ class SpeakWorld(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Disease(CommandExecute):
@@ -16245,7 +16245,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16266,7 +16266,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16278,7 +16278,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16286,7 +16286,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16294,7 +16294,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16302,7 +16302,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16310,7 +16310,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16318,7 +16318,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16326,7 +16326,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16334,7 +16334,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16342,7 +16342,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16350,7 +16350,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16358,7 +16358,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16366,7 +16366,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16374,7 +16374,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16383,7 +16383,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16392,7 +16392,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16400,7 +16400,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16413,7 +16413,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16421,7 +16421,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16429,7 +16429,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16437,7 +16437,7 @@ class Disease(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SendAllNote(CommandExecute):
@@ -16463,7 +16463,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16484,7 +16484,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16496,7 +16496,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16504,7 +16504,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16512,7 +16512,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16520,7 +16520,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16528,7 +16528,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16536,7 +16536,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16544,7 +16544,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16552,7 +16552,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16560,7 +16560,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16568,7 +16568,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16576,7 +16576,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16584,7 +16584,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16592,7 +16592,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16601,7 +16601,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16610,7 +16610,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16618,7 +16618,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16631,7 +16631,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16639,7 +16639,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16647,7 +16647,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16655,7 +16655,7 @@ class SendAllNote(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class giveMeso(CommandExecute):
@@ -16681,7 +16681,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16702,7 +16702,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16714,7 +16714,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16722,7 +16722,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16730,7 +16730,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16738,7 +16738,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16746,7 +16746,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16754,7 +16754,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16762,7 +16762,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16770,7 +16770,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16778,7 +16778,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16786,7 +16786,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16794,7 +16794,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16802,7 +16802,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16810,7 +16810,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16819,7 +16819,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16828,7 +16828,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16836,7 +16836,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -16849,7 +16849,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16857,7 +16857,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16865,7 +16865,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16873,7 +16873,7 @@ class giveMeso(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class CloneMe(CommandExecute):
@@ -16899,7 +16899,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16920,7 +16920,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16932,7 +16932,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16940,7 +16940,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16948,7 +16948,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16956,7 +16956,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16964,7 +16964,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16972,7 +16972,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16980,7 +16980,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16988,7 +16988,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -16996,7 +16996,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17004,7 +17004,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17012,7 +17012,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17020,7 +17020,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17028,7 +17028,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17037,7 +17037,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17046,7 +17046,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17054,7 +17054,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17067,7 +17067,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17075,7 +17075,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17083,7 +17083,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17091,7 +17091,7 @@ class CloneMe(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class DisposeClones(CommandExecute):
@@ -17117,7 +17117,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17138,7 +17138,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17150,7 +17150,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17158,7 +17158,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17166,7 +17166,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17174,7 +17174,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17182,7 +17182,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17190,7 +17190,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17198,7 +17198,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17206,7 +17206,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17214,7 +17214,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17222,7 +17222,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17230,7 +17230,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17238,7 +17238,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17246,7 +17246,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17255,7 +17255,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17264,7 +17264,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17272,7 +17272,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17285,7 +17285,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17293,7 +17293,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17301,7 +17301,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17309,7 +17309,7 @@ class DisposeClones(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Monitor(CommandExecute):
@@ -17335,7 +17335,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17356,7 +17356,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17368,7 +17368,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17376,7 +17376,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17384,7 +17384,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17392,7 +17392,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17400,7 +17400,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17408,7 +17408,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17416,7 +17416,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17424,7 +17424,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17432,7 +17432,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17440,7 +17440,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17448,7 +17448,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17456,7 +17456,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17464,7 +17464,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17473,7 +17473,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17482,7 +17482,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17490,7 +17490,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17503,7 +17503,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17511,7 +17511,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17519,7 +17519,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17527,7 +17527,7 @@ class Monitor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class PermWeather(CommandExecute):
@@ -17553,7 +17553,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17574,7 +17574,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17586,7 +17586,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17594,7 +17594,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17602,7 +17602,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17610,7 +17610,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17618,7 +17618,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17626,7 +17626,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17634,7 +17634,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17642,7 +17642,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17650,7 +17650,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17658,7 +17658,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17666,7 +17666,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17674,7 +17674,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17682,7 +17682,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17691,7 +17691,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17700,7 +17700,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17708,7 +17708,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17721,7 +17721,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17729,7 +17729,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17737,7 +17737,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17745,7 +17745,7 @@ class PermWeather(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class CharInfo(CommandExecute):
@@ -17771,7 +17771,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17792,7 +17792,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17804,7 +17804,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17812,7 +17812,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17820,7 +17820,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17828,7 +17828,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17836,7 +17836,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17844,7 +17844,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17852,7 +17852,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17860,7 +17860,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17868,7 +17868,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17876,7 +17876,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17884,7 +17884,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17892,7 +17892,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17900,7 +17900,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17909,7 +17909,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17918,7 +17918,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17926,7 +17926,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -17939,7 +17939,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17947,7 +17947,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17955,7 +17955,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -17963,7 +17963,7 @@ class CharInfo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class whoishere(CommandExecute):
@@ -17989,7 +17989,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18010,7 +18010,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18022,7 +18022,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18030,7 +18030,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18038,7 +18038,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18046,7 +18046,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18054,7 +18054,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18062,7 +18062,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18070,7 +18070,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18078,7 +18078,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18086,7 +18086,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18094,7 +18094,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18102,7 +18102,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18110,7 +18110,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18118,7 +18118,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18127,7 +18127,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18136,7 +18136,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18144,7 +18144,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18157,7 +18157,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18165,7 +18165,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18173,7 +18173,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18181,7 +18181,7 @@ class whoishere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Cheaters(CommandExecute):
@@ -18207,7 +18207,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18228,7 +18228,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18240,7 +18240,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18248,7 +18248,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18256,7 +18256,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18264,7 +18264,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18272,7 +18272,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18280,7 +18280,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18288,7 +18288,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18296,7 +18296,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18304,7 +18304,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18312,7 +18312,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18320,7 +18320,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18328,7 +18328,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18336,7 +18336,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18345,7 +18345,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18354,7 +18354,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18362,7 +18362,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18375,7 +18375,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18383,7 +18383,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18391,7 +18391,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18399,7 +18399,7 @@ class Cheaters(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Connected(CommandExecute):
@@ -18425,7 +18425,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18446,7 +18446,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18458,7 +18458,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18466,7 +18466,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18474,7 +18474,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18482,7 +18482,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18490,7 +18490,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18498,7 +18498,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18506,7 +18506,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18514,7 +18514,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18522,7 +18522,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18530,7 +18530,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18538,7 +18538,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18546,7 +18546,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18554,7 +18554,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18563,7 +18563,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18572,7 +18572,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18580,7 +18580,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18593,7 +18593,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18601,7 +18601,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18609,7 +18609,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18617,7 +18617,7 @@ class Connected(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ResetQuest(CommandExecute):
@@ -18643,7 +18643,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18664,7 +18664,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18676,7 +18676,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18684,7 +18684,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18692,7 +18692,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18700,7 +18700,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18708,7 +18708,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18716,7 +18716,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18724,7 +18724,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18732,7 +18732,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18740,7 +18740,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18748,7 +18748,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18756,7 +18756,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18764,7 +18764,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18772,7 +18772,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18781,7 +18781,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18790,7 +18790,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18798,7 +18798,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18811,7 +18811,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18819,7 +18819,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18827,7 +18827,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18835,7 +18835,7 @@ class ResetQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class StartQuest(CommandExecute):
@@ -18861,7 +18861,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18882,7 +18882,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18894,7 +18894,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18902,7 +18902,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18910,7 +18910,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18918,7 +18918,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18926,7 +18926,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18934,7 +18934,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18942,7 +18942,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18950,7 +18950,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18958,7 +18958,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18966,7 +18966,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18974,7 +18974,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18982,7 +18982,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -18990,7 +18990,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -18999,7 +18999,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19008,7 +19008,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19016,7 +19016,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19029,7 +19029,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19037,7 +19037,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19045,7 +19045,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19053,7 +19053,7 @@ class StartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class CompleteQuest(CommandExecute):
@@ -19079,7 +19079,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19100,7 +19100,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19112,7 +19112,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19120,7 +19120,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19128,7 +19128,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19136,7 +19136,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19144,7 +19144,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19152,7 +19152,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19160,7 +19160,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19168,7 +19168,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19176,7 +19176,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19184,7 +19184,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19192,7 +19192,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19200,7 +19200,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19208,7 +19208,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19217,7 +19217,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19226,7 +19226,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19234,7 +19234,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19247,7 +19247,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19255,7 +19255,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19263,7 +19263,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19271,7 +19271,7 @@ class CompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class FStartQuest(CommandExecute):
@@ -19297,7 +19297,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19318,7 +19318,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19330,7 +19330,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19338,7 +19338,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19346,7 +19346,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19354,7 +19354,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19362,7 +19362,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19370,7 +19370,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19378,7 +19378,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19386,7 +19386,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19394,7 +19394,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19402,7 +19402,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19410,7 +19410,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19418,7 +19418,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19426,7 +19426,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19435,7 +19435,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19444,7 +19444,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19452,7 +19452,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19465,7 +19465,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19473,7 +19473,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19481,7 +19481,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19489,7 +19489,7 @@ class FStartQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class FCompleteQuest(CommandExecute):
@@ -19515,7 +19515,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19536,7 +19536,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19548,7 +19548,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19556,7 +19556,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19564,7 +19564,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19572,7 +19572,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19580,7 +19580,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19588,7 +19588,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19596,7 +19596,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19604,7 +19604,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19612,7 +19612,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19620,7 +19620,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19628,7 +19628,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19636,7 +19636,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19644,7 +19644,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19653,7 +19653,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19662,7 +19662,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19670,7 +19670,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19683,7 +19683,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19691,7 +19691,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19699,7 +19699,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19707,7 +19707,7 @@ class FCompleteQuest(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class FStartOther(CommandExecute):
@@ -19733,7 +19733,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19754,7 +19754,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19766,7 +19766,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19774,7 +19774,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19782,7 +19782,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19790,7 +19790,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19798,7 +19798,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19806,7 +19806,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19814,7 +19814,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19822,7 +19822,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19830,7 +19830,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19838,7 +19838,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19846,7 +19846,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19854,7 +19854,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19862,7 +19862,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19871,7 +19871,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19880,7 +19880,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19888,7 +19888,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -19901,7 +19901,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19909,7 +19909,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19917,7 +19917,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19925,7 +19925,7 @@ class FStartOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class FCompleteOther(CommandExecute):
@@ -19951,7 +19951,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19972,7 +19972,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19984,7 +19984,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -19992,7 +19992,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20000,7 +20000,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20008,7 +20008,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20016,7 +20016,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20024,7 +20024,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20032,7 +20032,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20040,7 +20040,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20048,7 +20048,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20056,7 +20056,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20064,7 +20064,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20072,7 +20072,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20080,7 +20080,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20089,7 +20089,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20098,7 +20098,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20106,7 +20106,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20119,7 +20119,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20127,7 +20127,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20135,7 +20135,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20143,7 +20143,7 @@ class FCompleteOther(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class NearestPortal(CommandExecute):
@@ -20169,7 +20169,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20190,7 +20190,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20202,7 +20202,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20210,7 +20210,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20218,7 +20218,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20226,7 +20226,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20234,7 +20234,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20242,7 +20242,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20250,7 +20250,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20258,7 +20258,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20266,7 +20266,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20274,7 +20274,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20282,7 +20282,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20290,7 +20290,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20298,7 +20298,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20307,7 +20307,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20316,7 +20316,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20324,7 +20324,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20337,7 +20337,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20345,7 +20345,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20353,7 +20353,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20361,7 +20361,7 @@ class NearestPortal(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpawnDebug(CommandExecute):
@@ -20387,7 +20387,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20408,7 +20408,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20420,7 +20420,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20428,7 +20428,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20436,7 +20436,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20444,7 +20444,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20452,7 +20452,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20460,7 +20460,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20468,7 +20468,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20476,7 +20476,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20484,7 +20484,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20492,7 +20492,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20500,7 +20500,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20508,7 +20508,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20516,7 +20516,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20525,7 +20525,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20534,7 +20534,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20542,7 +20542,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20555,7 +20555,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20563,7 +20563,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20571,7 +20571,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20579,7 +20579,7 @@ class SpawnDebug(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Threads(CommandExecute):
@@ -20605,7 +20605,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20626,7 +20626,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20638,7 +20638,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20646,7 +20646,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20654,7 +20654,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20662,7 +20662,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20670,7 +20670,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20678,7 +20678,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20686,7 +20686,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20694,7 +20694,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20702,7 +20702,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20710,7 +20710,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20718,7 +20718,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20726,7 +20726,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20734,7 +20734,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20743,7 +20743,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20752,7 +20752,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20760,7 +20760,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20773,7 +20773,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20781,7 +20781,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20789,7 +20789,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20797,7 +20797,7 @@ class Threads(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ShowTrace(CommandExecute):
@@ -20823,7 +20823,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20844,7 +20844,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20856,7 +20856,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20864,7 +20864,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20872,7 +20872,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20880,7 +20880,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20888,7 +20888,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20896,7 +20896,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20904,7 +20904,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20912,7 +20912,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20920,7 +20920,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20928,7 +20928,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20936,7 +20936,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20944,7 +20944,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20952,7 +20952,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20961,7 +20961,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20970,7 +20970,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20978,7 +20978,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -20991,7 +20991,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -20999,7 +20999,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21007,7 +21007,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21015,7 +21015,7 @@ class ShowTrace(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class FakeRelog(CommandExecute):
@@ -21041,7 +21041,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21062,7 +21062,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21074,7 +21074,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21082,7 +21082,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21090,7 +21090,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21098,7 +21098,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21106,7 +21106,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21114,7 +21114,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21122,7 +21122,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21130,7 +21130,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21138,7 +21138,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21146,7 +21146,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21154,7 +21154,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21162,7 +21162,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21170,7 +21170,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21179,7 +21179,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21188,7 +21188,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21196,7 +21196,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21209,7 +21209,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21217,7 +21217,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21225,7 +21225,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21233,7 +21233,7 @@ class FakeRelog(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ToggleOffense(CommandExecute):
@@ -21259,7 +21259,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21280,7 +21280,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21292,7 +21292,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21300,7 +21300,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21308,7 +21308,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21316,7 +21316,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21324,7 +21324,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21332,7 +21332,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21340,7 +21340,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21348,7 +21348,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21356,7 +21356,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21364,7 +21364,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21372,7 +21372,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21380,7 +21380,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21388,7 +21388,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21397,7 +21397,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21406,7 +21406,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21414,7 +21414,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21427,7 +21427,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21435,7 +21435,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21443,7 +21443,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21451,7 +21451,7 @@ class ToggleOffense(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class toggleDrop(CommandExecute):
@@ -21477,7 +21477,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21498,7 +21498,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21510,7 +21510,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21518,7 +21518,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21526,7 +21526,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21534,7 +21534,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21542,7 +21542,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21550,7 +21550,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21558,7 +21558,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21566,7 +21566,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21574,7 +21574,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21582,7 +21582,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21590,7 +21590,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21598,7 +21598,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21606,7 +21606,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21615,7 +21615,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21624,7 +21624,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21632,7 +21632,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21645,7 +21645,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21653,7 +21653,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21661,7 +21661,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21669,7 +21669,7 @@ class toggleDrop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ToggleMegaphone(CommandExecute):
@@ -21695,7 +21695,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21716,7 +21716,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21728,7 +21728,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21736,7 +21736,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21744,7 +21744,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21752,7 +21752,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21760,7 +21760,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21768,7 +21768,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21776,7 +21776,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21784,7 +21784,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21792,7 +21792,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21800,7 +21800,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21808,7 +21808,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21816,7 +21816,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21824,7 +21824,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21833,7 +21833,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21842,7 +21842,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21850,7 +21850,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -21863,7 +21863,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21871,7 +21871,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21879,7 +21879,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21887,7 +21887,7 @@ class ToggleMegaphone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SpawnReactor(CommandExecute):
@@ -21913,7 +21913,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21934,7 +21934,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21946,7 +21946,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21954,7 +21954,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21962,7 +21962,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21970,7 +21970,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21978,7 +21978,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21986,7 +21986,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -21994,7 +21994,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22002,7 +22002,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22010,7 +22010,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22018,7 +22018,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22026,7 +22026,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22034,7 +22034,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22042,7 +22042,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22051,7 +22051,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22060,7 +22060,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22068,7 +22068,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22081,7 +22081,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22089,7 +22089,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22097,7 +22097,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22105,7 +22105,7 @@ class SpawnReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class HReactor(CommandExecute):
@@ -22131,7 +22131,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22152,7 +22152,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22164,7 +22164,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22172,7 +22172,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22180,7 +22180,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22188,7 +22188,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22196,7 +22196,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22204,7 +22204,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22212,7 +22212,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22220,7 +22220,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22228,7 +22228,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22236,7 +22236,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22244,7 +22244,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22252,7 +22252,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22260,7 +22260,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22269,7 +22269,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22278,7 +22278,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22286,7 +22286,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22299,7 +22299,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22307,7 +22307,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22315,7 +22315,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22323,7 +22323,7 @@ class HReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class DestroyReactor(CommandExecute):
@@ -22349,7 +22349,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22370,7 +22370,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22382,7 +22382,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22390,7 +22390,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22398,7 +22398,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22406,7 +22406,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22414,7 +22414,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22422,7 +22422,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22430,7 +22430,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22438,7 +22438,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22446,7 +22446,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22454,7 +22454,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22462,7 +22462,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22470,7 +22470,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22478,7 +22478,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22487,7 +22487,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22496,7 +22496,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22504,7 +22504,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22517,7 +22517,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22525,7 +22525,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22533,7 +22533,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22541,7 +22541,7 @@ class DestroyReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ResetReactors(CommandExecute):
@@ -22567,7 +22567,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22588,7 +22588,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22600,7 +22600,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22608,7 +22608,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22616,7 +22616,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22624,7 +22624,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22632,7 +22632,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22640,7 +22640,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22648,7 +22648,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22656,7 +22656,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22664,7 +22664,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22672,7 +22672,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22680,7 +22680,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22688,7 +22688,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22696,7 +22696,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22705,7 +22705,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22714,7 +22714,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22722,7 +22722,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22735,7 +22735,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22743,7 +22743,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22751,7 +22751,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22759,7 +22759,7 @@ class ResetReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class SetReactor(CommandExecute):
@@ -22785,7 +22785,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22806,7 +22806,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22818,7 +22818,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22826,7 +22826,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22834,7 +22834,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22842,7 +22842,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22850,7 +22850,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22858,7 +22858,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22866,7 +22866,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22874,7 +22874,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22882,7 +22882,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22890,7 +22890,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22898,7 +22898,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22906,7 +22906,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22914,7 +22914,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22923,7 +22923,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22932,7 +22932,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22940,7 +22940,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -22953,7 +22953,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22961,7 +22961,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22969,7 +22969,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -22977,7 +22977,7 @@ class SetReactor(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class cleardrops(RemoveDrops):
@@ -23003,7 +23003,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23024,7 +23024,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23036,7 +23036,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23044,7 +23044,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23052,7 +23052,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23060,7 +23060,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23068,7 +23068,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23076,7 +23076,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23084,7 +23084,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23092,7 +23092,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23100,7 +23100,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23108,7 +23108,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23116,7 +23116,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23124,7 +23124,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23132,7 +23132,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23141,7 +23141,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23150,7 +23150,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23158,7 +23158,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23171,7 +23171,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23179,7 +23179,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23187,7 +23187,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23195,7 +23195,7 @@ class cleardrops(RemoveDrops):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class RemoveDrops(CommandExecute):
@@ -23221,7 +23221,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23242,7 +23242,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23254,7 +23254,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23262,7 +23262,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23270,7 +23270,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23278,7 +23278,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23286,7 +23286,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23294,7 +23294,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23302,7 +23302,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23310,7 +23310,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23318,7 +23318,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23326,7 +23326,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23334,7 +23334,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23342,7 +23342,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23350,7 +23350,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23359,7 +23359,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23368,7 +23368,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23376,7 +23376,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23389,7 +23389,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23397,7 +23397,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23405,7 +23405,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23413,7 +23413,7 @@ class RemoveDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class DropRate(CommandExecute):
@@ -23439,7 +23439,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23460,7 +23460,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23472,7 +23472,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23480,7 +23480,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23488,7 +23488,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23496,7 +23496,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23504,7 +23504,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23512,7 +23512,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23520,7 +23520,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23528,7 +23528,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23536,7 +23536,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23544,7 +23544,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23552,7 +23552,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23560,7 +23560,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23568,7 +23568,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23577,7 +23577,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23586,7 +23586,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23594,7 +23594,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23607,7 +23607,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23615,7 +23615,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23623,7 +23623,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23631,7 +23631,7 @@ class DropRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class MesoRate(CommandExecute):
@@ -23657,7 +23657,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23678,7 +23678,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23690,7 +23690,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23698,7 +23698,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23706,7 +23706,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23714,7 +23714,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23722,7 +23722,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23730,7 +23730,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23738,7 +23738,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23746,7 +23746,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23754,7 +23754,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23762,7 +23762,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23770,7 +23770,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23778,7 +23778,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23786,7 +23786,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23795,7 +23795,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23804,7 +23804,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23812,7 +23812,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -23825,7 +23825,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23833,7 +23833,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23841,7 +23841,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23849,7 +23849,7 @@ class MesoRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class DCAll(CommandExecute):
@@ -23875,7 +23875,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23896,7 +23896,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23908,7 +23908,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23916,7 +23916,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23924,7 +23924,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23932,7 +23932,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23940,7 +23940,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23948,7 +23948,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23956,7 +23956,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23964,7 +23964,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23972,7 +23972,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23980,7 +23980,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23988,7 +23988,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -23996,7 +23996,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24004,7 +24004,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24013,7 +24013,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24022,7 +24022,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24030,7 +24030,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24043,7 +24043,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24051,7 +24051,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24059,7 +24059,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24067,7 +24067,7 @@ class DCAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class GoTo(CommandExecute):
@@ -24093,7 +24093,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24114,7 +24114,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24126,7 +24126,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24134,7 +24134,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24142,7 +24142,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24150,7 +24150,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24158,7 +24158,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24166,7 +24166,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24174,7 +24174,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24182,7 +24182,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24190,7 +24190,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24198,7 +24198,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24206,7 +24206,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24214,7 +24214,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24222,7 +24222,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24231,7 +24231,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24240,7 +24240,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24248,7 +24248,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24261,7 +24261,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24269,7 +24269,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24277,7 +24277,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24285,7 +24285,7 @@ class GoTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class KillAll(CommandExecute):
@@ -24311,7 +24311,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24332,7 +24332,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24344,7 +24344,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24352,7 +24352,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24360,7 +24360,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24368,7 +24368,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24376,7 +24376,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24384,7 +24384,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24392,7 +24392,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24400,7 +24400,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24408,7 +24408,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24416,7 +24416,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24424,7 +24424,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24432,7 +24432,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24440,7 +24440,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24449,7 +24449,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24458,7 +24458,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24466,7 +24466,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24479,7 +24479,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24487,7 +24487,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24495,7 +24495,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24503,7 +24503,7 @@ class KillAll(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ResetMobs(CommandExecute):
@@ -24529,7 +24529,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24550,7 +24550,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24562,7 +24562,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24570,7 +24570,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24578,7 +24578,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24586,7 +24586,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24594,7 +24594,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24602,7 +24602,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24610,7 +24610,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24618,7 +24618,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24626,7 +24626,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24634,7 +24634,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24642,7 +24642,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24650,7 +24650,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24658,7 +24658,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24667,7 +24667,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24676,7 +24676,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24684,7 +24684,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24697,7 +24697,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24705,7 +24705,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24713,7 +24713,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24721,7 +24721,7 @@ class ResetMobs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class KillMonster(CommandExecute):
@@ -24747,7 +24747,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24768,7 +24768,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24780,7 +24780,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24788,7 +24788,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24796,7 +24796,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24804,7 +24804,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24812,7 +24812,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24820,7 +24820,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24828,7 +24828,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24836,7 +24836,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24844,7 +24844,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24852,7 +24852,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24860,7 +24860,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24868,7 +24868,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24876,7 +24876,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24885,7 +24885,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24894,7 +24894,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24902,7 +24902,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -24915,7 +24915,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24923,7 +24923,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24931,7 +24931,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24939,7 +24939,7 @@ class KillMonster(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class KillMonsterByOID(CommandExecute):
@@ -24965,7 +24965,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24986,7 +24986,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -24998,7 +24998,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25006,7 +25006,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25014,7 +25014,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25022,7 +25022,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25030,7 +25030,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25038,7 +25038,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25046,7 +25046,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25054,7 +25054,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25062,7 +25062,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25070,7 +25070,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25078,7 +25078,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25086,7 +25086,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25094,7 +25094,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25103,7 +25103,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25112,7 +25112,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25120,7 +25120,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25133,7 +25133,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25141,7 +25141,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25149,7 +25149,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25157,7 +25157,7 @@ class KillMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class HitMonsterByOID(CommandExecute):
@@ -25183,7 +25183,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25204,7 +25204,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25216,7 +25216,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25224,7 +25224,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25232,7 +25232,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25240,7 +25240,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25248,7 +25248,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25256,7 +25256,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25264,7 +25264,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25272,7 +25272,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25280,7 +25280,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25288,7 +25288,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25296,7 +25296,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25304,7 +25304,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25312,7 +25312,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25321,7 +25321,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25330,7 +25330,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25338,7 +25338,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25351,7 +25351,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25359,7 +25359,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25367,7 +25367,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25375,7 +25375,7 @@ class HitMonsterByOID(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class NPC(CommandExecute):
@@ -25401,7 +25401,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25422,7 +25422,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25434,7 +25434,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25442,7 +25442,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25450,7 +25450,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25458,7 +25458,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25466,7 +25466,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25474,7 +25474,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25482,7 +25482,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25490,7 +25490,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25498,7 +25498,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25506,7 +25506,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25514,7 +25514,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25522,7 +25522,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25530,7 +25530,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25539,7 +25539,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25548,7 +25548,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25556,7 +25556,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25569,7 +25569,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25577,7 +25577,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25585,7 +25585,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25593,7 +25593,7 @@ class NPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class RemoveNPCs(CommandExecute):
@@ -25619,7 +25619,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25640,7 +25640,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25652,7 +25652,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25660,7 +25660,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25668,7 +25668,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25676,7 +25676,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25684,7 +25684,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25692,7 +25692,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25700,7 +25700,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25708,7 +25708,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25716,7 +25716,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25724,7 +25724,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25732,7 +25732,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25740,7 +25740,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25748,7 +25748,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25757,7 +25757,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25766,7 +25766,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25774,7 +25774,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25787,7 +25787,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25795,7 +25795,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25803,7 +25803,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25811,7 +25811,7 @@ class RemoveNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LookNPCs(CommandExecute):
@@ -25837,7 +25837,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25858,7 +25858,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25870,7 +25870,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25878,7 +25878,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25886,7 +25886,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25894,7 +25894,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25902,7 +25902,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25910,7 +25910,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25918,7 +25918,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25926,7 +25926,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25934,7 +25934,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25942,7 +25942,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25950,7 +25950,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25958,7 +25958,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25966,7 +25966,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25975,7 +25975,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -25984,7 +25984,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -25992,7 +25992,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26005,7 +26005,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26013,7 +26013,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26021,7 +26021,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26029,7 +26029,7 @@ class LookNPCs(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LookReactors(CommandExecute):
@@ -26055,7 +26055,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26076,7 +26076,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26088,7 +26088,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26096,7 +26096,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26104,7 +26104,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26112,7 +26112,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26120,7 +26120,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26128,7 +26128,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26136,7 +26136,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26144,7 +26144,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26152,7 +26152,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26160,7 +26160,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26168,7 +26168,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26176,7 +26176,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26184,7 +26184,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26193,7 +26193,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26202,7 +26202,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26210,7 +26210,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26223,7 +26223,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26231,7 +26231,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26239,7 +26239,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26247,7 +26247,7 @@ class LookReactors(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LookPortals(CommandExecute):
@@ -26273,7 +26273,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26294,7 +26294,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26306,7 +26306,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26314,7 +26314,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26322,7 +26322,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26330,7 +26330,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26338,7 +26338,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26346,7 +26346,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26354,7 +26354,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26362,7 +26362,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26370,7 +26370,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26378,7 +26378,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26386,7 +26386,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26394,7 +26394,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26402,7 +26402,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26411,7 +26411,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26420,7 +26420,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26428,7 +26428,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26441,7 +26441,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26449,7 +26449,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26457,7 +26457,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26465,7 +26465,7 @@ class LookPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class MakePNPC(CommandExecute):
@@ -26491,7 +26491,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26512,7 +26512,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26524,7 +26524,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26532,7 +26532,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26540,7 +26540,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26548,7 +26548,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26556,7 +26556,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26564,7 +26564,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26572,7 +26572,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26580,7 +26580,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26588,7 +26588,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26596,7 +26596,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26604,7 +26604,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26612,7 +26612,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26620,7 +26620,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26629,7 +26629,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26638,7 +26638,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26646,7 +26646,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26659,7 +26659,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26667,7 +26667,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26675,7 +26675,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26683,7 +26683,7 @@ class MakePNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class MakeOfflineP(CommandExecute):
@@ -26709,7 +26709,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26730,7 +26730,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26742,7 +26742,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26750,7 +26750,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26758,7 +26758,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26766,7 +26766,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26774,7 +26774,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26782,7 +26782,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26790,7 +26790,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26798,7 +26798,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26806,7 +26806,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26814,7 +26814,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26822,7 +26822,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26830,7 +26830,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26838,7 +26838,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26847,7 +26847,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26856,7 +26856,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26864,7 +26864,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -26877,7 +26877,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26885,7 +26885,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26893,7 +26893,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26901,7 +26901,7 @@ class MakeOfflineP(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class DestroyPNPC(CommandExecute):
@@ -26927,7 +26927,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26948,7 +26948,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26960,7 +26960,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26968,7 +26968,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26976,7 +26976,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26984,7 +26984,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -26992,7 +26992,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27000,7 +27000,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27008,7 +27008,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27016,7 +27016,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27024,7 +27024,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27032,7 +27032,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27040,7 +27040,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27048,7 +27048,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27056,7 +27056,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27065,7 +27065,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27074,7 +27074,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27082,7 +27082,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27095,7 +27095,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27103,7 +27103,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27111,7 +27111,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27119,7 +27119,7 @@ class DestroyPNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class MyPos(CommandExecute):
@@ -27145,7 +27145,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27166,7 +27166,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27178,7 +27178,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27186,7 +27186,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27194,7 +27194,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27202,7 +27202,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27210,7 +27210,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27218,7 +27218,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27226,7 +27226,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27234,7 +27234,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27242,7 +27242,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27250,7 +27250,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27258,7 +27258,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27266,7 +27266,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27274,7 +27274,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27283,7 +27283,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27292,7 +27292,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27300,7 +27300,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27313,7 +27313,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27321,7 +27321,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27329,7 +27329,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27337,7 +27337,7 @@ class MyPos(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadDrops(CommandExecute):
@@ -27363,7 +27363,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27384,7 +27384,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27396,7 +27396,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27404,7 +27404,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27412,7 +27412,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27420,7 +27420,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27428,7 +27428,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27436,7 +27436,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27444,7 +27444,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27452,7 +27452,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27460,7 +27460,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27468,7 +27468,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27476,7 +27476,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27484,7 +27484,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27492,7 +27492,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27501,7 +27501,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27510,7 +27510,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27518,7 +27518,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27531,7 +27531,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27539,7 +27539,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27547,7 +27547,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27555,7 +27555,7 @@ class ReloadDrops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadPortals(CommandExecute):
@@ -27581,7 +27581,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27602,7 +27602,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27614,7 +27614,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27622,7 +27622,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27630,7 +27630,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27638,7 +27638,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27646,7 +27646,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27654,7 +27654,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27662,7 +27662,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27670,7 +27670,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27678,7 +27678,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27686,7 +27686,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27694,7 +27694,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27702,7 +27702,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27710,7 +27710,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27719,7 +27719,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27728,7 +27728,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27736,7 +27736,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27749,7 +27749,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27757,7 +27757,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27765,7 +27765,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27773,7 +27773,7 @@ class ReloadPortals(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadShops(CommandExecute):
@@ -27799,7 +27799,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27820,7 +27820,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27832,7 +27832,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27840,7 +27840,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27848,7 +27848,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27856,7 +27856,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27864,7 +27864,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27872,7 +27872,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27880,7 +27880,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27888,7 +27888,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27896,7 +27896,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27904,7 +27904,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27912,7 +27912,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27920,7 +27920,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27928,7 +27928,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27937,7 +27937,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27946,7 +27946,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27954,7 +27954,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -27967,7 +27967,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27975,7 +27975,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27983,7 +27983,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -27991,7 +27991,7 @@ class ReloadShops(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadEvents(CommandExecute):
@@ -28017,7 +28017,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28038,7 +28038,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28050,7 +28050,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28058,7 +28058,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28066,7 +28066,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28074,7 +28074,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28082,7 +28082,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28090,7 +28090,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28098,7 +28098,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28106,7 +28106,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28114,7 +28114,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28122,7 +28122,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28130,7 +28130,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28138,7 +28138,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28146,7 +28146,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28155,7 +28155,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28164,7 +28164,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28172,7 +28172,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28185,7 +28185,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28193,7 +28193,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28201,7 +28201,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28209,7 +28209,7 @@ class ReloadEvents(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadQuests(CommandExecute):
@@ -28235,7 +28235,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28256,7 +28256,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28268,7 +28268,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28276,7 +28276,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28284,7 +28284,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28292,7 +28292,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28300,7 +28300,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28308,7 +28308,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28316,7 +28316,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28324,7 +28324,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28332,7 +28332,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28340,7 +28340,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28348,7 +28348,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28356,7 +28356,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28364,7 +28364,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28373,7 +28373,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28382,7 +28382,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28390,7 +28390,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28403,7 +28403,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28411,7 +28411,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28419,7 +28419,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28427,7 +28427,7 @@ class ReloadQuests(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 召唤永久的怪物(CommandExecute):
@@ -28453,7 +28453,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28474,7 +28474,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28486,7 +28486,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28494,7 +28494,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28502,7 +28502,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28510,7 +28510,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28518,7 +28518,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28526,7 +28526,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28534,7 +28534,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28542,7 +28542,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28550,7 +28550,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28558,7 +28558,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28566,7 +28566,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28574,7 +28574,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28582,7 +28582,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28591,7 +28591,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28600,7 +28600,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28608,7 +28608,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28621,7 +28621,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28629,7 +28629,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28637,7 +28637,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28645,7 +28645,7 @@ class 召唤永久的怪物(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Spawn(CommandExecute):
@@ -28671,7 +28671,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28692,7 +28692,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28704,7 +28704,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28712,7 +28712,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28720,7 +28720,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28728,7 +28728,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28736,7 +28736,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28744,7 +28744,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28752,7 +28752,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28760,7 +28760,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28768,7 +28768,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28776,7 +28776,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28784,7 +28784,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28792,7 +28792,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28800,7 +28800,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28809,7 +28809,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28818,7 +28818,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28826,7 +28826,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -28839,7 +28839,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28847,7 +28847,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28855,7 +28855,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28863,7 +28863,7 @@ class Spawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Clock(CommandExecute):
@@ -28889,7 +28889,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28910,7 +28910,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28922,7 +28922,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28930,7 +28930,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28938,7 +28938,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28946,7 +28946,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28954,7 +28954,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28962,7 +28962,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28970,7 +28970,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28978,7 +28978,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28986,7 +28986,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -28994,7 +28994,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29002,7 +29002,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29010,7 +29010,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29018,7 +29018,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29027,7 +29027,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29036,7 +29036,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29044,7 +29044,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29057,7 +29057,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29065,7 +29065,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29073,7 +29073,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29081,7 +29081,7 @@ class Clock(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class WarpPlayersTo(CommandExecute):
@@ -29107,7 +29107,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29128,7 +29128,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29140,7 +29140,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29148,7 +29148,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29156,7 +29156,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29164,7 +29164,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29172,7 +29172,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29180,7 +29180,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29188,7 +29188,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29196,7 +29196,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29204,7 +29204,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29212,7 +29212,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29220,7 +29220,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29228,7 +29228,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29236,7 +29236,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29245,7 +29245,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29254,7 +29254,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29262,7 +29262,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29275,7 +29275,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29283,7 +29283,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29291,7 +29291,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29299,7 +29299,7 @@ class WarpPlayersTo(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class LOLCastle(CommandExecute):
@@ -29325,7 +29325,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29346,7 +29346,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29358,7 +29358,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29366,7 +29366,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29374,7 +29374,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29382,7 +29382,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29390,7 +29390,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29398,7 +29398,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29406,7 +29406,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29414,7 +29414,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29422,7 +29422,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29430,7 +29430,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29438,7 +29438,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29446,7 +29446,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29454,7 +29454,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29463,7 +29463,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29472,7 +29472,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29480,7 +29480,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29493,7 +29493,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29501,7 +29501,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29509,7 +29509,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29517,7 +29517,7 @@ class LOLCastle(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Map(CommandExecute):
@@ -29543,7 +29543,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29564,7 +29564,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29576,7 +29576,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29584,7 +29584,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29592,7 +29592,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29600,7 +29600,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29608,7 +29608,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29616,7 +29616,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29624,7 +29624,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29632,7 +29632,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29640,7 +29640,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29648,7 +29648,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29656,7 +29656,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29664,7 +29664,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29672,7 +29672,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29681,7 +29681,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29690,7 +29690,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29698,7 +29698,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29711,7 +29711,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29719,7 +29719,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29727,7 +29727,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29735,7 +29735,7 @@ class Map(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class StartProfiling(CommandExecute):
@@ -29761,7 +29761,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29782,7 +29782,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29794,7 +29794,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29802,7 +29802,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29810,7 +29810,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29818,7 +29818,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29826,7 +29826,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29834,7 +29834,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29842,7 +29842,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29850,7 +29850,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29858,7 +29858,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29866,7 +29866,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29874,7 +29874,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29882,7 +29882,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29890,7 +29890,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29899,7 +29899,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29908,7 +29908,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29916,7 +29916,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -29929,7 +29929,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29937,7 +29937,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29945,7 +29945,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -29953,7 +29953,7 @@ class StartProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class StopProfiling(CommandExecute):
@@ -29979,7 +29979,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30000,7 +30000,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30012,7 +30012,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30020,7 +30020,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30028,7 +30028,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30036,7 +30036,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30044,7 +30044,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30052,7 +30052,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30060,7 +30060,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30068,7 +30068,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30076,7 +30076,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30084,7 +30084,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30092,7 +30092,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30100,7 +30100,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30108,7 +30108,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30117,7 +30117,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30126,7 +30126,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30134,7 +30134,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30147,7 +30147,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30155,7 +30155,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30163,7 +30163,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30171,7 +30171,7 @@ class StopProfiling(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ReloadMap(CommandExecute):
@@ -30197,7 +30197,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30218,7 +30218,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30230,7 +30230,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30238,7 +30238,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30246,7 +30246,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30254,7 +30254,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30262,7 +30262,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30270,7 +30270,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30278,7 +30278,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30286,7 +30286,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30294,7 +30294,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30302,7 +30302,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30310,7 +30310,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30318,7 +30318,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30326,7 +30326,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30335,7 +30335,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30344,7 +30344,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30352,7 +30352,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30365,7 +30365,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30373,7 +30373,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30381,7 +30381,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30389,7 +30389,7 @@ class ReloadMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Respawn(CommandExecute):
@@ -30415,7 +30415,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30436,7 +30436,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30448,7 +30448,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30456,7 +30456,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30464,7 +30464,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30472,7 +30472,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30480,7 +30480,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30488,7 +30488,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30496,7 +30496,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30504,7 +30504,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30512,7 +30512,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30520,7 +30520,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30528,7 +30528,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30536,7 +30536,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30544,7 +30544,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30553,7 +30553,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30562,7 +30562,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30570,7 +30570,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30583,7 +30583,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30591,7 +30591,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30599,7 +30599,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30607,7 +30607,7 @@ class Respawn(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ResetMap(CommandExecute):
@@ -30633,7 +30633,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30654,7 +30654,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30666,7 +30666,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30674,7 +30674,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30682,7 +30682,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30690,7 +30690,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30698,7 +30698,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30706,7 +30706,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30714,7 +30714,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30722,7 +30722,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30730,7 +30730,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30738,7 +30738,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30746,7 +30746,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30754,7 +30754,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30762,7 +30762,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30771,7 +30771,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30780,7 +30780,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30788,7 +30788,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30801,7 +30801,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30809,7 +30809,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30817,7 +30817,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30825,7 +30825,7 @@ class ResetMap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Reloadall(CommandExecute):
@@ -30851,7 +30851,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30872,7 +30872,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30884,7 +30884,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30892,7 +30892,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30900,7 +30900,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30908,7 +30908,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30916,7 +30916,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30924,7 +30924,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30932,7 +30932,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30940,7 +30940,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30948,7 +30948,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30956,7 +30956,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30964,7 +30964,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30972,7 +30972,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -30980,7 +30980,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30989,7 +30989,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -30998,7 +30998,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31006,7 +31006,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31019,7 +31019,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31027,7 +31027,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31035,7 +31035,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31043,7 +31043,7 @@ class Reloadall(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class PNPC(CommandExecute):
@@ -31069,7 +31069,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31090,7 +31090,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31102,7 +31102,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31110,7 +31110,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31118,7 +31118,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31126,7 +31126,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31134,7 +31134,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31142,7 +31142,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31150,7 +31150,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31158,7 +31158,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31166,7 +31166,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31174,7 +31174,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31182,7 +31182,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31190,7 +31190,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31198,7 +31198,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31207,7 +31207,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31216,7 +31216,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31224,7 +31224,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31237,7 +31237,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31245,7 +31245,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31253,7 +31253,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31261,7 +31261,7 @@ class PNPC(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class copyInv(CommandExecute):
@@ -31287,7 +31287,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31308,7 +31308,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31320,7 +31320,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31328,7 +31328,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31336,7 +31336,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31344,7 +31344,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31352,7 +31352,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31360,7 +31360,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31368,7 +31368,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31376,7 +31376,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31384,7 +31384,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31392,7 +31392,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31400,7 +31400,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31408,7 +31408,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31416,7 +31416,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31425,7 +31425,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31434,7 +31434,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31442,7 +31442,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31455,7 +31455,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31463,7 +31463,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31471,7 +31471,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31479,7 +31479,7 @@ class copyInv(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class RemoveItemOff(CommandExecute):
@@ -31505,7 +31505,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31526,7 +31526,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31538,7 +31538,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31546,7 +31546,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31554,7 +31554,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31562,7 +31562,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31570,7 +31570,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31578,7 +31578,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31586,7 +31586,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31594,7 +31594,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31602,7 +31602,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31610,7 +31610,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31618,7 +31618,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31626,7 +31626,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31634,7 +31634,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31643,7 +31643,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31652,7 +31652,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31660,7 +31660,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31673,7 +31673,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31681,7 +31681,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31689,7 +31689,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31697,7 +31697,7 @@ class RemoveItemOff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class ExpEveryone(CommandExecute):
@@ -31723,7 +31723,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31744,7 +31744,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31756,7 +31756,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31764,7 +31764,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31772,7 +31772,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31780,7 +31780,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31788,7 +31788,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31796,7 +31796,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31804,7 +31804,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31812,7 +31812,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31820,7 +31820,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31828,7 +31828,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31836,7 +31836,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31844,7 +31844,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31852,7 +31852,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31861,7 +31861,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31870,7 +31870,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31878,7 +31878,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -31891,7 +31891,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31899,7 +31899,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31907,7 +31907,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31915,7 +31915,7 @@ class ExpEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class CashEveryone(CommandExecute):
@@ -31941,7 +31941,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31962,7 +31962,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31974,7 +31974,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31982,7 +31982,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31990,7 +31990,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -31998,7 +31998,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32006,7 +32006,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32014,7 +32014,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32022,7 +32022,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32030,7 +32030,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32038,7 +32038,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32046,7 +32046,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32054,7 +32054,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32062,7 +32062,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32070,7 +32070,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32079,7 +32079,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32088,7 +32088,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32096,7 +32096,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32109,7 +32109,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32117,7 +32117,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32125,7 +32125,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32133,7 +32133,7 @@ class CashEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class mesoEveryone(CommandExecute):
@@ -32159,7 +32159,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32180,7 +32180,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32192,7 +32192,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32200,7 +32200,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32208,7 +32208,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32216,7 +32216,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32224,7 +32224,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32232,7 +32232,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32240,7 +32240,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32248,7 +32248,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32256,7 +32256,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32264,7 +32264,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32272,7 +32272,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32280,7 +32280,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32288,7 +32288,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32297,7 +32297,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32306,7 +32306,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32314,7 +32314,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32327,7 +32327,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32335,7 +32335,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32343,7 +32343,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32351,7 +32351,7 @@ class mesoEveryone(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class setRate(CommandExecute):
@@ -32377,7 +32377,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32398,7 +32398,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32410,7 +32410,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32418,7 +32418,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32426,7 +32426,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32434,7 +32434,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32442,7 +32442,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32450,7 +32450,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32458,7 +32458,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32466,7 +32466,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32474,7 +32474,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32482,7 +32482,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32490,7 +32490,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32498,7 +32498,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32506,7 +32506,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32515,7 +32515,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32524,7 +32524,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32532,7 +32532,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32545,7 +32545,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32553,7 +32553,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32561,7 +32561,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32569,7 +32569,7 @@ class setRate(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class WarpAllHere(CommandExecute):
@@ -32595,7 +32595,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32616,7 +32616,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32628,7 +32628,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32636,7 +32636,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32644,7 +32644,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32652,7 +32652,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32660,7 +32660,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32668,7 +32668,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32676,7 +32676,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32684,7 +32684,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32692,7 +32692,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32700,7 +32700,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32708,7 +32708,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32716,7 +32716,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32724,7 +32724,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32733,7 +32733,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32742,7 +32742,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32750,7 +32750,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32763,7 +32763,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32771,7 +32771,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32779,7 +32779,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32787,7 +32787,7 @@ class WarpAllHere(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class maxSkills(CommandExecute):
@@ -32813,7 +32813,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32834,7 +32834,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32846,7 +32846,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32854,7 +32854,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32862,7 +32862,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32870,7 +32870,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32878,7 +32878,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32886,7 +32886,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32894,7 +32894,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32902,7 +32902,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32910,7 +32910,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32918,7 +32918,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32926,7 +32926,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32934,7 +32934,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32942,7 +32942,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32951,7 +32951,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32960,7 +32960,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32968,7 +32968,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -32981,7 +32981,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32989,7 +32989,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -32997,7 +32997,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33005,7 +33005,7 @@ class maxSkills(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Drop(CommandExecute):
@@ -33031,7 +33031,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33052,7 +33052,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33064,7 +33064,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33072,7 +33072,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33080,7 +33080,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33088,7 +33088,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33096,7 +33096,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33104,7 +33104,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33112,7 +33112,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33120,7 +33120,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33128,7 +33128,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33136,7 +33136,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33144,7 +33144,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33152,7 +33152,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33160,7 +33160,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33169,7 +33169,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33178,7 +33178,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33186,7 +33186,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33199,7 +33199,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33207,7 +33207,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33215,7 +33215,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33223,7 +33223,7 @@ class Drop(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class buff(CommandExecute):
@@ -33249,7 +33249,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33270,7 +33270,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33282,7 +33282,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33290,7 +33290,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33298,7 +33298,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33306,7 +33306,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33314,7 +33314,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33322,7 +33322,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33330,7 +33330,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33338,7 +33338,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33346,7 +33346,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33354,7 +33354,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33362,7 +33362,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33370,7 +33370,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33378,7 +33378,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33387,7 +33387,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33396,7 +33396,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33404,7 +33404,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33417,7 +33417,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33425,7 +33425,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33433,7 +33433,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33441,7 +33441,7 @@ class buff(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class maxstats(CommandExecute):
@@ -33467,7 +33467,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33488,7 +33488,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33500,7 +33500,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33508,7 +33508,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33516,7 +33516,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33524,7 +33524,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33532,7 +33532,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33540,7 +33540,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33548,7 +33548,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33556,7 +33556,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33564,7 +33564,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33572,7 +33572,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33580,7 +33580,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33588,7 +33588,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33596,7 +33596,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33605,7 +33605,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33614,7 +33614,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33622,7 +33622,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33635,7 +33635,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33643,7 +33643,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33651,7 +33651,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33659,7 +33659,7 @@ class maxstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Minimumstats(CommandExecute):
@@ -33685,7 +33685,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33706,7 +33706,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33718,7 +33718,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33726,7 +33726,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33734,7 +33734,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33742,7 +33742,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33750,7 +33750,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33758,7 +33758,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33766,7 +33766,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33774,7 +33774,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33782,7 +33782,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33790,7 +33790,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33798,7 +33798,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33806,7 +33806,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33814,7 +33814,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33823,7 +33823,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33832,7 +33832,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33840,7 +33840,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -33853,7 +33853,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33861,7 +33861,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33869,7 +33869,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33877,7 +33877,7 @@ class Minimumstats(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class WhereAmI(CommandExecute):
@@ -33903,7 +33903,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33924,7 +33924,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33936,7 +33936,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33944,7 +33944,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33952,7 +33952,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33960,7 +33960,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33968,7 +33968,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33976,7 +33976,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33984,7 +33984,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -33992,7 +33992,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34000,7 +34000,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34008,7 +34008,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34016,7 +34016,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34024,7 +34024,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34032,7 +34032,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34041,7 +34041,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34050,7 +34050,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34058,7 +34058,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34071,7 +34071,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34079,7 +34079,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34087,7 +34087,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34095,7 +34095,7 @@ class WhereAmI(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class Packet(CommandExecute):
@@ -34121,7 +34121,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34142,7 +34142,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34154,7 +34154,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34162,7 +34162,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34170,7 +34170,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34178,7 +34178,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34186,7 +34186,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34194,7 +34194,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34202,7 +34202,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34210,7 +34210,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34218,7 +34218,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34226,7 +34226,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34234,7 +34234,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34242,7 +34242,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34250,7 +34250,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34259,7 +34259,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34268,7 +34268,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34276,7 +34276,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34289,7 +34289,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34297,7 +34297,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34305,7 +34305,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34313,7 +34313,7 @@ class Packet(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class mob(CommandExecute):
@@ -34339,7 +34339,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34360,7 +34360,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34372,7 +34372,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34380,7 +34380,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34388,7 +34388,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34396,7 +34396,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34404,7 +34404,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34412,7 +34412,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34420,7 +34420,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34428,7 +34428,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34436,7 +34436,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34444,7 +34444,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34452,7 +34452,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34460,7 +34460,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34468,7 +34468,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34477,7 +34477,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34486,7 +34486,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34494,7 +34494,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34507,7 +34507,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34515,7 +34515,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34523,7 +34523,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34531,7 +34531,7 @@ class mob(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class register(CommandExecute):
@@ -34557,7 +34557,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34578,7 +34578,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34590,7 +34590,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34598,7 +34598,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34606,7 +34606,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34614,7 +34614,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34622,7 +34622,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34630,7 +34630,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34638,7 +34638,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34646,7 +34646,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34654,7 +34654,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34662,7 +34662,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34670,7 +34670,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34678,7 +34678,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34686,7 +34686,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34695,7 +34695,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34704,7 +34704,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34712,7 +34712,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34725,7 +34725,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34733,7 +34733,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34741,7 +34741,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34749,7 +34749,7 @@ class register(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class openmap(CommandExecute):
@@ -34775,7 +34775,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34796,7 +34796,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34808,7 +34808,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34816,7 +34816,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34824,7 +34824,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34832,7 +34832,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34840,7 +34840,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34848,7 +34848,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34856,7 +34856,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34864,7 +34864,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34872,7 +34872,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34880,7 +34880,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34888,7 +34888,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34896,7 +34896,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34904,7 +34904,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34913,7 +34913,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34922,7 +34922,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34930,7 +34930,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -34943,7 +34943,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34951,7 +34951,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34959,7 +34959,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -34967,7 +34967,7 @@ class openmap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class closemap(CommandExecute):
@@ -34993,7 +34993,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35014,7 +35014,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35026,7 +35026,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35034,7 +35034,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35042,7 +35042,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35050,7 +35050,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35058,7 +35058,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35066,7 +35066,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35074,7 +35074,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35082,7 +35082,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35090,7 +35090,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35098,7 +35098,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35106,7 +35106,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35114,7 +35114,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35122,7 +35122,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35131,7 +35131,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35140,7 +35140,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35148,7 +35148,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35161,7 +35161,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35169,7 +35169,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35177,7 +35177,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35185,7 +35185,7 @@ class closemap(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class reloadcpq(CommandExecute):
@@ -35211,7 +35211,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35232,7 +35232,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35244,7 +35244,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35252,7 +35252,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35260,7 +35260,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35268,7 +35268,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35276,7 +35276,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35284,7 +35284,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35292,7 +35292,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35300,7 +35300,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35308,7 +35308,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35316,7 +35316,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35324,7 +35324,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35332,7 +35332,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35340,7 +35340,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35349,7 +35349,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35358,7 +35358,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35366,7 +35366,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35379,7 +35379,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35387,7 +35387,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35395,7 +35395,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35403,7 +35403,7 @@ class reloadcpq(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
 
 class 检测复制(CommandExecute):
@@ -35429,7 +35429,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35450,7 +35450,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35462,7 +35462,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35470,7 +35470,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35478,7 +35478,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35486,7 +35486,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35494,7 +35494,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35502,7 +35502,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35510,7 +35510,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35518,7 +35518,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35526,7 +35526,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35534,7 +35534,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35542,7 +35542,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35550,7 +35550,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35558,7 +35558,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35567,7 +35567,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35576,7 +35576,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35584,7 +35584,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     @staticmethod
     def execute(c: Any, splitted: list) -> int:
@@ -35597,7 +35597,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35605,7 +35605,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35613,7 +35613,7 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 
     def execute(self, c: Any, splitted: list) -> int:
         """方法 execute"""
@@ -35621,5 +35621,5 @@ class 检测复制(CommandExecute):
 
     def getMessage(self) -> str:
         """方法 getMessage"""
-        return ""
+        return getattr(self, 'message', "")
 

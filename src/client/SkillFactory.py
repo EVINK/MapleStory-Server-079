@@ -55,5 +55,5 @@ class SkillFactory:
 
     def getAllSkills(self) -> list:
         """方法 getAllSkills"""
-        return []
+        return getattr(self, 'all_skills', [])
 

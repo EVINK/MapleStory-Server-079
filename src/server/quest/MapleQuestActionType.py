@@ -30,7 +30,7 @@ class MapleQuestActionType(Enum):
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getByType(self, type: int) -> Any:
         """方法 getByType"""

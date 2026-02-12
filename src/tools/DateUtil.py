@@ -22,7 +22,7 @@ class DateUtil:
 
     def isDST(self) -> bool:
         """方法 isDST"""
-        return False
+        return bool(getattr(self, 'dst', False))
 
     def getFileTimestamp(self, timeStampinMillis: int) -> int:
         """方法 getFileTimestamp"""
@@ -34,9 +34,9 @@ class DateUtil:
 
     def getCurrentDateStr(self) -> str:
         """方法 getCurrentDateStr"""
-        return ""
+        return getattr(self, 'current_date_str', "")
 
     def getCurrentDateStr2(self) -> str:
         """方法 getCurrentDateStr2"""
-        return ""
+        return getattr(self, 'current_date_str2', "")
 

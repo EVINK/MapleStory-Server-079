@@ -80,35 +80,39 @@ class PlayerStats:
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def setStr(self, str: int) -> None:
         """方法 setStr"""
-        pass
+        self.str = str
+        return None
 
     def setDex(self, dex: int) -> None:
         """方法 setDex"""
-        pass
+        self.dex = dex
+        return None
 
     def setLuk(self, luk: int) -> None:
         """方法 setLuk"""
-        pass
+        self.luk = luk
+        return None
 
     def setInt(self, int_: int) -> None:
         """方法 setInt"""
-        pass
+        self.int = int_
+        return None
 
     def setHp(self, newhp: int) -> bool:
         """方法 setHp"""
@@ -124,75 +128,77 @@ class PlayerStats:
 
     def setMaxHp(self, hp: int) -> None:
         """方法 setMaxHp"""
-        pass
+        self.max_hp = hp
+        return None
 
     def setMaxMp(self, mp: int) -> None:
         """方法 setMaxMp"""
-        pass
+        self.max_mp = mp
+        return None
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def getMaxHp(self) -> int:
         """方法 getMaxHp"""
-        return 0
+        return getattr(self, 'max_hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def getMaxMp(self) -> int:
         """方法 getMaxMp"""
-        return 0
+        return getattr(self, 'max_mp', 0)
 
     def getTotalDex(self) -> int:
         """方法 getTotalDex"""
-        return 0
+        return getattr(self, 'total_dex', 0)
 
     def getTotalInt(self) -> int:
         """方法 getTotalInt"""
-        return 0
+        return getattr(self, 'total_int', 0)
 
     def getTotalStr(self) -> int:
         """方法 getTotalStr"""
-        return 0
+        return getattr(self, 'total_str', 0)
 
     def getTotalLuk(self) -> int:
         """方法 getTotalLuk"""
-        return 0
+        return getattr(self, 'total_luk', 0)
 
     def getTotalMagic(self) -> int:
         """方法 getTotalMagic"""
-        return 0
+        return getattr(self, 'total_magic', 0)
 
     def getSpeedMod(self) -> float:
         """方法 getSpeedMod"""
-        return 0
+        return getattr(self, 'speed_mod', 0)
 
     def getJumpMod(self) -> float:
         """方法 getJumpMod"""
-        return 0
+        return getattr(self, 'jump_mod', 0)
 
     def getTotalWatk(self) -> int:
         """方法 getTotalWatk"""
-        return 0
+        return getattr(self, 'total_watk', 0)
 
     def getCurrentMaxHp(self) -> int:
         """方法 getCurrentMaxHp"""
-        return 0
+        return getattr(self, 'current_max_hp', 0)
 
     def getCurrentMaxMp(self) -> int:
         """方法 getCurrentMaxMp"""
-        return 0
+        return getattr(self, 'current_max_mp', 0)
 
     def getHands(self) -> int:
         """方法 getHands"""
-        return 0
+        return getattr(self, 'hands', 0)
 
     def getCurrentMaxBaseDamage(self) -> float:
         """方法 getCurrentMaxBaseDamage"""
-        return 0
+        return getattr(self, 'current_max_base_damage', 0)
 
     def recalcLocalStats(self) -> None:
         """方法 recalcLocalStats"""
@@ -236,11 +242,11 @@ class PlayerStats:
 
     def getHealHP(self) -> float:
         """方法 getHealHP"""
-        return 0
+        return getattr(self, 'heal_hp', 0)
 
     def getHealMP(self) -> float:
         """方法 getHealMP"""
-        return 0
+        return getattr(self, 'heal_mp', 0)
 
     def relocHeal(self) -> None:
         """方法 relocHeal"""

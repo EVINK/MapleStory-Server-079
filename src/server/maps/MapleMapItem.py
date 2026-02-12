@@ -42,59 +42,62 @@ class MapleMapItem(AbstractMapleMapObject):
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def setItem(self, z: Any) -> None:
         """方法 setItem"""
-        pass
+        self.item = z
+        return None
 
     def getQuest(self) -> int:
         """方法 getQuest"""
-        return 0
+        return getattr(self, 'quest', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getDropper(self) -> Any:
         """方法 getDropper"""
-        raise NotImplementedError("方法 getDropper 尚未实现")
+        return getattr(self, 'dropper', None)
 
     def getOwner(self) -> int:
         """方法 getOwner"""
-        return 0
+        return getattr(self, 'owner', 0)
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def isPlayerDrop(self) -> bool:
         """方法 isPlayerDrop"""
-        return False
+        return bool(getattr(self, 'player_drop', False))
 
     def isPickedUp(self) -> bool:
         """方法 isPickedUp"""
-        return False
+        return bool(getattr(self, 'picked_up', False))
 
     def setPickedUp(self, pickedUp: bool) -> None:
         """方法 setPickedUp"""
-        pass
+        self.picked_up = pickedUp
+        return None
 
     def getDropType(self) -> int:
         """方法 getDropType"""
-        return 0
+        return getattr(self, 'drop_type', 0)
 
     def setDropType(self, z: int) -> None:
         """方法 setDropType"""
-        pass
+        self.drop_type = z
+        return None
 
     def isRandDrop(self) -> bool:
         """方法 isRandDrop"""
-        return False
+        return bool(getattr(self, 'rand_drop', False))
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def sendSpawnData(self, client: Any) -> None:
         """方法 sendSpawnData"""
@@ -106,7 +109,7 @@ class MapleMapItem(AbstractMapleMapObject):
 
     def getLock(self) -> Any:
         """方法 getLock"""
-        raise NotImplementedError("方法 getLock 尚未实现")
+        return getattr(self, 'lock', None)
 
     def registerExpire(self, time: int) -> None:
         """方法 registerExpire"""
@@ -130,5 +133,5 @@ class MapleMapItem(AbstractMapleMapObject):
 
     def hasFFA(self) -> bool:
         """方法 hasFFA"""
-        return False
+        return bool(getattr(self, 'ffa', False))
 

@@ -96,7 +96,7 @@ class MapleMapFactory:
 
     def getLoadedMaps(self) -> int:
         """方法 getLoadedMaps"""
-        return 0
+        return getattr(self, 'loaded_maps', 0)
 
     def isMapLoaded(self, mapId: int) -> bool:
         """方法 isMapLoaded"""
@@ -112,11 +112,11 @@ class MapleMapFactory:
 
     def getAllMaps(self) -> list:
         """方法 getAllMaps"""
-        return []
+        return getattr(self, 'all_maps', [])
 
     def getAllInstanceMaps(self) -> list:
         """方法 getAllInstanceMaps"""
-        return []
+        return getattr(self, 'all_instance_maps', [])
 
     def loadLife(self, life: Any, id: str, type: str, mapid: int) -> Any:
         """方法 loadLife"""
@@ -136,7 +136,8 @@ class MapleMapFactory:
 
     def setChannel(self, channel: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = channel
+        return None
 
     def addAreaBossSpawn(self, map: Any) -> None:
         """方法 addAreaBossSpawn"""
@@ -148,5 +149,5 @@ class MapleMapFactory:
 
     def getAllLoadedMaps(self) -> list:
         """方法 getAllLoadedMaps"""
-        return []
+        return getattr(self, 'all_loaded_maps', [])
 

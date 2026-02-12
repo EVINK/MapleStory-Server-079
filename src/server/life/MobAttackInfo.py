@@ -21,41 +21,46 @@ class MobAttackInfo:
 
     def setDeadlyAttack(self, isDeadlyAttack: bool) -> None:
         """方法 setDeadlyAttack"""
-        pass
+        self.deadly_attack = isDeadlyAttack
+        return None
 
     def isDeadlyAttack(self) -> bool:
         """方法 isDeadlyAttack"""
-        return False
+        return bool(getattr(self, 'deadly_attack', False))
 
     def setMpBurn(self, mpBurn: int) -> None:
         """方法 setMpBurn"""
-        pass
+        self.mp_burn = mpBurn
+        return None
 
     def getMpBurn(self) -> int:
         """方法 getMpBurn"""
-        return 0
+        return getattr(self, 'mp_burn', 0)
 
     def setDiseaseSkill(self, diseaseSkill: int) -> None:
         """方法 setDiseaseSkill"""
-        pass
+        self.disease_skill = diseaseSkill
+        return None
 
     def getDiseaseSkill(self) -> int:
         """方法 getDiseaseSkill"""
-        return 0
+        return getattr(self, 'disease_skill', 0)
 
     def setDiseaseLevel(self, diseaseLevel: int) -> None:
         """方法 setDiseaseLevel"""
-        pass
+        self.disease_level = diseaseLevel
+        return None
 
     def getDiseaseLevel(self) -> int:
         """方法 getDiseaseLevel"""
-        return 0
+        return getattr(self, 'disease_level', 0)
 
     def setMpCon(self, mpCon: int) -> None:
         """方法 setMpCon"""
-        pass
+        self.mp_con = mpCon
+        return None
 
     def getMpCon(self) -> int:
         """方法 getMpCon"""
-        return 0
+        return getattr(self, 'mp_con', 0)
 

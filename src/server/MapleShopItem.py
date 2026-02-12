@@ -19,13 +19,13 @@ class MapleShopItem:
 
     def getBuyable(self) -> int:
         """方法 getBuyable"""
-        return 0
+        return getattr(self, 'buyable', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 

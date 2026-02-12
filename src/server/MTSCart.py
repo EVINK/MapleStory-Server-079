@@ -44,7 +44,7 @@ class MTSCart:
 
     def getInventory(self) -> list:
         """方法 getInventory"""
-        return []
+        return getattr(self, 'inventory', [])
 
     def addToInventory(self, item: Any) -> None:
         """方法 addToInventory"""
@@ -56,7 +56,7 @@ class MTSCart:
 
     def getCart(self) -> list:
         """方法 getCart"""
-        return []
+        return getattr(self, 'cart', [])
 
     def addToCart(self, car: int) -> bool:
         """方法 addToCart"""
@@ -68,7 +68,7 @@ class MTSCart:
 
     def getNotYetSold(self) -> list:
         """方法 getNotYetSold"""
-        return []
+        return getattr(self, 'not_yet_sold', [])
 
     def addToNotYetSold(self, car: int) -> None:
         """方法 addToNotYetSold"""
@@ -80,7 +80,7 @@ class MTSCart:
 
     def getSetOwedNX(self) -> int:
         """方法 getSetOwedNX"""
-        return 0
+        return getattr(self, 'set_owed_nx', 0)
 
     def increaseOwedNX(self, newNX: int) -> None:
         """方法 increaseOwedNX"""
@@ -104,13 +104,13 @@ class MTSCart:
 
     def getTab(self) -> int:
         """方法 getTab"""
-        return 0
+        return getattr(self, 'tab', 0)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getPage(self) -> int:
         """方法 getPage"""
-        return 0
+        return getattr(self, 'page', 0)
 

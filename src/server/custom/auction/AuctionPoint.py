@@ -20,33 +20,37 @@ class AuctionPoint:
 
     def getCharacterid(self) -> int:
         """方法 getCharacterid"""
-        return 0
+        return getattr(self, 'characterid', 0)
 
     def setCharacterid(self, characterid: int) -> None:
         """方法 setCharacterid"""
-        pass
+        self.characterid = characterid
+        return None
 
     def getPoint(self) -> int:
         """方法 getPoint"""
-        return 0
+        return getattr(self, 'point', 0)
 
     def setPoint(self, point: int) -> None:
         """方法 setPoint"""
-        pass
+        self.point = point
+        return None
 
     def getPoint_sell(self) -> int:
         """方法 getPoint_sell"""
-        return 0
+        return getattr(self, 'point_sell', 0)
 
     def setPoint_sell(self, point_sell: int) -> None:
         """方法 setPoint_sell"""
-        pass
+        self.point_sell = point_sell
+        return None
 
     def getPoint_buy(self) -> int:
         """方法 getPoint_buy"""
-        return 0
+        return getattr(self, 'point_buy', 0)
 
     def setPoint_buy(self, point_buy: int) -> None:
         """方法 setPoint_buy"""
-        pass
+        self.point_buy = point_buy
+        return None
 

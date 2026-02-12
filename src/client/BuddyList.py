@@ -54,11 +54,12 @@ class BuddyList:
 
     def getCapacity(self) -> int:
         """方法 getCapacity"""
-        return 0
+        return getattr(self, 'capacity', 0)
 
     def setCapacity(self, newCapacity: int) -> None:
         """方法 setCapacity"""
-        pass
+        self.capacity = newCapacity
+        return None
 
     def get(self, characterId: int) -> Any:
         """方法 get"""
@@ -78,15 +79,15 @@ class BuddyList:
 
     def getBuddies(self) -> list:
         """方法 getBuddies"""
-        return []
+        return getattr(self, 'buddies', [])
 
     def isFull(self) -> bool:
         """方法 isFull"""
-        return False
+        return bool(getattr(self, 'full', False))
 
     def getBuddiesIds(self) -> list:
         """方法 getBuddiesIds"""
-        return []
+        return getattr(self, 'buddies_ids', [])
 
     def loadFromTransfer(self, data: dict) -> None:
         """方法 loadFromTransfer"""
@@ -106,7 +107,8 @@ class BuddyList:
 
     def setChanged(self, v: bool) -> None:
         """方法 setChanged"""
-        pass
+        self.changed = v
+        return None
 
     def changed(self) -> bool:
         """方法 changed"""

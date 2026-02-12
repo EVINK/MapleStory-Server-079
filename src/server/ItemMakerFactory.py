@@ -44,7 +44,7 @@ class ItemMakerFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getGemInfo(self, itemid: int) -> Any:
         """方法 getGemInfo"""
@@ -56,27 +56,27 @@ class ItemMakerFactory:
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getRandomReward(self) -> list:
         """方法 getRandomReward"""
-        return []
+        return getattr(self, 'random_reward', [])
 
     def getReqRecipes(self) -> list:
         """方法 getReqRecipes"""
-        return []
+        return getattr(self, 'req_recipes', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def addRandomReward(self, itemId: int, prob: int) -> None:
         """方法 addRandomReward"""
@@ -88,35 +88,35 @@ class ItemMakerFactory:
 
     def getTUC(self) -> int:
         """方法 getTUC"""
-        return 0
+        return getattr(self, 'tuc', 0)
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getReqItems(self) -> list:
         """方法 getReqItems"""
-        return []
+        return getattr(self, 'req_items', [])
 
     def getReqEquips(self) -> list:
         """方法 getReqEquips"""
-        return []
+        return getattr(self, 'req_equips', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def getStimulator(self) -> int:
         """方法 getStimulator"""
-        return 0
+        return getattr(self, 'stimulator', 0)
 
     def addReqItem(self, itemId: int, amount: int) -> None:
         """方法 addReqItem"""
@@ -150,7 +150,7 @@ class GemCreateEntry:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getGemInfo(self, itemid: int) -> Any:
         """方法 getGemInfo"""
@@ -162,27 +162,27 @@ class GemCreateEntry:
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getRandomReward(self) -> list:
         """方法 getRandomReward"""
-        return []
+        return getattr(self, 'random_reward', [])
 
     def getReqRecipes(self) -> list:
         """方法 getReqRecipes"""
-        return []
+        return getattr(self, 'req_recipes', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def addRandomReward(self, itemId: int, prob: int) -> None:
         """方法 addRandomReward"""
@@ -194,35 +194,35 @@ class GemCreateEntry:
 
     def getTUC(self) -> int:
         """方法 getTUC"""
-        return 0
+        return getattr(self, 'tuc', 0)
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getReqItems(self) -> list:
         """方法 getReqItems"""
-        return []
+        return getattr(self, 'req_items', [])
 
     def getReqEquips(self) -> list:
         """方法 getReqEquips"""
-        return []
+        return getattr(self, 'req_equips', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def getStimulator(self) -> int:
         """方法 getStimulator"""
-        return 0
+        return getattr(self, 'stimulator', 0)
 
     def addReqItem(self, itemId: int, amount: int) -> None:
         """方法 addReqItem"""
@@ -256,7 +256,7 @@ class ItemMakerCreateEntry:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getGemInfo(self, itemid: int) -> Any:
         """方法 getGemInfo"""
@@ -268,27 +268,27 @@ class ItemMakerCreateEntry:
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getRandomReward(self) -> list:
         """方法 getRandomReward"""
-        return []
+        return getattr(self, 'random_reward', [])
 
     def getReqRecipes(self) -> list:
         """方法 getReqRecipes"""
-        return []
+        return getattr(self, 'req_recipes', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def addRandomReward(self, itemId: int, prob: int) -> None:
         """方法 addRandomReward"""
@@ -300,35 +300,35 @@ class ItemMakerCreateEntry:
 
     def getTUC(self) -> int:
         """方法 getTUC"""
-        return 0
+        return getattr(self, 'tuc', 0)
 
     def getRewardAmount(self) -> int:
         """方法 getRewardAmount"""
-        return 0
+        return getattr(self, 'reward_amount', 0)
 
     def getReqItems(self) -> list:
         """方法 getReqItems"""
-        return []
+        return getattr(self, 'req_items', [])
 
     def getReqEquips(self) -> list:
         """方法 getReqEquips"""
-        return []
+        return getattr(self, 'req_equips', [])
 
     def getReqLevel(self) -> int:
         """方法 getReqLevel"""
-        return 0
+        return getattr(self, 'req_level', 0)
 
     def getReqSkillLevel(self) -> int:
         """方法 getReqSkillLevel"""
-        return 0
+        return getattr(self, 'req_skill_level', 0)
 
     def getCost(self) -> int:
         """方法 getCost"""
-        return 0
+        return getattr(self, 'cost', 0)
 
     def getStimulator(self) -> int:
         """方法 getStimulator"""
-        return 0
+        return getattr(self, 'stimulator', 0)
 
     def addReqItem(self, itemId: int, amount: int) -> None:
         """方法 addReqItem"""

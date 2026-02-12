@@ -38,23 +38,23 @@ class XMLDomMapleData(MapleData):
 
     def getChildren(self) -> list:
         """方法 getChildren"""
-        return []
+        return getattr(self, 'children', [])
 
     def getData(self) -> Any:
         """方法 getData"""
-        raise NotImplementedError("方法 getData 尚未实现")
+        return getattr(self, 'data', None)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getParent(self) -> Any:
         """方法 getParent"""
-        raise NotImplementedError("方法 getParent 尚未实现")
+        return getattr(self, 'parent', None)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def iterator(self) -> iter:
         """方法 iterator"""

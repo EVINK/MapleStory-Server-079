@@ -88,11 +88,12 @@ class MapleTrade:
 
     def isLocked(self) -> bool:
         """方法 isLocked"""
-        return False
+        return bool(getattr(self, 'locked', False))
 
     def setMeso(self, meso: int) -> None:
         """方法 setMeso"""
-        pass
+        self.meso = meso
+        return None
 
     def addItem(self, item: Any) -> None:
         """方法 addItem"""
@@ -104,19 +105,20 @@ class MapleTrade:
 
     def getPartner(self) -> Any:
         """方法 getPartner"""
-        raise NotImplementedError("方法 getPartner 尚未实现")
+        return getattr(self, 'partner', None)
 
     def setPartner(self, partner: Any) -> None:
         """方法 setPartner"""
-        pass
+        self.partner = partner
+        return None
 
     def getChr(self) -> Any:
         """方法 getChr"""
-        raise NotImplementedError("方法 getChr 尚未实现")
+        return getattr(self, 'chr', None)
 
     def getNextTargetSlot(self) -> int:
         """方法 getNextTargetSlot"""
-        return 0
+        return getattr(self, 'next_target_slot', 0)
 
     def setItems(self, c: Any, item: Any, targetSlot: int, quantity: int) -> bool:
         """方法 setItems"""

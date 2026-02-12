@@ -26,7 +26,7 @@ class InputStreamByteStream(ByteInputStream):
 
     def getBytesRead(self) -> int:
         """方法 getBytesRead"""
-        return 0
+        return getattr(self, 'bytes_read', 0)
 
     def available(self) -> int:
         """方法 available"""

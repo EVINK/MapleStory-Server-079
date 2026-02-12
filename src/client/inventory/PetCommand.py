@@ -20,17 +20,17 @@ class PetCommand:
 
     def getPetId(self) -> int:
         """方法 getPetId"""
-        return 0
+        return getattr(self, 'pet_id', 0)
 
     def getSkillId(self) -> int:
         """方法 getSkillId"""
-        return 0
+        return getattr(self, 'skill_id', 0)
 
     def getProbability(self) -> int:
         """方法 getProbability"""
-        return 0
+        return getattr(self, 'probability', 0)
 
     def getIncrease(self) -> int:
         """方法 getIncrease"""
-        return 0
+        return getattr(self, 'increase', 0)
 

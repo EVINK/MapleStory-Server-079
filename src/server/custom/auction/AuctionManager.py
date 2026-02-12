@@ -43,7 +43,7 @@ class AuctionManager:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def gainItem(self, item: Any, quantity: int, cg: Any) -> None:
         """方法 gainItem"""
@@ -158,7 +158,7 @@ class InstanceHolder:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def gainItem(self, item: Any, quantity: int, cg: Any) -> None:
         """方法 gainItem"""

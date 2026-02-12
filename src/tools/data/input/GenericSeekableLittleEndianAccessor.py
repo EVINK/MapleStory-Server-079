@@ -25,7 +25,7 @@ class GenericSeekableLittleEndianAccessor(GenericLittleEndianAccessor, SeekableL
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def skip(self, num: int) -> None:
         """方法 skip"""

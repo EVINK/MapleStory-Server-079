@@ -33,11 +33,11 @@ class MapleQuestRequirementType(Enum):
 
     def getITEM(self) -> Any:
         """方法 getITEM"""
-        raise NotImplementedError("方法 getITEM 尚未实现")
+        return getattr(self, 'item', None)
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getByType(self, type: int) -> Any:
         """方法 getByType"""

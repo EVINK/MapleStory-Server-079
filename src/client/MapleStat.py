@@ -32,7 +32,7 @@ class MapleStat(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def getByValue(self, value: int) -> Any:
         """方法 getByValue"""
@@ -40,7 +40,7 @@ class MapleStat(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
 
 class Temp(Enum):
@@ -65,5 +65,5 @@ class Temp(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 

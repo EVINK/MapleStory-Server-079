@@ -33,7 +33,8 @@ class MapleEvent(ABC):
 
     def setEvent(self, cserv: Any, auto: bool) -> None:
         """方法 setEvent"""
-        pass
+        self.event = cserv
+        return None
 
     def run(self) -> None:
         """方法 run"""
@@ -53,7 +54,7 @@ class MapleEvent(ABC):
 
     def isRunning(self) -> bool:
         """方法 isRunning"""
-        return False
+        return bool(getattr(self, 'running', False))
 
     def getMap(self, i: int) -> Any:
         """方法 getMap"""
@@ -61,7 +62,7 @@ class MapleEvent(ABC):
 
     def getChannelServer(self) -> Any:
         """方法 getChannelServer"""
-        raise NotImplementedError("方法 getChannelServer 尚未实现")
+        return getattr(self, 'channel_server', None)
 
     def broadcast(self, packet: Any) -> None:
         """方法 broadcast"""

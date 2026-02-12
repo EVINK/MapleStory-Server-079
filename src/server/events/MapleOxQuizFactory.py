@@ -35,7 +35,7 @@ class MapleOxQuizFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getOxEntry(self, questionSet: int, questionId: int) -> Any:
         """方法 getOxEntry"""
@@ -47,7 +47,7 @@ class MapleOxQuizFactory:
 
     def hasInitialized(self) -> bool:
         """方法 hasInitialized"""
-        return False
+        return bool(getattr(self, 'initialized', False))
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -71,23 +71,23 @@ class MapleOxQuizFactory:
 
     def getQuestion(self) -> str:
         """方法 getQuestion"""
-        return ""
+        return getattr(self, 'question', "")
 
     def getAnswerText(self) -> str:
         """方法 getAnswerText"""
-        return ""
+        return getattr(self, 'answer_text', "")
 
     def getAnswer(self) -> int:
         """方法 getAnswer"""
-        return 0
+        return getattr(self, 'answer', 0)
 
     def getQuestionSet(self) -> int:
         """方法 getQuestionSet"""
-        return 0
+        return getattr(self, 'question_set', 0)
 
     def getQuestionId(self) -> int:
         """方法 getQuestionId"""
-        return 0
+        return getattr(self, 'question_id', 0)
 
 
 class MapleOxQuizEntry:
@@ -108,7 +108,7 @@ class MapleOxQuizEntry:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getOxEntry(self, questionSet: int, questionId: int) -> Any:
         """方法 getOxEntry"""
@@ -120,7 +120,7 @@ class MapleOxQuizEntry:
 
     def hasInitialized(self) -> bool:
         """方法 hasInitialized"""
-        return False
+        return bool(getattr(self, 'initialized', False))
 
     def initialize(self) -> None:
         """方法 initialize"""
@@ -144,21 +144,21 @@ class MapleOxQuizEntry:
 
     def getQuestion(self) -> str:
         """方法 getQuestion"""
-        return ""
+        return getattr(self, 'question', "")
 
     def getAnswerText(self) -> str:
         """方法 getAnswerText"""
-        return ""
+        return getattr(self, 'answer_text', "")
 
     def getAnswer(self) -> int:
         """方法 getAnswer"""
-        return 0
+        return getattr(self, 'answer', 0)
 
     def getQuestionSet(self) -> int:
         """方法 getQuestionSet"""
-        return 0
+        return getattr(self, 'question_set', 0)
 
     def getQuestionId(self) -> int:
         """方法 getQuestionId"""
-        return 0
+        return getattr(self, 'question_id', 0)
 

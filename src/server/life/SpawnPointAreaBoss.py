@@ -35,15 +35,15 @@ class SpawnPointAreaBoss(Spawns):
 
     def getMonster(self) -> Any:
         """方法 getMonster"""
-        raise NotImplementedError("方法 getMonster 尚未实现")
+        return getattr(self, 'monster', None)
 
     def getCarnivalTeam(self) -> int:
         """方法 getCarnivalTeam"""
-        return 0
+        return getattr(self, 'carnival_team', 0)
 
     def getCarnivalId(self) -> int:
         """方法 getCarnivalId"""
-        return 0
+        return getattr(self, 'carnival_id', 0)
 
     def shouldSpawn(self) -> bool:
         """方法 shouldSpawn"""
@@ -51,7 +51,7 @@ class SpawnPointAreaBoss(Spawns):
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 
     def spawnMonster(self, map: Any) -> Any:
         """方法 spawnMonster"""
@@ -63,5 +63,5 @@ class SpawnPointAreaBoss(Spawns):
 
     def getMobTime(self) -> int:
         """方法 getMobTime"""
-        return 0
+        return getattr(self, 'mob_time', 0)
 

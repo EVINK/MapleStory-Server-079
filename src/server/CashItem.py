@@ -29,53 +29,53 @@ class CashItem:
 
     def getCategory(self) -> int:
         """方法 getCategory"""
-        return 0
+        return getattr(self, 'category', 0)
 
     def getSubCategory(self) -> int:
         """方法 getSubCategory"""
-        return 0
+        return getattr(self, 'sub_category', 0)
 
     def getParent(self) -> int:
         """方法 getParent"""
-        return 0
+        return getattr(self, 'parent', 0)
 
     def getImage(self) -> str:
         """方法 getImage"""
-        return ""
+        return getattr(self, 'image', "")
 
     def getSN(self) -> int:
         """方法 getSN"""
-        return 0
+        return getattr(self, 'sn', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def getFlag(self) -> int:
         """方法 getFlag"""
-        return 0
+        return getattr(self, 'flag', 0)
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def getDiscountPrice(self) -> int:
         """方法 getDiscountPrice"""
-        return 0
+        return getattr(self, 'discount_price', 0)
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def getExpire(self) -> int:
         """方法 getExpire"""
-        return 0
+        return getattr(self, 'expire', 0)
 
     def getGender(self) -> int:
         """方法 getGender"""
-        return 0
+        return getattr(self, 'gender', 0)
 
     def getLikes(self) -> int:
         """方法 getLikes"""
-        return 0
+        return getattr(self, 'likes', 0)
 

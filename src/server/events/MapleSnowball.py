@@ -73,43 +73,48 @@ class MapleSnowball(MapleEvent):
 
     def getTeam(self) -> int:
         """方法 getTeam"""
-        return 0
+        return getattr(self, 'team', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def setPositionX(self, pos: int) -> None:
         """方法 setPositionX"""
-        pass
+        self.position_x = pos
+        return None
 
     def setStartPoint(self, map: Any) -> None:
         """方法 setStartPoint"""
-        pass
+        self.start_point = map
+        return None
 
     def isInvis(self) -> bool:
         """方法 isInvis"""
-        return False
+        return bool(getattr(self, 'invis', False))
 
     def setInvis(self, i: bool) -> None:
         """方法 setInvis"""
-        pass
+        self.invis = i
+        return None
 
     def isHittable(self) -> bool:
         """方法 isHittable"""
-        return False
+        return bool(getattr(self, 'hittable', False))
 
     def setHittable(self, b: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = b
+        return None
 
     def getSnowmanHP(self) -> int:
         """方法 getSnowmanHP"""
-        return 0
+        return getattr(self, 'snowman_hp', 0)
 
     def setSnowmanHP(self, shp: int) -> None:
         """方法 setSnowmanHP"""
-        pass
+        self.snowman_hp = shp
+        return None
 
     def broadcast(self, map: Any, message: int) -> None:
         """方法 broadcast"""
@@ -117,11 +122,11 @@ class MapleSnowball(MapleEvent):
 
     def getLeftX(self) -> int:
         """方法 getLeftX"""
-        return 0
+        return getattr(self, 'left_x', 0)
 
     def getRightX(self) -> int:
         """方法 getRightX"""
-        return 0
+        return getattr(self, 'right_x', 0)
 
 
 class MapleSnowballs:
@@ -177,43 +182,48 @@ class MapleSnowballs:
 
     def getTeam(self) -> int:
         """方法 getTeam"""
-        return 0
+        return getattr(self, 'team', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def setPositionX(self, pos: int) -> None:
         """方法 setPositionX"""
-        pass
+        self.position_x = pos
+        return None
 
     def setStartPoint(self, map: Any) -> None:
         """方法 setStartPoint"""
-        pass
+        self.start_point = map
+        return None
 
     def isInvis(self) -> bool:
         """方法 isInvis"""
-        return False
+        return bool(getattr(self, 'invis', False))
 
     def setInvis(self, i: bool) -> None:
         """方法 setInvis"""
-        pass
+        self.invis = i
+        return None
 
     def isHittable(self) -> bool:
         """方法 isHittable"""
-        return False
+        return bool(getattr(self, 'hittable', False))
 
     def setHittable(self, b: bool) -> None:
         """方法 setHittable"""
-        pass
+        self.hittable = b
+        return None
 
     def getSnowmanHP(self) -> int:
         """方法 getSnowmanHP"""
-        return 0
+        return getattr(self, 'snowman_hp', 0)
 
     def setSnowmanHP(self, shp: int) -> None:
         """方法 setSnowmanHP"""
-        pass
+        self.snowman_hp = shp
+        return None
 
     def broadcast(self, map: Any, message: int) -> None:
         """方法 broadcast"""
@@ -221,9 +231,9 @@ class MapleSnowballs:
 
     def getLeftX(self) -> int:
         """方法 getLeftX"""
-        return 0
+        return getattr(self, 'left_x', 0)
 
     def getRightX(self) -> int:
         """方法 getRightX"""
-        return 0
+        return getattr(self, 'right_x', 0)
 

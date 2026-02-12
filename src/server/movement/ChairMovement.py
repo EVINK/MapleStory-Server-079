@@ -23,11 +23,12 @@ class ChairMovement(AbstractLifeMovement):
 
     def getUnk(self) -> int:
         """方法 getUnk"""
-        return 0
+        return getattr(self, 'unk', 0)
 
     def setUnk(self, unk: int) -> None:
         """方法 setUnk"""
-        pass
+        self.unk = unk
+        return None
 
     def serialize(self, lew: Any) -> None:
         """方法 serialize"""

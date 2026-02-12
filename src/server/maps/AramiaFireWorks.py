@@ -40,7 +40,7 @@ class AramiaFireWorks:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def giveKegs(self, c: Any, kegs: int) -> None:
         """方法 giveKegs"""
@@ -52,7 +52,7 @@ class AramiaFireWorks:
 
     def getKegsPercentage(self) -> int:
         """方法 getKegsPercentage"""
-        return 0
+        return getattr(self, 'kegs_percentage', 0)
 
     def broadcastEvent(self, c: Any) -> None:
         """方法 broadcastEvent"""
@@ -80,7 +80,7 @@ class AramiaFireWorks:
 
     def getSunsPercentage(self) -> int:
         """方法 getSunsPercentage"""
-        return 0
+        return getattr(self, 'suns_percentage', 0)
 
     def broadcastSun(self, c: Any) -> None:
         """方法 broadcastSun"""
@@ -108,7 +108,7 @@ class AramiaFireWorks:
 
     def getDecsPercentage(self) -> int:
         """方法 getDecsPercentage"""
-        return 0
+        return getattr(self, 'decs_percentage', 0)
 
     def broadcastDec(self, c: Any) -> None:
         """方法 broadcastDec"""

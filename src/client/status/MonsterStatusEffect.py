@@ -30,35 +30,38 @@ class MonsterStatusEffect:
 
     def getStati(self) -> Any:
         """方法 getStati"""
-        raise NotImplementedError("方法 getStati 尚未实现")
+        return getattr(self, 'stati', None)
 
     def getX(self) -> int:
         """方法 getX"""
-        return 0
+        return getattr(self, 'x', 0)
 
     def setValue(self, status: Any, newVal: int) -> None:
         """方法 setValue"""
-        pass
+        self.value = status
+        return None
 
     def getSkill(self) -> int:
         """方法 getSkill"""
-        return 0
+        return getattr(self, 'skill', 0)
 
     def getMobSkill(self) -> Any:
         """方法 getMobSkill"""
-        raise NotImplementedError("方法 getMobSkill 尚未实现")
+        return getattr(self, 'mob_skill', None)
 
     def isMonsterSkill(self) -> bool:
         """方法 isMonsterSkill"""
-        return False
+        return bool(getattr(self, 'monster_skill', False))
 
     def setCancelTask(self, cancelTask: Any) -> None:
         """方法 setCancelTask"""
-        pass
+        self.cancel_task = cancelTask
+        return None
 
     def setPoisonSchedule(self, poisonSchedule: Any) -> None:
         """方法 setPoisonSchedule"""
-        pass
+        self.poison_schedule = poisonSchedule
+        return None
 
     def cancelTask(self) -> None:
         """方法 cancelTask"""
@@ -70,5 +73,5 @@ class MonsterStatusEffect:
 
     def isReflect(self) -> bool:
         """方法 isReflect"""
-        return False
+        return bool(getattr(self, 'reflect', False))
 

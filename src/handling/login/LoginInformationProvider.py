@@ -27,7 +27,7 @@ class LoginInformationProvider:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def isForbiddenName(self, in: str) -> bool:
         """方法 isForbiddenName"""

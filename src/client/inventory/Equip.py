@@ -58,197 +58,219 @@ class Equip(Item, IEquip):
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getUpgradeSlots(self) -> int:
         """方法 getUpgradeSlots"""
-        return 0
+        return getattr(self, 'upgrade_slots', 0)
 
     def getStr(self) -> int:
         """方法 getStr"""
-        return 0
+        return getattr(self, 'str', 0)
 
     def getDex(self) -> int:
         """方法 getDex"""
-        return 0
+        return getattr(self, 'dex', 0)
 
     def getInt(self) -> int:
         """方法 getInt"""
-        return 0
+        return getattr(self, 'int', 0)
 
     def getLuk(self) -> int:
         """方法 getLuk"""
-        return 0
+        return getattr(self, 'luk', 0)
 
     def getHp(self) -> int:
         """方法 getHp"""
-        return 0
+        return getattr(self, 'hp', 0)
 
     def getMp(self) -> int:
         """方法 getMp"""
-        return 0
+        return getattr(self, 'mp', 0)
 
     def getWatk(self) -> int:
         """方法 getWatk"""
-        return 0
+        return getattr(self, 'watk', 0)
 
     def getMatk(self) -> int:
         """方法 getMatk"""
-        return 0
+        return getattr(self, 'matk', 0)
 
     def getWdef(self) -> int:
         """方法 getWdef"""
-        return 0
+        return getattr(self, 'wdef', 0)
 
     def getMdef(self) -> int:
         """方法 getMdef"""
-        return 0
+        return getattr(self, 'mdef', 0)
 
     def getAcc(self) -> int:
         """方法 getAcc"""
-        return 0
+        return getattr(self, 'acc', 0)
 
     def getAvoid(self) -> int:
         """方法 getAvoid"""
-        return 0
+        return getattr(self, 'avoid', 0)
 
     def getHands(self) -> int:
         """方法 getHands"""
-        return 0
+        return getattr(self, 'hands', 0)
 
     def getSpeed(self) -> int:
         """方法 getSpeed"""
-        return 0
+        return getattr(self, 'speed', 0)
 
     def getJump(self) -> int:
         """方法 getJump"""
-        return 0
+        return getattr(self, 'jump', 0)
 
     def setStr(self, str: int) -> None:
         """方法 setStr"""
-        pass
+        self.str = str
+        return None
 
     def setDex(self, dex: int) -> None:
         """方法 setDex"""
-        pass
+        self.dex = dex
+        return None
 
     def setInt(self, _int: int) -> None:
         """方法 setInt"""
-        pass
+        self.int = _int
+        return None
 
     def setLuk(self, luk: int) -> None:
         """方法 setLuk"""
-        pass
+        self.luk = luk
+        return None
 
     def setHp(self, hp: int) -> None:
         """方法 setHp"""
-        pass
+        self.hp = hp
+        return None
 
     def setMp(self, mp: int) -> None:
         """方法 setMp"""
-        pass
+        self.mp = mp
+        return None
 
     def setWatk(self, watk: int) -> None:
         """方法 setWatk"""
-        pass
+        self.watk = watk
+        return None
 
     def setMatk(self, matk: int) -> None:
         """方法 setMatk"""
-        pass
+        self.matk = matk
+        return None
 
     def setWdef(self, wdef: int) -> None:
         """方法 setWdef"""
-        pass
+        self.wdef = wdef
+        return None
 
     def setMdef(self, mdef: int) -> None:
         """方法 setMdef"""
-        pass
+        self.mdef = mdef
+        return None
 
     def setAcc(self, acc: int) -> None:
         """方法 setAcc"""
-        pass
+        self.acc = acc
+        return None
 
     def setAvoid(self, avoid: int) -> None:
         """方法 setAvoid"""
-        pass
+        self.avoid = avoid
+        return None
 
     def setHands(self, hands: int) -> None:
         """方法 setHands"""
-        pass
+        self.hands = hands
+        return None
 
     def setSpeed(self, speed: int) -> None:
         """方法 setSpeed"""
-        pass
+        self.speed = speed
+        return None
 
     def setJump(self, jump: int) -> None:
         """方法 setJump"""
-        pass
+        self.jump = jump
+        return None
 
     def setUpgradeSlots(self, upgradeSlots: int) -> None:
         """方法 setUpgradeSlots"""
-        pass
+        self.upgrade_slots = upgradeSlots
+        return None
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def setLevel(self, level: int) -> None:
         """方法 setLevel"""
-        pass
+        self.level = level
+        return None
 
     def getViciousHammer(self) -> int:
         """方法 getViciousHammer"""
-        return 0
+        return getattr(self, 'vicious_hammer', 0)
 
     def setViciousHammer(self, ham: int) -> None:
         """方法 setViciousHammer"""
-        pass
+        self.vicious_hammer = ham
+        return None
 
     def getItemEXP(self) -> int:
         """方法 getItemEXP"""
-        return 0
+        return getattr(self, 'item_exp', 0)
 
     def setItemEXP(self, itemEXP: int) -> None:
         """方法 setItemEXP"""
-        pass
+        self.item_exp = itemEXP
+        return None
 
     def getEquipExp(self) -> int:
         """方法 getEquipExp"""
-        return 0
+        return getattr(self, 'equip_exp', 0)
 
     def getEquipExpForLevel(self) -> int:
         """方法 getEquipExpForLevel"""
-        return 0
+        return getattr(self, 'equip_exp_for_level', 0)
 
     def getExpPercentage(self) -> int:
         """方法 getExpPercentage"""
-        return 0
+        return getattr(self, 'exp_percentage', 0)
 
     def getEquipLevels(self) -> int:
         """方法 getEquipLevels"""
-        return 0
+        return getattr(self, 'equip_levels', 0)
 
     def getBaseLevel(self) -> int:
         """方法 getBaseLevel"""
-        return 0
+        return getattr(self, 'base_level', 0)
 
     def setQuantity(self, quantity: int) -> None:
         """方法 setQuantity"""
-        pass
+        self.quantity = quantity
+        return None
 
     def getDurability(self) -> int:
         """方法 getDurability"""
-        return 0
+        return getattr(self, 'durability', 0)
 
     def setDurability(self, dur: int) -> None:
         """方法 setDurability"""
-        pass
+        self.durability = dur
+        return None
 
     def getEnhance(self) -> int:
         """方法 getEnhance"""
-        return 0
+        return getattr(self, 'enhance', 0)
 
     def setEnhance(self, en: int) -> None:
         """方法 setEnhance"""
-        pass
+        self.enhance = en
+        return None
 

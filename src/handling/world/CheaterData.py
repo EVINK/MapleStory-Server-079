@@ -24,11 +24,11 @@ class CheaterData:
 
     def getInfo(self) -> str:
         """方法 getInfo"""
-        return ""
+        return getattr(self, 'info', "")
 
     def getPoints(self) -> int:
         """方法 getPoints"""
-        return 0
+        return getattr(self, 'points', 0)
 
     def compareTo(self, o: Any) -> int:
         """方法 compareTo"""
@@ -36,5 +36,5 @@ class CheaterData:
 
     def equals(self, oth: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is oth or getattr(self, '__eq__', lambda o: False)(oth)
 

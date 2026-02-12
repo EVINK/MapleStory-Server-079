@@ -43,15 +43,16 @@ class Skill(ISkill):
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getEffect(self, level: int) -> Any:
         """方法 getEffect"""
@@ -59,31 +60,31 @@ class Skill(ISkill):
 
     def getAction(self) -> bool:
         """方法 getAction"""
-        return False
+        return getattr(self, 'action', False)
 
     def isChargeSkill(self) -> bool:
         """方法 isChargeSkill"""
-        return False
+        return bool(getattr(self, 'charge_skill', False))
 
     def isInvisible(self) -> bool:
         """方法 isInvisible"""
-        return False
+        return bool(getattr(self, 'invisible', False))
 
     def hasRequiredSkill(self) -> bool:
         """方法 hasRequiredSkill"""
-        return False
+        return bool(getattr(self, 'required_skill', False))
 
     def getRequiredSkillLevel(self) -> int:
         """方法 getRequiredSkillLevel"""
-        return 0
+        return getattr(self, 'required_skill_level', 0)
 
     def getRequiredSkillId(self) -> int:
         """方法 getRequiredSkillId"""
-        return 0
+        return getattr(self, 'required_skill_id', 0)
 
     def getMaxLevel(self) -> int:
         """方法 getMaxLevel"""
-        return 0
+        return getattr(self, 'max_level', 0)
 
     def canBeLearnedBy(self, job: int) -> bool:
         """方法 canBeLearnedBy"""
@@ -91,25 +92,25 @@ class Skill(ISkill):
 
     def isTimeLimited(self) -> bool:
         """方法 isTimeLimited"""
-        return False
+        return bool(getattr(self, 'time_limited', False))
 
     def isFourthJob(self) -> bool:
         """方法 isFourthJob"""
-        return False
+        return bool(getattr(self, 'fourth_job', False))
 
     def getElement(self) -> Any:
         """方法 getElement"""
-        raise NotImplementedError("方法 getElement 尚未实现")
+        return getattr(self, 'element', None)
 
     def getAnimationTime(self) -> int:
         """方法 getAnimationTime"""
-        return 0
+        return getattr(self, 'animation_time', 0)
 
     def getMasterLevel(self) -> int:
         """方法 getMasterLevel"""
-        return 0
+        return getattr(self, 'master_level', 0)
 
     def isBeginnerSkill(self) -> bool:
         """方法 isBeginnerSkill"""
-        return False
+        return bool(getattr(self, 'beginner_skill', False))
 

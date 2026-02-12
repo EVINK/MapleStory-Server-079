@@ -40,7 +40,7 @@ class DumpQuests:
 
     def isHadError(self) -> bool:
         """方法 isHadError"""
-        return False
+        return bool(getattr(self, 'had_error', False))
 
     def dumpQuests(self) -> None:
         """方法 dumpQuests"""

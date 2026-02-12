@@ -51,7 +51,7 @@ class GuildHandler:
 
     def equals(self, other: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is other or getattr(self, '__eq__', lambda o: False)(other)
 
 
 class Invited:
@@ -85,5 +85,5 @@ class Invited:
 
     def equals(self, other: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is other or getattr(self, '__eq__', lambda o: False)(other)
 

@@ -28,73 +28,82 @@ class AuctionItem1:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setId(self, id: int) -> None:
         """方法 setId"""
-        pass
+        self.id = id
+        return None
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def setItem(self, item: Any) -> None:
         """方法 setItem"""
-        pass
+        self.item = item
+        return None
 
     def getPrice(self) -> int:
         """方法 getPrice"""
-        return 0
+        return getattr(self, 'price', 0)
 
     def setPrice(self, price: int) -> None:
         """方法 setPrice"""
-        pass
+        self.price = price
+        return None
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def setQuantity(self, quantity: int) -> None:
         """方法 setQuantity"""
-        pass
+        self.quantity = quantity
+        return None
 
     def getAuctionState(self) -> Any:
         """方法 getAuctionState"""
-        raise NotImplementedError("方法 getAuctionState 尚未实现")
+        return getattr(self, 'auction_state', None)
 
     def setAuctionState(self, AuctionState1: Any) -> None:
         """方法 setAuctionState"""
-        pass
+        self.auction_state = AuctionState1
+        return None
 
     def getCharacterid(self) -> int:
         """方法 getCharacterid"""
-        return 0
+        return getattr(self, 'characterid', 0)
 
     def setCharacterid(self, characterid: int) -> None:
         """方法 setCharacterid"""
-        pass
+        self.characterid = characterid
+        return None
 
     def getBuyer(self) -> int:
         """方法 getBuyer"""
-        return 0
+        return getattr(self, 'buyer', 0)
 
     def setBuyer(self, buyer: int) -> None:
         """方法 setBuyer"""
-        pass
+        self.buyer = buyer
+        return None
 
     def getCharacterName(self) -> str:
         """方法 getCharacterName"""
-        return ""
+        return getattr(self, 'character_name', "")
 
     def setCharacterName(self, characterName: str) -> None:
         """方法 setCharacterName"""
-        pass
+        self.character_name = characterName
+        return None
 
     def getBuyerName(self) -> str:
         """方法 getBuyerName"""
-        return ""
+        return getattr(self, 'buyer_name', "")
 
     def setBuyerName(self, buyerName: str) -> None:
         """方法 setBuyerName"""
-        pass
+        self.buyer_name = buyerName
+        return None
 

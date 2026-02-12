@@ -24,7 +24,7 @@ class ByteArrayByteStream(SeekableInputStreamBytestream):
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def seek(self, offset: int) -> None:
         """方法 seek"""
@@ -32,7 +32,7 @@ class ByteArrayByteStream(SeekableInputStreamBytestream):
 
     def getBytesRead(self) -> int:
         """方法 getBytesRead"""
-        return 0
+        return getattr(self, 'bytes_read', 0)
 
     def readByte(self) -> int:
         """方法 readByte"""

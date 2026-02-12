@@ -43,11 +43,11 @@ class ArrayMap(AbstractMap):
 
     def getKey(self) -> Any:
         """方法 getKey"""
-        raise NotImplementedError("方法 getKey 尚未实现")
+        return getattr(self, 'key', None)
 
     def getValue(self) -> Any:
         """方法 getValue"""
-        raise NotImplementedError("方法 getValue 尚未实现")
+        return getattr(self, 'value', None)
 
     def setValue(self, newValue: Any) -> Any:
         """方法 setValue"""
@@ -55,11 +55,11 @@ class ArrayMap(AbstractMap):
 
     def equals(self, o: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is o or getattr(self, '__eq__', lambda o: False)(o)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def toString(self) -> str:
         """方法 toString"""
@@ -97,11 +97,11 @@ class Entry(Map.Entry, V>):
 
     def getKey(self) -> Any:
         """方法 getKey"""
-        raise NotImplementedError("方法 getKey 尚未实现")
+        return getattr(self, 'key', None)
 
     def getValue(self) -> Any:
         """方法 getValue"""
-        raise NotImplementedError("方法 getValue 尚未实现")
+        return getattr(self, 'value', None)
 
     def setValue(self, newValue: Any) -> Any:
         """方法 setValue"""
@@ -109,11 +109,11 @@ class Entry(Map.Entry, V>):
 
     def equals(self, o: Any) -> bool:
         """方法 equals"""
-        return False
+        return self is o or getattr(self, '__eq__', lambda o: False)(o)
 
     def hashCode(self) -> int:
         """方法 hashCode"""
-        return 0
+        return hash(self)
 
     def toString(self) -> str:
         """方法 toString"""

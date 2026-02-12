@@ -64,19 +64,19 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getMapId(self) -> int:
         """方法 getMapId"""
-        return 0
+        return getattr(self, 'map_id', 0)
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def getMaxSize(self) -> int:
         """方法 getMaxSize"""
-        return 0
+        return getattr(self, 'max_size', 0)
 
     def getSize(self) -> int:
         """方法 getSize"""
-        return 0
+        return getattr(self, 'size', 0)
 
     def broadcastToVisitors(self, packet: Any) -> None:
         """方法 broadcastToVisitors"""
@@ -92,19 +92,21 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def setMeso(self, meso: int) -> None:
         """方法 setMeso"""
-        pass
+        self.meso = meso
+        return None
 
     def setOpen(self, open: bool) -> None:
         """方法 setOpen"""
-        pass
+        self.open = open
+        return None
 
     def isOpen(self) -> bool:
         """方法 isOpen"""
-        return False
+        return bool(getattr(self, 'open', False))
 
     def saveItems(self) -> bool:
         """方法 saveItems"""
@@ -136,27 +138,27 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getOwnerName(self) -> str:
         """方法 getOwnerName"""
-        return ""
+        return getattr(self, 'owner_name', "")
 
     def getOwnerId(self) -> int:
         """方法 getOwnerId"""
-        return 0
+        return getattr(self, 'owner_id', 0)
 
     def getOwnerAccId(self) -> int:
         """方法 getOwnerAccId"""
-        return 0
+        return getattr(self, 'owner_acc_id', 0)
 
     def getDescription(self) -> str:
         """方法 getDescription"""
-        return ""
+        return getattr(self, 'description', "")
 
     def getVisitors(self) -> list:
         """方法 getVisitors"""
-        return []
+        return getattr(self, 'visitors', [])
 
     def getItems(self) -> list:
         """方法 getItems"""
-        return []
+        return getattr(self, 'items', [])
 
     def addItem(self, item: Any) -> None:
         """方法 addItem"""
@@ -172,11 +174,11 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getFreeSlot(self) -> int:
         """方法 getFreeSlot"""
-        return 0
+        return getattr(self, 'free_slot', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def isOwner(self, chr: Any) -> bool:
         """方法 isOwner"""
@@ -184,7 +186,7 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getPassword(self) -> str:
         """方法 getPassword"""
-        return ""
+        return getattr(self, 'password', "")
 
     def sendDestroyData(self, client: Any) -> None:
         """方法 sendDestroyData"""
@@ -196,35 +198,36 @@ class AbstractPlayerStore(AbstractMapleMapObject, IMaplePlayerShop, ABC):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getMCOwner(self) -> Any:
         """方法 getMCOwner"""
-        raise NotImplementedError("方法 getMCOwner 尚未实现")
+        return getattr(self, 'mc_owner', None)
 
     def getMCOwnerWorld(self) -> Any:
         """方法 getMCOwnerWorld"""
-        raise NotImplementedError("方法 getMCOwnerWorld 尚未实现")
+        return getattr(self, 'mc_owner_world', None)
 
     def getMap(self) -> Any:
         """方法 getMap"""
-        raise NotImplementedError("方法 getMap 尚未实现")
+        return getattr(self, 'map', None)
 
     def getGameType(self) -> int:
         """方法 getGameType"""
-        return 0
+        return getattr(self, 'game_type', 0)
 
     def isAvailable(self) -> bool:
         """方法 isAvailable"""
-        return False
+        return bool(getattr(self, 'available', False))
 
     def setAvailable(self, b: bool) -> None:
         """方法 setAvailable"""
-        pass
+        self.available = b
+        return None
 
     def getBoughtItems(self) -> list:
         """方法 getBoughtItems"""
-        return []
+        return getattr(self, 'bought_items', [])
 
 
 class BoughtItem(ABC):
@@ -256,19 +259,19 @@ class BoughtItem(ABC):
 
     def getMapId(self) -> int:
         """方法 getMapId"""
-        return 0
+        return getattr(self, 'map_id', 0)
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def getMaxSize(self) -> int:
         """方法 getMaxSize"""
-        return 0
+        return getattr(self, 'max_size', 0)
 
     def getSize(self) -> int:
         """方法 getSize"""
-        return 0
+        return getattr(self, 'size', 0)
 
     def broadcastToVisitors(self, packet: Any) -> None:
         """方法 broadcastToVisitors"""
@@ -284,19 +287,21 @@ class BoughtItem(ABC):
 
     def getMeso(self) -> int:
         """方法 getMeso"""
-        return 0
+        return getattr(self, 'meso', 0)
 
     def setMeso(self, meso: int) -> None:
         """方法 setMeso"""
-        pass
+        self.meso = meso
+        return None
 
     def setOpen(self, open: bool) -> None:
         """方法 setOpen"""
-        pass
+        self.open = open
+        return None
 
     def isOpen(self) -> bool:
         """方法 isOpen"""
-        return False
+        return bool(getattr(self, 'open', False))
 
     def saveItems(self) -> bool:
         """方法 saveItems"""
@@ -328,27 +333,27 @@ class BoughtItem(ABC):
 
     def getOwnerName(self) -> str:
         """方法 getOwnerName"""
-        return ""
+        return getattr(self, 'owner_name', "")
 
     def getOwnerId(self) -> int:
         """方法 getOwnerId"""
-        return 0
+        return getattr(self, 'owner_id', 0)
 
     def getOwnerAccId(self) -> int:
         """方法 getOwnerAccId"""
-        return 0
+        return getattr(self, 'owner_acc_id', 0)
 
     def getDescription(self) -> str:
         """方法 getDescription"""
-        return ""
+        return getattr(self, 'description', "")
 
     def getVisitors(self) -> list:
         """方法 getVisitors"""
-        return []
+        return getattr(self, 'visitors', [])
 
     def getItems(self) -> list:
         """方法 getItems"""
-        return []
+        return getattr(self, 'items', [])
 
     def addItem(self, item: Any) -> None:
         """方法 addItem"""
@@ -364,11 +369,11 @@ class BoughtItem(ABC):
 
     def getFreeSlot(self) -> int:
         """方法 getFreeSlot"""
-        return 0
+        return getattr(self, 'free_slot', 0)
 
     def getItemId(self) -> int:
         """方法 getItemId"""
-        return 0
+        return getattr(self, 'item_id', 0)
 
     def isOwner(self, chr: Any) -> bool:
         """方法 isOwner"""
@@ -376,7 +381,7 @@ class BoughtItem(ABC):
 
     def getPassword(self) -> str:
         """方法 getPassword"""
-        return ""
+        return getattr(self, 'password', "")
 
     def sendDestroyData(self, client: Any) -> None:
         """方法 sendDestroyData"""
@@ -388,33 +393,34 @@ class BoughtItem(ABC):
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def getMCOwner(self) -> Any:
         """方法 getMCOwner"""
-        raise NotImplementedError("方法 getMCOwner 尚未实现")
+        return getattr(self, 'mc_owner', None)
 
     def getMCOwnerWorld(self) -> Any:
         """方法 getMCOwnerWorld"""
-        raise NotImplementedError("方法 getMCOwnerWorld 尚未实现")
+        return getattr(self, 'mc_owner_world', None)
 
     def getMap(self) -> Any:
         """方法 getMap"""
-        raise NotImplementedError("方法 getMap 尚未实现")
+        return getattr(self, 'map', None)
 
     def getGameType(self) -> int:
         """方法 getGameType"""
-        return 0
+        return getattr(self, 'game_type', 0)
 
     def isAvailable(self) -> bool:
         """方法 isAvailable"""
-        return False
+        return bool(getattr(self, 'available', False))
 
     def setAvailable(self, b: bool) -> None:
         """方法 setAvailable"""
-        pass
+        self.available = b
+        return None
 
     def getBoughtItems(self) -> list:
         """方法 getBoughtItems"""
-        return []
+        return getattr(self, 'bought_items', [])
 

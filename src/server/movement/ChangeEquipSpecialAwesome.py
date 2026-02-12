@@ -27,5 +27,5 @@ class ChangeEquipSpecialAwesome(LifeMovementFragment):
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 

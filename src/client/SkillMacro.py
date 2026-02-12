@@ -27,57 +27,64 @@ class SkillMacro:
 
     def getMacroId(self) -> int:
         """方法 getMacroId"""
-        return 0
+        return getattr(self, 'macro_id', 0)
 
     def getSkill1(self) -> int:
         """方法 getSkill1"""
-        return 0
+        return getattr(self, 'skill1', 0)
 
     def getSkill2(self) -> int:
         """方法 getSkill2"""
-        return 0
+        return getattr(self, 'skill2', 0)
 
     def getSkill3(self) -> int:
         """方法 getSkill3"""
-        return 0
+        return getattr(self, 'skill3', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getShout(self) -> int:
         """方法 getShout"""
-        return 0
+        return getattr(self, 'shout', 0)
 
     def getPosition(self) -> int:
         """方法 getPosition"""
-        return 0
+        return getattr(self, 'position', 0)
 
     def setMacroId(self, macroId: int) -> None:
         """方法 setMacroId"""
-        pass
+        self.macro_id = macroId
+        return None
 
     def setSkill1(self, skill1: int) -> None:
         """方法 setSkill1"""
-        pass
+        self.skill1 = skill1
+        return None
 
     def setSkill2(self, skill2: int) -> None:
         """方法 setSkill2"""
-        pass
+        self.skill2 = skill2
+        return None
 
     def setSkill3(self, skill3: int) -> None:
         """方法 setSkill3"""
-        pass
+        self.skill3 = skill3
+        return None
 
     def setName(self, name: str) -> None:
         """方法 setName"""
-        pass
+        self.name = name
+        return None
 
     def setShout(self, shout: int) -> None:
         """方法 setShout"""
-        pass
+        self.shout = shout
+        return None
 
     def setPosition(self, position: int) -> None:
         """方法 setPosition"""
-        pass
+        self.position = position
+        return None
 

@@ -33,11 +33,11 @@ class MapleInventoryIdentifier:
 
     def getInstance(self) -> int:
         """方法 getInstance"""
-        return 0
+        return getattr(self, 'instance', 0)
 
     def getNextUniqueId(self) -> int:
         """方法 getNextUniqueId"""
-        return 0
+        return getattr(self, 'next_unique_id', 0)
 
     def grabRunningUID(self) -> int:
         """方法 grabRunningUID"""
@@ -49,7 +49,8 @@ class MapleInventoryIdentifier:
 
     def setRunningUID(self, rUID: int) -> None:
         """方法 setRunningUID"""
-        pass
+        self.running_uid = rUID
+        return None
 
     def initUID(self) -> int:
         """方法 initUID"""

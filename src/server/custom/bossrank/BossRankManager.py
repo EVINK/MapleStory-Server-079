@@ -29,7 +29,7 @@ class BossRankManager:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getInfoMap(self, cid: int) -> dict:
         """方法 getInfoMap"""
@@ -64,7 +64,7 @@ class InstanceHolder:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getInfoMap(self, cid: int) -> dict:
         """方法 getInfoMap"""

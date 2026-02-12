@@ -76,11 +76,11 @@ class MapleQuest:
 
     def getSkillID(self) -> int:
         """方法 getSkillID"""
-        return 0
+        return getattr(self, 'skill_id', 0)
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def canStart(self, c: Any, npcid: int) -> bool:
         """方法 canStart"""
@@ -120,11 +120,11 @@ class MapleQuest:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getRelevantMobs(self) -> dict:
         """方法 getRelevantMobs"""
-        return {}
+        return getattr(self, 'relevant_mobs', {})
 
     def checkNPCOnMap(self, player: Any, npcid: int) -> bool:
         """方法 checkNPCOnMap"""
@@ -132,7 +132,7 @@ class MapleQuest:
 
     def getMedalItem(self) -> int:
         """方法 getMedalItem"""
-        return 0
+        return getattr(self, 'medal_item', 0)
 
 
 class MedalQuest(Enum):

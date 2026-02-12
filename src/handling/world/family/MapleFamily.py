@@ -49,7 +49,8 @@ class MapleFamily:
 
     def setOfflineFamilyStatus(self, familyid: int, seniorid: int, junior1: int, junior2: int, currentrep: int, totalrep: int, cid: int) -> None:
         """方法 setOfflineFamilyStatus"""
-        pass
+        self.offline_family_status = familyid
+        return None
 
     def createFamily(self, leaderId: int) -> int:
         """方法 createFamily"""
@@ -61,7 +62,7 @@ class MapleFamily:
 
     def getGens(self) -> int:
         """方法 getGens"""
-        return 0
+        return getattr(self, 'gens', 0)
 
     def resetPedigree(self) -> None:
         """方法 resetPedigree"""
@@ -77,7 +78,7 @@ class MapleFamily:
 
     def isProper(self) -> bool:
         """方法 isProper"""
-        return False
+        return bool(getattr(self, 'proper', False))
 
     def writeToDB(self, bDisband: bool) -> None:
         """方法 writeToDB"""
@@ -85,19 +86,19 @@ class MapleFamily:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getLeaderId(self) -> int:
         """方法 getLeaderId"""
-        return 0
+        return getattr(self, 'leader_id', 0)
 
     def getNotice(self) -> str:
         """方法 getNotice"""
-        return ""
+        return getattr(self, 'notice', "")
 
     def getLeaderName(self) -> str:
         """方法 getLeaderName"""
-        return ""
+        return getattr(self, 'leader_name', "")
 
     def broadcast(self, packet: Any, cids: list) -> None:
         """方法 broadcast"""
@@ -117,7 +118,8 @@ class MapleFamily:
 
     def setOnline(self, cid: int, online: bool, channel: int) -> None:
         """方法 setOnline"""
-        pass
+        self.online = cid
+        return None
 
     def setRep(self, cid: int, addrep: int, oldLevel: int) -> int:
         """方法 setRep"""
@@ -153,7 +155,7 @@ class MapleFamily:
 
     def getMemberSize(self) -> int:
         """方法 getMemberSize"""
-        return 0
+        return getattr(self, 'member_size', 0)
 
     def splitFamily(self, splitId: int, def: Any) -> bool:
         """方法 splitFamily"""
@@ -161,7 +163,8 @@ class MapleFamily:
 
     def setNotice(self, notice: str) -> None:
         """方法 setNotice"""
-        pass
+        self.notice = notice
+        return None
 
 
 class FCOp(Enum):

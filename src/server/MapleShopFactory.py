@@ -21,7 +21,7 @@ class MapleShopFactory:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def clear(self) -> None:
         """方法 clear"""

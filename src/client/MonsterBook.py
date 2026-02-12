@@ -43,11 +43,11 @@ class MonsterBook:
 
     def getCards(self) -> dict:
         """方法 getCards"""
-        return {}
+        return getattr(self, 'cards', {})
 
     def getTotalCards(self) -> int:
         """方法 getTotalCards"""
-        return 0
+        return getattr(self, 'total_cards', 0)
 
     def getLevelByCard(self, cardid: int) -> int:
         """方法 getLevelByCard"""

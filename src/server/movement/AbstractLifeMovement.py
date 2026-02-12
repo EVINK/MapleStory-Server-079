@@ -23,17 +23,17 @@ class AbstractLifeMovement(LifeMovement, ABC):
 
     def getType(self) -> int:
         """方法 getType"""
-        return 0
+        return getattr(self, 'type', 0)
 
     def getDuration(self) -> int:
         """方法 getDuration"""
-        return 0
+        return getattr(self, 'duration', 0)
 
     def getNewstate(self) -> int:
         """方法 getNewstate"""
-        return 0
+        return getattr(self, 'newstate', 0)
 
     def getPosition(self) -> Any:
         """方法 getPosition"""
-        raise NotImplementedError("方法 getPosition 尚未实现")
+        return getattr(self, 'position', None)
 

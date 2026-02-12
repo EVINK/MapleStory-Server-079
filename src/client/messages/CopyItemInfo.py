@@ -20,9 +20,10 @@ class CopyItemInfo:
 
     def isFirst(self) -> bool:
         """方法 isFirst"""
-        return False
+        return bool(getattr(self, 'first', False))
 
     def setFirst(self, f: bool) -> None:
         """方法 setFirst"""
-        pass
+        self.first = f
+        return None
 

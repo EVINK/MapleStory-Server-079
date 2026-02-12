@@ -21,7 +21,8 @@ class GenericLittleEndianWriter(LittleEndianWriter):
 
     def setByteOutputStream(self, bos: Any) -> None:
         """方法 setByteOutputStream"""
-        pass
+        self.byte_output_stream = bos
+        return None
 
     def writeZeroBytes(self, i: int) -> None:
         """方法 writeZeroBytes"""

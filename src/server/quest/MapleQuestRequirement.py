@@ -48,7 +48,7 @@ class MapleQuestRequirement:
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 
     def toString(self) -> str:
         """方法 toString"""

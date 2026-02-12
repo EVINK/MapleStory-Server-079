@@ -23,25 +23,25 @@ class MapleGuildSummary:
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getLogoBG(self) -> int:
         """方法 getLogoBG"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def getLogoBGColor(self) -> int:
         """方法 getLogoBGColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def getAllianceId(self) -> int:
         """方法 getAllianceId"""
-        return 0
+        return getattr(self, 'alliance_id', 0)
 

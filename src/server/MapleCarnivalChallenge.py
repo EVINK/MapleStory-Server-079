@@ -33,9 +33,9 @@ class MapleCarnivalChallenge:
 
     def getChallenger(self) -> Any:
         """方法 getChallenger"""
-        raise NotImplementedError("方法 getChallenger 尚未实现")
+        return getattr(self, 'challenger', None)
 
     def getChallengeInfo(self) -> str:
         """方法 getChallengeInfo"""
-        return ""
+        return getattr(self, 'challenge_info', "")
 

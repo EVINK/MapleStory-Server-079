@@ -35,27 +35,29 @@ class MapleQuestStatus:
 
     def getQuest(self) -> Any:
         """方法 getQuest"""
-        raise NotImplementedError("方法 getQuest 尚未实现")
+        return getattr(self, 'quest', None)
 
     def getStatus(self) -> int:
         """方法 getStatus"""
-        return 0
+        return getattr(self, 'status', 0)
 
     def setStatus(self, status: int) -> None:
         """方法 setStatus"""
-        pass
+        self.status = status
+        return None
 
     def getNpc(self) -> int:
         """方法 getNpc"""
-        return 0
+        return getattr(self, 'npc', 0)
 
     def setNpc(self, npc: int) -> None:
         """方法 setNpc"""
-        pass
+        self.npc = npc
+        return None
 
     def isCustom(self) -> bool:
         """方法 isCustom"""
-        return False
+        return bool(getattr(self, 'custom', False))
 
     def registerMobs(self) -> None:
         """方法 registerMobs"""
@@ -75,11 +77,12 @@ class MapleQuestStatus:
 
     def setMobKills(self, id: int, count: int) -> None:
         """方法 setMobKills"""
-        pass
+        self.mob_kills = id
+        return None
 
     def hasMobKills(self) -> bool:
         """方法 hasMobKills"""
-        return False
+        return bool(getattr(self, 'mob_kills', False))
 
     def getMobKills(self, id: int) -> int:
         """方法 getMobKills"""
@@ -87,29 +90,32 @@ class MapleQuestStatus:
 
     def getMobKills(self) -> dict:
         """方法 getMobKills"""
-        return {}
+        return getattr(self, 'mob_kills', {})
 
     def getCompletionTime(self) -> int:
         """方法 getCompletionTime"""
-        return 0
+        return getattr(self, 'completion_time', 0)
 
     def setCompletionTime(self, completionTime: int) -> None:
         """方法 setCompletionTime"""
-        pass
+        self.completion_time = completionTime
+        return None
 
     def getForfeited(self) -> int:
         """方法 getForfeited"""
-        return 0
+        return getattr(self, 'forfeited', 0)
 
     def setForfeited(self, forfeited: int) -> None:
         """方法 setForfeited"""
-        pass
+        self.forfeited = forfeited
+        return None
 
     def setCustomData(self, customData: str) -> None:
         """方法 setCustomData"""
-        pass
+        self.custom_data = customData
+        return None
 
     def getCustomData(self) -> str:
         """方法 getCustomData"""
-        return ""
+        return getattr(self, 'custom_data', "")
 

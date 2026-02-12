@@ -25,37 +25,40 @@ class MapleDueyActions:
 
     def getSender(self) -> str:
         """方法 getSender"""
-        return ""
+        return getattr(self, 'sender', "")
 
     def setSender(self, name: str) -> None:
         """方法 setSender"""
-        pass
+        self.sender = name
+        return None
 
     def getItem(self) -> Any:
         """方法 getItem"""
-        raise NotImplementedError("方法 getItem 尚未实现")
+        return getattr(self, 'item', None)
 
     def getMesos(self) -> int:
         """方法 getMesos"""
-        return 0
+        return getattr(self, 'mesos', 0)
 
     def setMesos(self, set: int) -> None:
         """方法 setMesos"""
-        pass
+        self.mesos = set
+        return None
 
     def getQuantity(self) -> int:
         """方法 getQuantity"""
-        return 0
+        return getattr(self, 'quantity', 0)
 
     def getPackageId(self) -> int:
         """方法 getPackageId"""
-        return 0
+        return getattr(self, 'package_id', 0)
 
     def setSentTime(self, sentTime: int) -> None:
         """方法 setSentTime"""
-        pass
+        self.sent_time = sentTime
+        return None
 
     def getSentTime(self) -> int:
         """方法 getSentTime"""
-        return 0
+        return getattr(self, 'sent_time', 0)
 

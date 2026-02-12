@@ -37,7 +37,7 @@ class ItemLoader(Enum):
 
     def getValue(self) -> int:
         """方法 getValue"""
-        return 0
+        return getattr(self, 'value', 0)
 
     def loadItems_hm(self, packageid: int, accountid: int) -> dict:
         """方法 loadItems_hm"""

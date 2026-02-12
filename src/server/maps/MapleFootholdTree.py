@@ -60,25 +60,25 @@ class MapleFootholdTree:
 
     def getX1(self) -> int:
         """方法 getX1"""
-        return 0
+        return getattr(self, 'x1', 0)
 
     def getX2(self) -> int:
         """方法 getX2"""
-        return 0
+        return getattr(self, 'x2', 0)
 
     def getY1(self) -> int:
         """方法 getY1"""
-        return 0
+        return getattr(self, 'y1', 0)
 
     def getY2(self) -> int:
         """方法 getY2"""
-        return 0
+        return getattr(self, 'y2', 0)
 
     def getMaxDropX(self) -> int:
         """方法 getMaxDropX"""
-        return 0
+        return getattr(self, 'max_drop_x', 0)
 
     def getMinDropX(self) -> int:
         """方法 getMinDropX"""
-        return 0
+        return getattr(self, 'min_drop_x', 0)
 

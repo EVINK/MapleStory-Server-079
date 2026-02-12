@@ -33,13 +33,13 @@ class MapleDragon(AbstractAnimatedMapleMapObject):
 
     def getOwner(self) -> int:
         """方法 getOwner"""
-        return 0
+        return getattr(self, 'owner', 0)
 
     def getJobId(self) -> int:
         """方法 getJobId"""
-        return 0
+        return getattr(self, 'job_id', 0)
 
     def getType(self) -> Any:
         """方法 getType"""
-        raise NotImplementedError("方法 getType 尚未实现")
+        return getattr(self, 'type', None)
 

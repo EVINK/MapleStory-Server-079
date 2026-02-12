@@ -67,15 +67,15 @@ class World:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -224,7 +224,8 @@ class World:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -252,7 +253,8 @@ class World:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -282,15 +284,15 @@ class Party:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -439,7 +441,8 @@ class Party:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -467,7 +470,8 @@ class Party:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -497,15 +501,15 @@ class Buddy:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -654,7 +658,8 @@ class Buddy:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -682,7 +687,8 @@ class Buddy:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -712,15 +718,15 @@ class Messenger:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -869,7 +875,8 @@ class Messenger:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -897,7 +904,8 @@ class Messenger:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -927,15 +935,15 @@ class Guild:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -1084,7 +1092,8 @@ class Guild:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -1112,7 +1121,8 @@ class Guild:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -1142,15 +1152,15 @@ class Broadcast:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -1299,7 +1309,8 @@ class Broadcast:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -1327,7 +1338,8 @@ class Broadcast:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -1357,15 +1369,15 @@ class Client:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -1514,7 +1526,8 @@ class Client:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -1542,7 +1555,8 @@ class Client:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -1572,15 +1586,15 @@ class Find:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -1729,7 +1743,8 @@ class Find:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -1757,7 +1772,8 @@ class Find:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -1787,15 +1803,15 @@ class Alliance:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -1944,7 +1960,8 @@ class Alliance:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -1972,7 +1989,8 @@ class Alliance:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -2002,15 +2020,15 @@ class Family:
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -2159,7 +2177,8 @@ class Family:
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -2187,7 +2206,8 @@ class Family:
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""
@@ -2218,15 +2238,15 @@ class Respawn(Runnable):
 
     def getStatus(self) -> str:
         """方法 getStatus"""
-        return ""
+        return getattr(self, 'status', "")
 
     def getConnected(self) -> dict:
         """方法 getConnected"""
-        return {}
+        return getattr(self, 'connected', {})
 
     def getCheaters(self) -> list:
         """方法 getCheaters"""
-        return []
+        return getattr(self, 'cheaters', [])
 
     def isConnected(self, charName: str) -> bool:
         """方法 isConnected"""
@@ -2375,7 +2395,8 @@ class Respawn(Runnable):
 
     def setGuildMemberOnline(self, mc: Any, bOnline: bool, channel: int) -> None:
         """方法 setGuildMemberOnline"""
-        pass
+        self.guild_member_online = mc
+        return None
 
     def guildPacket(self, gid: int, message: Any) -> None:
         """方法 guildPacket"""
@@ -2403,7 +2424,8 @@ class Respawn(Runnable):
 
     def setGuildNotice(self, gid: int, notice: str) -> None:
         """方法 setGuildNotice"""
-        pass
+        self.guild_notice = gid
+        return None
 
     def memberLevelJobUpdate(self, mc: Any) -> None:
         """方法 memberLevelJobUpdate"""

@@ -35,7 +35,7 @@ class MaplePlayerShop(AbstractPlayerStore):
 
     def getShopType(self) -> int:
         """方法 getShopType"""
-        return 0
+        return getattr(self, 'shop_type', 0)
 
     def closeShop(self, saveItems: bool, remove: bool) -> None:
         """方法 closeShop"""

@@ -29,7 +29,7 @@ class FamilyPacket:
 
     def getFamilyData(self) -> Any:
         """方法 getFamilyData"""
-        raise NotImplementedError("方法 getFamilyData 尚未实现")
+        return getattr(self, 'family_data', None)
 
     def changeRep(self, r: int) -> Any:
         """方法 changeRep"""

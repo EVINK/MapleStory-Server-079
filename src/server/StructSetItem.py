@@ -36,7 +36,7 @@ class StructSetItem:
 
     def getItems(self) -> dict:
         """方法 getItems"""
-        return {}
+        return getattr(self, 'items', {})
 
 
 class SetItem:
@@ -66,5 +66,5 @@ class SetItem:
 
     def getItems(self) -> dict:
         """方法 getItems"""
-        return {}
+        return getattr(self, 'items', {})
 

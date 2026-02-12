@@ -30,7 +30,7 @@ class PortalScriptManager:
 
     def getInstance(self) -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def getPortalScript(self, c: Any, scriptName: str) -> Any:
         """方法 getPortalScript"""

@@ -73,7 +73,7 @@ class MapleItemInformationProvider:
     @staticmethod
     def getInstance() -> Any:
         """方法 getInstance"""
-        raise NotImplementedError("方法 getInstance 尚未实现")
+        return getattr(self, 'instance', None)
 
     def load(self) -> None:
         """方法 load"""
@@ -85,11 +85,11 @@ class MapleItemInformationProvider:
 
     def getAllPotentialInfo(self) -> dict:
         """方法 getAllPotentialInfo"""
-        return {}
+        return getattr(self, 'all_potential_info', {})
 
     def getAllItems(self) -> list:
         """方法 getAllItems"""
-        return []
+        return getattr(self, 'all_items', [])
 
     def getStringData(self, itemId: int) -> Any:
         """方法 getStringData"""

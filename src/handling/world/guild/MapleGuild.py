@@ -121,11 +121,12 @@ class MapleGuild:
 
     def setOfflineGuildStatus(self, guildid: int, guildrank: int, alliancerank: int, cid: int) -> None:
         """方法 setOfflineGuildStatus"""
-        pass
+        self.offline_guild_status = guildid
+        return None
 
     def isProper(self) -> bool:
         """方法 isProper"""
-        return False
+        return bool(getattr(self, 'proper', False))
 
     def writeGPToDB(self) -> None:
         """方法 writeGPToDB"""
@@ -141,11 +142,11 @@ class MapleGuild:
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def getLeaderId(self) -> int:
         """方法 getLeaderId"""
-        return 0
+        return getattr(self, 'leader_id', 0)
 
     def getLeader(self, c: Any) -> Any:
         """方法 getLeader"""
@@ -153,55 +154,59 @@ class MapleGuild:
 
     def getGP(self) -> int:
         """方法 getGP"""
-        return 0
+        return getattr(self, 'gp', 0)
 
     def getLogo(self) -> int:
         """方法 getLogo"""
-        return 0
+        return getattr(self, 'logo', 0)
 
     def setLogo(self, l: int) -> None:
         """方法 setLogo"""
-        pass
+        self.logo = l
+        return None
 
     def getLogoColor(self) -> int:
         """方法 getLogoColor"""
-        return 0
+        return getattr(self, 'logo_color', 0)
 
     def setLogoColor(self, c: int) -> None:
         """方法 setLogoColor"""
-        pass
+        self.logo_color = c
+        return None
 
     def getLogoBG(self) -> int:
         """方法 getLogoBG"""
-        return 0
+        return getattr(self, 'logo_bg', 0)
 
     def setLogoBG(self, bg: int) -> None:
         """方法 setLogoBG"""
-        pass
+        self.logo_bg = bg
+        return None
 
     def getLogoBGColor(self) -> int:
         """方法 getLogoBGColor"""
-        return 0
+        return getattr(self, 'logo_bg_color', 0)
 
     def setLogoBGColor(self, c: int) -> None:
         """方法 setLogoBGColor"""
-        pass
+        self.logo_bg_color = c
+        return None
 
     def getNotice(self) -> str:
         """方法 getNotice"""
-        return ""
+        return getattr(self, 'notice', "")
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def getCapacity(self) -> int:
         """方法 getCapacity"""
-        return 0
+        return getattr(self, 'capacity', 0)
 
     def getSignature(self) -> int:
         """方法 getSignature"""
-        return 0
+        return getattr(self, 'signature', 0)
 
     def broadcast(self, packet: Any) -> None:
         """方法 broadcast"""
@@ -221,7 +226,8 @@ class MapleGuild:
 
     def setOnline(self, cid: int, online: bool, channel: int) -> None:
         """方法 setOnline"""
-        pass
+        self.online = cid
+        return None
 
     def guildChat(self, name: str, cid: int, msg: str) -> None:
         """方法 guildChat"""
@@ -237,19 +243,21 @@ class MapleGuild:
 
     def getAllianceId(self) -> int:
         """方法 getAllianceId"""
-        return 0
+        return getattr(self, 'alliance_id', 0)
 
     def getInvitedId(self) -> int:
         """方法 getInvitedId"""
-        return 0
+        return getattr(self, 'invited_id', 0)
 
     def setInvitedId(self, iid: int) -> None:
         """方法 setInvitedId"""
-        pass
+        self.invited_id = iid
+        return None
 
     def setAllianceId(self, a: int) -> None:
         """方法 setAllianceId"""
-        pass
+        self.alliance_id = a
+        return None
 
     def addGuildMember(self, mgc: Any) -> int:
         """方法 addGuildMember"""

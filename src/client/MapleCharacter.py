@@ -202,11 +202,13 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def setAriantRoomLeader(self, room: int, charname: str) -> None:
         """方法 setAriantRoomLeader"""
-        pass
+        self.ariant_room_leader = room
+        return None
 
     def setAriantSlotRoom(self, room: int, slot: int) -> None:
         """方法 setAriantSlotRoom"""
-        pass
+        self.ariant_slot_room = room
+        return None
 
     def run(self) -> None:
         """方法 run"""
@@ -222,7 +224,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def getStat(self) -> Any:
         """方法 getStat"""
-        raise NotImplementedError("方法 getStat 尚未实现")
+        return getattr(self, 'stat', None)
 
     def CRand(self) -> Any:
         """方法 CRand"""
@@ -242,7 +244,7 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def getNumQuest(self) -> int:
         """方法 getNumQuest"""
-        return 0
+        return getattr(self, 'num_quest', 0)
 
     def getQuestStatus(self, quest: int) -> int:
         """方法 getQuestStatus"""
@@ -254,15 +256,18 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def setQuestAdd(self, quest: int) -> None:
         """方法 setQuestAdd"""
-        pass
+        self.quest_add = quest
+        return None
 
     def setQuestAddZ(self, quest: Any, status: int, customData: str) -> None:
         """方法 setQuestAddZ"""
-        pass
+        self.quest_add_z = quest
+        return None
 
     def setQuestAdd(self, quest: Any, status: int, customData: str) -> None:
         """方法 setQuestAdd"""
-        pass
+        self.quest_add = quest
+        return None
 
     def getQuestNAdd(self, quest: Any) -> Any:
         """方法 getQuestNAdd"""
@@ -286,11 +291,11 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def getInfoQuest_Map(self) -> dict:
         """方法 getInfoQuest_Map"""
-        return {}
+        return getattr(self, 'info_quest__map', {})
 
     def getQuest_Map(self) -> dict:
         """方法 getQuest_Map"""
-        return {}
+        return getattr(self, 'quest__map', {})
 
     def isActiveBuffedValue(self, skillid: int) -> bool:
         """方法 isActiveBuffedValue"""
@@ -322,7 +327,8 @@ class MapleCharacter(AbstractAnimatedMapleMapObject):
 
     def setBuffedValue(self, effect: Any, value: int) -> None:
         """方法 setBuffedValue"""
-        pass
+        self.buffed_value = effect
+        return None
 
     def getBuffedStarttime(self, effect: Any) -> int:
         """方法 getBuffedStarttime"""

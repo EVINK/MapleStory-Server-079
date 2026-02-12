@@ -29,65 +29,72 @@ class MapleGuildCharacter:
 
     def getLevel(self) -> int:
         """方法 getLevel"""
-        return 0
+        return getattr(self, 'level', 0)
 
     def setLevel(self, l: int) -> None:
         """方法 setLevel"""
-        pass
+        self.level = l
+        return None
 
     def getId(self) -> int:
         """方法 getId"""
-        return 0
+        return getattr(self, 'id', 0)
 
     def setChannel(self, ch: int) -> None:
         """方法 setChannel"""
-        pass
+        self.channel = ch
+        return None
 
     def getChannel(self) -> int:
         """方法 getChannel"""
-        return 0
+        return getattr(self, 'channel', 0)
 
     def getJobId(self) -> int:
         """方法 getJobId"""
-        return 0
+        return getattr(self, 'job_id', 0)
 
     def setJobId(self, job: int) -> None:
         """方法 setJobId"""
-        pass
+        self.job_id = job
+        return None
 
     def getGuildId(self) -> int:
         """方法 getGuildId"""
-        return 0
+        return getattr(self, 'guild_id', 0)
 
     def setGuildId(self, gid: int) -> None:
         """方法 setGuildId"""
-        pass
+        self.guild_id = gid
+        return None
 
     def setGuildRank(self, rank: int) -> None:
         """方法 setGuildRank"""
-        pass
+        self.guild_rank = rank
+        return None
 
     def getGuildRank(self) -> int:
         """方法 getGuildRank"""
-        return 0
+        return getattr(self, 'guild_rank', 0)
 
     def isOnline(self) -> bool:
         """方法 isOnline"""
-        return False
+        return bool(getattr(self, 'online', False))
 
     def getName(self) -> str:
         """方法 getName"""
-        return ""
+        return getattr(self, 'name', "")
 
     def setOnline(self, f: bool) -> None:
         """方法 setOnline"""
-        pass
+        self.online = f
+        return None
 
     def setAllianceRank(self, rank: int) -> None:
         """方法 setAllianceRank"""
-        pass
+        self.alliance_rank = rank
+        return None
 
     def getAllianceRank(self) -> int:
         """方法 getAllianceRank"""
-        return 0
+        return getattr(self, 'alliance_rank', 0)
 
