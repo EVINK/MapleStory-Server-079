@@ -14,13 +14,12 @@ import os
 # from provider.MapleDataProviderFactory import *  # TODO: 根据实际需要导入具体类
 
 
-class WzStringDumper装备数据:
+class WzStringDumperEquipmentData:
     """
-    类 WzStringDumper装备数据 - 从Java类转换
+    Class WzStringDumperEquipmentData - converted from Java
     """
-
 
     def main(self, args: list) -> None:
-        """方法 main"""
+        """main method (placeholder)"""
         pass
 

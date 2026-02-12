@@ -1,55 +1,131 @@
-# MapleStory079·şÎñ¶Ë
+# MapleStory-Server-079ï¼ˆPython 3.12 é‡æ„ä¸å®¹å™¨åŒ–ï¼‰
 
-## ËµÃ÷
+ä¸€ä¸ªå°† MapleStory 079 ç‰ˆ Java ä»£ç ç»“æ„åŒ–è½¬æ¢ä¸º Python çš„æ¨¡æ¿å·¥ç¨‹ï¼š
+- ç›®å½•ç»“æ„ä¿æŒä¸åŸ Java å·¥ç¨‹ä¸€è‡´ï¼ˆè¿ç§»åˆ° src/ ä¸‹çš„ Python åŒ…ï¼‰
+- æä¾› main.py ä½œä¸ºå¯åŠ¨å…¥å£ï¼ˆPython 3.12ï¼‰
+- æä¾› Dockerfile + docker-compose.ymlï¼ˆapp + MySQLï¼‰
+- æä¾› JPype JAR æ¡¥æ¥ï¼ˆå¯è°ƒç”¨ bin/maple.jarï¼Œæˆ–å›é€€ä¸º `java -jar`ï¼‰
+- ç»Ÿä¸€æºç ä¸æ–‡ä»¶åç¼–ç ä¸º UTF-8ï¼Œå‘½åé£æ ¼ English + snake_caseï¼ˆä¸ä½¿ç”¨ä¸­æ–‡æˆ–ä¸å¯è¯»çš„å˜é‡åï¼‰
 
-±¾ÏîÄ¿À´Ô´ÓÚGitHubµÄ[MapleStory](https://github.com/aoaostar/MapleStory)¡£
+---
 
-Windows°æÊ¹ÓÃphpStudy¼¯³É»·¾³£¬¶ÔĞ¡°×±È½ÏÓÑºÃ£¬²»¹ı°üº¬Ì«¶àÈßÓàµÄ¶«Î÷ÁË¡£
+## åŸºæœ¬è¿è¡Œç¯å¢ƒ
+- Python 3.12+
+- Docker 24+ / docker-compose v2+
+- MySQL 8.0ï¼ˆcompose å†…ç½®æœåŠ¡ `db`ï¼‰
+- å¯é€‰ï¼šæœ¬åœ° JREï¼ˆå®¹å™¨å†…å·²åŒ…å« headless JRE ä»¥æ”¯æŒ JPypeï¼‰
+- æ“ä½œç³»ç»Ÿï¼šLinux / macOS / Windowsï¼ˆå»ºè®® WSL2ï¼‰
 
-·ÖÏíÈıÆª½Ì³Ì£¬ÓĞÓÃ¿ÉÒÔ¸ø¸östar»òÕßÆÀÂÛ£¬Ò²¿ÉÒÔ¼ÓºÃÓÑË½ÁÄ
-
-1. [Ã°ÏÕµºË½·ş´î½¨»ù´¡](https://blog.afauria.xyz/2022/09/01/geek-2022-09-01-%E5%86%92%E9%99%A9%E5%B2%9B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BA%E5%9F%BA%E7%A1%80/)
-2. [Ã°ÏÕµºË½·ş´î½¨v079](https://blog.afauria.xyz/2022/09/02/geek-2022-09-02-%E5%86%92%E9%99%A9%E5%B2%9B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BAv079/)
-3. [Ã°ÏÕµºË½·ş´î½¨v176](https://blog.afauria.xyz/2022/09/08/geek-2022-09-08-%E5%86%92%E9%99%A9%E5%B2%9B%E7%A7%81%E6%9C%8D%E6%90%AD%E5%BB%BAv176/)
-
-## ÎÄ¼ş
-
-* scripts£º½Å±¾
-* wz£ºÃ°ÏÕµºÑ¹ËõÎÄ¼ş£¬´æ´¢×ÊÔ´
-* maple.jar£º·şÎñ¶Ë´ò°üÎÄ¼ş£¬°ÑÒÀÀµ¿âÒ²´ò°üµ½Ò»¸öjarÀïÃæÁË
-* config£ºÅäÖÃÎÄ¼ş£¬»¹ÊÇ±È½ÏÇåÎúµÄ
-* src£º·şÎñ¶Ë´úÂë
-* UnlimitedJCEPolicy.tar£ºĞŞ¸´¼ÓÃÜËã·¨ÎÊÌâ
-* [JDK1.7 armv7ÏÂÔØ](https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html)
-
-## ĞŞ¸Ä¼ÇÂ¼
-
-* Fix£ºÉ¾µôÁË²Ö¿âÖĞµÄJDK£¬ÒòÎªCPU¼Ü¹¹²»Ò»¶¨ÊÊÓÃ£¬¶øÇÒÓĞµÄ¿ÉÄÜÒÑ¾­°²×°¹ıJDKÁË
-* Fix£ºĞŞ¸´ÁËÓÎÏ·¼üÎ»Çå¿Õ¡¢ÉÌ³¡ÎŞ·´Ó¦ÎÊÌâ¡£
-
-## ¶Ë¿ÚºÅ
-
-1. 9595£ºµÇÂ¼¶Ë¿ÚºÅ
-2. 8600£ºÉÌ³Ç¶Ë¿ÚºÅ
-3. 2525~2530£ºÆµµÀ¶Ë¿ÚºÅ
-
-## Ê¹ÓÃ²½Öè
-
-1. °²×°JDK1.7ºÍMySQL£¬ÅäÖÃ»·¾³±äÁ¿¡££¨×¢ÒâCPU¼Ü¹¹£©
-2. ´´½¨Êı¾İ¿â£º`create database maplestory_079`
-3. µ¼ÈëSQL±í½á¹¹£º`source <path>/ms_20210813_234816.sql`
-4. ĞŞ¸Ä`config/db.properties`ÅäÖÃ£ºÈ·ÈÏÓÃ»§ÃûºÍÃÜÂë£¬Êı¾İ¿âÃû³ÆÊÇ·ñÕıÈ·
-5. ĞŞ¸Ä`config/server.properties`£º½«`127.0.0.1`¸ÄÎª±¾»úIP
-6. ÔËĞĞ`./start.sh`Æô¶¯·şÎñ¶Ë
-7. ÏÂÔØ079¿Í»§¶Ë£¬Ö¸¶¨·şÎñÆ÷IPµØÖ·ºÍ¶Ë¿ÚºÅ
-
-## ÎÊÌâ
-
-### ¼ÓÃÜËã·¨Òì³£
-
-```shell
-Error initalizing the encryption cipher. Make sure you're using the Unlimited Strength crptography jar files.
+```sh
+python3 -V
+pip -V
 ```
 
-½â¾ö£º½âÑ¹`UnlimitedJCEPolicy.tar`£¬¸²¸Çµô`jdk1.7.0_75/jre/lib/security`ÖĞµÄjarÎÄ¼ş
+## å®‰è£…ä¾èµ–ï¼ˆéå®¹å™¨ï¼‰
+```sh
+pip install -r requirements.txt
+```
+
+## å¯åŠ¨
+
+- ç›´æ¥è¿è¡Œï¼ˆéå®¹å™¨ï¼‰ï¼š
+```sh
+python main.py
+```
+> é»˜è®¤ä»ç¯å¢ƒå˜é‡æˆ– `./config/db.properties` è¯»å–æ•°æ®åº“é…ç½®ã€‚
+
+- ä½¿ç”¨ Docker Composeï¼š
+```sh
+# é¦–æ¬¡æˆ–å˜æ›´åå»ºè®®å…ˆ build
+docker compose up --build
+
+# å¸¸è§„å¯åŠ¨
+docker compose up
+
+# æŸ¥çœ‹æ—¥å¿—
+docker compose logs -f app
+
+# è¿›å…¥å®¹å™¨
+docker compose exec app bash
+```
+> é¢„æœŸï¼š`db` æœåŠ¡ï¼ˆMySQLï¼‰å¸¸é©»ï¼›`app` è¾“å‡º Python ç‰ˆæœ¬ä¸ DB é…ç½®åé€€å‡ºï¼ˆå½“å‰ä¸ºç»“æ„åŒ–å ä½å®ç°ï¼‰ã€‚
+
+### ç¯å¢ƒå˜é‡ï¼ˆappï¼‰
+- `DB_HOST`ï¼ˆé»˜è®¤ï¼šdbï¼‰
+- `DB_PORT`ï¼ˆé»˜è®¤ï¼š3306ï¼‰
+- `DB_NAME`ï¼ˆé»˜è®¤ï¼šmapleï¼‰
+- `DB_USER`ï¼ˆé»˜è®¤ï¼šmapleï¼‰
+- `DB_PASSWORD`ï¼ˆé»˜è®¤ï¼šmapleï¼‰
+- `JAR_PATH`ï¼ˆå¯é€‰ï¼Œé»˜è®¤ï¼š`./bin/maple.jar`ï¼‰
+
+## ç›®å½•ç»“æ„ï¼ˆèŠ‚é€‰ï¼‰
+```
+MapleStory-Server-079
+â”œâ”€ main.py                       # Python å¯åŠ¨å…¥å£
+â”œâ”€ requirements.txt              # Python ä¾èµ–
+â”œâ”€ Dockerfile                    # Python 3.12 + headless JRE
+â”œâ”€ docker-compose.yml            # app + MySQL æœåŠ¡
+â”œâ”€ bin/
+â”‚  â””â”€ maple.jar                  # å¯é€‰çš„å¤–éƒ¨ JARï¼ˆJPype æ¡¥æ¥ï¼‰
+â”œâ”€ config/
+â”‚  â””â”€ db.properties              # æ•°æ®åº“è¿æ¥é…ç½®ï¼ˆå¯ç”¨ç¯å¢ƒå˜é‡è¦†ç›–ï¼‰
+â””â”€ src/
+   â”œâ”€ bridge/
+   â”‚  â””â”€ jar_bridge.py           # JPype æ¡¥æ¥ï¼ˆæˆ– java -jar å›é€€ï¼‰
+   â”œâ”€ server/ ...                # ç»“æ„åŒ–è½¬æ¢åçš„æ¨¡å—ï¼ˆå ä½ + æ³¨é‡Šï¼‰
+   â”œâ”€ tools/ ...                 # å·¥å…·æ¨¡å—ï¼ˆå« wztosqlï¼‰
+   â”‚  â””â”€ wztosql/
+   â”‚     â”œâ”€ WzStringDumper.py
+   â”‚     â”œâ”€ WzStringDumper_pet_data.py
+   â”‚     â”œâ”€ WzStringDumper_equipment_data.py
+   â”‚     â”œâ”€ WzStringDumper_unknown1.py
+   â”‚     â””â”€ WzStringDumper_unknown2.py
+   â””â”€ ...
+```
+
+## ç»´æŠ¤è§„èŒƒ
+- ç¼–ç ç»Ÿä¸€ä¸º UTF-8ï¼ˆæºç ä¸æ–‡ä»¶åï¼‰
+- å‘½åè§„èŒƒï¼šè‹±æ–‡ + snake_caseï¼›ä¸ä½¿ç”¨ä¸­æ–‡æˆ–ä¸å¯è¯»ï¼ˆå¦‚ a1ã€b2ã€lIlIï¼‰å˜é‡å
+- æ¨¡å—/ç±»/å‡½æ•°æ³¨é‡Šï¼šå°½é‡ç®€è¦è¯´æ˜ç”¨é€”ä¸å‚æ•°
+- æ•°æ®åº“é…ç½®ï¼šä¼˜å…ˆç¯å¢ƒå˜é‡ï¼Œå…¶æ¬¡ `config/db.properties`
+- ä¾èµ–ç®¡ç†ï¼š`requirements.txt`
+- æ¨èå·¥å…·ï¼š
+  - ä»£ç æ ¼å¼åŒ–ï¼šblackï¼ˆå¯é€‰ï¼‰
+  - ä»£ç æ ¡éªŒï¼šruff æˆ– flake8ï¼ˆå¯é€‰ï¼‰
+
+## JPype æ¡¥æ¥ç”¨æ³•ï¼ˆå¯é€‰ï¼‰
+```python
+from src.bridge.jar_bridge import start_jvm, call_main_with_subprocess
+
+# ä¼˜å…ˆå°è¯• JPype å¯åŠ¨ JVMï¼ˆclasspath åŒ…å« bin/maple.jarï¼‰
+ok = start_jvm()
+if not ok:
+    # å›é€€ä¸ºå¤–éƒ¨è¿›ç¨‹
+    rc = call_main_with_subprocess(["--help"])  # ä¾‹å­
+```
+
+## å¸¸ç”¨ Docker å‘½ä»¤
+```sh
+# å¯åŠ¨/åœæ­¢/é‡å¯
+docker start|stop|restart <container_id|container_name>
+
+# æŸ¥çœ‹å®¹å™¨åˆ—è¡¨
+docker ps
+
+# æŸ¥çœ‹æ—¥å¿—
+docker logs --tail 50 -f <container_id|container_name>
+
+# ç§»é™¤å®¹å™¨
+docker rm [-f] <container_id|container_name>
+```
+
+## å¼€å‘è·¯çº¿ï¼ˆåç»­ï¼‰
+- å°†ç½‘ç»œæ ˆï¼ˆApache MINAï¼‰é€æ­¥è¿ç§»åˆ° asyncio
+- å°†æ•°æ®åº“è®¿é—®æ›¿æ¢ä¸º PyMySQL å¹¶æ¢³ç†è¿æ¥æ± /äº‹åŠ¡
+- é€æ­¥å°†å ä½å®ç°æ›¿æ¢ä¸ºå¯è¿è¡Œé€»è¾‘
+- é…ç½®æ–‡ä»¶å¯æŒ‰éœ€è¿ç§»åˆ° JSON/YAMLï¼ˆå½“å‰å…¼å®¹ .propertiesï¼‰
+
+---
+
+å¦‚éœ€å¯¹å˜é‡å‘½åå’Œæ–‡ä»¶é‡å‘½åæå‡ºåå¥½ï¼ˆè‹±æ–‡æè¿° / æ‹¼éŸ³ / ç»Ÿä¸€è‹±æ–‡ï¼‰ï¼Œè¯·åœ¨ PR ä¸­è¯„è®ºè¯´æ˜ã€‚
 
